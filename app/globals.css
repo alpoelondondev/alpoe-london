@@ -103,24 +103,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Hero title animation */
-.hero-title .line {
-  display: block;
-  overflow: hidden;
-}
-
-.hero-title .line span {
-  display: block;
-  transform: translateY(110%);
-}
-
-/* Marquee */
-.marquee-item::after {
-  content: "\2726";
-  font-size: 16px;
-  color: var(--color-accent);
-}
-
 /* Hide scrollbar on mobile carousel */
 .scrollbar-none {
   -ms-overflow-style: none;

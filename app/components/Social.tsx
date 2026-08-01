@@ -1,13 +1,16 @@
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
-const instagramPosts: { src: string; href: string }[] = [
-  { src: "/instagram/1.jpg", href: "https://www.instagram.com/p/DMYWPg7I1w_/" },
-  { src: "/instagram/2.jpg", href: "https://www.instagram.com/p/DWXBfUGDv1W/?img_index=1" },
-  { src: "/instagram/3.jpg", href: "https://www.instagram.com/p/DWW3pKnijSC/" },
-  { src: "/instagram/4.jpg", href: "https://www.instagram.com/p/DTdhp15CHRX/" },
-  { src: "/instagram/5.jpg", href: "https://www.instagram.com/p/DQow0ZHiLoz/?img_index=1" },
-  { src: "/instagram/6.jpg", href: "https://www.instagram.com/p/DR7YdBKiIu-/" },
+const PROFILE_URL = "https://www.instagram.com/alpoelondon/";
+
+// One real post; the remaining slots are placeholders until new content is shot.
+const instagramPosts: { src: string | null }[] = [
+  { src: null },
+  { src: null },
+  { src: "/instagram/3.jpg" },
+  { src: null },
+  { src: null },
+  { src: null },
 ];
 
 export default function Social() {
@@ -62,21 +65,39 @@ export default function Social() {
           </a>
         </div>
         <div className="max-w-5xl mx-auto mt-16 grid grid-cols-3 gap-2 max-md:mt-10 max-md:grid-cols-2">
-          {instagramPosts.map((post) => (
+          {instagramPosts.map((post, i) => (
             <a
-              key={post.src}
-              href={post.href}
+              key={i}
+              href={PROFILE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block aspect-square overflow-hidden bg-white/[0.02]"
+              className="group relative block aspect-square overflow-hidden bg-white/[0.02] border border-white/[0.05]"
             >
-              <Image
-                src={post.src}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
+              {post.src ? (
+                <Image
+                  src={post.src}
+                  alt="Alpoe London on Instagram"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white/15 transition group-hover:text-white/30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </span>
+              )}
             </a>
           ))}
         </div>

@@ -1,6 +1,5 @@
 import SiteHeader from "./components/SiteHeader";
 import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
 import Collections from "./components/Collections";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -14,7 +13,6 @@ export default function Home() {
     <>
       <SiteHeader />
       <Hero />
-      <Marquee />
       <Collections />
       <About />
       <Contact />

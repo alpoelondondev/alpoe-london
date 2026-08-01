@@ -79,8 +79,8 @@ export default function Hero() {
         </p>
       </div>
       <div ref={contentRef} className="relative z-4">
-        <h1 className="text-[16px] tracking-[0.2em] uppercase text-accent text-center mb-12">
-          Alpoe London <span aria-hidden="true">·</span> Alpoe Luxe
+        <h1 className="sr-only">
+          Alpoe London — Luxury Watches &amp; Bespoke Jewellery, Hatton Garden
         </h1>
         <div
           ref={bottomRef}
