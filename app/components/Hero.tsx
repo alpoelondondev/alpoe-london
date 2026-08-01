@@ -12,15 +12,11 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reveal = () => {
       if (eyebrowRef.current) {
         gsap.to(eyebrowRef.current, { opacity: 1, duration: 0.8 });
-      }
-      if (bottomRef.current) {
-        gsap.to(bottomRef.current, { opacity: 1, duration: 0.8, delay: 0.5 });
       }
     };
 
@@ -82,17 +78,6 @@ export default function Hero() {
         <h1 className="sr-only">
           Alpoe London — Luxury Watches &amp; Bespoke Jewellery, Hatton Garden
         </h1>
-        <div
-          ref={bottomRef}
-          className="flex justify-between items-end opacity-0 max-md:flex-col max-md:items-start max-md:gap-6"
-        >
-          <a
-            className="text-[11px] tracking-[0.14em] uppercase text-dim no-underline border-b border-dim pb-[3px]"
-            href="#collections"
-          >
-            View Collection
-          </a>
-        </div>
       </div>
     </section>
   );

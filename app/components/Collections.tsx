@@ -71,11 +71,6 @@ export default function Collections() {
       id="collections"
       className="px-[52px] pt-14 pb-14 max-md:px-6 max-md:pt-10 max-md:pb-10"
     >
-      <ScrollReveal>
-        <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-[72px] flex items-center gap-[18px]">
-          Collections
-        </p>
-      </ScrollReveal>
       <div
         ref={carouselRef}
         onScroll={handleScroll}
