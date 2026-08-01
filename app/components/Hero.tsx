@@ -4,14 +4,14 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShuffleText } from "./Loader";
+import { LOGO_PATHS } from "./logoPaths";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const eyebrowRef = useRef<HTMLParagraphElement>(null);
+  const eyebrowRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,27 +59,25 @@ export default function Hero() {
       id="hero"
       className="h-screen relative overflow-hidden flex flex-col justify-end px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <video
-        ref={videoRef}
-        data-hero
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster="/poster-hero.jpg"
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/alpoe-hero.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/40" />
-      <p
+      <div
         ref={eyebrowRef}
-        className="absolute inset-0 z-4 flex items-center justify-center text-[16px] tracking-[0.2em] uppercase text-accent opacity-0 pointer-events-none"
+        className="absolute inset-0 z-4 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none"
       >
-        <ShuffleText />
-      </p>
+        <svg
+          viewBox="12 42 201 126"
+          className="w-[min(72vw,560px)] max-md:w-[82vw]"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Alpoe London"
+        >
+          {LOGO_PATHS.map((d, i) => (
+            <path key={i} d={d} fill="#f0ece4" />
+          ))}
+        </svg>
+        <p className="text-[16px] tracking-[0.2em] uppercase text-accent">
+          <ShuffleText />
+        </p>
+      </div>
       <div ref={contentRef} className="relative z-4">
         <h1 className="text-[16px] tracking-[0.2em] uppercase text-accent text-center mb-12">
           Alpoe London <span aria-hidden="true">·</span> Alpoe Luxe
