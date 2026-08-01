@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
-const PROFILE_URL = "https://www.instagram.com/alpoelondon/";
+const PROFILE_URL = "https://www.instagram.com/alpoe/";
 
 const films: { title: string; image: string; video: string }[] = [
   {
@@ -79,53 +79,8 @@ export default function Social() {
       className="px-[52px] py-24 border-t border-black/[0.07] max-md:px-6 max-md:py-16"
     >
       <ScrollReveal>
-        <div className="max-w-5xl mx-auto grid grid-cols-2 gap-6">
-          <a
-            href={PROFILE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="group flex flex-col items-center gap-3"
-          >
-            <svg
-              className="w-12 h-12 text-black/50 transition hover:scale-110 hover:text-black/80 max-md:w-10 max-md:h-10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-            </svg>
-            <span className="text-black/50 text-xs tracking-wide transition group-hover:text-black/80">
-              @alpoelondon
-            </span>
-          </a>
-          <a
-            href="https://www.tiktok.com/@alpoelondon"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok"
-            className="group flex flex-col items-center gap-3"
-          >
-            <svg
-              className="w-12 h-12 text-black/50 transition hover:scale-110 hover:text-black/80 max-md:w-10 max-md:h-10"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z" />
-            </svg>
-            <span className="text-black/50 text-xs tracking-wide transition group-hover:text-black/80">
-              @alpoelondon
-            </span>
-          </a>
-        </div>
-
         {/* Films from the feed — videos preloaded in the background */}
-        <div className="max-w-3xl mx-auto mt-16 grid grid-cols-2 gap-4 max-md:mt-10 max-md:grid-cols-1">
+        <div className="max-w-3xl mx-auto grid grid-cols-2 gap-4 max-md:grid-cols-1">
           {films.map((film, i) => (
             <div
               key={film.video}
@@ -162,7 +117,7 @@ export default function Social() {
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.85)] via-[rgba(6,6,8,0.15)] to-transparent pointer-events-none" />
               <span className="absolute top-[18px] left-5 text-[11px] tracking-[0.12em] uppercase text-[rgba(240,236,228,0.75)]">
-                @alpoelondon
+                @alpoe
               </span>
               <span className="absolute top-[16px] right-5 flex items-center gap-2">
                 <button
@@ -208,6 +163,52 @@ export default function Social() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Social badges sit under the films */}
+        <div className="max-w-3xl mx-auto mt-12 grid grid-cols-2 gap-6 max-md:mt-10">
+          <a
+            href={PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="group flex flex-col items-center gap-3"
+          >
+            <svg
+              className="w-12 h-12 text-black/50 transition hover:scale-110 hover:text-black/80 max-md:w-10 max-md:h-10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            <span className="text-black/50 text-xs tracking-wide transition group-hover:text-black/80">
+              @alpoe
+            </span>
+          </a>
+          <a
+            href="https://www.tiktok.com/@alpoelondon"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            className="group flex flex-col items-center gap-3"
+          >
+            <svg
+              className="w-12 h-12 text-black/50 transition hover:scale-110 hover:text-black/80 max-md:w-10 max-md:h-10"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z" />
+            </svg>
+            <span className="text-black/50 text-xs tracking-wide transition group-hover:text-black/80">
+              @alpoelondon
+            </span>
+          </a>
         </div>
       </ScrollReveal>
     </section>

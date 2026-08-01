@@ -14,7 +14,7 @@ export const SITE = {
     postalCode: "EC1N",
   },
   sameAs: [
-    "https://www.instagram.com/alpoelondon",
+    "https://www.instagram.com/alpoe",
     "https://www.tiktok.com/@alpoelondon",
   ],
 } as const;
