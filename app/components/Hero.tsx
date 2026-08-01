@@ -12,6 +12,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const reveal = () => {
@@ -20,9 +21,14 @@ export default function Hero() {
       }
     };
 
-    // The Loader's click handler now starts the hero video synchronously
-    // inside the user gesture, so iOS accepts it. We just reveal text on cue.
+    // The Loader also kicks the video off inside the click gesture for iOS;
+    // this is the belt-and-braces attempt once the splash clears.
     const onLoaded = () => {
+      const video = videoRef.current;
+      if (video) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
       reveal();
     };
 
@@ -55,6 +61,26 @@ export default function Hero() {
       id="hero"
       className="h-screen relative overflow-hidden flex flex-col justify-end px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <video
+        ref={videoRef}
+        data-hero
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="/alpoe-luxury-watches-hero-hatton-garden.jpg"
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source
+          src="/alpoe-luxury-watches-hero-hatton-garden.mp4"
+          type="video/mp4"
+        />
+      </video>
+      {/* Warm scrim keeps the oxblood wordmark legible over the footage */}
+      <div className="absolute inset-0 bg-bg/70 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_50%,transparent_25%,rgba(244,242,238,0.55)_100%)] pointer-events-none" />
       <div
         ref={eyebrowRef}
         className="absolute inset-0 z-4 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none"

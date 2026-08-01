@@ -98,14 +98,24 @@ export default function Loader() {
     if (revealed.current) return;
     revealed.current = true;
 
-    // 1. Stop the starfield RAF immediately so the slide-up has zero
+    // 1. Synchronously start the hero video INSIDE the click stack so iOS
+    //    Safari accepts the user gesture.
+    const video = document.querySelector(
+      "video[data-hero]"
+    ) as HTMLVideoElement | null;
+    if (video) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+
+    // 2. Stop the starfield RAF immediately so the slide-up has zero
     //    competition for the main thread.
     if (rafRef.current !== null) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
 
-    // 2. Restore scroll, fire page-loaded for Hero text reveal, slide loader.
+    // 3. Restore scroll, fire page-loaded for Hero text reveal, slide loader.
     document.body.style.overflow = "";
     window.dispatchEvent(new Event("page-loaded"));
 
