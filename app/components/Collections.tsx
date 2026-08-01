@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
@@ -42,38 +41,16 @@ const items: {
 ];
 
 export default function Collections() {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleScroll = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const cardWidth = el.scrollWidth / items.length;
-    const index = Math.round(el.scrollLeft / cardWidth);
-    setActiveIndex(Math.min(index, items.length - 1));
-  }, []);
-
-  const scrollByCard = (dir: 1 | -1) => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const cardWidth = el.scrollWidth / items.length;
-    el.scrollBy({ left: cardWidth * dir, behavior: "smooth" });
-  };
-
   return (
     <section
       id="collections"
       className="pt-14 pb-14 max-md:pt-10 max-md:pb-10"
     >
-      <div
-        ref={carouselRef}
-        onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-[52px] scrollbar-none max-md:px-6"
-      >
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-[52px] scrollbar-none max-md:px-6">
         {items.map((item, i) => (
           <ScrollReveal
             key={item.num}
-            className="flex-none w-[44vw] max-md:w-[85vw] snap-center"
+            className="flex-none w-[26vw] max-md:w-[78vw] snap-center"
             delay={i * 0.1}
           >
             <Link
@@ -115,37 +92,6 @@ export default function Collections() {
         ))}
       </div>
 
-      {/* Carousel arrows + indicator */}
-      <div className="flex justify-center items-center gap-6 mt-6">
-        <button
-          type="button"
-          aria-label="Previous"
-          onClick={() => scrollByCard(-1)}
-          disabled={activeIndex === 0}
-          className="text-[20px] text-dim disabled:opacity-30 px-2 cursor-pointer"
-        >
-          ←
-        </button>
-        <div className="flex items-center gap-2">
-          {items.map((item, i) => (
-            <span
-              key={item.num}
-              className={`block h-[2px] rounded-full transition-all duration-300 ${
-                i === activeIndex ? "w-6 bg-accent" : "w-2 bg-black/20"
-              }`}
-            />
-          ))}
-        </div>
-        <button
-          type="button"
-          aria-label="Next"
-          onClick={() => scrollByCard(1)}
-          disabled={activeIndex === items.length - 1}
-          className="text-[20px] text-dim disabled:opacity-30 px-2 cursor-pointer"
-        >
-          →
-        </button>
-      </div>
     </section>
   );
 }
