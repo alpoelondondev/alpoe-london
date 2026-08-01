@@ -41,12 +41,6 @@ export default function SellForm() {
         <div className="overflow-hidden">
       <div className="max-w-[720px] mx-auto pb-14 pt-4">
         <ScrollReveal>
-          <h2 className="font-serif text-[clamp(48px,10vw,130px)] leading-[0.93] tracking-tight text-center mb-6 whitespace-nowrap">
-            BEST MARKET PRICE
-          </h2>
-        </ScrollReveal>
-
-        <ScrollReveal>
           <p className="text-[15px] leading-[1.85] text-dim text-center mb-16 max-w-[480px] mx-auto">
             Looking to sell your luxury watch or jewellery? We offer competitive
             prices and a seamless process.{" "}

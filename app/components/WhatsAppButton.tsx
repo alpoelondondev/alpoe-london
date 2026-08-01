@@ -2,7 +2,7 @@ import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 export default function WhatsAppButton() {
   const href = buildGeneralWhatsAppUrl(
-    "Hi, I'd like to make an enquiry with Alpoe London.",
+    "Hi Alpoe, I'd like to make an enquiry about...",
   );
   return (
     <a

@@ -9,7 +9,9 @@ import ProductGrid from "../components/ProductGrid";
 import ScrollReveal from "../components/ScrollReveal";
 import { JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { getJewellery, productUrl } from "@/lib/products";
-import { pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
+import FAQ from "../components/FAQ";
+import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
+import { JEWELLERY_FAQS } from "@/lib/faqs";
 
 export const metadata: Metadata = pageMetadata({
   title: "Fine Jewellery — Engagement Rings, Wedding Bands, Diamonds & More",
@@ -22,14 +24,15 @@ export default function JewelleryIndex() {
   const items = getJewellery();
   const featured = items.filter((j) => j.featured).slice(0, 6);
 
-  const ld = ldJsonGraph(
-    collectionLd({
+  const ld = ldJsonGraph([
+    ...collectionLd({
       name: "Fine Jewellery",
       description: "Bespoke diamond jewellery designed and made in Hatton Garden, London.",
       path: "/jewellery",
       products: featured.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
-  );
+    faqLd(JEWELLERY_FAQS),
+  ]);
 
   return (
     <>
@@ -83,6 +86,7 @@ export default function JewelleryIndex() {
             <ProductGrid products={featured} />
           </section>
         ) : null}
+        <FAQ items={JEWELLERY_FAQS} />
       </main>
       <Footer />
       <WhatsAppButton />

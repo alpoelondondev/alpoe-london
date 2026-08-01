@@ -34,11 +34,6 @@ export default function Contact() {
       >
         <div className="overflow-hidden">
           <div className="text-center pb-14 pt-4">
-            <h2 className="font-serif text-[clamp(56px,11vw,150px)] leading-[0.93] tracking-tight mb-14">
-              ORDER
-              <br />
-              YOURS
-            </h2>
             <a
               className="text-[15px] text-dim no-underline border-b border-white/20 pb-[3px] tracking-[0.04em]"
               href="mailto:info@alpoelondon.com"

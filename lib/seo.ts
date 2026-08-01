@@ -159,3 +159,14 @@ export function ldJsonGraph(nodes: object[]) {
     "@graph": nodes,
   };
 }
+
+export function faqLd(items: { question: string; answer: string }[]) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+}

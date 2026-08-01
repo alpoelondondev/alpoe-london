@@ -9,7 +9,9 @@ import ProductGrid from "../components/ProductGrid";
 import ScrollReveal from "../components/ScrollReveal";
 import { WATCH_BRANDS } from "@/lib/taxonomy";
 import { getWatches } from "@/lib/products";
-import { pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
+import FAQ from "../components/FAQ";
+import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
+import { WATCH_FAQS } from "@/lib/faqs";
 import { productUrl } from "@/lib/products";
 
 export const metadata: Metadata = pageMetadata({
@@ -23,15 +25,16 @@ export default function WatchesIndex() {
   const watches = getWatches();
   const featured = watches.filter((w) => w.featured).slice(0, 6);
 
-  const ld = ldJsonGraph(
-    collectionLd({
+  const ld = ldJsonGraph([
+    ...collectionLd({
       name: "Luxury Watches",
       description:
         "Luxury watches at Alpoe London — every major brand, live stock and sourceable references.",
       path: "/watches",
       products: featured.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
-  );
+    faqLd(WATCH_FAQS),
+  ]);
 
   return (
     <>
@@ -85,6 +88,7 @@ export default function WatchesIndex() {
             <ProductGrid products={featured} />
           </section>
         ) : null}
+        <FAQ items={WATCH_FAQS} />
       </main>
       <Footer />
       <WhatsAppButton />

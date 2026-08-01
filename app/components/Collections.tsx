@@ -1,31 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import Image from "next/image";
+import { useRef, useState, useCallback } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollReveal from "./ScrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const items: {
   title: string;
   tag: string;
   href: string;
-  image?: string;
-  video?: string;
-  poster?: string;
-  objectPosition?: string;
+  blurb: string;
   num: string;
   colSpan: string;
 }[] = [
   {
-    title: "Bespoke Ice Pendants",
-    tag: "Pendants",
-    href: "/jewellery/necklaces-pendants",
-    video: "/alpoe-ice-pendant.mp4",
-    poster: "/poster-ice-pendant.jpg",
+    title: "Bespoke Jewellery Service",
+    tag: "Bespoke",
+    href: "/jewellery",
+    blurb: "One-off pieces designed around you and hand-set in Hatton Garden.",
     num: "01",
     colSpan: "col-span-7 max-md:col-span-12",
   },
@@ -33,7 +24,7 @@ const items: {
     title: "Cuban Chains",
     tag: "Chains",
     href: "/jewellery/mens-jewellery",
-    video: "/chains-video.mp4",
+    blurb: "Solid gold links, hand-finished to any width and length.",
     num: "02",
     colSpan: "col-span-5 max-md:col-span-12",
   },
@@ -41,8 +32,7 @@ const items: {
     title: "Statement Rings",
     tag: "Rings",
     href: "/jewellery/rings",
-    video: "/alpoe-rings-vid.mp4",
-    poster: "/poster-rings.jpg",
+    blurb: "From GIA-certified solitaires to one-off cocktail pieces.",
     num: "03",
     colSpan: "col-span-5 max-md:col-span-12",
   },
@@ -50,16 +40,13 @@ const items: {
     title: "Luxury Watches",
     tag: "Watches",
     href: "/watches",
-    video: "/alpoe-luxury-watch-vid.mp4",
-    poster: "/poster-luxury-watch.jpg",
+    blurb: "Rolex, Patek Philippe, AP and more — sourced worldwide.",
     num: "04",
     colSpan: "col-span-7 max-md:col-span-12",
   },
 ];
 
 export default function Collections() {
-  const thumbRefs = useRef<(HTMLImageElement | null)[]>([]);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -78,113 +65,6 @@ export default function Collections() {
     const cardWidth = el.scrollWidth / items.length;
     el.scrollBy({ left: cardWidth * dir, behavior: "smooth" });
   };
-
-  useEffect(() => {
-    thumbRefs.current.forEach((img) => {
-      if (!img) return;
-      gsap.fromTo(
-        img,
-        { yPercent: -8 },
-        {
-          yPercent: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: img.parentElement,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }
-      );
-    });
-
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const observers: IntersectionObserver[] = [];
-
-    // Background-preload all card videos after the page is interactive
-    // so they're already buffered when the user swipes
-    const preloadAllVideos = () => {
-      videoRefs.current.forEach((video, i) => {
-        if (!video || video.readyState >= 2) return;
-        // Stagger loading to avoid bandwidth contention
-        setTimeout(() => {
-          if (video.preload === "none") {
-            video.preload = "auto";
-            video.load();
-          }
-        }, i * 800);
-      });
-    };
-
-    // Start preloading once the page loader dismisses
-    window.addEventListener("page-loaded", preloadAllVideos, { once: true });
-    // Fallback: if page-loaded already fired, start after a short delay
-    const preloadFallback = setTimeout(preloadAllVideos, 3000);
-
-    const playVideo = (video: HTMLVideoElement) => {
-      const tryPlay = () => video.play().catch(() => {});
-
-      if (video.readyState >= 2) {
-        tryPlay();
-      } else {
-        // If not yet loaded, force load then play
-        if (video.preload === "none") {
-          video.preload = "auto";
-          video.load();
-        }
-        video.addEventListener("canplay", tryPlay, { once: true });
-      }
-    };
-
-    const pauseVideo = (video: HTMLVideoElement) => {
-      video.pause();
-      video.currentTime = 0;
-    };
-
-    videoRefs.current.forEach((video) => {
-      if (!video) return;
-
-      if (isMobile) {
-        // On mobile: play when card is >50% visible, pause all others
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              videoRefs.current.forEach((v) => {
-                if (v && v !== video) pauseVideo(v);
-              });
-              playVideo(video);
-            } else {
-              pauseVideo(video);
-            }
-          },
-          { threshold: 0.5 }
-        );
-        observer.observe(video);
-        observers.push(observer);
-      } else {
-        // On desktop: viewport-based play/pause
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              playVideo(video);
-            } else {
-              pauseVideo(video);
-            }
-          },
-          { threshold: 0.3 }
-        );
-        observer.observe(video);
-        observers.push(observer);
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      observers.forEach((o) => o.disconnect());
-      clearTimeout(preloadFallback);
-      window.removeEventListener("page-loaded", preloadAllVideos);
-    };
-  }, []);
 
   return (
     <section
@@ -209,46 +89,32 @@ export default function Collections() {
           >
             <Link
               href={item.href}
-              className="work-item relative overflow-hidden group cursor-pointer block"
+              className="group relative block aspect-[4/3] overflow-hidden border border-white/[0.06] bg-white/[0.02] transition-colors duration-500 hover:border-white/[0.14]"
               aria-label={`Explore ${item.title}`}
             >
-            {item.video ? (
-              <video
-                ref={(el) => { videoRefs.current[i] = el; }}
-                muted
-                loop
-                playsInline
-                preload="none"
-                poster={item.poster}
-                className="work-thumb w-full aspect-[4/3] object-cover block"
+              {/* Oversized ghost numeral */}
+              <span
+                aria-hidden="true"
+                className="absolute -top-6 right-2 font-serif text-[clamp(140px,18vw,260px)] leading-none text-white/[0.04] transition-colors duration-500 group-hover:text-white/[0.07] select-none"
               >
-                <source src={item.video} type="video/mp4" />
-              </video>
-            ) : (
-              <Image
-                ref={(el) => {
-                  thumbRefs.current[i] = el;
-                }}
-                className="work-thumb w-full aspect-[4/3] object-cover block"
-                style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}
-                src={item.image!}
-                alt={item.title}
-                width={900}
-                height={675}
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.85)] to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-40" />
-            <span className="absolute top-[18px] right-[18px] text-[11px] tracking-[0.1em] text-dim">
-              {item.num}
-            </span>
-            <div className="absolute bottom-[22px] left-6 right-6">
-              <h3 className="font-serif text-[clamp(24px,3vw,42px)] tracking-[0.02em] leading-none mb-1.5">
-                {item.title}
-              </h3>
-              <p className="text-[11px] tracking-[0.12em] uppercase text-dim">
+                {item.num}
+              </span>
+              {/* Soft sheen */}
+              <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_15%_100%,rgba(184,160,112,0.08),transparent_60%)] pointer-events-none" />
+              <span className="absolute top-[18px] left-6 text-[11px] tracking-[0.12em] uppercase text-dim">
                 {item.tag}
-              </p>
-            </div>
+              </span>
+              <div className="absolute bottom-[22px] left-6 right-6">
+                <h3 className="font-serif text-[clamp(24px,3vw,42px)] tracking-[0.02em] leading-none mb-2.5">
+                  {item.title}
+                </h3>
+                <p className="text-[12px] leading-relaxed text-dim max-w-[36ch] mb-3">
+                  {item.blurb}
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase text-accent opacity-80 transition-opacity duration-300 group-hover:opacity-100">
+                  Explore →
+                </span>
+              </div>
             </Link>
           </ScrollReveal>
         ))}
