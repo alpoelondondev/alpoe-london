@@ -1,0 +1,373 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak",
+  "modelSlug": "royal-oak",
+  "modelOverview": "Introduced in 1972 and designed by Gerald Genta, the Royal Oak was the first luxury sports watch in steel, defined by its octagonal bezel, eight hexagonal bezel screws and integrated bracelet. This grouping spans the wider Royal Oak family beyond the core 41mm Selfwinding line — from the discontinued 15400 predecessor and precious-metal 34/37mm 'mid-size' models to the 33mm Lady's automatic and quartz references — in steel, precious metals and ceramic.",
+  "references": {
+    "15400OR.OO.D088CR.01": {
+      "caseSize": "41mm, 9.8mm thick",
+      "movement": "Automatic · AP Calibre 3120 · ~60h power reserve",
+      "materials": "18-carat pink (rose) gold case on a brown alligator leather strap",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Silver-toned 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands, date at 3 o'clock",
+      "waterResistance": "50m",
+      "year": "2012–2019",
+      "description": "The Royal Oak Selfwinding 15400 was the direct predecessor to today's 15500/15510 family, produced from 2012 until its 2019 replacement. This pink gold example on a hand-stitched leather strap runs the in-house Calibre 3120 with roughly 60 hours of power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold": "18-carat pink gold case on a brown leather strap with a silver-toned 'Grande Tapisserie' dial — a discontinued (pre-2019) reference now sought by collectors wanting the older 3120-based Royal Oak."
+      }
+    },
+    "15500OR.OO.1220OR.01": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat pink (rose) gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2019–present",
+      "description": "The Royal Oak Selfwinding 41mm in full pink gold pairs the octagonal Genta bezel and integrated bracelet with a blue 'Grande Tapisserie' waffle dial. Introduced as part of the 2019 redesign, it runs the in-house Calibre 4302 with a ~70-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Bracelet": "Full 18-carat pink gold case and integrated bracelet with a blue 'Grande Tapisserie' dial — the flagship precious-metal expression of the current-generation 41mm Selfwinding."
+      }
+    },
+    "15500OR.OO.D002CR.01": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat pink (rose) gold case on a leather strap",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2019–present",
+      "description": "This pink gold Royal Oak Selfwinding 41mm is fitted to a leather strap rather than the integrated bracelet, offering a lighter, dressier take on the same blue 'Grande Tapisserie' dial and Calibre 4302 movement as the bracelet version. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Leather": "18-carat pink gold case on a leather strap with a blue 'Grande Tapisserie' dial — the strap-fitted alternative to the pink gold bracelet reference."
+      }
+    },
+    "15500ST.OO.1220ST.01": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2019–present",
+      "description": "The steel Royal Oak Selfwinding 41mm with blue dial is the benchmark reference of the modern Royal Oak line, its Grande Tapisserie waffle and octagonal bezel powered by the in-house Calibre 4302 (~70h reserve). It is one of the most requested integrated-bracelet sports watches on the market. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Bracelet": "Stainless steel case and bracelet with a blue 'Grande Tapisserie' dial — the definitive steel Royal Oak Selfwinding 41mm reference."
+      }
+    },
+    "15500ST.OO.1220ST.02": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Black 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2019–present",
+      "description": "The black-dial steel Royal Oak Selfwinding 41mm offers a higher-contrast alternative to the standard blue dial, the dark Grande Tapisserie waffle set off by the polished octagonal bezel. It shares the in-house Calibre 4302 with a ~70-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Bracelet Alt": "Stainless steel case and bracelet with a black 'Grande Tapisserie' dial — a higher-contrast alternative within the steel 15500 family."
+      }
+    },
+    "15500ST.OO.1220ST.03": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Grey 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2019–present",
+      "description": "This steel Royal Oak Selfwinding 41mm carries a cooler grey Grande Tapisserie dial, a versatile everyday option within the core steel range, driven by the in-house Calibre 4302 (~70h power reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Bracelet Alt 2": "Stainless steel case and bracelet with a grey 'Grande Tapisserie' dial — a neutral, versatile option within the steel 15500 family."
+      }
+    },
+    "15500ST.OO.1220ST.04": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Smoked olive/green 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2019–present",
+      "description": "This steel Royal Oak Selfwinding 41mm is finished with a smoked green Grande Tapisserie dial, a contemporary colourway within the core steel range, powered by the in-house Calibre 4302 with a ~70-hour reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Bracelet Alt 3": "Stainless steel case and bracelet with a smoked green 'Grande Tapisserie' dial — the most contemporary colourway within the steel 15500 family."
+      }
+    },
+    "15510BC.OO.1320BC.02": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat white gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat white gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Black 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "Part of the refreshed 15510 generation of the Royal Oak Selfwinding 41mm, this white gold example pairs a black Grande Tapisserie dial with the discreet weight and lustre of precious metal. It runs the in-house Calibre 4302 with a ~70-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel/Black Dial": "18-carat white gold case and bracelet with a black 'Grande Tapisserie' dial — a precious-metal 15510 that reads close to steel at a glance."
+      }
+    },
+    "15510OR.OO.D002CR.02": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat pink (rose) gold case on a leather strap",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "This pink gold Royal Oak Selfwinding 41mm from the refreshed 15510 generation is fitted to a leather strap for a lighter, dressier feel while retaining the octagonal bezel and Calibre 4302 movement (~70h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Leather": "18-carat pink gold case on a leather strap — the strap-fitted configuration of the current-generation pink gold 15510."
+      }
+    },
+    "15510OR.OO.D315CR.02": {
+      "caseSize": "41mm, 10.4mm thick",
+      "movement": "Automatic · AP Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat pink (rose) gold case on a blue leather strap",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "This pink gold Royal Oak Selfwinding 41mm pairs a blue Grande Tapisserie dial with a tonal blue leather strap, an alternative to the bracelet-mounted version. Powered by the in-house Calibre 4302 with a ~70-hour reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Blue Leather": "18-carat pink gold case on a blue leather strap with a blue 'Grande Tapisserie' dial — a tonal strap configuration of the current-generation pink gold 15510."
+      }
+    },
+    "15550BA.OO.1356BA.01": {
+      "caseSize": "37mm, 8.9mm thick",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "18-carat yellow gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat yellow gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Natural turquoise stone dial with yellow gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The Royal Oak Selfwinding 37mm in yellow gold with a natural turquoise stone dial was the first Royal Oak ever to feature genuine turquoise, launched in 2023. Each dial's mineral veining is unique, and the watch is driven by the Vaucher-based Calibre 5900 with a ~60-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Bronze": "18-carat yellow gold case and bracelet with a natural turquoise stone dial — the debut turquoise-dial Royal Oak, each stone dial individually patterned."
+      }
+    },
+    "15550BA.OO.1356BA.02": {
+      "caseSize": "37mm, 8.9mm thick",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "18-carat yellow gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat yellow gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Satin yellow gold-toned 'Grande Tapisserie' dial with yellow gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "This 37mm Royal Oak Selfwinding in full yellow gold pairs a warm satin gold-toned Grande Tapisserie dial with the same case and bracelet as the turquoise-dial edition. It runs the Calibre 5900 automatic movement with roughly 60 hours of power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Bronze Alt": "18-carat yellow gold case and bracelet with a satin gold-toned 'Grande Tapisserie' dial — the tonal, all-gold alternative to the turquoise stone-dial 37mm."
+      }
+    },
+    "15550SR.OO.1356SR.02": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case with 18-carat pink gold bezel and bracelet links (two-tone)",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Silver-toned 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "This 37mm Royal Oak Selfwinding combines a stainless steel case with 18-carat pink gold bezel and bracelet links for a two-tone look, paired with a silver-toned Grande Tapisserie dial and the Calibre 5900 movement (~60h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Stainless Steel Red": "Two-tone stainless steel and 18-carat pink gold case and bracelet with a silver-toned 'Grande Tapisserie' dial."
+      }
+    },
+    "15550ST.OO.1356ST.05": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm steel Royal Oak Selfwinding brings the mid-size case to the widely worn Grande Tapisserie dial format, driven by the Calibre 5900 automatic movement with a ~60-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel": "Stainless steel case and bracelet — the core 37mm steel Royal Oak Selfwinding configuration."
+      }
+    },
+    "15550ST.OO.1356ST.06": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "'Bleu Nuit, Nuage 50' blue 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm steel Royal Oak Selfwinding is finished with the 'Bleu Nuit, Nuage 50' blue Grande Tapisserie dial, a special-edition colourway referencing AP's 50th-anniversary dial artwork, powered by the Calibre 5900 (~60h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Alt": "Stainless steel case and bracelet with the 'Bleu Nuit, Nuage 50' blue 'Grande Tapisserie' dial."
+      }
+    },
+    "15550ST.OO.1356ST.07": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "This 37mm steel Royal Oak Selfwinding offers a further dial colourway within the core steel range, retaining the octagonal bezel and integrated bracelet, and driven by the Calibre 5900 automatic movement (~60h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Alt 2": "Stainless steel case and bracelet — an additional dial colourway within the 37mm steel Royal Oak Selfwinding range."
+      }
+    },
+    "15550ST.OO.1356ST.08": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2025–present",
+      "description": "This 37mm steel Royal Oak Selfwinding in blue is one of the most recent dial colourways in the mid-size steel range, driven by the Calibre 5900 automatic movement with a ~60-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Alt 3": "Stainless steel case and bracelet with a blue 'Grande Tapisserie' dial — one of the newest colourways in the 37mm steel range."
+      }
+    },
+    "15551BC.ZZ.1356BC.01": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "18-carat white gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat white gold bezel set with 32 baguette-cut diamonds (~1.66ct)",
+      "dial": "Smoked blue 'Grande Tapisserie' dial with baguette-cut diamond hour-markers (~0.24ct) and white gold Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm Royal Oak Selfwinding in white gold is set with baguette-cut diamonds on both the bezel and hour-markers, paired with a smoked blue Grande Tapisserie dial. It runs the Calibre 5900 automatic movement with a ~60-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Bronze Black": "18-carat white gold case and bracelet with a baguette-diamond bezel and smoked blue 'Grande Tapisserie' dial."
+      }
+    },
+    "15551OR.ZZ.1356OR.04": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "18-carat pink (rose) gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat pink gold bezel set with 40 brilliant-cut diamonds (~0.92ct)",
+      "dial": "Silver-toned 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm Royal Oak Selfwinding in pink gold pairs a diamond-set bezel with a silver-toned Grande Tapisserie dial, powered by the Calibre 5900 automatic movement (~60h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Alt": "18-carat pink gold case and bracelet with a brilliant-cut diamond bezel and silver-toned 'Grande Tapisserie' dial."
+      }
+    },
+    "15551OR.ZZ.1356OR.05": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "18-carat pink (rose) gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat pink gold bezel set with 40 brilliant-cut diamonds (~0.92ct)",
+      "dial": "'Bleu Nuit, Nuage 50' blue 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm Royal Oak Selfwinding in pink gold combines a diamond-set bezel with the 'Bleu Nuit, Nuage 50' blue Grande Tapisserie dial, an anniversary-linked colourway, running the Calibre 5900 movement (~60h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Alt 2": "18-carat pink gold case and bracelet with a brilliant-cut diamond bezel and 'Bleu Nuit, Nuage 50' blue dial."
+      }
+    },
+    "15551ST.ZZ.1356ST.04": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel set with brilliant-cut diamonds",
+      "dial": "Ice blue 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm steel Royal Oak Selfwinding is set with a diamond bezel and paired with an ice blue Grande Tapisserie dial, driven by the Calibre 5900 automatic movement with a ~60-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Ceramic": "Stainless steel case and bracelet with a diamond-set bezel and ice blue 'Grande Tapisserie' dial."
+      }
+    },
+    "15551ST.ZZ.1356ST.05": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel set with brilliant-cut diamonds",
+      "dial": "'Bleu Nuit, Nuage 50' blue 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm steel Royal Oak Selfwinding pairs a diamond-set bezel with the 'Bleu Nuit, Nuage 50' anniversary-linked blue Grande Tapisserie dial, powered by the Calibre 5900 (~60h reserve). Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Ceramic Alt": "Stainless steel case and bracelet with a diamond-set bezel and 'Bleu Nuit, Nuage 50' blue dial."
+      }
+    },
+    "15551ST.ZZ.1356ST.06": {
+      "caseSize": "37mm",
+      "movement": "Automatic · AP Calibre 5900 · ~60h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel set with brilliant-cut diamonds",
+      "dial": "Grey 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This 37mm steel Royal Oak Selfwinding combines a diamond-set bezel with a grey Grande Tapisserie dial, running the in-house-sourced Calibre 5900 with a ~60-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Ceramic Alt 2": "Stainless steel case and bracelet with a diamond-set bezel and grey 'Grande Tapisserie' dial."
+      }
+    },
+    "67650OR.OO.1261OR.01": {
+      "caseSize": "33mm, ~7mm thick",
+      "movement": "Quartz · AP Calibre 2713",
+      "materials": "18-carat pink (rose) gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Brown 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2010s–present",
+      "description": "The Royal Oak Lady 33mm Quartz in pink gold is a slim, precious-metal expression of the Royal Oak designed for a smaller wrist, powered by the AP Calibre 2713 quartz movement. It remains part of AP's current catalogue alongside the automatic Selfwinding 34mm line, offering a slimmer quartz alternative. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold Vintage": "18-carat pink gold case and bracelet, quartz-powered Royal Oak Lady 33mm with a brown dial — a current-production precious-metal reference alongside the automatic 34mm models."
+      }
+    },
+    "77350CE.OO.1266CE.03.A": {
+      "caseSize": "34mm, 8.8mm thick",
+      "movement": "Automatic · AP Calibre 5800 · ~50h power reserve",
+      "materials": "Black ceramic case with 18-carat pink gold screws, on a black ceramic bracelet",
+      "bezel": "Octagonal black ceramic bezel with eight pink gold hexagonal screws",
+      "dial": "Black 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2021–present",
+      "description": "The Royal Oak Selfwinding 34 in black ceramic pairs a scratch-resistant ceramic case and bracelet with pink gold screws and a black Grande Tapisserie dial, run by the automatic Calibre 5800 with a ~50-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Ceramic Emerald": "Black ceramic case and bracelet with 18-carat pink gold screws and a black 'Grande Tapisserie' dial — a scratch-resistant, contemporary Royal Oak Selfwinding 34."
+      }
+    },
+    "77350SR.OO.1261SR.01": {
+      "caseSize": "34mm, 8.8mm thick",
+      "movement": "Automatic · AP Calibre 5800 · ~50h power reserve",
+      "materials": "Stainless steel case with 18-carat pink gold bezel and bracelet links (two-tone)",
+      "bezel": "Octagonal 18-carat pink gold bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Silver-toned 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2020–present",
+      "description": "This Royal Oak Selfwinding 34 combines a stainless steel case with 18-carat pink gold bezel and bracelet links for a two-tone look, paired with a silver-toned Grande Tapisserie dial and the Calibre 5800 automatic movement. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Stainless Steel Red": "Two-tone stainless steel and 18-carat pink gold case and bracelet with a silver-toned 'Grande Tapisserie' dial, 34mm."
+      }
+    },
+    "77350ST.OO.1261ST.01": {
+      "caseSize": "34mm, 8.8mm thick",
+      "movement": "Automatic · AP Calibre 5800 · ~50h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Octagonal stainless steel bezel with polished bevels and eight signature hexagonal screws",
+      "dial": "Silver-toned 'Grande Tapisserie' dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2020–present",
+      "description": "The Royal Oak Selfwinding 34 in stainless steel is the entry point into the current mid-size Royal Oak line, introduced in 2020 as the automatic successor to the quartz Lady's models. It carries the Calibre 5800 automatic movement with a ~50-hour power reserve. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Steel Yellow": "Stainless steel case and bracelet with a silver-toned 'Grande Tapisserie' dial — the core steel Royal Oak Selfwinding 34 configuration."
+      }
+    },
+    "77351OR.ZZ.1261OR.01": {
+      "caseSize": "34mm, 8.8mm thick",
+      "movement": "Automatic · AP Calibre 5800 · ~50h power reserve",
+      "materials": "18-carat pink (rose) gold case and integrated bracelet",
+      "bezel": "Octagonal 18-carat pink gold bezel set with 40 brilliant-cut diamonds (~0.71ct)",
+      "dial": "Silver-toned 'Grande Tapisserie' dial with pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "This Royal Oak Selfwinding 34 in pink gold is set with a brilliant-cut diamond bezel, pairing precious metal and gem-setting with a silver-toned Grande Tapisserie dial. Sourced and authenticated by our specialists.",
+      "variants": {
+        "Rose Gold": "18-carat pink gold case and bracelet with a diamond-set bezel and silver-toned 'Grande Tapisserie' dial, 34mm."
+      }
+    }
+  }
+}

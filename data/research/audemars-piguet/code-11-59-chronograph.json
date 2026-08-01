@@ -1,0 +1,48 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Code 11:59 Chronograph",
+  "modelSlug": "code-11-59-chronograph",
+  "modelOverview": "Introduced alongside the wider CODE 11.59 collection at SIHH 2019, the Chronograph reference houses Audemars Piguet's first in-house integrated flyback chronograph movement, the calibre 4401. The 41mm case retains the collection's signature architecture — an octagonal middle case sandwiched between a round bezel and caseback, joined by openworked lugs beneath a double-curved sapphire crystal — and is offered in precious-metal executions with lacquered dials and column-wheel chronograph counters.",
+  "references": {
+    "26393BC.OO.A002CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · 28,800 vph · ~70h power reserve",
+      "materials": "18K white gold case on a hand-stitched black alligator leather strap with 18K white gold pin buckle",
+      "bezel": "18K white gold, round polished",
+      "dial": "Lacquered black dial with 18K white gold applied hour-markers and hands and galvanic-growth white gold logo",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The CODE 11.59 Chronograph in 18K white gold pairs a mirror-finish lacquered black dial with the collection's octagonal-middle case and openworked lugs. It is powered by Audemars Piguet's first integrated column-wheel flyback chronograph calibre, the 4401, and worn on a matching black alligator strap. Every example is sourced and authenticated.",
+      "variants": {
+        "White Gold Black": "White gold case with a lacquered black dial and black alligator strap; the reference's core execution, pairing polished white gold against a deep monochrome dial for a classic dress-chronograph look."
+      }
+    },
+    "26393OR.OO.A002CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · 28,800 vph · ~70h power reserve",
+      "materials": "18K pink (rose) gold case on a hand-stitched black alligator leather strap with 18K pink gold pin buckle",
+      "bezel": "18K pink gold, round polished",
+      "dial": "Lacquered black dial with 18K pink gold applied hour-markers and hands and galvanic-growth pink gold logo",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The CODE 11.59 Chronograph in 18K pink gold combines a lacquered black dial with warm rose-gold hour-markers, hands and logo, set within the collection's distinctive octagonal-middle case. The integrated flyback chronograph calibre 4401 drives hours, minutes, small seconds, date and chronograph functions. Sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold Black": "Pink gold case with a lacquered black dial and black alligator strap; the warm gold tone against the black dial gives this version a bolder, more traditional chronograph presence than the white-gold black-dial reference."
+      }
+    },
+    "26393OR.OO.A321CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · 28,800 vph · ~70h power reserve",
+      "materials": "18K pink (rose) gold case on a hand-stitched blue alligator leather strap with 18K pink gold pin buckle",
+      "bezel": "18K pink gold, round polished",
+      "dial": "Lacquered blue dial with 18K pink gold applied hour-markers and hands and galvanic-growth pink gold logo",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "This CODE 11.59 Chronograph in 18K pink gold features a deep, mirror-finish lacquered blue dial with rose-gold indexes and hands, worn on a matching blue alligator strap. It shares the octagonal middle case and openworked lugs of the collection and is driven by the integrated column-wheel flyback chronograph calibre 4401. Sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold Blue": "Pink gold case with a lacquered blue dial and blue alligator strap; the blue dial variant offers a more contemporary alternative to the black-dial rose gold reference within the same case and movement."
+      }
+    }
+  }
+}

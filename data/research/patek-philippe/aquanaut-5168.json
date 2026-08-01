@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Aquanaut 5168",
+  "modelSlug": "aquanaut-5168",
+  "modelOverview": "The Aquanaut 5168G is the white-gold 'Jumbo' expression of Patek Philippe's sports-luxury Aquanaut line, stepping up from the steel 5167A's 40.8mm case to a larger 42.2mm case rendered in precious metal with a matching composite strap. The 5168G family was launched in 2017 to mark the Aquanaut's 20th anniversary with a blue-dialled 5168G-001, followed in 2019 by the bold khaki green 5168G-010. Both pair the manufacture's self-winding Calibre 26-330 S C with a distinctive embossed dial colourway, making the 5168G one of the more eye-catching gold sports references in the current Patek catalogue.",
+  "references": {
+    "5168G-010": {
+      "caseSize": "42.2mm",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · 35–45h power reserve",
+      "materials": "18k white gold case on a matching khaki green composite (Tropical rubber) strap with white gold fold-over clasp",
+      "bezel": "White gold rounded octagonal bezel with alternating polished and satin-brushed finishes, no visible screws",
+      "dial": "Khaki green varnished dial embossed with the Aquanaut pattern, white gold applied Arabic numerals and baton hands with luminescent coating, date aperture at 3 o'clock",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "Introduced in 2019 for the Aquanaut's 20th anniversary, the 5168G-010 is the 'Jumbo' white-gold model with a striking khaki green embossed dial and matching strap, distinguishing it from the standard steel Aquanaut. It runs the self-winding Calibre 26-330 S C with sweep seconds and date beneath a sapphire caseback, in an 18k white gold case with screw-down crown. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold – Green": "5168G-010 in 18k white gold on its signature khaki green composite strap with matching embossed khaki green dial, the defining colourway for this reference."
+      }
+    }
+  }
+}

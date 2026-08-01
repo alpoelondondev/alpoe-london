@@ -1,0 +1,22 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Yacht-Master 37",
+  "modelSlug": "yacht-master-37",
+  "modelOverview": "The Yacht-Master 37 is the mid-size expression of Rolex's nautically-inspired sports line, blending the sailing heritage of the collection with a more compact 37mm Oyster case. It is defined by its bidirectional rotatable 60-minute bezel with raised polished numerals and a distinctive maritime aesthetic, offered in Rolesium and precious-metal configurations.",
+  "references": {
+    "268622": {
+      "caseSize": "37mm",
+      "movement": "Automatic · Rolex Calibre 2236 · ~55h power reserve · Syloxi silicon hairspring",
+      "materials": "Oystersteel case and Oyster bracelet with 950 platinum bezel (Rolesium)",
+      "bezel": "Bidirectional rotatable 60-minute bezel in 950 platinum with raised polished numerals and graduations on a matt, sand-blasted background",
+      "dial": "Dark rhodium (slate) dial with applied hour markers and a turquoise-blue Yacht-Master seconds hand",
+      "waterResistance": "100m (330ft)",
+      "year": "2015–present",
+      "description": "The Yacht-Master 37 reference 268622 is the Rolesium version, pairing an Oystersteel case and bracelet with a 950 platinum bezel. Its defining feature is the sand-blasted platinum bezel set against a dark rhodium dial with the signature turquoise seconds hand. Every example is sourced and independently authenticated.",
+      "variants": {
+        "Rhodium": "Rolesium Yacht-Master 37 with an Oystersteel case and Oyster bracelet and a 950 platinum bidirectional bezel, fitted with the dark rhodium (slate) dial and turquoise Yacht-Master seconds hand. Sourced and authenticated."
+      }
+    }
+  }
+}

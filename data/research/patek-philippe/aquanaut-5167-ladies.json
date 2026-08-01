@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Aquanaut 5167 Ladies",
+  "modelSlug": "aquanaut-5167-ladies",
+  "modelOverview": "The Patek Philippe ladies' Aquanaut, best known within the collection as the \"Aquanaut Luce\" (Italian for \"light\"), pairs the sporty 35.6mm Aquanaut case with a diamond-set bezel and an embossed guilloche dial matched to a tropical composite rubber strap. Introduced in 2004, the line has been produced in numerous dial/strap colourways across steel and precious-metal cases, with quartz movements for compact wearability. It sits alongside the larger unisex/men's Aquanaut references as Patek's dedicated ladies' sports-luxury offering.",
+  "references": {
+    "5067A-025": {
+      "caseSize": "35.6mm",
+      "movement": "Quartz · Patek Philippe Calibre E23-250 S C · 8 jewels · date and centre sweep seconds",
+      "materials": "Stainless steel case with diamond-set bezel; tropical composite rubber strap with steel Aquanaut fold-over clasp",
+      "bezel": "Diamond-set bezel, 46 diamonds, approximately 1.00 carat total weight (Top Wesselton VS quality)",
+      "dial": "Embossed guilloche dial in \"Misty Blue\" (blue-grey), applied gilt Arabic numerals, date aperture",
+      "waterResistance": "120m / 12 bar",
+      "year": "Aquanaut Luce line introduced 2004; this Misty Blue dial variant (5067A-025) unveiled at Baselworld 2018",
+      "description": "Reference 5067A-025 is a ladies' Patek Philippe Aquanaut Luce in stainless steel, distinguished by its factory diamond-set bezel and a distinctive \"Misty Blue\" embossed dial paired with a matching tropical rubber strap. Every piece we offer is sourced and authenticated prior to sale. Note: publicly documented specifications for this reference (steel case, blue-grey dial) do not match the \"Rose Gold – Chocolate\" description associated with it in our internal source sheet; see catalogue note.",
+      "variants": {
+        "Rose Gold – Chocolate": "Catalogue listing for reference 5067A-025; verified public records for this exact reference number describe a stainless steel case with a diamond-set bezel and a \"Misty Blue\" dial and strap, not a rose gold case or chocolate dial. This listing's dial/metal description could not be corroborated against the reference number and should be confirmed against the physical piece before publishing."
+      }
+    }
+  }
+}

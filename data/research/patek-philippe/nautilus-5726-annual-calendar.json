@@ -1,0 +1,61 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Nautilus 5726 Annual Calendar",
+  "modelSlug": "nautilus-5726-annual-calendar",
+  "modelOverview": "Introduced in 2010, the Nautilus 5726 was the first Nautilus to house an annual calendar complication, adding a moon phase and 24-hour indicator to the collection's sports-luxury steel case. Patek Philippe has produced it exclusively in stainless steel, on both the integrated bracelet and a leather-strap variant, powered throughout by the self-winding Calibre 324 S QA LU 24H/303. The model was updated in 2019 when the original black dial was replaced by the current blue-gradient dial.",
+  "references": {
+    "5726/1A-014": {
+      "caseSize": "40.5mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S QA LU 24H/303 · ~35-45h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Fixed rounded-octagonal bezel, horizontally embossed porthole design, brushed and polished steel",
+      "dial": "Sunburst blue dial with black gradient rim, horizontally embossed, white gold baton markers and hands, annual calendar apertures with 24-hour indicator and moon phase",
+      "waterResistance": "120m",
+      "year": "2019–present",
+      "description": "The 5726/1A-014 is the current-production steel Nautilus Annual Calendar, updated in 2019 with a sunburst blue dial and black gradient rim that replaced the original black-dial 5726/1A-001. It combines Patek Philippe's annual calendar (day, date, month, 24-hour indicator) with a moon phase display on the self-winding Calibre 324 S QA LU 24H/303, on the collection's integrated steel bracelet. Every piece we offer is professionally sourced and authenticated.",
+      "variants": {
+        "Steel – Green Dial": "5726/1A-014 in stainless steel on the integrated bracelet, fitted with the current-production sunburst blue-gradient dial (this reference has not been catalogued by Patek Philippe with a green dial option; the standard and only publicly documented dial for 5726/1A-014 is blue)."
+      }
+    },
+    "5726A-001": {
+      "caseSize": "40.5mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S QA LU 24H/303 · ~35-45h power reserve",
+      "materials": "Stainless steel case on leather strap with steel folding clasp",
+      "bezel": "Fixed rounded-octagonal bezel, horizontally embossed porthole design, brushed and polished steel",
+      "dial": "Sunburst charcoal-grey dial with black gradient rim, horizontally embossed, white gold baton markers and hands, annual calendar apertures with 24-hour indicator and moon phase",
+      "waterResistance": "30m",
+      "year": "2010–present",
+      "description": "The 5726A-001 is the strap-fitted steel Nautilus Annual Calendar, distinguished from the bracelet references by its black alligator leather strap and matching lower 30m water resistance. Publicly documented sources (including Patek Philippe's own listing) show this reference with a sunburst charcoal-grey dial and black gradient rim rather than a blue dial; we have not found this reference produced with a blue dial. It runs the same annual calendar and moon phase complication on the self-winding Calibre 324 S QA LU 24H/303, and every piece we offer is professionally sourced and authenticated.",
+      "variants": {
+        "Steel – Blue Dial": "5726A-001 in stainless steel on a black leather strap. Note: publicly documented sources show this reference fitted with a charcoal-grey/black-gradient dial, not a blue dial - we could not verify a blue-dial version of 5726A-001."
+      }
+    },
+    "5726/1G-001": {
+      "caseSize": "",
+      "movement": "",
+      "materials": "",
+      "bezel": "",
+      "dial": "",
+      "waterResistance": "",
+      "year": "",
+      "description": "We could not verify a Patek Philippe Nautilus 5726/1G-001 in white gold against official Patek Philippe records or reputable dealer/press sources - publicly available references confirm the 5726 Annual Calendar has only ever been produced in stainless steel (5726/1A-001, 5726/1A-010, 5726/1A-014 and 5726A-001). Any piece represented under this reference would need full independent authentication before we could publish specifications.",
+      "variants": {
+        "White Gold": "Reference 5726/1G-001 could not be verified as an authentic Patek Philippe catalogue reference; no publicly documented white gold Nautilus 5726 Annual Calendar exists as of this research."
+      }
+    },
+    "5726/1R-001": {
+      "caseSize": "",
+      "movement": "",
+      "materials": "",
+      "bezel": "",
+      "dial": "",
+      "waterResistance": "",
+      "year": "",
+      "description": "We could not verify a Patek Philippe Nautilus 5726/1R-001 in rose gold against official Patek Philippe records or reputable dealer/press sources - publicly available references confirm the 5726 Annual Calendar has only ever been produced in stainless steel (5726/1A-001, 5726/1A-010, 5726/1A-014 and 5726A-001). Any piece represented under this reference would need full independent authentication before we could publish specifications.",
+      "variants": {
+        "Rose Gold": "Reference 5726/1R-001 could not be verified as an authentic Patek Philippe catalogue reference; no publicly documented rose gold Nautilus 5726 Annual Calendar exists as of this research."
+      }
+    }
+  }
+}

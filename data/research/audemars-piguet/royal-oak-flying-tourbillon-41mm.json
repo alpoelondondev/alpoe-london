@@ -1,0 +1,35 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Flying Tourbillon 41mm",
+  "modelSlug": "royal-oak-flying-tourbillon-41mm",
+  "modelOverview": "The Royal Oak Selfwinding Flying Tourbillon 41mm brings one of haute horlogerie's most technical complications into the iconic octagonal Royal Oak silhouette designed by Gerald Genta. Powered by the in-house self-winding Calibre 2950, it displays a skeletonised flying tourbillon at 6 o'clock through an integrated case-and-bracelet design. Offered in steel, titanium and precious-metal executions, it pairs everyday robustness with a rotating tourbillon carriage.",
+  "references": {
+    "26730ST.OO.1320ST.05": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 2950 · flying tourbillon · ~65h power reserve · 21,600 vph",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "Stainless steel octagonal bezel with eight hexagonal screws",
+      "dial": "Smoked burgundy dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "The stainless steel Royal Oak Selfwinding Flying Tourbillon 41mm showcases a skeletonised flying tourbillon at 6 o'clock beneath a smoked burgundy dial framed by the signature octagonal bezel. Driven by the in-house automatic Calibre 2950 with roughly 65 hours of power reserve, it is fully sourced and authenticated. It combines the everyday wearability of steel with one of watchmaking's most prestigious complications.",
+      "variants": {
+        "Steel": "Stainless steel case and integrated bracelet with a smoked burgundy dial, white gold applied markers and a skeletonised flying tourbillon at 6 o'clock, powered by the automatic Calibre 2950."
+      }
+    },
+    "26730TI.OO.1320TI.02": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 2950 · flying tourbillon · ~65h power reserve · 21,600 vph",
+      "materials": "Titanium case and bracelet",
+      "bezel": "Titanium octagonal bezel with eight hexagonal screws",
+      "dial": "Sandblasted blue dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "The titanium Royal Oak Selfwinding Flying Tourbillon 41mm pairs a lightweight full-titanium case and bracelet with a sandblasted blue dial that drops the usual Grande Tapisserie pattern, introduced as the successor to the 50th Anniversary model. Its in-house automatic Calibre 2950 drives a skeletonised flying tourbillon at 6 o'clock with around 65 hours of power reserve, and every example is sourced and authenticated. The matte titanium finish gives it a distinctly modern, understated presence.",
+      "variants": {
+        "Titanium": "Full titanium case and integrated bracelet with a sandblasted blue dial, white gold applied markers and a skeletonised flying tourbillon at 6 o'clock, driven by the automatic Calibre 2950."
+      }
+    }
+  }
+}

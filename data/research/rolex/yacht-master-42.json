@@ -1,0 +1,48 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Yacht-Master 42",
+  "modelSlug": "yacht-master-42",
+  "modelOverview": "The Yacht-Master 42 is Rolex's larger nautical Oyster Perpetual, a 42mm sports watch defined by its matte-black Cerachrom ceramic bezel with raised, polished 60-minute graduations and its supple Oysterflex rubber strap. Introduced in 2019 in 18ct white gold, the line grew to include 18ct yellow gold and, in 2023, a lightweight RLX titanium reference. Every model runs the Superlative Chronometer-certified calibre 3235 and is rated to 100 metres.",
+  "references": {
+    "226659": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "18ct white gold case on a black Oysterflex elastomer strap with white gold Oysterlock clasp",
+      "bezel": "Bidirectional rotatable 60-minute bezel with matte black Cerachrom ceramic insert and polished raised numerals",
+      "dial": "Black lacquer with 18ct white gold hour markers and Chromalight (blue) luminescence; date at 3 o'clock",
+      "waterResistance": "100m / 330ft",
+      "year": "2019–present",
+      "description": "The original Yacht-Master 42, launched in 2019 as the first 42mm Yacht-Master, cased entirely in 18ct white gold with the signature matte-black Cerachrom bezel and Oysterflex strap. Its understated white gold case reads almost like steel while the black ceramic bezel gives it a purposeful nautical look. Sourced and fully authenticated.",
+      "variants": {
+        "Blue Dial": "White gold Yacht-Master 42 (ref. 226659) configured with a bright blue dial in place of the standard black lacquer, a livelier maritime alternative that still pairs the matte-black Cerachrom bezel with the Oysterflex strap. Sourced and fully authenticated."
+      }
+    },
+    "226627": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "RLX titanium (Grade 5) case on a full titanium Oyster bracelet with Oysterlock clasp",
+      "bezel": "Bidirectional rotatable 60-minute bezel with matte black Cerachrom ceramic insert and polished raised numerals",
+      "dial": "Matte black (intense black) dial with luminous hour markers and Chromalight (blue) luminescence; date at 3 o'clock",
+      "waterResistance": "100m / 330ft",
+      "year": "2023–present",
+      "description": "Introduced in 2023, the Titanium Yacht-Master 42 is Rolex's first serial-production watch in RLX (Grade 5) titanium, pairing a lightweight brushed titanium case and matching Oyster bracelet with a matte black dial. The tonal, satin-finished look and reduced weight mark a distinct departure from the brand's polished norms. Sourced and fully authenticated.",
+      "variants": {
+        "Titanium": "The RLX titanium Yacht-Master 42 (ref. 226627), with a fully brushed Grade 5 titanium case and Oyster bracelet and a matte black dial that tones with the black Cerachrom bezel; markedly lighter than the gold references. Sourced and fully authenticated."
+      }
+    },
+    "226658": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "18ct yellow gold case on a black Oysterflex elastomer strap with yellow gold Oysterlock clasp",
+      "bezel": "Bidirectional rotatable 60-minute bezel with matte black Cerachrom ceramic insert and polished raised numerals",
+      "dial": "Black lacquer with 18ct yellow gold hour markers and Chromalight (blue) luminescence; date at 3 o'clock",
+      "waterResistance": "100m / 330ft",
+      "year": "2022–present",
+      "description": "The 18ct yellow gold Yacht-Master 42 (ref. 226658) contrasts warm gold with the matte-black Cerachrom bezel and black Oysterflex strap for a bolder take on the sports-luxury nautical theme. The gold hour markers and glossy black dial give it a striking, high-contrast presence on the wrist. Sourced and fully authenticated.",
+      "variants": {
+        "Yellow Gold": "The 18ct yellow gold Yacht-Master 42 (ref. 226658) with a black lacquer dial, applied yellow gold markers and matte-black ceramic bezel on the black Oysterflex strap. Sourced and fully authenticated."
+      }
+    }
+  }
+}

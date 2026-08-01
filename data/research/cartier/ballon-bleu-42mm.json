@@ -1,0 +1,31 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Ballon Bleu 42mm",
+  "modelSlug": "ballon-bleu-42mm",
+  "modelOverview": "Launched in 2007, the Ballon Bleu de Cartier reimagined the Maison's watchmaking with a rounded, balloon-like case and a signature protected crown set with a blue synthetic spinel. The 42mm size is the flagship men's proportion of the line, offered on both steel bracelets and leather straps with automatic Cartier movements.",
+  "references": {
+    "W69012Z4": {
+      "caseSize": "42mm (13mm thick)",
+      "movement": "Automatic · Cartier Calibre 049 · ~42h power reserve",
+      "materials": "Stainless steel case and stainless steel bracelet with deployant clasp",
+      "bezel": "Smooth polished stainless steel bezel",
+      "dial": "Silver dial with bold Roman numerals, blued sword-shaped hands, date aperture at 3 o'clock",
+      "waterResistance": "30m / 100ft",
+      "year": "2007–present",
+      "description": "The W69012Z4 is the quintessential steel-on-steel Ballon Bleu 42mm, pairing a silver Roman-numeral dial with a stainless steel bracelet. Its rounded case, sapphire cabochon crown and blued hands make it instantly recognisable as a Cartier icon. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {}
+    },
+    "WSBB0026": {
+      "caseSize": "42mm (13mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~42h power reserve · 28,800 vph · 23 jewels",
+      "materials": "Stainless steel case; black alligator leather strap with steel interchangeable deployant buckle",
+      "bezel": "Smooth polished stainless steel bezel",
+      "dial": "Silver guilloché opaline dial with Roman numerals, blued sword-shaped hands, date aperture at 3 o'clock",
+      "waterResistance": "30m / 100ft",
+      "year": "2016–present",
+      "description": "The WSBB0026 is a steel-cased Ballon Bleu 42mm fitted on a black alligator leather strap rather than the metal bracelet, giving a dressier profile around the same silver guilloché dial and cabochon-set crown. It runs on Cartier's in-house Calibre 1847 MC automatic movement. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {}
+    }
+  }
+}

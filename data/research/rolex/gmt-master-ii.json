@@ -1,0 +1,103 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "GMT-Master II",
+  "modelSlug": "gmt-master-ii",
+  "modelOverview": "The Rolex GMT-Master II is the brand's dual-time-zone traveller's watch, tracing its lineage to the 1955 GMT-Master developed for Pan Am pilots. Its defining feature is a 24-hour graduated bidirectional bezel paired with an independent fourth hand, allowing the wearer to read a second and even third time zone at a glance. The modern generation is built around the 40mm Oyster case and the Calibre 3285 movement, with colourways that have earned enthusiast nicknames such as Batman, Pepsi, Sprite and Rootbeer.",
+  "references": {
+    "126710BLNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "Oystersteel case and bracelet (Jubilee or Oyster)",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in blue and black ceramic",
+      "dial": "Black with Chromalight luminous markers and Mercedes hands",
+      "waterResistance": "100m",
+      "year": "2019–present",
+      "description": "The 'Batman' (on Oyster) and 'Batgirl' (on Jubilee) reference 126710BLNR pairs an all-Oystersteel case with the two-tone blue-and-black ceramic bezel that gives it its nickname. It runs the Superlative Chronometer Calibre 3285 with a roughly 70-hour power reserve and independent local-hour setting for effortless travel across time zones. Every example is professionally sourced and authenticated."
+    },
+    "126720VTNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "Oystersteel case and bracelet (Jubilee or Oyster)",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in green and black ceramic",
+      "dial": "Black with Chromalight luminous markers, date at 9 o'clock",
+      "waterResistance": "100m",
+      "year": "2022–present",
+      "description": "The 'Sprite' reference 126720VTNR is Rolex's left-handed (destro) GMT-Master II, with the winding crown and date window relocated to the 9 o'clock side for wear on the right wrist. Its exclusive green-and-black Cerachrom bezel, reserved for this model, gives it the nickname. Powered by the Calibre 3285 with a ~70-hour reserve, each piece is sourced and authenticated."
+    },
+    "126710BLRO": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "Oystersteel case and bracelet (Jubilee or Oyster)",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in red and blue ceramic",
+      "dial": "Black with Chromalight luminous markers and Mercedes hands",
+      "waterResistance": "100m",
+      "year": "2018–present",
+      "description": "The 'Pepsi' reference 126710BLRO revives the red-and-blue bezel of the original 1955 GMT-Master in modern Cerachrom ceramic on an all-Oystersteel case. It carries the Calibre 3285 with a roughly 70-hour power reserve and Superlative Chronometer certification. Available on both Jubilee and Oyster bracelets, each watch is professionally sourced and authenticated."
+    },
+    "126719BLRO": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "18k white gold case and Oyster bracelet",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in red and blue ceramic",
+      "dial": "Meteorite or blue, with 18k gold hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2018–present",
+      "description": "The white-gold 'Pepsi' reference 126719BLRO recasts the red-and-blue GMT in solid 18k white gold on a matching Oyster bracelet, offered with either a natural meteorite dial or a sunburst blue dial. It runs the Calibre 3285 with a ~70-hour power reserve. Each example is professionally sourced and authenticated.",
+      "variants": {
+        "White Gold Pepsi – Meteorite Dial": "The 126719BLRO with a meteorite dial cut from an iron meteorite, its natural Widmanstätten crystalline pattern making every dial genuinely one-of-a-kind. Set in solid 18k white gold with the red-and-blue Cerachrom Pepsi bezel and gold Chromalight markers.",
+        "White Gold Pepsi – Blue Dial": "The 126719BLRO with a lacquered sunburst blue dial that echoes the blue of the Pepsi bezel for a monochromatic look. Cased entirely in 18k white gold with gold hour markers, on a white-gold Oyster bracelet."
+      }
+    },
+    "126710GRNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "Oystersteel case and bracelet (Jubilee or Oyster)",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in grey and black ceramic",
+      "dial": "Black with green 24-hour GMT hand and Chromalight markers",
+      "waterResistance": "100m",
+      "year": "2024–present",
+      "description": "The 'Bruce Wayne' reference 126710GRNR, introduced at Watches and Wonders 2024, wears a subtle grey-and-black Cerachrom bezel that shifts from near-black in low light to clearly two-tone in the sun, accented by a green GMT hand. Built in Oystersteel around the Calibre 3285 with a ~70-hour power reserve, it comes on Jubilee or Oyster bracelets. Each piece is professionally sourced and authenticated."
+    },
+    "126713GRNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "Yellow Rolesor — Oystersteel and 18k yellow gold, Jubilee bracelet",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in grey and black ceramic with gold-inlaid numerals",
+      "dial": "Black with gold-trimmed hour markers and green GMT hand",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The two-tone 'Zombie' reference 126713GRNR combines Oystersteel with 18k yellow gold (Yellow Rolesor) and the grey-and-black Cerachrom bezel with gold-inlaid numerals, typically on a Jubilee bracelet. It runs the Calibre 3285 with a roughly 70-hour power reserve and 100m water resistance. Each watch is professionally sourced and authenticated."
+    },
+    "126718GRNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "18k yellow gold case and Jubilee bracelet",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in grey and black ceramic with gold-inlaid numerals",
+      "dial": "Black (or tiger-iron stone) with gold-trimmed markers and green GMT hand",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The full 'Zombie' reference 126718GRNR is cast entirely in 18k yellow gold on a matching Jubilee bracelet, wearing the grey-and-black Cerachrom bezel with gold-inlaid numerals. Some examples feature a natural tiger-iron stone dial in place of the black lacquer dial. Powered by the Calibre 3285 with a ~70-hour reserve, each piece is professionally sourced and authenticated."
+    },
+    "126711CHNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "Everose Rolesor — Oystersteel and 18k Everose gold, Oyster bracelet",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in brown and black ceramic",
+      "dial": "Black lacquer with 18k gold hour markers and hands",
+      "waterResistance": "100m",
+      "year": "2018–present",
+      "description": "The two-tone 'Rootbeer' reference 126711CHNR blends Oystersteel with 18k Everose gold on the bezel, crown and centre links, topped by the brown-and-black Cerachrom bezel that inspires its nickname. It runs the Calibre 3285 with a roughly 70-hour power reserve and 100m water resistance. Each example is professionally sourced and authenticated."
+    },
+    "126715CHNR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3285 · ~70h power reserve",
+      "materials": "18k Everose gold case and Oyster bracelet",
+      "bezel": "Bidirectional 24-hour Cerachrom insert in brown and black ceramic",
+      "dial": "Black lacquer with 18k gold hour markers and hands",
+      "waterResistance": "100m",
+      "year": "2018–present",
+      "description": "The full 'Rootbeer' reference 126715CHNR is crafted entirely in 18k Everose gold on a matching Oyster bracelet, wearing the warm brown-and-black Cerachrom bezel. Inside is the Calibre 3285 with a ~70-hour power reserve and Superlative Chronometer certification. Each piece is professionally sourced and authenticated."
+    }
+  }
+}

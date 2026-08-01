@@ -1,0 +1,95 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Sky-Dweller",
+  "modelSlug": "sky-dweller",
+  "modelOverview": "The Oyster Perpetual Sky-Dweller is Rolex's most functionally complex watch, combining an annual calendar (Saros) that distinguishes 30- and 31-day months with a dual time-zone display via an off-centre 24-hour disc. Functions are set through the patented Ring Command fluted bezel. The 2023 generation moved to the 336xxx reference range and introduced the upgraded Calibre 9002 with a ~72-hour power reserve.",
+  "references": {
+    "336934": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 9002 · ~72h power reserve",
+      "materials": "Oystersteel case with 18k white gold fluted bezel; Oystersteel Oyster or Jubilee bracelet",
+      "bezel": "18k white gold fluted, bidirectional Ring Command",
+      "dial": "Bright blue, mint green, bright black or intense white with applied hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The White Rolesor Sky-Dweller pairs an Oystersteel case with an 18k white gold fluted Ring Command bezel, running the upgraded Calibre 9002 with its annual calendar and dual time zone. The 2023 update added bright blue and mint green dial options alongside black and white. Every piece is sourced and authenticated before sale.",
+      "variants": {
+        "Blue Dial – Oyster": "Bright blue sunburst dial on the three-link Oystersteel Oyster bracelet, with the 18k white gold fluted Ring Command bezel.",
+        "Blue Dial – Jubilee": "Bright blue sunburst dial on the five-piece-link Oystersteel Jubilee bracelet, with the 18k white gold fluted Ring Command bezel.",
+        "Mint Green – Oyster": "Mint green dial, one of the standout 2023 colours, on the Oystersteel Oyster bracelet with white gold fluted bezel.",
+        "Mint Green – Jubilee": "Mint green dial on the dressier five-piece-link Oystersteel Jubilee bracelet with white gold fluted bezel.",
+        "Black – Oyster": "Bright black dial with contrasting applied markers on the Oystersteel Oyster bracelet and white gold fluted bezel.",
+        "White – Oyster": "Intense white dial for a crisp, legible look on the Oystersteel Oyster bracelet with white gold fluted bezel."
+      }
+    },
+    "336933": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 9002 · ~72h power reserve",
+      "materials": "Yellow Rolesor — Oystersteel case with 18k yellow gold fluted bezel; Oystersteel and 18k yellow gold Oyster or Jubilee bracelet",
+      "bezel": "18k yellow gold fluted, bidirectional Ring Command",
+      "dial": "Bright black or champagne-colour with applied hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The Yellow Rolesor Sky-Dweller blends an Oystersteel case with 18k yellow gold on the bezel, crown and bracelet centre links, powered by the Calibre 9002 annual calendar and dual time zone. It offers a warmer two-tone alternative to the steel model. Each watch is sourced and authenticated before sale.",
+      "variants": {
+        "Steel & Gold – Black Dial": "Bright black dial contrasting the yellow gold accents on the two-tone Yellow Rolesor case and fluted Ring Command bezel.",
+        "Steel & Gold – Champagne": "Champagne-colour dial that harmonises with the 18k yellow gold elements for a cohesive warm two-tone look."
+      }
+    },
+    "336935": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 9002 · ~72h power reserve",
+      "materials": "18k Everose gold case and bracelet; Oyster or Jubilee bracelet",
+      "bezel": "18k Everose gold fluted, bidirectional Ring Command",
+      "dial": "Chocolate or blue-green with applied hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The solid 18k Everose gold Sky-Dweller carries the Calibre 9002 with annual calendar and second time zone in Rolex's warm proprietary rose gold. For the first time this generation the Everose model can be paired with a Jubilee bracelet as well as the Oyster. Each piece is sourced and authenticated before sale.",
+      "variants": {
+        "Rose Gold – Chocolate": "Warm chocolate dial with Everose gold markers and hands, complementing the 18k Everose gold case and bracelet.",
+        "Rose Gold – Blue-green": "Blue-green sunburst dial, a striking contemporary colourway that gives the Everose gold Sky-Dweller a bold alternative to the chocolate dial."
+      }
+    },
+    "336235": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 9002 · ~72h power reserve",
+      "materials": "18k Everose gold case; Oysterflex bracelet with 18k Everose gold Oysterclasp",
+      "bezel": "18k Everose gold fluted, bidirectional Ring Command",
+      "dial": "Chocolate or white with applied hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "This Everose gold Sky-Dweller pairs the annual-calendar Calibre 9002 with the sporty Oysterflex bracelet, which sheathes a flexible titanium-nickel blade in high-performance elastomer. It offers the everyday wearability of a rubber-style strap with a solid gold case. Each watch is sourced and authenticated before sale.",
+      "variants": {
+        "Rose Gold Oysterflex – Choc & White": "Available with either a warm chocolate dial or a bright white dial, both in solid 18k Everose gold on the Oysterflex bracelet with Everose Oysterclasp and Glidelock extension."
+      }
+    },
+    "336239": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 9002 · ~72h power reserve",
+      "materials": "18k white gold case; Oysterflex bracelet with 18k white gold Oysterclasp",
+      "bezel": "18k white gold fluted, bidirectional Ring Command",
+      "dial": "Intense white or bright black with applied hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The 18k white gold Sky-Dweller is offered exclusively on the Oysterflex bracelet, giving the discreet white metal a modern sporting character. It runs the Calibre 9002 with annual calendar and dual time zone and a fluted white gold Ring Command bezel. Each piece is sourced and authenticated before sale.",
+      "variants": {
+        "Oysterflex – White & Black": "Available with either an intense white dial or a bright black dial, both on the solid 18k white gold case, mounted on the Oysterflex bracelet with white gold Oysterclasp and Glidelock extension."
+      }
+    },
+    "336938": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Rolex Calibre 9002 · ~72h power reserve",
+      "materials": "18k yellow gold case and bracelet; Oyster or Jubilee bracelet",
+      "bezel": "18k yellow gold fluted, bidirectional Ring Command",
+      "dial": "Green or bright black with applied hour markers and Chromalight",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The solid 18k yellow gold Sky-Dweller is the fullest expression of the collection, combining the Calibre 9002 annual calendar and second time zone with a substantial gold case and fluted Ring Command bezel. This generation added the option of a Jubilee bracelet to the yellow gold model. Each watch is sourced and authenticated before sale.",
+      "variants": {
+        "Yellow Gold – Green Dial": "Striking green dial, a signature 2023 colour, set against solid 18k yellow gold for a bold statement piece.",
+        "Yellow Gold – Black Dial": "Bright black dial that contrasts crisply with the 18k yellow gold case, markers and bracelet for a classic look."
+      }
+    }
+  }
+}

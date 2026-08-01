@@ -1,0 +1,20 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank MC",
+  "modelSlug": "tank-mc",
+  "modelOverview": "Introduced in 2013, the Tank MC (\"Manufacture Cartier\") is a larger, more masculine reinterpretation of the classic Tank silhouette, built around Cartier's in-house automatic Calibre 1904-PS MC. Its three-body brushed steel case, faceted blue-spinel crown and guilloché dial give it a more overtly sporty, contemporary presence than the dressier Tank Louis Cartier or Tank Française.",
+  "references": {
+    "WSTA0010": {
+      "caseSize": "34.3mm x 44mm (case thickness 9.5mm)",
+      "movement": "Automatic · Cartier Calibre 1904-PS MC · 27 jewels · 28,800 vph · ~48h power reserve",
+      "materials": "Stainless steel case on an alligator leather strap with steel folding clasp",
+      "bezel": "",
+      "dial": "Blue sunburst guilloché dial with Roman numerals, railway minute track, blued sword-shaped hands, date aperture at 3 o'clock and small seconds subdial at 6 o'clock",
+      "waterResistance": "30m (3 ATM)",
+      "year": "2013–present",
+      "description": "The Tank MC in steel is Cartier's manufacture-movement take on the marque's most recognisable case shape, distinguished by its elongated 34.3mm x 44mm three-body steel case, faceted blue-spinel-set crown and striking blue guilloché dial with railway track and sword hands. It is powered by the in-house automatic Calibre 1904-PS MC, visible through a sapphire exhibition caseback. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {}
+    }
+  }
+}

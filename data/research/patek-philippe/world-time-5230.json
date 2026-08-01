@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "World Time 5230",
+  "modelSlug": "world-time-5230",
+  "modelOverview": "Introduced in 2016, the ref. 5230 modernised Patek Philippe's iconic World Time complication with a 38.5mm case, a black centre with hand-guilloched basket-weave decoration, and the ultra-thin self-winding Calibre 240 HU micro-rotor movement. The 5230G-010 is a 300-piece limited edition made for the 2017 Art of Watches Grand Exhibition in New York, distinguished from the standard-production 5230G by its dark blue dial engraved with the Manhattan skyline and a caseback crystal inscribed 'Patek Philippe New York 2017'.",
+  "references": {
+    "5230G-010": {
+      "caseSize": "38.5mm",
+      "movement": "Automatic · Patek Philippe Calibre 240 HU · 33 jewels · 21,600 vph (3Hz) · ~48h power reserve",
+      "materials": "18k white gold case on a blue alligator leather strap with an 18k white gold fold-over clasp",
+      "bezel": "Fixed 18k white gold bezel",
+      "dial": "Hand-engraved dark blue centre dial depicting the Manhattan skyline in relief, gold-applied hour markers, outer 24-city world time ring with day/night indicator, exhibition caseback engraved 'Patek Philippe New York 2017'",
+      "waterResistance": "30m",
+      "year": "2017 (limited edition of 300 pieces)",
+      "description": "The 5230G-010 is a 300-piece limited edition of Patek Philippe's World Time reference 5230, produced to mark the 2017 Art of Watches Grand Exhibition in New York. Its dark blue dial is hand-engraved with a relief of the Manhattan skyline and paired with the ultra-thin, micro-rotor Calibre 240 HU, which drives the 24-city world time display and day/night indicator through the crown's simple city-name correction system. Every piece we offer is professionally sourced and authenticated.",
+      "variants": {
+        "White Gold": "The 18k white gold 5230G-010, cased at 38.5mm with the New York skyline blue dial and blue alligator strap, as issued for the 2017 Grand Exhibition limited edition of 300."
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "CODE 11.59 Chronograph 41mm",
+  "modelSlug": "code-11-59-chronograph-41mm",
+  "modelOverview": "The CODE 11.59 by Audemars Piguet Selfwinding Chronograph is the flyback-chronograph member of the collection AP launched at SIHH 2019 to sit alongside the Royal Oak. Its 41mm case fuses an octagonal middle case with a round bezel and caseback, hollowed lugs and a double-curved sapphire crystal. It is powered by the in-house self-winding integrated chronograph calibre 4401 with flyback function, small seconds, a date and roughly 70 hours of power reserve.",
+  "references": {
+    "26393BC.OO.A321CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 4Hz",
+      "materials": "18-carat white gold case on a blue alligator leather strap with 18k white gold pin buckle",
+      "bezel": "18-carat white gold",
+      "dial": "Blue lacquered dial with polished white gold applied hour-markers and hands and a date between 4 and 5 o'clock",
+      "waterResistance": "30m",
+      "year": "2020–present",
+      "description": "The white gold CODE 11.59 Selfwinding Chronograph is defined by its complex three-part case, hollowed lugs and double-curved sapphire crystal, paired with an in-house flyback chronograph movement and a blue lacquered dial on a blue alligator strap. Every piece is fully sourced and authenticated before sale. No enthusiast nickname is associated with this reference.",
+      "variants": {
+        "Blue – White Gold": "18-carat white gold CODE 11.59 flyback chronograph on a matching blue alligator leather strap, with a blue lacquered dial and white gold markers; sourced and authenticated to order."
+      }
+    },
+    "26393ST.OO.A348KB.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 4Hz",
+      "materials": "Stainless steel case on a blue rubber strap with stainless steel pin buckle",
+      "bezel": "Stainless steel",
+      "dial": "Blue \"Nuage 50\" dial with grey chronograph counters and white gold applied hour-markers and hands and a date between 4 and 5 o'clock",
+      "waterResistance": "30m",
+      "year": "2023–present",
+      "description": "Part of the steel expansion of the CODE 11.59 line introduced in 2023, this Selfwinding Chronograph pairs the collection's signature octagonal-within-round case with a blue \"Nuage 50\" dial and the in-house flyback calibre 4401. Offered by Alpoe London fully sourced and authenticated. No enthusiast nickname is associated with this reference.",
+      "variants": {
+        "Blue – Steel": "Stainless steel CODE 11.59 flyback chronograph with a blue \"Nuage 50\" dial, grey counters and white gold markers, delivering the collection's complex case architecture in a more accessible steel format; sourced and authenticated to order."
+      }
+    },
+    "26393ST.OO.A020CA.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 4Hz",
+      "materials": "Stainless steel case on a blue leather strap with stainless steel pin buckle",
+      "bezel": "Stainless steel",
+      "dial": "Smoked blue sunburst dial with white gold applied hour-markers and hands and a date between 4 and 5 o'clock",
+      "waterResistance": "30m",
+      "year": "2023–present",
+      "description": "Part of the steel CODE 11.59 chronograph line, this reference pairs the collection's octagonal-within-round case and hollowed lugs with a smoked blue sunburst dial, run by the in-house flyback calibre 4401. Offered by Alpoe London fully sourced and authenticated. No enthusiast nickname is associated with this reference.",
+      "variants": {
+        "Smoked Blue – Steel": "Stainless steel CODE 11.59 flyback chronograph with a smoked blue sunburst dial and white gold markers, offering a deeper, more graduated blue than the flat-lacquered steel references; sourced and authenticated to order."
+      }
+    }
+  }
+}

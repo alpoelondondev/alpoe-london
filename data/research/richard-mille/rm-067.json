@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 067",
+  "modelSlug": "rm-067",
+  "modelOverview": "Unveiled at SIHH 2016, the RM 67-01 Automatic Extra Flat reimagines Richard Mille's tonneau silhouette in an ultra-slim, lightweight form aimed at everyday wear and sport. Its purpose-built Calibre CRMA6 skeletonised automatic movement is just 3.6mm thick, letting the case itself measure only 7.75mm despite the brand's signature open-worked architecture.",
+  "references": {
+    "RM 67-01": {
+      "caseSize": "38.70mm x 47.52mm x 7.75mm (tonneau, extra-flat)",
+      "movement": "Automatic · Richard Mille Calibre CRMA6 · skeletonised, platinum rotor, 28,800vph · ~50h power reserve",
+      "materials": "Available in grade 5 titanium, Carbon TPT, and 18k rose/red gold case constructions",
+      "bezel": "",
+      "dial": "Fully skeletonised dial exposing the CRMA6 movement, with solid metal Arabic numerals mounted on titanium rails, hours, minutes and a date window at 5 o'clock",
+      "waterResistance": "50m",
+      "year": "2016–present",
+      "description": "The RM 67-01 Automatic Extra Flat strips the Richard Mille tonneau case down to just 7.75mm thick, built around the purpose-designed Calibre CRMA6 skeletonised automatic movement with a central platinum rotor. Its lightweight construction and low profile made it a favourite for sport and everyday wear, offered across titanium, Carbon TPT and rose gold executions. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Extra Flat Automatic – RM 67-01": "The core RM 67-01 execution — ultra-slim 7.75mm tonneau case, skeletonised Calibre CRMA6 automatic movement with platinum rotor, oversized metal numerals on titanium rails, and a date window at 5 o'clock, offered in titanium, Carbon TPT and rose gold."
+      }
+    }
+  }
+}

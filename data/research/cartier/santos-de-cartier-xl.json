@@ -1,0 +1,20 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Santos de Cartier XL",
+  "modelSlug": "santos-de-cartier-xl",
+  "modelOverview": "The Santos de Cartier XL sits at the top of the size range for Cartier's pioneering 1904 aviator's watch, distinguished by its square bezel, exposed signature screws and Roman numeral dial. Modern examples in this size bracket typically pair the in-house automatic Calibre 1847 MC with the QuickSwitch/SmartLink interchangeable bracelet system, though Cartier also produces an XL-sized manual-wind Santos-Dumont for a slimmer, dressier profile.",
+  "references": {
+    "WSSA0044": {
+      "caseSize": "46.6mm x 33.9mm (7.5mm thick)",
+      "movement": "Manual winding · Cartier Calibre 430 MC · ~40h power reserve",
+      "materials": "Stainless steel case, brown calfskin leather strap with steel ardillon buckle",
+      "bezel": "Fixed polished steel bezel with exposed signature screws",
+      "dial": "Silver satin-finish sunray dial with Roman numerals and blued sword-shaped hands",
+      "waterResistance": "30m / 3 bar",
+      "year": "2020–present",
+      "description": "Note: Cartier officially catalogues reference WSSA0044 as the Santos-Dumont XL, the elongated hand-wound cousin of the automatic Santos de Cartier line, rather than a black-dial Santos de Cartier XL. Specifications below reflect the verified, publicly documented facts for WSSA0044 itself: a steel case with a silver sunray dial, Roman numerals and the manual-wind Calibre 430 MC. Every piece is sourced and independently authenticated before sale.",
+      "variants": {}
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Aquanaut 5164 Travel Time",
+  "modelSlug": "aquanaut-5164-travel-time",
+  "modelOverview": "Introduced in 2011, the Aquanaut Travel Time ref. 5164 was the first complicated Aquanaut, bringing Patek Philippe's dual time-zone architecture into the casual sports-watch line. It pairs a skeletonised home-time hour hand with a solid local-time hand and twin day/night apertures, all housed in the Aquanaut's rounded octagonal case on a Tropical composite strap. The steel 5164A ran from 2011 until its discontinuation, while the 18k rose gold 5164R joined the family in 2016 as the model's first precious-metal execution.",
+  "references": {
+    "5164A-001": {
+      "caseSize": "40.8mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S C FUS · 45h power reserve",
+      "materials": "Stainless steel case on a black Tropical composite strap with steel fold-over clasp",
+      "bezel": "Steel gently-rounded octagonal bezel integrated with the case, brushed finish, no visible screws",
+      "dial": "Black embossed Aquanaut checkerboard-pattern dial with white luminescent Arabic numerals, skeletonised home-time hour hand and solid local-time hour hand, twin day/night apertures at 3 and 9 o'clock, date sub-dial at 6 o'clock",
+      "waterResistance": "120m",
+      "year": "2011–2024 (discontinued)",
+      "description": "The steel 5164A-001 was the original and longest-running Aquanaut Travel Time, prized by collectors for its dual-time-zone display, screw-down crown and sapphire caseback showing the self-winding Calibre 324 S C FUS. Now discontinued from Patek Philippe's current catalogue, it remains one of the most requested complicated steel sports watches on the secondary market. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "Steel": "5164A-001 in stainless steel on its black Tropical composite strap with the black embossed checkerboard dial, the standard and now-discontinued configuration of the original Aquanaut Travel Time."
+      }
+    },
+    "5164R-001": {
+      "caseSize": "40.8mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S C FUS · 45h power reserve",
+      "materials": "18k rose gold case on a dark brown composite strap with rose gold fold-over clasp",
+      "bezel": "Rose gold gently-rounded octagonal bezel integrated with the case, brushed finish, no visible screws",
+      "dial": "Sunburst brown embossed Aquanaut checkerboard-pattern dial with rose gold applied luminescent numerals, rose gold local-time hand and white-gold skeletonised home-time hand, twin day/night apertures at 3 and 9 o'clock, date sub-dial at 6 o'clock",
+      "waterResistance": "120m",
+      "year": "2016–present",
+      "description": "Introduced in 2016 as the first precious-metal Aquanaut Travel Time, the 5164R-001 pairs an 18k rose gold case with a warm sunburst brown dial and matching composite strap. It shares the dual time-zone display, day/night indicators and self-winding Calibre 324 S C FUS of the original steel model. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "Rose Gold": "5164R-001 in 18k rose gold on a dark brown composite strap with the sunburst brown embossed dial, the standard current-production execution of the gold Aquanaut Travel Time."
+      }
+    }
+  }
+}

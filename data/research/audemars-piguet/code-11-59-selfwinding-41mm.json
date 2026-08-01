@@ -1,0 +1,48 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "CODE 11.59 Selfwinding 41mm",
+  "modelSlug": "code-11-59-selfwinding-41mm",
+  "modelOverview": "Launched in 2019, the CODE 11.59 by Audemars Piguet is a contemporary round-cased collection defined by its complex architecture: an octagonal middle case sandwiched between a slim round bezel and caseback, joined by openworked lugs, and topped by a double-curved sapphire crystal. The 41mm Selfwinding time-and-date model is the collection's core reference, driven by the in-house automatic calibre 4302 with roughly 70 hours of power reserve. It is offered across precious-metal and steel executions with a range of lacquered and textured dials.",
+  "references": {
+    "15210BC.OO.A321CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4302 · 28,800 vph · ~70h power reserve",
+      "materials": "18K white gold case on a blue alligator leather strap with 18K white gold pin buckle",
+      "bezel": "18K white gold, round polished",
+      "dial": "Smoked (lacquered) blue dial with 18K white gold applied hour-markers and hands and galvanic-growth white gold logo",
+      "waterResistance": "30m",
+      "year": "2022–present",
+      "description": "The CODE 11.59 Selfwinding 41mm in 18K white gold pairs a smoked blue lacquered dial with the collection's signature octagonal-middle case and openworked lugs, finished by a double-curved sapphire crystal. Powered by the in-house automatic calibre 4302, it is worn on a matching blue alligator strap. Every example is sourced and authenticated.",
+      "variants": {
+        "Smoked Blue – White Gold": "White gold execution with a smoked blue lacquered dial and blue alligator strap; the contrast of deep blue against polished white gold makes this one of the most refined dress-oriented versions of the 41mm Selfwinding."
+      }
+    },
+    "15210ST.OO.A009KB.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4302 · 28,800 vph · ~70h power reserve",
+      "materials": "Stainless steel case on a grey woven-textile strap with rubber coating and leather lining, stainless steel pin buckle",
+      "bezel": "Stainless steel, round polished",
+      "dial": "Smoked grey embossed (ripple-pattern) dial with 18K white gold applied hour-markers and hands filled with luminescent material",
+      "waterResistance": "30m",
+      "year": "2025–present",
+      "description": "This CODE 11.59 Selfwinding 41mm brings the collection into stainless steel with a smoked grey textured dial framed by the sculpted octagonal-middle case and openworked lugs. It runs on the in-house automatic calibre 4302 and offers everyday versatility in a more accessible metal. Each piece is sourced and authenticated.",
+      "variants": {
+        "Smoked Grey – Steel": "Steel execution with a smoked grey embossed dial and white gold markers; the monochrome grey-on-steel palette gives this Selfwinding a modern, understated look distinct from the precious-metal versions."
+      }
+    },
+    "15210ST.OO.A007CA.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4302 · 28,800 vph · ~70h power reserve",
+      "materials": "Stainless steel case on a smoked grey rubber strap with a stainless steel pin buckle",
+      "bezel": "Stainless steel, round polished",
+      "dial": "Smoked grey sunray dial with 18K white gold applied hour-markers and hands filled with luminescent material",
+      "waterResistance": "30m",
+      "year": "2021–present",
+      "description": "This CODE 11.59 Selfwinding 41mm pairs the collection's sculpted octagonal-middle steel case with a smoked grey sunray dial and matching rubber strap, giving it a sportier, more casual character than the textile-strap grey references. It is powered by the in-house automatic calibre 4302 with a 70-hour power reserve. Each piece is sourced and authenticated.",
+      "variants": {
+        "Smoked Grey – Steel": "Steel execution finished with a smoked grey sunray dial and a tonal grey rubber strap, giving this Selfwinding a more understated, everyday-wear look than the woven-textile grey dial references."
+      }
+    }
+  }
+}

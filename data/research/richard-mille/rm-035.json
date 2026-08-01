@@ -1,0 +1,35 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 035",
+  "modelSlug": "rm-035",
+  "modelOverview": "The RM 035 'Rafael Nadal' collection is Richard Mille's ongoing partnership piece with the tennis champion, engineering extreme shock-resistance and lightweight tonneau cases from Carbon TPT and Quartz TPT composites. Positioned as an accessible entry point into Richard Mille's sport line, the series has evolved from manual-wind to automatic calibres while retaining the brand's signature skeletonised construction.",
+  "references": {
+    "RM 35-02": {
+      "caseSize": "44.50mm x 49.94mm x 13.15mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre RMAL1 · ~55h power reserve",
+      "materials": "Carbon TPT or Quartz TPT (Red) case on rubber strap",
+      "bezel": "",
+      "dial": "Skeletonised dial exposing the variable-geometry rotor and grade 5 titanium baseplate",
+      "waterResistance": "50m",
+      "year": "2016–2024",
+      "description": "The RM 35-02 'Rafael Nadal' was the first automatic-winding watch in the RM 035 collection, built around the shock-resistant Calibre RMAL1 that Richard Mille engineered to withstand impacts of up to 10,000g on court. Its skeletonised dial and sapphire caseback expose the variable-geometry rotor and titanium baseplate beneath the tonneau Carbon TPT or Quartz TPT case. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Rafael Nadal Carbon – RM 35-02": "Cased in marbled Carbon TPT with a skeletonised titanium-toned dial, the standard finish for the RM 35-02 as originally introduced in 2016."
+      }
+    },
+    "RM 35-03": {
+      "caseSize": "43.15mm x 49.95mm x 13.15mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre RMAL2 with patented 'butterfly rotor' · ~55h power reserve",
+      "materials": "Carbon TPT or Quartz TPT case on rubber strap",
+      "bezel": "",
+      "dial": "Skeletonised dial with open-worked hands and a microblasted grade 5 titanium flange marked 3, 6, 9, 12",
+      "waterResistance": "50m",
+      "year": "2021–present",
+      "description": "The RM 35-03 'Rafael Nadal' updates the collection with the patented butterfly rotor, letting the wearer switch the automatic Calibre RMAL2 between a full-winding disc position for daily wear and a lightweight, evenly balanced 'sport mode' via a pusher at 7 o'clock. The tonneau Carbon TPT or Quartz TPT case houses a fully skeletonised movement visible through both dial and sapphire caseback. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Rafael Nadal – RM 35-03": "The RM 35-03 as launched in 2021, available in Carbon TPT or coloured Quartz TPT executions with the skeletonised RMAL2 movement and butterfly rotor control."
+      }
+    }
+  }
+}

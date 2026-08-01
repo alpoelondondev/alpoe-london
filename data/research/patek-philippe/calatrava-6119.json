@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Calatrava 6119",
+  "modelSlug": "calatrava-6119",
+  "modelOverview": "Introduced in 2021, the Calatrava ref. 6119 gave the archetypal round dress watch a refreshed, slightly larger 39mm case with a guilloché \"Clous de Paris\" (hobnail) bezel, a design detail borrowed from Patek Philippe's own archive references. It runs the manually wound Calibre 30-255 PS with a small seconds sub-dial, and has been produced in white gold and rose gold cases with charcoal-grey/black or opaline dials on alligator leather straps.",
+  "references": {
+    "6119G-001": {
+      "caseSize": "39mm (8.08mm thick)",
+      "movement": "Manual-wind · Patek Philippe Calibre 30-255 PS · 164 parts, 27 jewels · 28,800 vph · min. 65h power reserve",
+      "materials": "18k white gold case on a black alligator leather strap with square scales, white gold prong buckle",
+      "bezel": "Guilloché \"Clous de Paris\" (hobnail) bezel in white gold",
+      "dial": "Charcoal-grey/ebony black dial with vertical satin finish, applied white gold faceted \"obus\"-style hour markers and dauphine hands, small seconds sub-dial at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2021–present",
+      "description": "The Calatrava 6119 in white gold pairs the model's signature guilloché hobnail bezel with a deep charcoal-grey dial and hand-wound Calibre 30-255 PS visible through a sapphire caseback. Confirmed against Patek Philippe's official site (patek.com) as ref. 6119G-001.",
+      "variants": {
+        "White Gold – Charcoal Grey": "6119G-001 in 18k white gold on a black alligator strap with the charcoal-grey vertical satin dial and white gold hobnail-guilloché bezel, the standard hand-wound white gold execution of the Calatrava 6119."
+      }
+    }
+  }
+}

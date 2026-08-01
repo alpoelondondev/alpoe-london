@@ -1,0 +1,35 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Nautilus 5811",
+  "modelSlug": "nautilus-5811",
+  "modelOverview": "The Nautilus 5811/1G is Patek Philippe's white-gold successor to the discontinued 5711, launched in October 2022 as the simple time-and-date model in the collection. It reworks the classic Gerald Genta porthole design with a slightly enlarged 41mm two-part case and an integrated-looking bezel free of visible screws, echoing the original 1976 ref. 3700 'Jumbo'. It remains among the most sought-after references in the modern Nautilus line-up.",
+  "references": {
+    "5811/1G-001": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · 35–45h power reserve",
+      "materials": "18k white gold two-part case and integrated white gold bracelet with fold-over clasp",
+      "bezel": "Integrated white gold bezel, brushed/polished porthole design, no visible screws",
+      "dial": "Sunburst blue dial with black gradient rim, horizontally embossed, white gold baton markers and hands",
+      "waterResistance": "30m",
+      "year": "2022–present",
+      "description": "The 5811/1G-001 is the flagship white-gold Nautilus that replaced the steel 5711 as the collection's standard time-and-date model, informally referred to by collectors as the modern 'Jumbo' Nautilus. It is fitted with the signature sunburst blue dial with a black gradient rim and runs the self-winding Calibre 26-330 S C. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold – Blue Dial": "5811/1G-001 in 18k white gold on its integrated bracelet with the signature sunburst blue dial and black gradient rim, the standard-issue configuration for this reference."
+      }
+    },
+    "5811/1G-011": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · 35–45h power reserve",
+      "materials": "18k white gold two-part case and integrated white gold bracelet with fold-over clasp",
+      "bezel": "Integrated white gold bezel, brushed/polished porthole design, no visible screws",
+      "dial": "White dial variant of the 5811/1G, white gold baton markers and hands",
+      "waterResistance": "30m",
+      "year": "2022–present",
+      "description": "The 5811/1G-011 shares the 41mm white-gold case, integrated bracelet and self-winding Calibre 26-330 S C of the standard 5811/1G-001 but is catalogued with a white dial rather than the sunburst blue of the -001. This dial variant is far less widely documented in press and retailer listings than the blue-dial version, so its exact dial finish has not been independently confirmed against a manufacturer source. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold – White Dial": "5811/1G-011 in 18k white gold on its integrated bracelet with a white dial, a rarer alternative to the standard sunburst blue 5811/1G-001."
+      }
+    }
+  }
+}

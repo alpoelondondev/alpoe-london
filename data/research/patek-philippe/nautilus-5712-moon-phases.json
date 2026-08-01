@@ -1,0 +1,39 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Nautilus 5712 Moon Phases",
+  "modelSlug": "nautilus-5712-moon-phases",
+  "modelOverview": "Introduced in 2006 as the complicated evolution of the short-lived 3712, the Nautilus 5712 pairs the collection's signature rounded-octagonal case with an asymmetric dial of small seconds, a combined moon phase/date display and a power reserve indicator. It is powered throughout by Patek Philippe's ultra-thin, micro-rotor Calibre 240 PS IRM C LU, and has been produced in stainless steel (integrated bracelet from launch), rose gold (leather strap from 2006, joined by a bracelet version in 2022) and white gold (leather strap only) across its run.",
+  "references": {
+    "5712/1A-001": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Patek Philippe Calibre 240 PS IRM C LU · 21,600 vph · ~48h power reserve",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "Fixed rounded-octagonal bezel with horizontal embossing, brushed and polished steel",
+      "dial": "Blue-black sunburst dial with baton markers, small seconds at 4 o'clock, moon phase/date at 7 o'clock, power reserve indicator near 10-11 o'clock",
+      "waterResistance": "60m",
+      "year": "2006–2025 (discontinued)",
+      "description": "The 5712/1A-001 is the stainless steel reference in the Nautilus Moon Phases line, prized for combining the sports-luxury steel Nautilus case with a genuine Patek complication - moon phase, power reserve and small seconds arranged in an asymmetric layout around a striking blue-black sunburst dial. Patek Philippe quietly removed it from the catalogue in 2025 without a direct steel successor, making existing examples increasingly sought after among collectors. Every piece we offer is professionally sourced and authenticated."
+    },
+    "5712/1R-001": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Patek Philippe Calibre 240 PS IRM C LU · 21,600 vph · ~48h power reserve",
+      "materials": "18k rose gold case and bracelet",
+      "bezel": "Fixed rounded-octagonal bezel with horizontal embossing, polished and satin-brushed rose gold",
+      "dial": "Sunburst brown dial with black gradient rim, rose gold baton markers and hands, small seconds at 4 o'clock, moon phase/date at 7 o'clock, power reserve near 10-11 o'clock",
+      "waterResistance": "30m",
+      "year": "2022–present",
+      "description": "The 5712/1R-001 dresses the Nautilus Moon Phases in warm 18k rose gold from case to integrated bracelet, matched to a sunburst brown dial with a black gradient rim that lends extra depth to the moon phase, date and power-reserve sub-dials. Introduced in October 2022 as the bracelet-equipped successor to the original leather-strap 5712R-001, it runs the same ultra-thin micro-rotor Calibre 240 PS IRM C LU as the rest of the 5712 family, delivering roughly 48 hours of power reserve. Sourced and authenticated before sale."
+    },
+    "5712G-001": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Patek Philippe Calibre 240 PS IRM C LU · 21,600 vph · ~48h power reserve",
+      "materials": "18k white gold case, black alligator leather strap (never offered on a bracelet)",
+      "bezel": "Fixed rounded-octagonal bezel with horizontal embossing, polished and satin-brushed white gold",
+      "dial": "Slate grey dial with horizontal embossed pattern, white gold markers, small seconds at 4 o'clock, moon phase/date at 7 o'clock, power reserve near 10-11 o'clock",
+      "waterResistance": "60m",
+      "year": "2006–2024 (discontinued)",
+      "description": "The 5712G-001 is the white gold expression of the Nautilus Moon Phases, its cool slate grey dial and horizontally embossed texture set within an 18k white gold case paired with a black alligator leather strap - unlike the steel and rose gold references, it was never offered with an integrated bracelet. Like its stablemates it houses the ultra-thin, 252-part Calibre 240 PS IRM C LU with moon phase, hand-set date and power reserve display. Patek Philippe discontinued the reference in 2024. Every watch is professionally sourced and authenticated."
+    }
+  }
+}

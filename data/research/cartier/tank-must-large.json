@@ -1,0 +1,48 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Must Large",
+  "modelSlug": "tank-must-large",
+  "modelOverview": "The Tank Must Large is the flagship size of Cartier's 2021 revival of the Must de Cartier line, itself a more accessible reinterpretation of Louis Cartier's original 1917 Tank. Cased at 33.7mm x 25.5mm in steel with high-autonomy quartz movements, it pairs Roman-numeral dials and blued-steel sword hands with interchangeable leather straps or a steel bracelet, and has since been offered in silver, green and other dial colours alongside a photovoltaic SolarBeat variant.",
+  "references": {
+    "WSTA0041": {
+      "caseSize": "33.7mm x 25.5mm (6.6mm thick)",
+      "movement": "Quartz · Cartier High Autonomy movement · silver oxide battery",
+      "materials": "Stainless steel case; interchangeable black grained calfskin leather strap with steel ardillon buckle",
+      "bezel": "",
+      "dial": "Silvered dial with black Roman numerals, railway minute track and blued-steel sword-shaped hands; beaded crown set with a synthetic cabochon-cut spinel",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2021–present",
+      "description": "The WSTA0041 is the standard Large-model Tank Must from Cartier's 2021 relaunch, reviving Louis Cartier's 1917 design in a 33.7mm x 25.5mm steel case on an interchangeable leather strap. Its silvered Roman-numeral dial and blued sword hands define the modern 'Tank Must' look. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Silver": "Steel case on an interchangeable black calfskin leather strap with a silvered Roman-numeral dial and blued-steel sword hands — the standard Large Tank Must silver-dial configuration."
+      }
+    },
+    "WSTA0052": {
+      "caseSize": "33.7mm x 25.5mm (6.6mm thick)",
+      "movement": "Quartz · Cartier High Autonomy movement · silver oxide battery",
+      "materials": "Stainless steel case and bracelet; interchangeable steel bracelet with double-fold clasp",
+      "bezel": "",
+      "dial": "Silvered dial with black Roman numerals and blued-steel sword-shaped hands; beaded crown set with a synthetic blue spinel cabochon",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2022–present",
+      "description": "The WSTA0052 is the steel-bracelet configuration of the Large Tank Must, sharing the same 33.7mm x 25.5mm case and silvered Roman-numeral dial as the leather-strap version but fitted with Cartier's interchangeable steel bracelet. The 'blue' on the crown's cabochon and the blued-steel hands are the model's signature colour accents rather than a blue dial. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Blue": "References the model's blued-steel hands and blue cabochon-set crown rather than a blue dial: this WSTA0052 configuration pairs the silvered, Roman-numeral dial with Cartier's interchangeable steel bracelet."
+      }
+    },
+    "WSTA0057": {
+      "caseSize": "33.7mm x 25.5mm (6.6mm thick)",
+      "movement": "Quartz · Cartier High Autonomy movement · silver oxide battery",
+      "materials": "Stainless steel case; exact strap/bracelet pairing for this specific reference could not be independently confirmed (the closely related green-dial reference WSTA0056 is fitted with a green alligator leather strap)",
+      "bezel": "",
+      "dial": "Green lacquered dial with black Roman numerals and polished steel sword-shaped hands; beaded crown set with a synthetic blue spinel cabochon",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2023",
+      "description": "The WSTA0057 belongs to the green-dial family introduced for the Large Tank Must in 2023, sharing the same 33.7mm x 25.5mm steel case, quartz movement and green lacquered dial as sibling reference WSTA0056. Case, movement and dial specifications are verified against the closely documented WSTA0056; every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Green": "Green lacquered Roman-numeral dial with polished steel sword hands, part of the Large Tank Must's 2023 green-dial addition to the range."
+      }
+    }
+  }
+}

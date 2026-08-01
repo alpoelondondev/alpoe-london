@@ -1,0 +1,48 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Yacht-Master 40",
+  "modelSlug": "yacht-master-40",
+  "modelOverview": "The Rolex Yacht-Master 40 is the nautically inspired sports model that blends the robustness of an Oyster Professional watch with refined precious-metal styling. Introduced in its modern 40mm guise, it is defined by a bidirectional rotatable 60-minute graduated bezel with raised numerals and is offered across Rolesium, Everose Rolesor and solid Everose gold executions. It is powered by Rolex's Calibre 3235 with a roughly 70-hour power reserve.",
+  "references": {
+    "126622": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "Oystersteel case with 950 platinum bezel; Oystersteel Oyster bracelet (Rolesium)",
+      "bezel": "Bidirectional rotatable 60-minute graduated bezel in 950 platinum with raised numerals",
+      "dial": "Dark rhodium dial with Chromalight-filled hour markers and hands",
+      "waterResistance": "100m (330ft)",
+      "year": "2019–present",
+      "description": "The Yacht-Master 40 Ref. 126622 is the 'Rolesium' configuration, pairing an Oystersteel case with a distinctive bidirectional 950 platinum bezel for a silvery, understated luxury. Its dark rhodium dial with raised numerals on the bezel is the model's signature look. Each example is sourced and fully authenticated.",
+      "variants": {
+        "Rhodium": "Rolesium execution in Oystersteel with a 950 platinum bidirectional bezel and a dark rhodium sunburst dial, finished on an Oystersteel Oyster bracelet with Oysterlock clasp and Easylink extension."
+      }
+    },
+    "126621": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "Everose Rolesor: Oystersteel case and 18ct Everose gold; Everose Rolesor Oyster bracelet",
+      "bezel": "Bidirectional rotatable 60-minute graduated bezel in 18ct Everose gold with polished raised numerals",
+      "dial": "Chocolate sunray dial with luminous hour markers and hands",
+      "waterResistance": "100m (330ft)",
+      "year": "2019–present",
+      "description": "The Yacht-Master 40 Ref. 126621 is the Everose Rolesor two-tone, combining Oystersteel with 18ct Everose gold and topped by a warm chocolate sunray dial. Its Everose gold bezel with polished raised numerals gives it a softer, richer character than the steel models. Each example is sourced and fully authenticated.",
+      "variants": {
+        "Steel & Rose": "Everose Rolesor two-tone in Oystersteel and 18ct Everose gold, with an Everose gold bidirectional bezel and a signature chocolate sunray dial, on the matching Everose Rolesor Oyster bracelet."
+      }
+    },
+    "126655": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "18ct Everose gold case; Oysterflex bracelet with 18ct Everose gold Oysterlock clasp",
+      "bezel": "Bidirectional rotatable 60-minute graduated bezel with matt black Cerachrom ceramic insert and polished raised numerals",
+      "dial": "Intense black dial with Chromalight-filled markers and hands",
+      "waterResistance": "100m (330ft)",
+      "year": "2019–present",
+      "description": "The Yacht-Master 40 Ref. 126655 is the solid 18ct Everose gold model matched to the sporty Oysterflex bracelet, blending precious metal with elastomer-clad flexibility. Its black Cerachrom ceramic bezel and intense black dial give it a bold, contemporary presence. Each example is sourced and fully authenticated.",
+      "variants": {
+        "Rose Gold Oysterflex": "Solid 18ct Everose gold case with a matt black Cerachrom ceramic bezel and intense black dial, mounted on the high-performance Oysterflex bracelet with an 18ct Everose gold Oysterlock clasp."
+      }
+    }
+  }
+}

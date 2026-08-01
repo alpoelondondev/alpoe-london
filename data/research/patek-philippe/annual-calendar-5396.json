@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Annual Calendar 5396",
+  "modelSlug": "annual-calendar-5396",
+  "modelOverview": "Introduced at Baselworld 2016, the ref. 5396 is Patek Philippe's compact Calatrava-cased Annual Calendar with moon phase, powered by the self-winding Calibre 324 S QA LU 24H/303. Its 38.5mm case houses a combined day/month/date annual calendar with a 24-hour and moon phase sub-dial at 6 o'clock, requiring correction only once a year at the end of February. It succeeded the earlier 5396 with sector dial and is offered across white, rose and yellow gold with a range of dial finishes.",
+  "references": {
+    "5396G-014": {
+      "caseSize": "38.5mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S QA LU 24H/303 · 34 jewels · 4Hz (28,800 vph) · 35-45h power reserve",
+      "materials": "18k white gold case on a brown alligator leather strap with an 18k white gold Calatrava fold-over clasp",
+      "bezel": "Fixed 18k white gold bezel",
+      "dial": "Sunburst charcoal grey dial with Breguet-style numerals and dauphine hands, day and month apertures below 12 o'clock, combined 24-hour and moon phase display with date at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2016-present",
+      "description": "The 5396G-014 is the white gold execution of Patek Philippe's Annual Calendar Moon Phase, combining a sunburst charcoal grey dial with the manufacture's Calibre 324 S QA LU 24H/303 self-winding movement and its signature combined 24-hour/moon phase sub-dial. Introduced at Baselworld 2016, it needs correcting only once a year and carries the Patek Philippe Seal. Every piece we offer is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold – Moon": "The white gold 5396G-014 pairs its 38.5mm case with a sunburst charcoal grey dial, Breguet numerals and the combined 24-hour/moon phase display at 6 o'clock, on a brown alligator strap with white gold Calatrava buckle."
+      }
+    }
+  }
+}

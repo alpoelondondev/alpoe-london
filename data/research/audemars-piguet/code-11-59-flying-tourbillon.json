@@ -1,0 +1,22 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Code 11:59 Flying Tourbillon",
+  "modelSlug": "code-11-59-flying-tourbillon",
+  "modelOverview": "Part of the CODE 11.59 collection launched in 2019, the Selfwinding Flying Tourbillon combines Audemars Piguet's complex round-within-octagonal 41mm case with the in-house automatic Calibre 2950 - the first AP movement to pair a flying tourbillon with a central rotor. The complication is visible through an aperture at 6 o'clock, with no bridge across its top so the cage appears to float. Audemars Piguet has offered the reference primarily in 18K white gold and rose gold, often paired with striking natural-stone (sodalite, aventurine) or enamel dials; stainless-steel executions are not part of the standard published catalogue and, where seen, are exceptional or special-order pieces.",
+  "references": {
+    "26393BC.OO.D321CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 2950 flying tourbillon · 21,600vph · ~65h power reserve",
+      "materials": "18K white gold case (round-within-octagon construction); blue alligator leather strap with 18K white gold folding clasp",
+      "bezel": "18K white gold, round polished",
+      "dial": "Smoked blue enamel dial cut away at 6 o'clock to reveal the flying tourbillon cage, with applied white gold hour-markers and hands",
+      "waterResistance": "30m",
+      "year": "2019",
+      "description": "A CODE 11.59 Selfwinding Flying Tourbillon built around Audemars Piguet's in-house Calibre 2950, with the tourbillon cage floating free at 6 o'clock beneath a double-curved sapphire crystal. This 18K white gold execution with a smoked blue enamel dial dates to the collection's original 2019 launch. Every watch is independently sourced and authenticated before sale, with the reference verified against the movement and case. No enthusiast nickname is commonly used for this reference.",
+      "variants": {
+        "White Gold": "18K white gold cased example of the Selfwinding Flying Tourbillon with a smoked blue enamel dial, from the collection's original 2019 launch lineup."
+      }
+    }
+  }
+}

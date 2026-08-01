@@ -1,0 +1,20 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Calatrava 5196",
+  "modelSlug": "calatrava-5196",
+  "modelOverview": "The ref. 5196 was Patek Philippe's entry-level time-only Calatrava from 2004 until its retirement in 2022, built around the hand-wound Calibre 215 PS that traces its design back to 1974. Offered across yellow gold, rose gold, white gold and platinum cases, it distilled the Calatrava's round, hobnail-bezel dress-watch formula down to a compact 37mm diameter. The platinum 5196P-001, with its distinctive two-tone silver dial and Breguet numerals, is the most sought-after execution and was succeeded by the Calatrava 6196P.",
+  "references": {
+    "5196P-001": {
+      "caseSize": "37mm",
+      "movement": "Manual-wind · Patek Philippe Calibre 215 PS · 18 jewels · 4Hz (28,800 vph) · ~44h power reserve",
+      "materials": "Platinum case on a black leather strap with platinum tang buckle",
+      "bezel": "Fixed platinum hobnail (clou de Paris) bezel",
+      "dial": "Two-tone silver dial with Breguet-style feuille hands, gilt/black Breguet and Arabic numerals, small seconds sub-dial at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2004–2022 (discontinued)",
+      "description": "The 5196P-001 is the platinum reference of Patek Philippe's classic Calatrava 5196, prized among collectors for its two-tone silver dial with Breguet numerals and hobnail bezel, and for carrying the manually wound Calibre 215 PS with its 1974-era Gyromax balance. Discontinued in 2022 in favour of the Calatrava 6196P, it now trades exclusively on the secondary market. Every example we offer is sourced and fully authenticated before sale.",
+      "variants": {}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Must Medium",
+  "modelSlug": "tank-must-medium",
+  "modelOverview": "The Tank Must Medium sits below the Large model in Cartier's 2021 revival of the Must de Cartier line, cased at 29.5mm x 22mm in steel with a compact, elegant profile suited to smaller wrists. It is powered by Cartier's photovoltaic SolarBeat movement, a light-charged quartz calibre that never needs a battery change, and pairs a silvered Roman-numeral dial and blued-steel sword hands with an interchangeable leather strap or steel bracelet.",
+  "references": {
+    "WSTA0060": {
+      "caseSize": "29.5mm x 22mm (6.6mm thick)",
+      "movement": "Quartz · Cartier SolarBeat photovoltaic movement · light-powered, no battery changes required",
+      "materials": "Stainless steel case; interchangeable black strap made without animal materials, with steel ardillon buckle",
+      "bezel": "",
+      "dial": "Silvered dial with black Roman numerals, railway minute track and blued-steel sword-shaped hands; beaded crown set with a synthetic cabochon-cut spinel",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2021–present",
+      "description": "The WSTA0060 is the standard Medium-sized Tank Must, introduced in 2021 with Cartier's photovoltaic SolarBeat movement in place of a conventional battery. Its compact 29.5mm x 22mm steel case carries the model's classic silvered Roman-numeral dial and blued-steel sword hands on an interchangeable strap made without animal materials. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Silver": "Steel-cased Medium Tank Must on an interchangeable black non-animal-material strap, with a silvered Roman-numeral dial, blued-steel sword hands and the light-powered SolarBeat movement — the standard silver-dial configuration of this reference."
+      }
+    }
+  }
+}

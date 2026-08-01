@@ -1,0 +1,35 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Louis Cartier",
+  "modelSlug": "tank-louis-cartier",
+  "modelOverview": "First created by Louis Cartier in 1922 as a refinement of his original 1917 Tank design, the Tank Louis Cartier is the dressiest, most historically faithful expression of the Tank line: a solid-gold, gently curved rectangular case on an integrated bracelet or strap. It is powered exclusively by Cartier's slim in-house manual-winding movements, keeping the case thin and the silhouette true to Louis Cartier's original proportions.",
+  "references": {
+    "WGTA0023": {
+      "caseSize": "29.5mm x 22mm, small model (case thickness 6.8mm)",
+      "movement": "Manual winding · Cartier Calibre 1917 MC · ~38h power reserve",
+      "materials": "18K rose (pink) gold case on a matching 18K rose gold bracelet",
+      "bezel": "",
+      "dial": "Silvered dial with painted Roman numerals, railway minute track and blued-steel sword-shaped hands",
+      "waterResistance": "3 bar (~30m)",
+      "year": "Current collection",
+      "description": "The small-model Tank Louis Cartier in rose gold is the archetypal 'Louis Cartier' shrunk to its most elegant proportions, pairing a silvered dial and blued-steel hands with an integrated rose-gold bracelet rather than the more common leather strap. It houses Cartier's slim in-house manual Calibre 1917 MC, keeping the case thin and true to Louis Cartier's 1922 original. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Yellow Gold – Silver": "Small-model Tank Louis Cartier as verified against official specifications: 18K rose (pink) gold case and bracelet with a silvered dial, blued-steel sword hands and beaded, sapphire-set crown, on Cartier's slim manual Calibre 1917 MC."
+      }
+    },
+    "WGTA0091": {
+      "caseSize": "33.7mm x 25.5mm, medium/large model (case thickness 6.6mm)",
+      "movement": "Manual winding · Cartier Calibre 1917 MC · 19 jewels · ~38h power reserve",
+      "materials": "18K yellow gold case on a black alligator leather strap with an 18K yellow gold ardillon buckle",
+      "bezel": "",
+      "dial": "Black lacquer dial with painted Roman numerals, railway minute track and gold-finish steel sword-shaped hands",
+      "waterResistance": "3 bar (~30m)",
+      "year": "Current collection",
+      "description": "The larger Tank Louis Cartier in yellow gold pairs a striking black lacquer dial with gold-finish hands, giving the classic 1922 silhouette a bolder, more graphic reading than the silvered-dial versions. It is fitted on a black alligator strap with a matching gold ardillon buckle and is powered by Cartier's slim manual Calibre 1917 MC. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold – Silver": "Medium/large-model Tank Louis Cartier as verified against official specifications: 18K yellow gold case on a black alligator leather strap with a black lacquer dial, gold-finish steel hands and beaded, sapphire-set crown, on Cartier's slim manual Calibre 1917 MC."
+      }
+    }
+  }
+}

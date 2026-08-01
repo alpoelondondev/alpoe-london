@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Cubitus 5821",
+  "modelSlug": "cubitus-5821",
+  "modelOverview": "The Cubitus is Patek Philippe's first entirely new sporty-elegant collection since the Aquanaut, launched in October 2024 with a distinctive square-cushion case and integrated bracelet. The 5821 is the flagship self-winding date model of the line, positioned alongside the Nautilus and Aquanaut as Patek's third integrated-bracelet sports watch family.",
+  "references": {
+    "5821A-001": {
+      "caseSize": "45mm",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · ~35-45h power reserve",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Stainless steel, combination of polished and vertically satin-brushed surfaces",
+      "dial": "Sunburst olive/khaki green dial with horizontal embossed pattern, white gold applied baton hour markers and rounded baton hands filled with luminescent material, framed date aperture at 3 o'clock",
+      "waterResistance": "30m",
+      "year": "2024–present",
+      "description": "The Cubitus 5821A-001 is the steel flagship of Patek Philippe's newest integrated-bracelet sports collection, distinguished by its square-cushion case, satin and polished steel bracelet, and a striking sunburst khaki-green dial. Every piece is sourced and authenticated prior to sale.",
+      "variants": {
+        "Steel – Khaki Green": "Reference 5821A-001 in stainless steel with the signature sunburst khaki/olive green horizontally embossed dial, white gold applied hour markers and matching integrated steel bracelet."
+      }
+    }
+  }
+}

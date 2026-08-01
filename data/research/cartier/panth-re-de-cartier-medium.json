@@ -1,0 +1,33 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Panthère de Cartier Medium",
+  "modelSlug": "panth-re-de-cartier-medium",
+  "modelOverview": "First introduced in 1983 and named for the flexible, brick-link bracelet that echoes the fluid movement of Cartier's emblematic panther, the Panthère de Cartier was relaunched in 2017 with its distinctive square case, screwed bezel and rail-track Roman numeral dial. The Medium model is the larger of the two core modern proportions, offered in full steel and in steel-and-yellow-gold combinations, and is worn as a versatile unisex quartz dress watch.",
+  "references": {
+    "WSPA0013": {
+      "caseSize": "27mm x 37mm (width x height), 6mm thick",
+      "movement": "Quartz · silver oxide battery movement",
+      "materials": "Stainless steel case and steel brick-link bracelet",
+      "bezel": "Square polished steel bezel with signature exposed screws",
+      "dial": "Silvered dial with Roman numerals, rail-track minute ring and blued-steel sword-shaped hands",
+      "waterResistance": "30m / 3 bar",
+      "year": "2017–present",
+      "description": "The Panthère de Cartier Medium in steel is the larger of the two modern core sizes, pairing the model's signature square case and screwed bezel with a silvered dial, Roman numerals and blued sword-shaped hands, worn on Cartier's flexible steel brick-link bracelet. Its crown is set with a synthetic blue spinel, a detail carried across the modern Panthère range. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {}
+    },
+    "W2PN0006": {
+      "caseSize": "22mm x 30.3mm (width x height), 6mm thick",
+      "movement": "Quartz · silver oxide battery movement",
+      "materials": "Stainless steel and 18k yellow gold case, and steel and 18k yellow gold brick-link bracelet",
+      "bezel": "Square polished steel and yellow gold bezel with signature exposed screws",
+      "dial": "Silvered dial with Roman numerals, rail-track minute ring and blued-steel sword-shaped hands",
+      "waterResistance": "30m / 3 bar",
+      "year": "2010–present",
+      "description": "The Panthère de Cartier in steel and yellow gold pairs the model's signature square case and screwed bezel with a silvered dial, Roman numerals and blued sword-shaped hands, worn on Cartier's flexible two-tone brick-link bracelet. Its crown is set with a synthetic blue spinel, a detail carried across the modern Panthère range. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Steel & Yellow Gold": "Two-tone execution combining a stainless steel case and centre bracelet links with 18k yellow gold outer links and bezel, paired with the same silvered dial, Roman numerals and blued sword-shaped hands as the full-steel model."
+      }
+    }
+  }
+}

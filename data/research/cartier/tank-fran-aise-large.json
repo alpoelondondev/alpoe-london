@@ -1,0 +1,35 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Française Large",
+  "modelSlug": "tank-fran-aise-large",
+  "modelOverview": "Launched in 1996, the Tank Française reworked Louis Cartier's original 1917 Tank silhouette into a squarer, more architectural case fully integrated with a link bracelet. The Large model is the biggest size in the family, offered historically in an all-steel Calibre 120 automatic (ref. 2302/W51002Q3) and, since the 2023 relaunch, in a redesigned steel automatic on the in-house Calibre 1853 (ref. WSTA0067).",
+  "references": {
+    "WSTA0067": {
+      "caseSize": "30.5mm x 36.7mm (10.1mm thick)",
+      "movement": "Automatic · Cartier Calibre 1853 · ~37h power reserve",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "",
+      "dial": "Silvered dial with Roman numerals and blued-steel sword-shaped hands",
+      "waterResistance": "30m (3 bar)",
+      "year": "2021–present",
+      "description": "Part of Cartier's 2021 relaunch of the Tank Française, this Large model uses the brand's in-house automatic Calibre 1853 in place of the earlier ETA-based movement. It keeps the squared, link-bracelet silhouette that defined the family since 1996, with a faceted steel crown set with a synthetic spinel cabochon. Every piece is fully sourced and authenticated before sale.",
+      "variants": {
+        "Steel – Silver": "Full stainless steel Large model on an integrated steel bracelet, with a silvered dial, Roman numerals and blued sword hands - the standard configuration of the current-generation Calibre 1853 Tank Française Large."
+      }
+    },
+    "W51002Q3": {
+      "caseSize": "28mm x 32mm",
+      "movement": "Automatic · Cartier Calibre 120 (ETA 2000-based) · ~40h power reserve",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "",
+      "dial": "Silver guilloché dial with black Roman numerals, sword-shaped blued-steel hands, date aperture at 6 o'clock",
+      "waterResistance": "30m (3 bar)",
+      "year": "2002–2010s",
+      "description": "An earlier-generation Large Tank Française on the Cartier Calibre 120 automatic movement, identifiable by its octagonal crown set with a blue spinel cabochon and hidden double-deployant steel bracelet clasp. Reference 2302/W51002Q3 was produced in full stainless steel across the 2000s and 2010s. Sourced and authenticated prior to sale.",
+      "variants": {
+        "Steel & Gold – Silver": "Note: verified references and dealer listings for W51002Q3 consistently describe this as an all-stainless-steel case and bracelet with a silver guilloché dial - no gold content could be confirmed for this specific reference. The comparable two-tone (steel and 18k yellow gold) Large Tank Française carries a different reference, W51005Q4. This listing is described here as sourced and authenticated in stainless steel with a silver dial pending confirmation of case metal against the physical piece."
+      }
+    }
+  }
+}

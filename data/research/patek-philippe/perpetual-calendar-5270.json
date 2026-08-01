@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Perpetual Calendar 5270",
+  "modelSlug": "perpetual-calendar-5270",
+  "modelOverview": "Introduced in 2011, the ref. 5270 is Patek Philippe's flagship perpetual calendar chronograph and successor to the ref. 5970, notable as the manufacture's first in-house perpetual calendar chronograph movement. Housed in a 41mm case across platinum, white gold and rose gold, it combines a column-wheel chronograph with a full perpetual calendar, moon phase and day/night indication driven by the manual-wind Calibre CH 29-535 PS Q. The white gold 5270G-014, with its striking sunburst blue dial, was introduced in 2014 as part of the second-generation \"chin\" execution and was produced until 2015, when it was succeeded by the third-generation 5270G-019.",
+  "references": {
+    "5270G-014": {
+      "caseSize": "41mm",
+      "movement": "Manual wind · Patek Philippe Calibre CH 29-535 PS Q · 456 parts, 33 jewels · 28,800 vph (4Hz) · min. 55h / max. 65h power reserve",
+      "materials": "18k white gold case on a blue alligator leather strap with an 18k white gold fold-over deployant clasp",
+      "bezel": "Fixed 18k white gold bezel",
+      "dial": "Sunburst blue dial with applied white gold baton hour markers and leaf-shaped (feuille) hands, chronograph sub-dial at 3 o'clock, day/month apertures beneath 12 o'clock, and a combined moon phase, day/night, leap-year and date display at 6 o'clock, with a tachymeter scale on the outer rim that curves around the date track (the \"chin\")",
+      "waterResistance": "30m",
+      "year": "2014–2015",
+      "description": "The 5270G-014 is the white gold execution of Patek Philippe's Perpetual Calendar Chronograph, distinguished by its sunburst blue dial and driven by the in-house Calibre CH 29-535 PS Q, the manufacture's first ground-up chronograph movement. It combines a column-wheel chronograph with a full perpetual calendar and moon phase that needs no correction until 2100, all in a 41mm white gold case. Every piece we offer is professionally sourced and authenticated.",
+      "variants": {
+        "White Gold": "The 5270G-014 in 18k white gold, paired with a sunburst blue dial, applied baton hour markers and a blue alligator leather strap with white gold deployant clasp - the reference's defining white gold/blue dial combination."
+      }
+    }
+  }
+}

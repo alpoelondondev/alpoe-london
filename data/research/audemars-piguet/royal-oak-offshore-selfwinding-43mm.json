@@ -1,0 +1,74 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Offshore Selfwinding 43mm",
+  "modelSlug": "royal-oak-offshore-selfwinding-43mm",
+  "modelOverview": "This line covers Audemars Piguet's self-winding (non-chronograph) Royal Oak Offshore models, most notably the purpose-built Royal Oak Offshore Diver — a 42mm octagonal sports watch with a rotating internal dive bezel, screw-locked crowns and 300m water resistance. Cases are produced in stainless steel, black ceramic and titanium, powered by AP's in-house automatic Calibre 3120 or its successor Calibre 4308, with dials finished in a range of 'Méga Tapisserie' colourways. Every model inherits the octagonal bezel and exposed hexagonal screws that define the wider Royal Oak Offshore collection.",
+  "references": {
+    "15710ST.OO.A002CA.01": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Audemars Piguet Calibre 3120 · ~60h power reserve",
+      "materials": "Stainless steel case and bezel, black rubber strap",
+      "bezel": "Stainless steel octagonal bezel with exposed hexagonal screws and a rotating black inner dive bezel",
+      "dial": "Black 'Méga Tapisserie'-patterned dial with luminescent hour markers and hands",
+      "waterResistance": "300m",
+      "year": "2015–2021",
+      "description": "The Royal Oak Offshore Diver ref. 15710ST.OO.A002CA.01 pairs a 42mm stainless steel octagonal case with an internal rotating dive bezel operated by a second crown at 10 o'clock, giving 300m of water resistance in AP's signature sports-watch idiom. It is powered by the in-house automatic Calibre 3120 with a 60-hour power reserve, visible through the sapphire exhibition caseback, and fitted with a black rubber strap. Every example we offer is sourced and authenticated before sale.",
+      "variants": {
+        "Black Dial": "Catalogued here in the reference's standard black 'Méga Tapisserie'-patterned dial, paired with luminescent hour markers and hands for underwater legibility against the stainless steel case and black rubber strap."
+      }
+    },
+    "15710ST.OO.A009CA.01": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Audemars Piguet Calibre 3120 · ~60h power reserve",
+      "materials": "Stainless steel case and bezel, black rubber strap",
+      "bezel": "Stainless steel octagonal bezel with exposed hexagonal screws and a rotating inner dive bezel",
+      "dial": "'Méga Tapisserie'-patterned dial with luminescent hour markers and hands, produced across several colourways",
+      "waterResistance": "300m",
+      "year": "2015–2021",
+      "description": "This 15710ST-family Royal Oak Offshore Diver shares the 42mm stainless steel octagonal case, internal rotating dive bezel and 300m water resistance of the reference, driven by the in-house automatic Calibre 3120 with a 60-hour power reserve. It is finished with a black rubber strap and screw-locked crowns for genuine diving use. Every example we offer is sourced and authenticated before sale. Note: this exact suffix could not be independently confirmed against AP's published catalogue during research (the confirmed silver-dial 15710ST reference is 15710ST.OO.A002CA.02), so the precise dial colourway should be verified against the individual watch and its papers before listing.",
+      "variants": {
+        "Silver Dial": "Finished with a silver-toned 'Méga Tapisserie' dial, giving a lighter, higher-contrast face against the steel case and black rubber strap than the standard black-dial reference."
+      }
+    },
+    "15710ST.OO.A020CA.01": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Audemars Piguet Calibre 3120 · ~60h power reserve",
+      "materials": "Stainless steel case and bezel, black rubber strap",
+      "bezel": "Stainless steel octagonal bezel with exposed hexagonal screws and a rotating inner dive bezel",
+      "dial": "'Méga Tapisserie'-patterned dial with luminescent hour markers and hands, produced across several colourways",
+      "waterResistance": "300m",
+      "year": "2015–2021",
+      "description": "This 15710ST-family Royal Oak Offshore Diver shares the 42mm stainless steel octagonal case, internal rotating dive bezel and 300m water resistance of the reference, driven by the in-house automatic Calibre 3120 with a 60-hour power reserve. It is finished with a black rubber strap and screw-locked crowns for genuine diving use. Every example we offer is sourced and authenticated before sale. Note: this exact suffix could not be independently confirmed against AP's published catalogue during research (the confirmed green-dial 15710ST references are 15710ST.OO.A038CA.01 and the khaki-green 15710ST.OO.A052CA.01), so the precise dial colourway should be verified against the individual watch and its papers before listing.",
+      "variants": {
+        "Green Dial": "Finished with a green 'Méga Tapisserie' dial, a colourway Audemars Piguet has used across several generations of the Offshore Diver for a bolder, sportier look on the wrist."
+      }
+    },
+    "15720CE.OO.A002CA.01": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Audemars Piguet Calibre 4308 · ~60h power reserve",
+      "materials": "Black ceramic case and bezel, black rubber strap",
+      "bezel": "Black ceramic octagonal bezel with exposed hexagonal screws and a rotating inner dive bezel",
+      "dial": "Black 'Méga Tapisserie' dial with luminescent hour markers and hands",
+      "waterResistance": "300m",
+      "year": "2021–present",
+      "description": "This updated-generation Royal Oak Offshore Diver is cased entirely in scratch-resistant black ceramic rather than steel, retaining the full-size 42mm octagonal Offshore silhouette, internal rotating dive bezel and 300m water resistance. It is powered by AP's newer in-house automatic Calibre 4308 with a 60-hour power reserve and an instant-jump date, fitted with a black rubber strap. Every example we offer is sourced and authenticated before sale. Note: this exact reference/suffix combination could not be independently confirmed against AP's published catalogue during research — the confirmed full black-ceramic Offshore Diver is the earlier-generation 15707CE.OO.A002CA.01 (Calibre 3120), while the ceramic execution in the current Calibre 4308 generation is a white-gold/black-ceramic limited edition, 15720CN.OO.A002CA.01 — so the precise case material, caliber and suffix should be verified against the individual watch and its papers before listing.",
+      "variants": {
+        "Black Ceramic": "Full black ceramic case and bezel rather than steel, giving a lighter, matte-black finish on the wrist while retaining the black 'Méga Tapisserie' dial and internal dive bezel."
+      }
+    },
+    "15720TI.OO.A009CA.01": {
+      "caseSize": "42mm",
+      "movement": "Automatic · Audemars Piguet Calibre 4308 · ~60h power reserve",
+      "materials": "Titanium case and bezel, black rubber strap",
+      "bezel": "Titanium octagonal bezel with exposed hexagonal screws and a rotating inner dive bezel",
+      "dial": "Grey 'Méga Tapisserie' dial with luminescent hour markers and hands",
+      "waterResistance": "300m",
+      "year": "2021–present",
+      "description": "This updated-generation Royal Oak Offshore Diver is cased in lightweight titanium rather than steel or ceramic, keeping the 42mm octagonal Offshore silhouette, internal rotating dive bezel and 300m water resistance. It is powered by AP's in-house automatic Calibre 4308 with a 60-hour power reserve, fitted with a black rubber strap and screw-locked crowns. Every example we offer is sourced and authenticated before sale. Note: this exact reference/suffix combination could not be independently confirmed against AP's published catalogue during research — the confirmed grey-dial, Calibre 4308-generation Offshore Diver is cased in stainless steel (15720ST.OO.A009CA.01), and no plain-titanium case option is currently documented for the 15720 Diver family — so the precise case material and suffix should be verified against the individual watch and its papers before listing.",
+      "variants": {
+        "Grey Titanium": "Titanium case and bezel rather than steel or ceramic, paired with a grey 'Méga Tapisserie' dial, for a noticeably lighter watch on the wrist than the equivalent steel or ceramic references."
+      }
+    }
+  }
+}

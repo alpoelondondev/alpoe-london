@@ -1,0 +1,19 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Submariner",
+  "modelSlug": "submariner",
+  "modelOverview": "The Rolex Submariner is the archetypal dive watch, introduced in 1953 and waterproof to 300 metres. The no-date Submariner keeps the purist symmetry of a clean dial without a date aperture, pairing a rotating Cerachrom bezel with high-legibility Chromalight markers. It remains one of the most recognisable and enduring tool watches ever made.",
+  "references": {
+    "124060": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Rolex Calibre 3230 · ~70h power reserve",
+      "materials": "Oystersteel case and Oyster bracelet",
+      "bezel": "Unidirectional rotatable 60-minute graduated bezel with black Cerachrom ceramic insert and platinum-coated numerals",
+      "dial": "Black dial with Chromalight luminescent hour markers and hands",
+      "waterResistance": "300m (1,000ft)",
+      "year": "2020–present",
+      "description": "The Submariner 124060 is the current-generation no-date Submariner, enlarged to a 41mm Oystersteel case and driven by the Calibre 3230 with roughly 70 hours of power reserve. Its symmetrical black dial free of a date window and matte black Cerachrom bezel make it the purist's diver. Every example is sourced and authenticated before sale."
+    }
+  }
+}

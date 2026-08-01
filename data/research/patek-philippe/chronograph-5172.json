@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Chronograph 5172",
+  "modelSlug": "chronograph-5172",
+  "modelOverview": "Launched at Baselworld 2019, the ref. 5172G is Patek Philippe's flagship hand-wound chronograph, replacing the long-running ref. 5170 in the Complications collection. It houses the manufacture's own Calibre CH 29-535 PS, the first in-house chronograph movement Patek Philippe introduced in 2009, inside a larger, bolder 41mm white gold case with vintage-inspired three-tier lugs and guilloched pushers.",
+  "references": {
+    "5172G-001": {
+      "caseSize": "41mm",
+      "movement": "Manual-wind · Patek Philippe Calibre CH 29-535 PS · 33 jewels · 4Hz (28,800 vph) · ~65h power reserve",
+      "materials": "18k white gold case on a blue calfskin strap with nubuck finish and contrasting cream stitching, white gold fold-over (deployant) buckle",
+      "bezel": "Fixed, smooth-stepped 18k white gold bezel",
+      "dial": "Blue varnished dial with applied white gold Arabic numerals and white gold luminescent syringe-shaped hands, tachymeter scale on the outer rim, 30-minute counter at 3 o'clock, small seconds at 9 o'clock and 60-second chronograph counter",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The 5172G-001 is Patek Philippe's current in-house hand-wound chronograph, built around the manufacture's own Calibre CH 29-535 PS column-wheel movement with horizontal clutch. It succeeded the ref. 5170 as the brand's flagship dress chronograph, growing to a bolder 41mm white gold case with a blue varnished dial and white gold Arabic numerals and hands. Every piece we offer is professionally sourced and authenticated.",
+      "variants": {
+        "White Gold – Silver": "The 5172G-001 in its standard 18k white gold execution, paired with the blue varnished dial and its contrasting white gold applied Arabic numerals, syringe-shaped hands and tachymeter scale, on a blue calfskin strap with white gold fold-over buckle."
+      }
+    }
+  }
+}

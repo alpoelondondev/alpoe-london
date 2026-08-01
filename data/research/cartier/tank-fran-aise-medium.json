@@ -1,0 +1,22 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Française Medium",
+  "modelSlug": "tank-fran-aise-medium",
+  "modelOverview": "Launched in 1996, the Tank Française reinterpreted Cartier's original 1919 Tank with an integrated bracelet and rounded case links, becoming one of the maison's most recognisable modern dress watches. The Medium (midsize) model sits between the Large and Small versions and is a popular unisex/ladies' size, most commonly seen in a steel-and-gold two-tone execution.",
+  "references": {
+    "W51012Q4": {
+      "caseSize": "25mm x 30mm (25mm wide, midsize)",
+      "movement": "Quartz",
+      "materials": "Stainless steel case and bracelet with 18k yellow gold links and octagonal crown set with a blue spinel cabochon",
+      "bezel": "",
+      "dial": "Silver-grained dial with black Roman numerals and blued sword-shaped hands; date window at 3 o'clock",
+      "waterResistance": "30m / 100ft",
+      "year": "1996–discontinued (exact end-of-production year not published)",
+      "description": "The Tank Française Medium in steel and 18k yellow gold pairs Cartier's rounded, integrated-bracelet Tank case with the brand's signature blue cabochon crown. It is a durable, everyday two-tone dress watch, offered here fully sourced and authenticated.",
+      "variants": {
+        "Steel & Gold": "Two-tone steel and 18k yellow gold Tank Française Medium with a silver-grained Roman numeral dial, date window, and matching two-tone bracelet with concealed clasp."
+      }
+    }
+  }
+}

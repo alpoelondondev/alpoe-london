@@ -1,0 +1,61 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Jumbo Extra-Thin 39mm",
+  "modelSlug": "royal-oak-jumbo-extra-thin-39mm",
+  "modelOverview": "The Royal Oak 'Jumbo' Extra-Thin is the purest expression of Gerald Genta's 1972 original, an ultra-slim 39mm automatic that keeps the exact case dimensions of the very first Royal Oak. In 2022 Audemars Piguet replaced the long-running reference 15202 with reference 16202, introducing the new in-house self-winding Calibre 7121 while preserving the 8.1mm case height and integrated tapisserie-dial aesthetic. The line has since expanded from steel into precious-metal, gem-set and titanium/BMG executions.",
+  "references": {
+    "16202ST.OO.1240ST.02": {
+      "caseSize": "39mm",
+      "movement": "Automatic · AP Calibre 7121 · 4 Hz · ~55h power reserve",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "Octagonal stainless steel bezel secured by 8 white gold hexagonal screws",
+      "dial": "'Bleu Nuit, Nuage 50' blue dial with 'Petite Tapisserie' pattern, white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2022–present",
+      "description": "The steel 'Jumbo' Extra-Thin ref. 16202ST is the everyday hero of the Royal Oak line, carrying the iconic blue 'Bleu Nuit, Nuage 50' tapisserie dial in an 8.1mm ultra-thin case. It debuted in 2022 alongside the new Calibre 7121, replacing the celebrated 15202. Sourced and fully authenticated.",
+      "variants": {
+        "Steel Blue": "Stainless steel case and bracelet with the signature blue 'Bleu Nuit, Nuage 50' 'Petite Tapisserie' dial, white gold applied markers and Royal Oak hands."
+      }
+    },
+    "16202BA.HH.1241BA.01": {
+      "caseSize": "39mm",
+      "movement": "Automatic · AP Calibre 7121 · 4 Hz · ~55h power reserve",
+      "materials": "18-carat yellow gold case and bracelet, fully set with brilliant-cut yellow sapphires",
+      "bezel": "Octagonal 18-carat yellow gold bezel set with brilliant-cut yellow sapphires",
+      "dial": "18-carat yellow gold dial fully set with brilliant-cut yellow sapphires, yellow gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "20m",
+      "year": "2024–present",
+      "description": "A fully gem-set high-jewellery interpretation of the 'Jumbo' Extra-Thin, the 16202BA.HH is executed in 18-carat yellow gold and paved throughout with brilliant-cut yellow sapphires across the case, dial and bracelet. This ultra-rare, entirely set Royal Oak transforms the icon into a jewellery piece. Sourced and fully authenticated.",
+      "variants": {
+        "Yellow Gold": "18-carat yellow gold case, bezel, dial and bracelet fully set with brilliant-cut yellow sapphires (over 1,500 stones), yellow gold applied markers and Royal Oak hands; water resistant to 20m."
+      }
+    },
+    "16202BC.OO.1240BC.02": {
+      "caseSize": "39mm",
+      "movement": "Automatic · AP Calibre 7121 · 4 Hz · ~55h power reserve",
+      "materials": "18-carat white gold case and bracelet",
+      "bezel": "Octagonal 18-carat white gold bezel secured by 8 white gold hexagonal screws",
+      "dial": "Grained blue dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The white gold 'Jumbo' Extra-Thin ref. 16202BC pairs the ultra-thin 8.1mm case with a distinctive grained (grainy-effect) blue dial rather than the usual tapisserie, giving a discreet precious-metal take on the icon. Its understated white gold looks deceptively like steel to the untrained eye. Sourced and fully authenticated.",
+      "variants": {
+        "White Gold": "18-carat white gold case and bracelet with a grained blue dial, white gold applied markers and Royal Oak hands; water resistant to 50m."
+      }
+    },
+    "16202XT.OO.1240XT.01": {
+      "caseSize": "39mm",
+      "movement": "Automatic · AP Calibre 7121 · 4 Hz · ~55h power reserve",
+      "materials": "Titanium case and bracelet with Bulk Metallic Glass (BMG) bezel and central bracelet links",
+      "bezel": "Octagonal Bulk Metallic Glass (BMG) bezel with white gold hexagonal screws",
+      "dial": "Smoked burgundy dial with a sunray-brushed red-to-black gradient (no tapisserie pattern), pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The 16202XT is the boldest 'Jumbo' Extra-Thin yet, combining an extra-light titanium case and bracelet with an innovative Bulk Metallic Glass (BMG) bezel and central links, topped by a striking smoked burgundy gradient dial. Introduced in 2023, it marries the icon's classic proportions with cutting-edge materials. Sourced and fully authenticated.",
+      "variants": {
+        "Titanium": "Titanium case and bracelet with Bulk Metallic Glass (BMG) bezel and centre links and a smoked burgundy red-to-black gradient dial (no tapisserie pattern) with pink gold markers and hands; water resistant to 50m."
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Chronograph 41mm",
+  "modelSlug": "royal-oak-chronograph-41mm",
+  "modelOverview": "The Royal Oak Selfwinding Chronograph 41mm (reference 26240) was introduced in 2022 to mark the 50th anniversary of the Royal Oak, replacing the outgoing 26331 with a fresh in-house movement and a refined single-colour dial layout. It pairs Gerald Genta's iconic octagonal bezel and integrated bracelet with the latest-generation Calibre 4401 flyback chronograph. The reference spans steel, precious-metal and full-ceramic executions, making it one of the most versatile complicated Royal Oaks in the current collection.",
+  "references": {
+    "26240ST.OO.1320ST.05": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Fixed octagonal stainless steel bezel with signature exposed hexagonal screws",
+      "dial": "\"Bleu Nuit, Nuage 50\" blue \"Grande Tapisserie\" dial with matching counters, white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The steel Royal Oak Chronograph 41mm in blue is the definitive everyday-luxury sports chronograph, driven by the in-house Calibre 4401 flyback movement housed in a 12.4mm-thin case. Its \"Bleu Nuit, Nuage 50\" Grande Tapisserie dial is among the most sought-after colourways of the reference. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "Blue Dial – Steel": "Stainless steel 41mm chronograph with the \"Bleu Nuit, Nuage 50\" blue Grande Tapisserie dial, blue sub-dials and white gold markers on the integrated steel bracelet."
+      }
+    },
+    "26240ST.OO.1320ST.06": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Fixed octagonal stainless steel bezel with signature exposed hexagonal screws",
+      "dial": "Black \"Grande Tapisserie\" dial with black counters, white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The black-dial steel Royal Oak Chronograph 41mm is the most understated and versatile execution of the reference, powered by the in-house Calibre 4401 flyback movement in a slim 12.4mm case. Its uniform black Grande Tapisserie dial delivers classic monochrome appeal on the integrated steel bracelet. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "Black Dial – Steel": "Stainless steel 41mm chronograph with a black Grande Tapisserie dial, black sub-dials and white gold markers on the integrated steel bracelet."
+      }
+    },
+    "26240ST.OO.1320ST.07": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Fixed octagonal stainless steel bezel with signature exposed hexagonal screws",
+      "dial": "Silver-toned / grey \"Grande Tapisserie\" dial with matching counters, white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The grey \"Grande Tapisserie\" steel Royal Oak Chronograph 41mm offers a bright, panda-adjacent look thanks to its silver-toned dial and contrasting sub-dial detailing, all driven by the in-house Calibre 4401 flyback movement. The 12.4mm case sits on the classic integrated steel bracelet. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "Grey Dial – Steel": "Stainless steel 41mm chronograph with a silver-toned grey Grande Tapisserie dial and white gold markers on the integrated steel bracelet."
+      }
+    },
+    "26240ST.OO.1320ST.08": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "Stainless steel case and integrated bracelet",
+      "bezel": "Fixed octagonal stainless steel bezel with signature exposed hexagonal screws",
+      "dial": "Green \"Grande Tapisserie\" dial with green counters, white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The green-dial steel Royal Oak Chronograph 41mm is one of the most coveted colourways of the 26240 series, its rich Grande Tapisserie dial paired with the in-house Calibre 4401 flyback movement in a 12.4mm case. The tone-on-tone green counters give it standout presence on the integrated steel bracelet. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "Green Dial – Steel": "Stainless steel 41mm chronograph with a green Grande Tapisserie dial, green sub-dials and white gold markers on the integrated steel bracelet."
+      }
+    },
+    "26240OR.OO.1320OR.05": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "18-carat pink gold case and integrated bracelet",
+      "bezel": "Fixed octagonal 18-carat pink gold bezel with signature exposed hexagonal screws",
+      "dial": "\"Bleu Nuit, Nuage 50\" blue \"Grande Tapisserie\" dial with matching counters, pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The full pink gold Royal Oak Chronograph 41mm pairs a warm 18-carat rose gold case and integrated bracelet with a \"Bleu Nuit, Nuage 50\" blue Grande Tapisserie dial for a striking contrast. It runs the in-house Calibre 4401 flyback movement in a 12.4mm case. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "Rose Gold": "Solid 18-carat pink gold 41mm chronograph with a \"Bleu Nuit, Nuage 50\" blue Grande Tapisserie dial, blue sub-dials and pink gold markers on the matching pink gold integrated bracelet."
+      }
+    },
+    "26240CE.OO.1225CE.02": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "Black ceramic case and integrated bracelet with pink gold accents",
+      "bezel": "Fixed octagonal black ceramic bezel with signature exposed hexagonal screws",
+      "dial": "Black \"Grande Tapisserie\" dial with black counters, pink gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The full black ceramic Royal Oak Chronograph 41mm is one of the stealthiest and most technically demanding executions of the reference, its scratch-resistant ceramic case and bracelet warmed by subtle pink gold accents. Ceramic pushers and crown flank the in-house Calibre 4401 flyback movement. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "Black Ceramic": "Full black ceramic 41mm chronograph with a black Grande Tapisserie dial, pink gold applied markers and hands, ceramic pushers and crown, on the integrated black ceramic bracelet."
+      }
+    },
+    "26240BC.OO.1320BC.04": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 4401 · integrated flyback chronograph · ~70h power reserve · 28,800 vph (4 Hz)",
+      "materials": "18-carat white gold case and integrated bracelet",
+      "bezel": "Fixed octagonal 18-carat white gold bezel with signature exposed hexagonal screws",
+      "dial": "Smoked blue \"Grande Tapisserie\" dial with white gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2025–present",
+      "description": "The 18-carat white gold Royal Oak Chronograph 41mm is a discreet, precious-metal take on the reference, its bright white gold case and integrated bracelet paired with a smoked blue Grande Tapisserie dial. It is driven by the in-house Calibre 4401 flyback movement in a 12.4mm case. Sourced and fully authenticated by our specialists.",
+      "variants": {
+        "White Gold": "Solid 18-carat white gold 41mm chronograph with a smoked blue Grande Tapisserie dial and white gold markers on the matching white gold integrated bracelet."
+      }
+    }
+  }
+}

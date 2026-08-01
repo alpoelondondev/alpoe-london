@@ -1,0 +1,112 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Day-Date 40",
+  "modelSlug": "day-date-40",
+  "modelOverview": "The Rolex Day-Date 40, introduced in 2015, is the modern evolution of the original 1956 'President' and remains Rolex's flagship prestige watch, made exclusively in 18 ct gold or 950 platinum. It is the only Day-Date to display the day of the week spelt out in full at 12 o'clock alongside the date at 3 o'clock, and is powered by the calibre 3255 with a roughly 70-hour power reserve. It is worn on the signature semi-circular three-piece President bracelet.",
+  "references": {
+    "228239": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3255 · ~70h power reserve",
+      "materials": "18 ct white gold case and President bracelet",
+      "bezel": "Fluted 18 ct white gold",
+      "dial": "Multiple dial options including olive green, blue Roman, and meteorite",
+      "waterResistance": "100m",
+      "year": "2015–present",
+      "description": "The 228239 is the 18 ct white gold Day-Date 40 on the President bracelet, distinguished by its signature fluted white gold bezel. Powered by the calibre 3255 with a ~70h power reserve, it is offered with a wide range of dials. Every example is fully sourced and authenticated before sale.",
+      "variants": {
+        "White Gold – Olive": "18 ct white gold Day-Date 40 with a sunray olive-green dial and fluted bezel on the President bracelet.",
+        "White Gold – Blue Dial": "18 ct white gold Day-Date 40 with a blue dial, typically fitted with applied Roman numerals, and a fluted white gold bezel.",
+        "White Gold – Olive RBR": "18 ct white gold Day-Date 40 with an olive-green dial, upgraded with a diamond-set (RBR) bezel in place of the standard fluted bezel.",
+        "White Gold – Blue Dial RBR": "18 ct white gold Day-Date 40 with a blue dial and a factory diamond-set (RBR) bezel.",
+        "White Gold – Meteorite": "18 ct white gold Day-Date 40 featuring a natural meteorite dial with its distinctive Widmanstätten pattern, on a fluted white gold bezel."
+      }
+    },
+    "228235": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3255 · ~70h power reserve",
+      "materials": "18 ct Everose gold case and President bracelet",
+      "bezel": "Fluted 18 ct Everose gold",
+      "dial": "Multiple dial options including chocolate, olive, ombré, sundust and Eisenkiesel",
+      "waterResistance": "100m",
+      "year": "2015–present",
+      "description": "The 228235 is the 18 ct Everose gold Day-Date 40, using Rolex's patented pink-gold alloy for a warm rose hue that resists fading. Driven by the calibre 3255 with a ~70h power reserve, it is available with an especially broad palette of dials, some with diamond-set bezels. Each piece is sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold – Olive RBR": "18 ct Everose gold Day-Date 40 with an olive-green dial and a diamond-set (RBR) bezel.",
+        "Rose Gold – Chocolate RBR": "18 ct Everose gold Day-Date 40 with a chocolate-brown dial and a diamond-set (RBR) bezel, a warm-on-warm pairing that suits the Everose case.",
+        "Rose Gold – Ombré RBR": "18 ct Everose gold Day-Date 40 with a graduated ombré dial that fades from light to dark, set off by a diamond-set (RBR) bezel.",
+        "Rose Gold – Eisenkiesel RBR": "18 ct Everose gold Day-Date 40 with a rare Eisenkiesel (iron quartz) hard-stone dial and a diamond-set (RBR) bezel.",
+        "Rose Gold – Sundust Baguette RBR": "18 ct Everose gold Day-Date 40 with a sundust dial, baguette-cut diamond hour markers and a diamond-set (RBR) bezel.",
+        "Rose Gold – White Dial": "18 ct Everose gold Day-Date 40 with a clean white dial on the standard fluted Everose bezel.",
+        "Rose Gold – Chocolate Motif RBR": "18 ct Everose gold Day-Date 40 with a decorative chocolate motif dial and a diamond-set (RBR) bezel."
+      }
+    },
+    "228349RBR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3255 · ~70h power reserve",
+      "materials": "18 ct white gold case and President bracelet",
+      "bezel": "Diamond-set 18 ct white gold",
+      "dial": "Gem-set dials, frequently with diamond hour markers or paved/meteorite centres",
+      "waterResistance": "100m",
+      "year": "2015–present",
+      "description": "The 228349RBR is the factory diamond-set white gold Day-Date 40, its bezel paved with brilliant-cut diamonds (RBR). It is typically paired with gem-set or precious-stone dials and driven by the calibre 3255 with a ~70h power reserve. Every example is sourced and authenticated before sale.",
+      "variants": {
+        "White Gold – DD2 Diamond Dot": "18 ct white gold Day-Date 40 with a diamond-set bezel and a diamond-dot 'DD2' style dial, where the applied hour markers are set with diamonds."
+      }
+    },
+    "228345RBR": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3255 · ~70h power reserve",
+      "materials": "18 ct Everose gold case and President bracelet",
+      "bezel": "Diamond-set 18 ct Everose gold",
+      "dial": "Gem-set dials, frequently sundust or paved with diamond markers",
+      "waterResistance": "100m",
+      "year": "2015–present",
+      "description": "The 228345RBR is the factory diamond-set Everose gold Day-Date 40, combining Rolex's pink-gold alloy with a diamond-paved (RBR) bezel. It is offered with gem-set dials and is powered by the calibre 3255 with a ~70h power reserve. Each watch is sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold – DD2": "18 ct Everose gold Day-Date 40 with a diamond-set bezel and a 'DD2' style dial with diamond-set hour markers.",
+        "Rose Gold – DD2 Sundust Diamond Dot": "18 ct Everose gold Day-Date 40 with a diamond-set bezel and a sundust 'DD2' dial featuring diamond-dot hour markers."
+      }
+    },
+    "228236": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3255 · ~70h power reserve",
+      "materials": "950 platinum case and President bracelet",
+      "bezel": "Smooth or fluted 950 platinum (also offered baguette diamond-set)",
+      "dial": "Ice-blue dial signature to platinum, plus Roman, Arabic, blue, black and baguette options",
+      "waterResistance": "100m",
+      "year": "2015–present",
+      "description": "The 228236 is the 950 platinum Day-Date 40, the most exclusive metal in the range and the only one to carry Rolex's discreet ice-blue dial. Available with smooth, fluted or baguette-diamond bezels, it is powered by the calibre 3255 with a ~70h power reserve. Each piece is sourced and authenticated before sale.",
+      "variants": {
+        "Platinum – Ice Blue": "950 platinum Day-Date 40 with the signature ice-blue dial reserved for Rolex's platinum models.",
+        "Platinum – Smooth Dial": "950 platinum Day-Date 40 with a smooth (domed) platinum bezel for a cleaner, understated profile.",
+        "Platinum – Fluted Dial": "950 platinum Day-Date 40 with the classic fluted platinum bezel.",
+        "Platinum – Roman Numeral": "950 platinum Day-Date 40 with applied Roman numeral hour markers, usually over an ice-blue dial.",
+        "Platinum – Baguette Dial": "950 platinum Day-Date 40 with baguette-cut diamond hour markers.",
+        "Platinum – Blue Dial": "950 platinum Day-Date 40 with a blue dial.",
+        "Platinum – Green Arabic TBR": "950 platinum Day-Date 40 with a green dial, applied Arabic numerals and a baguette-diamond-set (TBR) bezel.",
+        "Platinum – Blue TBR": "950 platinum Day-Date 40 with a blue dial and a baguette-diamond-set (TBR) bezel.",
+        "Platinum – Ice Blue Roman": "950 platinum Day-Date 40 with the signature ice-blue dial and applied Roman numerals.",
+        "Platinum – Black Baguette": "950 platinum Day-Date 40 with a black dial and baguette-cut diamond hour markers."
+      }
+    },
+    "228238": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 3255 · ~70h power reserve",
+      "materials": "18 ct yellow gold case and President bracelet",
+      "bezel": "Fluted 18 ct yellow gold",
+      "dial": "Multiple dial options including champagne, black onyx, ombré and green ombré",
+      "waterResistance": "100m",
+      "year": "2015–present",
+      "description": "The 228238 is the 18 ct yellow gold Day-Date 40, the most traditional expression of the President with a fluted yellow gold bezel. Powered by the calibre 3255 with a ~70h power reserve, it is offered with a range of dials, several with diamond-set bezels. Every example is sourced and authenticated before sale.",
+      "variants": {
+        "Yellow Gold – Ombré RBR": "18 ct yellow gold Day-Date 40 with a graduated ombré dial and a diamond-set (RBR) bezel.",
+        "Yellow Gold – Black RBR": "18 ct yellow gold Day-Date 40 with a black dial and a diamond-set (RBR) bezel.",
+        "Yellow Gold – Silver Anniversary RBR": "18 ct yellow gold Day-Date 40 with a silver anniversary-style dial and a diamond-set (RBR) bezel.",
+        "Yellow Gold – Onyx RBR": "18 ct yellow gold Day-Date 40 with a deep black onyx hard-stone dial and a diamond-set (RBR) bezel.",
+        "Yellow Gold – Champagne RBR": "18 ct yellow gold Day-Date 40 with a champagne dial and a diamond-set (RBR) bezel, a warm classic pairing.",
+        "Yellow Gold – Green Ombré RBR": "18 ct yellow gold Day-Date 40 with a green ombré dial that graduates from light to dark, set off by a diamond-set (RBR) bezel."
+      }
+    }
+  }
+}

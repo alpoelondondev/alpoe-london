@@ -1,0 +1,20 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Calatrava 6000",
+  "modelSlug": "calatrava-6000",
+  "modelOverview": "Launched in 2005, the ref. 6000 reinterpreted the classic Calatrava dress watch with a pointer-style peripheral date ring and an off-centre small seconds subdial, set inside a 37mm precious-metal case. It is powered by Patek Philippe's ultra-thin self-winding Calibre 240 PS C with a micro-rotor and 48-hour power reserve, and was produced across white gold and rose gold executions with a range of lacquered dial colours before giving way to later Calatrava designs. It represents one of Patek's more architectural takes on the pointer-date genre, distinguishing it from the brand's simpler time-only Calatravas.",
+  "references": {
+    "6000J-001": {
+      "caseSize": "37mm",
+      "movement": "Automatic · Patek Philippe Calibre 240 PS C · micro-rotor · 27 jewels · 4Hz (21,600 vph) · ~48h power reserve",
+      "materials": "18k yellow gold case on an alligator leather strap with an 18k yellow gold prong or deployant buckle",
+      "bezel": "Fixed polished 18k gold bezel",
+      "dial": "Lacquered dial with applied gold Arabic numerals on the inner track, a peripheral pointer-date ring traced by a crescent-tipped central hand, and an off-centre running seconds subdial between 4 and 5 o'clock",
+      "waterResistance": "30m",
+      "year": "2005–2017 (production span of the ref. 6000 family)",
+      "description": "The 6000J-001 belongs to Patek Philippe's ref. 6000 Calatrava family, recognisable for its distinctive off-centre seconds subdial and pointer-style peripheral date ring driven by the self-winding Calibre 240 PS micro-rotor movement. Officially catalogued examples of this reference are known in white gold (6000G) and rose gold (6000R); this yellow gold execution is comparatively rare and its exact production details are not independently confirmed in Patek Philippe's published archive. As with all our pre-owned Patek Philippe pieces, it is sourced and fully authenticated before sale.",
+      "variants": {}
+    }
+  }
+}

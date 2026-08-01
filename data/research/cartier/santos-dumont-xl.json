@@ -1,0 +1,20 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Santos-Dumont XL",
+  "modelSlug": "santos-dumont-xl",
+  "modelOverview": "The Santos-Dumont is Cartier's original pilot's watch, created in 1904 by Louis Cartier for aviator Alberto Santos-Dumont and widely credited as the first purpose-built wristwatch. Modern large-model pieces preserve the tonneau-shaped case, exposed screws and Roman numeral dial of the historic design, paired with slim, high-autonomy quartz movements. It remains one of Cartier's most recognisable dress watches, prized for its flat, elegant profile rather than sports-watch bulk.",
+  "references": {
+    "WGSA0021": {
+      "caseSize": "43.5mm x 31.4mm (large model), 7.3mm thick",
+      "movement": "Quartz · high-autonomy movement (~6-year battery life) · hours and minutes",
+      "materials": "18k rose gold (750/1000) tonneau-shaped case; grey alligator leather strap with 18k rose gold ardillon buckle",
+      "bezel": "18k rose gold, integrated with case, exposed case screws",
+      "dial": "Satin-brushed silver dial with sunray effect, blued Roman numerals, blued-steel sword-shaped hands, beaded crown set with a cabochon-cut sapphire",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2019–present",
+      "description": "Part of the 2019 relaunch of Cartier's historic pilot's watch, this large-model Santos-Dumont is cased in 18k rose gold with a satin-brushed silver sunray dial and the line's signature exposed screws and beaded, sapphire-set crown. Every piece is sourced and authenticated prior to sale. Confirmed against Cartier's official reference specification: WGSA0021 is catalogued exclusively in 18k rose gold with a silver sunray dial; no yellow gold/ivory variant exists under this reference number.",
+      "variants": {}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Ballon Bleu 40mm",
+  "modelSlug": "ballon-bleu-40mm",
+  "modelOverview": "Launched in 2007, the Ballon Bleu de Cartier introduced a distinctive rounded, unbroken case silhouette with a protected, fluted crown set with a blue synthetic spinel that appears to float above the case — the detail that gives the line its 'blue balloon' name. The 40mm size is the collection's principal men's/unisex proportion, produced in steel, steel-and-gold, and solid gold with silvered, black, or slate dials.",
+  "references": {
+    "WSBB0007": {
+      "caseSize": "36mm (12.05mm thick)",
+      "movement": "Automatic · Cartier Calibre 076 (ETA 2671-based) · 25 jewels · 4Hz · ~38h power reserve",
+      "materials": "Stainless steel case on a pink alligator leather strap with steel buckle",
+      "bezel": "Fixed, smooth polished stainless steel bezel",
+      "dial": "Pink guilloché dial with painted Roman numerals, blued steel sword-shaped hands, and Chemin de Fer minute track",
+      "waterResistance": "30m / 100ft (3 bar)",
+      "year": "circa 2016–2017",
+      "description": "Reference WSBB0007 carries Cartier's signature 'blue balloon' fluted crown, set with a synthetic spinel cabochon, on the brand's rounded, unbroken Ballon Bleu case. Publicly documented examples of this reference (Tourneau, Bob's Watches, SwissWatchExpo, authenticwatches, Jomashop) consistently show it as the 36mm steel model with a pink guilloché dial and pink alligator strap, rather than a 40mm silver-dial piece — this should be confirmed against the physical watch before listing. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Steel – Silver": "Listed on the source sheet as 'Steel – Silver', but publicly available records for reference WSBB0007 consistently document a 36mm case with a pink guilloché dial and pink strap rather than a 40mm silver dial. Verify the actual dial colour, case size, and strap against the individual watch before publishing this variant."
+      }
+    }
+  }
+}

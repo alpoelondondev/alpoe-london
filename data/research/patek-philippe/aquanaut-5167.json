@@ -1,0 +1,35 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Aquanaut 5167",
+  "modelSlug": "aquanaut-5167",
+  "modelOverview": "The Aquanaut 5167A is Patek Philippe's steel sports-luxury companion to the Nautilus, introduced in 2007 as the larger-cased, slimmer second generation of the original 1997 Aquanaut (ref. 5060A). Its rounded octagonal case, embossed checkerboard-pattern dial and durable Tropical composite rubber strap give it a distinctly casual, youthful character within the Patek catalogue. Today it is one of the most requested steel sports references from the manufacture, running the self-winding Calibre 26-330 S C.",
+  "references": {
+    "5167A-001": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · 35–45h power reserve",
+      "materials": "Stainless steel case on a black composite (Tropical rubber) strap with steel fold-over clasp",
+      "bezel": "Steel gently-rounded octagonal bezel with contrasting polished and satin-brushed finishes, no visible screws",
+      "dial": "Sunburst charcoal-grey/black dial with black-gradient rim, embossed Aquanaut checkerboard pattern, white-gold applied numerals and baton hands with luminescent coating",
+      "waterResistance": "30m",
+      "year": "2007–present (current dial/movement update from 2018)",
+      "description": "The 5167A-001 is the standard-bearer of the modern steel Aquanaut line, prized by collectors for its embossed black dial, screw-down crown and comfortable Tropical rubber strap. It runs the self-winding Calibre 26-330 S C with date and sweep seconds beneath a sapphire caseback. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "Steel – Black Tropical": "5167A-001 in stainless steel on its black Tropical composite strap with the standard embossed black/charcoal sunburst dial, the benchmark configuration for the modern steel Aquanaut."
+      }
+    },
+    "5167A-025": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S C · 35–45h power reserve",
+      "materials": "Stainless steel case on a khaki green composite (Tropical rubber) strap with steel fold-over clasp",
+      "bezel": "Steel gently-rounded octagonal bezel with contrasting polished and satin-brushed finishes, no visible screws",
+      "dial": "Embossed khaki green checkerboard-pattern dial with gilt/gold-tone applied numerals and luminescent coating, matching khaki green strap",
+      "waterResistance": "30m",
+      "year": "2011 (the only documented steel khaki-green Aquanaut is the 5167A-010, an extremely limited 'special clients' production believed to be fewer than 10 pieces; the reference '5167A-025' could not be independently confirmed in any manufacturer or reference database)",
+      "description": "The khaki green dial Aquanaut is one of the most sought-after colourways in the steel 5167A family, sharing the same 40mm case and embossed checkerboard dial texture as the standard black-dial model. Unlike the current-production 5167A-001, the confirmed green-dial reference (5167A-010) was an extremely limited, special-clients-only run from 2011 fitted with the earlier self-winding Calibre 324 S C, making it dramatically harder to source than the black-strap standard model. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "Steel – Khaki Green": "5167A-025 in stainless steel on a khaki green Tropical composite strap with the matching embossed khaki green checkerboard dial, a scarcer colourway alternative to the standard black 5167A-001."
+      }
+    }
+  }
+}

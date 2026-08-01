@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Calatrava 5116",
+  "modelSlug": "calatrava-5116",
+  "modelOverview": "Introduced in 2009, the ref. 5116 revived the classic hobnail-bezel Calatrava design first seen in the 1980s, pairing a compact 36mm case with a grand feu enamel dial, Roman numerals and feuille hands. It is a manual-winding dress watch built around Patek Philippe's slim Calibre 215 PS. The line was offered in white gold from launch and later joined by a rose gold execution before being succeeded within the current catalogue by the enlarged 39mm ref. 6119.",
+  "references": {
+    "5116G-001": {
+      "caseSize": "36mm",
+      "movement": "Manual winding · Patek Philippe Calibre 215 PS · 44h power reserve",
+      "materials": "18k white gold case",
+      "bezel": "18k white gold hobnail (clou de Paris-style pyramid-textured) bezel",
+      "dial": "White grand feu enamel dial with black Roman numerals and black steel feuille-shaped hands",
+      "waterResistance": "30m",
+      "year": "2009–discontinued (superseded by ref. 6119)",
+      "description": "The 5116G-001 is Patek Philippe's modern reprise of the archetypal hobnail-bezel Calatrava, distinguished by its white grand feu enamel dial, Roman numerals and hand-wound Calibre 215 PS movement. Its 36mm white gold case and slim proportions make it one of the most classically dress-oriented references in the current Calatrava family. Every example we offer is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold": "5116G-001 in 18k white gold with the signature hobnail bezel and white grand feu enamel dial with black Roman numerals, the reference's standard and most recognisable execution."
+      }
+    }
+  }
+}

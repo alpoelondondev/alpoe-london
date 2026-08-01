@@ -1,0 +1,35 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Santos de Cartier Medium",
+  "modelSlug": "santos-de-cartier-medium",
+  "modelOverview": "The Santos de Cartier Medium is the mid-size iteration of the house's pioneering 1904 pilot's watch, relaunched in its current form in 2018 with the in-house automatic Calibre 1847 MC and the signature QuickSwitch/SmartLink interchangeable bracelet system. Its square bezel, exposed screws and Roman numeral dial remain unchanged from Louis Cartier's original design for aviator Alberto Santos-Dumont, making it one of the most recognisable case shapes in watchmaking.",
+  "references": {
+    "WSSA0020": {
+      "caseSize": "35.1mm x 41.9mm (8.82mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~48h power reserve",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "Steel bezel with exposed signature screws",
+      "dial": "Silvered opaline dial with black Roman numerals, railway minute track and blued-steel sword hands",
+      "waterResistance": "100m / 10 bar",
+      "year": "2018–present",
+      "description": "A steel Medium Santos de Cartier with the classic silvered opaline dial that defines the model's post-2018 relaunch. It carries the in-house automatic Calibre 1847 MC, the QuickSwitch interchangeable bracelet system with steel SmartLink links, and is fully sourced and authenticated before sale.",
+      "variants": {
+        "Steel – Silver Dial": "All-steel Medium Santos with the standard silvered opaline dial, black Roman numerals and blued-steel hands on the steel SmartLink bracelet with an interchangeable calfskin strap included."
+      }
+    },
+    "W2SA0011": {
+      "caseSize": "43.5mm x 31.4mm (7.3mm thick)",
+      "movement": "Quartz · High-autonomy movement · ~6-year battery life",
+      "materials": "Stainless steel case with 18k rose gold (750/1000) bezel",
+      "bezel": "18k rose gold bezel with exposed signature screws",
+      "dial": "Satin-brushed silver dial with sunray effect, black Roman numerals and blued-steel sword hands",
+      "waterResistance": "30m / 3 bar",
+      "year": "2019–present",
+      "description": "Note: this reference corresponds to the Santos-Dumont Large model in the official Cartier catalogue (steel case with 18k rose gold bezel, quartz movement) rather than an automatic Santos de Cartier Medium in steel and gold; specification below reflects the verified, publicly documented facts for reference W2SA0011 itself, sourced and authenticated before sale.",
+      "variants": {
+        "Steel & Gold": "Steel case with 18k rose gold bezel and crown, satin-brushed silver sunray dial with Roman numerals, on a black alligator leather strap with a steel ardillon buckle."
+      }
+    }
+  }
+}

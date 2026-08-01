@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Aquanaut 5968 Chrono",
+  "modelSlug": "aquanaut-5968-chrono",
+  "modelOverview": "Introduced in 2018, the Aquanaut Chronograph ref. 5968A was the first chronograph to join the Aquanaut family, pairing the model's signature 42.2mm octagonal steel case and embossed dial with a self-winding flyback chronograph movement. Nicknamed the \"Orange\" for its vivid orange chronograph accents and strap, it quickly became one of the most sought-after modern steel sports chronographs from the manufacture.",
+  "references": {
+    "5968A-001": {
+      "caseSize": "42.2mm",
+      "movement": "Automatic · Patek Philippe Calibre CH 28-520 C · flyback chronograph, vertical clutch, column wheel · 45–55h power reserve",
+      "materials": "Stainless steel case, supplied with a black and an orange composite (Tropical rubber) strap on a steel fold-over clasp with four independent catches",
+      "bezel": "Steel octagonal bezel with contrasting polished and satin finishes, no visible screws",
+      "dial": "Sunburst charcoal-grey/black dial with black-gradient rim, embossed Aquanaut pattern, white-gold applied numerals and luminescent baton hands, orange chronograph accents, central chronograph hand, 60-minute counter at 6 o'clock and date window at 3 o'clock",
+      "waterResistance": "30m",
+      "year": "2018–present",
+      "description": "The 5968A-001 \"Orange\" is the steel Aquanaut Chronograph that introduced the flyback complication to the Aquanaut line, running the self-winding Calibre CH 28-520 C beneath a sapphire caseback. It is distinguished by its charcoal-black embossed dial with bright orange chronograph accents and comes supplied with both black and orange Tropical composite straps. Each example offered is sourced and fully authenticated before sale.",
+      "variants": {
+        "Steel – Orange": "5968A-001 in stainless steel with the sunburst charcoal-black embossed dial and orange chronograph accents, supplied with both a black and an orange Tropical composite strap, the standard-bearer configuration for the Aquanaut Chronograph."
+      }
+    }
+  }
+}

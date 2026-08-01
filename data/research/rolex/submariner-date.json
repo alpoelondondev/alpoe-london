@@ -1,0 +1,75 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Submariner Date",
+  "modelSlug": "submariner-date",
+  "modelOverview": "The Rolex Submariner Date is the definitive luxury dive watch, uniting the Submariner's 300m water resistance and unidirectional Cerachrom bezel with a date display magnified by the signature Cyclops lens. The current generation, launched in 2020, moved to a 41mm Oyster case and the modern Calibre 3235 movement with roughly 70 hours of power reserve. It is offered across Oystersteel, two-tone Rolesor, and solid gold executions with a range of dial and bezel colourways.",
+  "references": {
+    "126610LN": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "Oystersteel case and Oyster bracelet",
+      "bezel": "Unidirectional rotatable 60-minute bezel with black Cerachrom ceramic insert",
+      "dial": "Black dial with Chromalight luminous hour markers and Mercedes hands",
+      "waterResistance": "300m (1,000ft)",
+      "year": "2020–present",
+      "description": "The 126610LN is the archetypal all-steel Submariner Date, pairing a black dial with a black Cerachrom bezel in the modern 41mm Oyster case. Powered by the Calibre 3235 with roughly 70 hours of power reserve, it is the reference every other Submariner is measured against. Sourced and fully authenticated.",
+      "variants": {
+        "Black – Date": "All-Oystersteel Submariner Date with a black dial and black Cerachrom bezel, the definitive no-nonsense dive watch in the 41mm case. Sourced and fully authenticated."
+      }
+    },
+    "126610LV": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "Oystersteel case and Oyster bracelet",
+      "bezel": "Unidirectional rotatable 60-minute bezel with green Cerachrom ceramic insert",
+      "dial": "Black dial with Chromalight luminous hour markers and Mercedes hands",
+      "waterResistance": "300m (1,000ft)",
+      "year": "2020–present",
+      "description": "Nicknamed the \"Starbucks\" (and \"Kermit\" by some) for its green Cerachrom bezel set against a black dial, the 126610LV is the eye-catching all-steel variant in the 41mm case. The LV designation stands for lunette verte, French for green bezel, distinguishing it from the standard black-bezel LN. Sourced and fully authenticated.",
+      "variants": {
+        "Starbucks": "All-steel Submariner Date with the distinctive green Cerachrom bezel and black dial that earned it the \"Starbucks\" nickname, in the modern 41mm case. Sourced and fully authenticated.",
+        "Starbucks (GMT filter)": "The green-bezel, black-dial \"Starbucks\" Submariner Date in Oystersteel, 41mm case with the green Cerachrom insert that sets it apart from the standard black-bezel model. Sourced and fully authenticated."
+      }
+    },
+    "126613LB": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "Yellow Rolesor — Oystersteel and 18ct yellow gold case and bracelet",
+      "bezel": "Unidirectional rotatable 60-minute bezel with blue Cerachrom ceramic insert",
+      "dial": "Royal blue sunburst dial with Chromalight luminous hour markers and Mercedes hands",
+      "waterResistance": "300m (1,000ft)",
+      "year": "2020–present",
+      "description": "The 126613LB is the two-tone \"Bluesy\", combining Oystersteel and 18ct yellow gold with a royal blue dial and matching blue Cerachrom bezel. It brings a dressier, warmer character to the 41mm Submariner Date while retaining full 300m dive credentials. Sourced and fully authenticated.",
+      "variants": {
+        "Bluesey – Steel & Gold": "Yellow Rolesor (steel and 18ct yellow gold) Submariner Date with a royal blue dial and matching blue Cerachrom bezel, the two-tone \"Bluesy\" in the 41mm case. Sourced and fully authenticated."
+      }
+    },
+    "126618LB": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "18ct yellow gold case and Oyster bracelet",
+      "bezel": "Unidirectional rotatable 60-minute bezel with blue Cerachrom ceramic insert",
+      "dial": "Blue sunburst dial with Chromalight luminous hour markers and Mercedes hands",
+      "waterResistance": "300m (1,000ft)",
+      "year": "2020–present",
+      "description": "The 126618LB is the solid 18ct yellow gold \"Bluesy\", pairing a sunburst blue dial with a matching blue Cerachrom bezel for the most opulent take on the Submariner Date. In the modern 41mm Oyster case, it delivers full 300m water resistance in precious metal. Sourced and fully authenticated.",
+      "variants": {
+        "Full Yellow Gold Bluesey": "Solid 18ct yellow gold Submariner Date with a sunburst blue dial and matching blue Cerachrom bezel, the full-gold \"Bluesy\" in the 41mm case. Sourced and fully authenticated."
+      }
+    },
+    "126619LB": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Rolex Calibre 3235 · ~70h power reserve",
+      "materials": "18ct white gold case and Oyster bracelet",
+      "bezel": "Unidirectional rotatable 60-minute bezel with blue Cerachrom ceramic insert",
+      "dial": "Black dial with Chromalight luminous hour markers and Mercedes hands",
+      "waterResistance": "300m (1,000ft)",
+      "year": "2020–present",
+      "description": "Nicknamed the \"Cookie Monster\", the 126619LB is the solid 18ct white gold Submariner Date with a striking blue Cerachrom bezel over a black dial. The understated white gold case makes it a subtle yet substantial 41mm dive watch. Sourced and fully authenticated.",
+      "variants": {
+        "White Gold – Blue Bezel Black Dial": "Solid 18ct white gold Submariner Date pairing a blue Cerachrom bezel with a black dial, the \"Cookie Monster\" in the 41mm case. Sourced and fully authenticated."
+      }
+    }
+  }
+}

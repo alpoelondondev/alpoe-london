@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 011",
+  "modelSlug": "rm-011",
+  "modelOverview": "Launched in 2007 in collaboration with Formula 1 driver Felipe Massa, the RM 011 established Richard Mille's signature formula of a tonneau-shaped case housing a skeletonised automatic flyback chronograph movement. It became one of the brand's most recognisable and enduring references, produced across a wide range of case materials before being succeeded by the RM 11-03 in 2016.",
+  "references": {
+    "RM 011": {
+      "caseSize": "50.00mm x 40.00mm x 16.15mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre RMAC1 · variable-geometry rotor · flyback chronograph · ~50h power reserve",
+      "materials": "Available in titanium, 18k red/white gold, ceramic, Carbon TPT and Quartz TPT case constructions",
+      "bezel": "",
+      "dial": "Skeletonised dial exposing the movement architecture, with hours, minutes, small seconds, flyback chronograph, 60-minute countdown timer at 9 o'clock, 12-hour totaliser, oversize date and month indicator",
+      "waterResistance": "50m",
+      "year": "2007–2016",
+      "description": "The RM 011 \"Felipe Massa\" is the automatic flyback chronograph that defined the modern Richard Mille silhouette: a tonneau case, curved bezel and fully skeletonised dial engineered in collaboration with the F1 driver whose name it carries. Its Calibre RMAC1 movement combines a variable-geometry rotor, flyback chronograph, countdown timer and annual calendar with month indicator into one open-worked architecture. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Flyback Chronograph": "The core RM 011 execution — skeletonised dial, Calibre RMAC1 automatic flyback chronograph with countdown timer, 12-hour totaliser and month indicator, offered across titanium, gold, ceramic and Carbon TPT case options."
+      }
+    }
+  }
+}

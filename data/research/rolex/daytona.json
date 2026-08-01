@@ -1,0 +1,113 @@
+{
+  "brand": "Rolex",
+  "brandSlug": "rolex",
+  "model": "Daytona",
+  "modelSlug": "daytona",
+  "modelOverview": "The Rolex Cosmograph Daytona is the brand's motorsport-inspired chronograph, born in 1963 to time the average speeds of racing drivers via its tachymetric bezel scale. The current generation, introduced in 2023 for the model's 60th anniversary, refines the 40mm Oyster case and is powered by the in-house Calibre 4131. It spans everything from Oystersteel and Rolesor to platinum and the full range of 18k gold, with several precious-metal versions gaining a transparent caseback for the first time.",
+  "references": {
+    "126503": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "Oystersteel and 18k yellow gold (Rolesor) case and Oyster bracelet",
+      "bezel": "Black Cerachrom ceramic bezel with engraved tachymetric scale",
+      "dial": "Champagne or black dial with contrasting sub-dials",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The yellow Rolesor Daytona 126503 pairs Oystersteel with 18k yellow gold and a black Cerachrom bezel, the two-tone entry to the current 40mm Daytona line. It carries the latest Calibre 4131 chronograph movement and is a bridge between the steel and full-gold references. Each piece is sourced and fully authenticated before sale.",
+      "variants": {
+        "Steel & Gold – Champagne Dial": "Yellow Rolesor 126503 with a warm champagne dial, gold applique markers and a black Cerachrom bezel, offering a classic two-tone look with softly contrasting sub-dials.",
+        "Steel & Gold – Black Dial": "Yellow Rolesor 126503 with a black dial and gold hour markers set against a black Cerachrom bezel, a sportier, high-contrast take on the two-tone Daytona."
+      }
+    },
+    "126500LN": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "Oystersteel case and Oyster bracelet",
+      "bezel": "Black Cerachrom ceramic bezel with engraved tachymetric scale",
+      "dial": "White (Panda) or black (Reverse Panda) lacquer dial with contrasting sub-dials",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The Oystersteel Daytona 126500LN is the icon of the range, offered in the collectible white 'Panda' and black 'Reverse Panda' dial configurations beneath a black Cerachrom bezel. It runs the current-generation Calibre 4131 while retaining a solid caseback. Every example is sourced and fully authenticated before sale.",
+      "variants": {
+        "Panda": "Oystersteel 126500LN with a white lacquer dial and black sub-dial rings, the classic 'Panda' layout that is the most sought-after steel Daytona.",
+        "Reverse Panda": "Oystersteel 126500LN with a black lacquer dial and white sub-dial rings, the 'Reverse Panda' evoking the vintage Paul Newman aesthetic."
+      }
+    },
+    "126519LN": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "18k white gold case with Oysterflex bracelet",
+      "bezel": "Black Cerachrom ceramic bezel with engraved tachymetric scale",
+      "dial": "Slate 'Ghost', black or meteorite dial with contrasting sub-dials",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The 126519LN is the 18k white gold Daytona on the sporty Oysterflex bracelet, topped by a black Cerachrom bezel and fitted with a transparent caseback revealing the Calibre 4131. It is among the hardest current Daytonas to find, offered with slate 'Ghost', meteorite and black dials. Each piece is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold – Ghost": "White gold 126519LN with the slate-grey 'Ghost' dial and black sub-dials on Oysterflex, an understated precious-metal sleeper.",
+        "Oysterflex – Meteorite": "White gold 126519LN with a naturally patterned meteorite dial and black sub-dials on Oysterflex, each dial unique in its Widmanstätten pattern and the rarest dial in the range.",
+        "Oysterflex – Black": "White gold 126519LN with a glossy black dial and contrasting sub-dials on Oysterflex, a stealthy all-dark precious-metal chronograph.",
+        "Oysterflex – Ghost": "White gold 126519LN with the slate-grey 'Ghost' dial and black sub-dials on the Oysterflex bracelet, subtle in colour but unmistakably white gold on the wrist."
+      }
+    },
+    "126506": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "950 platinum case and Oyster bracelet",
+      "bezel": "Chestnut-brown Cerachrom ceramic bezel with engraved tachymetric scale",
+      "dial": "Ice blue dial with chestnut-brown sub-dial rings; diamond baguette version available",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The 126506 is the flagship 950 platinum Daytona, distinguished by its exclusive ice-blue dial and a unique chestnut-brown Cerachrom bezel. A transparent caseback showcases the Calibre 4131, marking the first display back in the collection's history. Each piece is sourced and fully authenticated before sale.",
+      "variants": {
+        "Platinum – Blue Dial": "Platinum 126506 with the signature ice-blue dial, brown ceramic bezel and gold applique markers, the standard-dial flagship of the range.",
+        "Platinum – Baguette Blue Dial": "Platinum 126506 with the ice-blue dial set with baguette-cut diamond hour markers, the most opulent configuration of the platinum Daytona."
+      }
+    },
+    "126508": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "18k yellow gold case and Oyster bracelet",
+      "bezel": "18k yellow gold bezel with engraved tachymetric scale",
+      "dial": "Green 'John Mayer', champagne 'Pikachu' or white dial",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The 126508 is the full 18k yellow gold Daytona with a matching gold tachymeter bezel and a transparent caseback over the Calibre 4131. It is offered with striking dials including the green 'John Mayer', the champagne 'Pikachu' and a classic white. Each piece is sourced and fully authenticated before sale.",
+      "variants": {
+        "Yellow Gold – John Mayer": "Yellow gold 126508 with the bright green dial and golden sub-dials, nicknamed 'John Mayer' after the musician-collector, one of the most coveted gold Daytonas.",
+        "Yellow Gold – Pikachu": "Yellow gold 126508 with a champagne dial and contrasting black sub-dials, nicknamed 'Pikachu' for its bold yellow-gold-and-black colour scheme, one of the most recognizable gold Daytonas.",
+        "Yellow Gold – White Dial": "Yellow gold 126508 with a clean white dial and gold applique markers, the most understated and versatile of the yellow gold dials."
+      }
+    },
+    "126505": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "18k Everose gold case and Oyster bracelet",
+      "bezel": "18k Everose gold bezel with engraved tachymetric scale",
+      "dial": "Black, sunburst chocolate or Sundust dial; baguette diamond version available",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The 126505 is the 18k Everose gold Daytona, pairing Rolex's proprietary rose gold with a matching gold tachymeter bezel and a transparent caseback over the Calibre 4131. It is offered with black, sunburst chocolate and Sundust dials, including a diamond baguette variant. Each piece is sourced and fully authenticated before sale.",
+      "variants": {
+        "Rose Gold – Black Dial": "Everose gold 126505 with a black dial and rose-gold applique markers, a warm-metal, high-contrast reading of the Daytona.",
+        "Rose Gold – Chocolate Dial": "Everose gold 126505 with the sunburst chocolate dial and black sub-dials, a tonal brown-on-rose combination unique to the Everose model.",
+        "Rose Gold – Sundust Baguette": "Everose gold 126505 with a Sundust dial dressed with baguette-cut diamond hour markers, the most luxurious configuration of the rose gold Daytona."
+      }
+    },
+    "126509": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Rolex Calibre 4131 · ~72h power reserve",
+      "materials": "18k white gold case and Oyster bracelet",
+      "bezel": "18k white gold bezel with engraved tachymetric scale",
+      "dial": "White (Panda), black (Reverse Panda), blue or diamond-set black dial",
+      "waterResistance": "100m",
+      "year": "2023–present",
+      "description": "The 126509 is the 18k white gold Daytona with a white gold tachymeter bezel and a transparent caseback revealing the Calibre 4131. Discreet in colour but unmistakably precious metal, it is offered in Panda, Reverse Panda, blue and diamond-set black dials. Each piece is sourced and fully authenticated before sale.",
+      "variants": {
+        "White Gold – Panda": "White gold 126509 with a white dial and black sub-dials, a 'Panda' layout that reads like steel from afar but is solid white gold on the wrist.",
+        "White Gold – Reverse Panda": "White gold 126509 with a black dial and white sub-dials, the precious-metal 'Reverse Panda' with vintage Paul Newman styling.",
+        "White Gold – Blue Dial": "White gold 126509 with a rich blue dial and white gold sub-dials, the flagship colour dial for the current white gold Daytona.",
+        "White Gold – Black Diamond Dial": "White gold 126509 with a black dial set with diamond hour markers, a discreetly jewelled take on the white gold Daytona."
+      }
+    }
+  }
+}

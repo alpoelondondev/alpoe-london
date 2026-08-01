@@ -1,0 +1,48 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Code 11:59",
+  "modelSlug": "code-11-59",
+  "modelOverview": "The Code 11.59 by Audemars Piguet is the maison's contemporary round-cased collection, launched at SIHH 2019 as a modern counterpoint to the Royal Oak. Its signature is an ultra-thin octagonal middle case sandwiched between a round bezel and caseback, joined by openworked lugs and a double-curved sapphire crystal. The Selfwinding time-and-date models house the in-house automatic Calibre 4302 with a roughly 70-hour power reserve.",
+  "references": {
+    "15210BC.OO.A002CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat white gold case on a hand-stitched alligator leather strap with white gold pin buckle",
+      "bezel": "18-carat white gold, polished",
+      "dial": "Black lacquered dial with applied white gold hour-markers and hands, 24-carat gold applied AP signature in galvanic growth, date between 4 and 5 o'clock",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The Code 11.59 Selfwinding in 18-carat white gold pairs a deep black lacquered dial with the collection's octagonal-within-round case architecture and double-curved sapphire crystal. Powered by the in-house automatic Calibre 4302 with roughly a 70-hour reserve, it is a discreet white-gold interpretation of AP's contemporary round watch. Sourced and fully authenticated.",
+      "variants": {
+        "Black Dial": "18-carat white gold 41mm case with a black lacquered dial and applied white gold markers, worn on an alligator strap; the understated monochrome execution of the Selfwinding line."
+      }
+    },
+    "15210OR.OO.A002CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat pink gold case on a hand-stitched alligator leather strap with pink gold pin buckle",
+      "bezel": "18-carat pink gold, polished",
+      "dial": "Black lacquered dial with applied 18-carat pink gold hour-markers and hands, 24-carat gold applied AP signature in galvanic growth, date between 4 and 5 o'clock",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The Code 11.59 Selfwinding in 18-carat pink gold sets a black lacquered dial against warm rose-gold markers, the case, bezel and openworked lugs. It runs the in-house automatic Calibre 4302 with around a 70-hour power reserve beneath the collection's signature double-curved sapphire crystal. Sourced and fully authenticated.",
+      "variants": {
+        "Rose Gold": "18-carat pink gold 41mm case with a black lacquered dial and pink gold applied markers on an alligator strap; the warm-metal, dark-dial pairing of the Selfwinding line."
+      }
+    },
+    "15210OR.OO.A099CR.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 4302 · ~70h power reserve",
+      "materials": "18-carat pink gold case on a hand-stitched \"large square scale\" brown alligator strap with pink gold pin buckle",
+      "bezel": "18-carat pink gold with lacquered white inner bezel",
+      "dial": "Lacquered white dial with applied 18-carat pink gold hour-markers and hands, 24-carat pink gold applied logo in galvanic growth, white lacquered inner bezel",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "This Code 11.59 Selfwinding pairs an 18-carat pink gold case with a bright lacquered white dial and matching white inner bezel for a lighter, more classical look. The in-house automatic Calibre 4302 delivers roughly a 70-hour power reserve within the collection's octagonal-within-round case and double-curved crystal. Sourced and fully authenticated.",
+      "variants": {
+        "Rose Gold - White Dial": "18-carat pink gold 41mm case with a lacquered white dial, white inner bezel and pink gold markers on a brown alligator strap; the brightest, most classical dial option of the Selfwinding line."
+      }
+    }
+  }
+}

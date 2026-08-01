@@ -1,0 +1,22 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Code 11:59 Tourbillon Openworked",
+  "modelSlug": "code-11-59-tourbillon-openworked",
+  "modelOverview": "The Code 11:59 Tourbillon Openworked pairs the collection's architectural 41mm case, blending a round bezel with an octagonal middle case, with Audemars Piguet's hand-wound flying tourbillon Calibre 2948. The fully skeletonised movement, with blackened bridges set against a rhodium-toned mainplate, is left completely exposed and hand-finished with dozens of polished angles. It represents one of the collection's most technically ambitious executions, reserved for precious-metal cases.",
+  "references": {
+    "26600OR.OO.D002CR.01": {
+      "caseSize": "41mm",
+      "movement": "Hand-wound · Audemars Piguet Calibre 2948 flying tourbillon · ~80h power reserve · 21,600vph (3Hz)",
+      "materials": "18ct pink (rose) gold case",
+      "bezel": "",
+      "dial": "Fully openworked/skeletonised dial with lacquered black inner minutes track and 18ct pink gold hands",
+      "waterResistance": "30m / 3 bar",
+      "year": "2019–present",
+      "description": "A Code 11:59 flying tourbillon in AP's signature 41mm pink gold case, its dial entirely openworked to reveal the hand-wound Calibre 2948 with blackened, hand-bevelled bridges floating over a rhodium-toned mainplate. The 4.97mm-thick movement carries 70 hand-polished V-angles across its 196 components, paired with a black alligator strap and pink gold folding clasp. Every piece is sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold": "18ct pink (rose) gold Code 11:59 Tourbillon Openworked with a fully skeletonised black-and-rhodium movement, lacquered black inner bezel, pink gold hands, and a hand-stitched black alligator strap on a pink gold folding clasp."
+      }
+    }
+  }
+}

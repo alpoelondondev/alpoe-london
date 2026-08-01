@@ -1,0 +1,35 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Perpetual Calendar 41mm",
+  "modelSlug": "royal-oak-perpetual-calendar-41mm",
+  "modelOverview": "The Royal Oak Perpetual Calendar 41mm is Audemars Piguet's flagship grand-complication in the iconic octagonal Royal Oak line, displaying day, date, month, week, leap year and astronomical moon phase without needing correction until 2100. This latest generation, introduced in 2025, is powered by the new ultra-thin self-winding Calibre 7138, whose patented mechanisms allow every calendar indication to be set via the crown alone, eliminating recessed pushers and the traditional adjustment 'danger zone'. It retains the slim 9.5mm case profile and signature Grande Tapisserie dial that define the collection.",
+  "references": {
+    "26674ST.OO.1320ST.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 7138 · 28,800 vph · ~55h power reserve",
+      "materials": "Stainless steel case and integrated stainless steel bracelet",
+      "bezel": "Stainless steel octagonal bezel with eight hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with tone-on-tone subdials, blue inner bezel, and 18-carat white gold applied hour-markers and hands",
+      "waterResistance": "50m",
+      "year": "2025–present",
+      "description": "The 26674ST is the steel expression of the new-generation Royal Oak Perpetual Calendar, pairing a 41mm stainless steel case and bracelet with an elegant tone-on-tone blue Grande Tapisserie dial. It debuts the Calibre 7138, which allows every perpetual-calendar indication to be set from the crown without tools or the risk of the traditional danger zone. Each example is sourced and fully authenticated before sale.",
+      "variants": {
+        "Steel Blue": "Stainless steel 41mm case on an integrated steel bracelet with a folding clasp, fronted by a blue 'Grande Tapisserie' dial with tone-on-tone subdials, blue inner bezel and 18-carat white gold markers and hands. Powered by the crown-set Calibre 7138 perpetual calendar; sourced and authenticated."
+      }
+    },
+    "26674CD.OO.1225CD.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 7138 · 28,800 vph · ~55h power reserve",
+      "materials": "'Bleu Nuit, Nuage 50' blue ceramic case and integrated blue ceramic bracelet with titanium caseback and titanium three-blade folding clasp",
+      "bezel": "Blue ceramic octagonal bezel with eight hexagonal screws",
+      "dial": "Blue 'Grande Tapisserie' dial with blue inner bezel and 18-carat white gold applied hour-markers and hands",
+      "waterResistance": "50m",
+      "year": "2026–present",
+      "description": "The 26674CD renders the new-generation Royal Oak Perpetual Calendar entirely in Audemars Piguet's 'Bleu Nuit, Nuage 50' blue ceramic, from the 41mm case to the integrated bracelet, offset by a titanium caseback and clasp. Its matching blue Grande Tapisserie dial and crown-set Calibre 7138 make it one of the most striking full-ceramic complications AP produces. Each example is sourced and fully authenticated before sale.",
+      "variants": {
+        "Bleu Nuit Ceramic": "Monochromatic 41mm case and bracelet crafted from 'Bleu Nuit, Nuage 50' blue ceramic with a titanium caseback and three-blade folding clasp, matched to a blue Grande Tapisserie dial with 18-carat white gold markers and hands. Driven by the tool-free crown-set Calibre 7138 perpetual calendar; sourced and authenticated."
+      }
+    }
+  }
+}

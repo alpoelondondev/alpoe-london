@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Moonphase 5320",
+  "modelSlug": "moonphase-5320",
+  "modelOverview": "Introduced in 2017, the ref. 5320 is Patek Philippe's vintage-inspired perpetual calendar, drawing on the layout of historic references 1526 and 2497 with a sector-style dial, in-line day/month apertures at 12 o'clock and a combined date/moon phase/day-night/leap-year display at 6 o'clock. Housed in a 40mm white gold case, it is powered by the self-winding Calibre 324 S Q. The 5320G-011, unveiled at Watches & Wonders 2022, replaced the original cream-dial version with a rose-gilt (salmon) opaline dial.",
+  "references": {
+    "5320G-011": {
+      "caseSize": "40mm",
+      "movement": "Automatic · Patek Philippe Calibre 324 S Q · 368 parts, 29 jewels · 28,800 vph (4Hz) · min. 35h / max. 45h power reserve",
+      "materials": "18k white gold case on a chocolate brown alligator leather strap with a white gold fold-over clasp",
+      "bezel": "Fixed 18k white gold bezel with stepped, vintage-style lugs",
+      "dial": "Rose-gilt opaline (salmon) dial with charcoal-grey syringe-shaped hands and applied luminous white gold numerals; in-line day/month apertures at 12 o'clock and a combined date/moon phase/day-night/leap-year display at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2022–present",
+      "description": "The 5320G-011 is the salmon-dial evolution of Patek Philippe's vintage-inspired Perpetual Calendar, introduced at Watches & Wonders 2022 to replace the original cream-dial 5320G-001. Its 40mm white gold case and sector-style dial recall historic references 1526 and 2497, while the self-winding Calibre 324 S Q drives a full perpetual calendar with moon phase accurate to within one day every 122 years. Every piece we offer is professionally sourced and authenticated.",
+      "variants": {
+        "White Gold": "The 5320G-011 in 18k white gold with its rose-gilt (salmon) opaline dial, charcoal-grey syringe hands and chocolate brown alligator strap - the defining white gold/salmon dial combination introduced in 2022."
+      }
+    }
+  }
+}

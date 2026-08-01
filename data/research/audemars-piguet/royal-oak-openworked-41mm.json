@@ -1,0 +1,31 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Openworked 41mm",
+  "modelSlug": "royal-oak-openworked-41mm",
+  "modelOverview": "The Royal Oak Double Balance Wheel Openworked 41mm strips the dial away to reveal Audemars Piguet's in-house Calibre 3132, whose patented dual balance-wheel architecture is displayed front and centre through the skeletonised movement. It marries the iconic octagonal 'Tapisserie'-less openworked aesthetic with the Royal Oak's integrated case and bracelet, offered across steel and precious-metal executions. Each piece pairs the collection's 1972 Gerald Genta design language with a modern feat of horological transparency.",
+  "references": {
+    "15407ST.OO.1220ST.02": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 3132 · double balance wheel · ~45h power reserve · 3Hz (21,600vph) · 38 jewels",
+      "materials": "Stainless steel case and bracelet",
+      "bezel": "Stainless steel octagonal bezel with eight hexagonal screws",
+      "dial": "Openworked skeleton dial with pink gold-toned bridges and inner bezel, revealing the double balance wheel",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "The Royal Oak Double Balance Wheel Openworked 41mm in stainless steel showcases a fully skeletonised Calibre 3132, its twin balance wheels visible through a pink gold-toned openworked movement for a warm two-tone contrast against the steel case. Measuring 41mm and just 9.9mm thick, it is a modern flagship of the openworked Royal Oak line. Sourced and authenticated to Audemars Piguet's original specification.",
+      "variants": {}
+    },
+    "15407BA.OO.1220BA.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · AP Calibre 3132 · double balance wheel · ~45h power reserve · 3Hz (21,600vph) · 38 jewels",
+      "materials": "18-carat yellow gold case and bracelet",
+      "bezel": "18-carat yellow gold octagonal bezel with eight hexagonal screws",
+      "dial": "Openworked skeleton dial with anthracite movement, blackened inner bezel and yellow gold applied hour-markers and Royal Oak hands with luminescent coating",
+      "waterResistance": "50m",
+      "year": "2024–present",
+      "description": "The Royal Oak Double Balance Wheel Openworked 41mm in 18-carat yellow gold pairs a fully gold case and bracelet with an anthracite openworked Calibre 3132, its darkened bridges creating a dramatic contrast beneath the gold hour-markers and hands. At 41mm by 10.1mm, it is the precious-metal expression of the openworked Royal Oak. Sourced and authenticated to Audemars Piguet's original specification.",
+      "variants": {}
+    }
+  }
+}

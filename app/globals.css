@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #060608;
+  --color-fg: #f0ece4;
+  --color-dim: rgba(240, 236, 228, 0.38);
+  --color-accent: #b8a070;
+
+  --font-serif: var(--font-bebas-neue), sans-serif;
+  --font-sans: var(--font-dm-sans), sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom cursor */
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-fg);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.2s, height 0.2s;
+  display: none;
+}
+
+@media (pointer: fine) {
+  #cursor {
+    display: block;
+  }
+}
+
+#cursor.big {
+  width: 54px;
+  height: 54px;
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+/* Liquid wave animations */
+.animate-wave {
+  animation: wave-drift 2.5s ease-in-out infinite;
+}
+
+.animate-wave-reverse {
+  animation: wave-drift 3s ease-in-out infinite reverse;
+}
+
+@keyframes pulse-enter {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+.animate-pulse-enter {
+  animation: pulse-enter 1.4s ease-in-out infinite;
+}
+
+@keyframes wave-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-60px);
+  }
+}
+
+/* Work item hover effect */
+.work-item .work-thumb {
+  filter: grayscale(20%) brightness(0.85);
+  transition: filter 0.7s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-item:hover .work-thumb {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.05);
+}
+
+/* Hero title animation */
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .line span {
+  display: block;
+  transform: translateY(110%);
+}
+
+/* Marquee */
+.marquee-item::after {
+  content: "\2726";
+  font-size: 16px;
+  color: var(--color-accent);
+}
+
+/* Hide scrollbar on mobile carousel */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Section label */
+.section-label::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--color-accent);
+}

@@ -1,0 +1,22 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "CODE 11.59 Tourbillon 41mm",
+  "modelSlug": "code-11-59-tourbillon-41mm",
+  "modelOverview": "Launched alongside the wider CODE 11.59 collection in 2019, the Tourbillon models pair the line's distinctive octagonal-within-round 41mm case with Audemars Piguet's in-house flying tourbillon calibres. Skeletonised and openworked executions expose the tourbillon cage and gear train through the dial, showcasing the brand's hand-finishing on a modern case architecture. AP has offered the complication in precious-metal and ceramic cases; stainless steel executions are rare and largely boutique or special-order pieces.",
+  "references": {
+    "26398ST.OO.A002KB.01": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Audemars Piguet Calibre 2980 flying tourbillon · ~65h power reserve · 21,600vph",
+      "materials": "Stainless steel case",
+      "bezel": "",
+      "dial": "Skeletonised/openworked dial exposing the flying tourbillon and gear train",
+      "waterResistance": "30m / 3 bar",
+      "year": "2025–present",
+      "description": "A CODE 11.59 flying tourbillon in the collection's architectural 41mm steel case, with the openworked dial laying bare the automatic flying tourbillon and its hand-finished bridges. This skeletonised execution is a rarer steel-cased variant of AP's in-house tourbillon platform rather than one of the standard precious-metal catalogue references. Every piece is sourced and authenticated prior to sale.",
+      "variants": {
+        "Skeletonised – Steel": "Stainless steel CODE 11.59 Tourbillon with a fully openworked, skeletonised dial revealing the flying tourbillon at 6 o'clock, the barrel, and the gear train, finished with applied luminous hour markers over the exposed movement architecture."
+      }
+    }
+  }
+}

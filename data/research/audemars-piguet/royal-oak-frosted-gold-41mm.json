@@ -1,0 +1,48 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Frosted Gold 41mm",
+  "modelSlug": "royal-oak-frosted-gold-41mm",
+  "modelOverview": "The Royal Oak Frosted Gold 41mm brings together two of Audemars Piguet's signature crafts: the Florentine hammering technique that gives the gold its shimmering, diamond-dust 'Frosted' finish, and the openworked Double Balance Wheel movement visible through a skeletonised dial. Launched in 2021 as a boutique-only 'Rainbow' series, the reference 15412 was offered in pink, white and yellow Frosted gold, each set with a bezel of multicoloured baguette-cut gemstones. It is among the most exclusive full-size Royal Oaks, pairing artisanal case work with high jewellery gem-setting.",
+  "references": {
+    "15412OR.YG.1224OR.01-B": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Calibre 3132 · Double Balance Wheel · 21,600 vph · ~45h power reserve",
+      "materials": "18-carat Frosted pink gold case and bracelet",
+      "bezel": "18-carat pink gold set with baguette-cut multicoloured 'rainbow' gemstones",
+      "dial": "Openworked slate grey with pink gold applied hour-markers and luminescent Royal Oak hands",
+      "waterResistance": "50m",
+      "year": "2021",
+      "description": "The Frosted Gold 'Rainbow' Double Balance Wheel Openworked in 18-carat pink gold, with its hammered Florentine finish framing an openworked slate grey movement and a rainbow baguette-set bezel. A boutique-only piece from 2021 that unites artisanal case craft with high jewellery gem-setting. Sourced and fully authenticated to order.",
+      "variants": {
+        "Rose Gold": "18-carat Frosted pink (rose) gold case and matching hammered bracelet, with a rainbow baguette gemstone bezel and openworked slate grey Double Balance Wheel movement."
+      }
+    },
+    "15412BC.YG.1224BC.03-B": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Calibre 3132 · Double Balance Wheel · 21,600 vph · ~45h power reserve",
+      "materials": "18-carat Frosted white gold case and bracelet",
+      "bezel": "18-carat white gold set with baguette-cut multicoloured 'rainbow' gemstones",
+      "dial": "Openworked slate grey with white gold applied hour-markers and luminescent Royal Oak hands",
+      "waterResistance": "50m",
+      "year": "2021",
+      "description": "The Frosted Gold 'Rainbow' Double Balance Wheel Openworked in 18-carat white gold, its diamond-dust Florentine finish set against a rainbow baguette bezel and skeletonised movement. Part of the exclusive 2021 boutique-only series. Sourced and fully authenticated to order.",
+      "variants": {
+        "White Gold": "18-carat Frosted white gold case and matching hammered bracelet, with a rainbow baguette gemstone bezel and openworked slate grey Double Balance Wheel movement."
+      }
+    },
+    "15412BA.YG.1224BA.01-B": {
+      "caseSize": "41mm",
+      "movement": "Automatic · Calibre 3132 · Double Balance Wheel · 21,600 vph · ~45h power reserve",
+      "materials": "18-carat Frosted yellow gold case and bracelet",
+      "bezel": "18-carat yellow gold set with baguette-cut multicoloured 'rainbow' gemstones",
+      "dial": "Openworked slate grey with yellow gold applied hour-markers and luminescent Royal Oak hands",
+      "waterResistance": "50m",
+      "year": "2021",
+      "description": "The Frosted Gold 'Rainbow' Double Balance Wheel Openworked in 18-carat yellow gold, where the warm hammered gold contrasts with a rainbow baguette bezel and openworked slate grey movement. A rare boutique-only reference from 2021. Sourced and fully authenticated to order.",
+      "variants": {
+        "Yellow Gold": "18-carat Frosted yellow gold case and matching hammered bracelet, with a rainbow baguette gemstone bezel and openworked slate grey Double Balance Wheel movement."
+      }
+    }
+  }
+}
