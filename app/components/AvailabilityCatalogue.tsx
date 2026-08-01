@@ -10,11 +10,11 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
     .join(" ");
 
   const cardClass =
-    "group block relative overflow-hidden border border-white/[0.06] bg-white/[0.02]";
+    "group block relative overflow-hidden border border-black/[0.08] bg-black/[0.03]";
 
   const inner = (
     <>
-      <div className="w-full aspect-[4/5] relative bg-white/[0.02]">
+      <div className="w-full aspect-[4/5] relative bg-black/[0.03]">
         {hero ? (
           <Image
             src={hero}
@@ -28,14 +28,16 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
             Image on request
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.9)] via-[rgba(6,6,8,0.15)] to-transparent pointer-events-none" />
+        {hero ? (
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.9)] via-[rgba(6,6,8,0.15)] to-transparent pointer-events-none" />
+        ) : null}
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-3">
-        <h4 className="font-serif text-[15px] leading-tight tracking-[0.01em]">
+        <h4 className={`font-serif text-[15px] leading-tight tracking-[0.01em] ${hero ? "text-[#f0ece4]" : ""}`}>
           {item.variant || item.model}
         </h4>
         {item.reference ? (
-          <p className="mt-1 text-[10px] tracking-[0.14em] uppercase text-dim">
+          <p className={`mt-1 text-[10px] tracking-[0.14em] uppercase ${hero ? "text-[rgba(240,236,228,0.6)]" : "text-dim"}`}>
             Ref {item.reference}
           </p>
         ) : null}
@@ -85,7 +87,7 @@ export default function AvailabilityCatalogue({
   if (!total) return null;
 
   return (
-    <section className="mt-24 border-t border-white/[0.08] pt-14">
+    <section className="mt-24 border-t border-black/[0.10] pt-14">
       <header className="max-w-2xl">
         <p className="text-[11px] tracking-[0.2em] uppercase text-accent">Available to Source</p>
         <h2 className="mt-3 font-serif text-[clamp(26px,3.4vw,40px)] leading-tight">
@@ -100,7 +102,7 @@ export default function AvailabilityCatalogue({
       <div className="mt-12 space-y-14">
         {groups.map((group) => (
           <div key={group.model}>
-            <div className="flex items-baseline justify-between border-b border-white/[0.06] pb-3">
+            <div className="flex items-baseline justify-between border-b border-black/[0.08] pb-3">
               <h3 className="font-serif text-xl tracking-[0.02em]">{group.model}</h3>
               <span className="text-[10px] tracking-[0.16em] uppercase text-dim">
                 {group.items.length}{" "}

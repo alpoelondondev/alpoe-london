@@ -89,18 +89,18 @@ export default function Collections() {
           >
             <Link
               href={item.href}
-              className="group relative block aspect-[4/3] overflow-hidden border border-white/[0.06] bg-white/[0.02] transition-colors duration-500 hover:border-white/[0.14]"
+              className="group relative block aspect-[4/3] overflow-hidden border border-black/[0.08] bg-black/[0.03] transition-colors duration-500 hover:border-black/[0.20]"
               aria-label={`Explore ${item.title}`}
             >
               {/* Oversized ghost numeral */}
               <span
                 aria-hidden="true"
-                className="absolute -top-6 right-2 font-serif text-[clamp(140px,18vw,260px)] leading-none text-white/[0.04] transition-colors duration-500 group-hover:text-white/[0.07] select-none"
+                className="absolute -top-6 right-2 font-serif text-[clamp(140px,18vw,260px)] leading-none text-black/[0.05] transition-colors duration-500 group-hover:text-black/[0.08] select-none"
               >
                 {item.num}
               </span>
               {/* Soft sheen */}
-              <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_15%_100%,rgba(184,160,112,0.08),transparent_60%)] pointer-events-none" />
+              <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_15%_100%,rgba(61,1,0,0.05),transparent_60%)] pointer-events-none" />
               <span className="absolute top-[18px] left-6 text-[11px] tracking-[0.12em] uppercase text-dim">
                 {item.tag}
               </span>
@@ -136,7 +136,7 @@ export default function Collections() {
             <span
               key={item.num}
               className={`block h-[2px] rounded-full transition-all duration-300 ${
-                i === activeIndex ? "w-6 bg-accent" : "w-2 bg-white/20"
+                i === activeIndex ? "w-6 bg-accent" : "w-2 bg-black/20"
               }`}
             />
           ))}

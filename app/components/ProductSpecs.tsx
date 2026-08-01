@@ -3,7 +3,7 @@ import type { Product } from "@/lib/types";
 function Row({ label, value }: { label: string; value?: string }) {
   if (!value) return null;
   return (
-    <div className="grid grid-cols-12 gap-4 py-3 border-b border-white/[0.06]">
+    <div className="grid grid-cols-12 gap-4 py-3 border-b border-black/[0.08]">
       <dt className="col-span-5 text-[11px] tracking-[0.18em] uppercase text-dim">{label}</dt>
       <dd className="col-span-7 text-[14px] text-fg/90">{value}</dd>
     </div>

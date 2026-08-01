@@ -14,7 +14,7 @@ export default function ProductCard({ product, priority }: { product: Product; p
 
   const inner = (
     <>
-      <div className="work-thumb w-full aspect-[4/5] block bg-white/[0.02] relative">
+      <div className="work-thumb w-full aspect-[4/5] block bg-black/[0.03] relative">
         {hero ? (
           <Image
             src={hero}
@@ -30,25 +30,27 @@ export default function ProductCard({ product, priority }: { product: Product; p
           </div>
         )}
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.88)] via-[rgba(6,6,8,0.1)] to-transparent pointer-events-none" />
+      {hero ? (
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.88)] via-[rgba(6,6,8,0.1)] to-transparent pointer-events-none" />
+      ) : null}
       <div className="absolute top-3 left-3">
         <StockBadge state={product.stockState} />
       </div>
       <div className="absolute bottom-4 left-4 right-4">
         {product.brand ? (
-          <p className="text-[10px] tracking-[0.18em] uppercase text-accent mb-1">
+          <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-[#cbb98f]" : "text-accent"}`}>
             {product.brand}
             {product.model ? ` · ${product.model}` : ""}
           </p>
         ) : product.category ? (
-          <p className="text-[10px] tracking-[0.18em] uppercase text-accent mb-1">
+          <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-[#cbb98f]" : "text-accent"}`}>
             {product.category}
           </p>
         ) : null}
-        <h3 className="font-serif text-[clamp(18px,2vw,26px)] tracking-[0.02em] leading-tight">
+        <h3 className={`font-serif text-[clamp(18px,2vw,26px)] tracking-[0.02em] leading-tight ${hero ? "text-[#f0ece4]" : ""}`}>
           {product.title}
         </h3>
-        <p className="text-[11px] tracking-[0.14em] uppercase text-dim mt-1">
+        <p className={`text-[11px] tracking-[0.14em] uppercase mt-1 ${hero ? "text-[rgba(240,236,228,0.6)]" : "text-dim"}`}>
           {hero ? "Price on Request" : "Enquire Now →"}
         </p>
       </div>

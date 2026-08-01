@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #060608;
-  --color-fg: #f0ece4;
-  --color-dim: rgba(240, 236, 228, 0.38);
-  --color-accent: #b8a070;
+  --color-bg: #f4f2ee;
+  --color-fg: #171212;
+  --color-dim: rgba(23, 18, 18, 0.45);
+  --color-accent: #3d0100;
 
   --font-serif: var(--font-bebas-neue), sans-serif;
   --font-sans: var(--font-dm-sans), sans-serif;
@@ -32,12 +32,11 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--color-fg);
+  background: rgba(61, 1, 0, 0.85);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-  transition: width 0.2s, height 0.2s;
+  transition: width 0.2s, height 0.2s, background 0.2s;
   display: none;
 }
 
@@ -50,6 +49,7 @@ body {
 #cursor.big {
   width: 54px;
   height: 54px;
+  background: rgba(61, 1, 0, 0.15);
 }
 
 /* Loader */

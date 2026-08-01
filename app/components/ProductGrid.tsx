@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 export default function ProductGrid({ products }: { products: Product[] }) {
   if (!products.length) {
     return (
-      <div className="py-20 text-center border border-white/[0.06]">
+      <div className="py-20 text-center border border-black/[0.08]">
         <p className="font-serif text-2xl">Nothing matches these filters</p>
         <p className="mt-2 text-dim text-[12px] tracking-[0.14em] uppercase">
           Anything can be sourced — enquire on WhatsApp

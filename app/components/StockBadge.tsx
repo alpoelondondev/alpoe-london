@@ -10,7 +10,7 @@ export default function StockBadge({ state }: { state: StockState }) {
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase text-dim border border-white/20 px-2 py-1">
+    <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase text-dim border border-black/25 px-2 py-1">
       <span className="block w-1.5 h-1.5 rounded-full bg-dim" />
       Sourceable
     </span>

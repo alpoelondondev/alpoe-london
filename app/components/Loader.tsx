@@ -172,7 +172,7 @@ export default function Loader() {
         const s = stars[i];
         const tw = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
         const alpha = 0.25 + 0.55 * tw;
-        ctx.fillStyle = `rgba(240,236,228,${alpha})`;
+        ctx.fillStyle = `rgba(61,1,0,${alpha})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -192,7 +192,7 @@ export default function Loader() {
             const len = s.r * 8 * k;
             ctx.save();
             ctx.globalCompositeOperation = "lighter";
-            ctx.strokeStyle = `rgba(240,236,228,${0.9 * k})`;
+            ctx.strokeStyle = `rgba(61,1,0,${0.9 * k})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(s.x - len, s.y);
@@ -214,7 +214,7 @@ export default function Loader() {
       // Static render for reduced motion
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-        ctx.fillStyle = `rgba(240,236,228,0.6)`;
+        ctx.fillStyle = `rgba(61,1,0,0.6)`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -264,7 +264,7 @@ export default function Loader() {
           {/* Ghost outline of the logo */}
           <g opacity="0.15">
             {LOGO_PATHS.map((d, i) => (
-              <path key={i} d={d} fill="#f0ece4" />
+              <path key={i} d={d} fill="#171212" />
             ))}
           </g>
 
@@ -275,15 +275,15 @@ export default function Loader() {
               <path
                 className="animate-wave"
                 d="M0 10 Q30 0 60 10 T120 10 T180 10 T240 10 V100 H0 Z"
-                fill="#f0ece4"
+                fill="#3d0100"
               />
               <path
                 className="animate-wave-reverse"
                 d="M0 12 Q30 20 60 12 T120 12 T180 12 T240 12 V100 H0 Z"
-                fill="rgba(184,160,112,0.5)"
+                fill="rgba(61,1,0,0.45)"
               />
               {/* Solid fill below the waves */}
-              <rect x="0" y="14" width="240" height="200" fill="#f0ece4" />
+              <rect x="0" y="14" width="240" height="200" fill="#3d0100" />
             </g>
           </g>
         </svg>
@@ -292,7 +292,7 @@ export default function Loader() {
       {ready && (
         <button
           onClick={dismiss}
-          className="-mt-6 text-[11px] tracking-[0.2em] uppercase text-[#f0ece4] border-b border-[#f0ece4] pb-[3px] cursor-pointer animate-pulse-enter"
+          className="-mt-6 text-[11px] tracking-[0.2em] uppercase text-accent border-b border-accent pb-[3px] cursor-pointer animate-pulse-enter"
         >
           Click to Enter
         </button>

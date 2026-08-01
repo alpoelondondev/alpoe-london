@@ -8,7 +8,7 @@ function FaqCard({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-white/[0.06] bg-white/[0.02] h-fit">
+    <div className="border border-black/[0.08] bg-black/[0.03] h-fit">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -41,7 +41,7 @@ export default function FAQ({ items }: { items: FaqItem[] }) {
   return (
     <section
       id="faq"
-      className="px-[52px] py-20 border-t border-white/[0.05] max-md:px-6 max-md:py-14"
+      className="px-[52px] py-20 border-t border-black/[0.07] max-md:px-6 max-md:py-14"
     >
       <h2 className="sr-only">Frequently Asked Questions</h2>
       <ScrollReveal>

@@ -40,7 +40,7 @@ export default function Nav({
     <>
       <Link
         href="/"
-        className="fixed top-2.5 left-[52px] z-[201] block mix-blend-difference max-md:left-6 max-md:top-2"
+        className="fixed top-2.5 left-[52px] z-[201] block max-md:left-6 max-md:top-2"
         aria-label="Alpoe London — Home"
       >
         <Image
@@ -48,13 +48,13 @@ export default function Nav({
           alt="Alpoe London"
           width={48}
           height={48}
-          className="brightness-0 invert"
+          className="opacity-90"
           priority
         />
       </Link>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-white/[0.05] max-md:px-6 max-md:py-3 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-black/[0.07] max-md:px-6 max-md:py-3 transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >

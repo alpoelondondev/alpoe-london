@@ -15,7 +15,7 @@ export default function SellForm() {
   return (
     <section
       id="sell"
-      className="px-[52px] border-t border-white/[0.05] max-md:px-6"
+      className="px-[52px] border-t border-black/[0.07] max-md:px-6"
     >
       <ScrollReveal>
         <button
@@ -71,14 +71,14 @@ export default function SellForm() {
                   name="firstName"
                   placeholder="First Name"
                   required
-                  className="bg-transparent border-b border-r border-white/[0.12] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors max-md:border-r-0"
+                  className="bg-transparent border-b border-r border-black/[0.20] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors max-md:border-r-0"
                 />
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
                   required
-                  className="bg-transparent border-b border-white/[0.12] py-5 pl-6 max-md:pl-0 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors"
+                  className="bg-transparent border-b border-black/[0.20] py-5 pl-6 max-md:pl-0 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors"
                 />
               </div>
 
@@ -89,13 +89,13 @@ export default function SellForm() {
                   name="email"
                   placeholder="Email"
                   required
-                  className="bg-transparent border-b border-r border-white/[0.12] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors max-md:border-r-0"
+                  className="bg-transparent border-b border-r border-black/[0.20] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors max-md:border-r-0"
                 />
                 <input
                   type="tel"
                   name="phone"
                   placeholder="Phone Number"
-                  className="bg-transparent border-b border-white/[0.12] py-5 pl-6 max-md:pl-0 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors"
+                  className="bg-transparent border-b border-black/[0.20] py-5 pl-6 max-md:pl-0 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors"
                 />
               </div>
 
@@ -104,7 +104,7 @@ export default function SellForm() {
                 name="itemType"
                 required
                 defaultValue=""
-                className="bg-transparent border-b border-white/[0.12] px-0 py-5 text-[15px] text-fg tracking-[0.03em] outline-none focus:border-accent/40 transition-colors appearance-none cursor-pointer [&:invalid]:text-dim/60 [&>option]:bg-bg [&>option]:text-fg"
+                className="bg-transparent border-b border-black/[0.20] px-0 py-5 text-[15px] text-fg tracking-[0.03em] outline-none focus:border-accent/40 transition-colors appearance-none cursor-pointer [&:invalid]:text-dim/60 [&>option]:bg-bg [&>option]:text-fg"
               >
                 <option value="" disabled className="text-dim">
                   What are you selling?
@@ -122,7 +122,7 @@ export default function SellForm() {
                 type="text"
                 name="brand"
                 placeholder="Brand / Designer (e.g. Rolex, Cartier)"
-                className="bg-transparent border-b border-white/[0.12] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors"
+                className="bg-transparent border-b border-black/[0.20] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors"
               />
 
               {/* Description */}
@@ -130,13 +130,13 @@ export default function SellForm() {
                 name="description"
                 placeholder="Tell us about your piece — condition, age, any paperwork or boxes included"
                 rows={4}
-                className="bg-transparent border-b border-white/[0.12] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors resize-none"
+                className="bg-transparent border-b border-black/[0.20] px-0 py-5 text-[15px] text-fg placeholder:text-dim/60 tracking-[0.03em] outline-none focus:border-accent/40 transition-colors resize-none"
               />
 
               {/* Submit */}
               <button
                 type="submit"
-                className="mt-12 self-center border border-white/[0.12] px-14 py-4 text-[11px] tracking-[0.2em] uppercase text-fg rounded-full hover:bg-white/[0.05] hover:border-accent/30 transition-all duration-500 cursor-pointer"
+                className="mt-12 self-center border border-black/[0.20] px-14 py-4 text-[11px] tracking-[0.2em] uppercase text-fg rounded-full hover:bg-black/[0.05] hover:border-accent/30 transition-all duration-500 cursor-pointer"
               >
                 Request Valuation
               </button>
