@@ -22,6 +22,17 @@ const films: { title: string; image: string; video: string }[] = [
 export default function Social() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [playing, setPlaying] = useState<Record<number, boolean>>({});
+  // Muted by default; the viewer opts into sound per film.
+  const [muted, setMuted] = useState<Record<number, boolean>>({});
+
+  const isMuted = (i: number) => muted[i] ?? true;
+
+  const toggleMute = (i: number) => {
+    const video = videoRefs.current[i];
+    const next = !isMuted(i);
+    if (video) video.muted = next;
+    setMuted((m) => ({ ...m, [i]: next }));
+  };
 
   // Prerender/lazyload: buffer the films in the background once the splash
   // has dismissed, so tapping a thumbnail plays instantly.
@@ -49,7 +60,7 @@ export default function Social() {
     const video = videoRefs.current[i];
     if (!video) return;
     if (video.paused) {
-      video.muted = true;
+      video.muted = isMuted(i);
       if (video.preload === "none") {
         video.preload = "auto";
         video.load();
@@ -153,8 +164,33 @@ export default function Social() {
               <span className="absolute top-[18px] left-5 text-[11px] tracking-[0.12em] uppercase text-[rgba(240,236,228,0.75)]">
                 @alpoelondon
               </span>
-              <span className="absolute top-[16px] right-5 text-[10px] tracking-[0.16em] uppercase text-[#f0ece4] border border-white/40 rounded-full px-3 py-1.5 backdrop-blur-sm bg-black/10">
-                {playing[i] ? "Pause" : "▶ Play"}
+              <span className="absolute top-[16px] right-5 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMute(i);
+                  }}
+                  aria-label={isMuted(i) ? "Unmute film" : "Mute film"}
+                  className="text-[#f0ece4] border border-white/40 rounded-full p-1.5 backdrop-blur-sm bg-black/10 cursor-pointer hover:bg-black/25 transition-colors"
+                >
+                  {isMuted(i) ? (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+                      <line x1="23" y1="9" x2="17" y2="15" />
+                      <line x1="17" y1="9" x2="23" y2="15" />
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                    </svg>
+                  )}
+                </button>
+                <span className="text-[10px] tracking-[0.16em] uppercase text-[#f0ece4] border border-white/40 rounded-full px-3 py-1.5 backdrop-blur-sm bg-black/10">
+                  {playing[i] ? "Pause" : "▶ Play"}
+                </span>
               </span>
               <div className="absolute bottom-5 left-5 right-5">
                 <h3 className="font-serif text-[clamp(22px,2.2vw,32px)] tracking-[0.02em] leading-none mb-2 text-[#f0ece4]">
