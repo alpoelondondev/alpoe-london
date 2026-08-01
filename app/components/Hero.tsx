@@ -67,7 +67,7 @@ export default function Hero() {
           aria-label="Alpoe London"
         >
           {LOGO_PATHS.map((d, i) => (
-            <path key={i} d={d} fill="#171212" />
+            <path key={i} d={d} fill="#3d0100" />
           ))}
         </svg>
         <p className="text-[16px] tracking-[0.2em] uppercase text-accent">

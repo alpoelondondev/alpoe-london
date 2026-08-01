@@ -54,8 +54,34 @@ export default function Loader() {
   const loaderRef = useRef<HTMLDivElement>(null);
   const waveRef = useRef<SVGGElement>(null);
   const starsRef = useRef<HTMLCanvasElement>(null);
+  const enterRef = useRef<HTMLDivElement>(null);
   const revealed = useRef(false);
   const rafRef = useRef<number | null>(null);
+
+  // Magnetic pull: the enter pill leans toward the cursor within range.
+  useEffect(() => {
+    if (!ready) return;
+    const el = enterRef.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      const dist = Math.hypot(dx, dy);
+      const range = 160;
+      if (dist < range) {
+        const pull = (1 - dist / range) * 0.35;
+        gsap.to(el, { x: dx * pull, y: dy * pull, duration: 0.4, ease: "power3.out" });
+      } else {
+        gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "power3.out" });
+      }
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      gsap.set(el, { x: 0, y: 0 });
+    };
+  }, [ready]);
 
   const updateProgress = (value: number) => {
     const rounded = Math.floor(value);
@@ -238,15 +264,17 @@ export default function Loader() {
   }, []);
 
   return (
-    <div id="loader" ref={loaderRef}>
+    <div
+      id="loader"
+      ref={loaderRef}
+      onClick={ready ? dismiss : undefined}
+      className={ready ? "cursor-pointer" : undefined}
+    >
       <canvas
         ref={starsRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
       />
-      <div
-        onClick={ready ? dismiss : undefined}
-        className={`relative w-[225px] h-[225px] max-md:w-[160px] max-md:h-[160px] ${ready ? "cursor-pointer cursor-big" : ""}`}
-      >
+      <div className="relative w-[225px] h-[225px] max-md:w-[160px] max-md:h-[160px]">
         <svg
           viewBox="0 0 225 225"
           className="w-full h-full"
@@ -290,12 +318,15 @@ export default function Loader() {
       </div>
 
       {ready && (
-        <button
-          onClick={dismiss}
-          className="-mt-6 text-[11px] tracking-[0.2em] uppercase text-accent border-b border-accent pb-[3px] cursor-pointer animate-pulse-enter"
-        >
-          Click to Enter
-        </button>
+        <div ref={enterRef} className="-mt-2">
+          <button
+            onClick={dismiss}
+            aria-label="Enter Alpoe London"
+            className="rounded-full border border-accent px-10 py-3.5 text-[11px] tracking-[0.24em] uppercase text-accent cursor-pointer cursor-big animate-pulse-enter hover:animate-none hover:bg-accent hover:text-bg transition-colors duration-300"
+          >
+            Enter Alpoe London
+          </button>
+        </div>
       )}
 
       <div className="text-[11px] tracking-[0.2em] uppercase text-dim mt-6">
