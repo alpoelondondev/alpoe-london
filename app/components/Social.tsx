@@ -1,19 +1,67 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
 const PROFILE_URL = "https://www.instagram.com/alpoelondon/";
 
-// One real post; the remaining slots are placeholders until new content is shot.
-const instagramPosts: { src: string | null }[] = [
-  { src: null },
-  { src: null },
-  { src: "/instagram/3.jpg" },
-  { src: null },
-  { src: null },
-  { src: null },
+const films: { title: string; image: string; video: string }[] = [
+  {
+    title: "In the Showroom",
+    image: "/alpoe-bespoke-jewellery-service-hatton-garden.jpg",
+    video: "/alpoe-bespoke-jewellery-service-hatton-garden.mp4",
+  },
+  {
+    title: "Fitted by Hand",
+    image: "/alpoe-cuban-chains-hatton-garden.jpg",
+    video: "/alpoe-cuban-chains-hatton-garden.mp4",
+  },
 ];
 
 export default function Social() {
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [playing, setPlaying] = useState<Record<number, boolean>>({});
+
+  // Prerender/lazyload: buffer the films in the background once the splash
+  // has dismissed, so tapping a thumbnail plays instantly.
+  useEffect(() => {
+    const preload = () => {
+      videoRefs.current.forEach((video, i) => {
+        if (!video || video.readyState >= 2) return;
+        setTimeout(() => {
+          if (video.preload === "none") {
+            video.preload = "auto";
+            video.load();
+          }
+        }, i * 800);
+      });
+    };
+    window.addEventListener("page-loaded", preload, { once: true });
+    const fallback = setTimeout(preload, 3000);
+    return () => {
+      window.removeEventListener("page-loaded", preload);
+      clearTimeout(fallback);
+    };
+  }, []);
+
+  const togglePlay = (i: number) => {
+    const video = videoRefs.current[i];
+    if (!video) return;
+    if (video.paused) {
+      video.muted = true;
+      if (video.preload === "none") {
+        video.preload = "auto";
+        video.load();
+      }
+      video.play().catch(() => {});
+      setPlaying((p) => ({ ...p, [i]: true }));
+    } else {
+      video.pause();
+      setPlaying((p) => ({ ...p, [i]: false }));
+    }
+  };
+
   return (
     <section
       id="social"
@@ -22,7 +70,7 @@ export default function Social() {
       <ScrollReveal>
         <div className="max-w-5xl mx-auto grid grid-cols-2 gap-6">
           <a
-            href="https://www.instagram.com/alpoelondon/"
+            href={PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -64,41 +112,65 @@ export default function Social() {
             </span>
           </a>
         </div>
-        <div className="max-w-5xl mx-auto mt-16 grid grid-cols-3 gap-2 max-md:mt-10 max-md:grid-cols-2">
-          {instagramPosts.map((post, i) => (
-            <a
-              key={i}
-              href={PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block aspect-square overflow-hidden bg-black/[0.03] border border-black/[0.07]"
+
+        {/* Films from the feed — videos preloaded in the background */}
+        <div className="max-w-3xl mx-auto mt-16 grid grid-cols-2 gap-4 max-md:mt-10 max-md:grid-cols-1">
+          {films.map((film, i) => (
+            <div
+              key={film.video}
+              role="button"
+              tabIndex={0}
+              onClick={() => togglePlay(i)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") togglePlay(i);
+              }}
+              aria-label={`${playing[i] ? "Pause" : "Play"} ${film.title} film`}
+              className="group relative block aspect-[3/4] overflow-hidden border border-black/[0.08] cursor-pointer"
             >
-              {post.src ? (
-                <Image
-                  src={post.src}
-                  alt="Alpoe London on Instagram"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-              ) : (
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-black/20 transition group-hover:text-black/40"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </span>
-              )}
-            </a>
+              <Image
+                src={film.image}
+                alt={`${film.title} — Alpoe London`}
+                fill
+                sizes="(max-width: 768px) 85vw, 33vw"
+                className="object-cover"
+              />
+              <video
+                ref={(el) => {
+                  videoRefs.current[i] = el;
+                }}
+                muted
+                loop
+                playsInline
+                preload="none"
+                poster={film.image}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                  playing[i] ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                <source src={film.video} type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.85)] via-[rgba(6,6,8,0.15)] to-transparent pointer-events-none" />
+              <span className="absolute top-[18px] left-5 text-[11px] tracking-[0.12em] uppercase text-[rgba(240,236,228,0.75)]">
+                @alpoelondon
+              </span>
+              <span className="absolute top-[16px] right-5 text-[10px] tracking-[0.16em] uppercase text-[#f0ece4] border border-white/40 rounded-full px-3 py-1.5 backdrop-blur-sm bg-black/10">
+                {playing[i] ? "Pause" : "▶ Play"}
+              </span>
+              <div className="absolute bottom-5 left-5 right-5">
+                <h3 className="font-serif text-[clamp(22px,2.2vw,32px)] tracking-[0.02em] leading-none mb-2 text-[#f0ece4]">
+                  {film.title}
+                </h3>
+                <a
+                  href={PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase text-[#cbb98f] opacity-90 hover:opacity-100"
+                >
+                  View Instagram →
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </ScrollReveal>
