@@ -4,17 +4,10 @@ export default function About() {
   return (
     <section
       id="about"
-      className="px-[52px] pt-14 pb-14 grid grid-cols-2 gap-16 items-center max-md:px-6 max-md:grid-cols-1 max-md:pt-10 max-md:pb-10"
+      className="px-[52px] pt-14 pb-14 max-md:px-6 max-md:pt-10 max-md:pb-10"
     >
       <ScrollReveal>
-        <h2 className="font-serif text-[clamp(52px,8vw,110px)] leading-[0.93] tracking-tight">
-          BUILT
-          <br />
-          DIFFERENT
-        </h2>
-      </ScrollReveal>
-      <ScrollReveal>
-        <p className="text-[15px] leading-[1.85] text-dim">
+        <p className="max-w-2xl mx-auto text-center text-[15px] leading-[1.85] text-dim">
           <strong className="text-fg font-normal">Alpoe London</strong>{" "}
           delivers a true end-to-end luxury experience — from bespoke diamond
           pieces hand-set to your exact specification, to the world&apos;s most

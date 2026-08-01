@@ -78,7 +78,13 @@ export default function Collections() {
           >
             <Link
               href={item.href}
-              className="group relative block h-[170px] max-md:h-[160px] overflow-hidden border border-black/[0.08] bg-black/[0.03] transition-colors duration-500 hover:border-black/[0.20]"
+              onPointerDown={() => {
+                // Tap haptic on supporting devices; never blocks navigation.
+                if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+                  navigator.vibrate(8);
+                }
+              }}
+              className="group relative block h-[170px] max-md:h-[160px] overflow-hidden border border-black/[0.08] bg-black/[0.03] transition-all duration-300 hover:border-black/[0.20] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(23,18,18,0.10)] active:scale-[0.98] active:duration-100"
               aria-label={`Explore ${item.title}`}
             >
               {/* Oversized ghost numeral */}

@@ -43,7 +43,11 @@ export default function FAQ({ items }: { items: FaqItem[] }) {
       id="faq"
       className="px-[52px] py-20 border-t border-black/[0.07] max-md:px-6 max-md:py-14"
     >
-      <h2 className="sr-only">Frequently Asked Questions</h2>
+      <ScrollReveal>
+        <h2 className="font-serif text-[clamp(34px,4.5vw,60px)] tracking-[0.02em] leading-none text-accent text-center mb-12">
+          FAQS
+        </h2>
+      </ScrollReveal>
       <ScrollReveal>
         <div className="grid grid-cols-2 gap-4 items-start max-md:grid-cols-1">
           {items.map((item) => (
