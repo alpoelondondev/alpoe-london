@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { catalogueItemUrl, type CatalogueItem } from "@/lib/catalogue";
 import { buildCatalogueEnquiryUrl } from "@/lib/whatsapp";
+import EnquiryList, { type EnquiryListRow } from "./EnquiryList";
 
 function CatalogueCard({ item }: { item: CatalogueItem }) {
   const hero = item.images[0];
@@ -12,21 +13,22 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
   const cardClass =
     "group flex flex-col relative overflow-hidden border border-black/[0.08] bg-black/[0.03] transition hover:border-black/[0.20]";
 
-  const inner = (
-    <>
-      {/* No photo, no media box at all — an empty frame is just scroll. */}
-      {hero ? (
-        <div className="w-full relative aspect-[4/5] bg-black/[0.03]">
-          <Image
-            src={hero}
-            alt={alt}
-            fill
-            draggable={false}
-            sizes="(max-width: 768px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-          />
-        </div>
-      ) : null}
+  return (
+    <Link
+      href={catalogueItemUrl(item)}
+      className={cardClass}
+      aria-label={`View ${item.brand} ${item.model} ${item.variant}`}
+    >
+      <div className="w-full relative aspect-[4/5] bg-black/[0.03]">
+        <Image
+          src={hero}
+          alt={alt}
+          fill
+          draggable={false}
+          sizes="(max-width: 768px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        />
+      </div>
 
       <div className="flex flex-1 flex-col gap-1 p-3">
         <h4 className="font-serif text-[15px] leading-tight tracking-[0.01em]">
@@ -38,37 +40,24 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
         </p>
         {/* CTA sits on the tile itself rather than reading as a text link. */}
         <span className="mt-3 block w-full bg-accent px-3 py-2 text-center text-[10px] font-medium tracking-[0.16em] uppercase text-bg transition group-hover:brightness-110">
-          {hero ? "View Details" : "Enquire Now"}
+          View Details
         </span>
       </div>
-    </>
-  );
-
-  // No photography yet — send the enquiry straight to WhatsApp with the
-  // reference pre-filled instead of linking to a page without images.
-  if (!hero) {
-    return (
-      <a
-        href={buildCatalogueEnquiryUrl(item)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cardClass}
-        aria-label={`Enquire about ${item.brand} ${item.model} ${item.variant} on WhatsApp`}
-      >
-        {inner}
-      </a>
-    );
-  }
-
-  return (
-    <Link
-      href={catalogueItemUrl(item)}
-      className={cardClass}
-      aria-label={`View ${item.brand} ${item.model} ${item.variant}`}
-    >
-      {inner}
     </Link>
   );
+}
+
+// No photography yet — the enquiry goes straight to WhatsApp with the reference
+// pre-filled rather than to a page with nothing to look at.
+function toRow(item: CatalogueItem): EnquiryListRow {
+  return {
+    id: item.id,
+    href: buildCatalogueEnquiryUrl(item),
+    eyebrow: `${item.brand}${item.model ? ` · ${item.model}` : ""}`,
+    title: item.variant || item.model,
+    meta: item.reference ? `Ref ${item.reference}` : undefined,
+    ariaLabel: `Enquire about ${item.brand} ${item.model} ${item.variant} on WhatsApp`,
+  };
 }
 
 export default function AvailabilityCatalogue({
@@ -82,11 +71,9 @@ export default function AvailabilityCatalogue({
 }) {
   if (!total) return null;
 
-  // One flat grid rather than a divider per model — far less scrolling.
-  const ordered = [
-    ...items.filter((i) => i.hasImages),
-    ...items.filter((i) => !i.hasImages),
-  ];
+  // One flat grid of the shot references; everything else runs as a list below.
+  const shot = items.filter((i) => i.hasImages);
+  const unshot = items.filter((i) => !i.hasImages);
 
   return (
     <section className="mt-24 border-t border-black/[0.10] pt-14">
@@ -101,11 +88,18 @@ export default function AvailabilityCatalogue({
         </p>
       </header>
 
-      <div className="mt-10 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1 max-md:gap-3">
-        {ordered.map((item) => (
-          <CatalogueCard key={item.id} item={item} />
-        ))}
-      </div>
+      {shot.length ? (
+        <div className="mt-10 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1 max-md:gap-3">
+          {shot.map((item) => (
+            <CatalogueCard key={item.id} item={item} />
+          ))}
+        </div>
+      ) : null}
+
+      <EnquiryList
+        rows={unshot.map(toRow)}
+        label={shot.length ? "More references to order" : "References to order"}
+      />
     </section>
   );
 }

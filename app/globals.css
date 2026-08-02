@@ -193,6 +193,22 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
   display: none;
 }
 
+/* Enquire-list scroller — a hairline track so the list reads as one block */
+.list-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 18, 18, 0.18) transparent;
+  overscroll-behavior: contain;
+}
+.list-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.list-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.list-scroll::-webkit-scrollbar-thumb {
+  background: rgba(23, 18, 18, 0.18);
+}
+
 /* Section label */
 .section-label::before {
   content: "";
