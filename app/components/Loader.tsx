@@ -116,7 +116,10 @@ export default function Loader() {
     }
 
     // 3. Restore scroll, fire page-loaded for Hero text reveal, slide loader.
+    //    The flag lets a Hero that mounts later (client-side nav back to the
+    //    homepage) know the splash is already gone, since the event has fired.
     document.body.style.overflow = "";
+    window.__alpoeEntered = true;
     window.dispatchEvent(new Event("page-loaded"));
 
     if (loaderRef.current) {

@@ -100,7 +100,7 @@ export default async function BrandPage(
           <ProductGrid products={filtered} />
           <AvailabilityCatalogue
             brandName={b.name}
-            groups={catalogue.groups}
+            items={catalogue.items}
             total={catalogue.total}
           />
         </section>

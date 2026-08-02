@@ -54,6 +54,11 @@ export default function Hero() {
 
     window.addEventListener("page-loaded", onLoaded);
 
+    // Navigating back to the homepage remounts Hero, but the splash lives in
+    // the layout and already fired page-loaded — without this the wordmark
+    // would stay at opacity 0 and the film would never start.
+    if (window.__alpoeEntered) onLoaded();
+
     // Only once past the splash: if the UA still refused the gesture it would
     // paint its own start-playback button, so retry quietly on later input.
     const retry = () => {

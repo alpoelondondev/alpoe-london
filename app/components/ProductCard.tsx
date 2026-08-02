@@ -26,8 +26,9 @@ export default function ProductCard({ product, priority }: { product: Product; p
             src={hero}
             alt={alt}
             fill
+            draggable={false}
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 420px"
-            className="object-cover"
+            className="object-cover pointer-events-none"
             priority={priority}
           />
         ) : null}
@@ -67,6 +68,7 @@ export default function ProductCard({ product, priority }: { product: Product; p
         href={buildEnquiryUrl(product)}
         target="_blank"
         rel="noopener noreferrer"
+        draggable={false}
         className="work-item relative overflow-hidden group block"
         aria-label={`Enquire about ${product.title} on WhatsApp`}
       >
@@ -78,6 +80,7 @@ export default function ProductCard({ product, priority }: { product: Product; p
   return (
     <Link
       href={productUrl(product)}
+      draggable={false}
       className="work-item relative overflow-hidden group block"
       aria-label={`View ${product.title}`}
     >

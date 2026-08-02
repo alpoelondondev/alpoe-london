@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
+import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 const PROFILE_URL = "https://www.instagram.com/alpoe/";
 
@@ -148,22 +149,34 @@ export default function Social() {
                     </svg>
                   )}
                 </button>
-                <span className="text-[10px] tracking-[0.16em] uppercase text-[#f0ece4] border border-white/40 rounded-full px-3 py-1.5 backdrop-blur-sm bg-black/10">
-                  {playing[i] ? "Pause" : "▶ Play"}
-                </span>
+              </span>
+              {/* Native-style centred play button; hides once the film runs. */}
+              <span
+                aria-hidden="true"
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-16 w-16 items-center justify-center rounded-full border border-white/50 bg-black/30 backdrop-blur-sm transition-all duration-300 ${
+                  playing[i]
+                    ? "opacity-0 scale-90 pointer-events-none"
+                    : "opacity-100 group-hover:scale-110"
+                }`}
+              >
+                <svg className="h-6 w-6 translate-x-[2px] fill-[#f0ece4]" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </span>
               <div className="absolute bottom-5 left-5 right-5">
                 <h3 className="font-serif text-[clamp(22px,2.2vw,32px)] tracking-[0.02em] leading-none mb-2 text-[#f0ece4]">
                   {film.title}
                 </h3>
                 <a
-                  href={PROFILE_URL}
+                  href={buildGeneralWhatsAppUrl(
+                    `Hi Alpoe, I saw your "${film.title}" film — I'd like to make an enquiry.`,
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase text-[#cbb98f] opacity-90 hover:opacity-100"
+                  className="inline-flex items-center gap-1.5 bg-accent px-3 py-2 text-[10px] font-medium tracking-[0.16em] uppercase text-bg transition hover:brightness-110"
                 >
-                  View Instagram →
+                  Send Enquiry
                 </a>
               </div>
             </div>

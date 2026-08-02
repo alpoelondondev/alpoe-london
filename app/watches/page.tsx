@@ -5,10 +5,11 @@ import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 import Breadcrumbs from "../components/Breadcrumbs";
 import BrandHero from "../components/BrandHero";
-import ProductGrid from "../components/ProductGrid";
+import ProductCard from "../components/ProductCard";
+import DragCarousel from "../components/DragCarousel";
 import ScrollReveal from "../components/ScrollReveal";
 import { WATCH_BRANDS } from "@/lib/taxonomy";
-import { getWatches, photosFirst } from "@/lib/products";
+import { getWatches, hasPhotography } from "@/lib/products";
 import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { WATCH_FAQS } from "@/lib/faqs";
@@ -23,7 +24,14 @@ export const metadata: Metadata = pageMetadata({
 
 export default function WatchesIndex() {
   const watches = getWatches();
-  const featured = watches.filter((w) => w.featured).sort(photosFirst).slice(0, 6);
+  // Featured strip is photography-led — a card with no shot has nothing to
+  // show. Only one flagged-featured watch is photographed, so the strip leads
+  // with the flagged ones and tops up from the rest of the shot pieces.
+  const photographed = watches.filter(hasPhotography);
+  const featured = [
+    ...photographed.filter((w) => w.featured),
+    ...photographed.filter((w) => !w.featured),
+  ].slice(0, 8);
 
   const ld = ldJsonGraph([
     ...collectionLd({
@@ -79,13 +87,28 @@ export default function WatchesIndex() {
         </section>
 
         {featured.length ? (
-          <section className="px-[52px] pb-20 max-md:px-6">
+          // Same champagne band as the FAQ strip; photographed pieces only, so
+          // every card carries its own shot.
+          <section className="bg-champagne-soft py-16 mb-20 max-md:py-12 max-md:mb-14">
             <ScrollReveal>
-              <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 flex items-center gap-[18px]">
+              <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 px-[52px] max-md:px-6">
                 Featured Timepieces
               </p>
             </ScrollReveal>
-            <ProductGrid products={featured} />
+            <DragCarousel
+              ariaLabel="Featured timepieces"
+              className="snap-proximity gap-4 px-[52px] max-md:px-6 max-md:gap-3 max-md:snap-mandatory"
+            >
+              {featured.map((p, i) => (
+                <ScrollReveal
+                  key={p.id}
+                  className="flex-none w-[calc((100vw-152px)/4)] max-md:w-[78vw] snap-center"
+                  delay={i * 0.08}
+                >
+                  <ProductCard product={p} priority={i < 3} />
+                </ScrollReveal>
+              ))}
+            </DragCarousel>
           </section>
         ) : null}
         <FAQ items={WATCH_FAQS} />

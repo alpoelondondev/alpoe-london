@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import DragCarousel from "./DragCarousel";
 
 const items: {
   title: string;
@@ -42,62 +42,14 @@ const items: {
 ];
 
 export default function Collections() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  // Touch devices pan natively; this adds click-and-drag for mouse users.
-  const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
-
-  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== "mouse") return;
-    const el = scrollerRef.current;
-    if (!el) return;
-    drag.current = {
-      active: true,
-      startX: e.clientX,
-      startScroll: el.scrollLeft,
-      moved: false,
-    };
-    el.setPointerCapture(e.pointerId);
-    // Snap fights a manual drag, so suspend it until the pointer is released.
-    el.style.scrollSnapType = "none";
-  };
-
-  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const el = scrollerRef.current;
-    if (!el || !drag.current.active) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 4) drag.current.moved = true;
-    el.scrollLeft = drag.current.startScroll - dx;
-  };
-
-  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
-    const el = scrollerRef.current;
-    if (!el || !drag.current.active) return;
-    drag.current.active = false;
-    if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
-    el.style.scrollSnapType = "";
-  };
-
-  // A drag that ends on a card must not follow its link.
-  const onClickCapture = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!drag.current.moved) return;
-    e.preventDefault();
-    e.stopPropagation();
-    drag.current.moved = false;
-  };
-
   return (
     <section
       id="collections"
       className="pt-14 pb-14 max-md:pt-10 max-md:pb-10"
     >
-      <div
-        ref={scrollerRef}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-        onClickCapture={onClickCapture}
-        className="flex overflow-x-auto snap-x snap-proximity gap-1.5 px-[52px] scrollbar-none touch-pan-x cursor-grab active:cursor-grabbing select-none max-md:px-6 max-md:gap-2 max-md:snap-mandatory"
+      <DragCarousel
+        ariaLabel="Collections"
+        className="snap-proximity gap-1.5 px-[52px] max-md:px-6 max-md:gap-2 max-md:snap-mandatory"
       >
         {items.map((item, i) => (
           <ScrollReveal
@@ -111,12 +63,6 @@ export default function Collections() {
               href={item.href}
               // Anchors are natively draggable, which would hijack the swipe.
               draggable={false}
-              onPointerDown={() => {
-                // Tap haptic on supporting devices; never blocks navigation.
-                if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-                  navigator.vibrate(8);
-                }
-              }}
               className="group relative block h-[170px] max-md:h-[160px] overflow-hidden border border-black/[0.08] bg-black/[0.03] transition-all duration-300 hover:border-black/[0.20] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(23,18,18,0.10)] active:scale-[0.98] active:duration-100"
               aria-label={`Explore ${item.title}`}
             >
@@ -190,7 +136,7 @@ export default function Collections() {
             </Link>
           </ScrollReveal>
         ))}
-      </div>
+      </DragCarousel>
     </section>
   );
 }
