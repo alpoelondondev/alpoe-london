@@ -27,8 +27,13 @@ export default function SellForm() {
           <span className="text-[16px] tracking-[0.2em] uppercase text-accent">
             Sell with us
           </span>
-          <span className="text-[16px] tracking-[0.2em] uppercase text-dim">
-            {open ? "−" : "+"}
+          <span
+            aria-hidden="true"
+            className={`text-[18px] leading-none text-dim transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+          >
+            ↓
           </span>
         </button>
       </ScrollReveal>

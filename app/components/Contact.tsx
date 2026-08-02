@@ -21,8 +21,13 @@ export default function Contact() {
           <span className="text-[16px] tracking-[0.2em] uppercase text-accent">
             Get in touch
           </span>
-          <span className="text-[16px] tracking-[0.2em] uppercase text-dim">
-            {open ? "−" : "+"}
+          <span
+            aria-hidden="true"
+            className={`text-[18px] leading-none text-dim transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+          >
+            ↓
           </span>
         </button>
       </ScrollReveal>

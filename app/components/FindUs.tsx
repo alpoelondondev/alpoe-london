@@ -5,11 +5,15 @@ import ScrollReveal from "./ScrollReveal";
 import { SITE } from "@/lib/site";
 
 // Hatton Garden, London — the jewellery quarter our showroom sits in.
-const CENTRE: [number, number] = [-0.10855, 51.52045];
+const LAT = 51.52045;
+const LON = -0.10855;
 
-// MapLibre on OpenFreeMap tiles: fully dynamic, no account and no API key.
-// Positron is the pale, low-chrome style that suits the page cream.
-const STYLE = "https://tiles.openfreemap.org/styles/positron";
+// Leaflet on CARTO's Positron raster tiles: dynamic, no account and no API key.
+// Raster means no Web Worker and no WebGL, which is why this survives the
+// Turbopack bundle where a vector engine silently never spawns its worker.
+const TILES = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+const ATTRIBUTION =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
 const DIRECTIONS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${SITE.name}, ${SITE.address.streetAddress}, ${SITE.address.addressLocality} ${SITE.address.postalCode}`,
@@ -24,26 +28,37 @@ export default function FindUs() {
     let map: { remove: () => void } | null = null;
     let cancelled = false;
 
-    // Loaded on demand — maplibre-gl is ~800kB and only this strip needs it.
+    // Loaded on demand — only this strip needs Leaflet.
     (async () => {
       try {
-        // v6 ships named exports only; MapLibreMap is its alias for Map.
-        const { MapLibreMap, Marker, NavigationControl } = await import("maplibre-gl");
-        await import("maplibre-gl/dist/maplibre-gl.css");
+        const L = await import("leaflet");
+        await import("leaflet/dist/leaflet.css");
         if (cancelled || !holder.current) return;
 
-        const m = new MapLibreMap({
-          container: holder.current,
-          style: STYLE,
-          center: CENTRE,
-          zoom: 15.4,
-          cooperativeGestures: true, // page scroll wins until the map is clicked
+        const m = L.map(holder.current, {
+          center: [LAT, LON],
+          zoom: 16,
+          scrollWheelZoom: false, // page scroll wins; pinch and buttons still zoom
+          attributionControl: true,
         });
-        m.addControl(new NavigationControl({ showCompass: false }), "top-right");
-        new Marker({ color: "#3d0100" }).setLngLat(CENTRE).addTo(m);
-        m.on("error", () => setFailed(true));
+        L.tileLayer(TILES, { attribution: ATTRIBUTION, maxZoom: 20 }).addTo(m);
+
+        // divIcon avoids Leaflet's bundled marker-image path problem entirely.
+        L.marker([LAT, LON], {
+          icon: L.divIcon({
+            className: "",
+            html: '<span class="map-pin"><span class="map-pin__ring"></span><span class="map-pin__dot"></span></span>',
+            iconSize: [16, 16],
+            iconAnchor: [8, 8],
+          }),
+          keyboard: false,
+        })
+          .addTo(m)
+          .bindPopup(`${SITE.name}<br/>The Garden, ${SITE.address.streetAddress}`);
+
         map = m;
-      } catch {
+      } catch (e) {
+        console.error("[FindUs] map init failed", e);
         if (!cancelled) setFailed(true);
       }
     })();

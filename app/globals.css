@@ -120,6 +120,49 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
   pointer-events: none;
 }
 
+/* Find-us map pin: solid oxblood dot with a ring pulsing out from under it */
+.map-pin {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.map-pin__dot,
+.map-pin__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.map-pin__dot {
+  box-shadow: 0 0 0 3px rgba(244, 242, 238, 0.9);
+}
+
+.map-pin__ring {
+  animation: map-pin-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes map-pin-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-pin__ring {
+    animation: none;
+    opacity: 0.25;
+  }
+}
+
 /* Work item hover effect */
 .work-item .work-thumb {
   filter: grayscale(20%) brightness(0.85);
