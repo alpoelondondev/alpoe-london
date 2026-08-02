@@ -385,16 +385,19 @@ export default function Loader() {
 
       {/* Furniture pinned to the corners so the centre holds only the mark and
           the one CTA — that framing is what separates a splash from a loader. */}
-      <span className="absolute top-7 left-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:top-5 max-md:left-5">
+      {/* Redundant next to the giant mark, and there is no room for two labels
+          on one phone-width row — so it only appears from md up. */}
+      <span className="absolute top-7 left-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:hidden">
         Alpoe London
       </span>
-      <span className="absolute top-7 right-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:top-5 max-md:right-5">
+      <span className="absolute top-7 right-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:top-6 max-md:left-6 max-md:right-auto max-md:text-[10px]">
         Est. Hatton Garden
       </span>
-      <span className="absolute bottom-9 left-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:bottom-7 max-md:left-5 max-md:text-[10px]">
-        Hatton Garden · London · Worldwide
+      <span className="absolute bottom-9 left-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:bottom-8 max-md:left-6 max-md:text-[10px]">
+        Hatton Garden · London
+        <span className="max-md:hidden"> · Worldwide</span>
       </span>
-      <span className="absolute bottom-9 right-7 text-[11px] tracking-[0.2em] uppercase text-dim tabular-nums max-md:bottom-7 max-md:right-5">
+      <span className="absolute bottom-9 right-7 text-[11px] tracking-[0.2em] uppercase text-dim tabular-nums max-md:bottom-8 max-md:right-6 max-md:text-[10px]">
         {progress}%
       </span>
 
