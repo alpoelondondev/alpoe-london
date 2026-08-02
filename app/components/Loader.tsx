@@ -55,6 +55,7 @@ export default function Loader() {
   const waveRef = useRef<SVGGElement>(null);
   const starsRef = useRef<HTMLCanvasElement>(null);
   const enterRef = useRef<HTMLDivElement>(null);
+  const ruleRef = useRef<HTMLDivElement>(null);
   const revealed = useRef(false);
   const rafRef = useRef<number | null>(null);
 
@@ -92,6 +93,7 @@ export default function Loader() {
       const translateY = 162 - (rounded / 100) * 135;
       waveRef.current.style.transform = `translateY(${translateY}px)`;
     }
+    if (ruleRef.current) ruleRef.current.style.width = `${rounded}%`;
   };
 
   const dismiss = () => {
@@ -363,8 +365,14 @@ export default function Loader() {
         </svg>
       </div>
 
+      {/* The cycling phrase is the one bit of motion here, so it stays with
+          the mark and carries more weight than the pinned furniture. */}
+      <div className="text-[20px] tracking-[0.22em] uppercase text-accent mt-1 max-md:text-[15px]">
+        <ShuffleText />
+      </div>
+
       {ready && (
-        <div ref={enterRef} className="-mt-2">
+        <div ref={enterRef} className="mt-8">
           <button
             onClick={dismiss}
             aria-label="Enter site — Alpoe London"
@@ -375,16 +383,24 @@ export default function Loader() {
         </div>
       )}
 
-      <div className="text-[11px] tracking-[0.2em] uppercase text-dim mt-6">
-        {progress}%
-      </div>
-      {/* The cycling phrase is the one bit of motion here, so it carries more
-          weight than the static lines around it. */}
-      <div className="text-[20px] tracking-[0.22em] uppercase text-accent mt-3 max-md:text-[15px]">
-        <ShuffleText />
-      </div>
-      <div className="text-[11px] tracking-[0.2em] uppercase text-dim mt-1">
+      {/* Furniture pinned to the corners so the centre holds only the mark and
+          the one CTA — that framing is what separates a splash from a loader. */}
+      <span className="absolute top-7 left-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:top-5 max-md:left-5">
+        Alpoe London
+      </span>
+      <span className="absolute top-7 right-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:top-5 max-md:right-5">
+        Est. Hatton Garden
+      </span>
+      <span className="absolute bottom-9 left-7 text-[11px] tracking-[0.2em] uppercase text-dim max-md:bottom-7 max-md:left-5 max-md:text-[10px]">
         Hatton Garden · London · Worldwide
+      </span>
+      <span className="absolute bottom-9 right-7 text-[11px] tracking-[0.2em] uppercase text-dim tabular-nums max-md:bottom-7 max-md:right-5">
+        {progress}%
+      </span>
+
+      {/* Hairline that fills edge to edge as the mark floods */}
+      <div className="absolute bottom-0 left-0 h-px w-full bg-black/[0.10]">
+        <div ref={ruleRef} className="h-full w-0 bg-accent" />
       </div>
     </div>
   );
