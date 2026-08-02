@@ -90,7 +90,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-x-6 gap-y-10 max-sm:grid-cols-2">
+          <div className="grid grid-cols-4 gap-x-6 gap-y-10 max-sm:grid-cols-2">
           <div>
             <h4 className="text-[11px] tracking-[0.18em] uppercase text-accent mb-5">
               Watches
@@ -127,11 +127,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          {/* Widest of the three so its links sit two-across without wrapping */}
+          <div className="col-span-2 max-sm:col-span-2">
             <h4 className="text-[11px] tracking-[0.18em] uppercase text-accent mb-5">
               House
             </h4>
-            <ul className="flex flex-col gap-3 mb-8">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
               {SHOP_LINKS.concat(HOUSE_LINKS).map((l) => (
                 <li key={l.href}>
                   <Link
