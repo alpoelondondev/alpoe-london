@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import SiteHeader from "../../../components/SiteHeader";
 import Footer from "../../../components/Footer";
 import WhatsAppButton from "../../../components/WhatsAppButton";
+import ProductSearch from "../../../components/ProductSearch";
+import ProductEnquiryStrip from "../../../components/ProductEnquiryStrip";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
@@ -11,6 +13,7 @@ import StockBadge from "../../../components/StockBadge";
 import ProductCard from "../../../components/ProductCard";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import {
+  buildSearchIndex,
   getJewelleryByCategory,
   getJewelleryBySlug,
   getRelated,
@@ -58,6 +61,7 @@ export default async function JewelleryProductPage(
 
   const path = `/jewellery/${c.slug}/${product.slug}`;
   const related = getRelated(product, 3);
+  const searchIndex = buildSearchIndex();
   const alt = [product.category, product.materials, product.gemstones, product.carat]
     .filter(Boolean)
     .join(" ");
@@ -112,6 +116,12 @@ export default async function JewelleryProductPage(
           </div>
         </section>
 
+        <section className="px-[52px] pb-14 max-md:px-6">
+          <div className="max-w-xl">
+            <ProductSearch index={searchIndex} />
+          </div>
+        </section>
+
         {related.length ? (
           <section className="px-[52px] pb-24 max-md:px-6">
             <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 flex items-center gap-[18px]">
@@ -126,6 +136,7 @@ export default async function JewelleryProductPage(
             </div>
           </section>
         ) : null}
+        <ProductEnquiryStrip product={product} />
       </main>
       <Footer />
       <WhatsAppButton />
