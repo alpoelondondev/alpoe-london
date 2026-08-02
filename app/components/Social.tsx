@@ -13,17 +13,16 @@ const films: { title: string; image: string; video: string }[] = [
     image: "/alpoe-bespoke-jewellery-service-hatton-garden.jpg",
     video: "/alpoe-bespoke-jewellery-service-hatton-garden.mp4",
   },
-  {
-    title: "Fitted by Hand",
-    image: "/alpoe-cuban-chains-hatton-garden.jpg",
-    video: "/alpoe-cuban-chains-hatton-garden.mp4",
-  },
-  {
-    title: "1-1 Service",
-    image: "/alpoe-1-1-service-10k-budget-hatton-garden.jpg",
-    video: "/alpoe-1-1-service-10k-budget-hatton-garden.mp4",
-  },
 ];
+
+// The grid tightens as films are added or pulled, so one film centres rather
+// than sitting in the left third of an empty row.
+const gridClass =
+  films.length === 1
+    ? "max-w-sm grid-cols-1"
+    : films.length === 2
+      ? "max-w-3xl grid-cols-2"
+      : "max-w-3xl grid-cols-3";
 
 export default function Social() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -86,7 +85,7 @@ export default function Social() {
     >
       <ScrollReveal>
         {/* Films from the feed — videos preloaded in the background */}
-        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-4 max-md:grid-cols-1">
+        <div className={`${gridClass} mx-auto grid gap-4 max-md:grid-cols-1`}>
           {films.map((film, i) => (
             <div
               key={film.video}
