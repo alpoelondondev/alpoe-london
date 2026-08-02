@@ -10,8 +10,10 @@ const SHOP_LINKS = [
 ];
 
 const HOUSE_LINKS = [
-  { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Bespoke Jewellery", href: "/bespoke" },
+  { label: "Sell Your Watch", href: "/sell" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -20,10 +22,10 @@ export default function Footer() {
   const whatsappUrl = buildGeneralWhatsAppUrl();
 
   return (
-    <footer className="border-t border-black/[0.07] bg-bg text-fg">
+    <footer className="border-t border-black/[0.08] bg-[#e6e4df] text-fg">
       <div className="px-[52px] pt-20 pb-14 max-md:px-6 max-md:pt-14 max-md:pb-10">
-        <div className="grid grid-cols-12 gap-10 max-lg:grid-cols-6 max-md:grid-cols-1 max-md:gap-12">
-          <div className="col-span-4 max-lg:col-span-6 max-md:col-span-1 flex flex-col gap-6">
+        <div className="grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-10">
+          <div className="flex flex-col gap-6">
             <Link
               href="/"
               aria-label="Alpoe London — Home"
@@ -88,7 +90,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="col-span-2 max-lg:col-span-2 max-md:col-span-1">
+          <div className="grid grid-cols-3 gap-x-6 gap-y-10 max-sm:grid-cols-2">
+          <div>
             <h4 className="text-[11px] tracking-[0.18em] uppercase text-accent mb-5">
               Watches
             </h4>
@@ -106,7 +109,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-3 max-lg:col-span-2 max-md:col-span-1">
+          <div>
             <h4 className="text-[11px] tracking-[0.18em] uppercase text-accent mb-5">
               Jewellery
             </h4>
@@ -124,7 +127,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-3 max-lg:col-span-2 max-md:col-span-1">
+          <div>
             <h4 className="text-[11px] tracking-[0.18em] uppercase text-accent mb-5">
               House
             </h4>
@@ -151,6 +154,7 @@ export default function Footer() {
                 Chat on WhatsApp
               </a>
             </div>
+          </div>
           </div>
         </div>
       </div>

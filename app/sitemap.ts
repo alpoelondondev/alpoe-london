@@ -10,6 +10,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: siteUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: siteUrl("/watches"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: siteUrl("/jewellery"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: siteUrl("/bespoke"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: siteUrl("/sell"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: siteUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: siteUrl("/contact"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: siteUrl("/search"), lastModified: now, changeFrequency: "monthly", priority: 0.3 },
   ];
 

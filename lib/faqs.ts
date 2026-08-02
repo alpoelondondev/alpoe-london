@@ -21,15 +21,40 @@ const FAQS = {
     answer:
       "Yes — we work exclusively with GIA-certified diamonds, so quality, authenticity and value are guaranteed. Full certification paperwork accompanies every stone.",
   },
-  finance: {
-    question: "Do you offer finance or payment plans?",
-    answer:
-      "We do. Flexible payment options are available on watches, engagement rings and bespoke jewellery alike — contact us and we'll structure a plan that suits you.",
-  },
   tradeIn: {
     question: "Will you buy or part-exchange my watch?",
     answer:
       "Yes. We purchase pre-owned luxury watches and offer strong trade-in valuations. Share the details of your timepiece and we'll give you a no-obligation quote.",
+  },
+  leadTime: {
+    question: "How long does a bespoke piece take?",
+    answer:
+      "Most bespoke commissions take three to six weeks from approved design to finished piece, depending on the stones and the complexity of the setting. Rush timelines can often be arranged for an occasion date — tell us the deadline when you enquire.",
+  },
+  labGrown: {
+    question: "Do you work with lab-grown as well as natural diamonds?",
+    answer:
+      "Both. Lab-grown diamonds are chemically and optically identical to natural stones and typically let you go significantly larger for the same budget. Natural diamonds hold their rarity and resale position. We will show you the same design in both so you can compare in person.",
+  },
+  designProcess: {
+    question: "What happens after I send my enquiry?",
+    answer:
+      "A specialist comes back to you on WhatsApp, usually the same day. We talk through the occasion, the wearer, stone preference and budget, then produce a CAD design for your approval before anything is cut or set.",
+  },
+  valuation: {
+    question: "How do you value a watch you are buying?",
+    answer:
+      "Valuation is based on reference, condition, year, and whether you still have the box and papers, checked against live market data. Send photos and the reference number and we will give you a no-obligation figure, usually within the hour.",
+  },
+  payment: {
+    question: "How quickly do I get paid?",
+    answer:
+      "Once we have inspected and authenticated the piece, payment is made same day by bank transfer. You are welcome to wait with us in the showroom while the checks are carried out.",
+  },
+  shipping: {
+    question: "Do you ship outside the UK?",
+    answer:
+      "Yes. We ship worldwide, fully insured and tracked, with all certification and paperwork included. Customs documentation is handled for you.",
   },
   showroom: {
     question: "Can I visit you in person?",
@@ -43,7 +68,6 @@ export const HOME_FAQS: FaqItem[] = [
   FAQS.sourcing,
   FAQS.bespoke,
   FAQS.certification,
-  FAQS.finance,
   FAQS.tradeIn,
   FAQS.showroom,
 ];
@@ -52,7 +76,6 @@ export const WATCH_FAQS: FaqItem[] = [
   FAQS.sourcing,
   FAQS.prices,
   FAQS.tradeIn,
-  FAQS.finance,
   FAQS.showroom,
 ];
 
@@ -60,6 +83,38 @@ export const JEWELLERY_FAQS: FaqItem[] = [
   FAQS.bespoke,
   FAQS.certification,
   FAQS.prices,
-  FAQS.finance,
   FAQS.showroom,
+];
+
+export const BESPOKE_FAQS: FaqItem[] = [
+  FAQS.bespoke,
+  FAQS.designProcess,
+  FAQS.leadTime,
+  FAQS.labGrown,
+  FAQS.certification,
+  FAQS.prices,
+  FAQS.showroom,
+];
+
+export const SELL_FAQS: FaqItem[] = [
+  FAQS.tradeIn,
+  FAQS.valuation,
+  FAQS.payment,
+  FAQS.showroom,
+  FAQS.prices,
+];
+
+export const ABOUT_FAQS: FaqItem[] = [
+  FAQS.showroom,
+  FAQS.sourcing,
+  FAQS.certification,
+  FAQS.shipping,
+  FAQS.prices,
+];
+
+export const CONTACT_FAQS: FaqItem[] = [
+  FAQS.showroom,
+  FAQS.prices,
+  FAQS.sourcing,
+  FAQS.shipping,
 ];

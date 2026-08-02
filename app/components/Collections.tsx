@@ -45,18 +45,18 @@ export default function Collections() {
   return (
     <section
       id="collections"
-      className="pt-14 pb-14 max-md:pt-10 max-md:pb-10"
+      className="pt-8 pb-8 max-md:pt-6 max-md:pb-6"
     >
       <DragCarousel
         ariaLabel="Collections"
-        className="snap-proximity gap-1.5 px-[52px] max-md:px-6 max-md:gap-2 max-md:snap-mandatory"
+        className="snap-proximity gap-1.5 px-6 max-md:px-4 max-md:gap-2 max-md:snap-mandatory"
       >
         {items.map((item, i) => (
           <ScrollReveal
             key={item.title}
             // Desktop: all four fit the gutter exactly, so there is nothing to
             // scroll. Mobile keeps the swipeable 78vw carousel.
-            className="flex-none w-[calc((100vw-122px)/4)] max-md:w-[78vw] snap-center"
+            className="flex-none w-[calc((100vw-66px)/4)] max-md:w-[82vw] snap-center"
             delay={i * 0.1}
           >
             <Link

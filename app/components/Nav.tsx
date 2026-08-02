@@ -11,8 +11,10 @@ type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
 const LINKS = [
   { label: "Watches", href: "/watches" },
   { label: "Jewellery", href: "/jewellery" },
-  { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Bespoke", href: "/bespoke" },
+  { label: "Sell", href: "/sell" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Nav({
