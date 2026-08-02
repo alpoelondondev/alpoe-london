@@ -108,27 +108,60 @@ export default function Loader() {
       video.play().catch(() => {});
     }
 
-    // 2. Stop the starfield RAF immediately so the slide-up has zero
+    // 2. Stop the starfield RAF immediately so the reveal has zero
     //    competition for the main thread.
     if (rafRef.current !== null) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
 
-    // 3. Restore scroll, fire page-loaded for Hero text reveal, slide loader.
+    // 3. Restore scroll, fire page-loaded for Hero text reveal, open the splash.
     //    The flag lets a Hero that mounts later (client-side nav back to the
     //    homepage) know the splash is already gone, since the event has fired.
     document.body.style.overflow = "";
     window.__alpoeEntered = true;
     window.dispatchEvent(new Event("page-loaded"));
 
-    if (loaderRef.current) {
-      gsap.to(loaderRef.current, {
-        yPercent: -100,
-        duration: 1,
-        ease: "power4.inOut",
-      });
+    const el = loaderRef.current;
+    if (!el) return;
+
+    // The splash still covers the viewport while it plays out, so stop it
+    // swallowing clicks the moment the reveal starts.
+    el.style.pointerEvents = "none";
+    const done = () => {
+      el.style.display = "none";
+    };
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      gsap.to(el, { opacity: 0, duration: 0.4, ease: "none", onComplete: done });
+      return;
     }
+
+    // Iris reveal: a soft-edged hole opens from the centre and grows past the
+    // corners, so the site appears from the middle out rather than the splash
+    // sliding away. 150% covers the diagonal on any aspect ratio.
+    const iris = { r: 0 };
+    gsap.to(iris, {
+      r: 150,
+      duration: 1.2,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        const mask = `radial-gradient(circle at 50% 50%, transparent ${iris.r}%, black ${iris.r + 14}%)`;
+        el.style.maskImage = mask;
+        el.style.webkitMaskImage = mask;
+      },
+      onComplete: done,
+    });
+
+    // The mark and copy recede slightly and fade as the hole opens over them.
+    gsap.to(el.children, {
+      scale: 1.08,
+      opacity: 0,
+      duration: 0.75,
+      ease: "power2.in",
+      transformOrigin: "50% 50%",
+    });
   };
 
   useEffect(() => {
