@@ -14,7 +14,12 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
 
   const inner = (
     <>
-      <div className="w-full aspect-[4/5] relative bg-black/[0.03]">
+      {/* No photo means no picture to size the card around — keep it short. */}
+      <div
+        className={`w-full relative bg-black/[0.03] ${
+          hero ? "aspect-[4/5]" : "aspect-[4/3] min-h-[130px]"
+        }`}
+      >
         {hero ? (
           <Image
             src={hero}
@@ -23,11 +28,7 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
             sizes="(max-width: 768px) 50vw, (max-width: 1280px) 25vw, 300px"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-dim text-[10px] tracking-[0.18em] uppercase text-center px-3">
-            Image on request
-          </div>
-        )}
+        ) : null}
         {hero ? (
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.9)] via-[rgba(6,6,8,0.15)] to-transparent pointer-events-none" />
         ) : null}

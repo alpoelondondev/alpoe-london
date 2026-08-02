@@ -8,7 +8,7 @@ import BrandHero from "../components/BrandHero";
 import ProductGrid from "../components/ProductGrid";
 import ScrollReveal from "../components/ScrollReveal";
 import { WATCH_BRANDS } from "@/lib/taxonomy";
-import { getWatches } from "@/lib/products";
+import { getWatches, photosFirst } from "@/lib/products";
 import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { WATCH_FAQS } from "@/lib/faqs";
@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function WatchesIndex() {
   const watches = getWatches();
-  const featured = watches.filter((w) => w.featured).slice(0, 6);
+  const featured = watches.filter((w) => w.featured).sort(photosFirst).slice(0, 6);
 
   const ld = ldJsonGraph([
     ...collectionLd({

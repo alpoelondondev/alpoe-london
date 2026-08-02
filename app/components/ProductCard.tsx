@@ -14,7 +14,13 @@ export default function ProductCard({ product, priority }: { product: Product; p
 
   const inner = (
     <>
-      <div className="work-thumb w-full aspect-[4/5] block bg-black/[0.03] relative">
+      {/* Nothing to show without a photo, so the card sits shorter than a shot one.
+          The min-height keeps the overlaid title clear of the box at narrow widths. */}
+      <div
+        className={`work-thumb w-full block bg-black/[0.03] relative ${
+          hero ? "aspect-[4/5]" : "aspect-[4/3] min-h-[190px]"
+        }`}
+      >
         {hero ? (
           <Image
             src={hero}
@@ -24,11 +30,7 @@ export default function ProductCard({ product, priority }: { product: Product; p
             className="object-cover"
             priority={priority}
           />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-dim text-[11px] tracking-[0.18em] uppercase">
-            Image on request
-          </div>
-        )}
+        ) : null}
       </div>
       {hero ? (
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.88)] via-[rgba(6,6,8,0.1)] to-transparent pointer-events-none" />
@@ -50,7 +52,7 @@ export default function ProductCard({ product, priority }: { product: Product; p
         <h3 className={`font-serif text-[clamp(18px,2vw,26px)] tracking-[0.02em] leading-tight ${hero ? "text-[#f0ece4]" : ""}`}>
           {product.title}
         </h3>
-        <p className={`text-[11px] tracking-[0.14em] uppercase mt-1 ${hero ? "text-[rgba(240,236,228,0.6)]" : "text-dim"}`}>
+        <p className={`text-[11px] tracking-[0.14em] uppercase mt-1 ${hero ? "text-[rgba(240,236,228,0.6)]" : "text-accent"}`}>
           {hero ? "Price on Request" : "Enquire Now →"}
         </p>
       </div>

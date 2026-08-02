@@ -8,7 +8,7 @@ import BrandHero from "../components/BrandHero";
 import ProductGrid from "../components/ProductGrid";
 import ScrollReveal from "../components/ScrollReveal";
 import { JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
-import { getJewellery, productUrl } from "@/lib/products";
+import { getJewellery, photosFirst, productUrl } from "@/lib/products";
 import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { JEWELLERY_FAQS } from "@/lib/faqs";
@@ -22,7 +22,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function JewelleryIndex() {
   const items = getJewellery();
-  const featured = items.filter((j) => j.featured).slice(0, 6);
+  const featured = items.filter((j) => j.featured).sort(photosFirst).slice(0, 6);
 
   const ld = ldJsonGraph([
     ...collectionLd({

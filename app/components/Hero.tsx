@@ -14,6 +14,13 @@ export default function Hero() {
   const eyebrowRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // React only reflects `muted` on first render, so anything that flips it later
+  // (an extension, a restored media session) would leave the hero audible.
+  const keepMuted = () => {
+    const video = videoRef.current;
+    if (video && !video.muted) video.muted = true;
+  };
+
   useEffect(() => {
     const reveal = () => {
       if (eyebrowRef.current) {
@@ -21,18 +28,40 @@ export default function Hero() {
       }
     };
 
-    // The Loader also kicks the video off inside the click gesture for iOS;
-    // this is the belt-and-braces attempt once the splash clears.
+    // The clip buffers behind the splash (preload="auto") but holds on its first
+    // frame — there is no autoPlay. Playback starts from the Enter click, which
+    // is a real user gesture, so by then the footage is ready and permitted.
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.volume = 0;
+    }
+
+    // Loader.dismiss() also calls play() synchronously inside the click stack
+    // for iOS; this runs on the event it fires straight afterwards.
+    let entered = false;
+    const start = () => {
+      if (!video) return;
+      video.muted = true;
+      video.play().catch(() => {});
+    };
+
     const onLoaded = () => {
-      const video = videoRef.current;
-      if (video) {
-        video.muted = true;
-        video.play().catch(() => {});
-      }
+      entered = true;
+      start();
       reveal();
     };
 
     window.addEventListener("page-loaded", onLoaded);
+
+    // Only once past the splash: if the UA still refused the gesture it would
+    // paint its own start-playback button, so retry quietly on later input.
+    const retry = () => {
+      if (entered && video?.paused) start();
+    };
+    document.addEventListener("visibilitychange", retry);
+    window.addEventListener("pointerdown", retry, { passive: true });
+    window.addEventListener("touchstart", retry, { passive: true });
 
     // Hero scroll-out: fade and shift content up as user scrolls past
     if (contentRef.current && sectionRef.current) {
@@ -51,6 +80,9 @@ export default function Hero() {
 
     return () => {
       window.removeEventListener("page-loaded", onLoaded);
+      document.removeEventListener("visibilitychange", retry);
+      window.removeEventListener("pointerdown", retry);
+      window.removeEventListener("touchstart", retry);
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
@@ -61,17 +93,23 @@ export default function Hero() {
       id="hero"
       className="h-screen relative overflow-hidden flex flex-col justify-end px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
+      {/* Decorative footage: silent, uninteractive, and no user-agent transport
+          controls. pointer-events-none stops a tap landing on the video and
+          toggling playback, since nothing above it accepts pointer events. */}
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
         data-hero
-        autoPlay
         muted
         loop
         playsInline
+        controls={false}
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate noremoteplayback"
         preload="auto"
         poster="/alpoe-luxury-watches-hero-hatton-garden.jpg"
-        className="absolute inset-0 w-full h-full object-cover"
+        onVolumeChange={keepMuted}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       >
         <source
           src="/alpoe-luxury-watches-hero-hatton-garden.mp4"

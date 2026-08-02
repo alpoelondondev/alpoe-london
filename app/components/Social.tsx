@@ -17,6 +17,11 @@ const films: { title: string; image: string; video: string }[] = [
     image: "/alpoe-cuban-chains-hatton-garden.jpg",
     video: "/alpoe-cuban-chains-hatton-garden.mp4",
   },
+  {
+    title: "1-1 Service",
+    image: "/alpoe-1-1-service-10k-budget-hatton-garden.jpg",
+    video: "/alpoe-1-1-service-10k-budget-hatton-garden.mp4",
+  },
 ];
 
 export default function Social() {
@@ -80,7 +85,7 @@ export default function Social() {
     >
       <ScrollReveal>
         {/* Films from the feed — videos preloaded in the background */}
-        <div className="max-w-3xl mx-auto grid grid-cols-2 gap-4 max-md:grid-cols-1">
+        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-4 max-md:grid-cols-1">
           {films.map((film, i) => (
             <div
               key={film.video}

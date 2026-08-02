@@ -9,10 +9,10 @@ import Filters from "../../components/Filters";
 import ProductGrid from "../../components/ProductGrid";
 import AvailabilityCatalogue from "../../components/AvailabilityCatalogue";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
-import { getWatchesByBrand, productUrl } from "@/lib/products";
+import { getWatchesByBrand, hasPhotography, photosFirst, productUrl } from "@/lib/products";
 import { getBrandCatalogue } from "@/lib/catalogue";
 import { pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
-import type { WatchBrandSlug, Product, StockState } from "@/lib/types";
+import type { WatchBrandSlug, Product } from "@/lib/types";
 
 type RouteParams = { brand: string };
 type SearchParams = { [k: string]: string | string[] | undefined };
@@ -40,14 +40,20 @@ function applyFilters(products: Product[], sp: SearchParams) {
   const sort = typeof sp.sort === "string" ? sp.sort : "featured";
 
   let out = products.slice();
-  if (stock === "in_stock" || stock === "sourceable") {
-    out = out.filter((p) => p.stockState === (stock as StockState));
-  }
+  // Photography is the stock signal here: shot pieces are the ones we can show,
+  // everything else is an enquire-now reference we source to order.
+  if (stock === "in_stock") out = out.filter(hasPhotography);
+  else if (stock === "sourceable") out = out.filter((p) => !hasPhotography(p));
+
   if (model) out = out.filter((p) => p.model === model);
 
-  if (sort === "a-z") out.sort((a, b) => a.title.localeCompare(b.title));
-  else if (sort === "z-a") out.sort((a, b) => b.title.localeCompare(a.title));
-  else out.sort((a, b) => Number(b.featured) - Number(a.featured));
+  const tiebreak =
+    sort === "a-z"
+      ? (a: Product, b: Product) => a.title.localeCompare(b.title)
+      : sort === "z-a"
+        ? (a: Product, b: Product) => b.title.localeCompare(a.title)
+        : (a: Product, b: Product) => Number(b.featured) - Number(a.featured);
+  out.sort((a, b) => photosFirst(a, b) || tiebreak(a, b));
 
   return out;
 }

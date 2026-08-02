@@ -5,7 +5,7 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import Breadcrumbs from "../components/Breadcrumbs";
 import BrandHero from "../components/BrandHero";
 import ProductGrid from "../components/ProductGrid";
-import { getAllProducts } from "@/lib/products";
+import { getAllProducts, photosFirst } from "@/lib/products";
 import { pageMetadata } from "@/lib/seo";
 import type { Product } from "@/lib/types";
 
@@ -39,7 +39,11 @@ export default async function SearchPage(
 ) {
   const sp = await props.searchParams;
   const q = (typeof sp.q === "string" ? sp.q : "").trim();
-  const results = q ? getAllProducts().filter((p) => match(p, q.toLowerCase())) : [];
+  const results = q
+    ? getAllProducts()
+        .filter((p) => match(p, q.toLowerCase()))
+        .sort(photosFirst)
+    : [];
 
   return (
     <>

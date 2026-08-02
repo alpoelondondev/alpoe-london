@@ -158,7 +158,11 @@ export function groupByModel(items: CatalogueItem[]): CatalogueGroup[] {
     }
     map.get(key)!.push(item);
   }
-  return order.map((model) => ({ model, items: map.get(model)! }));
+  // Photographed references lead each model group; the sheet's order holds within.
+  return order.map((model) => ({
+    model,
+    items: map.get(model)!.sort((a, b) => Number(b.hasImages) - Number(a.hasImages)),
+  }));
 }
 
 export async function getBrandCatalogue(

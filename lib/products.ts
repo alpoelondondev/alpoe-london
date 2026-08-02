@@ -146,6 +146,17 @@ export function getAllProducts(): Product[] {
   return loadAll();
 }
 
+// Photography is what separates a piece we can put in front of someone from one
+// we source to order, so it drives both the stock filter and the listing order.
+export function hasPhotography(p: Pick<Product, "images">): boolean {
+  return p.images.length > 0;
+}
+
+/** Photographed pieces lead, enquire-now references follow. Pair with a tiebreak. */
+export function photosFirst(a: Product, b: Product): number {
+  return Number(hasPhotography(b)) - Number(hasPhotography(a));
+}
+
 export function getWatches(): Product[] {
   return loadAll().filter((p) => p.type === "watch");
 }
@@ -180,7 +191,10 @@ export function productUrl(p: Product): string {
 }
 
 export function getFeatured(limit = 6): Product[] {
-  return loadAll().filter((p) => p.featured).slice(0, limit);
+  return loadAll()
+    .filter((p) => p.featured)
+    .sort(photosFirst)
+    .slice(0, limit);
 }
 
 export function getRelated(p: Product, limit = 4): Product[] {
@@ -191,7 +205,8 @@ export function getRelated(p: Product, limit = 4): Product[] {
       (p.type === "jewellery" && x.categorySlug === p.categorySlug),
   );
   const rest = all.filter((x) => !sameGroup.includes(x));
-  return [...sameGroup, ...rest].slice(0, limit);
+  // Keep the same-group-first grouping, but surface photographed pieces within each.
+  return [...sameGroup.sort(photosFirst), ...rest.sort(photosFirst)].slice(0, limit);
 }
 
 export function buildSearchIndex(): SearchIndexEntry[] {

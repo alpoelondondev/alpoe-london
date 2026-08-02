@@ -5,6 +5,11 @@
   --color-fg: #171212;
   --color-dim: rgba(23, 18, 18, 0.45);
   --color-accent: #3d0100;
+  /* Warm champagne: the About heading over oxblood */
+  --color-champagne: #e8dcc4;
+  /* Lighter pour of the same tone for the FAQ band — still reads as a distinct
+     warm section against the cooler page cream either side of it. */
+  --color-champagne-soft: #eee7d7;
 
   --font-serif: var(--font-bebas-neue), sans-serif;
   --font-sans: var(--font-dm-sans), sans-serif;
@@ -90,6 +95,29 @@ body {
   50% {
     transform: translateX(-60px);
   }
+}
+
+/* Hero footage is decorative wallpaper. WebKit paints its own centred
+   start-playback button over the poster whenever autoplay is refused (iOS Low
+   Power Mode, Safari's autoplay policy) — strip every UA control so the banner
+   never shows a play/pause affordance. */
+video[data-hero]::-webkit-media-controls,
+video[data-hero]::-webkit-media-controls-enclosure,
+video[data-hero]::-webkit-media-controls-panel,
+video[data-hero]::-webkit-media-controls-play-button,
+video[data-hero]::-webkit-media-controls-overlay-play-button,
+video[data-hero]::-webkit-media-controls-start-playback-button,
+video[data-decorative]::-webkit-media-controls,
+video[data-decorative]::-webkit-media-controls-enclosure,
+video[data-decorative]::-webkit-media-controls-panel,
+video[data-decorative]::-webkit-media-controls-play-button,
+video[data-decorative]::-webkit-media-controls-overlay-play-button,
+video[data-decorative]::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Work item hover effect */
