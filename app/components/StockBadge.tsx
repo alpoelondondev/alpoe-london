@@ -1,17 +1,24 @@
 import type { StockState } from "@/lib/types";
 
-export default function StockBadge({ state }: { state: StockState }) {
+export default function StockBadge({
+  state,
+  onDark,
+}: {
+  state: StockState;
+  /** Sitting on a dark band — swap to light ink so it stays legible. */
+  onDark?: boolean;
+}) {
   if (state === "in_stock") {
     return (
-      <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase text-accent border border-accent/60 px-2 py-1">
-        <span className="block w-1.5 h-1.5 rounded-full bg-accent" />
+      <span className={`inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase px-2 py-1 border ${onDark ? "text-champagne border-champagne/50" : "text-accent border-accent/60"}`}>
+        <span className={`block w-1.5 h-1.5 rounded-full ${onDark ? "bg-champagne" : "bg-accent"}`} />
         In Stock
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase text-dim border border-black/25 px-2 py-1">
-      <span className="block w-1.5 h-1.5 rounded-full bg-dim" />
+    <span className={`inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase px-2 py-1 border ${onDark ? "text-[rgba(240,236,228,0.7)] border-white/30" : "text-dim border-black/25"}`}>
+      <span className={`block w-1.5 h-1.5 rounded-full ${onDark ? "bg-[rgba(240,236,228,0.7)]" : "bg-dim"}`} />
       Sourceable
     </span>
   );

@@ -25,12 +25,16 @@ export default function FeaturedCarousel({
     <section
       className={
         band
-          ? "bg-champagne-soft py-16 mb-20 max-md:py-12 max-md:mb-14"
+          ? "bg-accent py-16 mb-20 max-md:py-12 max-md:mb-14"
           : "py-4 pb-20 max-md:pb-14"
       }
     >
       <ScrollReveal>
-        <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 px-[52px] max-md:px-6">
+        <p
+          className={`section-label text-[11px] tracking-[0.2em] uppercase mb-8 px-[52px] max-md:px-6 ${
+            band ? "text-champagne" : "text-accent"
+          }`}
+        >
           {label}
         </p>
       </ScrollReveal>
@@ -44,7 +48,7 @@ export default function FeaturedCarousel({
             className="flex-none w-[calc((100vw-152px)/4)] max-md:w-[78vw] snap-center"
             delay={i * 0.08}
           >
-            <ProductCard product={p} priority={i < 3} />
+            <ProductCard product={p} priority={i < 3} onDark={band} />
           </ScrollReveal>
         ))}
       </DragCarousel>
