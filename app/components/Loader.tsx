@@ -320,7 +320,7 @@ export default function Loader() {
         ref={starsRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
       />
-      <div className="relative w-[225px] h-[225px] max-md:w-[160px] max-md:h-[160px]">
+      <div className="relative w-[340px] h-[340px] max-md:w-[230px] max-md:h-[230px]">
         <svg
           viewBox="0 0 225 225"
           className="w-full h-full"
@@ -367,10 +367,10 @@ export default function Loader() {
         <div ref={enterRef} className="-mt-2">
           <button
             onClick={dismiss}
-            aria-label="Enter Alpoe London"
+            aria-label="Enter site — Alpoe London"
             className="rounded-full border border-accent px-10 py-3.5 text-[11px] tracking-[0.24em] uppercase text-accent cursor-pointer cursor-big animate-pulse-enter hover:animate-none hover:bg-accent hover:text-bg transition-colors duration-300"
           >
-            Enter Alpoe London
+            Enter Site
           </button>
         </div>
       )}
@@ -378,7 +378,9 @@ export default function Loader() {
       <div className="text-[11px] tracking-[0.2em] uppercase text-dim mt-6">
         {progress}%
       </div>
-      <div className="text-[11px] tracking-[0.2em] uppercase text-dim mt-2">
+      {/* The cycling phrase is the one bit of motion here, so it carries more
+          weight than the static lines around it. */}
+      <div className="text-[20px] tracking-[0.22em] uppercase text-accent mt-3 max-md:text-[15px]">
         <ShuffleText />
       </div>
       <div className="text-[11px] tracking-[0.2em] uppercase text-dim mt-1">
