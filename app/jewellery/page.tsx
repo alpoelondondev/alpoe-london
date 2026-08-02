@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 import Breadcrumbs from "../components/Breadcrumbs";
 import BrandHero from "../components/BrandHero";
-import ProductGrid from "../components/ProductGrid";
+import FeaturedCarousel from "../components/FeaturedCarousel";
 import ScrollReveal from "../components/ScrollReveal";
 import { JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { getJewellery, photosFirst, productUrl } from "@/lib/products";
@@ -76,16 +76,11 @@ export default function JewelleryIndex() {
           </ul>
         </section>
 
-        {featured.length ? (
-          <section className="px-[52px] pb-20 max-md:px-6">
-            <ScrollReveal>
-              <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 flex items-center gap-[18px]">
-                Featured Pieces
-              </p>
-            </ScrollReveal>
-            <ProductGrid products={featured} />
-          </section>
-        ) : null}
+        <FeaturedCarousel
+          label="Featured Pieces"
+          ariaLabel="Featured jewellery"
+          products={featured}
+        />
         <FAQ items={JEWELLERY_FAQS} />
       </main>
       <Footer />

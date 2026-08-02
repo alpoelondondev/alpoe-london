@@ -24,7 +24,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-black/[0.08] bg-[#e6e4df] text-fg">
       <div className="px-[52px] pt-20 pb-14 max-md:px-6 max-md:pt-14 max-md:pb-10">
-        <div className="grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-10">
+        <div className="grid grid-cols-2 gap-12 max-lg:grid-cols-1 max-lg:gap-10">
           <div className="flex flex-col gap-6">
             <Link
               href="/"

@@ -10,7 +10,7 @@ import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
 import WatchOptions from "../../../components/WatchOptions";
 import StockBadge from "../../../components/StockBadge";
-import ProductCard from "../../../components/ProductCard";
+import FeaturedCarousel from "../../../components/FeaturedCarousel";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
 import {
   buildSearchIndex,
@@ -148,20 +148,12 @@ export default async function WatchProductPage(
           </div>
         </section>
 
-        {related.length ? (
-          <section className="px-[52px] pb-24 max-md:px-6">
-            <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 flex items-center gap-[18px]">
-              You may also like
-            </p>
-            <div className="grid grid-cols-12 gap-5 max-md:gap-4">
-              {related.map((r) => (
-                <div key={r.id} className="col-span-4 max-md:col-span-12">
-                  <ProductCard product={r} />
-                </div>
-              ))}
-            </div>
-          </section>
-        ) : null}
+        <FeaturedCarousel
+          label="You may also like"
+          ariaLabel="Related pieces"
+          products={related}
+          band={false}
+        />
         <ProductEnquiryStrip product={product} />
       </main>
       <Footer />
