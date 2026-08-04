@@ -7,13 +7,7 @@ import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 const PROFILE_URL = "https://www.instagram.com/alpoe/";
 
-const films: { title: string; image: string; video: string }[] = [
-  {
-    title: "In the Showroom",
-    image: "/alpoe-bespoke-jewellery-service-hatton-garden.jpg",
-    video: "/alpoe-bespoke-jewellery-service-hatton-garden.mp4",
-  },
-];
+const films: { title: string; image: string; video: string }[] = [];
 
 // The grid tightens as films are added or pulled, so one film centres rather
 // than sitting in the left third of an empty row.
@@ -85,6 +79,7 @@ export default function Social() {
     >
       <ScrollReveal>
         {/* Films from the feed — videos preloaded in the background */}
+        {films.length > 0 && (
         <div className={`${gridClass} mx-auto grid gap-4 max-md:grid-cols-1`}>
           {films.map((film, i) => (
             <div
@@ -181,9 +176,14 @@ export default function Social() {
             </div>
           ))}
         </div>
+        )}
 
         {/* Social badges sit under the films */}
-        <div className="max-w-3xl mx-auto mt-12 grid grid-cols-2 gap-6 max-md:mt-10">
+        <div
+          className={`max-w-3xl mx-auto grid grid-cols-2 gap-6 ${
+            films.length > 0 ? "mt-12 max-md:mt-10" : ""
+          }`}
+        >
           <a
             href={PROFILE_URL}
             target="_blank"
