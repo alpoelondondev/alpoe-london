@@ -1,7 +1,8 @@
 import type { Product } from "@/lib/types";
-import { hasPhotography } from "@/lib/products";
+import { hasPhotography, productUrl } from "@/lib/products";
 import { buildEnquiryUrl } from "@/lib/whatsapp";
-import ProductCard from "./ProductCard";
+import ProductTile, { TILE_GRID_CLASS } from "./ProductTile";
+import StockBadge from "./StockBadge";
 import EnquiryList, { type EnquiryListRow } from "./EnquiryList";
 
 function toRow(p: Product): EnquiryListRow {
@@ -37,11 +38,29 @@ export default function ProductGrid({ products }: { products: Product[] }) {
   return (
     <>
       {shot.length ? (
-        <div className="grid grid-cols-12 gap-5 max-md:gap-4">
+        <div className={TILE_GRID_CLASS}>
           {shot.map((p, i) => (
-            <div key={p.id} className="col-span-4 max-md:col-span-12">
-              <ProductCard product={p} priority={i < 3} />
-            </div>
+            <ProductTile
+              key={p.id}
+              href={productUrl(p)}
+              image={p.images[0]}
+              alt={
+                [p.brand, p.model, p.referenceNumber, p.materials]
+                  .filter(Boolean)
+                  .join(" ")
+                  .trim() || p.title
+              }
+              title={p.title}
+              meta={
+                [p.model, p.referenceNumber ? `Ref ${p.referenceNumber}` : null]
+                  .filter(Boolean)
+                  .join(" · ") || undefined
+              }
+              cta="View Details"
+              badge={<StockBadge state={p.stockState} />}
+              priority={i < 3}
+              ariaLabel={`View ${p.title}`}
+            />
           ))}
         </div>
       ) : null}

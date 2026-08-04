@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { WATCH_BRANDS } from "./taxonomy";
 import type { Product, WatchBrandSlug } from "./types";
-import { IMAGE_MANIFEST } from "./generated/image-manifest";
+import { IMAGE_MANIFEST, VARIANT_IMAGES } from "./generated/image-manifest";
 import { getDescription, getModelOverview, getReferenceResearch } from "./research";
 
 // Live "Available to Source" catalogue, driven by the published Google Sheet.
@@ -99,14 +99,53 @@ async function loadRaw(): Promise<string> {
   }
 }
 
-function imagesFor(brandSlug: WatchBrandSlug, reference: string): string[] {
+// References are not all filename-safe — Patek uses "5811/1G-001", Cartier
+// "WGBB0046". Folding every non-alphanumeric run to a hyphen gives a key that a
+// directory name can actually carry. Rolex refs are already alphanumeric, so
+// their existing keys are unchanged.
+export function referenceKey(reference: string): string {
+  return reference
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// One reference, many configurations: a Datejust 126334 covers 21 sheet rows that
+// differ only by dial and bracelet. Keying images on the reference alone made all
+// 21 show the same photo, so a shared reference resolves through the variant pins
+// in data/variant-images.tsv. A row we have no pin for yields no image at all and
+// drops to the enquiry list — better a listing with no photo than one wearing
+// another variant's dial.
+function imagesFor(
+  brandSlug: WatchBrandSlug,
+  reference: string,
+  variant: string,
+  shared: boolean,
+): string[] {
   if (!reference) return [];
-  return IMAGE_MANIFEST[`${brandSlug}/${reference.toLowerCase()}`] ?? [];
+  const refK = referenceKey(reference);
+  const all = IMAGE_MANIFEST[`${brandSlug}/${refK}`] ?? [];
+  if (!all.length) return [];
+  if (!shared) return all;
+
+  const pinned = VARIANT_IMAGES[`${brandSlug}/${refK}/${referenceKey(variant)}`];
+  return pinned ? [pinned] : [];
 }
 
 function toItems(rows: string[][]): CatalogueItem[] {
   const items: CatalogueItem[] = [];
   const seen = new Set<string>();
+
+  // First pass: which references carry more than one listing. Those are the ones
+  // that need a per-variant pin rather than the whole reference's image set.
+  const refCounts = new Map<string, number>();
+  for (const cols of rows) {
+    const brandSlug = BRAND_SLUG_BY_NAME.get((cols[0] ?? "").trim().toLowerCase());
+    const reference = (cols[3] ?? "").trim();
+    if (!brandSlug || !reference) continue;
+    const k = `${brandSlug}/${referenceKey(reference)}`;
+    refCounts.set(k, (refCounts.get(k) ?? 0) + 1);
+  }
 
   for (const cols of rows) {
     const brand = (cols[0] ?? "").trim();
@@ -125,7 +164,8 @@ function toItems(rows: string[][]): CatalogueItem[] {
     while (seen.has(slug)) slug = `${baseSlug}-${n++}`;
     seen.add(slug);
 
-    const images = imagesFor(brandSlug, reference);
+    const shared = (refCounts.get(`${brandSlug}/${referenceKey(reference)}`) ?? 0) > 1;
+    const images = imagesFor(brandSlug, reference, variant, shared);
     items.push({
       id: `cat-${brandSlug}-${slug}`,
       brand,

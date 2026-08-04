@@ -1,49 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
 import { catalogueItemUrl, type CatalogueItem } from "@/lib/catalogue";
 import { buildCatalogueEnquiryUrl } from "@/lib/whatsapp";
+import ProductTile, { TILE_GRID_CLASS } from "./ProductTile";
 import EnquiryList, { type EnquiryListRow } from "./EnquiryList";
 
 function CatalogueCard({ item }: { item: CatalogueItem }) {
-  const hero = item.images[0];
-  const alt = [item.brand, item.model, item.variant, item.reference]
-    .filter(Boolean)
-    .join(" ");
-
-  const cardClass =
-    "group flex flex-col relative overflow-hidden border border-black/[0.08] bg-black/[0.03] transition hover:border-black/[0.20]";
-
   return (
-    <Link
+    <ProductTile
       href={catalogueItemUrl(item)}
-      className={cardClass}
-      aria-label={`View ${item.brand} ${item.model} ${item.variant}`}
-    >
-      <div className="w-full relative aspect-[4/5] bg-black/[0.03]">
-        <Image
-          src={hero}
-          alt={alt}
-          fill
-          draggable={false}
-          sizes="(max-width: 768px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-        />
-      </div>
-
-      <div className="flex flex-1 flex-col gap-1 p-3">
-        <h4 className="font-serif text-[15px] leading-tight tracking-[0.01em]">
-          {item.variant || item.model}
-        </h4>
-        <p className="text-[10px] tracking-[0.14em] uppercase text-dim">
-          {item.model}
-          {item.reference ? ` · Ref ${item.reference}` : ""}
-        </p>
-        {/* CTA sits on the tile itself rather than reading as a text link. */}
-        <span className="mt-3 block w-full bg-accent px-3 py-2 text-center text-[10px] font-medium tracking-[0.16em] uppercase text-bg transition group-hover:brightness-110">
-          View Details
-        </span>
-      </div>
-    </Link>
+      image={item.images[0]}
+      alt={[item.brand, item.model, item.variant, item.reference].filter(Boolean).join(" ")}
+      title={item.variant || item.model}
+      meta={
+        [item.model, item.reference ? `Ref ${item.reference}` : null]
+          .filter(Boolean)
+          .join(" · ") || undefined
+      }
+      cta="View Details"
+      ariaLabel={`View ${item.brand} ${item.model} ${item.variant}`}
+    />
   );
 }
 
@@ -89,7 +63,7 @@ export default function AvailabilityCatalogue({
       </header>
 
       {shot.length ? (
-        <div className="mt-10 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1 max-md:gap-3">
+        <div className={`mt-10 ${TILE_GRID_CLASS}`}>
           {shot.map((item) => (
             <CatalogueCard key={item.id} item={item} />
           ))}

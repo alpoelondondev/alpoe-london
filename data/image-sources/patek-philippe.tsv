@@ -1,0 +1,22 @@
+# reference	source_url	provenance (manufacturer DAM alt text)
+# Patek Philippe official DAM (patek-res.cloudinary.com). Asset IDs harvested from
+# rendered markup; each row was matched to our reference on model + metal + dial.
+# Rows marked [dial-unverified] matched on model + metal only — the source caption
+# carried no dial colour, so the variant suffix is inferred from our own catalogue.
+5811/1G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4827-51887	Nautilus 5811 White Gold Blue Dial
+5712/1R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4808-51887	Nautilus 5712 Moon Phases Rose Gold
+5726A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202217-51887	Nautilus 5726 Annual Calendar, steel on leather strap [dial tone reads brown, cf. official black-blue]
+5167A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202472-51887	Aquanaut 5167 Steel Black Dial
+5164R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202475-51887	Aquanaut 5164 Travel Time Rose Gold
+5168G-010	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202459-51887	Aquanaut 5168 White Gold Green Dial
+5968A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202154-51887	Aquanaut 5968 Chronograph Steel
+# REJECTED on visual check — the source caption did not match the actual image.
+# Do not re-add without confirming the render against the reference.
+# 5726/1A-014	.../202222-51887	captioned "Steel Green Dial"; render is blue-grey on bracelet (a 5726/1A-010)
+# 5320G-011	.../202198-51887	captioned "Perpetual Calendar 5320 White Gold"; render is a steel green-dial chronograph (a 5905/1A)
+#
+# Matched to a reference, but the asset ID is retired — 404 from the DAM. Needs a
+# replacement URL from a current Patek source before it can be fetched.
+# 5227G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4882-51887	Calatrava 5227 White Gold Silver Dial [DEAD]
+# 5205G-013	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202363-51887	Annual Calendar 5205 White Gold Blue Dial [DEAD]
+# 5230G-010	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202263-51887	World Time 5230 White Gold Blue Dial [DEAD]

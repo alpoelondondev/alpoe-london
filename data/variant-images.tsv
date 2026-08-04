@@ -1,0 +1,57 @@
+# Pins one photo to one configuration, for references the sheet lists more than once.
+#
+# brand-slug	reference	variant	filename
+#
+# "variant" must match the sheet's "Variant / Name" cell (folded to lowercase and
+# hyphens, so punctuation and spacing don't matter). "filename" is a file already
+# inside public/products/<brand>/<reference>/ — gen-image-manifest.mjs warns and
+# skips the row if it isn't.
+#
+# A listing on a shared reference with no row here shows NO photo and drops to the
+# enquiry list. That is deliberate: showing another variant's dial is worse.
+#
+# Every pin below was set by opening the image and matching it to the variant.
+
+# GMT-Master II — the pairs differ only by bracelet. Note vtnr is ordered the
+# opposite way round to blnr/grnr, so these are not derivable from file order.
+rolex	126710BLNR	Batman – Jubilee	1.png
+rolex	126710BLNR	Batgirl – Oyster	2.png
+rolex	126710BLRO	Pepsi – Jubilee	1.png
+rolex	126710BLRO	Pepsi – Oyster	2.png
+rolex	126720VTNR	Sprite – Oyster	1.png
+rolex	126720VTNR	Sprite – Jubilee	2.png
+rolex	126710GRNR	Bruce Wayne – Jubilee	1.png
+rolex	126710GRNR	Bruce Wayne – Oyster	2.png
+rolex	126719BLRO	White Gold Pepsi – Meteorite Dial	1.png
+rolex	126719BLRO	White Gold Pepsi – Blue Dial	2.png
+
+# Daytona
+rolex	126500LN	Panda	1.png
+rolex	126500LN	Reverse Panda	2.png
+rolex	126503	Steel & Gold – Black Dial	2.png
+rolex	126505	Rose Gold – Black Dial	1.png
+rolex	126506	Platinum – Blue Dial	1.png
+rolex	126506	Platinum – Baguette Blue Dial	2.png
+rolex	126509	White Gold – Reverse Panda	1.png
+rolex	126509	White Gold – Panda	3.png
+rolex	126508	Yellow Gold – White Dial	1.png
+
+# Sky-Dweller
+rolex	336933	Steel & Gold – Champagne	1.png
+rolex	336938	Yellow Gold – Black Dial	2.png
+
+# Datejust 41
+rolex	126334	Silver	2.png
+rolex	126334	White	5.png
+
+# Photos present but matching NO listing we carry, and listings with no photo:
+#   336933/2 champagne on Jubilee (dup dial)  ·  336933 "Black Dial" has no photo
+#   336938/1 champagne  ·  336938 "Green Dial" has no photo
+#   126334/3,/4 rhodium WITH diamond markers — our "Grey Rhodium" row implies plain,
+#     and rows that do carry stones say so ("MOP Diamond"), so left unpinned
+#   126503/1  white dial      — our only pale listing is "Champagne Dial"; not the same colour
+#   126505/2  black + diamond dots  ·  126505/3 sundust w/ baton (listing wants baguette)
+#   126508/2  black racing    ·  126508/3 black + diamond dots
+#   126509/2  black + diamond ·  126509/4 blue dial
+# Unmatched listings: 126505 Chocolate, Sundust Baguette · 126508 John Mayer, Pikachu
+#   · 126509 Le Mans 100th, Tahitian · 126503 Champagne
