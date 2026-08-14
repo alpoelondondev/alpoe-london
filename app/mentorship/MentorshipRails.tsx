@@ -26,7 +26,7 @@ gsap.registerPlugin(ScrollTrigger);
  * same grounds.
  */
 
-const RAIL_CLASS = "gap-4 px-[52px] max-md:gap-3 max-md:px-6";
+const RAIL_CLASS = "gap-3 px-[52px] max-md:gap-2.5 max-md:px-6";
 
 // Card widths are set per rail so all three overflow the viewport at any width.
 // At one shared width the three-card rail would fit on screen with nothing left
@@ -34,33 +34,33 @@ const RAIL_CLASS = "gap-4 px-[52px] max-md:gap-3 max-md:px-6";
 const RAILS = [
   {
     label: "What the mentorship covers",
-    cardClass: "w-[clamp(280px,24vw,400px)] max-md:w-[80vw]",
+    cardClass: "w-[clamp(230px,19vw,300px)] max-md:w-[74vw]",
     items: [
-      "The route a piece takes before it reaches a window — dealers, wholesalers, private sellers, auction. Who to approach, what to say, and which doors stay shut until you have a track record.",
-      "Reading a reference, condition and paperwork, then checking it against live market data instead of a hopeful asking price. The tells that separate a clean deal from an expensive lesson.",
-      "What to pay, what to hold out for, and how long your money can sit in stock before a good buy turns into a bad month. Pricing without gutting the number you walk away with.",
-      "How offers are made and answered between dealers, when to walk, and how to hold a position without burning a contact you will need again next quarter.",
-      "Positioning, photography, how you write about a piece, and the difference between content that moves stock and content that just gets views.",
-      "Authentication, provenance, paperwork and the checks that protect you — the admin nobody enjoys and everybody regrets skipping.",
+      "Where stock actually comes from — dealers, wholesalers, private sellers, auction — and how to get through each door.",
+      "Reading a reference, its condition and its papers against what the market pays today, not what the tag says.",
+      "What to pay, what to hold out for, and how long money can sit in a piece before it costs you.",
+      "How offers get made between dealers: when to push, when to walk, how not to burn a contact.",
+      "Positioning and photography, and why some content shifts stock while the rest just gets views.",
+      "Authentication, provenance, and the paperwork that protects you when a deal goes wrong.",
     ],
   },
   {
     label: "How the mentorship runs",
-    cardClass: "w-[clamp(300px,32vw,520px)] max-md:w-[80vw]",
+    cardClass: "w-[clamp(250px,25vw,380px)] max-md:w-[74vw]",
     items: [
-      "A short message about what you have done so far and what you want out of it. No test, no pitch — we just need to know the room is right for you.",
-      "Then the invite: access to the private Telegram group, plus the groundwork breakdowns to work through in your own time.",
-      "Notes go out as prices shift and pieces cross our desk, so what you are reading is this week's market rather than last year's theory.",
-      "And when it matters, you put a specific piece, price or supplier in front of the group before you commit. That is the part you cannot get from a course.",
+      "Message us with what you have done so far and what you want out of it. No test, no pitch.",
+      "The invite follows, with the groundwork to work through in your own time.",
+      "Notes go out as prices move, so you are always reading this week's market.",
+      "Put a piece, a price or a supplier to the group before you commit — the part a course cannot give you.",
     ],
   },
   {
     label: "Who the mentorship is for",
-    cardClass: "w-[clamp(300px,42vw,680px)] max-md:w-[80vw]",
+    cardClass: "w-[clamp(270px,33vw,500px)] max-md:w-[74vw]",
     items: [
-      "You want into the trade but have no supplier, no stock and nobody to ask. We start at the beginning and give you the questions to walk in with.",
-      "You have done a few deals off your own back and want to run it as a business — consistent sourcing, real margin, and buyers who come back.",
-      "You have the audience and the eye, but sourcing and pricing keep pinching. We fill in the trade side so the brand can carry weight.",
+      "No supplier, no stock, nobody to ask. We start you at the beginning.",
+      "Already flipping pieces, and after steady sourcing, real margin and buyers who come back.",
+      "You have the audience and the eye — it is sourcing and pricing that keep pinching.",
     ],
   },
 ];
@@ -129,9 +129,13 @@ export default function MentorshipRails() {
 
   return (
     <section aria-label="What the mentorship covers, how it runs and who it is for">
+      {/* Lighter than any of the theme's surfaces, so the band reads as a
+          break in the page's run of near-blacks rather than another panel.
+          Mixed from the foreground rather than hard-coded, so it tracks the
+          palette if the ground ever shifts. */}
       <div
         ref={pinRef}
-        className="flex flex-col justify-center gap-4 overflow-hidden bg-panel-soft py-16 max-md:gap-3 max-md:py-14"
+        className="flex flex-col justify-center gap-3 overflow-hidden bg-fg/[0.09] py-10 max-md:gap-2.5 max-md:py-8"
       >
         {RAILS.map((rail, i) => (
           <DragCarousel
@@ -154,11 +158,14 @@ export default function MentorshipRails() {
                 {/* cursor-big swells the site cursor over the card; data-haptic
                     gives the press buzz the linked carousels have — a panel
                     that isn't a link gets neither for free. */}
+                {/* Darker than the band it sits on — inverted from the rest of
+                    the site, where panels lift off the ground. On a light band
+                    it is the recess that reads as a card. */}
                 <article
                   data-haptic
-                  className="cursor-big h-full border border-fg/[0.10] bg-fg/[0.04] p-7 transition-colors duration-300 hover:border-accent/40 hover:bg-fg/[0.06] max-md:p-6"
+                  className="cursor-big h-full border border-fg/[0.08] bg-bg/70 p-5 transition-colors duration-300 hover:border-accent/50 hover:bg-bg/90 max-md:p-4"
                 >
-                  <p className="text-[14px] leading-relaxed text-dim">{copy}</p>
+                  <p className="text-[13px] leading-relaxed text-fg/65">{copy}</p>
                 </article>
               </div>
             ))}
