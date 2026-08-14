@@ -81,26 +81,42 @@ const RAILS = [
 ];
 
 /**
- * A card built as a small piece of the lockup: rose ground, off-black ink, and
- * the frame's broken bracket around it — horizontals running in from each end
- * and stopping short of the middle, exactly as the artwork draws them. Copy is
- * set in the lockup's own Open Sans, tracked a little, so a plaque reads as
- * cut from the same plate as the mark above it.
+ * A card built as a small piece of the lockup: the frame's broken bracket
+ * around it — horizontals running in from each end and stopping short of the
+ * middle, exactly as the artwork draws them — with copy set in the lockup's own
+ * Open Sans, tracked a little, so a plaque reads as cut from the same plate as
+ * the mark above it.
+ *
+ * Alternating cards run the pair the other way up: off-black ground with the
+ * rose in the rules and the ink, the same relationship the mark itself has with
+ * the page. A rail of one colour was a wall; struck against each other they
+ * beat, and the eye follows the beat along the rail.
  */
-function Plaque({ children }: { children: string }) {
+function Plaque({ children, inverted }: { children: string; inverted: boolean }) {
+  const rule = inverted ? "bg-accent/70" : "bg-bg/60";
   return (
     <article
       data-haptic
-      className="cursor-big group relative h-full bg-accent p-9 transition-colors duration-300 hover:bg-accent-deep max-md:p-7"
+      className={`cursor-big relative h-full p-9 transition-colors duration-300 max-md:p-7 ${
+        inverted ? "bg-bg hover:bg-panel-soft" : "bg-accent hover:bg-accent-deep"
+      }`}
     >
-      <div className="pointer-events-none absolute inset-4 border-l border-r border-bg/60 max-md:inset-3">
+      <div
+        className={`pointer-events-none absolute inset-4 border-l border-r max-md:inset-3 ${
+          inverted ? "border-accent/70" : "border-bg/60"
+        }`}
+      >
         {/* The bracket's horizontals, broken where the artwork breaks them. */}
-        <span className="absolute -top-px left-0 h-px w-[34%] bg-bg/60" />
-        <span className="absolute -top-px right-0 h-px w-[34%] bg-bg/60" />
-        <span className="absolute -bottom-px left-0 h-px w-[34%] bg-bg/60" />
-        <span className="absolute -bottom-px right-0 h-px w-[34%] bg-bg/60" />
+        <span className={`absolute -top-px left-0 h-px w-[34%] ${rule}`} />
+        <span className={`absolute -top-px right-0 h-px w-[34%] ${rule}`} />
+        <span className={`absolute -bottom-px left-0 h-px w-[34%] ${rule}`} />
+        <span className={`absolute -bottom-px right-0 h-px w-[34%] ${rule}`} />
       </div>
-      <p className="relative font-opensans text-[15px] leading-[1.75] tracking-[0.01em] text-bg/85 max-md:text-[14px]">
+      <p
+        className={`relative font-opensans text-[15px] leading-[1.75] tracking-[0.01em] max-md:text-[14px] ${
+          inverted ? "text-accent" : "text-bg/85"
+        }`}
+      >
         {children}
       </p>
     </article>
@@ -207,9 +223,11 @@ export default function MentorshipRails() {
             }}
             className={RAIL_CLASS}
           >
-            {rail.items.map((copy) => (
+            {rail.items.map((copy, j) => (
               <div key={copy} className={`flex-none ${rail.cardClass}`}>
-                <Plaque>{copy}</Plaque>
+                {/* Offset by the rail's own index, so the two rows land out of
+                    phase and the band checkers rather than striping. */}
+                <Plaque inverted={(i + j) % 2 === 1}>{copy}</Plaque>
               </div>
             ))}
           </DragCarousel>
