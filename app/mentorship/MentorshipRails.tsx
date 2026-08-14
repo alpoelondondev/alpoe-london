@@ -56,26 +56,32 @@ const windowed = (p: number, [from, to]: number[]) =>
  * an inventory rather than an argument, and the third rail's material — who the
  * room is for — is already answered at length in the FAQ below, so cutting it
  * loses nothing from the page.
+ *
+ * Each card opens on the verb, addressed to the reader: what they will learn,
+ * meet, know or bring, rather than a description of a subject the course
+ * covers. On a card small enough to take in at a glance the difference is the
+ * whole message — "where stock comes from" is a syllabus entry, "learn where
+ * stock comes from, meet dealers" is something happening to them.
  */
 const RAILS = [
   {
     label: "What the mentorship covers",
     cardClass: "w-[clamp(300px,34vw,520px)] max-md:w-[80vw]",
     items: [
-      "Where stock comes from — dealers, wholesalers, private sellers, the auction floor — and how to get through each door.",
-      "Reading a reference, its condition and its papers against what the market pays today, not what the tag says.",
-      "What to pay, what to hold out for, and how offers get made between dealers without burning a contact.",
-      "Positioning, photography, provenance, and the paperwork that protects you when a deal goes wrong.",
+      "Learn where stock comes from. Meet dealers, wholesalers and private sellers.",
+      "Value a piece properly — reference, condition and papers against today's market.",
+      "Know what to pay, what to hold out for, and how to put an offer in.",
+      "Build a name buyers trust, and keep the paperwork that protects you.",
     ],
   },
   {
     label: "How the mentorship runs",
     cardClass: "w-[clamp(320px,36vw,560px)] max-md:w-[80vw]",
     items: [
-      "Message us with what you have done so far and what you want out of it. No test, no pitch.",
-      "The invite follows, with the groundwork to work through in your own time.",
-      "Notes go out as prices move, so you are always reading this week's market.",
-      "Put a piece, a price or a supplier to the group before you commit — the part a course cannot give you.",
+      "Tell us where you are up to. No test, no pitch.",
+      "Get the invite, and the groundwork to work through in your own time.",
+      "Read this week's market, in notes that go out as prices move.",
+      "Bring us a piece, a price or a supplier before you commit to it.",
     ],
   },
 ];
