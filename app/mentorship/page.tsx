@@ -120,21 +120,10 @@ function RailCard({ children }: { children: string }) {
   return (
     <article
       data-haptic
-      className="cursor-big group h-full border border-fg/[0.10] bg-fg/[0.04] p-7 transition-colors duration-300 hover:border-accent/40 hover:bg-fg/[0.06]"
+      className="cursor-big h-full border border-fg/[0.10] bg-fg/[0.04] p-7 transition-colors duration-300 hover:border-accent/40 hover:bg-fg/[0.06]"
     >
-      <span className="block h-px w-9 bg-accent/50 transition-all duration-300 group-hover:w-16 group-hover:bg-accent" />
-      <p className="mt-6 text-[14px] leading-relaxed text-dim">{children}</p>
+      <p className="text-[14px] leading-relaxed text-dim">{children}</p>
     </article>
-  );
-}
-
-/** Sits under each rail so the swipe is advertised rather than discovered. */
-function RailHint() {
-  return (
-    <div className="mt-7 flex items-center gap-4 px-[52px] text-[10px] tracking-[0.2em] uppercase text-dim max-md:mt-6 max-md:px-6">
-      <span className="h-px w-14 bg-fg/20" />
-      <span>Drag or swipe</span>
-    </div>
   );
 }
 
@@ -234,10 +223,7 @@ export default function MentorshipPage() {
             there is more without a caption saying so. */}
         <section className="bg-panel-soft py-20 max-md:py-14">
           <ScrollReveal className="px-[52px] max-md:px-6">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-champagne">
-              What we cover
-            </p>
-            <h2 className="mt-4 max-w-3xl font-serif text-[clamp(28px,4vw,48px)] leading-tight">
+            <h2 className="max-w-3xl font-serif text-[clamp(28px,4vw,48px)] leading-tight">
               The Parts Nobody Explains Until You Have Already Paid For Them
             </h2>
           </ScrollReveal>
@@ -255,15 +241,11 @@ export default function MentorshipPage() {
               </ScrollReveal>
             ))}
           </DragCarousel>
-          <RailHint />
         </section>
 
         <section className="py-20 max-md:py-14">
           <ScrollReveal className="px-[52px] max-md:px-6">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-champagne">
-              How it runs
-            </p>
-            <h2 className="mt-4 max-w-3xl font-serif text-[clamp(28px,4vw,48px)] leading-tight">
+            <h2 className="max-w-3xl font-serif text-[clamp(28px,4vw,48px)] leading-tight">
               A Private Room, Not A Video Library
             </h2>
           </ScrollReveal>
@@ -281,15 +263,11 @@ export default function MentorshipPage() {
               </ScrollReveal>
             ))}
           </DragCarousel>
-          <RailHint />
         </section>
 
         <section className="bg-panel-soft py-20 max-md:py-14">
           <ScrollReveal className="px-[52px] max-md:px-6">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-champagne">
-              Who it&apos;s for
-            </p>
-            <h2 className="mt-4 max-w-3xl font-serif text-[clamp(28px,4vw,48px)] leading-tight">
+            <h2 className="max-w-3xl font-serif text-[clamp(28px,4vw,48px)] leading-tight">
               Three People Usually Walk In
             </h2>
           </ScrollReveal>
@@ -307,7 +285,6 @@ export default function MentorshipPage() {
               </ScrollReveal>
             ))}
           </DragCarousel>
-          <RailHint />
           <ScrollReveal delay={0.24} className="px-[52px] max-md:px-6">
             <p className="mx-auto mt-10 max-w-2xl text-center text-[14px] leading-relaxed text-dim">
               It is the business of the trade, not bench work — we do not teach setting or
