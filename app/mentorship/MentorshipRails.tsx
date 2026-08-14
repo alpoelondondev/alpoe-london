@@ -1,34 +1,36 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DragCarousel from "../components/DragCarousel";
 
+gsap.registerPlugin(ScrollTrigger);
+
 /**
- * The three rails, parked in one section and driven together.
+ * The three rails, held on screen together and driven by the page's scroll.
  *
- * The section is deliberately three viewports tall with its contents stuck to
- * the top of the screen. What that buys is the behaviour asked for: the page
- * appears to stop when the rails arrive, and the scrolling you keep doing goes
- * sideways into all three at once instead of downwards. Once they run out, the
- * section releases and the page carries on.
+ * Arriving here, the block is pinned: the page stops moving down and the
+ * scrolling you keep doing runs all three rails sideways instead. Only once
+ * the longest rail has reached its last card does the pin release and the page
+ * carry on.
  *
- * The pin is CSS `sticky`, not a scroll hijack — nothing is intercepting the
- * wheel, so trackpad, keyboard and screen-reader scrolling all behave. Each
- * rail is still a real scroll container that can be dragged or swiped by hand
- * at any point; the drag rides on top of the scroll position rather than
- * fighting it.
+ * The pin is GSAP's, not CSS `position: sticky`. Sticky is the obvious tool and
+ * it does not work here — globals.css sets `overflow-x: hidden` on `html`,
+ * which silently kills sticky for every descendant. GSAP pins with fixed
+ * positioning instead, which that rule cannot reach.
  *
- * Below md the pin is dropped entirely and these are three ordinary swipeable
- * rails. A phone would have spent three screens of scroll on one section, and
- * swiping is the more natural gesture there anyway.
+ * Below md the pin is dropped and these are three ordinary swipeable rails. A
+ * phone would otherwise spend several screens of scroll on one section, and
+ * swiping is the natural gesture there anyway. Reduced motion opts out on the
+ * same grounds.
  */
 
 const RAIL_CLASS = "gap-4 px-[52px] max-md:gap-3 max-md:px-6";
 
-// Card widths are set per rail so that all three overflow the viewport at any
-// width — three cards at the six-card size would fit on screen with nothing
-// left to travel, and a rail with no overflow would sit still while its
-// neighbours moved.
+// Card widths are set per rail so all three overflow the viewport at any width.
+// At one shared width the three-card rail would fit on screen with nothing left
+// to travel, and would sit still while its neighbours moved.
 const RAILS = [
   {
     label: "What the mentorship covers",
@@ -64,21 +66,87 @@ const RAILS = [
 ];
 
 export default function MentorshipRails() {
-  const trackRef = useRef<HTMLElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  // Spelled out rather than mapped over RAILS: hooks cannot run in a loop, and
+  // there are exactly three rails.
+  const railA = useRef<HTMLDivElement>(null);
+  const railB = useRef<HTMLDivElement>(null);
+  const railC = useRef<HTMLDivElement>(null);
+  const railRefs = useMemo(() => [railA, railB, railC], []);
+
+  /** Where scroll alone would put each rail, before any manual drag. */
+  const bases = useRef<number[]>(RAILS.map(() => 0));
+  /** How far the user has dragged each rail off that base. Kept, never reset. */
+  const offsets = useRef<number[]>(RAILS.map(() => 0));
+  /**
+   * Counts the writes this component made to each rail, so its scroll handler
+   * can tell its own work from a real user scroll. A boolean would lose
+   * offsets when several writes land before their scroll events do.
+   */
+  const pending = useRef<number[]>(RAILS.map(() => 0));
+
+  useEffect(() => {
+    const pin = pinRef.current;
+    if (!pin) return;
+
+    const travel = (el: HTMLDivElement | null) =>
+      el ? Math.max(0, el.scrollWidth - el.clientWidth) : 0;
+
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const st = ScrollTrigger.create({
+        trigger: pin,
+        start: "center center",
+        // Held for exactly as long as the longest rail needs, so the page
+        // releases the moment the last card lands rather than on a round
+        // number of viewports. Recomputed on resize.
+        end: () => `+=${Math.max(...railRefs.map((r) => travel(r.current)), 1)}`,
+        pin: true,
+        pinSpacing: true,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          railRefs.forEach((ref, i) => {
+            const el = ref.current;
+            if (!el) return;
+            const max = travel(el);
+            if (max <= 0) return;
+            bases.current[i] = self.progress * max;
+            // A manual drag rides on top of the scroll position rather than
+            // cancelling it, so the page never snatches a rail back from
+            // under a finger that has just moved it.
+            const target = Math.min(max, Math.max(0, bases.current[i] + offsets.current[i]));
+            if (Math.abs(el.scrollLeft - target) < 0.5) return;
+            pending.current[i] += 1;
+            el.scrollLeft = target;
+          });
+        },
+      });
+      return () => st.kill();
+    });
+
+    return () => mm.revert();
+  }, [railRefs]);
 
   return (
-    <section
-      ref={trackRef}
-      aria-label="What the mentorship covers, how it runs and who it is for"
-      className="relative bg-panel-soft h-[300vh] max-md:h-auto max-md:py-14"
-    >
-      <div className="sticky top-0 flex h-[100svh] flex-col justify-center gap-4 overflow-hidden max-md:static max-md:h-auto max-md:gap-3 max-md:overflow-visible">
-        {RAILS.map((rail) => (
+    <section aria-label="What the mentorship covers, how it runs and who it is for">
+      <div
+        ref={pinRef}
+        className="flex flex-col justify-center gap-4 overflow-hidden bg-panel-soft py-16 max-md:gap-3 max-md:py-14"
+      >
+        {RAILS.map((rail, i) => (
           <DragCarousel
             key={rail.label}
             ariaLabel={rail.label}
-            drift="forward"
-            driftTrigger={trackRef}
+            scrollerRef={railRefs[i]}
+            noSnap
+            onScroll={() => {
+              if (pending.current[i] > 0) {
+                pending.current[i] -= 1;
+                return;
+              }
+              const el = railRefs[i].current;
+              if (el) offsets.current[i] = el.scrollLeft - bases.current[i];
+            }}
             className={RAIL_CLASS}
           >
             {rail.items.map((copy) => (
