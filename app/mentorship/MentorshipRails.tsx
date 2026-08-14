@@ -52,37 +52,24 @@ const windowed = (p: number, [from, to]: number[]) =>
   Math.min(1, Math.max(0, (p - from) / (to - from)));
 
 /**
- * Four to a rail, down from six and four and three. Thirteen passages read as
- * an inventory rather than an argument, and the third rail's material — who the
- * room is for — is already answered at length in the FAQ below, so cutting it
- * loses nothing from the page.
+ * One word a plate. The plaques carry no sentence at all now — the lede above
+ * says what the programme is and the FAQs below explain it in full, so the band
+ * is a statement rather than an explanation.
  *
- * Each card opens on the verb, addressed to the reader: what they will learn,
- * meet, know or bring, rather than a description of a subject the course
- * covers. On a card small enough to take in at a glance the difference is the
- * whole message — "where stock comes from" is a syllabus entry, "learn where
- * stock comes from, meet dealers" is something happening to them.
+ * Cards stay wide despite holding a single word: the width is what gives each
+ * rail something to travel across, and at four to a rail a narrower plate would
+ * fit the screen with nothing left to scroll.
  */
 const RAILS = [
   {
-    label: "What the mentorship covers",
+    label: "What the mentorship gives you",
     cardClass: "w-[clamp(300px,34vw,520px)] max-md:w-[80vw]",
-    items: [
-      "Learn where stock comes from. Meet dealers, wholesalers and private sellers.",
-      "Value a piece properly — reference, condition and papers against today's market.",
-      "Know what to pay, what to hold out for, and how to put an offer in.",
-      "Build a name buyers trust, and keep the paperwork that protects you.",
-    ],
+    items: ["Learn", "Grow", "Achieve", "Network"],
   },
   {
-    label: "How the mentorship runs",
+    label: "What the mentorship gives you, continued",
     cardClass: "w-[clamp(320px,36vw,560px)] max-md:w-[80vw]",
-    items: [
-      "Tell us where you are up to. No test, no pitch.",
-      "Get the invite, and the groundwork to work through in your own time.",
-      "Read this week's market, in notes that go out as prices move.",
-      "Bring us a piece, a price or a supplier before you commit to it.",
-    ],
+    items: ["Brand", "Source", "Trade", "Scale"],
   },
 ];
 
@@ -103,7 +90,9 @@ function Plaque({ children, inverted }: { children: string; inverted: boolean })
   return (
     <article
       data-haptic
-      className={`cursor-big relative h-full p-9 transition-colors duration-300 max-md:p-7 ${
+      // A single word gives a card no height of its own, so the plate is given
+      // one — near 5:2, the proportion the lockup's own frame sits at.
+      className={`cursor-big relative h-full min-h-[190px] p-9 transition-colors duration-300 max-md:min-h-[150px] max-md:p-7 ${
         inverted ? "bg-bg hover:bg-panel-soft" : "bg-accent hover:bg-accent-deep"
       }`}
     >
@@ -118,12 +107,16 @@ function Plaque({ children, inverted }: { children: string; inverted: boolean })
         <span className={`absolute -bottom-px left-0 h-px w-[34%] ${rule}`} />
         <span className={`absolute -bottom-px right-0 h-px w-[34%] ${rule}`} />
       </div>
+      {/* Centred and tracked wide, so the plate reads as engraved rather than
+          as a card with a word sitting in the corner of it. */}
       <p
-        className={`relative font-opensans text-[15px] leading-[1.75] tracking-[0.01em] max-md:text-[14px] ${
-          inverted ? "text-accent" : "text-bg/85"
+        className={`relative flex h-full items-center justify-center text-center font-opensans text-[clamp(26px,3.2vw,44px)] uppercase leading-none tracking-[0.18em] ${
+          inverted ? "text-accent" : "text-bg"
         }`}
       >
-        {children}
+        {/* The tracking pads the right of the last letter too, which walks the
+            word off-centre; half of it back as padding re-centres it. */}
+        <span className="pl-[0.18em]">{children}</span>
       </p>
     </article>
   );
@@ -205,7 +198,7 @@ export default function MentorshipRails() {
   }, [railRefs]);
 
   return (
-    <section aria-label="What the mentorship covers and how it runs">
+    <section aria-label="What the mentorship gives you">
       {/* Back to a dark band. The plaques are the metal now, and they are what
           breaks the page's run of near-blacks — a lightened ground behind them
           only muddies the rose. */}
