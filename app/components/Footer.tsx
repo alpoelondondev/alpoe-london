@@ -36,7 +36,7 @@ export default function Footer() {
             >
               {/* Inline rather than the .svg file: that asset is hard-filled
                   near-black and would disappear against this ground. */}
-              <LockupMark width="min(260px, 70vw)" fill="var(--color-blush)" />
+              <LockupMark width="min(170px, 55vw)" fill="var(--color-blush)" />
             </Link>
             <p className="text-[13px] leading-[1.7] text-fg/55 max-w-sm">
               A Hatton Garden dealership sourcing authenticated luxury
