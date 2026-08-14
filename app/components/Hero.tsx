@@ -4,29 +4,20 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShuffleText } from "./Loader";
-import { LOGO_PATHS } from "./logoPaths";
+import HeroLockup from "./HeroLockup";
+import { LOCKUP_ASPECT } from "./heroLockupShapes";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * One length drives the knockout mask, the hairline that traces it and the
- * eyebrow's offset below it, so the three can never drift out of register.
- * The cap wins on desktop; the vw term takes over on phones.
+ * One length drives the whole hero: the lockup's own size and the eyebrow
+ * below it. The cap wins on desktop, the vw term takes over on phones, and the
+ * vh term stops the lockup outgrowing a short window — the section is no longer
+ * a full viewport tall, so height is the tighter constraint on a laptop.
  */
-const MARK_WIDTH = "min(86vw, 560px)";
-/** Half the wordmark's height, as a fraction of its width (126 ÷ 201 ÷ 2). */
-const MARK_HALF_HEIGHT_RATIO = 0.3134;
-
-/**
- * The wordmark as a mask image. Explicit width/height give the SVG an intrinsic
- * aspect ratio, without which `mask-size: <width> auto` has nothing to resolve
- * the `auto` against.
- */
-const WORDMARK_MASK = `url("data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" width="201" height="126" viewBox="12 42 201 126">${LOGO_PATHS.map(
-    (d) => `<path d="${d}" fill="#000"/>`,
-  ).join("")}</svg>`,
-)}")`;
+const LOCKUP_WIDTH = "min(92vw, 1100px, 114vh)";
+/** Half the lockup's height as a fraction of its width, for the eyebrow. */
+const LOCKUP_HALF_HEIGHT_RATIO = 1 / (2 * LOCKUP_ASPECT);
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -118,7 +109,10 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="h-screen relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
+      // Short of a full viewport by exactly the brand strip's height (py-10 +
+      // a 32px logo + hairline borders = 114px), so that strip is already on
+      // screen at rest rather than needing a scroll to discover.
+      className="h-[calc(100svh-114px)] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
       {/* Decorative footage, full-bleed: silent, uninteractive, and no
           user-agent transport controls. It keeps its full framing — the
@@ -145,69 +139,33 @@ export default function Hero() {
         />
       </video>
 
-      {/* Solid page ground laid over the whole hero with the wordmark punched
-          out of it, so the only footage that shows is what falls inside the
-          letterforms. Two mask layers composited as XOR do the punching: the
-          gradient covers everything, the wordmark subtracts itself from it.
-          Should a browser ignore mask-composite the layers simply add, the
-          overlay stays solid, and the hairline below leaves an outlined
-          wordmark on off-black — dulled, but never broken. */}
-      <div
-        className="absolute inset-0 z-3 bg-bg pointer-events-none"
-        style={{
-          maskImage: `${WORDMARK_MASK}, linear-gradient(#000, #000)`,
-          WebkitMaskImage: `${WORDMARK_MASK}, linear-gradient(#000, #000)`,
-          maskSize: `${MARK_WIDTH} auto, auto`,
-          WebkitMaskSize: `${MARK_WIDTH} auto, auto`,
-          maskPosition: "center, center",
-          WebkitMaskPosition: "center, center",
-          maskRepeat: "no-repeat, no-repeat",
-          WebkitMaskRepeat: "no-repeat, no-repeat",
-          maskComposite: "exclude",
-          WebkitMaskComposite: "xor",
-        }}
-      />
+      {/* The page ground, with the mark cut out of it for the footage to play
+          through. It paints the whole hero on its own — see the bleed in
+          HeroLockup — rather than being a patch inside a separate backdrop,
+          which is what previously left a hairline of video along the top edge
+          wherever the two disagreed by a sub-pixel. */}
+      <div className="absolute inset-0 z-3 pointer-events-none" aria-hidden="true">
+        <HeroLockup width={LOCKUP_WIDTH} />
+      </div>
 
       <div
         ref={eyebrowRef}
         className="absolute inset-0 z-4 opacity-0 pointer-events-none"
       >
-        {/* Hairline tracing the cutout. Watch footage runs dark, and without an
-            edge the letterforms dissolve into the off-black around them. */}
-        <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 aspect-[201/126]"
-          style={{ width: MARK_WIDTH }}
-        >
-          <svg
-            viewBox="12 42 201 126"
-            className="h-full w-full"
-            xmlns="http://www.w3.org/2000/svg"
-            role="img"
-            aria-label="Alpoe London"
-          >
-            {LOGO_PATHS.map((d, i) => (
-              <path
-                key={i}
-                d={d}
-                fill="none"
-                stroke="var(--color-accent)"
-                strokeWidth="0.7"
-              />
-            ))}
-          </svg>
-        </div>
-
-        {/* Pinned below the cutout rather than flowed after it, since the mask
-            centres the wordmark on the section and not on this pair. Set to the
-            mark's own width and justified, so the line runs exactly as long as
-            LONDON does above it whichever phrase is showing; the size tracks the
-            same length so the pairing holds from phone to desktop. */}
+        {/* Pinned below the lockup rather than flowed after it, since the
+            lockup is centred on the section and not on this pair. It takes the
+            frame's full width and justifies into it, so the line runs exactly
+            as long as the frame whichever phrase is showing. The size tracks
+            that same length, holding the pairing from phone to desktop. */}
         <p
-          className="absolute left-1/2 flex -translate-x-1/2 uppercase text-accent"
+          className="absolute left-1/2 flex -translate-x-1/2 font-medium uppercase text-accent"
           style={{
-            top: `calc(50% + (${MARK_WIDTH}) * ${MARK_HALF_HEIGHT_RATIO} + 30px)`,
-            width: MARK_WIDTH,
-            fontSize: `calc((${MARK_WIDTH}) * 0.038)`,
+            top: `calc(50% + (${LOCKUP_WIDTH}) * ${LOCKUP_HALF_HEIGHT_RATIO} + 34px)`,
+            width: LOCKUP_WIDTH,
+            // Sized off the lockup so the pairing holds — but with a floor, or
+            // a phone's narrow lockup drives this down to about 7px, which is
+            // where the rose on off-black stops being readable at all.
+            fontSize: `max(12px, calc((${LOCKUP_WIDTH}) * 0.019))`,
           }}
         >
           <ShuffleText fill />

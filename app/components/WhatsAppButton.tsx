@@ -13,7 +13,11 @@ export default function WhatsAppButton() {
       // Cream pill with the WhatsApp badge sitting inside its left end.
       className="group fixed bottom-8 right-6 z-[100] flex items-center gap-3 rounded-full bg-fg py-1.5 pl-1.5 pr-5 shadow-lg shadow-black/50 transition-transform duration-200 hover:scale-105 max-md:pr-4"
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#25D366] max-md:h-10 max-md:w-10">
+      {/* Turns a half-circle anticlockwise, so the badge reads as rolling
+          upwards. `group-active` covers touch, where there is no hover to
+          drive it — and on the devices that do fake one, a stuck :hover would
+          otherwise leave the badge upside down after the tap. */}
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#25D366] transition-transform duration-500 ease-out group-hover:-rotate-180 group-active:-rotate-180 max-md:h-10 max-md:w-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 32 32"

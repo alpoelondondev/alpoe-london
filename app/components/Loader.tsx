@@ -68,7 +68,10 @@ export function ShuffleText({
       className="flex w-full justify-between tracking-normal tabular-nums"
     >
       {Array.from(text, (ch, i) => (
-        <span key={i}>{ch === " " ? " " : ch}</span>
+        // A plain space collapses to nothing as a flex item, which would run
+        // the two words of a phrase together; a non-breaking one keeps its
+        // glyph width so the word gap still reads wider than the letter gaps.
+        <span key={i}>{ch === " " ? "\u00A0" : ch}</span>
       ))}
     </span>
   );

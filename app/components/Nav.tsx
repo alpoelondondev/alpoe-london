@@ -1,12 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import SearchTrigger from "./SearchTrigger";
+import {
+  MONOGRAM_ASPECT,
+  MONOGRAM_GLYPHS,
+  MONOGRAM_VIEWBOX,
+} from "./monogramPaths";
 import type { SearchIndexEntry } from "@/lib/types";
 
 type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
+
+/**
+ * Cap height of the monogram in the bar. The wordmark it replaces was a 48px
+ * box only about half filled with ink, so matching its *drawn* height — rather
+ * than its box — is what keeps the bar's weight unchanged.
+ */
+const MONOGRAM_HEIGHT = 28;
 
 const LINKS = [
   { label: "Watches", href: "/watches" },
@@ -42,17 +53,30 @@ export default function Nav({
     <>
       <Link
         href="/"
-        className="fixed top-2.5 left-[52px] z-[201] block max-md:left-6 max-md:top-2"
+        // Centred against the bar by hand: the bar is 40px of content plus its
+        // padding (72px tall, 64px under md), so the mark sits at half that
+        // less half its own height. The old offset was tuned to a 48px box.
+        className="fixed top-[22px] left-[52px] z-[201] block max-md:left-6 max-md:top-[18px]"
         aria-label="Alpoe London — Home"
       >
-        <Image
-          src="/alpoe-london-logo-transparent.svg"
-          alt="Alpoe London"
-          width={48}
-          height={48}
-          className="opacity-90"
-          priority
-        />
+        {/* Sized from a height, since the viewBox is cropped tight to the ink
+            and the lockup's width follows from its own aspect. */}
+        <svg
+          viewBox={MONOGRAM_VIEWBOX}
+          height={MONOGRAM_HEIGHT}
+          width={Math.round(MONOGRAM_HEIGHT * MONOGRAM_ASPECT)}
+          aria-hidden="true"
+          fill="var(--color-accent)"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {MONOGRAM_GLYPHS.map((glyph, i) => (
+            <g key={i} transform={glyph.transform}>
+              {glyph.paths.map((d, j) => (
+                <path key={j} d={d} />
+              ))}
+            </g>
+          ))}
+        </svg>
       </Link>
 
       <nav

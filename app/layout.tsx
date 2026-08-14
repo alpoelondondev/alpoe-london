@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import {
+  Bebas_Neue,
+  DM_Sans,
+  Open_Sans,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
 // Splash screen temporarily disabled — re-enable by uncommenting this import
 // and the <Loader /> below. Hero detects the missing #loader and reveals
@@ -16,9 +21,26 @@ const bebasNeue = Bebas_Neue({
 });
 
 const dmSans = DM_Sans({
-  weight: ["300", "400"],
+  // 500 carries the hero's scrambling eyebrow, which is rose on off-black at
+  // around 12px on a phone — too little contrast to read at the body's 300.
+  weight: ["300", "400", "500"],
   subsets: ["latin"],
   variable: "--font-dm-sans",
+});
+
+// The two faces of the hero lockup. Only eleven letters are set in them, so
+// both are pinned to the single weight the artwork uses rather than loading a
+// range.
+const playfairDisplay = Playfair_Display({
+  weight: "500",
+  subsets: ["latin"],
+  variable: "--font-playfair-display",
+});
+
+const openSans = Open_Sans({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-open-sans",
 });
 
 export const metadata: Metadata = {
@@ -74,7 +96,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" className={`${bebasNeue.variable} ${dmSans.variable}`}>
+    <html
+      lang="en-GB"
+      className={`${bebasNeue.variable} ${dmSans.variable} ${playfairDisplay.variable} ${openSans.variable}`}
+    >
       <body>
         <SiteLDJSON />
         <CustomCursor />

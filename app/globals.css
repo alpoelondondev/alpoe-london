@@ -52,6 +52,9 @@
 
   --font-serif: var(--font-bebas-neue), sans-serif;
   --font-sans: var(--font-dm-sans), sans-serif;
+  /* Hero lockup only — the two faces the wordmark artwork is set in. */
+  --font-playfair: var(--font-playfair-display), serif;
+  --font-opensans: var(--font-open-sans), sans-serif;
 }
 
 html {

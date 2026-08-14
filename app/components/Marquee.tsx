@@ -18,7 +18,7 @@ export default function Marquee() {
         logos={brandLogos}
         speed={60}
         direction="left"
-        logoHeight={32}
+        logoHeight={44}
         gap={80}
         scaleOnHover
         fadeOut

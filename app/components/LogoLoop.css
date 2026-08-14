@@ -82,7 +82,7 @@
      rest: held back at rest so the strip reads as a quiet brand wall, full on
      hover. */
   filter: brightness(0) invert(1);
-  opacity: 0.72;
+  opacity: 0.85;
 }
 
 .logoloop__item:hover img {

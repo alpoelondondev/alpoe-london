@@ -5,6 +5,28 @@ import ScrollReveal from "./ScrollReveal";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import type { FaqItem } from "@/lib/faqs";
 
+/** The closed state's affordance: a watch, standing in for the usual plus. */
+function WatchIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-[22px] w-[22px]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* Strap stubs, case, crown, hands. */}
+      <path d="M9 3.4h6l-.5 3.2M9 20.6h6l-.5-3.2M9.5 6.6L9 3.4" />
+      <circle cx="12" cy="12" r="5.4" />
+      <path d="M17.7 10.9h1.1v2.2h-1.1" />
+      <path d="M12 9.1V12l1.9 1.2" />
+    </svg>
+  );
+}
+
 function FaqCard({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
 
@@ -19,8 +41,29 @@ function FaqCard({ item }: { item: FaqItem }) {
         <span className="font-serif text-[17px] tracking-[0.03em] leading-snug">
           {item.question}
         </span>
-        <span className="text-[15px] tracking-[0.2em] text-dim shrink-0">
-          {open ? "−" : "+"}
+        <span
+          className={`flex shrink-0 flex-col items-center gap-1.5 self-start transition-colors ${
+            open ? "text-accent" : "text-dim"
+          }`}
+        >
+          <WatchIcon />
+          {/* Points down when there is more to open, and turns through to point
+              back up once it is. Transform only, so it composites on the GPU
+              and costs nothing next to the row's own height animation. */}
+          <svg
+            viewBox="0 0 24 24"
+            className={`h-3.5 w-3.5 transition-transform duration-500 ease-out ${
+              open ? "rotate-180" : "rotate-0"
+            }`}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
         </span>
       </button>
       <div
