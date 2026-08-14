@@ -5,17 +5,20 @@ export default function BrandHero({
   title,
   copy,
 }: {
-  eyebrow: string;
+  /** Omit to open straight on the headline, rule and all. */
+  eyebrow?: string;
   title: string;
   copy: string;
 }) {
   return (
     <section className="px-[52px] pt-36 pb-14 max-md:px-6 max-md:pt-28 max-md:pb-10">
-      <ScrollReveal>
-        <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-6 flex items-center gap-[18px]">
-          {eyebrow}
-        </p>
-      </ScrollReveal>
+      {eyebrow ? (
+        <ScrollReveal>
+          <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-6 flex items-center gap-[18px]">
+            {eyebrow}
+          </p>
+        </ScrollReveal>
+      ) : null}
       <ScrollReveal>
         <h1 className="font-serif text-[clamp(40px,6vw,88px)] tracking-[0.02em] leading-[0.95] max-w-4xl">
           {title}
