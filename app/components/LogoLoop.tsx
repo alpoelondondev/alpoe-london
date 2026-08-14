@@ -44,6 +44,8 @@ type LogoLoopProps = {
   fadeOut?: boolean;
   fadeOutColor?: string;
   scaleOnHover?: boolean;
+  /** Let the viewer throw the strip by hand; it eases back to `speed` after. */
+  draggable?: boolean;
   renderItem?: (item: LogoItem, key: string) => ReactNode;
   ariaLabel?: string;
   className?: string;
@@ -119,12 +121,16 @@ const useAnimationLoop = (
   seqHeight: number,
   isHovered: boolean,
   hoverSpeed: number | undefined,
-  isVertical: boolean
+  isVertical: boolean,
+  draggable: boolean
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
+  const draggingRef = useRef(false);
+  /** Set once a press has travelled far enough to be a drag, not a click. */
+  const movedRef = useRef(false);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -142,9 +148,20 @@ const useAnimationLoop = (
       if (lastTimestampRef.current === null) lastTimestampRef.current = timestamp;
       const deltaTime = Math.max(0, timestamp - lastTimestampRef.current) / 1000;
       lastTimestampRef.current = timestamp;
-      const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
-      const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
-      velocityRef.current += (target - velocityRef.current) * easingFactor;
+      // While a finger or cursor is down the offset is driven by the pointer,
+      // not by velocity — but velocity keeps being measured, so releasing hands
+      // the flick straight to the easing below and the strip carries on from
+      // exactly the speed it was thrown at.
+      if (!draggingRef.current) {
+        const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
+        const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
+        velocityRef.current += (target - velocityRef.current) * easingFactor;
+      }
+
+      if (draggingRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
 
       if (seqSize > 0) {
         let nextOffset = offsetRef.current + velocityRef.current * deltaTime;
@@ -158,12 +175,96 @@ const useAnimationLoop = (
     };
 
     rafRef.current = requestAnimationFrame(animate);
+
+    if (!draggable || isVertical || seqSize <= 0) {
+      return () => {
+        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+        lastTimestampRef.current = null;
+      };
+    }
+
+    const axis = (e: PointerEvent) => e.clientX;
+    let startPos = 0;
+    let startOffset = 0;
+    let lastPos = 0;
+    let lastTime = 0;
+
+    const onPointerDown = (e: PointerEvent) => {
+      // Mouse: left button only. Touch and pen always qualify.
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      draggingRef.current = true;
+      movedRef.current = false;
+      startPos = lastPos = axis(e);
+      startOffset = offsetRef.current;
+      lastTime = e.timeStamp;
+      track.setPointerCapture(e.pointerId);
+      track.style.cursor = "grabbing";
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!draggingRef.current) return;
+      const pos = axis(e);
+      const travel = pos - startPos;
+      if (Math.abs(travel) > 4) movedRef.current = true;
+
+      // Dragging right should carry the strip right, and the track is drawn at
+      // translate(-offset), so the offset moves opposite to the finger.
+      const next = startOffset - travel;
+      offsetRef.current = ((next % seqSize) + seqSize) % seqSize;
+      track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+
+      const dt = (e.timeStamp - lastTime) / 1000;
+      if (dt > 0) velocityRef.current = -(pos - lastPos) / dt;
+      lastPos = pos;
+      lastTime = e.timeStamp;
+    };
+
+    const onPointerUp = (e: PointerEvent) => {
+      if (!draggingRef.current) return;
+      draggingRef.current = false;
+      track.style.cursor = "";
+      if (track.hasPointerCapture(e.pointerId))
+        track.releasePointerCapture(e.pointerId);
+      // A slow release should not fling; anything faster keeps its momentum and
+      // is eased back to the resting speed by the loop above.
+      if (Math.abs(velocityRef.current) < 20) velocityRef.current = targetVelocity;
+    };
+
+    // A drag that ends on a logo must not also follow its link.
+    const onClickCapture = (e: MouseEvent) => {
+      if (!movedRef.current) return;
+      e.preventDefault();
+      e.stopPropagation();
+      movedRef.current = false;
+    };
+
+    track.addEventListener("pointerdown", onPointerDown);
+    track.addEventListener("pointermove", onPointerMove);
+    track.addEventListener("pointerup", onPointerUp);
+    track.addEventListener("pointercancel", onPointerUp);
+    track.addEventListener("click", onClickCapture, true);
+
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       lastTimestampRef.current = null;
+      track.removeEventListener("pointerdown", onPointerDown);
+      track.removeEventListener("pointermove", onPointerMove);
+      track.removeEventListener("pointerup", onPointerUp);
+      track.removeEventListener("pointercancel", onPointerUp);
+      track.removeEventListener("click", onClickCapture, true);
     };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, trackRef]);
+  }, [
+    targetVelocity,
+    seqWidth,
+    seqHeight,
+    isHovered,
+    hoverSpeed,
+    isVertical,
+    trackRef,
+    draggable,
+  ]);
 };
 
 const LogoLoop = memo(function LogoLoop({
@@ -178,6 +279,7 @@ const LogoLoop = memo(function LogoLoop({
   fadeOut = false,
   fadeOutColor,
   scaleOnHover = false,
+  draggable = false,
   renderItem,
   ariaLabel = "Partner logos",
   className,
@@ -237,7 +339,7 @@ const LogoLoop = memo(function LogoLoop({
 
   useResizeObserver(updateDimensions, [containerRef, seqRef], [logos, gap, logoHeight, isVertical]);
   useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight, isVertical]);
-  useAnimationLoop(trackRef, targetVelocity, seqWidth, seqHeight, isHovered, effectiveHoverSpeed, isVertical);
+  useAnimationLoop(trackRef, targetVelocity, seqWidth, seqHeight, isHovered, effectiveHoverSpeed, isVertical, draggable);
 
   const cssVariables = useMemo(
     () =>
@@ -256,6 +358,7 @@ const LogoLoop = memo(function LogoLoop({
         isVertical ? "logoloop--vertical" : "logoloop--horizontal",
         fadeOut && "logoloop--fade",
         scaleOnHover && "logoloop--scale-hover",
+        draggable && "logoloop--draggable",
         className,
       ]
         .filter(Boolean)
@@ -301,13 +404,13 @@ const LogoLoop = memo(function LogoLoop({
       const itemAriaLabel = isNodeItem
         ? item.ariaLabel ?? item.title
         : item.alt ?? item.title;
+      const isInternal = item.href?.startsWith("/");
       const itemContent = item.href ? (
         <a
           className="logoloop__link"
           href={item.href}
           aria-label={itemAriaLabel || "logo link"}
-          target="_blank"
-          rel="noreferrer noopener"
+          {...(isInternal ? {} : { target: "_blank", rel: "noreferrer noopener" })}
         >
           {content}
         </a>

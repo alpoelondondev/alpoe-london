@@ -51,40 +51,40 @@ export default function Nav({
 
   return (
     <>
-      <Link
-        href="/"
-        // Centred against the bar by hand: the bar is 40px of content plus its
-        // padding (72px tall, 64px under md), so the mark sits at half that
-        // less half its own height. The old offset was tuned to a 48px box.
-        className="fixed top-[22px] left-[52px] z-[201] block max-md:left-6 max-md:top-[18px]"
-        aria-label="Alpoe London — Home"
-      >
-        {/* Sized from a height, since the viewBox is cropped tight to the ink
-            and the lockup's width follows from its own aspect. */}
-        <svg
-          viewBox={MONOGRAM_VIEWBOX}
-          height={MONOGRAM_HEIGHT}
-          width={Math.round(MONOGRAM_HEIGHT * MONOGRAM_ASPECT)}
-          aria-hidden="true"
-          fill="var(--color-accent)"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {MONOGRAM_GLYPHS.map((glyph, i) => (
-            <g key={i} transform={glyph.transform}>
-              {glyph.paths.map((d, j) => (
-                <path key={j} d={d} />
-              ))}
-            </g>
-          ))}
-        </svg>
-      </Link>
-
       <nav
         className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-3 transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <div className="w-10 h-10" />
+        {/* Inside the bar rather than fixed alongside it, so it travels with
+            the hide-on-scroll transform. Fixed, it stayed put once the bar had
+            gone and sat over the page — worst on a phone, where there is no
+            margin for it to hide in. The h-10 keeps the bar the height its
+            40px spacer used to set, so nothing below it shifts. */}
+        <Link
+          href="/"
+          className="flex h-10 shrink-0 items-center"
+          aria-label="Alpoe London — Home"
+        >
+          {/* Sized from a height, since the viewBox is cropped tight to the ink
+              and the lockup's width follows from its own aspect. */}
+          <svg
+            viewBox={MONOGRAM_VIEWBOX}
+            height={MONOGRAM_HEIGHT}
+            width={Math.round(MONOGRAM_HEIGHT * MONOGRAM_ASPECT)}
+            aria-hidden="true"
+            fill="var(--color-accent)"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {MONOGRAM_GLYPHS.map((glyph, i) => (
+              <g key={i} transform={glyph.transform}>
+                {glyph.paths.map((d, j) => (
+                  <path key={j} d={d} />
+                ))}
+              </g>
+            ))}
+          </svg>
+        </Link>
         <ul className="flex gap-11 list-none max-md:hidden">
           {LINKS.map((link) => (
             <li key={link.href}>

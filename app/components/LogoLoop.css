@@ -24,6 +24,13 @@
   z-index: 0;
 }
 
+.logoloop--draggable .logoloop__track {
+  cursor: grab;
+  /* Claim the horizontal axis for the drag while leaving the vertical one to
+     the page, so a swipe down the strip still scrolls rather than snagging. */
+  touch-action: pan-y;
+}
+
 .logoloop--vertical .logoloop__track {
   flex-direction: column;
   height: max-content;
