@@ -40,7 +40,18 @@ const VIEW = {
   height: MENT_BASELINE - LOCKUP_BOX.y + PAD_TOP + PAD_BOTTOM,
 };
 
-export default function MentorshipLockup({ className = "" }: { className?: string }) {
+export default function MentorshipLockup({
+  className = "",
+  ground = true,
+}: {
+  className?: string;
+  /**
+   * Paint the rose ground as part of the artwork. Turn it off where the ground
+   * is already rose and something is sitting behind the mark — the panel's own
+   * rect would paint straight over it.
+   */
+  ground?: boolean;
+}) {
   return (
     <svg
       viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.width} ${VIEW.height}`}
@@ -51,13 +62,15 @@ export default function MentorshipLockup({ className = "" }: { className?: strin
     >
       {/* The rose ground itself, so the panel is the artwork rather than a
           coloured box with artwork sitting on it. */}
-      <rect
-        x={VIEW.x}
-        y={VIEW.y}
-        width={VIEW.width}
-        height={VIEW.height}
-        fill="var(--color-accent)"
-      />
+      {ground ? (
+        <rect
+          x={VIEW.x}
+          y={VIEW.y}
+          width={VIEW.width}
+          height={VIEW.height}
+          fill="var(--color-accent)"
+        />
+      ) : null}
 
       <g fill="var(--color-bg)">
         {LOCKUP_MONOGRAM_PATHS.map((d, i) => (

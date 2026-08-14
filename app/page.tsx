@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Collections from "./components/Collections";
 import About from "./components/About";
+import MentorshipStrip from "./components/MentorshipStrip";
 import Contact from "./components/Contact";
 import SellForm from "./components/SellForm";
 import FAQ from "./components/FAQ";
@@ -21,6 +22,7 @@ export default function Home() {
       <Marquee />
       <Collections />
       <About />
+      <MentorshipStrip />
       <Contact />
       <SellForm />
       <FAQ items={HOME_FAQS} />
