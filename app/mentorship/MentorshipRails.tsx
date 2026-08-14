@@ -20,13 +20,37 @@ gsap.registerPlugin(ScrollTrigger);
  * which silently kills sticky for every descendant. GSAP pins with fixed
  * positioning instead, which that rule cannot reach.
  *
- * Below md the pin is dropped and these are three ordinary swipeable rails. A
- * phone would otherwise spend several screens of scroll on one section, and
- * swiping is the natural gesture there anyway. Reduced motion opts out on the
- * same grounds.
+ * Phones get the same behaviour, at 1:1 rather than stretched — their cards
+ * are far wider relative to the screen, so the desktop stretch would have held
+ * the pin for three or four screenfuls. Only reduced motion opts out, and
+ * there the rails are simply swiped by hand.
  */
 
 const RAIL_CLASS = "gap-3 px-[52px] max-md:gap-2.5 max-md:px-6";
+
+/**
+ * Each rail travels across only part of the pin, staggered so they are never
+ * all moving at once — at any moment at least one rail is still, which is what
+ * gives the eye something to actually read. They overlap enough that the band
+ * still feels like one thing moving rather than three taking turns.
+ */
+const WINDOWS = [
+  [0, 0.6],
+  [0.2, 0.8],
+  [0.4, 1],
+];
+
+/**
+ * How much longer the pin is held than the furthest rail has to travel. At 1
+ * the rails move a pixel sideways per pixel scrolled; with the windows above
+ * taking 0.6 of the pin each, this lands them near that — moving slowly enough
+ * to read, without the pin outstaying its welcome.
+ */
+const PIN_STRETCH = 1.7;
+
+/** Progress within a rail's own window, flat at each end. */
+const windowed = (p: number, [from, to]: number[]) =>
+  Math.min(1, Math.max(0, (p - from) / (to - from)));
 
 // Card widths are set per rail so all three overflow the viewport at any width.
 // At one shared width the three-card rail would fit on screen with nothing left
@@ -34,7 +58,7 @@ const RAIL_CLASS = "gap-3 px-[52px] max-md:gap-2.5 max-md:px-6";
 const RAILS = [
   {
     label: "What the mentorship covers",
-    cardClass: "w-[clamp(230px,19vw,300px)] max-md:w-[74vw]",
+    cardClass: "w-[clamp(270px,22vw,350px)] max-md:w-[78vw]",
     items: [
       "Where stock actually comes from — dealers, wholesalers, private sellers, auction — and how to get through each door.",
       "Reading a reference, its condition and its papers against what the market pays today, not what the tag says.",
@@ -46,7 +70,7 @@ const RAILS = [
   },
   {
     label: "How the mentorship runs",
-    cardClass: "w-[clamp(250px,25vw,380px)] max-md:w-[74vw]",
+    cardClass: "w-[clamp(290px,28vw,430px)] max-md:w-[78vw]",
     items: [
       "Message us with what you have done so far and what you want out of it. No test, no pitch.",
       "The invite follows, with the groundwork to work through in your own time.",
@@ -56,7 +80,7 @@ const RAILS = [
   },
   {
     label: "Who the mentorship is for",
-    cardClass: "w-[clamp(270px,33vw,500px)] max-md:w-[74vw]",
+    cardClass: "w-[clamp(300px,36vw,540px)] max-md:w-[78vw]",
     items: [
       "No supplier, no stock, nobody to ask. We start you at the beginning.",
       "Already flipping pieces, and after steady sourcing, real margin and buyers who come back.",
@@ -93,36 +117,51 @@ export default function MentorshipRails() {
       el ? Math.max(0, el.scrollWidth - el.clientWidth) : 0;
 
     const mm = gsap.matchMedia();
-    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-      const st = ScrollTrigger.create({
-        trigger: pin,
-        start: "center center",
-        // Held for exactly as long as the longest rail needs, so the page
-        // releases the moment the last card lands rather than on a round
-        // number of viewports. Recomputed on resize.
-        end: () => `+=${Math.max(...railRefs.map((r) => travel(r.current)), 1)}`,
-        pin: true,
-        pinSpacing: true,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          railRefs.forEach((ref, i) => {
-            const el = ref.current;
-            if (!el) return;
-            const max = travel(el);
-            if (max <= 0) return;
-            bases.current[i] = self.progress * max;
-            // A manual drag rides on top of the scroll position rather than
-            // cancelling it, so the page never snatches a rail back from
-            // under a finger that has just moved it.
-            const target = Math.min(max, Math.max(0, bases.current[i] + offsets.current[i]));
-            if (Math.abs(el.scrollLeft - target) < 0.5) return;
-            pending.current[i] += 1;
-            el.scrollLeft = target;
-          });
-        },
-      });
-      return () => st.kill();
-    });
+    mm.add(
+      {
+        isPhone: "(max-width: 767px)",
+        reduce: "(prefers-reduced-motion: reduce)",
+      },
+      (ctx) => {
+        const { isPhone, reduce } = ctx.conditions as Record<string, boolean>;
+        if (reduce) return;
+
+        // A phone's cards are far wider relative to the screen, so the same
+        // stretch would hold the pin for three or four screenfuls. Kept at 1:1
+        // there.
+        const stretch = isPhone ? 1 : PIN_STRETCH;
+
+        const st = ScrollTrigger.create({
+          trigger: pin,
+          start: "center center",
+          // Held for as long as the furthest rail needs and no longer, so the
+          // page releases the moment the last card lands rather than on a
+          // round number of viewports. Recomputed on resize.
+          end: () =>
+            `+=${Math.max(...railRefs.map((r) => travel(r.current)), 1) * stretch}`,
+          pin: true,
+          pinSpacing: true,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            railRefs.forEach((ref, i) => {
+              const el = ref.current;
+              if (!el) return;
+              const max = travel(el);
+              if (max <= 0) return;
+              bases.current[i] = windowed(self.progress, WINDOWS[i]) * max;
+              // A manual drag rides on top of the scroll position rather than
+              // cancelling it, so the page never snatches a rail back from
+              // under a finger that has just moved it.
+              const target = Math.min(max, Math.max(0, bases.current[i] + offsets.current[i]));
+              if (Math.abs(el.scrollLeft - target) < 0.5) return;
+              pending.current[i] += 1;
+              el.scrollLeft = target;
+            });
+          },
+        });
+        return () => st.kill();
+      },
+    );
 
     return () => mm.revert();
   }, [railRefs]);
@@ -163,9 +202,12 @@ export default function MentorshipRails() {
                     it is the recess that reads as a card. */}
                 <article
                   data-haptic
-                  className="cursor-big h-full border border-fg/[0.08] bg-bg/70 p-5 transition-colors duration-300 hover:border-accent/50 hover:bg-bg/90 max-md:p-4"
+                  className="cursor-big h-full border border-fg/[0.08] bg-bg/70 p-6 transition-colors duration-300 hover:border-accent/50 hover:bg-bg/90 max-md:p-5"
                 >
-                  <p className="text-[13px] leading-relaxed text-fg/65">{copy}</p>
+                  {/* font-normal is deliberate: body sets weight 300, and thin
+                      type this size on a moving card is the hardest thing on
+                      the page to read. */}
+                  <p className="text-[15px] font-normal leading-[1.65] text-fg/85">{copy}</p>
                 </article>
               </div>
             ))}
