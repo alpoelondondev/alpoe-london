@@ -12,6 +12,7 @@ const SHOP_LINKS = [
 const HOUSE_LINKS = [
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell Your Watch", href: "/sell" },
+  { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

@@ -24,6 +24,7 @@ const LINKS = [
   { label: "Jewellery", href: "/jewellery" },
   { label: "Bespoke", href: "/bespoke" },
   { label: "Sell", href: "/sell" },
+  { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -85,7 +86,9 @@ export default function Nav({
             ))}
           </svg>
         </Link>
-        <ul className="flex gap-11 list-none max-md:hidden">
+        {/* Tightens below lg: seven links at the full gap overflow the bar on a
+            small laptop once the logo and search have taken their share. */}
+        <ul className="flex gap-11 list-none max-lg:gap-6 max-md:hidden">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link

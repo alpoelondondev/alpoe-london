@@ -61,6 +61,41 @@ const FAQS = {
     answer:
       "Of course. Visit us in Hatton Garden, London — walk-ins are welcome, or book a private, no-pressure consultation with one of our specialists.",
   },
+  mentorshipWhat: {
+    question: "What is the Alpoe Mentorship?",
+    answer:
+      "A private group led by our Hatton Garden team for people who want to trade watches and jewellery as a business. It covers how the trade actually works day to day — where stock comes from, how margin is made, how to price, and how to build a name buyers trust.",
+  },
+  mentorshipWho: {
+    question: "Who is it for?",
+    answer:
+      "People starting out with no trade contacts, resellers who already flip a few pieces and want to do it properly, and anyone building a jewellery brand who keeps getting stuck on sourcing and pricing. You do not need a shop, a licence or existing stock to join.",
+  },
+  mentorshipFormat: {
+    question: "How is it run?",
+    answer:
+      "Everything happens inside a private Telegram group. You get written breakdowns, market notes as prices move, and a chat where you can put a specific deal or piece in front of us before you commit to it. Nothing is pre-recorded and left to go stale.",
+  },
+  mentorshipBench: {
+    question: "Does it teach me to make jewellery at the bench?",
+    answer:
+      "No — this is the business side, not a hands-on setting or goldsmithing course. We cover sourcing, valuation, negotiation, margin, marketing and reputation. If you want bench training we are happy to point you towards the workshops that do it well.",
+  },
+  mentorshipCost: {
+    question: "What does it cost to join?",
+    answer:
+      "Membership runs on a monthly basis and we go through the current terms with you directly before you join, so you know exactly what you are getting first. Message us and we will send the details over.",
+  },
+  mentorshipCommit: {
+    question: "Am I tied into a contract?",
+    answer:
+      "No. It runs month to month and you can step away whenever you like. We would rather people stayed because the room is worth being in.",
+  },
+  mentorshipJoin: {
+    question: "How do I join?",
+    answer:
+      "Send us a message telling us where you are up to — starting from scratch, already reselling, or building a brand. We check the room is right for you, then send the invite to the private group.",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const HOME_FAQS: FaqItem[] = [
@@ -110,6 +145,17 @@ export const ABOUT_FAQS: FaqItem[] = [
   FAQS.certification,
   FAQS.shipping,
   FAQS.prices,
+];
+
+export const MENTORSHIP_FAQS: FaqItem[] = [
+  FAQS.mentorshipWhat,
+  FAQS.mentorshipWho,
+  FAQS.mentorshipFormat,
+  FAQS.mentorshipBench,
+  FAQS.mentorshipCost,
+  FAQS.mentorshipCommit,
+  FAQS.mentorshipJoin,
+  FAQS.showroom,
 ];
 
 export const CONTACT_FAQS: FaqItem[] = [
