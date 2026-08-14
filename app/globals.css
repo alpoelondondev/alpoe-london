@@ -39,11 +39,17 @@
   --color-panel-soft: #191514;
 
   /* Everose proper — the workhorse. Labels, rules, borders, and button fills
-     carrying off-black text (6.4:1 either way round). */
-  --color-accent: #c48a6f;
+     carrying off-black text.
+
+     Note the contrast: this stop sits at 4.1:1 against the page ground, under
+     the 4.5:1 AA wants for body-sized text. Button fills are fine — large text
+     only needs 3:1 — but small rose labels on the ground are below the line.
+     --color-champagne clears it at 7.4:1 where that matters. */
+  --color-accent: #bc6037;
   /* Deep rose gold: the pressed and hover state under the rose fills, and a
-     fill for cream text. */
-  --color-accent-deep: #a66b54;
+     fill for cream text. Kept a clear step darker than the accent so the hover
+     still reads as a press. */
+  --color-accent-deep: #9a4f2d;
   /* Light rose gold: eyebrows, secondary emphasis, on-image captions. */
   --color-champagne: #e0b296;
   /* Palest stop, and still gold rather than pink. Display headings, where it
@@ -79,7 +85,9 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(196, 138, 111, 0.85);
+  /* Mixed from the token rather than a copy of its hex, so the cursor cannot
+     drift out of step with the palette. */
+  background: color-mix(in srgb, var(--color-accent) 85%, transparent);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
@@ -96,7 +104,7 @@ body {
 #cursor.big {
   width: 54px;
   height: 54px;
-  background: rgba(196, 138, 111, 0.15);
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
 /* Loader */
