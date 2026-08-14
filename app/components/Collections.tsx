@@ -106,7 +106,7 @@ export default function Collections() {
                 </>
               ) : (
                 /* Soft sheen — the flat-tint fallback before photography lands */
-                <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_15%_100%,color-mix(in_srgb,var(--color-accent)_5%,transparent),transparent_60%)] pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_15%_100%,rgba(196,138,111,0.05),transparent_60%)] pointer-events-none" />
               )}
               <span
                 aria-hidden="true"
