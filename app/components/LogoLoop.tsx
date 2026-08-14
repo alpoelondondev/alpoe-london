@@ -131,6 +131,15 @@ const useAnimationLoop = (
   const draggingRef = useRef(false);
   /** Set once a press has travelled far enough to be a drag, not a click. */
   const movedRef = useRef(false);
+  /** Live gesture state. Refs, not closure variables — see the drag effect. */
+  const dragRef = useRef({ startPos: 0, startOffset: 0, lastPos: 0, lastTime: 0 });
+
+  // Mirrored into refs so the drag effect can read the current values without
+  // listing them as dependencies.
+  const targetVelocityRef = useRef(targetVelocity);
+  const seqSizeRef = useRef(0);
+  targetVelocityRef.current = targetVelocity;
+  seqSizeRef.current = isVertical ? seqHeight : seqWidth;
 
   useEffect(() => {
     const track = trackRef.current;
@@ -148,20 +157,19 @@ const useAnimationLoop = (
       if (lastTimestampRef.current === null) lastTimestampRef.current = timestamp;
       const deltaTime = Math.max(0, timestamp - lastTimestampRef.current) / 1000;
       lastTimestampRef.current = timestamp;
-      // While a finger or cursor is down the offset is driven by the pointer,
-      // not by velocity — but velocity keeps being measured, so releasing hands
-      // the flick straight to the easing below and the strip carries on from
-      // exactly the speed it was thrown at.
-      if (!draggingRef.current) {
-        const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
-        const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
-        velocityRef.current += (target - velocityRef.current) * easingFactor;
-      }
 
+      // While a pointer is down the offset is driven by the gesture and this
+      // loop stands off entirely — but the drag keeps writing velocity, so a
+      // release hands its speed straight to the easing here and the strip
+      // carries on from exactly the speed it was thrown at.
       if (draggingRef.current) {
         rafRef.current = requestAnimationFrame(animate);
         return;
       }
+
+      const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
+      const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
+      velocityRef.current += (target - velocityRef.current) * easingFactor;
 
       if (seqSize > 0) {
         let nextOffset = offsetRef.current + velocityRef.current * deltaTime;
@@ -175,49 +183,56 @@ const useAnimationLoop = (
     };
 
     rafRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+      lastTimestampRef.current = null;
+    };
+  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, trackRef]);
 
-    if (!draggable || isVertical || seqSize <= 0) {
-      return () => {
-        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-        lastTimestampRef.current = null;
-      };
-    }
-
-    const axis = (e: PointerEvent) => e.clientX;
-    let startPos = 0;
-    let startOffset = 0;
-    let lastPos = 0;
-    let lastTime = 0;
+  // Deliberately a separate effect with near-static dependencies. Folded into
+  // the loop above it would re-subscribe whenever the hover state or measured
+  // width changed — and on touch a press fires a synthetic mouseenter, so the
+  // listeners were being torn down and rebuilt in the middle of the very
+  // gesture they were meant to be tracking.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || !draggable || isVertical) return;
 
     const onPointerDown = (e: PointerEvent) => {
       // Mouse: left button only. Touch and pen always qualify.
       if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (seqSizeRef.current <= 0) return;
       draggingRef.current = true;
       movedRef.current = false;
-      startPos = lastPos = axis(e);
-      startOffset = offsetRef.current;
-      lastTime = e.timeStamp;
+      dragRef.current = {
+        startPos: e.clientX,
+        startOffset: offsetRef.current,
+        lastPos: e.clientX,
+        lastTime: e.timeStamp,
+      };
       track.setPointerCapture(e.pointerId);
       track.style.cursor = "grabbing";
     };
 
     const onPointerMove = (e: PointerEvent) => {
       if (!draggingRef.current) return;
-      const pos = axis(e);
-      const travel = pos - startPos;
+      const seqSize = seqSizeRef.current;
+      if (seqSize <= 0) return;
+      const drag = dragRef.current;
+      const travel = e.clientX - drag.startPos;
       if (Math.abs(travel) > 4) movedRef.current = true;
 
       // Dragging right should carry the strip right, and the track is drawn at
-      // translate(-offset), so the offset moves opposite to the finger.
-      const next = startOffset - travel;
+      // translate(-offset), so the offset moves opposite to the pointer.
+      const next = drag.startOffset - travel;
       offsetRef.current = ((next % seqSize) + seqSize) % seqSize;
       track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
 
-      const dt = (e.timeStamp - lastTime) / 1000;
-      if (dt > 0) velocityRef.current = -(pos - lastPos) / dt;
-      lastPos = pos;
-      lastTime = e.timeStamp;
+      const dt = (e.timeStamp - drag.lastTime) / 1000;
+      if (dt > 0) velocityRef.current = -(e.clientX - drag.lastPos) / dt;
+      drag.lastPos = e.clientX;
+      drag.lastTime = e.timeStamp;
     };
 
     const onPointerUp = (e: PointerEvent) => {
@@ -228,7 +243,8 @@ const useAnimationLoop = (
         track.releasePointerCapture(e.pointerId);
       // A slow release should not fling; anything faster keeps its momentum and
       // is eased back to the resting speed by the loop above.
-      if (Math.abs(velocityRef.current) < 20) velocityRef.current = targetVelocity;
+      if (Math.abs(velocityRef.current) < 20)
+        velocityRef.current = targetVelocityRef.current;
     };
 
     // A drag that ends on a logo must not also follow its link.
@@ -246,25 +262,14 @@ const useAnimationLoop = (
     track.addEventListener("click", onClickCapture, true);
 
     return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-      lastTimestampRef.current = null;
       track.removeEventListener("pointerdown", onPointerDown);
       track.removeEventListener("pointermove", onPointerMove);
       track.removeEventListener("pointerup", onPointerUp);
       track.removeEventListener("pointercancel", onPointerUp);
       track.removeEventListener("click", onClickCapture, true);
+      draggingRef.current = false;
     };
-  }, [
-    targetVelocity,
-    seqWidth,
-    seqHeight,
-    isHovered,
-    hoverSpeed,
-    isVertical,
-    trackRef,
-    draggable,
-  ]);
+  }, [draggable, isVertical, trackRef]);
 };
 
 const LogoLoop = memo(function LogoLoop({
@@ -366,12 +371,22 @@ const LogoLoop = memo(function LogoLoop({
     [isVertical, fadeOut, scaleOnHover, className]
   );
 
-  const handleMouseEnter = useCallback(() => {
-    if (effectiveHoverSpeed !== undefined) setIsHovered(true);
-  }, [effectiveHoverSpeed]);
-  const handleMouseLeave = useCallback(() => {
-    if (effectiveHoverSpeed !== undefined) setIsHovered(false);
-  }, [effectiveHoverSpeed]);
+  // Gated on a real mouse. A touch fires a synthetic enter with no matching
+  // leave, which on a phone left the strip paused for good after one tap.
+  const handlePointerEnter = useCallback(
+    (e: React.PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      if (effectiveHoverSpeed !== undefined) setIsHovered(true);
+    },
+    [effectiveHoverSpeed]
+  );
+  const handlePointerLeave = useCallback(
+    (e: React.PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      if (effectiveHoverSpeed !== undefined) setIsHovered(false);
+    },
+    [effectiveHoverSpeed]
+  );
 
   const renderLogoItem = useCallback(
     (item: LogoItem, key: string) => {
@@ -468,8 +483,8 @@ const LogoLoop = memo(function LogoLoop({
       <div
         className="logoloop__track"
         ref={trackRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       >
         {logoLists}
       </div>
