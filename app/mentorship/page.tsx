@@ -124,7 +124,7 @@ export default function MentorshipPage() {
     <>
       <SiteHeader />
       <main>
-        <BrandHero title="Learn The Trade From The People Doing It" />
+        <BrandHero title="Our Mentorship" />
 
         <section className="px-[52px] py-8 max-md:px-6">
           <Breadcrumbs
