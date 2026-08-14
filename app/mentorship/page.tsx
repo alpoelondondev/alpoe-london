@@ -7,6 +7,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import BrandHero from "../components/BrandHero";
 import ScrollReveal from "../components/ScrollReveal";
 import EnquiryForm, { type EnquiryField } from "../components/EnquiryForm";
+import DragCarousel from "../components/DragCarousel";
 import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import { MENTORSHIP_FAQS } from "@/lib/faqs";
@@ -20,69 +21,30 @@ export const metadata: Metadata = pageMetadata({
   path: "/mentorship",
 });
 
+// Untitled on purpose — each card carries one self-contained passage, so the
+// copy has to open itself rather than lean on a heading above it.
 const MODULES = [
-  {
-    title: "Where Stock Actually Comes From",
-    copy: "The route a piece takes before it reaches a window — dealers, wholesalers, private sellers, auction. Who to approach, what to say, and which doors stay shut until you have a track record.",
-  },
-  {
-    title: "Valuing A Piece Properly",
-    copy: "Reading a reference, condition and paperwork, then checking it against live market data instead of a hopeful asking price. The tells that separate a clean deal from an expensive lesson.",
-  },
-  {
-    title: "Margin And Cash Flow",
-    copy: "What to pay, what to hold out for, and how long your money can sit in stock before a good buy turns into a bad month. Pricing without gutting the number you walk away with.",
-  },
-  {
-    title: "Negotiating In The Trade",
-    copy: "How offers are made and answered between dealers, when to walk, and how to hold a position without burning a contact you will need again next quarter.",
-  },
-  {
-    title: "Building A Name Buyers Trust",
-    copy: "Positioning, photography, how you write about a piece, and the difference between content that moves stock and content that just gets views.",
-  },
-  {
-    title: "Staying On The Right Side",
-    copy: "Authentication, provenance, paperwork and the checks that protect you — the admin nobody enjoys and everybody regrets skipping.",
-  },
+  "The route a piece takes before it reaches a window — dealers, wholesalers, private sellers, auction. Who to approach, what to say, and which doors stay shut until you have a track record.",
+  "Reading a reference, condition and paperwork, then checking it against live market data instead of a hopeful asking price. The tells that separate a clean deal from an expensive lesson.",
+  "What to pay, what to hold out for, and how long your money can sit in stock before a good buy turns into a bad month. Pricing without gutting the number you walk away with.",
+  "How offers are made and answered between dealers, when to walk, and how to hold a position without burning a contact you will need again next quarter.",
+  "Positioning, photography, how you write about a piece, and the difference between content that moves stock and content that just gets views.",
+  "Authentication, provenance, paperwork and the checks that protect you — the admin nobody enjoys and everybody regrets skipping.",
 ];
 
 const FOR_WHOM = [
-  {
-    title: "Starting With No Contacts",
-    copy: "You want into the trade but have no supplier, no stock and nobody to ask. We start at the beginning and give you the questions to walk in with.",
-  },
-  {
-    title: "Already Flipping Pieces",
-    copy: "You have done a few deals off your own back and want to run it as a business — consistent sourcing, real margin, and buyers who come back.",
-  },
-  {
-    title: "Building A Brand",
-    copy: "You have the audience and the eye, but sourcing and pricing keep pinching. We fill in the trade side so the brand can carry weight.",
-  },
+  "You want into the trade but have no supplier, no stock and nobody to ask. We start at the beginning and give you the questions to walk in with.",
+  "You have done a few deals off your own back and want to run it as a business — consistent sourcing, real margin, and buyers who come back.",
+  "You have the audience and the eye, but sourcing and pricing keep pinching. We fill in the trade side so the brand can carry weight.",
 ];
 
+// Order is carried by the rail itself; the 01–04 scaffolding was labelling a
+// sequence the reader can already see they are moving along.
 const HOW_IT_RUNS = [
-  {
-    n: "01",
-    title: "Tell us where you're up to",
-    copy: "A short message about what you have done so far and what you want out of it. No test, no pitch — we just need to know the room is right for you.",
-  },
-  {
-    n: "02",
-    title: "You get the invite",
-    copy: "Access to the private Telegram group, plus the groundwork breakdowns to work through in your own time.",
-  },
-  {
-    n: "03",
-    title: "Learn as the market moves",
-    copy: "Notes go out as prices shift and pieces cross our desk, so what you are reading is this week's market rather than last year's theory.",
-  },
-  {
-    n: "04",
-    title: "Bring us your deals",
-    copy: "Put a specific piece, price or supplier in front of the group before you commit. That is the part you cannot get from a course.",
-  },
+  "A short message about what you have done so far and what you want out of it. No test, no pitch — we just need to know the room is right for you.",
+  "Then the invite: access to the private Telegram group, plus the groundwork breakdowns to work through in your own time.",
+  "Notes go out as prices shift and pieces cross our desk, so what you are reading is this week's market rather than last year's theory.",
+  "And when it matters, you put a specific piece, price or supplier in front of the group before you commit. That is the part you cannot get from a course.",
 ];
 
 const FIELDS: EnquiryField[] = [
@@ -148,6 +110,33 @@ const FIELDS: EnquiryField[] = [
 ];
 
 const INTRO = "Hi Alpoe, I'd like to find out about the mentorship.";
+
+/**
+ * One untitled panel on a rail. `cursor-big` swells the site cursor over it and
+ * `data-haptic` gives the press buzz the linked carousels already have — a
+ * panel that isn't a link gets neither for free.
+ */
+function RailCard({ children }: { children: string }) {
+  return (
+    <article
+      data-haptic
+      className="cursor-big group h-full border border-fg/[0.10] bg-fg/[0.04] p-7 transition-colors duration-300 hover:border-accent/40 hover:bg-fg/[0.06]"
+    >
+      <span className="block h-px w-9 bg-accent/50 transition-all duration-300 group-hover:w-16 group-hover:bg-accent" />
+      <p className="mt-6 text-[14px] leading-relaxed text-dim">{children}</p>
+    </article>
+  );
+}
+
+/** Sits under each rail so the swipe is advertised rather than discovered. */
+function RailHint() {
+  return (
+    <div className="mt-7 flex items-center gap-4 px-[52px] text-[10px] tracking-[0.2em] uppercase text-dim max-md:mt-6 max-md:px-6">
+      <span className="h-px w-14 bg-fg/20" />
+      <span>Drag or swipe</span>
+    </div>
+  );
+}
 
 export default function MentorshipPage() {
   const ld = ldJsonGraph([
@@ -240,8 +229,11 @@ export default function MentorshipPage() {
           </div>
         </section>
 
-        <section className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
-          <ScrollReveal>
+        {/* Padding moves off the section and onto its parts, so the rail can
+            run past the right gutter — that overflow is what tells the reader
+            there is more without a caption saying so. */}
+        <section className="bg-panel-soft py-20 max-md:py-14">
+          <ScrollReveal className="px-[52px] max-md:px-6">
             <p className="text-[11px] tracking-[0.2em] uppercase text-champagne">
               What we cover
             </p>
@@ -249,22 +241,25 @@ export default function MentorshipPage() {
               The Parts Nobody Explains Until You Have Already Paid For Them
             </h2>
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1">
-            {MODULES.map((m, i) => (
-              <ScrollReveal key={m.title} delay={(i % 3) * 0.08}>
-                <div className="h-full border border-fg/[0.10] bg-fg/[0.04] p-6">
-                  <h3 className="font-serif text-[20px] leading-snug tracking-[0.02em]">
-                    {m.title}
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-dim">{m.copy}</p>
-                </div>
+          <DragCarousel
+            ariaLabel="What the mentorship covers"
+            className="mt-12 gap-4 px-[52px] snap-proximity max-md:mt-10 max-md:px-6 max-md:snap-mandatory"
+          >
+            {MODULES.map((copy, i) => (
+              <ScrollReveal
+                key={copy}
+                delay={Math.min(i, 3) * 0.08}
+                className="flex-none w-[clamp(280px,25vw,380px)] snap-start max-md:w-[80vw]"
+              >
+                <RailCard>{copy}</RailCard>
               </ScrollReveal>
             ))}
-          </div>
+          </DragCarousel>
+          <RailHint />
         </section>
 
-        <section className="px-[52px] py-20 max-md:px-6 max-md:py-14">
-          <ScrollReveal>
+        <section className="py-20 max-md:py-14">
+          <ScrollReveal className="px-[52px] max-md:px-6">
             <p className="text-[11px] tracking-[0.2em] uppercase text-champagne">
               How it runs
             </p>
@@ -272,27 +267,25 @@ export default function MentorshipPage() {
               A Private Room, Not A Video Library
             </h2>
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-2 gap-x-10 gap-y-8 max-md:grid-cols-1">
-            {HOW_IT_RUNS.map((s, i) => (
-              <ScrollReveal key={s.n} delay={(i % 2) * 0.08}>
-                <div className="flex gap-5">
-                  <span className="font-serif text-[20px] leading-none text-accent shrink-0 pt-1">
-                    {s.n}
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-[20px] leading-none tracking-[0.02em]">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-[14px] leading-relaxed text-dim">{s.copy}</p>
-                  </div>
-                </div>
+          <DragCarousel
+            ariaLabel="How the mentorship runs"
+            className="mt-12 gap-4 px-[52px] snap-proximity max-md:mt-10 max-md:px-6 max-md:snap-mandatory"
+          >
+            {HOW_IT_RUNS.map((copy, i) => (
+              <ScrollReveal
+                key={copy}
+                delay={Math.min(i, 3) * 0.08}
+                className="flex-none w-[clamp(280px,25vw,380px)] snap-start max-md:w-[80vw]"
+              >
+                <RailCard>{copy}</RailCard>
               </ScrollReveal>
             ))}
-          </div>
+          </DragCarousel>
+          <RailHint />
         </section>
 
-        <section className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
-          <ScrollReveal>
+        <section className="bg-panel-soft py-20 max-md:py-14">
+          <ScrollReveal className="px-[52px] max-md:px-6">
             <p className="text-[11px] tracking-[0.2em] uppercase text-champagne">
               Who it&apos;s for
             </p>
@@ -300,19 +293,22 @@ export default function MentorshipPage() {
               Three People Usually Walk In
             </h2>
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-3 gap-4 max-md:grid-cols-1">
-            {FOR_WHOM.map((w, i) => (
-              <ScrollReveal key={w.title} delay={i * 0.08}>
-                <div className="h-full border border-fg/[0.10] bg-fg/[0.04] p-6">
-                  <h3 className="font-serif text-[22px] leading-snug tracking-[0.02em]">
-                    {w.title}
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-dim">{w.copy}</p>
-                </div>
+          <DragCarousel
+            ariaLabel="Who the mentorship is for"
+            className="mt-12 gap-4 px-[52px] snap-proximity max-md:mt-10 max-md:px-6 max-md:snap-mandatory"
+          >
+            {FOR_WHOM.map((copy, i) => (
+              <ScrollReveal
+                key={copy}
+                delay={i * 0.08}
+                className="flex-none w-[clamp(280px,25vw,380px)] snap-start max-md:w-[80vw]"
+              >
+                <RailCard>{copy}</RailCard>
               </ScrollReveal>
             ))}
-          </div>
-          <ScrollReveal delay={0.24}>
+          </DragCarousel>
+          <RailHint />
+          <ScrollReveal delay={0.24} className="px-[52px] max-md:px-6">
             <p className="mx-auto mt-10 max-w-2xl text-center text-[14px] leading-relaxed text-dim">
               It is the business of the trade, not bench work — we do not teach setting or
               goldsmithing here. If that is what you are after, ask us and we will point you

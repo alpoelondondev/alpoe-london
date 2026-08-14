@@ -36,8 +36,10 @@ export default function DragCarousel({
   });
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    // Haptic whenever the press lands on a card link, mouse or touch.
-    if ((e.target as HTMLElement).closest?.("a")) tapHaptic();
+    // Haptic whenever the press lands on a card link, mouse or touch. Cards
+    // that aren't links opt in with data-haptic — otherwise a carousel of
+    // plain panels feels dead under the thumb next to the linked ones.
+    if ((e.target as HTMLElement).closest?.("a, [data-haptic]")) tapHaptic();
 
     if (e.pointerType !== "mouse") return;
     const el = scrollerRef.current;
