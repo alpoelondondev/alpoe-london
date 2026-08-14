@@ -190,11 +190,11 @@ export default function MentorshipPage() {
 
         <FAQ items={MENTORSHIP_FAQS} />
         <CTAStrip
-          eyebrow="Still deciding?"
-          title="Ask us anything about the trade first"
-          copy={`Message the ${SITE.name} team direct. We would rather answer your questions now than have you join and find it was not what you needed.`}
+          eyebrow="How to get involved"
+          title="Ask us about the mentorship"
+          copy={`Message the ${SITE.name} team direct and we will talk you through what the group covers, how it runs and how to join. Nobody in there started out knowing this trade — the questions you would rather not ask out loud are the ones it exists for.`}
           whatsappMessage={INTRO}
-          primaryLabel="Ask About The Mentorship"
+          primaryLabel="Ask About Joining"
           secondary={{ label: "About Alpoe", href: "/about" }}
         />
       </main>
