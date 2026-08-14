@@ -109,10 +109,12 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      // Short of a full viewport by exactly the brand strip's height (py-10 +
-      // a 32px logo + hairline borders = 114px), so that strip is already on
-      // screen at rest rather than needing a scroll to discover.
-      className="h-[calc(100svh-114px)] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
+      // Short of a full viewport by exactly the brand strip's height, so that
+      // strip is already on screen at rest rather than needing a scroll to
+      // discover. The strip is py-10 (80) + hairline borders (2) + the loop,
+      // which is its logo height plus the 10% hover padding either side
+      // (44 * 1.2 = 52.8) — so 135. Retune this if that logo height changes.
+      className="h-[calc(100svh-135px)] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
       {/* Decorative footage, full-bleed: silent, uninteractive, and no
           user-agent transport controls. It keeps its full framing — the
