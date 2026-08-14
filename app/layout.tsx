@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Loader from "./components/Loader";
+// Splash screen temporarily disabled — re-enable by uncommenting this import
+// and the <Loader /> below. Hero detects the missing #loader and reveals
+// itself on mount, so nothing else needs changing either way.
+// import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
 import SiteLDJSON from "./components/SiteLDJSON";
 import { SITE, siteUrl } from "@/lib/site";
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f2ee",
+  themeColor: "#131010",
 };
 
 export default function RootLayout({
@@ -75,7 +78,7 @@ export default function RootLayout({
       <body>
         <SiteLDJSON />
         <CustomCursor />
-        <Loader />
+        {/* <Loader /> */}
         {children}
       </body>
     </html>

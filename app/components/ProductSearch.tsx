@@ -95,7 +95,7 @@ export default function ProductSearch({
           aria-expanded={showList}
           aria-controls="product-search-results"
           aria-autocomplete="list"
-          className="w-full border border-black/15 bg-transparent px-4 py-3 text-[14px] text-fg outline-none transition focus:border-accent placeholder:text-dim/70"
+          className="w-full border border-fg/20 bg-transparent px-4 py-3 text-[14px] text-fg outline-none transition focus:border-accent placeholder:text-dim/70"
         />
       </label>
 
@@ -103,7 +103,7 @@ export default function ProductSearch({
         <ul
           id="product-search-results"
           role="listbox"
-          className="absolute left-0 right-0 top-full z-30 mt-1 max-h-[320px] overflow-y-auto border border-black/15 bg-bg shadow-[0_18px_40px_rgba(23,18,18,0.12)]"
+          className="absolute left-0 right-0 top-full z-30 mt-1 max-h-[320px] overflow-y-auto border border-fg/20 bg-bg shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
         >
           {results.length ? (
             results.map((r, i) => (
@@ -116,7 +116,7 @@ export default function ProductSearch({
                   }}
                   onClick={() => go(r)}
                   className={`flex w-full flex-col items-start gap-0.5 px-4 py-3 text-left transition ${
-                    i === active ? "bg-black/[0.05]" : "hover:bg-black/[0.03]"
+                    i === active ? "bg-fg/[0.06]" : "hover:bg-fg/[0.04]"
                   }`}
                 >
                   <span className="font-serif text-[15px] leading-tight">{r.title}</span>

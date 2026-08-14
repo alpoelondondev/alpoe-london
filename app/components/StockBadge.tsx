@@ -17,8 +17,8 @@ export default function StockBadge({
     );
   }
   return (
-    <span className={`inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase px-2 py-1 border ${onDark ? "text-[rgba(240,236,228,0.7)] border-white/30" : "text-dim border-black/25"}`}>
-      <span className={`block w-1.5 h-1.5 rounded-full ${onDark ? "bg-[rgba(240,236,228,0.7)]" : "bg-dim"}`} />
+    <span className={`inline-flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase px-2 py-1 border ${onDark ? "text-fg/70 border-fg/30" : "text-dim border-fg/30"}`}>
+      <span className={`block w-1.5 h-1.5 rounded-full ${onDark ? "bg-fg/70" : "bg-dim"}`} />
       Sourceable
     </span>
   );

@@ -1,15 +1,54 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Alpoe London palette — three tones on a dark site.
+
+   1. OFF-BLACK  (--bg / --panel / --panel-soft)  the house colour, and the
+                                 page ground itself. Sections separate by
+                                 elevation rather than by flipping to a light
+                                 ground: each band is a step *up* from the page.
+   2. ROSE GOLD  (--accent / --accent-deep / --champagne / --blush)  the metal,
+                                 four stops down one hue (~18°). That hue is
+                                 the whole game: rose gold is a *copper* alloy,
+                                 so it has to carry a gold cast. Pull it round
+                                 to ~350° and the same lightness reads as pink
+                                 rather than as metal. On a dark ground the
+                                 ramp runs the opposite way to a light one:
+                                 `accent` is the workhorse for text, rules and
+                                 fills, and the lighter stops climb from there.
+                                 `accent-deep` is the fill/hover beneath it.
+   3. WARM CREAM (--fg)          the ink. Body copy, hairlines and tints are all
+                                 this one colour at varying alpha, so every
+                                 rule and panel edge tracks the text.
+
+   Contrast on the page ground: fg 16:1, blush 13.8:1, champagne 10:1,
+   accent 6.4:1, dim 4.7:1. On --panel, knock roughly 12% off each.
+--------------------------------------------------------------------------- */
 @theme inline {
-  --color-bg: #f4f2ee;
-  --color-fg: #171212;
-  --color-dim: rgba(23, 18, 18, 0.45);
-  --color-accent: #3d0100;
-  /* Warm champagne: the About heading over oxblood */
-  --color-champagne: #e8dcc4;
-  /* Lighter pour of the same tone for the FAQ band — still reads as a distinct
-     warm section against the cooler page cream either side of it. */
-  --color-champagne-soft: #eee7d7;
+  /* Off-black page ground. */
+  --color-bg: #131010;
+  /* Warm cream ink. */
+  --color-fg: #f2eae4;
+  --color-dim: rgba(242, 234, 228, 0.5);
+
+  /* Raised warm charcoal for the feature bands (About, closing CTA, the
+     featured-pieces strip) — a clear step up from the page. */
+  --color-panel: #1e1a18;
+  /* A fainter raise for the FAQ and form bands, so the two kinds of section
+     never read as the same block. */
+  --color-panel-soft: #191514;
+
+  /* Everose proper — the workhorse. Labels, rules, borders, and button fills
+     carrying off-black text (6.4:1 either way round). */
+  --color-accent: #c48a6f;
+  /* Deep rose gold: the pressed and hover state under the rose fills, and a
+     fill for cream text. */
+  --color-accent-deep: #a66b54;
+  /* Light rose gold: eyebrows, secondary emphasis, on-image captions. */
+  --color-champagne: #e0b296;
+  /* Palest stop, and still gold rather than pink. Display headings, where it
+     lifts a band far better than plain cream would. */
+  --color-blush: #f0d7c2;
 
   --font-serif: var(--font-bebas-neue), sans-serif;
   --font-sans: var(--font-dm-sans), sans-serif;
@@ -37,7 +76,7 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(61, 1, 0, 0.85);
+  background: rgba(196, 138, 111, 0.85);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
@@ -54,7 +93,7 @@ body {
 #cursor.big {
   width: 54px;
   height: 54px;
-  background: rgba(61, 1, 0, 0.15);
+  background: rgba(196, 138, 111, 0.15);
 }
 
 /* Loader */
@@ -62,7 +101,7 @@ body {
   position: fixed;
   inset: 0;
   background: var(--color-bg);
-  /* Oxblood frame — mats the splash like a print and gives the corner
+  /* Rose-gold frame — mats the splash like a print and gives the corner
      furniture an edge to sit against. Sits inside the viewport, so the
      absolutely-positioned corners inset from the frame, not the screen. */
   border: 26px solid var(--color-accent);
@@ -130,7 +169,7 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
   pointer-events: none;
 }
 
-/* Find-us map pin: solid oxblood dot with a ring pulsing out from under it */
+/* Find-us map pin: solid rose-gold dot with a ring pulsing out from under it */
 .map-pin {
   position: relative;
   display: block;
@@ -147,7 +186,7 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
 }
 
 .map-pin__dot {
-  box-shadow: 0 0 0 3px rgba(244, 242, 238, 0.9);
+  box-shadow: 0 0 0 3px rgba(19, 16, 16, 0.9);
 }
 
 .map-pin__ring {
@@ -196,7 +235,7 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
 /* Enquire-list scroller — a hairline track so the list reads as one block */
 .list-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(23, 18, 18, 0.18) transparent;
+  scrollbar-color: rgba(242, 234, 228, 0.22) transparent;
   overscroll-behavior: contain;
 }
 .list-scroll::-webkit-scrollbar {
@@ -206,14 +245,16 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
   background: transparent;
 }
 .list-scroll::-webkit-scrollbar-thumb {
-  background: rgba(23, 18, 18, 0.18);
+  background: rgba(242, 234, 228, 0.22);
 }
 
-/* Section label */
+/* Section label. The rule takes the label's own colour rather than a fixed
+   token, so it tracks whichever rose stop the label uses — no separate rule
+   colour to keep in sync. */
 .section-label::before {
   content: "";
   display: block;
   width: 28px;
   height: 1px;
-  background: var(--color-accent);
+  background: currentColor;
 }

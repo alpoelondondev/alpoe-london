@@ -5,7 +5,7 @@ import type { Product } from "@/lib/types";
 
 /**
  * Featured-pieces strip: same drag, haptics and snap behaviour as the homepage
- * carousel, on the champagne band. Used wherever a page shows a curated row.
+ * carousel, on the off-black band. Used wherever a page shows a curated row.
  */
 export default function FeaturedCarousel({
   label,
@@ -16,7 +16,7 @@ export default function FeaturedCarousel({
   label: string;
   products: Product[];
   ariaLabel: string;
-  /** Champagne band behind the strip; off for strips already inside one. */
+  /** Off-black band behind the strip; off for strips already inside one. */
   band?: boolean;
 }) {
   if (!products.length) return null;
@@ -25,7 +25,7 @@ export default function FeaturedCarousel({
     <section
       className={
         band
-          ? "bg-accent py-16 mb-20 max-md:py-12 max-md:mb-14"
+          ? "bg-panel py-16 mb-20 max-md:py-12 max-md:mb-14"
           : "py-4 pb-20 max-md:pb-14"
       }
     >

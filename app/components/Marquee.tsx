@@ -13,7 +13,7 @@ const brandLogos: LogoItem[] = [
 
 export default function Marquee() {
   return (
-    <div className="relative overflow-hidden border-y border-black/[0.08] py-10">
+    <div className="relative overflow-hidden border-y border-fg/[0.10] py-10">
       <LogoLoop
         logos={brandLogos}
         speed={60}
@@ -22,7 +22,7 @@ export default function Marquee() {
         gap={80}
         scaleOnHover
         fadeOut
-        fadeOutColor="#f4f2ee"
+        fadeOutColor="#131010"
         ariaLabel="Watch brands sourced by Alpoe London"
       />
     </div>

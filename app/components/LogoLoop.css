@@ -2,7 +2,7 @@
   position: relative;
   --logoloop-gap: 32px;
   --logoloop-logoHeight: 28px;
-  --logoloop-fadeColorAuto: #f4f2ee;
+  --logoloop-fadeColorAuto: #131010;
 }
 
 .logoloop--vertical {
@@ -74,9 +74,15 @@
   -webkit-user-drag: none;
   pointer-events: none;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, opacity 0.3s ease;
-  /* Flatten every logo to the ink colour so mixed-source PNGs read as one set on the light bg */
-  filter: brightness(0);
-  opacity: 0.62;
+  /* The source PNGs are dark-on-transparent marks drawn for a light ground, and
+     they run from near-black to light grey. brightness(0) crushes every opaque
+     pixel to black and invert(1) lifts it back to white, so the whole set ends
+     up one weight on the off-black page regardless of what it started as —
+     alpha, and therefore the letterforms, survives both steps. Opacity does the
+     rest: held back at rest so the strip reads as a quiet brand wall, full on
+     hover. */
+  filter: brightness(0) invert(1);
+  opacity: 0.72;
 }
 
 .logoloop__item:hover img {

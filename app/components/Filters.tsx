@@ -39,7 +39,7 @@ export default function Filters({
   return (
     <div className="flex flex-wrap gap-3 items-center mt-6 mb-10 text-[11px] tracking-[0.14em] uppercase">
       {showStock ? (
-        <div role="group" aria-label="Stock filter" className="flex border border-black/15">
+        <div role="group" aria-label="Stock filter" className="flex border border-fg/20">
           {(
             [
               { value: "all", label: "All" },
@@ -66,7 +66,7 @@ export default function Filters({
       ) : null}
 
       {modelOptions?.length ? (
-        <label className="flex items-center gap-2 border border-black/15 px-3 py-2">
+        <label className="flex items-center gap-2 border border-fg/20 px-3 py-2">
           <span className="text-dim">Model</span>
           <select
             value={current.model}
@@ -84,7 +84,7 @@ export default function Filters({
       ) : null}
 
       {materialOptions?.length ? (
-        <label className="flex items-center gap-2 border border-black/15 px-3 py-2">
+        <label className="flex items-center gap-2 border border-fg/20 px-3 py-2">
           <span className="text-dim">Material</span>
           <select
             value={current.material}
@@ -101,7 +101,7 @@ export default function Filters({
         </label>
       ) : null}
 
-      <label className="flex items-center gap-2 border border-black/15 px-3 py-2 ml-auto">
+      <label className="flex items-center gap-2 border border-fg/20 px-3 py-2 ml-auto">
         <span className="text-dim">Sort</span>
         <select
           value={current.sort}

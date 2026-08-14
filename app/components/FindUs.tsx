@@ -80,7 +80,7 @@ export default function FindUs() {
               href={DIRECTIONS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-[380px] w-full items-center justify-center bg-black/[0.03] max-md:h-[280px]"
+              className="flex h-[380px] w-full items-center justify-center bg-fg/[0.04] max-md:h-[280px]"
             >
               <span className="text-[11px] tracking-[0.18em] uppercase text-accent">
                 View on map →

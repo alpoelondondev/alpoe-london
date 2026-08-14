@@ -33,11 +33,11 @@ export default function ProductTile({
   ariaLabel?: string;
 }) {
   const className =
-    "group flex flex-col relative overflow-hidden border border-black/[0.08] bg-black/[0.03] transition hover:border-black/[0.20]";
+    "group flex flex-col relative overflow-hidden border border-fg/[0.10] bg-fg/[0.04] transition hover:border-fg/25";
 
   const inner = (
     <>
-      <div className="w-full relative aspect-[4/5] bg-black/[0.03]">
+      <div className="w-full relative aspect-[4/5] bg-fg/[0.04]">
         <Image
           src={image}
           alt={alt}

@@ -73,7 +73,7 @@ export default function WatchesIndex() {
               <li key={b.slug} className="col-span-3 max-md:col-span-6 flex">
                 <Link
                   href={`/watches/${b.slug}`}
-                  className="flex flex-col justify-between gap-4 w-full border border-black/[0.10] hover:border-accent/60 hover:bg-black/[0.03] transition p-5 min-h-[130px]"
+                  className="flex flex-col justify-between gap-4 w-full border border-fg/[0.14] hover:border-accent/60 hover:bg-fg/[0.04] transition p-5 min-h-[130px]"
                 >
                   <p className="font-serif text-[22px] tracking-[0.02em] leading-none">{b.name}</p>
                   <p className="text-[10px] tracking-[0.18em] uppercase text-dim">

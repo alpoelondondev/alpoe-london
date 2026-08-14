@@ -105,7 +105,7 @@ export default async function JewelleryProductPage(
             </h1>
             <p className="text-fg/80 leading-relaxed font-light">{product.description}</p>
 
-            <div className="mt-8 py-4 border-y border-black/[0.10] flex items-baseline justify-between">
+            <div className="mt-8 py-4 border-y border-fg/[0.14] flex items-baseline justify-between">
               <span className="text-[11px] tracking-[0.18em] uppercase text-dim">Price</span>
               <span className="font-serif text-2xl tracking-[0.02em]">On Request</span>
             </div>

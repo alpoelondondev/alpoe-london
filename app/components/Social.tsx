@@ -75,7 +75,7 @@ export default function Social() {
   return (
     <section
       id="social"
-      className="px-[52px] py-24 border-t border-black/[0.07] max-md:px-6 max-md:py-16"
+      className="px-[52px] py-24 border-t border-fg/[0.10] max-md:px-6 max-md:py-16"
     >
       <ScrollReveal>
         {/* Films from the feed — videos preloaded in the background */}
@@ -91,7 +91,7 @@ export default function Social() {
                 if (e.key === "Enter" || e.key === " ") togglePlay(i);
               }}
               aria-label={`${playing[i] ? "Pause" : "Play"} ${film.title} film`}
-              className="group relative block aspect-[3/4] overflow-hidden border border-black/[0.08] cursor-pointer"
+              className="group relative block aspect-[3/4] overflow-hidden border border-fg/[0.10] cursor-pointer"
             >
               <Image
                 src={film.image}
@@ -115,8 +115,8 @@ export default function Social() {
               >
                 <source src={film.video} type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.85)] via-[rgba(6,6,8,0.15)] to-transparent pointer-events-none" />
-              <span className="absolute top-[18px] left-5 text-[11px] tracking-[0.12em] uppercase text-[rgba(240,236,228,0.75)]">
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(19,16,16,0.85)] via-[rgba(19,16,16,0.15)] to-transparent pointer-events-none" />
+              <span className="absolute top-[18px] left-5 text-[11px] tracking-[0.12em] uppercase text-fg/75">
                 @alpoe
               </span>
               <span className="absolute top-[16px] right-5 flex items-center gap-2">
@@ -127,7 +127,7 @@ export default function Social() {
                     toggleMute(i);
                   }}
                   aria-label={isMuted(i) ? "Unmute film" : "Mute film"}
-                  className="text-[#f0ece4] border border-white/40 rounded-full p-1.5 backdrop-blur-sm bg-black/10 cursor-pointer hover:bg-black/25 transition-colors"
+                  className="text-fg border border-fg/40 rounded-full p-1.5 backdrop-blur-sm bg-black/10 cursor-pointer hover:bg-black/25 transition-colors"
                 >
                   {isMuted(i) ? (
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -147,18 +147,18 @@ export default function Social() {
               {/* Native-style centred play button; hides once the film runs. */}
               <span
                 aria-hidden="true"
-                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-16 w-16 items-center justify-center rounded-full border border-white/50 bg-black/30 backdrop-blur-sm transition-all duration-300 ${
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-16 w-16 items-center justify-center rounded-full border border-fg/50 bg-black/30 backdrop-blur-sm transition-all duration-300 ${
                   playing[i]
                     ? "opacity-0 scale-90 pointer-events-none"
                     : "opacity-100 group-hover:scale-110"
                 }`}
               >
-                <svg className="h-6 w-6 translate-x-[2px] fill-[#f0ece4]" viewBox="0 0 24 24">
+                <svg className="h-6 w-6 translate-x-[2px] fill-fg" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>
               <div className="absolute bottom-5 left-5 right-5">
-                <h3 className="font-serif text-[clamp(22px,2.2vw,32px)] tracking-[0.02em] leading-none mb-2 text-[#f0ece4]">
+                <h3 className="font-serif text-[clamp(22px,2.2vw,32px)] tracking-[0.02em] leading-none mb-2 text-fg">
                   {film.title}
                 </h3>
                 <a
@@ -168,7 +168,7 @@ export default function Social() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1.5 bg-accent px-3 py-2 text-[10px] font-medium tracking-[0.16em] uppercase text-bg transition hover:brightness-110"
+                  className="inline-flex items-center gap-1.5 bg-accent px-3 py-2 text-[10px] font-medium tracking-[0.16em] uppercase text-fg transition hover:brightness-110"
                 >
                   Send Enquiry
                 </a>
@@ -192,7 +192,7 @@ export default function Social() {
             className="group flex flex-col items-center gap-3"
           >
             <svg
-              className="w-12 h-12 text-black/50 transition hover:scale-110 hover:text-black/80 max-md:w-10 max-md:h-10"
+              className="w-12 h-12 text-fg/50 transition hover:scale-110 hover:text-fg/85 max-md:w-10 max-md:h-10"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -204,7 +204,7 @@ export default function Social() {
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
             </svg>
-            <span className="text-black/50 text-xs tracking-wide transition group-hover:text-black/80">
+            <span className="text-fg/50 text-xs tracking-wide transition group-hover:text-fg/85">
               @alpoe
             </span>
           </a>
@@ -216,13 +216,13 @@ export default function Social() {
             className="group flex flex-col items-center gap-3"
           >
             <svg
-              className="w-12 h-12 text-black/50 transition hover:scale-110 hover:text-black/80 max-md:w-10 max-md:h-10"
+              className="w-12 h-12 text-fg/50 transition hover:scale-110 hover:text-fg/85 max-md:w-10 max-md:h-10"
               viewBox="0 0 24 24"
               fill="currentColor"
             >
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z" />
             </svg>
-            <span className="text-black/50 text-xs tracking-wide transition group-hover:text-black/80">
+            <span className="text-fg/50 text-xs tracking-wide transition group-hover:text-fg/85">
               @alpoelondon
             </span>
           </a>

@@ -112,7 +112,7 @@ export default function SellPage() {
           <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
             {STEPS.map((s, i) => (
               <ScrollReveal key={s.n} delay={i * 0.08}>
-                <div className="h-full border border-black/[0.08] bg-black/[0.03] p-6">
+                <div className="h-full border border-fg/[0.10] bg-fg/[0.04] p-6">
                   <span className="font-serif text-[20px] leading-none text-accent">{s.n}</span>
                   <h2 className="mt-4 font-serif text-[20px] leading-none tracking-[0.02em]">
                     {s.title}
@@ -124,7 +124,7 @@ export default function SellPage() {
           </div>
         </section>
 
-        <section id="sell-form" className="bg-champagne-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
+        <section id="sell-form" className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
           <ScrollReveal>
             <h2 className="font-serif text-[clamp(28px,4vw,48px)] leading-tight text-center">
               Get A Valuation

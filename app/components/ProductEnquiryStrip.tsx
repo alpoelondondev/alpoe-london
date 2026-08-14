@@ -46,7 +46,7 @@ export default function ProductEnquiryStrip({ product }: { product: Product }) {
   return (
     <section
       id="enquire"
-      className="bg-champagne-soft px-[52px] py-20 max-md:px-6 max-md:py-14"
+      className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14"
     >
       <ScrollReveal>
         <p className="text-center text-[11px] tracking-[0.2em] uppercase text-accent">

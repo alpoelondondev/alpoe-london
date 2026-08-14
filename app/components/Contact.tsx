@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="px-[52px] border-t border-black/[0.07] max-md:px-6"
+      className="px-[52px] border-t border-fg/[0.10] max-md:px-6"
     >
       <ScrollReveal>
         <button
@@ -40,7 +40,7 @@ export default function Contact() {
         <div className="overflow-hidden">
           <div className="text-center pb-14 pt-4">
             <a
-              className="text-[15px] text-dim no-underline border-b border-black/25 pb-[3px] tracking-[0.04em]"
+              className="text-[15px] text-dim no-underline border-b border-fg/30 pb-[3px] tracking-[0.04em]"
               href="mailto:info@alpoelondon.com"
             >
               info@alpoelondon.com

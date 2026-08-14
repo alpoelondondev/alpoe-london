@@ -68,8 +68,8 @@ export default function SearchDialog({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="w-full max-w-2xl bg-bg border border-black/15">
-        <div className="flex items-center gap-3 border-b border-black/15 px-4 py-3">
+      <div className="w-full max-w-2xl bg-bg border border-fg/20">
+        <div className="flex items-center gap-3 border-b border-fg/20 px-4 py-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-dim">
             <circle cx="11" cy="11" r="7" />
             <path d="m20 20-3.5-3.5" />
@@ -156,7 +156,7 @@ function ResultLink({
       <Link
         href={href}
         onClick={onClick}
-        className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-black/[0.04] transition"
+        className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-fg/[0.05] transition"
       >
         <span className="text-[14px]">{title}</span>
         {meta ? (

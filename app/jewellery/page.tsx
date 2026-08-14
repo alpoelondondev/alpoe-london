@@ -64,7 +64,7 @@ export default function JewelleryIndex() {
               <li key={c.slug} className="col-span-4 max-md:col-span-6 flex">
                 <Link
                   href={`/jewellery/${c.slug}`}
-                  className="flex flex-col justify-between gap-3 w-full border border-black/[0.10] hover:border-accent/60 hover:bg-black/[0.03] transition p-5 min-h-[180px]"
+                  className="flex flex-col justify-between gap-3 w-full border border-fg/[0.14] hover:border-accent/60 hover:bg-fg/[0.04] transition p-5 min-h-[180px]"
                 >
                   <p className="font-serif text-[22px] tracking-[0.02em] leading-none">{c.name}</p>
                   <p className="text-[12px] text-fg/60 font-light leading-relaxed">

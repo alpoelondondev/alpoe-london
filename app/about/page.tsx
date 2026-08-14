@@ -94,7 +94,7 @@ export default function AboutPage() {
           <div className="mt-14 grid grid-cols-2 gap-4 max-md:grid-cols-1">
             {PILLARS.map((p, i) => (
               <ScrollReveal key={p.title} delay={i * 0.08}>
-                <div className="h-full border border-black/[0.08] bg-black/[0.03] p-6">
+                <div className="h-full border border-fg/[0.10] bg-fg/[0.04] p-6">
                   <h2 className="font-serif text-[22px] leading-none tracking-[0.02em]">
                     {p.title}
                   </h2>

@@ -27,7 +27,7 @@ export default function ProductCard({
           The min-height keeps the overlaid title clear of the box at narrow widths. */}
       <div
         className={`work-thumb w-full block relative ${
-          onDark ? "bg-white/[0.07]" : "bg-black/[0.03]"
+          onDark ? "bg-fg/[0.06]" : "bg-fg/[0.04]"
         } ${hero ? "aspect-[4/5]" : "aspect-[4/3] min-h-[190px]"}`}
       >
         {hero ? (
@@ -43,26 +43,26 @@ export default function ProductCard({
         ) : null}
       </div>
       {hero ? (
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,8,0.88)] via-[rgba(6,6,8,0.1)] to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(19,16,16,0.88)] via-[rgba(19,16,16,0.1)] to-transparent pointer-events-none" />
       ) : null}
       <div className="absolute top-3 left-3">
         <StockBadge state={product.stockState} onDark={onDark && !hero} />
       </div>
       <div className="absolute bottom-4 left-4 right-4">
         {product.brand ? (
-          <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-[#cbb98f]" : onDark ? "text-champagne" : "text-accent"}`}>
+          <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-blush" : onDark ? "text-champagne" : "text-accent"}`}>
             {product.brand}
             {product.model ? ` · ${product.model}` : ""}
           </p>
         ) : product.category ? (
-          <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-[#cbb98f]" : onDark ? "text-champagne" : "text-accent"}`}>
+          <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-blush" : onDark ? "text-champagne" : "text-accent"}`}>
             {product.category}
           </p>
         ) : null}
-        <h3 className={`font-serif text-[clamp(18px,2vw,26px)] tracking-[0.02em] leading-tight ${hero || onDark ? "text-[#f0ece4]" : ""}`}>
+        <h3 className={`font-serif text-[clamp(18px,2vw,26px)] tracking-[0.02em] leading-tight ${hero || onDark ? "text-fg" : ""}`}>
           {product.title}
         </h3>
-        <p className={`text-[11px] tracking-[0.14em] uppercase mt-1 ${hero ? "text-[rgba(240,236,228,0.6)]" : onDark ? "text-champagne" : "text-accent"}`}>
+        <p className={`text-[11px] tracking-[0.14em] uppercase mt-1 ${hero ? "text-fg/60" : onDark ? "text-champagne" : "text-accent"}`}>
           {hero ? "Price on Request" : "Enquire Now →"}
         </p>
       </div>

@@ -8,7 +8,17 @@ import { LOGO_PATHS } from "./logoPaths";
 const SHUFFLE_PHRASES = ["Luxury Timepieces", "Jewelry", "Bullions", "VIP Service"];
 const SHUFFLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-export function ShuffleText() {
+export function ShuffleText({
+  /**
+   * Justify the letters edge to edge across the parent's width instead of
+   * setting them at their natural pitch — the device the wordmark itself uses
+   * to run LONDON the full width of ALPOE. The phrases are 7 to 17 characters
+   * long, so a fixed letter-spacing could never land them all on the same
+   * length; distributing the slack does. Only meaningful inside a parent of a
+   * known width, and a no-op otherwise, since there is no slack to hand out.
+   */
+  fill = false,
+}: { fill?: boolean } = {}) {
   const [text, setText] = useState(SHUFFLE_PHRASES[0]);
   useEffect(() => {
     let phraseIndex = 0;
@@ -45,7 +55,23 @@ export function ShuffleText() {
       clearTimeout(timeout);
     };
   }, []);
-  return <span className="tabular-nums">{text}</span>;
+  if (!fill) return <span className="tabular-nums">{text}</span>;
+
+  // One flex item per character so space-between can hand the slack to the gaps.
+  // Tracking is zeroed here: letter-spacing also pads the last character, which
+  // would hold the line short of the right edge and break the flush setting.
+  // The whole thing is hidden from assistive tech — it scrambles several times a
+  // second, and the section's h1 already carries the real name.
+  return (
+    <span
+      aria-hidden="true"
+      className="flex w-full justify-between tracking-normal tabular-nums"
+    >
+      {Array.from(text, (ch, i) => (
+        <span key={i}>{ch === " " ? " " : ch}</span>
+      ))}
+    </span>
+  );
 }
 
 export default function Loader() {
@@ -246,7 +272,7 @@ export default function Loader() {
         const s = stars[i];
         const tw = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
         const alpha = 0.25 + 0.55 * tw;
-        ctx.fillStyle = `rgba(61,1,0,${alpha})`;
+        ctx.fillStyle = `rgba(196,138,111,${alpha})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -266,7 +292,7 @@ export default function Loader() {
             const len = s.r * 8 * k;
             ctx.save();
             ctx.globalCompositeOperation = "lighter";
-            ctx.strokeStyle = `rgba(61,1,0,${0.9 * k})`;
+            ctx.strokeStyle = `rgba(196,138,111,${0.9 * k})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(s.x - len, s.y);
@@ -288,7 +314,7 @@ export default function Loader() {
       // Static render for reduced motion
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-        ctx.fillStyle = `rgba(61,1,0,0.6)`;
+        ctx.fillStyle = `rgba(196,138,111,0.6)`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -340,7 +366,7 @@ export default function Loader() {
           {/* Ghost outline of the logo */}
           <g opacity="0.15">
             {LOGO_PATHS.map((d, i) => (
-              <path key={i} d={d} fill="#171212" />
+              <path key={i} d={d} fill="var(--color-fg)" />
             ))}
           </g>
 
@@ -351,15 +377,15 @@ export default function Loader() {
               <path
                 className="animate-wave"
                 d="M0 10 Q30 0 60 10 T120 10 T180 10 T240 10 V100 H0 Z"
-                fill="#3d0100"
+                fill="var(--color-accent)"
               />
               <path
                 className="animate-wave-reverse"
                 d="M0 12 Q30 20 60 12 T120 12 T180 12 T240 12 V100 H0 Z"
-                fill="rgba(61,1,0,0.45)"
+                fill="rgba(196,138,111,0.45)"
               />
               {/* Solid fill below the waves */}
-              <rect x="0" y="14" width="240" height="200" fill="#3d0100" />
+              <rect x="0" y="14" width="240" height="200" fill="var(--color-accent)" />
             </g>
           </g>
         </svg>
@@ -402,7 +428,7 @@ export default function Loader() {
       </span>
 
       {/* Hairline that fills edge to edge as the mark floods */}
-      <div className="absolute bottom-0 left-0 h-px w-full bg-black/[0.10]">
+      <div className="absolute bottom-0 left-0 h-px w-full bg-fg/[0.12]">
         <div ref={ruleRef} className="h-full w-0 bg-accent" />
       </div>
     </div>

@@ -50,7 +50,7 @@ export default function EnquiryForm({
   }
 
   const inputClass =
-    "w-full bg-transparent border border-black/15 px-4 py-3 text-[14px] text-fg outline-none transition focus:border-accent placeholder:text-dim/70";
+    "w-full bg-transparent border border-fg/20 px-4 py-3 text-[14px] text-fg outline-none transition focus:border-accent placeholder:text-dim/70";
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 max-md:grid-cols-1">

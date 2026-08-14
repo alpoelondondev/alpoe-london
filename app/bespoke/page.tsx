@@ -159,7 +159,7 @@ export default function BespokePage() {
         <section className="px-[52px] pb-16 max-md:px-6">
           <div className="grid grid-cols-2 gap-10 items-start max-md:grid-cols-1">
             <ScrollReveal>
-              <div className="relative aspect-[4/3] w-full overflow-hidden border border-black/[0.08]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden border border-fg/[0.10]">
                 <Image
                   src="/alpoe-bespoke-jewellery-stone-setting-hatton-garden.jpg"
                   alt="A jeweller setting a diamond by hand at the bench in Hatton Garden"
@@ -190,7 +190,7 @@ export default function BespokePage() {
           </div>
         </section>
 
-        <section id="bespoke-form" className="bg-champagne-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
+        <section id="bespoke-form" className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
           <ScrollReveal>
             <h2 className="font-serif text-[clamp(28px,4vw,48px)] leading-tight text-center">
               Start Your Commission

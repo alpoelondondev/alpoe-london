@@ -25,7 +25,7 @@ export default function BraceletSelector({
               className={`px-4 py-2 text-[11px] tracking-[0.14em] uppercase border transition ${
                 active
                   ? "bg-accent text-bg border-accent"
-                  : "border-black/25 text-fg/70 hover:text-fg hover:border-black/40"
+                  : "border-fg/30 text-fg/70 hover:text-fg hover:border-fg/45"
               }`}
             >
               {opt}

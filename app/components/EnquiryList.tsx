@@ -29,7 +29,7 @@ export default function EnquiryList({
   return (
     <div className={label ? "mt-12" : ""}>
       {label ? (
-        <div className="flex items-baseline justify-between gap-4 border-t border-black/[0.10] pt-5">
+        <div className="flex items-baseline justify-between gap-4 border-t border-fg/[0.14] pt-5">
           <p className="text-[10px] tracking-[0.2em] uppercase text-accent">{label}</p>
           <p className="text-[10px] tracking-[0.14em] uppercase text-dim">
             {rows.length} {rows.length === 1 ? "reference" : "references"}
@@ -38,15 +38,15 @@ export default function EnquiryList({
       ) : null}
 
       <div className="relative mt-4">
-        <ul className="list-scroll max-h-[60vh] min-h-0 overflow-y-auto border-y border-black/[0.08]">
+        <ul className="list-scroll max-h-[60vh] min-h-0 overflow-y-auto border-y border-fg/[0.10]">
           {rows.map((row) => (
-            <li key={row.id} className="border-b border-black/[0.07] last:border-b-0">
+            <li key={row.id} className="border-b border-fg/[0.10] last:border-b-0">
               <a
                 href={row.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={row.ariaLabel ?? `Enquire about ${row.title} on WhatsApp`}
-                className="group flex items-center gap-4 px-1 py-4 transition-colors hover:bg-black/[0.03] max-md:flex-col max-md:items-stretch max-md:gap-2"
+                className="group flex items-center gap-4 px-1 py-4 transition-colors hover:bg-fg/[0.04] max-md:flex-col max-md:items-stretch max-md:gap-2"
               >
                 <div className="min-w-0 flex-1">
                   {row.eyebrow ? (

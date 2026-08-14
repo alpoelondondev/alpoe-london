@@ -9,7 +9,7 @@ function FaqCard({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-black/[0.08] bg-black/[0.03] h-fit">
+    <div className="border border-fg/[0.10] bg-fg/[0.04] h-fit">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -42,7 +42,7 @@ export default function FAQ({ items }: { items: FaqItem[] }) {
   return (
     <section
       id="faq"
-      className="bg-champagne-soft px-[52px] py-20 max-md:px-6 max-md:py-14"
+      className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14"
     >
       <ScrollReveal>
         <h2 className="font-serif text-[clamp(34px,4.5vw,60px)] tracking-[0.02em] leading-none text-accent text-center mb-12">
