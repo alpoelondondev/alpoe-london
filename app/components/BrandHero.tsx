@@ -8,7 +8,8 @@ export default function BrandHero({
   /** Omit to open straight on the headline, rule and all. */
   eyebrow?: string;
   title: string;
-  copy: string;
+  /** Omit to let the headline stand on its own. */
+  copy?: string;
 }) {
   return (
     <section className="px-[52px] pt-36 pb-14 max-md:px-6 max-md:pt-28 max-md:pb-10">
@@ -24,11 +25,13 @@ export default function BrandHero({
           {title}
         </h1>
       </ScrollReveal>
-      <ScrollReveal>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-fg/70 font-light">
-          {copy}
-        </p>
-      </ScrollReveal>
+      {copy ? (
+        <ScrollReveal>
+          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-fg/70 font-light">
+            {copy}
+          </p>
+        </ScrollReveal>
+      ) : null}
     </section>
   );
 }

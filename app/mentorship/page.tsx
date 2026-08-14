@@ -124,10 +124,7 @@ export default function MentorshipPage() {
     <>
       <SiteHeader />
       <main>
-        <BrandHero
-          title="Learn The Trade From The People Doing It"
-          copy="A private group run by our Hatton Garden team for anyone serious about buying and selling watches and jewellery. Not theory — the sourcing, pricing and negotiating we do every week, opened up."
-        />
+        <BrandHero title="Learn The Trade From The People Doing It" />
 
         <section className="px-[52px] py-8 max-md:px-6">
           <Breadcrumbs
@@ -167,16 +164,6 @@ export default function MentorshipPage() {
         </section>
 
         <MentorshipRails />
-
-        <section className="px-[52px] pb-4 pt-20 max-md:px-6 max-md:pt-14">
-          <ScrollReveal>
-            <p className="mx-auto max-w-2xl text-center text-[14px] leading-relaxed text-dim">
-              It is the business of the trade, not bench work — we do not teach setting or
-              goldsmithing here. If that is what you are after, ask us and we will point you
-              somewhere good.
-            </p>
-          </ScrollReveal>
-        </section>
 
         <section
           id="mentorship-form"
