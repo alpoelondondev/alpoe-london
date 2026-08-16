@@ -5,6 +5,14 @@ import gsap from "gsap";
 
 import { LOGO_PATHS } from "./logoPaths";
 
+/**
+ * --color-accent as bare channels. Canvas takes a colour string, not a custom
+ * property, so this is the one place the token cannot reach. Keeping it to a
+ * single constant means a palette change is two files rather than four
+ * scattered copies. Must track --color-accent in globals.css.
+ */
+const ACCENT_RGB = "190,122,87";
+
 const SHUFFLE_PHRASES = ["Luxury Timepieces", "Jewelry", "Bullions", "VIP Service"];
 const SHUFFLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -275,7 +283,7 @@ export default function Loader() {
         const s = stars[i];
         const tw = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
         const alpha = 0.25 + 0.55 * tw;
-        ctx.fillStyle = `rgba(196,138,111,${alpha})`;
+        ctx.fillStyle = `rgba(${ACCENT_RGB},${alpha})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -295,7 +303,7 @@ export default function Loader() {
             const len = s.r * 8 * k;
             ctx.save();
             ctx.globalCompositeOperation = "lighter";
-            ctx.strokeStyle = `rgba(196,138,111,${0.9 * k})`;
+            ctx.strokeStyle = `rgba(${ACCENT_RGB},${0.9 * k})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(s.x - len, s.y);
@@ -317,7 +325,7 @@ export default function Loader() {
       // Static render for reduced motion
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-        ctx.fillStyle = `rgba(196,138,111,0.6)`;
+        ctx.fillStyle = `rgba(${ACCENT_RGB},0.6)`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -385,7 +393,7 @@ export default function Loader() {
               <path
                 className="animate-wave-reverse"
                 d="M0 12 Q30 20 60 12 T120 12 T180 12 T240 12 V100 H0 Z"
-                fill="rgba(196,138,111,0.45)"
+                fill={`rgba(${ACCENT_RGB},0.45)`}
               />
               {/* Solid fill below the waves */}
               <rect x="0" y="14" width="240" height="200" fill="var(--color-accent)" />
