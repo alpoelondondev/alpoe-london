@@ -79,7 +79,7 @@ export default function Nav({
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-6 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-5 max-md:justify-end transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-8 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-6 max-md:justify-end transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
