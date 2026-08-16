@@ -15,7 +15,15 @@ gsap.registerPlugin(ScrollTrigger);
  * vh term stops the lockup outgrowing a short window — the section is no longer
  * a full viewport tall, so height is the tighter constraint on a laptop.
  */
-const LOCKUP_WIDTH = "min(92vw, 1100px, 114vh)";
+/**
+ * The vh term is written as a height and converted, rather than carried as a
+ * hand-tuned width. It guards against a short window, so what it is really
+ * capping is the lockup's height — and a width that was correct for one
+ * artwork stops being correct the moment the artwork's proportions change.
+ * Derived from the aspect, it holds at 55vh whatever the lockup does next.
+ */
+const LOCKUP_MAX_HEIGHT_VH = 55;
+const LOCKUP_WIDTH = `min(92vw, 1100px, ${(LOCKUP_MAX_HEIGHT_VH * LOCKUP_ASPECT).toFixed(1)}vh)`;
 /** Half the lockup's height as a fraction of its width, for the eyebrow. */
 const LOCKUP_HALF_HEIGHT_RATIO = 1 / (2 * LOCKUP_ASPECT);
 

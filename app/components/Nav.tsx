@@ -24,6 +24,7 @@ const LINKS = [
   { label: "Jewellery", href: "/jewellery" },
   { label: "Bespoke", href: "/bespoke" },
   { label: "Sell", href: "/sell" },
+  { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -85,7 +86,9 @@ export default function Nav({
             ))}
           </svg>
         </Link>
-        <ul className="flex gap-11 list-none max-md:hidden">
+        {/* Tightens below lg: seven links at the full gap overflow the bar on a
+            small laptop once the logo and search have taken their share. */}
+        <ul className="flex gap-11 list-none max-lg:gap-6 max-md:hidden">
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
@@ -98,6 +101,15 @@ export default function Nav({
           ))}
         </ul>
         <div className="flex items-center gap-5">
+          {/* Booking sits outside the link list on purpose: eight plain links
+              overflow the bar on a small laptop, and this is the one action
+              the bar should carry rather than another destination. */}
+          <Link
+            href="/book-appointment"
+            className="border border-accent px-4 py-2 text-[10px] tracking-[0.16em] uppercase text-accent transition hover:bg-accent hover:text-bg max-md:hidden"
+          >
+            Book
+          </Link>
           <SearchTrigger index={searchIndex} suggestions={suggestions} />
           <button
             type="button"
@@ -113,6 +125,15 @@ export default function Nav({
       {mobileOpen ? (
         <div className="fixed inset-0 z-[199] bg-bg/95 backdrop-blur-md pt-20 px-6 hidden max-md:block">
           <ul className="flex flex-col gap-6">
+            <li>
+              <Link
+                href="/book-appointment"
+                onClick={() => setMobileOpen(false)}
+                className="font-serif text-3xl tracking-[0.02em] text-accent"
+              >
+                Book an Appointment
+              </Link>
+            </li>
             {LINKS.map((link) => (
               <li key={link.href}>
                 <Link

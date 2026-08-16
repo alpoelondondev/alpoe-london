@@ -2,7 +2,10 @@ import SiteHeader from "./components/SiteHeader";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Collections from "./components/Collections";
+import CategoryGrid from "./components/CategoryGrid";
 import About from "./components/About";
+import MentorshipStrip from "./components/MentorshipStrip";
+import MerchandiseStrip from "./components/MerchandiseStrip";
 import Contact from "./components/Contact";
 import SellForm from "./components/SellForm";
 import FAQ from "./components/FAQ";
@@ -20,10 +23,13 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Collections />
+      <CategoryGrid />
       <About />
+      <MentorshipStrip />
       <Contact />
       <SellForm />
       <FAQ items={HOME_FAQS} />
+      <MerchandiseStrip />
       <Social />
       <FindUs />
       <Footer />

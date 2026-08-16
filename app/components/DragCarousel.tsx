@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef, type ReactNode, type RefObject } from "react";
 
 // Generous enough that a wobbly mouse click still follows the card link.
 const DRAG_THRESHOLD = 12;
@@ -20,13 +20,29 @@ function tapHaptic() {
 export default function DragCarousel({
   className = "",
   ariaLabel,
+  scrollerRef: externalRef,
+  onScroll,
+  noSnap = false,
   children,
 }: {
   className?: string;
   ariaLabel?: string;
+  /**
+   * Handle on the scroll container, for callers that position the rail
+   * themselves — a scroll-driven rail needs to write `scrollLeft` from outside.
+   */
+  scrollerRef?: RefObject<HTMLDivElement | null>;
+  onScroll?: () => void;
+  /**
+   * Drop scroll snapping. Required of any rail whose position is being driven
+   * from outside: snap fights the write and drags the rail back to a card edge
+   * on every frame.
+   */
+  noSnap?: boolean;
   children: ReactNode;
 }) {
-  const scrollerRef = useRef<HTMLDivElement>(null);
+  const internalRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = externalRef ?? internalRef;
   const drag = useRef({
     active: false,
     startX: 0,
@@ -36,8 +52,10 @@ export default function DragCarousel({
   });
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    // Haptic whenever the press lands on a card link, mouse or touch.
-    if ((e.target as HTMLElement).closest?.("a")) tapHaptic();
+    // Haptic whenever the press lands on a card link, mouse or touch. Cards
+    // that aren't links opt in with data-haptic — otherwise a carousel of
+    // plain panels feels dead under the thumb next to the linked ones.
+    if ((e.target as HTMLElement).closest?.("a, [data-haptic]")) tapHaptic();
 
     if (e.pointerType !== "mouse") return;
     const el = scrollerRef.current;
@@ -98,7 +116,8 @@ export default function DragCarousel({
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       onClickCapture={onClickCapture}
-      className={`flex overflow-x-auto snap-x scrollbar-none touch-pan-x cursor-grab active:cursor-grabbing select-none ${className}`}
+      onScroll={onScroll}
+      className={`flex overflow-x-auto ${noSnap ? "" : "snap-x"} scrollbar-none touch-pan-x cursor-grab active:cursor-grabbing select-none ${className}`}
     >
       {children}
     </div>

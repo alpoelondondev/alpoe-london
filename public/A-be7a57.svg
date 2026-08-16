@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <!-- Custom path drawing the 'A' without a crossbar (Lambda shape) in Playfair Display Bold style -->
+  <path d="
+    M 160 54 
+    L 160 50 
+    L 260 50 
+    L 260 54 
+    C 245 54, 235 56, 230 70 
+    L 320 330 
+    C 325 345, 340 348, 360 348 
+    L 360 352 
+    L 220 352 
+    L 220 348 
+    C 240 348, 250 345, 255 330 
+    L 195 100 
+    L 120 330 
+    C 125 345, 140 348, 160 348 
+    L 160 352 
+    L 40 352 
+    L 40 348 
+    C 60 348, 80 345, 95 330 
+    L 180 70 
+    C 175 56, 165 54, 160 54 
+    Z" 
+    fill="#be7a57" />
+</svg>

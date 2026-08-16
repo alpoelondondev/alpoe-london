@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LOGO_PATHS } from "./logoPaths";
+import LockupMark from "./LockupMark";
 import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -10,8 +10,11 @@ const SHOP_LINKS = [
 ];
 
 const HOUSE_LINKS = [
+  { label: "Book an Appointment", href: "/book-appointment" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell Your Watch", href: "/sell" },
+  { label: "Metal Prices", href: "/metal-prices" },
+  { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -35,18 +38,7 @@ export default function Footer() {
             >
               {/* Inline rather than the .svg file: that asset is hard-filled
                   near-black and would disappear against this ground. */}
-              <svg
-                viewBox="0 0 225 225"
-                width={56}
-                height={56}
-                aria-hidden="true"
-                fill="var(--color-blush)"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {LOGO_PATHS.map((d, i) => (
-                  <path key={i} d={d} />
-                ))}
-              </svg>
+              <LockupMark width="min(170px, 55vw)" fill="var(--color-blush)" />
             </Link>
             <p className="text-[13px] leading-[1.7] text-fg/55 max-w-sm">
               A Hatton Garden dealership sourcing authenticated luxury
