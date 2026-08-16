@@ -7,7 +7,9 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import BrandHero from "../../components/BrandHero";
 import Filters from "../../components/Filters";
 import ProductGrid from "../../components/ProductGrid";
+import CategoryFilms from "../../components/CategoryFilms";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
+import { filmsForCategory } from "@/lib/films";
 import { getJewelleryByCategory, hasPhotography, photosFirst, productUrl } from "@/lib/products";
 import { pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { JewelleryCategorySlug, Product } from "@/lib/types";
@@ -72,12 +74,19 @@ export default async function JewelleryCategoryPage(
   const all = getJewelleryByCategory(c.slug as JewelleryCategorySlug);
   const filtered = applyFilters(all, sp);
 
+  // Where we have workshop footage, the films are the listing: they show the
+  // real piece and enquire directly, which the unphotographed reference rows
+  // they replace could never do. Categories without footage keep the grid.
+  const films = filmsForCategory(c.slug as JewelleryCategorySlug);
+
   const ld = ldJsonGraph(
     collectionLd({
       name: c.name,
       description: c.heritage,
       path: `/jewellery/${c.slug}`,
-      products: filtered.map((p) => ({ title: p.title, url: productUrl(p) })),
+      products: films.length
+        ? films.map((f) => ({ title: f.title, url: `/jewellery/${c.slug}` }))
+        : filtered.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
   );
 
@@ -96,8 +105,16 @@ export default async function JewelleryCategoryPage(
           />
         </section>
         <section className="px-[52px] pb-20 max-md:px-6">
-          <Filters materialOptions={materialOptionsFor(all)} />
-          <ProductGrid products={filtered} />
+          {films.length ? (
+            // No Filters here: they filter stock and material off the product
+            // rows, and there are none left on a film page to filter.
+            <CategoryFilms films={films} />
+          ) : (
+            <>
+              <Filters materialOptions={materialOptionsFor(all)} />
+              <ProductGrid products={filtered} />
+            </>
+          )}
         </section>
       </main>
       <Footer />

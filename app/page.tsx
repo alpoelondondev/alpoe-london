@@ -2,6 +2,7 @@ import SiteHeader from "./components/SiteHeader";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Collections from "./components/Collections";
+import CategoryGrid from "./components/CategoryGrid";
 import About from "./components/About";
 import MentorshipStrip from "./components/MentorshipStrip";
 import Contact from "./components/Contact";
@@ -21,6 +22,7 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Collections />
+      <CategoryGrid />
       <About />
       <MentorshipStrip />
       <Contact />
