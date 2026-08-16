@@ -22,7 +22,7 @@
                                  rule and panel edge tracks the text.
 
    Contrast on the page ground: fg 16:1, blush 13.8:1, champagne 10:1,
-   accent 6.4:1, dim 4.7:1. On --panel, knock roughly 12% off each.
+   accent 5.2:1, dim 4.7:1. On --panel, knock roughly 12% off each.
 --------------------------------------------------------------------------- */
 @theme inline {
   /* Off-black page ground. */
@@ -39,11 +39,12 @@
   --color-panel-soft: #191514;
 
   /* Everose proper — the workhorse. Labels, rules, borders, and button fills
-     carrying off-black text (6.4:1 either way round). */
-  --color-accent: #c48a6f;
+     carrying off-black text (5.2:1 either way round). */
+  --color-accent: #be7a57;
   /* Deep rose gold: the pressed and hover state under the rose fills, and a
-     fill for cream text. */
-  --color-accent-deep: #a66b54;
+     fill for cream text. Matched to the accent on hue and saturation and held
+     eleven points down in lightness, so the hover still reads as a press. */
+  --color-accent-deep: #9e5e3d;
   /* Light rose gold: eyebrows, secondary emphasis, on-image captions. */
   --color-champagne: #e0b296;
   /* Palest stop, and still gold rather than pink. Display headings, where it
@@ -79,7 +80,9 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(196, 138, 111, 0.85);
+  /* Mixed from the token rather than a copy of its hex, so the cursor
+     cannot drift out of step with the palette. */
+  background: color-mix(in srgb, var(--color-accent) 85%, transparent);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
@@ -96,7 +99,7 @@ body {
 #cursor.big {
   width: 54px;
   height: 54px;
-  background: rgba(196, 138, 111, 0.15);
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
 /* Loader */
