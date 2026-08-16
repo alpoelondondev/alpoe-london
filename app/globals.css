@@ -51,6 +51,28 @@
      lifts a band far better than plain cream would. */
   --color-blush: #f0d7c2;
 
+  /* ---------------------------------------------------------------------
+     MARKET SHEET — the one light surface on the site, used by /metal-prices.
+
+     A dealing sheet is read the way print is read: dark figures on paper,
+     ruled into rows. Holding that against the dark site is deliberate — the
+     block reads as a document laid on the page rather than another band of
+     it. The ink is the same warm off-black as the page ground, so the sheet
+     is a tonal inversion of the site rather than a foreign white.
+     --------------------------------------------------------------------- */
+  --color-sheet: #e9e3de;
+  --color-sheet-panel: #fbf9f7;
+  /* Alternating row, a whisper below the panel face. */
+  --color-sheet-alt: #f3efec;
+  --color-sheet-ink: #171312;
+  --color-sheet-dim: #6d625c;
+  --color-sheet-line: rgba(23, 19, 18, 0.12);
+  /* Movement. Green and red are the only two colours on the site that mean
+     something rather than decorate — both held dark enough to clear 4.5:1 on
+     the panel face. */
+  --color-up: #14803c;
+  --color-down: #b3261e;
+
   --font-serif: var(--font-bebas-neue), sans-serif;
   --font-sans: var(--font-dm-sans), sans-serif;
   /* Hero lockup only — the two faces the wordmark artwork is set in. */

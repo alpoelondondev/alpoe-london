@@ -1,4 +1,4 @@
-export type MetalSymbol = "XAU" | "XAG" | "XPT";
+export type MetalSymbol = "XAU" | "XAG" | "XPT" | "XPD";
 
 export type MetalPrice = {
   symbol: MetalSymbol;
@@ -19,6 +19,7 @@ const METALS: { symbol: MetalSymbol; name: string }[] = [
   { symbol: "XAU", name: "Gold" },
   { symbol: "XAG", name: "Silver" },
   { symbol: "XPT", name: "Platinum" },
+  { symbol: "XPD", name: "Palladium" },
 ];
 
 /**
@@ -30,6 +31,7 @@ const SEED: MetalQuote = {
     { symbol: "XAU", name: "Gold", priceUsd: 4377.6, priceGbp: 3234.66 },
     { symbol: "XAG", name: "Silver", priceUsd: 64.83, priceGbp: 47.89 },
     { symbol: "XPT", name: "Platinum", priceUsd: 1755, priceGbp: 1296.49 },
+    { symbol: "XPD", name: "Palladium", priceUsd: 1338, priceGbp: 988.43 },
   ],
   usdToGbp: 0.73874,
   fetchedAt: "2026-08-16T08:06:30.000Z",
@@ -104,6 +106,67 @@ export function formatUsd(value: number) {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+}
+
+/** Troy ounce, the unit spot is quoted in. */
+export const TROY_OUNCE_GRAMS = 31.1034768;
+
+export function perGram(pricePerOunce: number) {
+  return pricePerOunce / TROY_OUNCE_GRAMS;
+}
+
+/**
+ * Hallmark finenesses, which is what a counter actually weighs against. Scrap
+ * and part-exchange are settled per gram at the alloy's gold content, so the
+ * carat rows are the ones a customer can do their own sum with.
+ */
+export const GOLD_CARATS = [
+  { label: "24ct", fineness: 0.999, hallmark: 999 },
+  // Struck as 916, though the alloy is 916.6 parts per thousand — the assay
+  // office rounds down, so the stamp and the sum disagree by a whisker.
+  { label: "22ct", fineness: 0.9166, hallmark: 916 },
+  { label: "18ct", fineness: 0.75, hallmark: 750 },
+  { label: "14ct", fineness: 0.585, hallmark: 585 },
+  { label: "9ct", fineness: 0.375, hallmark: 375 },
+] as const;
+
+/**
+ * Loco London spot runs from Sunday evening to Friday evening, breaking for an
+ * hour each day at 22:00 London. Between those hours nothing is being priced,
+ * so the figures above are the last print rather than a live one — which is a
+ * material difference to anyone reading them on a Saturday.
+ */
+export function isSpotMarketOpen(at: Date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/London",
+    weekday: "short",
+    hour: "2-digit",
+    hour12: false,
+  }).formatToParts(at);
+  const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
+  const hour = Number(parts.find((p) => p.type === "hour")?.value ?? "0");
+
+  if (weekday === "Sat") return false;
+  if (weekday === "Sun") return hour >= 23;
+  if (weekday === "Fri" && hour >= 22) return false;
+  // The daily settlement break.
+  return hour !== 22;
+}
+
+/** "16 Aug 2026 · 09:36:39 BST" — the clock a trading table is read against. */
+export function formatClock(iso: string) {
+  return new Date(iso)
+    .toLocaleString("en-GB", {
+      timeZone: "Europe/London",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZoneName: "short",
+    })
+    .replace(",", " ·");
 }
 
 export function formatTimestamp(iso: string) {
