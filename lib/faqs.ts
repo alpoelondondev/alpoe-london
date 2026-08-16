@@ -126,6 +126,26 @@ const FAQS = {
     answer:
       "Yes, and we would rather you did. Come to the Hatton Garden counter and we will put the same design in front of you with a lab stone and a natural stone in it. Most people decide in about a minute once they are looking at both.",
   },
+  appointmentNeeded: {
+    question: "Do I need an appointment to visit?",
+    answer:
+      "No — walk-ins are welcome during opening hours. Booking simply guarantees a specialist is free for you, and lets us have the right stones, references or paperwork out of the safe before you arrive.",
+  },
+  appointmentConfirm: {
+    question: "How is my appointment confirmed?",
+    answer:
+      "The booking form writes your request into a WhatsApp message that you send us. We reply in the same thread to confirm the slot, usually the same day, and that reply is your confirmation.",
+  },
+  appointmentCost: {
+    question: "Does an appointment cost anything?",
+    answer:
+      "Nothing at all, and there is no obligation to buy. Plenty of people come in to learn what they are looking at before they spend anything.",
+  },
+  appointmentChange: {
+    question: "Can I move or cancel my appointment?",
+    answer:
+      "Yes. Message us on the same WhatsApp thread and we will move it — no notice period and no charge. We would rather rearrange than have you rush.",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const DIAMOND_FAQS: FaqItem[] = [
@@ -195,6 +215,15 @@ export const MENTORSHIP_FAQS: FaqItem[] = [
   FAQS.mentorshipCommit,
   FAQS.mentorshipJoin,
   FAQS.showroom,
+];
+
+export const APPOINTMENT_FAQS: FaqItem[] = [
+  FAQS.appointmentNeeded,
+  FAQS.appointmentConfirm,
+  FAQS.appointmentCost,
+  FAQS.appointmentChange,
+  FAQS.prices,
+  FAQS.sourcing,
 ];
 
 export const CONTACT_FAQS: FaqItem[] = [

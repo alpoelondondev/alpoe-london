@@ -13,6 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: siteUrl("/bespoke"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: siteUrl("/sell"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     {
+      url: siteUrl("/book-appointment"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: siteUrl("/guides/natural-vs-lab-grown-diamonds"),
       lastModified: now,
       changeFrequency: "monthly",
