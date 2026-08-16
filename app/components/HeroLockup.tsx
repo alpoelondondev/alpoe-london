@@ -3,7 +3,7 @@ import {
   LOCKUP_BOX,
   LOCKUP_MONOGRAM_PATHS,
   LOCKUP_RULES,
-  LOCKUP_TEXT,
+  LOCKUP_WORDS,
   LOCKUP_VIEWBOX,
 } from "./heroLockupShapes";
 
@@ -67,19 +67,13 @@ export default function HeroLockup({
             {LOCKUP_RULES.map((r, i) => (
               <rect key={i} {...r} />
             ))}
-            {LOCKUP_TEXT.filter((t) => t.knockout).map((t) => (
-              <text
-                key={t.word}
-                x={t.x}
-                y={t.y}
-                fontSize={t.fontSize}
-                textLength={t.textLength}
-                lengthAdjust="spacing"
-                className={t.className}
-              >
-                {t.word}
-              </text>
-            ))}
+            {LOCKUP_WORDS.filter((w) => w.knockout).map((w) =>
+              w.glyphs.map((g, i) => (
+                <g key={`${w.word}-${i}`} transform={g.transform}>
+                  <path d={g.d} />
+                </g>
+              )),
+            )}
           </g>
         </mask>
       </defs>
@@ -97,20 +91,13 @@ export default function HeroLockup({
       />
 
       {/* Painted over the ground rather than cut out of it. */}
-      {LOCKUP_TEXT.filter((t) => !t.knockout).map((t) => (
-        <text
-          key={t.word}
-          x={t.x}
-          y={t.y}
-          fontSize={t.fontSize}
-          textLength={t.textLength}
-          lengthAdjust="spacing"
-          className={t.className}
-          fill="var(--color-accent)"
-        >
-          {t.word}
-        </text>
-      ))}
+      {LOCKUP_WORDS.filter((w) => !w.knockout).map((w) =>
+        w.glyphs.map((g, i) => (
+          <g key={`${w.word}-${i}`} transform={g.transform} fill="var(--color-accent)">
+            <path d={g.d} />
+          </g>
+        )),
+      )}
     </svg>
   );
 }
