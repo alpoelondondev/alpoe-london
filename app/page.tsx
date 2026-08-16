@@ -6,6 +6,7 @@ import CategoryGrid from "./components/CategoryGrid";
 import About from "./components/About";
 import MentorshipStrip from "./components/MentorshipStrip";
 import MerchandiseStrip from "./components/MerchandiseStrip";
+import AppointmentStrip from "./components/AppointmentStrip";
 import Contact from "./components/Contact";
 import SellForm from "./components/SellForm";
 import FAQ from "./components/FAQ";
@@ -26,6 +27,7 @@ export default function Home() {
       <CategoryGrid />
       <About />
       <MentorshipStrip />
+      <AppointmentStrip />
       <Contact />
       <SellForm />
       <FAQ items={HOME_FAQS} />
