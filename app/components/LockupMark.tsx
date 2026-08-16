@@ -2,7 +2,7 @@ import {
   LOCKUP_ASPECT,
   LOCKUP_MONOGRAM_PATHS,
   LOCKUP_RULES,
-  LOCKUP_TEXT,
+  LOCKUP_WORDS,
   LOCKUP_VIEWBOX,
 } from "./heroLockupShapes";
 
@@ -43,19 +43,13 @@ export default function LockupMark({
       {LOCKUP_RULES.map((r, i) => (
         <rect key={i} {...r} />
       ))}
-      {LOCKUP_TEXT.map((t) => (
-        <text
-          key={t.word}
-          x={t.x}
-          y={t.y}
-          fontSize={t.fontSize}
-          textLength={t.textLength}
-          lengthAdjust="spacing"
-          className={t.className}
-        >
-          {t.word}
-        </text>
-      ))}
+      {LOCKUP_WORDS.map((w) =>
+        w.glyphs.map((g, i) => (
+          <g key={`${w.word}-${i}`} transform={g.transform}>
+            <path d={g.d} />
+          </g>
+        )),
+      )}
     </svg>
   );
 }

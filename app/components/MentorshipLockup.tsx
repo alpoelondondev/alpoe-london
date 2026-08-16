@@ -2,7 +2,7 @@ import {
   LOCKUP_BOX,
   LOCKUP_MONOGRAM_PATHS,
   LOCKUP_RULES,
-  LOCKUP_TEXT,
+  LOCKUP_WORDS,
 } from "./heroLockupShapes";
 
 /**
@@ -79,19 +79,13 @@ export default function MentorshipLockup({
         {LOCKUP_RULES.map((r, i) => (
           <rect key={i} {...r} />
         ))}
-        {LOCKUP_TEXT.map((t) => (
-          <text
-            key={t.word}
-            x={t.x}
-            y={t.y}
-            fontSize={t.fontSize}
-            textLength={t.textLength}
-            lengthAdjust="spacing"
-            className={t.className}
-          >
-            {t.word}
-          </text>
-        ))}
+        {LOCKUP_WORDS.map((w) =>
+          w.glyphs.map((g, i) => (
+            <g key={`${w.word}-${i}`} transform={g.transform}>
+              <path d={g.d} />
+            </g>
+          )),
+        )}
         {/* Tracked to the lockup's exact width, so the word reads as part of
             the mark rather than a caption parked under it. */}
         <text
