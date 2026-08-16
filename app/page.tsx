@@ -5,6 +5,7 @@ import Collections from "./components/Collections";
 import CategoryGrid from "./components/CategoryGrid";
 import About from "./components/About";
 import MentorshipStrip from "./components/MentorshipStrip";
+import MerchandiseStrip from "./components/MerchandiseStrip";
 import Contact from "./components/Contact";
 import SellForm from "./components/SellForm";
 import FAQ from "./components/FAQ";
@@ -28,6 +29,7 @@ export default function Home() {
       <Contact />
       <SellForm />
       <FAQ items={HOME_FAQS} />
+      <MerchandiseStrip />
       <Social />
       <FindUs />
       <Footer />
