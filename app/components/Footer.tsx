@@ -37,8 +37,10 @@ export default function Footer() {
               className="inline-block"
             >
               {/* Inline rather than the .svg file: that asset is hard-filled
-                  near-black and would disappear against this ground. */}
-              <LockupMark width="min(170px, 55vw)" fill="var(--color-blush)" />
+                  near-black and would disappear against this ground. Painted
+                  in the house rose to match the monogram in the bar, so the
+                  mark reads the same at both ends of the page. */}
+              <LockupMark width="min(148px, 48vw)" fill="var(--color-accent)" />
             </Link>
             <p className="text-[13px] leading-[1.7] text-fg/55 max-w-sm">
               A Hatton Garden dealership sourcing authenticated luxury
