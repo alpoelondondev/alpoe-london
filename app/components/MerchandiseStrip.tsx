@@ -20,12 +20,15 @@ export default function MerchandiseStrip() {
       aria-label="Merchandise"
       className="relative isolate overflow-hidden bg-bg"
     >
+      {/* Scaled past the band it fills, so the cap and bag read at size rather
+          than as a distant still. The section clips it, so the strip keeps its
+          own height — this only crops in, it never grows the band. */}
       <Image
         src="/alpoe-london-merchandise-cap-gift-bag-hatton-garden.jpg"
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-center pointer-events-none"
+        className="-translate-x-[4%] scale-120 object-cover object-center pointer-events-none"
       />
 
       {/* Darkened back so type sits on it comfortably. Weighted to the top,

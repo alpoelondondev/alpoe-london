@@ -13,6 +13,7 @@ const HOUSE_LINKS = [
   { label: "Book an Appointment", href: "/book-appointment" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell Your Watch", href: "/sell" },
+  { label: "Metal Prices", href: "/metal-prices" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

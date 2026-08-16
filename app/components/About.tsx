@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
 export default function About() {
@@ -27,6 +28,18 @@ export default function About() {
           consultations, personal sourcing, and white-glove delivery. London
           based, worldwide shipped.
         </p>
+      </ScrollReveal>
+      {/* The private consultation the copy just promised, made bookable on the
+          spot — the homepage's only route to the showroom diary. */}
+      <ScrollReveal delay={0.08}>
+        <div className="mt-10 flex justify-center max-md:mt-8">
+          <Link
+            href="/book-appointment"
+            className="inline-flex items-center justify-center bg-accent px-9 py-4 font-serif text-[18px] uppercase tracking-[0.08em] text-bg transition hover:bg-accent-deep"
+          >
+            Book An Appointment
+          </Link>
+        </div>
       </ScrollReveal>
     </section>
   );
