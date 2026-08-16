@@ -2,23 +2,26 @@
    rose gold.
 
    The two glyphs arrived as separate drawings in different coordinate systems
-   (the A in a 400x400 box, the bowl in a 450x440 one) and at different sizes:
-   measured on their ink rather than their boxes, the A stood 302.2 units tall
-   and the bowl 332.4, so dropping them side by side would have set the bowl
-   about 10% taller than the A.
+   (the A in a 400x400 box, the bowl in a 450x440 one) and at different sizes,
+   so neither viewBox can be trusted to size them against each other.
 
    They are composed here rather than in the markup. Each glyph keeps its
    original path data untouched and is placed by a transform that normalises its
-   *ink* — not its viewBox — to a shared 300-unit cap height, tops and bottoms
-   flush, with a 44-unit gap between them. That keeps the lockup's geometry in
-   one place and leaves the source drawings editable.
+   *ink* — not its viewBox — so the lockup's geometry lives in one place and the
+   source drawings stay editable.
+
+   The A sets the cap height at 300 units. The bowl is deliberately subordinate:
+   half that height, sitting on the A's baseline rather than beside its full
+   face, and tucked to a 20-unit gap. Both scales are worked off measured ink
+   (A 320x302, bowl 380x340), which is why they look arbitrary — scaling the
+   bowl by its 450x440 box instead would land it some 10% out.
 
    The supplied artwork also carried an opaque #1a1a1a background rect. It is
    dropped: the mark sits on the translucent, blurred nav bar, where a solid
    plate would read as a dark square punched through it. */
 
 /** Ink-tight: no padding, so the mark can be positioned off its own edges. */
-export const MONOGRAM_SIZE = { width: 704.6, height: 300 };
+export const MONOGRAM_SIZE = { width: 421.3, height: 300 };
 
 export const MONOGRAM_VIEWBOX = `0 0 ${MONOGRAM_SIZE.width} ${MONOGRAM_SIZE.height}`;
 
@@ -34,13 +37,18 @@ export const MONOGRAM_GLYPHS: { transform: string; paths: string[] }[] = [
     ],
   },
   {
-    // P — scaled 0.90253 to match the A's cap height, then set to its right.
+    // P — scaled 0.44118 (150 ÷ 340 of measured ink) to stand half the A's
+    // height, hung from the cap line rather than the baseline, and tucked into
+    // the crook of the A's right leg. Because that leg slopes, the gap has to
+    // be measured at the bowl's *lowest* point (x≈234 at the half-height mark)
+    // rather than off the A's bounding box, which is set by a serif 150 units
+    // below anything the bowl is near.
+    //
     // One stroke only: the bowl and its two bars. An earlier drawing carried a
     // second path spurring off the stem at x-height; the current artwork drops
-    // it. Its ink sat inside the bowl's own bounds (x 40–265 of 40–420,
-    // y 105–125 of 50–390), so removing it leaves the glyph's box — and the
-    // cap-height normalisation above — untouched.
-    transform: "translate(325.57,-48.56) scale(0.90253)",
+    // it. That ink sat inside the bowl's own bounds (x 40–265 of 40–420,
+    // y 105–125 of 50–390), so losing it leaves the glyph's box unchanged.
+    transform: "translate(235.95,-22.06) scale(0.44118)",
     paths: [
       "M 40 50 L 220 50 A 200 170 0 0 1 220 390 L 130 390 L 130 355 L 220 355 A 110 132.5 0 0 0 220 85 L 40 85 Z",
     ],
