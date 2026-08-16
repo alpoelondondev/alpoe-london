@@ -96,7 +96,46 @@ const FAQS = {
     answer:
       "Send us a message telling us where you are up to — starting from scratch, already reselling, or building a brand. We check the room is right for you, then send the invite to the private group.",
   },
+  labSimulants: {
+    question: "Is a lab diamond the same as moissanite or cubic zirconia?",
+    answer:
+      "No. Moissanite and cubic zirconia are simulants. They are different materials that are made to look like diamond. A lab diamond is diamond. Simulants give themselves away on sparkle: cubic zirconia goes dull and can yellow with age, and moissanite throws rainbow flashes and looks hazy at larger sizes.",
+  },
+  labCertification: {
+    question: "Are lab diamonds certified?",
+    answer:
+      "Yes, and you should not buy one that is not. Look for GIA or IGI. Both laser inscribe a number on the girdle that matches the certificate, readable at 50x magnification, and IGI marks lab stones as lab grown alongside it.",
+  },
+  labResale: {
+    question: "Will a lab diamond hold its value?",
+    answer:
+      "Nobody knows yet. Lab stones are too new for a resale track record. Natural diamonds hold their position better because supply is finite. Worth saying plainly: any diamond, lab or natural, resells for less than you paid.",
+  },
+  labEthics: {
+    question: "Are lab diamonds more ethical?",
+    answer:
+      "They remove the conflict stone question, but it depends on the producer. Some labs run on renewable energy and some do not. Natural mining uses far more land, though a well run mine supports the community around it. We will tell you where a stone came from before you buy it.",
+  },
+  labCarat: {
+    question: "How much bigger can I go with a lab diamond?",
+    answer:
+      "Roughly two to three times the carat weight for the same money, at the same cut, colour and clarity grades. That is the main reason people choose lab, and it is why a budget that buys a 1ct natural will often buy a 2.5ct lab.",
+  },
+  labSeeBoth: {
+    question: "Can I see the two side by side?",
+    answer:
+      "Yes, and we would rather you did. Come to the Hatton Garden counter and we will put the same design in front of you with a lab stone and a natural stone in it. Most people decide in about a minute once they are looking at both.",
+  },
 } satisfies Record<string, FaqItem>;
+
+export const DIAMOND_FAQS: FaqItem[] = [
+  FAQS.labCarat,
+  FAQS.labCertification,
+  FAQS.labResale,
+  FAQS.labEthics,
+  FAQS.labSimulants,
+  FAQS.labSeeBoth,
+];
 
 export const HOME_FAQS: FaqItem[] = [
   FAQS.prices,

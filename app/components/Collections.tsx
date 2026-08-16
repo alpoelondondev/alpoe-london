@@ -78,7 +78,9 @@ export default function Collections() {
                     fill
                     draggable={false}
                     sizes="(max-width: 768px) 82vw, 50vw"
-                    className="object-cover pointer-events-none transition-transform duration-500 group-hover:scale-[1.04]"
+                    className={`object-cover pointer-events-none transition-transform duration-500 ${
+                      item.imageScale ?? "group-hover:scale-[1.04]"
+                    }`}
                   />
                   {item.video ? (
                     /* Silent decorative loop over its own poster; no UA controls. */
