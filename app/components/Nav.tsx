@@ -79,7 +79,7 @@ export default function Nav({
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-3 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-3 max-md:justify-end transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
@@ -88,9 +88,13 @@ export default function Nav({
             gone and sat over the page — worst on a phone, where there is no
             margin for it to hide in. The h-10 keeps the bar the height its
             40px spacer used to set, so nothing below it shifts. */}
+        {/* Centred on a phone by taking it out of the flow, so the search and
+            menu keep the right edge to themselves rather than being pushed off
+            balance by the mark's width. The bar switches to justify-end to
+            match. Desktop keeps the logo in the flow, on the left. */}
         <Link
           href="/"
-          className="flex h-10 shrink-0 items-center"
+          className="flex h-10 shrink-0 items-center max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2"
           aria-label="Alpoe London — Home"
         >
           <Monogram3D height={40} />
