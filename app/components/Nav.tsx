@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import SearchTrigger from "./SearchTrigger";
 import {
   MONOGRAM_ASPECT,
@@ -18,6 +19,41 @@ type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
  * than its box — is what keeps the bar's weight unchanged.
  */
 const MONOGRAM_HEIGHT = 28;
+
+/**
+ * The site-wide mark is the live rose gold monogram. Still loaded dynamically:
+ * three.js arrives after hydration rather than inside every page's first
+ * bundle, and the flat SVG holds the slot until it does.
+ */
+const Monogram3D = dynamic(() => import("./Monogram3D"), {
+  ssr: false,
+  // The flat mark holds the slot while the 3D chunk loads, so the bar never
+  // shows a hole and non-WebGL browsers keep a logo.
+  loading: () => <MonogramFlat />,
+});
+
+/** The original flat mark — now the loading state while the 3D one arrives. */
+function MonogramFlat() {
+  return (
+    <svg
+      viewBox={MONOGRAM_VIEWBOX}
+      height={MONOGRAM_HEIGHT}
+      width={Math.round(MONOGRAM_HEIGHT * MONOGRAM_ASPECT)}
+      aria-hidden="true"
+      fill="var(--color-accent)"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {MONOGRAM_GLYPHS.map((glyph, i) => (
+        <g key={i} transform={glyph.transform}>
+          {glyph.paths.map((d, j) => (
+            <path key={j} d={d} />
+          ))}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 
 const LINKS = [
   { label: "Watches", href: "/watches" },
@@ -67,24 +103,7 @@ export default function Nav({
           className="flex h-10 shrink-0 items-center"
           aria-label="Alpoe London — Home"
         >
-          {/* Sized from a height, since the viewBox is cropped tight to the ink
-              and the lockup's width follows from its own aspect. */}
-          <svg
-            viewBox={MONOGRAM_VIEWBOX}
-            height={MONOGRAM_HEIGHT}
-            width={Math.round(MONOGRAM_HEIGHT * MONOGRAM_ASPECT)}
-            aria-hidden="true"
-            fill="var(--color-accent)"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {MONOGRAM_GLYPHS.map((glyph, i) => (
-              <g key={i} transform={glyph.transform}>
-                {glyph.paths.map((d, j) => (
-                  <path key={j} d={d} />
-                ))}
-              </g>
-            ))}
-          </svg>
+          <Monogram3D height={40} />
         </Link>
         {/* Tightens below lg: seven links at the full gap overflow the bar on a
             small laptop once the logo and search have taken their share. */}

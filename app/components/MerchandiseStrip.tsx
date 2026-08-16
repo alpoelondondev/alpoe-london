@@ -13,7 +13,7 @@ import ScrollReveal from "./ScrollReveal";
  * behind the page rather than stacked on top of it. Every part of that effect
  * is scoped inside this section, so no other strip on the page is touched.
  */
-export default function MerchandiseStrip() {
+export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
   return (
     <section
       id="merchandise"
@@ -53,7 +53,13 @@ export default function MerchandiseStrip() {
         className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.14),transparent)] pointer-events-none"
       />
 
-      <div className="relative flex flex-col items-center px-[52px] py-24 text-center max-md:px-6 max-md:py-16">
+      {/* `tall` opts a page into a deeper band. Off by default, so the
+          homepage strip keeps the height it already had. */}
+      <div
+        className={`relative flex flex-col items-center px-[52px] text-center max-md:px-6 ${
+          tall ? "py-48 max-md:py-32" : "py-24 max-md:py-16"
+        }`}
+      >
         <ScrollReveal>
           <h2 className="font-serif text-[clamp(30px,4.4vw,56px)] tracking-[0.02em] leading-none text-blush">
             Merchandise
