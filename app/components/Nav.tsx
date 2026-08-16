@@ -79,7 +79,7 @@ export default function Nav({
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-3 max-md:justify-end transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-6 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-5 max-md:justify-end transition-transform duration-300 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
@@ -94,7 +94,7 @@ export default function Nav({
             match. Desktop keeps the logo in the flow, on the left. */}
         <Link
           href="/"
-          className="flex h-10 shrink-0 items-center max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2"
+          className="flex h-11 shrink-0 items-center max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2"
           aria-label="Alpoe London — Home"
         >
           <Monogram3D height={40} />

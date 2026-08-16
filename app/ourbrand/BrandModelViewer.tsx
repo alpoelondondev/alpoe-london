@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { createRoseGoldEnvironment } from "../components/roseGoldEnvironment";
 
 const MODEL_URL = "/models/alpoe-lockup.glb";
 
@@ -37,7 +37,9 @@ export default function BrandModelViewer() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    // ACES desaturates as it approaches white, so an exposure that clipped the
+    // specular hits was bleaching the hue out of exactly the brightest parts.
+    renderer.toneMappingExposure = 1.0;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
 
@@ -51,22 +53,24 @@ export default function BrandModelViewer() {
       1000,
     );
 
-    // Polished metal is almost entirely reflection: with no environment it
-    // renders as a flat silhouette no matter how many lights you add.
-    // RoomEnvironment gives it something to reflect and ships no asset.
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    const envRT = pmrem.fromScene(new RoomEnvironment(), 0.04);
+    // Polished metal is almost entirely reflection, so what it reflects decides
+    // its colour. RoomEnvironment is a white and grey box, which is why the
+    // mark went to chrome as soon as it turned away from the key light.
+    const envRT = createRoseGoldEnvironment(renderer);
     scene.environment = envRT.texture;
 
-    const key = new THREE.DirectionalLight(0xfff2ea, 2.2);
+    // Warmed and calmed. The old near-white key at 2.2 blew the specular past
+    // where any hue survives; the tinted environment now carries most of the
+    // modelling, so the lights only need to shape it.
+    const key = new THREE.DirectionalLight(0xffd9c2, 1.6);
     key.position.set(3, 4, 5);
     scene.add(key);
 
-    const rim = new THREE.DirectionalLight(0xffd9c2, 1.4);
+    const rim = new THREE.DirectionalLight(0xffc9a8, 1.1);
     rim.position.set(-4, 2, -5);
     scene.add(rim);
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x2a2220, 0.5));
+    scene.add(new THREE.HemisphereLight(0xffe6d4, 0x2a1a13, 0.4));
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -180,8 +184,12 @@ export default function BrandModelViewer() {
             const std = m as THREE.MeshStandardMaterial;
             if (!("metalness" in std)) continue;
             std.metalness = 1.0;
-            std.roughness = 0.12;
-            std.envMapIntensity = 1.3;
+            // Sharper is not more metallic. At 0.12 the reflection was a hard
+            // mirror and the base colour never got a look in; a little
+            // diffusion lets the rose read while it still polishes.
+            std.roughness = 0.22;
+            // Was 1.3, which pushed the environment harder than the tint.
+            std.envMapIntensity = 0.9;
             std.needsUpdate = true;
           }
         });
@@ -228,7 +236,6 @@ export default function BrandModelViewer() {
       draco.dispose();
       controls.dispose();
       envRT.dispose();
-      pmrem.dispose();
       scene.traverse((obj) => {
         const mesh = obj as THREE.Mesh;
         if (!mesh.isMesh) return;

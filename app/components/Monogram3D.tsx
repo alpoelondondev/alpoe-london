@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { createRoseGoldEnvironment } from "./roseGoldEnvironment";
+import { LOCKUP_ASPECT } from "./heroLockupShapes";
 
 /**
  * The full lockup as exported from Blender: AP monogram, ALPOE LONDON and the
@@ -12,9 +13,6 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
  * loads, so the bar and that page can never drift apart.
  */
 const MODEL_URL = "/models/alpoe-lockup.glb";
-
-/** Width to height of the exported lockup (1748.93 x 989.07 in the artwork). */
-const LOCKUP_ASPECT = 1.768;
 
 /**
  * The lockup as live rose gold — a drop-in stand-in for the flat SVG in the
@@ -52,23 +50,27 @@ export default function Monogram3D({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(w, height);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    // ACES desaturates toward white, so a hot exposure bleached the hue out
+    // of the brightest specular hits.
+    renderer.toneMappingExposure = 1.0;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(30, w / height, 0.1, 100);
 
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    const envRT = pmrem.fromScene(new RoomEnvironment(), 0.04);
+    // Shared with the /ourbrand viewer: at metalness 1 the mark's colour is
+    // whatever it reflects, and RoomEnvironment's white-and-grey box turned it
+    // to chrome wherever the key light wasn't hitting it.
+    const envRT = createRoseGoldEnvironment(renderer);
     scene.environment = envRT.texture;
 
     // The orbiting key is what makes it shimmer — as it circles, the specular
     // highlight walks along the bevels.
-    const key = new THREE.DirectionalLight(0xfff0e6, 2.5);
+    const key = new THREE.DirectionalLight(0xffd9c2, 1.8);
     key.position.set(2, 3, 4);
     scene.add(key);
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x2a2220, 0.6));
+    scene.add(new THREE.HemisphereLight(0xffe6d4, 0x2a1a13, 0.45));
 
     let model: THREE.Object3D | null = null;
     let raf = 0;
@@ -98,8 +100,8 @@ export default function Monogram3D({
             const std = m as THREE.MeshStandardMaterial;
             if (!("metalness" in std)) continue;
             std.metalness = 1.0;
-            std.roughness = 0.12;
-            std.envMapIntensity = 1.4;
+            std.roughness = 0.22;
+            std.envMapIntensity = 0.9;
             std.needsUpdate = true;
           }
         });
@@ -158,7 +160,6 @@ export default function Monogram3D({
       document.removeEventListener("visibilitychange", onVisibility);
       draco.dispose();
       envRT.dispose();
-      pmrem.dispose();
       scene.traverse((obj) => {
         const mesh = obj as THREE.Mesh;
         if (!mesh.isMesh) return;
