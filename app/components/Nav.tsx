@@ -4,21 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import SearchTrigger from "./SearchTrigger";
-import {
-  MONOGRAM_ASPECT,
-  MONOGRAM_GLYPHS,
-  MONOGRAM_VIEWBOX,
-} from "./monogramPaths";
+import LockupMark from "./LockupMark";
+import { LOCKUP_ASPECT } from "./heroLockupShapes";
 import type { SearchIndexEntry } from "@/lib/types";
 
 type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
 
 /**
- * Cap height of the monogram in the bar. The wordmark it replaces was a 48px
- * box only about half filled with ink, so matching its *drawn* height — rather
- * than its box — is what keeps the bar's weight unchanged.
+ * Height of the lockup in the bar. Taller than the 28px the bare monogram used
+ * to run at: the lockup carries ALPOE LONDON inside the same box, and below
+ * about 40px those words stop resolving. Drop it and the wordmark turns to mud.
  */
-const MONOGRAM_HEIGHT = 28;
+const MONOGRAM_HEIGHT = 42;
 
 /**
  * The site-wide mark is the live rose gold monogram. Still loaded dynamically:
@@ -32,25 +29,18 @@ const Monogram3D = dynamic(() => import("./Monogram3D"), {
   loading: () => <MonogramFlat />,
 });
 
-/** The original flat mark — now the loading state while the 3D one arrives. */
+/**
+ * The flat mark — now the loading state while the 3D one arrives, and the
+ * permanent mark on browsers without WebGL. Draws the same full lockup as the
+ * GLB (monogram, both words, frame rules) so the bar never swaps artwork
+ * underneath the viewer as the 3D chunk lands.
+ */
 function MonogramFlat() {
   return (
-    <svg
-      viewBox={MONOGRAM_VIEWBOX}
-      height={MONOGRAM_HEIGHT}
-      width={Math.round(MONOGRAM_HEIGHT * MONOGRAM_ASPECT)}
-      aria-hidden="true"
+    <LockupMark
+      width={Math.round(MONOGRAM_HEIGHT * LOCKUP_ASPECT)}
       fill="var(--color-accent)"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {MONOGRAM_GLYPHS.map((glyph, i) => (
-        <g key={i} transform={glyph.transform}>
-          {glyph.paths.map((d, j) => (
-            <path key={j} d={d} />
-          ))}
-        </g>
-      ))}
-    </svg>
+    />
   );
 }
 

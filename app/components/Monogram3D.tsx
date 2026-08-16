@@ -6,11 +6,19 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
-const MODEL_URL = "/models/alpoe-monogram.glb";
+/**
+ * The full lockup as exported from Blender: AP monogram, ALPOE LONDON and the
+ * frame rules, in one Draco-compressed mesh. Same file the /ourbrand viewer
+ * loads, so the bar and that page can never drift apart.
+ */
+const MODEL_URL = "/models/alpoe-lockup.glb";
+
+/** Width to height of the exported lockup (1748.93 x 989.07 in the artwork). */
+const LOCKUP_ASPECT = 1.768;
 
 /**
- * The AƆ monogram as live rose gold — a drop-in stand-in for the flat SVG in
- * the nav. It idles with a slow sway while a light orbits it, so the bevel
+ * The lockup as live rose gold — a drop-in stand-in for the flat SVG in the
+ * nav. It idles with a slow sway while a light orbits it, so the bevel
  * highlight travels around the letterforms: the shimmer is real reflection
  * movement, not an opacity trick.
  *
@@ -23,11 +31,11 @@ export default function Monogram3D({
   width,
 }: {
   height?: number;
-  /** Defaults to height × the monogram's own aspect (~1.53). */
+  /** Defaults to height × the lockup's own aspect. */
   width?: number;
 }) {
   const mountRef = useRef<HTMLDivElement>(null);
-  const w = width ?? Math.round(height * 1.53);
+  const w = width ?? Math.round(height * LOCKUP_ASPECT);
 
   useEffect(() => {
     const mount = mountRef.current;
