@@ -35,10 +35,14 @@ export const MONOGRAM_GLYPHS: { transform: string; paths: string[] }[] = [
   },
   {
     // P — scaled 0.90253 to match the A's cap height, then set to its right.
+    // One stroke only: the bowl and its two bars. An earlier drawing carried a
+    // second path spurring off the stem at x-height; the current artwork drops
+    // it. Its ink sat inside the bowl's own bounds (x 40–265 of 40–420,
+    // y 105–125 of 50–390), so removing it leaves the glyph's box — and the
+    // cap-height normalisation above — untouched.
     transform: "translate(325.57,-48.56) scale(0.90253)",
     paths: [
       "M 40 50 L 220 50 A 200 170 0 0 1 220 390 L 130 390 L 130 355 L 220 355 A 110 132.5 0 0 0 220 85 L 40 85 Z",
-      "M 40 105 L 220 105 C 250 105, 265 110, 265 120 Q 265 125, 260 125 L 40 125 Z",
     ],
   },
 ];
