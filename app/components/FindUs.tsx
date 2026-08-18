@@ -22,16 +22,36 @@ const ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
 /**
- * The top and bottom fade. Written as a long ramp with intermediate stops
- * rather than transparent → opaque: a straight two-stop gradient concentrates
- * the whole transition into a short run and the eye reads that as a band. The
- * middle stops ease it, so the map simply stops being there.
+ * The top and bottom fade.
+ *
+ * Built rather than written out: a hand-set gradient needs a stop every couple
+ * of percent to stop the eye finding the ramp, and thirty of those by hand is
+ * both unreadable and easy to get subtly wrong on one side. This walks a
+ * smoothstep curve — flat at both ends, steepest in the middle — so the map
+ * eases out of the page instead of ramping out of it linearly, which is what
+ * reads as a band however many stops a straight ramp is given.
  */
-const MAP_FADE =
-  "linear-gradient(to bottom, " +
-  "rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 6%, rgba(0,0,0,0.5) 13%, " +
-  "rgba(0,0,0,0.85) 21%, #000 30%, #000 70%, rgba(0,0,0,0.85) 79%, " +
-  "rgba(0,0,0,0.5) 87%, rgba(0,0,0,0.15) 94%, rgba(0,0,0,0) 100%)";
+const MAP_FADE_RAMP = 34; // % of the map's height each edge fades across
+const MAP_FADE_STEP = 2;
+
+function mapFade() {
+  const stops: string[] = [];
+  for (let p = 0; p <= MAP_FADE_RAMP; p += MAP_FADE_STEP) {
+    const t = p / MAP_FADE_RAMP;
+    const alpha = t * t * (3 - 2 * t);
+    stops.push(`rgba(0,0,0,${alpha.toFixed(3)}) ${p}%`);
+  }
+  // The bottom edge is the same curve walked backwards, so the two ends
+  // cannot drift apart.
+  for (let p = MAP_FADE_RAMP; p >= 0; p -= MAP_FADE_STEP) {
+    const t = p / MAP_FADE_RAMP;
+    const alpha = t * t * (3 - 2 * t);
+    stops.push(`rgba(0,0,0,${alpha.toFixed(3)}) ${100 - p}%`);
+  }
+  return `linear-gradient(to bottom, ${stops.join(", ")})`;
+}
+
+const MAP_FADE = mapFade();
 
 const DIRECTIONS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${SITE.name}, ${SITE.address.streetAddress}, ${SITE.address.addressLocality} ${SITE.address.postalCode}`,
@@ -89,7 +109,16 @@ export default function FindUs() {
   }, []);
 
   return (
-    <section id="find-us" className="pb-20 max-md:pb-14" aria-label="Find us">
+    <section
+      id="find-us"
+      // Top padding as well as bottom: the map used to sit straight under the
+      // merchandise strip, and two full-bleed blocks meeting with no air read
+      // as one block. The tail is short by comparison — the map's own bottom
+      // edge already fades out, so a deep pad under it just doubled the gap
+      // before the footer.
+      className="pt-16 pb-8 max-md:pt-10 max-md:pb-6"
+      aria-label="Find us"
+    >
       <ScrollReveal>
         {/* Full-bleed: the map runs edge to edge, no gutter and no border.
             Relative, because the address plate is laid over it. */}
