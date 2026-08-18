@@ -162,10 +162,10 @@ export default function BookingFlow() {
       {/* ---------------------------------------------------------------- 1 */}
       {step === 0 ? (
         <div>
-          <h2 className="text-center font-serif text-[clamp(24px,3.2vw,40px)] leading-tight text-blush">
+          <h2 className="t-section text-center">
             What would you like to discuss?
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-center text-[14px] leading-relaxed text-dim">
+          <p className="mx-auto mt-3 max-w-md text-center t-copy">
             Choose the type of appointment that suits you.
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 max-md:grid-cols-1">
@@ -188,7 +188,7 @@ export default function BookingFlow() {
                   <span className="font-serif text-[22px] leading-tight text-blush">
                     {t.name}
                   </span>
-                  <span className="mt-3 text-[14px] leading-relaxed text-fg/70">
+                  <span className="mt-3 t-copy">
                     {t.blurb}
                   </span>
                   <span className="mt-6 inline-flex items-center gap-2 text-[10px] tracking-[0.18em] uppercase text-champagne">
@@ -205,10 +205,10 @@ export default function BookingFlow() {
       {/* ---------------------------------------------------------------- 2 */}
       {step === 1 && type ? (
         <div>
-          <h2 className="text-center font-serif text-[clamp(24px,3.2vw,40px)] leading-tight text-blush">
+          <h2 className="t-section text-center">
             Pick a date and time
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-center text-[14px] leading-relaxed text-dim">
+          <p className="mx-auto mt-3 max-w-md text-center t-copy">
             {type.name} · {type.minutes} min. We are open Monday to Saturday, 10am until 6pm.
           </p>
 
@@ -296,10 +296,10 @@ export default function BookingFlow() {
       {/* ---------------------------------------------------------------- 3 */}
       {step === 2 && type && dateIso && time ? (
         <div>
-          <h2 className="text-center font-serif text-[clamp(24px,3.2vw,40px)] leading-tight text-blush">
+          <h2 className="t-section text-center">
             Who are we expecting?
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-center text-[14px] leading-relaxed text-dim">
+          <p className="mx-auto mt-3 max-w-md text-center t-copy">
             {formatBookingDate(dateIso)} at {formatSlot(time)}.
           </p>
 
@@ -407,10 +407,10 @@ export default function BookingFlow() {
       {/* ---------------------------------------------------------------- 4 */}
       {step === 3 && booking ? (
         <div>
-          <h2 className="text-center font-serif text-[clamp(24px,3.2vw,40px)] leading-tight text-blush">
+          <h2 className="t-section text-center">
             Send it to the showroom
           </h2>
-          <p className="mx-auto mt-3 max-w-lg text-center text-[14px] leading-relaxed text-dim">
+          <p className="mx-auto mt-3 max-w-lg text-center t-copy">
             This is your booking, written out. Press send in WhatsApp and we will confirm the
             slot in the thread — usually the same day.
           </p>
@@ -463,7 +463,7 @@ export default function BookingFlow() {
             <p className="mt-10 text-[10px] tracking-[0.18em] uppercase text-dim">
               The message we&apos;ll open for you
             </p>
-            <pre className="mt-3 whitespace-pre-wrap border border-fg/15 bg-fg/[0.03] px-6 py-5 font-sans text-[14px] leading-[1.75] text-fg/80">
+            <pre className="mt-3 whitespace-pre-wrap border border-fg/15 bg-fg/[0.03] px-6 py-5 font-sans t-copy">
               {buildAppointmentMessage(booking)}
             </pre>
 

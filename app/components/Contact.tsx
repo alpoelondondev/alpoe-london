@@ -18,7 +18,7 @@ export default function Contact() {
           aria-expanded={open}
           className="w-full flex items-center justify-between py-8 cursor-pointer text-left"
         >
-          <span className="text-[16px] tracking-[0.2em] uppercase text-accent">
+          <span className="t-eyebrow !text-accent">
             Get in touch
           </span>
           <span

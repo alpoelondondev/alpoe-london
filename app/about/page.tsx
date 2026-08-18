@@ -77,13 +77,13 @@ export default function AboutPage() {
         <section className="px-[52px] pb-20 max-md:px-6">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <p className="text-[16px] leading-[1.9] text-fg/80">
+              <p className="t-copy">
                 We serve clients of every calibre, from first-time buyers to a discreet roster
                 of high-profile and high-net-worth collectors. Every relationship is handled
                 with the same VIP service: private consultations, personal sourcing, and
                 white-glove delivery.
               </p>
-              <p className="mt-6 text-[16px] leading-[1.9] text-fg/80">
+              <p className="mt-6 t-copy">
                 Hatton Garden has been London&apos;s jewellery quarter for over a century, and
                 it is where we design, set and authenticate everything we sell. Walk in and you
                 deal with the people who actually make and source the pieces — not a counter.
@@ -95,10 +95,10 @@ export default function AboutPage() {
             {PILLARS.map((p, i) => (
               <ScrollReveal key={p.title} delay={i * 0.08}>
                 <div className="h-full border border-fg/[0.10] bg-fg/[0.04] p-6">
-                  <h2 className="font-serif text-[22px] leading-none tracking-[0.02em]">
+                  <h2 className="t-sub">
                     {p.title}
                   </h2>
-                  <p className="mt-3 text-[14px] leading-relaxed text-dim">{p.copy}</p>
+                  <p className="mt-3 t-copy">{p.copy}</p>
                 </div>
               </ScrollReveal>
             ))}

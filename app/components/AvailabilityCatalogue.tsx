@@ -53,7 +53,7 @@ export default function AvailabilityCatalogue({
     <section className="mt-24 border-t border-fg/[0.14] pt-14">
       <header className="max-w-2xl">
         <p className="text-[11px] tracking-[0.2em] uppercase text-accent">Available to Source</p>
-        <h2 className="mt-3 font-serif text-[clamp(26px,3.4vw,40px)] leading-tight">
+        <h2 className="t-section mt-3">
           {total} {brandName} references we can source
         </h2>
         <p className="mt-3 text-dim text-sm leading-relaxed">

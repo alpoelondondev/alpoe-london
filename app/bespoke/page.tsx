@@ -178,10 +178,10 @@ export default function BespokePage() {
                       {s.n}
                     </span>
                     <div>
-                      <h2 className="font-serif text-[20px] leading-none tracking-[0.02em]">
+                      <h2 className="t-sub">
                         {s.title}
                       </h2>
-                      <p className="mt-2 text-[14px] leading-relaxed text-dim">{s.copy}</p>
+                      <p className="mt-2 t-copy">{s.copy}</p>
                     </div>
                   </li>
                 ))}
@@ -192,10 +192,10 @@ export default function BespokePage() {
 
         <section id="bespoke-form" className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(28px,4vw,48px)] leading-tight text-center">
+            <h2 className="t-section text-center">
               Start Your Commission
             </h2>
-            <p className="mx-auto mt-3 mb-10 max-w-xl text-center text-[14px] leading-relaxed text-dim">
+            <p className="mx-auto mt-3 mb-10 max-w-xl text-center t-copy">
               Answer a few questions and it opens WhatsApp with your brief written out. A
               specialist comes back to you, usually the same day.
             </p>

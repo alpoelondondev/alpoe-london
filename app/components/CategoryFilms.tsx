@@ -65,7 +65,7 @@ export default function CategoryFilms({ films }: { films: Film[] }) {
             </div>
 
             <div className="flex flex-1 flex-col gap-1 p-3">
-              <h3 className="font-serif text-[15px] leading-tight tracking-[0.01em]">
+              <h3 className="t-card">
                 {film.title}
               </h3>
               <p className="text-[11px] leading-snug font-light text-fg/60">{film.spec}</p>

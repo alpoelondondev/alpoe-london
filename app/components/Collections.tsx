@@ -125,7 +125,7 @@ export default function Collections() {
               ) : null}
               <div className="absolute bottom-2.5 left-3.5 right-10">
                 <h3
-                  className={`font-serif text-[clamp(18px,1.8vw,26px)] tracking-[0.02em] leading-none mb-1 ${
+                  className={`t-card mb-1 ${
                     item.image ? "text-fg" : ""
                   }`}
                 >

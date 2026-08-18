@@ -82,7 +82,7 @@ export default function MentorshipStrip() {
           <MentorshipLockup ground={false} className="w-[min(540px,82vw)]" />
         </ScrollReveal>
         <ScrollReveal delay={0.08}>
-          <p className="mt-2 max-w-lg text-[14px] leading-[1.7] text-bg/80">
+          <p className="t-copy mt-2 max-w-lg !text-bg/80">
             A private group run from our Hatton Garden counter for anyone serious about
             buying and selling watches and jewellery. Sourcing, pricing and negotiating,
             as we do it every week.

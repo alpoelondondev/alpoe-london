@@ -142,19 +142,19 @@ export default function MentorshipPage() {
             </ScrollReveal>
             <ScrollReveal delay={0.08}>
               <div className="max-w-xl">
-                <p className="text-[16px] leading-[1.9] text-fg/80">
+                <p className="t-copy">
                   Most people who try to get into this trade lose money on their first few
                   pieces. Not because they have no eye, but because nobody told them what a
                   piece is really worth, who to buy it from, or how thin the margin gets once
                   you have paid for it twice.
                 </p>
-                <p className="mt-5 text-[16px] leading-[1.9] text-fg/80">
+                <p className="mt-5 t-copy">
                   We have spent years on Hatton Garden doing exactly that — sourcing stock,
                   valuing what comes across the counter, and selling to collectors who know the
                   market as well as we do. The mentorship is that experience written down and
                   kept current, in a room where you can ask about your own deals.
                 </p>
-                <p className="mt-5 text-[16px] leading-[1.9] text-fg/80">
+                <p className="mt-5 t-copy">
                   It runs entirely through a private Telegram group, so it moves at the speed
                   the market does.
                 </p>
@@ -170,10 +170,10 @@ export default function MentorshipPage() {
           className="px-[52px] py-20 max-md:px-6 max-md:py-14"
         >
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(28px,4vw,48px)] leading-tight text-center">
+            <h2 className="t-section text-center">
               Apply To Join
             </h2>
-            <p className="mx-auto mt-3 mb-10 max-w-xl text-center text-[14px] leading-relaxed text-dim">
+            <p className="mx-auto mt-3 mb-10 max-w-xl text-center t-copy">
               Tell us where you are up to and it opens WhatsApp with your details written out.
               We come back with the terms and, if it is a fit, the invite to the group.
             </p>

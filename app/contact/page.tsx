@@ -86,10 +86,10 @@ export default function ContactPage() {
         <section className="px-[52px] pb-20 max-md:px-6">
           <div className="grid grid-cols-2 gap-14 max-md:grid-cols-1 max-md:gap-10">
             <ScrollReveal>
-              <h2 className="font-serif text-[clamp(24px,3vw,36px)] leading-tight">
+              <h2 className="t-section">
                 Send us the details
               </h2>
-              <p className="mt-3 mb-8 text-[14px] leading-relaxed text-dim">
+              <p className="mt-3 mb-8 t-copy">
                 Fill this in and it opens WhatsApp with your enquiry already written out —
                 just press send.
               </p>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-[10px] tracking-[0.18em] uppercase text-dim">Opening hours</p>
-                  <p className="mt-2 text-[14px] leading-relaxed text-fg/80">
+                  <p className="mt-2 t-copy">
                     Monday–Saturday, by appointment or walk-in.
                     <br />
                     Sunday closed.

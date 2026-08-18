@@ -16,29 +16,42 @@ export default function About() {
       className="relative overflow-hidden bg-panel px-[52px] pt-10 pb-10 mb-10 max-md:px-6 max-md:pt-8 max-md:pb-8 max-md:mb-8"
     >
       {/* The presentation plate, blurred so it never competes with the copy
-          for focus. It starts below the band's own lockup rather than at the
-          top edge: the photograph carries an embroidered ALPOE mark of its
-          own, and two marks stacked on one line read as a printing error.
-          Opacity and wash have to be read together — at 0.14 under a 55% wash
-          it came out around 6% and could not be seen at all. Scaled past the
-          edges because the blur would otherwise pull the frame's own soft
-          border in from each side. */}
+          for focus, and kept clear of the band's own lockup — the photograph
+          carries an embroidered ALPOE mark of its own, and two marks stacked
+          on one line read as a printing error. Opacity and wash have to be
+          read together: at 0.14 under a 55% wash it came out around 6% and
+          could not be seen at all. Scaled past the edges because the blur
+          would otherwise pull the frame's own soft border in from each side.
+          Cropped to the plate's rose gold rim rather than its middle: the
+          embroidery in the centre of the frame is the mark again, and it was
+          landing directly under the lockup.
+      */}
+      {/* One layer across the whole band, faded in with a mask rather than
+          started partway down: a layer that begins at 42% has a top edge, and
+          a blurred photograph against flat panel colour shows that edge as a
+          line straight across the band. The mask has no edge to show — the
+          photograph is simply absent behind the lockup and arrives by the
+          time the copy starts. */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 top-[42%] max-md:top-[38%]"
+        className="absolute inset-0"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, transparent 26%, rgba(0,0,0,0.55) 46%, #000 72%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, transparent 26%, rgba(0,0,0,0.55) 46%, #000 72%)",
+        }}
       >
         <Image
           src="/appointment-plate-AP.jpeg"
           alt=""
           fill
           sizes="100vw"
-          className="scale-110 object-cover object-[50%_35%] opacity-[0.78] blur-[2px]"
+          className="scale-110 object-cover object-[50%_88%] opacity-[0.78] blur-[2px]"
         />
-        {/* Panel colour washed back over it: solid at the left and right
-            edges, and drawn down from the top so the photograph rises out of
-            the band rather than starting on a hard line under the lockup. */}
+        {/* Panel colour held at the left and right edges so the band still
+            ends on its own ground rather than on a photograph. */}
         <div className="absolute inset-0 bg-gradient-to-r from-panel from-0% via-panel/10 via-32% to-panel to-100%" />
-        <div className="absolute inset-0 bg-gradient-to-b from-panel from-0% via-panel/25 via-55% to-transparent" />
       </div>
       {/* The lockup itself is the heading. The words stay in the document for
           anything that reads rather than looks — a screen reader, a crawler —
@@ -65,7 +78,7 @@ export default function About() {
             band carrying a heavier wash — the picture stays visible and the
             words stay legible. */}
         <p
-          className="max-w-xl mx-auto text-center text-[14px] leading-[1.7] text-fg/85"
+          className="t-copy max-w-xl mx-auto text-center !text-fg/85"
           style={{ textShadow: "0 1px 12px rgba(19, 16, 16, 0.85)" }}
         >
           Hatton Garden. Bespoke wedding rings, engagement rings, luxury

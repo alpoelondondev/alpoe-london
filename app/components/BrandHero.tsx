@@ -21,13 +21,13 @@ export default function BrandHero({
         </ScrollReveal>
       ) : null}
       <ScrollReveal>
-        <h1 className="font-serif text-[clamp(40px,6vw,88px)] tracking-[0.02em] leading-[0.95] max-w-4xl">
+        <h1 className="t-page max-w-4xl">
           {title}
         </h1>
       </ScrollReveal>
       {copy ? (
         <ScrollReveal>
-          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-fg/70 font-light">
+          <p className="mt-6 max-w-2xl t-copy font-light">
             {copy}
           </p>
         </ScrollReveal>

@@ -26,15 +26,12 @@ const CARDS: {
   imageTransform?: string;
   /** Draws the ground in from the left, for a subject that sits right. */
   sideFade?: boolean;
-  /** Where the title sits across the card. Both are vertically centred. */
-  align?: "center" | "left";
 }[] = [
   {
     title: "Engagement & Wedding Rings",
     copy: "Bespoke settings and bands, made to your specification.",
     href: "/jewellery/engagement-rings",
     image: "/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg",
-    align: "center",
   },
   {
     title: "Preowned Watches",
@@ -51,7 +48,6 @@ const CARDS: {
     imageTransform: "scale(1.8) translate(9%, -4%)",
     imageClass: "opacity-95",
     sideFade: true,
-    align: "left",
   },
 ];
 
@@ -108,26 +104,16 @@ export default function FeatureCards() {
                     className="absolute inset-0 bg-gradient-to-r from-bg from-2% via-bg/50 via-34% to-transparent to-78%"
                   />
                 ) : null}
-                {/* Sits on the card's middle line rather than its foot, which
-                    is what lets the ring card centre properly instead of
-                    hanging off the bottom edge. */}
-                <div
-                  className={`relative w-full px-10 max-md:px-6 ${
-                    card.align === "center" ? "text-center" : "text-left"
-                  }`}
-                >
-                  <h3 className="font-serif text-[clamp(22px,2.4vw,34px)] leading-tight tracking-[0.02em] text-blush">
+                {/* Sits on the card's middle line rather than its foot, and
+                    flush left on both cards so the pair reads as one row
+                    rather than two separate treatments. */}
+                <div className="relative w-full px-10 text-left max-md:px-6">
+                  <h3 className="t-section">
                     {card.title}
                   </h3>
                   {/* Held to one line's worth: the photograph is doing the
                       selling here, and the card is a door rather than a page. */}
-                  <p
-                    className={`mt-2 max-w-sm text-[13px] leading-[1.6] text-fg/75 ${
-                      card.align === "center" ? "mx-auto" : ""
-                    }`}
-                  >
-                    {card.copy}
-                  </p>
+                  <p className="t-copy mt-2 max-w-sm">{card.copy}</p>
                 </div>
             </Link>
           </li>

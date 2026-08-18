@@ -110,6 +110,76 @@ html {
 /* The announcement strip's scroll lives with the component that uses it — see
    MarketTicker — so the keyframes ship wherever the strip does. */
 
+/* ---------------------------------------------------------------------------
+   TYPE ROLES — one scale for the whole site.
+
+   Every title and every description on the site resolves to one of these, so a
+   band, a card and an inner page state the same thing at the same size in the
+   same colour. Sizes are fluid between a phone and a desktop; the roles are
+   what stay fixed.
+
+     .t-page     page titles (h1). One step above a band, and the only step.
+     .t-section  band and section titles — the About strip's size, which is
+                 the size the rest of the site was brought in line with.
+     .t-sub      titles inside a section: a step in a process, a panel head.
+     .t-card     tile and card titles, where the picture leads and the words
+                 label it.
+     .t-eyebrow  the small tracked line above a title.
+     .t-copy     descriptions under any of the above.
+
+   Colour rides along with the role rather than being set per instance: rose
+   for titles, cream at 75% for copy. `.t-ink` flips a title onto the market
+   sheet's light ground, the one place on the site that is not off-black.
+--------------------------------------------------------------------------- */
+.t-page,
+.t-section,
+.t-sub,
+.t-card {
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+  color: var(--color-blush);
+}
+
+.t-page {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  color: var(--color-fg);
+}
+
+.t-section {
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.15;
+}
+
+.t-sub {
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.3;
+}
+
+.t-card {
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.2;
+  color: var(--color-fg);
+}
+
+.t-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+}
+
+.t-copy {
+  font-size: 14px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-fg) 75%, transparent);
+}
+
+/* The market sheet is the one light surface — see the palette note above. */
+.t-ink {
+  color: var(--color-sheet-ink);
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-fg);

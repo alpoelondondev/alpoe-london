@@ -61,12 +61,12 @@ export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
         }`}
       >
         <ScrollReveal>
-          <h2 className="font-serif text-[clamp(26px,3vw,40px)] tracking-[0.02em] leading-none text-blush">
+          <h2 className="t-section">
             Merchandise
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.08}>
-          <p className="mt-4 text-[11px] tracking-[0.2em] uppercase text-champagne">
+          <p className="t-eyebrow mt-4">
             Alpoe London merch coming soon
           </p>
         </ScrollReveal>

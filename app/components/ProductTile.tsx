@@ -54,7 +54,7 @@ export default function ProductTile({
       </div>
 
       <div className="flex flex-1 flex-col gap-1 p-3">
-        <h4 className="font-serif text-[15px] leading-tight tracking-[0.01em]">{title}</h4>
+        <h4 className="t-card">{title}</h4>
         {meta ? (
           <p className="text-[10px] tracking-[0.14em] uppercase text-dim">{meta}</p>
         ) : null}

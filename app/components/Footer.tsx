@@ -44,7 +44,7 @@ export default function Footer() {
                   mark reads the same at both ends of the page. */}
               <LockupMark width="min(148px, 48vw)" fill="var(--color-accent)" />
             </Link>
-            <p className="text-[13px] leading-[1.7] text-fg/55 max-w-sm">
+            <p className="t-copy max-w-sm">
               A Hatton Garden dealership sourcing authenticated luxury
               timepieces and bespoke jewellery for collectors worldwide.
             </p>
@@ -97,7 +97,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-4 gap-x-6 gap-y-10 max-sm:grid-cols-2">
           <div>
-            <h4 className="text-[11px] tracking-[0.18em] uppercase text-champagne mb-5">
+            <h4 className="t-eyebrow mb-5">
               Watches
             </h4>
             <ul className="flex flex-col gap-3">
@@ -115,7 +115,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] tracking-[0.18em] uppercase text-champagne mb-5">
+            <h4 className="t-eyebrow mb-5">
               Jewellery
             </h4>
             <ul className="flex flex-col gap-3">
@@ -134,7 +134,7 @@ export default function Footer() {
 
           {/* Widest of the three so its links sit two-across without wrapping */}
           <div className="col-span-2 max-sm:col-span-2">
-            <h4 className="text-[11px] tracking-[0.18em] uppercase text-champagne mb-5">
+            <h4 className="t-eyebrow mb-5">
               House
             </h4>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">

@@ -54,7 +54,7 @@ export default function EnquiryList({
                       {row.eyebrow}
                     </p>
                   ) : null}
-                  <h3 className="mt-1 font-serif text-[clamp(17px,1.5vw,21px)] leading-tight tracking-[0.02em]">
+                  <h3 className="t-sub mt-1">
                     {row.title}
                   </h3>
                 </div>

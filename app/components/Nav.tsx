@@ -47,10 +47,16 @@ function MonogramFlat() {
 }
 
 
-const LINKS = [
+/**
+ * `hidden` keeps a route in the list but out of the menu — the page is still
+ * built and still reachable by URL, it just is not advertised yet. Delete the
+ * flag to put it back; that is the whole restore.
+ */
+const LINKS: { label: string; href: string; hidden?: boolean }[] = [
   { label: "Watches", href: "/watches" },
   { label: "Jewellery", href: "/jewellery" },
-  { label: "Ring Builder", href: "/ring-builder" },
+  // Not ready to be shown to visitors yet.
+  { label: "Ring Builder", href: "/ring-builder", hidden: true },
   { label: "Bespoke", href: "/bespoke" },
   { label: "Sell & Trade", href: "/sell" },
   { label: "Mentorship", href: "/mentorship" },
@@ -168,22 +174,26 @@ export default function Nav({
 
       {menuOpen ? (
         <div className="fixed inset-0 z-[199] overflow-y-auto bg-bg/95 backdrop-blur-md px-[52px] pt-40 pb-16 max-md:px-6 max-md:pt-36">
-          <ul className="mx-auto flex w-full max-w-xl flex-col gap-6">
+          {/* Ruled rather than spaced: at this size a gap alone left the
+              labels reading as one column of words, so each route gets its own
+              row with a hairline under it. divide-y draws the rules between
+              rows only, so the list does not close itself off top and bottom. */}
+          <ul className="mx-auto flex w-full max-w-xl flex-col divide-y divide-fg/[0.12]">
             <li>
               <Link
                 href="/book-appointment"
                 onClick={() => setMenuOpen(false)}
-                className="font-serif text-3xl tracking-[0.02em] text-accent"
+                className="t-sub block py-4 !text-accent"
               >
                 Book an Appointment
               </Link>
             </li>
-            {LINKS.map((link) => (
+            {LINKS.filter((link) => !link.hidden).map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-serif text-3xl tracking-[0.02em] transition-colors hover:text-accent"
+                  className="t-sub block py-4 transition-colors hover:!text-accent"
                 >
                   {link.label}
                 </Link>

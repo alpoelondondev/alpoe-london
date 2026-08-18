@@ -45,7 +45,7 @@ export default function RingBuilderPage() {
 
         <ScrollReveal>
           <section className="border-t border-fg/[0.10] px-[52px] py-16 max-md:px-6 max-md:py-12">
-            <p className="max-w-[64ch] text-[15px] leading-relaxed text-dim">
+            <p className="max-w-[64ch] t-copy">
               Every ring here is made to order at our bench in Hatton Garden, cast and
               hand-set once you have approved a CAD design, then hallmarked at the London
               Assay Office. If you would rather start from a sketch, an heirloom stone or

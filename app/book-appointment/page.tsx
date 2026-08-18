@@ -96,10 +96,10 @@ export default function BookAppointmentPage() {
             <div className="grid grid-cols-3 gap-10 max-lg:grid-cols-1 max-lg:gap-8">
               {WHAT_TO_EXPECT.map((item) => (
                 <div key={item.title}>
-                  <h2 className="font-serif text-[20px] leading-tight text-blush">
+                  <h2 className="t-sub">
                     {item.title}
                   </h2>
-                  <p className="mt-3 text-[14px] leading-relaxed text-fg/70">{item.copy}</p>
+                  <p className="mt-3 t-copy">{item.copy}</p>
                 </div>
               ))}
             </div>
@@ -117,7 +117,7 @@ export default function BookAppointmentPage() {
             the form — and to a crawler, which never will. */}
         <section className="border-t border-fg/10 px-[52px] py-16 max-md:px-6 max-md:py-12">
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(22px,2.6vw,32px)] leading-tight">
+            <h2 className="t-section">
               Appointments we offer
             </h2>
             <ul className="mt-8 grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1">
@@ -127,11 +127,11 @@ export default function BookAppointmentPage() {
                     {t.minutes} min
                   </p>
                   <p className="mt-2 font-serif text-[19px] leading-tight text-blush">{t.name}</p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-fg/65">{t.blurb}</p>
+                  <p className="t-copy mt-2">{t.blurb}</p>
                 </li>
               ))}
             </ul>
-            <p className="mt-10 max-w-2xl text-[14px] leading-relaxed text-dim">
+            <p className="mt-10 max-w-2xl t-copy">
               Open Monday to Saturday, 10am until 6pm. Sunday closed. Walk-ins are welcome
               whenever we are open — an appointment simply means a specialist is held for you
               and your pieces are out of the safe before you arrive.

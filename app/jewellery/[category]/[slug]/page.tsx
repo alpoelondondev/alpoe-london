@@ -100,7 +100,7 @@ export default async function JewelleryProductPage(
             <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-2">
               {product.category}
             </p>
-            <h1 className="font-serif text-[clamp(30px,4vw,54px)] tracking-[0.02em] leading-[1] mb-4">
+            <h1 className="t-page mb-4">
               {product.title}
             </h1>
             <p className="text-fg/80 leading-relaxed font-light">{product.description}</p>

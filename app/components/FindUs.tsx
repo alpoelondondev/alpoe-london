@@ -82,7 +82,7 @@ export default function FindUs() {
               rel="noopener noreferrer"
               className="flex h-[380px] w-full items-center justify-center bg-fg/[0.04] max-md:h-[280px]"
             >
-              <span className="text-[11px] tracking-[0.18em] uppercase text-accent">
+              <span className="t-eyebrow !text-accent">
                 View on map →
               </span>
             </a>
@@ -92,7 +92,7 @@ export default function FindUs() {
         </div>
 
         <div className="mt-6 px-[52px] text-center max-md:px-6">
-          <p className="font-serif text-[clamp(20px,2.2vw,28px)] tracking-[0.02em] leading-none">
+          <p className="t-sub">
             {SITE.name}
           </p>
           <p className="mt-2 text-[13px] tracking-[0.14em] uppercase text-dim">

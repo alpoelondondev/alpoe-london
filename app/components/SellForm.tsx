@@ -24,7 +24,7 @@ export default function SellForm() {
           aria-expanded={open}
           className="w-full flex items-center justify-between py-8 cursor-pointer text-left"
         >
-          <span className="text-[16px] tracking-[0.2em] uppercase text-accent">
+          <span className="t-eyebrow !text-accent">
             Sell with us
           </span>
           <span
@@ -46,7 +46,7 @@ export default function SellForm() {
         <div className="overflow-hidden">
       <div className="max-w-[720px] mx-auto pb-14 pt-4">
         <ScrollReveal>
-          <p className="text-[14px] leading-[1.7] text-dim text-center mb-12 max-w-[480px] mx-auto">
+          <p className="t-copy text-center mb-12 max-w-[480px] mx-auto">
             Looking to sell or trade your luxury watch or jewellery? We offer competitive
             prices and a seamless process.{" "}
             <strong className="text-fg font-normal">
@@ -61,7 +61,7 @@ export default function SellForm() {
               <p className="font-serif text-[clamp(26px,3vw,40px)] leading-[1.05] tracking-tight mb-5">
                 THANK YOU
               </p>
-              <p className="text-[15px] text-dim">
+              <p className="t-copy">
                 We&apos;ll be in touch within 24 hours with your valuation.
               </p>
             </div>

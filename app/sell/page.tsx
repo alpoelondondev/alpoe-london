@@ -114,10 +114,10 @@ export default function SellPage() {
               <ScrollReveal key={s.n} delay={i * 0.08}>
                 <div className="h-full border border-fg/[0.10] bg-fg/[0.04] p-6">
                   <span className="font-serif text-[20px] leading-none text-accent">{s.n}</span>
-                  <h2 className="mt-4 font-serif text-[20px] leading-none tracking-[0.02em]">
+                  <h2 className="t-sub mt-4">
                     {s.title}
                   </h2>
-                  <p className="mt-3 text-[14px] leading-relaxed text-dim">{s.copy}</p>
+                  <p className="mt-3 t-copy">{s.copy}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -126,10 +126,10 @@ export default function SellPage() {
 
         <section id="sell-form" className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(28px,4vw,48px)] leading-tight text-center">
+            <h2 className="t-section text-center">
               Get A Valuation
             </h2>
-            <p className="mx-auto mt-3 mb-10 max-w-xl text-center text-[14px] leading-relaxed text-dim">
+            <p className="mx-auto mt-3 mb-10 max-w-xl text-center t-copy">
               Fill this in and it opens WhatsApp with your watch details written out. Attach
               your photos in the chat and we&apos;ll come straight back with a figure.
             </p>

@@ -24,13 +24,13 @@ export default function CTAStrip({
   return (
     <section className="bg-panel px-[52px] py-20 max-md:px-6 max-md:py-14">
       <ScrollReveal>
-        <p className="text-[11px] tracking-[0.2em] uppercase text-champagne text-center">
+        <p className="t-eyebrow text-center">
           {eyebrow}
         </p>
-        <h2 className="mx-auto mt-4 max-w-3xl text-center font-serif text-[clamp(26px,3vw,40px)] leading-tight text-blush">
+        <h2 className="t-section mx-auto mt-4 max-w-3xl text-center">
           {title}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-[14px] leading-[1.7] text-fg/75">
+        <p className="t-copy mx-auto mt-4 max-w-xl text-center">
           {copy}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

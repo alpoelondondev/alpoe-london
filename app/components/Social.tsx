@@ -158,7 +158,7 @@ export default function Social() {
                 </svg>
               </span>
               <div className="absolute bottom-5 left-5 right-5">
-                <h3 className="font-serif text-[clamp(22px,2.2vw,32px)] tracking-[0.02em] leading-none mb-2 text-fg">
+                <h3 className="t-section mb-2">
                   {film.title}
                 </h3>
                 <a

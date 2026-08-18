@@ -126,10 +126,10 @@ export default function DiamondsGuidePage() {
         <section className="px-[52px] pb-16 max-md:px-6">
           <ScrollReveal>
             <div className="max-w-3xl border-l-2 border-accent pl-8 max-md:pl-5">
-              <h2 className="font-serif text-[clamp(26px,3.4vw,42px)] leading-tight">
+              <h2 className="t-section">
                 Are lab grown diamonds real diamonds?
               </h2>
-              <p className="mt-5 text-[16px] leading-[1.9] text-fg/80">
+              <p className="mt-5 t-copy">
                 Yes. Chemically, structurally and optically the same as a stone pulled
                 out of the ground. The only difference is where it was made. One took
                 billions of years in the earth, the other took a few weeks in a
@@ -159,7 +159,7 @@ export default function DiamondsGuidePage() {
                 <p className="text-[11px] tracking-[0.2em] uppercase text-accent">
                   Measured side by side
                 </p>
-                <h2 className="mt-4 font-serif text-[clamp(24px,2.8vw,34px)] leading-tight">
+                <h2 className="t-section mt-4">
                   Every property that matters is identical
                 </h2>
                 <dl className="mt-6 border-t border-fg/[0.14]">
@@ -173,7 +173,7 @@ export default function DiamondsGuidePage() {
                     </div>
                   ))}
                 </dl>
-                <p className="mt-5 text-[13px] leading-relaxed text-dim">
+                <p className="mt-5 t-copy">
                   Telling them apart takes laboratory equipment. Specialists look for
                   nitrogen: natural stones pick up traces of it as they form, lab stones
                   contain none.
@@ -186,10 +186,10 @@ export default function DiamondsGuidePage() {
         {/* How they are made. Two methods, no more detail than a buyer needs. */}
         <section className="bg-panel-soft px-[52px] py-16 max-md:px-6 max-md:py-12">
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(26px,3.4vw,42px)] leading-tight">
+            <h2 className="t-section">
               How a lab diamond is grown
             </h2>
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-fg/70">
+            <p className="mt-4 max-w-2xl t-copy">
               Two methods, both a few weeks from seed to rough. Both produce stones that
               are chemically and optically identical to natural.
             </p>
@@ -200,10 +200,10 @@ export default function DiamondsGuidePage() {
                   className="border border-fg/[0.10] bg-fg/[0.04] p-6"
                 >
                   <p className="font-serif text-[26px] leading-none text-accent">{m.n}</p>
-                  <h3 className="mt-3 font-serif text-[18px] tracking-[0.02em] leading-none">
+                  <h3 className="t-sub mt-3">
                     {m.name}
                   </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-dim">{m.copy}</p>
+                  <p className="mt-3 t-copy">{m.copy}</p>
                 </div>
               ))}
             </div>
@@ -213,10 +213,10 @@ export default function DiamondsGuidePage() {
         {/* Price. The single biggest reason anyone picks lab. */}
         <section className="px-[52px] py-16 max-md:px-6 max-md:py-12">
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(26px,3.4vw,42px)] leading-tight">
+            <h2 className="t-section">
               What each one costs
             </h2>
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-fg/70">
+            <p className="mt-4 max-w-2xl t-copy">
               A lab diamond runs 60% to 85% below a natural stone of the same carat and
               the same grades. Not because it is a lesser stone, but because it can be
               made to order and a mine cannot.
@@ -271,10 +271,10 @@ export default function DiamondsGuidePage() {
         {/* The decision, as two columns of facts rather than a recommendation. */}
         <section className="bg-panel-soft px-[52px] py-16 max-md:px-6 max-md:py-12">
           <ScrollReveal>
-            <h2 className="font-serif text-[clamp(26px,3.4vw,42px)] leading-tight">
+            <h2 className="t-section">
               So which one should you pick?
             </h2>
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-fg/70">
+            <p className="mt-4 max-w-2xl t-copy">
               We sell both and we are not going to push you either way. These are the
               facts. The rest is what you want from the stone.
             </p>
@@ -284,12 +284,12 @@ export default function DiamondsGuidePage() {
                 { title: "Go natural if", points: CHOOSE_NATURAL },
               ].map((col) => (
                 <div key={col.title} className="border border-fg/[0.10] bg-fg/[0.04] p-7">
-                  <h3 className="font-serif text-[20px] tracking-[0.02em] leading-none text-accent">
+                  <h3 className="t-sub">
                     {col.title}
                   </h3>
                   <ul className="mt-5 flex flex-col gap-3">
                     {col.points.map((p) => (
-                      <li key={p} className="flex gap-3 text-[14px] leading-relaxed text-dim">
+                      <li key={p} className="flex gap-3 t-copy">
                         <span aria-hidden="true" className="text-accent shrink-0">
                           &bull;
                         </span>

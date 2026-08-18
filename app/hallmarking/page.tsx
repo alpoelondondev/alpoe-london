@@ -88,11 +88,11 @@ export default function HallmarkingPage() {
               <p className="text-[11px] tracking-[0.2em] uppercase text-sheet-dim">
                 Dealer&rsquo;s Notice
               </p>
-              <h2 className="mt-4 font-serif text-[clamp(24px,3vw,34px)] text-sheet-ink">
+              <h2 className="t-section t-ink mt-4">
                 Look for the Hallmark — it&rsquo;s your guarantee
               </h2>
 
-              <p className="mt-6 max-w-[62ch] text-[15px] leading-relaxed text-sheet-ink/80">
+              <p className="t-copy mt-6 max-w-[62ch] !text-sheet-ink/80">
                 In the UK it is illegal to supply or offer to supply any item as gold,
                 silver, platinum or palladium unless it is hallmarked. Exemption weights
                 apply: 7.78g silver, 1g gold and palladium, 0.5g platinum.
@@ -102,14 +102,14 @@ export default function HallmarkingPage() {
                 {MARKS.map((m) => (
                   <div key={m.title}>
                     <dt className="font-serif text-[18px] text-sheet-ink">{m.title}</dt>
-                    <dd className="mt-2 text-[13px] leading-relaxed text-sheet-dim">
+                    <dd className="t-copy mt-2 !text-sheet-dim">
                       {m.copy}
                     </dd>
                   </div>
                 ))}
               </dl>
 
-              <p className="mt-8 border-t border-sheet-line pt-6 text-[13px] leading-relaxed text-sheet-dim">
+              <p className="t-copy mt-8 border-t border-sheet-line pt-6 !text-sheet-dim">
                 International hallmarks must contain the scales of the Common Control
                 Mark. Displayed in accordance with the Hallmarking Act 1973.{" "}
                 <a
@@ -129,7 +129,7 @@ export default function HallmarkingPage() {
         {/* ---- what it does and does not cover --------------------------- */}
         <ScrollReveal>
           <section className="border-t border-fg/[0.10] px-[52px] py-20 max-md:px-6 max-md:py-14">
-            <h2 className="font-serif text-[clamp(24px,3vw,38px)]">
+            <h2 className="t-section">
               What a hallmark certifies — and what it doesn&rsquo;t
             </h2>
 
@@ -138,7 +138,7 @@ export default function HallmarkingPage() {
                 <p className="text-[11px] tracking-[0.2em] uppercase text-accent">
                   It certifies the metal
                 </p>
-                <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-dim">
+                <p className="mt-4 max-w-[52ch] t-copy">
                   An assay office independently tests the article and strikes the marks
                   itself. That is a guarantee of fineness — that your 18ct ring really is
                   750 parts per thousand gold, tested rather than asserted.
@@ -148,7 +148,7 @@ export default function HallmarkingPage() {
                 <p className="text-[11px] tracking-[0.2em] uppercase text-accent">
                   It says nothing about the stone
                 </p>
-                <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-dim">
+                <p className="mt-4 max-w-[52ch] t-copy">
                   A hallmark is not a diamond certificate and the two are often confused.
                   Your diamond&rsquo;s cut, colour, clarity and origin come from its
                   grading report — GIA for natural stones, IGI for most
@@ -169,7 +169,7 @@ export default function HallmarkingPage() {
                   </div>
                 ))}
               </dl>
-              <p className="mt-6 max-w-[62ch] text-[13px] leading-relaxed text-dim">
+              <p className="mt-6 max-w-[62ch] t-copy">
                 No engagement ring is ever light enough to fall under an exemption weight
                 — a plain platinum shank alone is several times the 0.5g threshold — so
                 every ring we make is hallmarked, without exception.
@@ -181,10 +181,10 @@ export default function HallmarkingPage() {
         {/* ---- resizing ---------------------------------------------------- */}
         <ScrollReveal>
           <section className="border-t border-fg/[0.10] px-[52px] py-20 max-md:px-6 max-md:py-14">
-            <h2 className="font-serif text-[clamp(24px,3vw,38px)]">
+            <h2 className="t-section">
               Resizing and repair
             </h2>
-            <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-dim">
+            <p className="mt-4 max-w-[62ch] t-copy">
               Altering a hallmarked article is regulated too. Adding a little metal to
               size a ring up is permitted within set limits; removing metal to size it
               down is an alteration, and an improperly repaired article is treated in law

@@ -190,7 +190,7 @@ export default function StudioClient() {
       {/* ---- the piece, named ---------------------------------------------- */}
       <div className={`${GUTTER} flex items-baseline justify-between gap-6 py-8`}>
         <div>
-          <h2 className="font-serif text-[clamp(20px,2.4vw,28px)] leading-tight">
+          <h2 className="t-section">
             {pieceName}
           </h2>
           <p className="mt-1 text-[13px] text-dim">
@@ -212,11 +212,11 @@ export default function StudioClient() {
           value={active.label}
           hint={
             <>
-              <p className="max-w-[58ch] text-[13px] leading-relaxed text-dim">
+              <p className="max-w-[58ch] t-copy">
                 {active.description}
               </p>
               {adjusted && (
-                <p className="mt-2 max-w-[58ch] text-[13px] leading-relaxed text-champagne">
+                <p className="t-copy mt-2 max-w-[58ch] !text-champagne">
                   {adjusted}
                 </p>
               )}
@@ -280,12 +280,12 @@ export default function StudioClient() {
               aria-label="Carat weight"
               className="mt-5 w-full accent-[var(--color-accent)]"
             />
-            <p className="mt-3 max-w-[58ch] text-[13px] leading-relaxed text-dim">
+            <p className="mt-3 max-w-[58ch] t-copy">
               A guide only — slide roughly to where you&rsquo;d like to be and we&rsquo;ll
               show you comparable stones either side of it.
             </p>
             {hint && (
-              <p className="mt-2 max-w-[58ch] text-[13px] leading-relaxed text-champagne">
+              <p className="t-copy mt-2 max-w-[58ch] !text-champagne">
                 Worth knowing — a {hint.toFixed(2)}ct stone looks all but identical to a{" "}
                 {(hint + 0.1).toFixed(2)}ct and usually costs around 10% less.
               </p>
@@ -297,7 +297,7 @@ export default function StudioClient() {
           label="Origin"
           value={activeOrigin.label}
           hint={
-            <p className="max-w-[58ch] text-[13px] leading-relaxed text-dim">
+            <p className="max-w-[58ch] t-copy">
               {activeOrigin.note}{" "}
               <a
                 href="/guides/natural-vs-lab-grown-diamonds"
@@ -323,7 +323,7 @@ export default function StudioClient() {
           value={activeQuality.label}
           hint={
             activeQuality.note ? (
-              <p className="max-w-[58ch] text-[13px] leading-relaxed text-dim">
+              <p className="max-w-[58ch] t-copy">
                 {activeQuality.note}
               </p>
             ) : undefined
@@ -345,7 +345,7 @@ export default function StudioClient() {
           value={activeMetal.label}
           hint={
             activeMetal.note ? (
-              <p className="max-w-[58ch] text-[13px] leading-relaxed text-dim">
+              <p className="max-w-[58ch] t-copy">
                 {activeMetal.note}
               </p>
             ) : undefined
@@ -409,7 +409,7 @@ export default function StudioClient() {
                   ))}
                 </optgroup>
               </select>
-              <p className="mt-3 text-[13px] leading-relaxed text-dim">
+              <p className="mt-3 t-copy">
                 No problem at all — we&rsquo;ll size you free of charge at Hatton Garden,
                 or post you a free ring sizer if it&rsquo;s a surprise.
               </p>

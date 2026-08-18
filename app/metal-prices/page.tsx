@@ -48,7 +48,7 @@ function Panel({
   return (
     <div className="flex h-full flex-col overflow-hidden bg-sheet-panel shadow-[0_1px_3px_rgba(23,19,18,0.10)]">
       <div className="bg-bg px-6 py-4 text-center">
-        <h2 className="font-serif text-[21px] leading-none tracking-[0.05em] text-fg">
+        <h2 className="t-sub">
           {title}
         </h2>
       </div>
@@ -313,7 +313,7 @@ export default async function MetalPricesPage() {
             <ScrollReveal>
               <div className="mt-12 bg-sheet-panel px-8 py-8 shadow-[0_1px_3px_rgba(23,19,18,0.10)] max-md:px-5">
                 <div className="flex items-baseline justify-between gap-6 border-b-2 border-accent pb-3">
-                  <h2 className="font-serif text-[22px] leading-none text-sheet-ink">
+                  <h2 className="t-sub t-ink">
                     Latest Metals News
                   </h2>
                   <span className="text-[10px] tracking-[0.16em] uppercase text-sheet-dim">

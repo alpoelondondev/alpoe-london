@@ -1,46 +1,122 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShuffleText } from "./Loader";
-import HeroLockup from "./HeroLockup";
+import LockupMark from "./LockupMark";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
+ * The mark is now the live rose gold lockup — the same GLB, the same sway and
+ * the same travelling highlight the bar carries, just larger. It replaces the
+ * flat SVG that used to be cut out of the hero's ground for the footage to
+ * play through: the film sits behind the mark now rather than inside it.
+ *
+ * Imported by hand rather than through next/dynamic because the flat mark has
+ * to be swapped *out* when the 3D one lands, not drawn underneath it: two
+ * copies of the same artwork stacked leave a halo wherever their edges
+ * disagree by a pixel. This way there is exactly one mark on screen at a time,
+ * and three.js still stays out of the homepage's first bundle.
+ */
+type MonogramProps = { width?: number; height?: number };
+
+/**
  * One length drives the whole hero: the lockup's own size and the eyebrow
  * below it. The cap wins on desktop, the vw term takes over on phones, and the
  * vh term stops the lockup outgrowing a short window — the section is well
- * short of a full viewport now, and the bar eats the top of what is left, so
+ * short of a full viewport, and the bar eats the top of what is left, so
  * height is the binding constraint on anything but a tall desktop.
- */
-/**
- * The vh term is written as a height and converted, rather than carried as a
- * hand-tuned width. It guards against a short window, so what it is really
- * capping is the lockup's height — and a width that was correct for one
- * artwork stops being correct the moment the artwork's proportions change.
- * Derived from the aspect, it holds at 55vh whatever the lockup does next.
+ *
+ * The vh term is written as a height and converted rather than carried as a
+ * hand-tuned width: what it really caps is the lockup's height, and a width
+ * that was right for one artwork stops being right the moment the artwork's
+ * proportions change.
  */
 const LOCKUP_MAX_HEIGHT_VH = 44;
-const LOCKUP_WIDTH = `min(92vw, 1100px, ${(LOCKUP_MAX_HEIGHT_VH * LOCKUP_ASPECT).toFixed(1)}vh)`;
+const LOCKUP_MAX_WIDTH_PX = 1100;
+const LOCKUP_VIEWPORT_FRACTION = 0.92;
+
 /**
- * How far the lockup's box is lifted off the hero's floor. The eyebrow sits
- * ~34px below the mark and is only ever a line tall, so centring the mark on
- * its own leaves the pair sitting low in the band. Half the eyebrow block,
- * give or take, puts the *group* on the centre line instead.
+ * The 3D mark is sized in pixels, not CSS: three.js needs a drawing buffer of
+ * a known size, so the expression the flat lockup wrote as `min(92vw, 1100px,
+ * 76vh)` has to be evaluated here and handed over as a number.
+ */
+function lockupWidth() {
+  return Math.round(
+    Math.min(
+      window.innerWidth * LOCKUP_VIEWPORT_FRACTION,
+      LOCKUP_MAX_WIDTH_PX,
+      window.innerHeight * (LOCKUP_MAX_HEIGHT_VH / 100) * LOCKUP_ASPECT,
+    ),
+  );
+}
+
+/**
+ * Whether this browser can draw the live mark at all. Asked before the chunk
+ * is fetched, so a browser that cannot goes straight to the flat lockup rather
+ * than downloading three.js to find out.
+ */
+function hasWebGL() {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(
+      window.WebGLRenderingContext &&
+        (canvas.getContext("webgl2") || canvas.getContext("webgl")),
+    );
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * How far the mark's box is lifted off the hero's floor. The eyebrow sits
+ * below it and is only ever a line tall, so centring the mark on its own
+ * leaves the pair sitting low in the band.
  */
 const LOCKUP_GROUP_LIFT = "48px";
-
-/** Half the lockup's height as a fraction of its width, for the eyebrow. */
-const LOCKUP_HALF_HEIGHT_RATIO = 1 / (2 * LOCKUP_ASPECT);
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Null until measured: the size depends on the window, which does not exist
+  // until the client runs, and guessing would mean re-initialising the scene a
+  // frame later at the real size.
+  const [markWidth, setMarkWidth] = useState<number | null>(null);
+  const [Monogram3D, setMonogram3D] = useState<ComponentType<MonogramProps> | null>(
+    null,
+  );
+  // Only true once we know the live mark is not coming: the chunk failed, or
+  // this browser has no WebGL to draw it with.
+  const [flatOnly, setFlatOnly] = useState(false);
+
+  // After hydration, never during it. The slot stays *empty* while the chunk
+  // is in flight rather than showing the flat mark first — drawing the flat
+  // one and replacing it a moment later is a visible swap, and the hero is the
+  // first thing on the page. The flat mark appears only if the 3D one cannot.
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!hasWebGL()) {
+      setFlatOnly(true);
+      return;
+    }
+
+    import("./Monogram3D")
+      .then((m) => {
+        if (!cancelled) setMonogram3D(() => m.default);
+      })
+      .catch(() => {
+        if (!cancelled) setFlatOnly(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // React only reflects `muted` on first render, so anything that flips it later
   // (an extension, a restored media session) would leave the hero audible.
@@ -48,6 +124,23 @@ export default function Hero() {
     const video = videoRef.current;
     if (video && !video.muted) video.muted = true;
   };
+
+  // Measured on mount and on resize, debounced: every change tears the WebGL
+  // context down and builds it again, which is fine once and wasteful sixty
+  // times through a window drag.
+  useEffect(() => {
+    setMarkWidth(lockupWidth());
+    let t: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      clearTimeout(t);
+      t = setTimeout(() => setMarkWidth(lockupWidth()), 150);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
 
   useEffect(() => {
     const reveal = () => {
@@ -128,19 +221,15 @@ export default function Hero() {
       id="hero"
       // Short of the viewport by the brand strip's height plus a little, so
       // that strip is already on screen at rest rather than needing a scroll
-      // to discover — but only a little: cut deeper and the bar eats so much
-      // of what is left that the lockup has nowhere to sit. The 70px is the
-      // strip — py-4 (32) + hairline borders (2) + the loop, which is its logo
-      // height plus the 10% hover padding either side (30 * 1.2 = 36). The vh
-      // term absorbs the strip's slimming so the hero itself stays put and
-      // the saved height goes to the page below. Retune both if that logo
-      // height changes; the min-h keeps the lockup breathing on a short
-      // laptop.
+      // to discover. The 70px is the strip — py-4 (32) + hairline borders (2)
+      // + the loop, which is its logo height plus the 10% hover padding either
+      // side (30 * 1.2 = 36). Retune both if that logo height changes; the
+      // min-h keeps the lockup breathing on a short laptop.
       className="h-[calc(92svh-70px)] min-h-[600px] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
       {/* Decorative footage, full-bleed: silent, uninteractive, and no
-          user-agent transport controls. It keeps its full framing — the
-          overlay above decides how much of it you actually see. */}
+          user-agent transport controls. It runs behind the mark now rather
+          than through it, so it is held well back — see the scrim below. */}
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
@@ -152,63 +241,75 @@ export default function Hero() {
         disablePictureInPicture
         controlsList="nodownload noplaybackrate noremoteplayback"
         preload="auto"
-        poster="/alpoe-luxury-watches-hero-hatton-garden.jpg"
+        poster="/alpoe-london-hero.jpg"
         onVolumeChange={keepMuted}
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+        className="absolute inset-0 h-full w-full object-cover opacity-45 pointer-events-none"
       >
-        <source
-          src="/alpoe-luxury-watches-hero-hatton-garden.mp4"
-          type="video/mp4"
-        />
+        <source src="/alpoe-london-hero.mp4" type="video/mp4" />
       </video>
 
-      {/* The page ground, with the mark cut out of it for the footage to play
-          through. It paints the whole hero on its own — see the bleed in
-          HeroLockup — rather than being a patch inside a separate backdrop,
-          which is what previously left a hairline of video along the top edge
-          wherever the two disagreed by a sub-pixel. */}
-      {/* Inset from the top by the bar's height so the mark centres in the
-          band you can actually see, not in the section's own box — half of
-          which the bar sits over. The floor is lifted by LOCKUP_GROUP_LIFT
-          because the eyebrow hangs below the mark: centre the mark alone and
-          the pair reads low. The ground bleeds far past this layer (see
-          HeroLockup), so offsetting it leaves no seam. */}
+      {/* The page ground laid back over the film: flat at 55% so the footage
+          reads as a dark texture rather than a picture, and darker still at
+          the top and bottom edges so the bar above and the brand strip below
+          meet black rather than a bright frame of video. */}
       <div
-        className="absolute inset-x-0 z-3 pointer-events-none"
-        style={{ top: "var(--nav-h)", bottom: LOCKUP_GROUP_LIFT }}
         aria-hidden="true"
+        className="absolute inset-0 z-2 bg-bg/55 pointer-events-none"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-2 bg-gradient-to-b from-bg via-transparent to-bg pointer-events-none"
+      />
+
+      {/* Mark and eyebrow share one box, inset from the top by the bar's height
+          so they centre in the band you can actually see rather than in the
+          section's own box — half of which the bar sits over. */}
+      <div
+        className="absolute inset-x-0 z-3 flex flex-col items-center justify-center pointer-events-none"
+        style={{ top: "var(--nav-h)", bottom: LOCKUP_GROUP_LIFT }}
       >
-        <HeroLockup width={LOCKUP_WIDTH} />
+        {markWidth ? (
+          <>
+            {/* The box is the mark's exact size whatever is inside it, so
+                nothing below shifts as the live mark arrives. */}
+            <div
+              className="flex items-center justify-center"
+              style={{
+                width: markWidth,
+                height: Math.round(markWidth / LOCKUP_ASPECT),
+              }}
+            >
+              {Monogram3D ? (
+                <Monogram3D
+                  width={markWidth}
+                  height={Math.round(markWidth / LOCKUP_ASPECT)}
+                />
+              ) : flatOnly ? (
+                <LockupMark width={markWidth} fill="var(--color-accent)" />
+              ) : null}
+            </div>
+
+            {/* Justified across the mark's own width, which is the device the
+                wordmark uses to run LONDON the full width of ALPOE. Sized off
+                that same length, with a floor: on a phone the proportional
+                size lands around 7px, where rose on off-black stops being
+                readable at all. */}
+            <div ref={eyebrowRef} className="mt-[34px] opacity-0">
+              <p
+                className="flex font-medium uppercase text-accent"
+                style={{
+                  width: markWidth,
+                  fontSize: Math.max(12, Math.round(markWidth * 0.019)),
+                }}
+              >
+                <ShuffleText fill />
+              </p>
+            </div>
+          </>
+        ) : null}
       </div>
 
-      {/* Shares the lockup layer's box exactly — the eyebrow is positioned
-          off the same 50% line, so the two have to be measuring the same
-          band or the line drifts away from the mark. */}
-      <div
-        ref={eyebrowRef}
-        className="absolute inset-x-0 z-4 opacity-0 pointer-events-none"
-        style={{ top: "var(--nav-h)", bottom: LOCKUP_GROUP_LIFT }}
-      >
-        {/* Pinned below the lockup rather than flowed after it, since the
-            lockup is centred on the section and not on this pair. It takes the
-            frame's full width and justifies into it, so the line runs exactly
-            as long as the frame whichever phrase is showing. The size tracks
-            that same length, holding the pairing from phone to desktop. */}
-        <p
-          className="absolute left-1/2 flex -translate-x-1/2 font-medium uppercase text-accent"
-          style={{
-            top: `calc(50% + (${LOCKUP_WIDTH}) * ${LOCKUP_HALF_HEIGHT_RATIO} + 34px)`,
-            width: LOCKUP_WIDTH,
-            // Sized off the lockup so the pairing holds — but with a floor, or
-            // a phone's narrow lockup drives this down to about 7px, which is
-            // where the rose on off-black stops being readable at all.
-            fontSize: `max(12px, calc((${LOCKUP_WIDTH}) * 0.019))`,
-          }}
-        >
-          <ShuffleText fill />
-        </p>
-      </div>
       <div ref={contentRef} className="relative z-4">
         <h1 className="sr-only">
           Alpoe London — Luxury Watches &amp; Bespoke Jewellery, Hatton Garden
