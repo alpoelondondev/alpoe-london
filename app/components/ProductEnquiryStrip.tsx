@@ -52,7 +52,7 @@ export default function ProductEnquiryStrip({ product }: { product: Product }) {
         <p className="text-center text-[11px] tracking-[0.2em] uppercase text-accent">
           Enquire
         </p>
-        <h2 className="mx-auto mt-3 max-w-2xl text-center font-serif text-[clamp(26px,3.4vw,42px)] leading-tight">
+        <h2 className="mx-auto mt-3 max-w-2xl text-center font-serif text-[clamp(26px,3vw,40px)] leading-tight">
           Ask about the {product.model ?? product.title}
         </h2>
         <p className="mx-auto mt-3 mb-10 max-w-xl text-center text-[14px] leading-relaxed text-dim">

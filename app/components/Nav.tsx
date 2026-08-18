@@ -52,7 +52,7 @@ const LINKS = [
   { label: "Jewellery", href: "/jewellery" },
   { label: "Ring Builder", href: "/ring-builder" },
   { label: "Bespoke", href: "/bespoke" },
-  { label: "Sell", href: "/sell" },
+  { label: "Sell & Trade", href: "/sell" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

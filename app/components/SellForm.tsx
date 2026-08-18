@@ -46,8 +46,8 @@ export default function SellForm() {
         <div className="overflow-hidden">
       <div className="max-w-[720px] mx-auto pb-14 pt-4">
         <ScrollReveal>
-          <p className="text-[15px] leading-[1.85] text-dim text-center mb-16 max-w-[480px] mx-auto">
-            Looking to sell your luxury watch or jewellery? We offer competitive
+          <p className="text-[14px] leading-[1.7] text-dim text-center mb-12 max-w-[480px] mx-auto">
+            Looking to sell or trade your luxury watch or jewellery? We offer competitive
             prices and a seamless process.{" "}
             <strong className="text-fg font-normal">
               Get a free valuation today.
@@ -58,7 +58,7 @@ export default function SellForm() {
         {submitted ? (
           <ScrollReveal>
             <div className="text-center py-20">
-              <p className="font-serif text-[clamp(32px,5vw,56px)] leading-[0.93] tracking-tight mb-6">
+              <p className="font-serif text-[clamp(26px,3vw,40px)] leading-[1.05] tracking-tight mb-5">
                 THANK YOU
               </p>
               <p className="text-[15px] text-dim">

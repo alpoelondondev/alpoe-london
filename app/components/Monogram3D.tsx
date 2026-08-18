@@ -6,19 +6,18 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { createRoseGoldEnvironment } from "./roseGoldEnvironment";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
-
-/**
- * The full lockup as exported from Blender: AP monogram, ALPOE LONDON and the
- * frame rules, in one Draco-compressed mesh. Same file the /ourbrand viewer
- * loads, so the bar and that page can never drift apart.
- */
-const MODEL_URL = "/models/alpoe-lockup.glb";
+import { LOCKUP_MODEL_URL } from "./lockupModel";
 
 /**
  * The lockup as live rose gold — a drop-in stand-in for the flat SVG in the
  * nav. It idles with a slow sway while a light orbits it, so the bevel
  * highlight travels around the letterforms: the shimmer is real reflection
  * movement, not an opacity trick.
+ *
+ * The mark itself is the full lockup as exported from Blender — AP monogram,
+ * ALPOE LONDON and the frame rules in one Draco-compressed mesh. The URL comes
+ * from lockupModel.ts, which the /ourbrand viewer reads too, so the bar and
+ * that page cannot drift apart or serve different revisions.
  *
  * Deliberately lean for a header: no controls, no shadows, pixel ratio capped,
  * and the loop pauses whenever the tab is hidden. Falls back to rendering
@@ -85,7 +84,7 @@ export default function Monogram3D({
     loader.setDRACOLoader(draco);
 
     loader.load(
-      MODEL_URL,
+      LOCKUP_MODEL_URL,
       (gltf) => {
         if (disposed) return;
         model = gltf.scene;

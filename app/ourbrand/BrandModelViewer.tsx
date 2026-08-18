@@ -6,8 +6,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { createRoseGoldEnvironment } from "../components/roseGoldEnvironment";
-
-const MODEL_URL = "/models/alpoe-lockup.glb";
+import { LOCKUP_MODEL_URL } from "../components/lockupModel";
 
 /**
  * The lockup as it was actually built in Blender — same geometry, same rose
@@ -165,7 +164,7 @@ export default function BrandModelViewer() {
     gltfLoader.setDRACOLoader(draco);
 
     gltfLoader.load(
-      MODEL_URL,
+      LOCKUP_MODEL_URL,
       (gltf) => {
         if (disposed) return;
         model = gltf.scene;

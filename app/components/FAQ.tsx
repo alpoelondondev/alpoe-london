@@ -88,7 +88,7 @@ export default function FAQ({ items }: { items: FaqItem[] }) {
       className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14"
     >
       <ScrollReveal>
-        <h2 className="font-serif text-[clamp(34px,4.5vw,60px)] tracking-[0.02em] leading-none text-accent text-center mb-12">
+        <h2 className="font-serif text-[clamp(26px,3vw,40px)] tracking-[0.02em] leading-none text-accent text-center mb-8">
           FAQS
         </h2>
       </ScrollReveal>

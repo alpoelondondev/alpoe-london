@@ -37,7 +37,7 @@ export function organizationLd() {
     "@id": `${siteUrl()}/#organization`,
     name: SITE.name,
     url: siteUrl(),
-    logo: siteUrl("/alpoe-london-logo-transparent.svg"),
+    logo: siteUrl("/alpoe-london-logo-full-rosegold.svg"),
     sameAs: SITE.sameAs,
   };
 }
@@ -50,7 +50,7 @@ export function localBusinessLd() {
     url: siteUrl(),
     telephone: SITE.phone,
     email: SITE.email,
-    image: siteUrl("/alpoe-london-logo-transparent.svg"),
+    image: siteUrl("/alpoe-london-logo-full-rosegold.svg"),
     address: {
       "@type": "PostalAddress",
       ...SITE.address,
@@ -95,7 +95,7 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
 export function productLd(product: Product, path: string) {
   const images = product.images.length
     ? product.images.map((p) => (p.startsWith("http") ? p : siteUrl(p)))
-    : [siteUrl("/alpoe-london-logo-transparent.svg")];
+    : [siteUrl("/alpoe-london-logo-full-rosegold.svg")];
 
   const availability =
     product.stockState === "in_stock"

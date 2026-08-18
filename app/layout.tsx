@@ -54,10 +54,13 @@ export const metadata: Metadata = {
     "diamond pendants London",
   ],
   alternates: { canonical: siteUrl() },
+  // The current rose gold lockup, exported from the Blender master — see
+  // public/Logo/README.md. What stood here before pointed at a file that is
+  // no longer in public at all, so every one of these was a 404.
   icons: {
-    icon: "/alpoe-london-logo-transparent.svg",
-    shortcut: "/alpoe-london-logo-transparent.svg",
-    apple: "/alpoe-london-logo-transparent.svg",
+    icon: "/alpoe-london-logo-full-rosegold.svg",
+    shortcut: "/alpoe-london-logo-full-rosegold.svg",
+    apple: "/alpoe-london-logo-full-rosegold.svg",
   },
   openGraph: {
     type: "website",

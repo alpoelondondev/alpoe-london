@@ -27,10 +27,10 @@ export default function CTAStrip({
         <p className="text-[11px] tracking-[0.2em] uppercase text-champagne text-center">
           {eyebrow}
         </p>
-        <h2 className="mx-auto mt-4 max-w-3xl text-center font-serif text-[clamp(28px,4vw,52px)] leading-tight text-blush">
+        <h2 className="mx-auto mt-4 max-w-3xl text-center font-serif text-[clamp(26px,3vw,40px)] leading-tight text-blush">
           {title}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-[15px] leading-relaxed text-fg/75">
+        <p className="mx-auto mt-4 max-w-xl text-center text-[14px] leading-[1.7] text-fg/75">
           {copy}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

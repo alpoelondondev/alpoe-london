@@ -4,6 +4,7 @@ import Marquee from "./components/Marquee";
 import Collections from "./components/Collections";
 import CategoryGrid from "./components/CategoryGrid";
 import About from "./components/About";
+import FeatureCards from "./components/FeatureCards";
 import MentorshipStrip from "./components/MentorshipStrip";
 import MerchandiseStrip from "./components/MerchandiseStrip";
 import Contact from "./components/Contact";
@@ -25,6 +26,7 @@ export default function Home() {
       <Collections />
       <CategoryGrid />
       <About />
+      <FeatureCards />
       <MentorshipStrip />
       <Contact />
       <SellForm />

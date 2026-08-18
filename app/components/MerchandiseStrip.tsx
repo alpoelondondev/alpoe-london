@@ -61,7 +61,7 @@ export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
         }`}
       >
         <ScrollReveal>
-          <h2 className="font-serif text-[clamp(30px,4.4vw,56px)] tracking-[0.02em] leading-none text-blush">
+          <h2 className="font-serif text-[clamp(26px,3vw,40px)] tracking-[0.02em] leading-none text-blush">
             Merchandise
           </h2>
         </ScrollReveal>

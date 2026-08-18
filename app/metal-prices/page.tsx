@@ -351,7 +351,7 @@ export default async function MetalPricesPage() {
           title="Get today's figure confirmed"
           copy="Message us and we'll confirm the live rate for your piece, with our premium set out in full."
           whatsappMessage="Hi Alpoe, I'd like today's confirmed rate on gold, silver or platinum."
-          secondary={{ label: "Sell Your Watch", href: "/sell" }}
+          secondary={{ label: "Sell & Trade", href: "/sell" }}
         />
       </main>
       <Footer />

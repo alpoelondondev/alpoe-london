@@ -34,8 +34,9 @@ import { hasSpin, spinFrames } from "@/lib/ring/spins";
 import { buildRingSpecUrl } from "@/lib/whatsapp";
 
 /**
- * Both viewers land after hydration. The spin viewer preloads 36 photographs
- * and the ring viewer pulls in three.js; neither belongs in the first paint.
+ * Lands after hydration: the spin viewer preloads 36 photographs before it is
+ * draggable, which does not belong in the first paint. It is the only viewer
+ * here — the studio is photography end to end, with no 3D model to load.
  */
 const SpinViewer = dynamic(() => import("./SpinViewer"), { ssr: false });
 

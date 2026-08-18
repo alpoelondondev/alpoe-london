@@ -14,7 +14,7 @@ import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Sell Your Watch — Same-Day Payment, Hatton Garden",
+  title: "Sell & Trade Your Watch — Same-Day Payment, Hatton Garden",
   description:
     "Sell or part-exchange your luxury watch with Alpoe London. Free no-obligation valuation on Rolex, Patek Philippe, Audemars Piguet and more. Authenticated in Hatton Garden, paid same day.",
   path: "/sell",
@@ -74,7 +74,7 @@ export default function SellPage() {
     {
       "@type": "Service",
       "@id": siteUrl("/sell") + "#service",
-      name: "Sell Your Luxury Watch",
+      name: "Sell & Trade Your Luxury Watch",
       serviceType: "Luxury watch buying and part-exchange",
       areaServed: "Worldwide",
       provider: { "@id": siteUrl("/") + "#organization" },
@@ -84,7 +84,7 @@ export default function SellPage() {
     },
     breadcrumbLd([
       { name: "Home", url: siteUrl("/") },
-      { name: "Sell Your Watch", url: siteUrl("/sell") },
+      { name: "Sell & Trade", url: siteUrl("/sell") },
     ]),
     faqLd(SELL_FAQS),
   ]);
@@ -95,7 +95,7 @@ export default function SellPage() {
       <main>
         <BrandHero
           eyebrow="Sell With Us"
-          title="Sell Your Watch, Paid The Same Day"
+          title="Sell & Trade, Paid The Same Day"
           copy="We buy pre-owned luxury watches outright and offer strong trade-in valuations against anything in our catalogue. Free, no-obligation, and authenticated in our own Hatton Garden showroom."
         />
 
@@ -103,7 +103,7 @@ export default function SellPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Sell Your Watch", href: "/sell", current: true },
+              { name: "Sell & Trade", href: "/sell", current: true },
             ]}
           />
         </section>
