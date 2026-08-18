@@ -95,13 +95,15 @@ export default function FeatureCards() {
                   className="absolute inset-0 bg-gradient-to-t from-bg via-bg/45 to-transparent"
                 />
                 {/* Second wash, drawn in from the left: where the subject sits
-                    out to the right, this is what the type reads against and
-                    what lets the photograph fade into the page rather than
-                    stop at a hard edge. */}
+                    out to the right, this is what the type reads against.
+                    Kept narrow and light on purpose — at full strength across
+                    a third of the card it read as a black column between the
+                    two photographs, which looked like a gap between the cards
+                    even though they touch. */}
                 {card.sideFade ? (
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-r from-bg from-2% via-bg/50 via-34% to-transparent to-78%"
+                    className="absolute inset-0 bg-gradient-to-r from-bg/85 from-0% via-bg/25 via-16% to-transparent to-42%"
                   />
                 ) : null}
                 {/* Sits on the card's middle line rather than its foot, and
