@@ -12,8 +12,9 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * One length drives the whole hero: the lockup's own size and the eyebrow
  * below it. The cap wins on desktop, the vw term takes over on phones, and the
- * vh term stops the lockup outgrowing a short window — the section is no longer
- * a full viewport tall, so height is the tighter constraint on a laptop.
+ * vh term stops the lockup outgrowing a short window — the section is well
+ * short of a full viewport now, and the bar eats the top of what is left, so
+ * height is the binding constraint on anything but a tall desktop.
  */
 /**
  * The vh term is written as a height and converted, rather than carried as a
@@ -22,8 +23,16 @@ gsap.registerPlugin(ScrollTrigger);
  * artwork stops being correct the moment the artwork's proportions change.
  * Derived from the aspect, it holds at 55vh whatever the lockup does next.
  */
-const LOCKUP_MAX_HEIGHT_VH = 55;
+const LOCKUP_MAX_HEIGHT_VH = 44;
 const LOCKUP_WIDTH = `min(92vw, 1100px, ${(LOCKUP_MAX_HEIGHT_VH * LOCKUP_ASPECT).toFixed(1)}vh)`;
+/**
+ * How far the lockup's box is lifted off the hero's floor. The eyebrow sits
+ * ~34px below the mark and is only ever a line tall, so centring the mark on
+ * its own leaves the pair sitting low in the band. Half the eyebrow block,
+ * give or take, puts the *group* on the centre line instead.
+ */
+const LOCKUP_GROUP_LIFT = "48px";
+
 /** Half the lockup's height as a fraction of its width, for the eyebrow. */
 const LOCKUP_HALF_HEIGHT_RATIO = 1 / (2 * LOCKUP_ASPECT);
 
@@ -117,12 +126,17 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      // Short of a full viewport by exactly the brand strip's height, so that
-      // strip is already on screen at rest rather than needing a scroll to
-      // discover. The strip is py-10 (80) + hairline borders (2) + the loop,
-      // which is its logo height plus the 10% hover padding either side
-      // (44 * 1.2 = 52.8) — so 135. Retune this if that logo height changes.
-      className="h-[calc(100svh-135px)] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
+      // Short of the viewport by the brand strip's height plus a little, so
+      // that strip is already on screen at rest rather than needing a scroll
+      // to discover — but only a little: cut deeper and the bar eats so much
+      // of what is left that the lockup has nowhere to sit. The 70px is the
+      // strip — py-4 (32) + hairline borders (2) + the loop, which is its logo
+      // height plus the 10% hover padding either side (30 * 1.2 = 36). The vh
+      // term absorbs the strip's slimming so the hero itself stays put and
+      // the saved height goes to the page below. Retune both if that logo
+      // height changes; the min-h keeps the lockup breathing on a short
+      // laptop.
+      className="h-[calc(92svh-70px)] min-h-[600px] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
       {/* Decorative footage, full-bleed: silent, uninteractive, and no
           user-agent transport controls. It keeps its full framing — the
@@ -154,13 +168,27 @@ export default function Hero() {
           HeroLockup — rather than being a patch inside a separate backdrop,
           which is what previously left a hairline of video along the top edge
           wherever the two disagreed by a sub-pixel. */}
-      <div className="absolute inset-0 z-3 pointer-events-none" aria-hidden="true">
+      {/* Inset from the top by the bar's height so the mark centres in the
+          band you can actually see, not in the section's own box — half of
+          which the bar sits over. The floor is lifted by LOCKUP_GROUP_LIFT
+          because the eyebrow hangs below the mark: centre the mark alone and
+          the pair reads low. The ground bleeds far past this layer (see
+          HeroLockup), so offsetting it leaves no seam. */}
+      <div
+        className="absolute inset-x-0 z-3 pointer-events-none"
+        style={{ top: "var(--nav-h)", bottom: LOCKUP_GROUP_LIFT }}
+        aria-hidden="true"
+      >
         <HeroLockup width={LOCKUP_WIDTH} />
       </div>
 
+      {/* Shares the lockup layer's box exactly — the eyebrow is positioned
+          off the same 50% line, so the two have to be measuring the same
+          band or the line drifts away from the mark. */}
       <div
         ref={eyebrowRef}
-        className="absolute inset-0 z-4 opacity-0 pointer-events-none"
+        className="absolute inset-x-0 z-4 opacity-0 pointer-events-none"
+        style={{ top: "var(--nav-h)", bottom: LOCKUP_GROUP_LIFT }}
       >
         {/* Pinned below the lockup rather than flowed after it, since the
             lockup is centred on the section and not on this pair. It takes the

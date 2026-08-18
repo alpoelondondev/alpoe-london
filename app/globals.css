@@ -73,9 +73,14 @@
   --color-up: #14803c;
   --color-down: #b3261e;
 
-  --font-serif: var(--font-bebas-neue), sans-serif;
-  --font-sans: var(--font-dm-sans), sans-serif;
-  /* Hero lockup only — the two faces the wordmark artwork is set in. */
+  /* One face for the entire site. `font-serif` is a historical name — 38 files
+     use it for display type — so it stays as the heading token rather than
+     being renamed through all of them, but it now resolves to the same family
+     as the body. Nothing outside the logo is set in anything else. */
+  --font-serif: var(--font-open-sans), sans-serif;
+  --font-sans: var(--font-open-sans), sans-serif;
+  /* The logo is the one exception to the single-font rule: the wordmark
+     artwork is drawn in Playfair. */
   --font-playfair: var(--font-playfair-display), serif;
   --font-opensans: var(--font-open-sans), sans-serif;
 }
@@ -84,6 +89,26 @@ html {
   overflow-x: hidden;
   scroll-behavior: auto;
 }
+
+/* The fixed bar's measured height, in one place because the hero centres its
+   lockup inside the band *below* the bar rather than inside its own box —
+   geometric centre would push the mark up under the blurred bar. Desktop:
+   pt-6 (24) + the 56px logo row + mt-3 (12) + the search bar (40) + mt-3 (12)
+   + the spot strip (33, its own border included; it replaces the bar's pb-4).
+   The phone runs the same rows on tighter padding. Retune both if the bar's
+   rows change. */
+:root {
+  --nav-h: 177px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --nav-h: 173px;
+  }
+}
+
+/* The announcement strip's scroll lives with the component that uses it — see
+   MarketTicker — so the keyframes ship wherever the strip does. */
 
 body {
   background: var(--color-bg);

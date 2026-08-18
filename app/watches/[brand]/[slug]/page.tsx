@@ -93,7 +93,7 @@ export default async function WatchProductPage(
     <>
       <SiteHeader />
       <main>
-        <section className="px-[52px] pt-32 pb-6 max-md:px-6 max-md:pt-28">
+        <section className="px-[52px] pt-52 pb-6 max-md:px-6 max-md:pt-48">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },

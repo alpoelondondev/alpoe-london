@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import SearchTrigger from "./SearchTrigger";
+import MarketTicker, { type TickerItem } from "./MarketTicker";
 import LockupMark from "./LockupMark";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 import type { SearchIndexEntry } from "@/lib/types";
@@ -14,8 +15,9 @@ type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
  * Height of the lockup in the bar. Taller than the 28px the bare monogram used
  * to run at: the lockup carries ALPOE LONDON inside the same box, and below
  * about 40px those words stop resolving. Drop it and the wordmark turns to mud.
+ * Now scaled up with the rest of the bar, which runs deliberately tall.
  */
-const MONOGRAM_HEIGHT = 42;
+const MONOGRAM_HEIGHT = 50;
 
 /**
  * The site-wide mark is the live rose gold monogram. Still loaded dynamically:
@@ -48,6 +50,7 @@ function MonogramFlat() {
 const LINKS = [
   { label: "Watches", href: "/watches" },
   { label: "Jewellery", href: "/jewellery" },
+  { label: "Ring Builder", href: "/ring-builder" },
   { label: "Bespoke", href: "/bespoke" },
   { label: "Sell", href: "/sell" },
   { label: "Mentorship", href: "/mentorship" },
@@ -58,90 +61,118 @@ const LINKS = [
 export default function Nav({
   searchIndex,
   suggestions,
+  ticker,
+  tickerStale,
 }: {
   searchIndex: SearchIndexEntry[];
   suggestions: Suggestion[];
+  /** Live spot for the announcement strip; omitted, the strip is not drawn. */
+  ticker?: TickerItem[];
+  tickerStale?: boolean;
 }) {
-  const [hidden, setHidden] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const lastY = useRef(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  // The panel is now the only route list on every screen, so it needs the
+  // escape hatch a full-screen overlay is expected to have.
   useEffect(() => {
-    function onScroll() {
-      const y = window.scrollY;
-      setHidden(y > 80 && y > lastY.current);
-      lastY.current = y;
+    if (!menuOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMenuOpen(false);
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-200 px-[52px] py-8 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:py-6 max-md:justify-end transition-transform duration-300 ${
-          hidden ? "-translate-y-full" : "translate-y-0"
-        }`}
-      >
-        {/* Inside the bar rather than fixed alongside it, so it travels with
-            the hide-on-scroll transform. Fixed, it stayed put once the bar had
-            gone and sat over the page — worst on a phone, where there is no
-            margin for it to hide in. The h-10 keeps the bar the height its
-            40px spacer used to set, so nothing below it shifts. */}
-        {/* Centred on a phone by taking it out of the flow, so the search and
-            menu keep the right edge to themselves rather than being pushed off
-            balance by the mark's width. The bar switches to justify-end to
-            match. Desktop keeps the logo in the flow, on the left. */}
-        <Link
-          href="/"
-          className="flex h-11 shrink-0 items-center max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2"
-          aria-label="Alpoe London — Home"
-        >
-          <Monogram3D height={40} />
-        </Link>
-        {/* Tightens below lg: seven links at the full gap overflow the bar on a
-            small laptop once the logo and search have taken their share. */}
-        <ul className="flex gap-11 list-none max-lg:gap-6 max-md:hidden">
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-[11px] tracking-[0.14em] uppercase text-fg no-underline opacity-70 transition-opacity duration-200 hover:opacity-100"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-5">
-          {/* Booking sits outside the link list on purpose: eight plain links
-              overflow the bar on a small laptop, and this is the one action
-              the bar should carry rather than another destination. */}
+      {/* Pinned for the whole page rather than hiding on a downward scroll:
+          the bar carries the only route list, the search field and the live
+          spot strip, so it has to be reachable wherever the reader is. */}
+      <nav className="fixed top-0 left-0 right-0 z-200 px-[52px] pt-6 pb-4 bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:pt-5 max-md:pb-3">
+        {/* Three equal-weight columns rather than a flex row, so the lockup is
+            centred against the bar itself and not against whatever the menu
+            and Book button happen to measure. The outer columns are free to
+            differ in width — and on a phone, where Book is hidden, they do. */}
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+          {/* The three lines are the whole navigation now: every route lives
+              behind them at every screen size, which is why they lead the bar
+              rather than hiding on the right the way the old Menu word did. */}
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="group flex h-14 w-10 shrink-0 flex-col justify-center gap-[5px] justify-self-start"
+          >
+            {/* The rules are shorter than the button: the hit area stays a
+                comfortable 40px wide while the mark itself stays a fine
+                three-line glyph, scaled to the trimmed bar. The middle line fades and
+                the outer two meet in the centre, so the open state reads as a
+                close control without swapping in a second icon. */}
+            <span
+              className={`h-px w-[18px] bg-fg transition-all duration-300 group-hover:bg-accent ${
+                menuOpen ? "translate-y-[6px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-px w-[18px] bg-fg transition-all duration-300 group-hover:bg-accent ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`h-px w-[18px] bg-fg transition-all duration-300 group-hover:bg-accent ${
+                menuOpen ? "-translate-y-[6px] -rotate-45" : ""
+              }`}
+            />
+          </button>
+
+          {/* Inside the bar rather than fixed alongside it, so it is laid out
+              against the bar's own rows. The h-14 sets the row's floor height,
+              so the mark and the menu share one baseline. */}
+          <Link
+            href="/"
+            className="flex h-14 shrink-0 items-center justify-self-center"
+            aria-label="Alpoe London — Home"
+          >
+            <Monogram3D height={48} />
+          </Link>
+
+          {/* Booking is the one action the bar carries rather than another
+              destination, so it keeps its place out here while the routes sit
+              behind the menu. */}
           <Link
             href="/book-appointment"
-            className="border border-accent px-4 py-2 text-[10px] tracking-[0.16em] uppercase text-accent transition hover:bg-accent hover:text-bg max-md:hidden"
+            className="justify-self-end border border-accent px-5 py-2.5 text-[11px] tracking-[0.16em] uppercase text-accent transition hover:bg-accent hover:text-bg max-md:hidden"
           >
             Book
           </Link>
-          <SearchTrigger index={searchIndex} suggestions={suggestions} />
-          <button
-            type="button"
-            aria-label="Menu"
-            className="hidden max-md:inline-flex text-[11px] tracking-[0.14em] uppercase text-fg/80"
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? "Close" : "Menu"}
-          </button>
         </div>
+
+        {/* Search gets its own row under the lockup: a bar wide enough to
+            invite a query but narrower than the mark, so it reads as a field
+            hung under the lockup rather than a second banner. */}
+        <div className="mt-3 flex justify-center">
+          <div className="w-full max-w-md">
+            <SearchTrigger index={searchIndex} suggestions={suggestions} />
+          </div>
+        </div>
+        {/* Full-bleed along the bar's bottom edge — the negative margins undo
+            the bar's own gutters and bottom padding so the strip meets the
+            border rather than floating above it. */}
+        {ticker?.length ? (
+          <div className="-mx-[52px] -mb-4 mt-3 max-md:-mx-6 max-md:-mb-3">
+            <MarketTicker items={ticker} stale={tickerStale} />
+          </div>
+        ) : null}
       </nav>
 
-      {mobileOpen ? (
-        <div className="fixed inset-0 z-[199] bg-bg/95 backdrop-blur-md pt-20 px-6 hidden max-md:block">
-          <ul className="flex flex-col gap-6">
+      {menuOpen ? (
+        <div className="fixed inset-0 z-[199] overflow-y-auto bg-bg/95 backdrop-blur-md px-[52px] pt-40 pb-16 max-md:px-6 max-md:pt-36">
+          <ul className="mx-auto flex w-full max-w-xl flex-col gap-6">
             <li>
               <Link
                 href="/book-appointment"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMenuOpen(false)}
                 className="font-serif text-3xl tracking-[0.02em] text-accent"
               >
                 Book an Appointment
@@ -151,8 +182,8 @@ export default function Nav({
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-serif text-3xl tracking-[0.02em]"
+                  onClick={() => setMenuOpen(false)}
+                  className="font-serif text-3xl tracking-[0.02em] transition-colors hover:text-accent"
                 >
                   {link.label}
                 </Link>

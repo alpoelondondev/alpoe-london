@@ -51,6 +51,20 @@ export function buildFilmEnquiryUrl(film: { title: string; spec: string }): stri
   return `https://wa.me/${number}?text=${text}`;
 }
 
+/**
+ * A ring built in the Custom Studio.
+ *
+ * The message carries the full written specification rather than a product
+ * name, because there is no product — the workshop is being handed a brief. The
+ * link matters as much as the text: the configuration lives entirely in the URL,
+ * so whoever picks this up at the counter can open it and see the exact ring on
+ * screen rather than reconstructing it from a list.
+ */
+export function buildRingSpecUrl(spec: string): string {
+  const number = normalisePhone(SITE.whatsapp);
+  return `https://wa.me/${number}?text=${encodeURIComponent(spec)}`;
+}
+
 export function buildGeneralWhatsAppUrl(message?: string): string {
   const number = normalisePhone(SITE.whatsapp);
   if (!message) return `https://wa.me/${number}`;

@@ -11,11 +11,13 @@ const SHOP_LINKS = [
 
 const HOUSE_LINKS = [
   { label: "Book an Appointment", href: "/book-appointment" },
+  { label: "Ring Builder", href: "/ring-builder" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell Your Watch", href: "/sell" },
   { label: "Metal Prices", href: "/metal-prices" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
+  { label: "Hallmarking", href: "/hallmarking" },
   { label: "Contact", href: "/contact" },
 ];
 

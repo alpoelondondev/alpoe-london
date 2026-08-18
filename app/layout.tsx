@@ -1,10 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Bebas_Neue,
-  DM_Sans,
-  Open_Sans,
-  Playfair_Display,
-} from "next/font/google";
+import { Open_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 // Splash screen temporarily disabled — re-enable by uncommenting this import
 // and the <Loader /> below. Hero detects the missing #loader and reveals
@@ -14,33 +9,31 @@ import CustomCursor from "./components/CustomCursor";
 import SiteLDJSON from "./components/SiteLDJSON";
 import { SITE, siteUrl } from "@/lib/site";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+/**
+ * Open Sans carries the whole site — body, headings, labels, everything.
+ *
+ * It previously ran alongside Bebas Neue for display and DM Sans for body, and
+ * both of those are now gone: nothing outside the logo is set in anything else,
+ * so loading them would be two font families downloaded for no one. The
+ * upside of the consolidation is that this is now the only UI font on the page.
+ *
+ * It needs the full range that the two retired faces covered between them —
+ * 300 for body copy, which `body` sets as its default, up through 700 for
+ * headings that used to lean on a condensed display face for their weight.
+ */
+const openSans = Open_Sans({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-bebas-neue",
+  variable: "--font-open-sans",
 });
 
-const dmSans = DM_Sans({
-  // 500 carries the hero's scrambling eyebrow, which is rose on off-black at
-  // around 12px on a phone — too little contrast to read at the body's 300.
-  weight: ["300", "400", "500"],
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-});
-
-// The two faces of the hero lockup. Only eleven letters are set in them, so
-// both are pinned to the single weight the artwork uses rather than loading a
-// range.
+// The logo is the one exception. Its artwork is set in Playfair, and only
+// eleven letters are, so it stays pinned to the single weight the lockup uses
+// rather than loading a range.
 const playfairDisplay = Playfair_Display({
   weight: "500",
   subsets: ["latin"],
   variable: "--font-playfair-display",
-});
-
-const openSans = Open_Sans({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-open-sans",
 });
 
 export const metadata: Metadata = {
@@ -98,9 +91,21 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${bebasNeue.variable} ${dmSans.variable} ${playfairDisplay.variable} ${openSans.variable}`}
+      className={`${openSans.variable} ${playfairDisplay.variable}`}
     >
-      <body>
+      {/*
+        Browser extensions write attributes onto <body> before React hydrates —
+        ColorZilla adds `cz-shortcut-listen`, password managers and grammar
+        tools do similar — and React then reports a hydration mismatch it can
+        never reconcile, because the markup genuinely differs from what the
+        server sent. In development that surfaces as a full-screen error
+        overlay, which makes the page look broken when nothing is wrong with it.
+
+        `suppressHydrationWarning` is scoped to this element's own attributes
+        and does not extend to its children, so our own markup is still checked
+        as strictly as before. This is the case the flag exists for.
+      */}
+      <body suppressHydrationWarning>
         <SiteLDJSON />
         <CustomCursor />
         {/* <Loader /> */}

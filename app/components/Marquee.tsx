@@ -31,13 +31,13 @@ const brandLogos: LogoItem[] = [
 
 export default function Marquee() {
   return (
-    <div className="relative overflow-hidden border-y border-fg/[0.10] py-10">
+    <div className="relative overflow-hidden border-y border-fg/[0.10] py-4">
       <LogoLoop
         logos={brandLogos}
         speed={60}
         direction="left"
-        logoHeight={44}
-        gap={80}
+        logoHeight={30}
+        gap={64}
         scaleOnHover
         draggable
         fadeOut
