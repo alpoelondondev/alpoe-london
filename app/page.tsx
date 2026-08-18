@@ -10,7 +10,6 @@ import MerchandiseStrip from "./components/MerchandiseStrip";
 import Contact from "./components/Contact";
 import SellForm from "./components/SellForm";
 import FAQ from "./components/FAQ";
-import Social from "./components/Social";
 import FindUs from "./components/FindUs";
 import { HOME_FAQS } from "@/lib/faqs";
 import { ldJsonGraph, faqLd } from "@/lib/seo";
@@ -32,7 +31,6 @@ export default function Home() {
       <SellForm />
       <FAQ items={HOME_FAQS} />
       <MerchandiseStrip />
-      <Social />
       <FindUs />
       <Footer />
       <WhatsAppButton />

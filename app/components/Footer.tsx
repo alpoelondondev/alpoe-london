@@ -42,7 +42,7 @@ export default function Footer() {
                   near-black and would disappear against this ground. Painted
                   in the house rose to match the monogram in the bar, so the
                   mark reads the same at both ends of the page. */}
-              <LockupMark width="min(148px, 48vw)" fill="var(--color-accent)" />
+              <LockupMark width="min(112px, 38vw)" fill="var(--color-accent)" />
             </Link>
             <p className="t-copy max-w-sm">
               A Hatton Garden dealership sourcing authenticated luxury

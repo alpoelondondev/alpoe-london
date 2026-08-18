@@ -173,7 +173,13 @@ export default function Nav({
       </nav>
 
       {menuOpen ? (
-        <div className="fixed inset-0 z-[199] overflow-y-auto bg-bg/95 backdrop-blur-md px-[52px] pt-40 pb-16 max-md:px-6 max-md:pt-36">
+        // Cleared off the bar by the bar's own measured height rather than a
+        // hand-set padding — the bar has grown twice (search row, then the
+        // spot strip) and a fixed pt- went under it both times.
+        <div
+          className="fixed inset-0 z-[199] overflow-y-auto bg-bg/95 backdrop-blur-md px-[52px] pb-16 max-md:px-6"
+          style={{ paddingTop: "calc(var(--nav-h) + 24px)" }}
+        >
           {/* Ruled rather than spaced: at this size a gap alone left the
               labels reading as one column of words, so each route gets its own
               row with a hairline under it. divide-y draws the rules between
