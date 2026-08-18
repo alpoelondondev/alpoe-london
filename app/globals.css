@@ -175,6 +175,35 @@ html {
   color: color-mix(in srgb, var(--color-fg) 75%, transparent);
 }
 
+/* ---------------------------------------------------------------------------
+   THE MAP — black and gold, out of a basemap that ships neither.
+
+   No tile provider serves a rose gold map, and the ones that could (vector
+   tiles with an authored style) need an account, a key and a WebGL engine —
+   the same engine whose worker silently never spawned under Turbopack, which
+   is why FindUs is on raster Leaflet at all. Raster tiles are just images, so
+   a filter recolours them wholesale: CARTO's dark basemap through sepia and a
+   short hue rotation lands on the house metal.
+
+   On the *tile pane*, deliberately, not the map container: the container also
+   holds the marker, the popup and the attribution, and tinting those would put
+   the pin and the credit through the same transform as the roads.
+--------------------------------------------------------------------------- */
+.map-gold .leaflet-tile-pane {
+  filter: sepia(1) saturate(2.4) hue-rotate(-8deg) brightness(1.25);
+}
+
+/* CARTO's credit is required and defaults to dark-on-white, which on a black
+   map is a bright label in the corner. Same ink as the rest of the site. */
+.map-gold .leaflet-control-attribution {
+  background: rgba(19, 16, 16, 0.72);
+  color: color-mix(in srgb, var(--color-fg) 45%, transparent);
+}
+
+.map-gold .leaflet-control-attribution a {
+  color: var(--color-accent);
+}
+
 /* The market sheet is the one light surface — see the palette note above. */
 .t-ink {
   color: var(--color-sheet-ink);

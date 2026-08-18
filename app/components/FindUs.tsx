@@ -14,10 +14,16 @@ import { SITE } from "@/lib/site";
 const LAT = 51.52045;
 const LON = -0.10855;
 
-// Leaflet on CARTO's Positron raster tiles: dynamic, no account and no API key.
+// Leaflet on CARTO's dark raster tiles: dynamic, no account and no API key.
 // Raster means no Web Worker and no WebGL, which is why this survives the
 // Turbopack bundle where a vector engine silently never spawns its worker.
-const TILES = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+//
+// Dark rather than Positron because the site is off-black — a paper-white map
+// read as a hole punched in the page. The gold is ours, not CARTO's: no
+// provider ships a black-and-gold basemap, so `.map-gold` in globals.css puts
+// a filter over the tile pane (see there for why it is on the pane and not the
+// container). Delete that one class and this is a plain dark map again.
+const TILES = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
 const ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
@@ -31,20 +37,22 @@ const ATTRIBUTION =
  * eases out of the page instead of ramping out of it linearly, which is what
  * reads as a band however many stops a straight ramp is given.
  */
-const MAP_FADE_RAMP = 34; // % of the map's height each edge fades across
+const MAP_FADE_TOP = 30; // % of the map's height the top edge fades across
+// Longer than the top: below the map is the address line and then the footer,
+// so the map has to give way to type rather than to more page.
+const MAP_FADE_BOTTOM = 46;
 const MAP_FADE_STEP = 2;
 
 function mapFade() {
   const stops: string[] = [];
-  for (let p = 0; p <= MAP_FADE_RAMP; p += MAP_FADE_STEP) {
-    const t = p / MAP_FADE_RAMP;
+  for (let p = 0; p <= MAP_FADE_TOP; p += MAP_FADE_STEP) {
+    const t = p / MAP_FADE_TOP;
     const alpha = t * t * (3 - 2 * t);
     stops.push(`rgba(0,0,0,${alpha.toFixed(3)}) ${p}%`);
   }
-  // The bottom edge is the same curve walked backwards, so the two ends
-  // cannot drift apart.
-  for (let p = MAP_FADE_RAMP; p >= 0; p -= MAP_FADE_STEP) {
-    const t = p / MAP_FADE_RAMP;
+  // The bottom edge is the same curve walked backwards over its own ramp.
+  for (let p = MAP_FADE_BOTTOM; p >= 0; p -= MAP_FADE_STEP) {
+    const t = p / MAP_FADE_BOTTOM;
     const alpha = t * t * (3 - 2 * t);
     stops.push(`rgba(0,0,0,${alpha.toFixed(3)}) ${100 - p}%`);
   }
@@ -120,62 +128,56 @@ export default function FindUs() {
       aria-label="Find us"
     >
       <ScrollReveal>
+        <h2 className="t-section mb-6 px-[52px] text-center max-md:mb-4 max-md:px-6">
+          Visit Us
+        </h2>
+
         {/* Full-bleed: the map runs edge to edge, no gutter and no border.
-            Relative, because the address plate is laid over it. */}
-        <div className="relative">
-          {/* Masked top and bottom so the map dissolves into the page instead
-            of butting against it on two hard horizontals. A mask rather than
+            Masked top and bottom so it dissolves into the page rather than
+            butting against it on two hard horizontals. A mask rather than
             gradient overlays: overlays would have to match whatever colour is
             behind the strip, and this simply lets the page through. */}
-          <div
-            className="overflow-hidden"
-            style={{
-              maskImage: MAP_FADE,
-              WebkitMaskImage: MAP_FADE,
-            }}
-          >
-            {failed ? (
-              // Tiles unreachable — never leave a dead grey box.
-              <a
-                href={DIRECTIONS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-[380px] w-full items-center justify-center bg-fg/[0.04] max-md:h-[280px]"
-              >
-                <span className="t-eyebrow !text-accent">View on map →</span>
-              </a>
-            ) : (
-              // No scrim: the tiles run at their own brightness and the edge
-              // fade above is what settles them into the page.
-              <div ref={holder} className="h-[380px] w-full max-md:h-[280px]" />
-            )}
-          </div>
-
-          {/* Laid over the map rather than above it. The plate is what makes it
-            legible over light tiles, and the overlay takes no pointer events
-            so the map underneath still pans and zooms — only the directions
-            link inside it accepts a click. */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
-            <div className="pointer-events-auto bg-bg/80 px-10 py-7 text-center backdrop-blur-sm max-md:px-7 max-md:py-6">
-              <h2 className="t-section">Visit Us</h2>
-              <p className="t-sub mt-3">{SITE.name}</p>
-              <p className="mt-2 text-[13px] tracking-[0.14em] uppercase text-dim">
-                The Garden, {SITE.address.streetAddress}
-              </p>
-              <p className="mt-1 text-[13px] tracking-[0.14em] uppercase text-dim">
-                {SITE.address.postalCode}
-              </p>
-              <a
-                href={DIRECTIONS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="t-eyebrow mt-4 inline-block !text-accent transition hover:!text-champagne"
-              >
-                Get directions →
-              </a>
-            </div>
-          </div>
+        <div
+          className="overflow-hidden"
+          style={{
+            maskImage: MAP_FADE,
+            WebkitMaskImage: MAP_FADE,
+          }}
+        >
+          {failed ? (
+            // Tiles unreachable — never leave a dead grey box.
+            <a
+              href={DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-[380px] w-full items-center justify-center bg-fg/[0.04] max-md:h-[280px]"
+            >
+              <span className="t-eyebrow !text-accent">View on map →</span>
+            </a>
+          ) : (
+            // No scrim: the tiles run at their own brightness and the edge
+            // fade above is what settles them into the page.
+            <div
+              ref={holder}
+              className="map-gold h-[380px] w-full max-md:h-[280px]"
+            />
+          )}
         </div>
+
+        {/* One line, not three: under a full-bleed map this is a caption, and
+            a stacked block there reads as a second section starting. */}
+        <p className="mt-5 px-[52px] text-center text-[12px] tracking-[0.14em] uppercase text-dim max-md:mt-4 max-md:px-6">
+          {SITE.name} · The Garden, {SITE.address.streetAddress} ·{" "}
+          {SITE.address.postalCode} ·{" "}
+          <a
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent transition hover:text-champagne"
+          >
+            Get directions →
+          </a>
+        </p>
       </ScrollReveal>
     </section>
   );
