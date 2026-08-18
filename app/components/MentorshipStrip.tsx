@@ -3,12 +3,14 @@ import ScrollReveal from "./ScrollReveal";
 import MentorshipLockup from "./MentorshipLockup";
 
 /**
- * Homepage band for the mentorship, carrying the rose ground and stencilled
- * lockup the mentorship page opens on so the two read as the same thing.
+ * Homepage band for Alpoe London Elite, carrying the stencilled lockup the
+ * programme's own page opens on so the two read as the same thing.
  *
- * Behind the mark, diamonds and watches are scattered in the page ground's own
- * colour — the same knockout treatment as the lettering, at an opacity low
- * enough to stay a texture rather than a pattern competing with it.
+ * The colours run the opposite way to that page: the band is the house
+ * off-black and the mark is the rose, rather than rose ground and off-black
+ * mark. Behind it, diamonds and watches are scattered in the same rose at an
+ * opacity low enough to stay a texture rather than a pattern competing with
+ * the mark.
  */
 
 /** Round brilliant in plan: girdle, table and the star facets between. */
@@ -49,7 +51,7 @@ const MOTIFS = [
 
 export default function MentorshipStrip() {
   return (
-    <section className="relative overflow-hidden bg-accent px-[52px] py-20 max-md:px-6 max-md:py-14">
+    <section className="relative overflow-hidden bg-bg px-[52px] py-10 max-md:px-6 max-md:py-8">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         {MOTIFS.map((m, i) => (
           <svg
@@ -58,7 +60,7 @@ export default function MentorshipStrip() {
             width={m.size}
             height={m.size}
             fill="none"
-            stroke="var(--color-bg)"
+            stroke="var(--color-accent)"
             strokeWidth="1.1"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -77,23 +79,25 @@ export default function MentorshipStrip() {
 
       <div className="relative flex flex-col items-center text-center">
         <ScrollReveal>
-          {/* Ground off: the band is already rose, and the mark's own rect
-              would paint over the motifs behind it. */}
-          <MentorshipLockup ground={false} className="w-[min(540px,82vw)]" />
+          {/* Ground off: the band paints its own, and the mark's rect would
+              cover the motifs behind it either way. The artwork is the rose
+              now — the band went dark under it, so the colours swapped. */}
+          <MentorshipLockup
+            ground={false}
+            word="ELITE PROGRAMME"
+            mark="var(--color-accent)"
+            className="w-[min(380px,72vw)]"
+          />
         </ScrollReveal>
         <ScrollReveal delay={0.08}>
-          <p className="t-copy mt-2 max-w-lg !text-bg/80">
-            A private group run from our Hatton Garden counter for anyone serious about
-            buying and selling watches and jewellery. Sourcing, pricing and negotiating,
-            as we do it every week.
-          </p>
+          <p className="t-copy mt-2 max-w-lg">Membership required*</p>
         </ScrollReveal>
         <ScrollReveal delay={0.16}>
           <Link
             href="/mentorship"
-            className="mt-8 inline-flex items-center justify-center bg-bg px-8 py-4 font-serif text-[18px] uppercase tracking-[0.08em] text-blush transition hover:text-fg"
+            className="mt-5 inline-flex items-center justify-center bg-accent px-5 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-bg transition hover:bg-accent-deep"
           >
-            Learn The Trade
+            Enquire
           </Link>
         </ScrollReveal>
       </div>

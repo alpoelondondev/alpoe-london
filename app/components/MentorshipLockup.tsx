@@ -6,7 +6,7 @@ import {
 } from "./heroLockupShapes";
 
 /**
- * The hero lockup cut into a rose-gold ground, with MENTORSHIP set beneath it.
+ * The hero lockup cut into a rose-gold ground, with a word set beneath it.
  *
  * The hero paints this same artwork as a *mask* so its footage plays through
  * the letterforms. There is no footage here — the ground is one flat colour —
@@ -43,8 +43,17 @@ const VIEW = {
 export default function MentorshipLockup({
   className = "",
   ground = true,
+  word = "MENTORSHIP",
+  mark = "var(--color-bg)",
 }: {
   className?: string;
+  /**
+   * The line set under the lockup. Tracked to the mark's exact width whatever
+   * it says, so a longer word tightens rather than overhanging.
+   */
+  word?: string;
+  /** Colour of the artwork itself. Flips where the ground does. */
+  mark?: string;
   /**
    * Paint the rose ground as part of the artwork. Turn it off where the ground
    * is already rose and something is sitting behind the mark — the panel's own
@@ -58,7 +67,7 @@ export default function MentorshipLockup({
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Alpoe London Mentorship"
+      aria-label={`Alpoe London ${word.toLowerCase()}`}
     >
       {/* The rose ground itself, so the panel is the artwork rather than a
           coloured box with artwork sitting on it. */}
@@ -72,7 +81,7 @@ export default function MentorshipLockup({
         />
       ) : null}
 
-      <g fill="var(--color-bg)">
+      <g fill={mark}>
         {LOCKUP_MONOGRAM_PATHS.map((d, i) => (
           <path key={i} d={d} />
         ))}
@@ -93,10 +102,13 @@ export default function MentorshipLockup({
           y={MENT_BASELINE}
           fontSize={MENT_CAP / OPEN_SANS_CAP_RATIO}
           textLength={LOCKUP_BOX.width}
-          lengthAdjust="spacing"
+          // Glyphs as well as spacing: MENTORSHIP fitted the width on letter
+          // spacing alone, but a longer line has no slack left to give back
+          // and would start overlapping itself.
+          lengthAdjust="spacingAndGlyphs"
           className="font-opensans"
         >
-          MENTORSHIP
+          {word}
         </text>
       </g>
     </svg>
