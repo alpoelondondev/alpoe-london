@@ -48,3 +48,6 @@ graphify-out/
 # generated product catalogue (built from data/products.csv)
 /data/products.generated.ts
 /lib/generated/
+
+# video masters — the site serves the transcoded mp4, not these
+/public/*.mov
