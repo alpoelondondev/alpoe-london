@@ -6,6 +6,7 @@ import ScrollReveal from "../components/ScrollReveal";
 import DragCarousel from "../components/DragCarousel";
 import { ringStyles, styleHref, styleImage, styleSubtitle, styleTitle } from "@/lib/rings/styles";
 import { collectionPieces } from "@/lib/rings/collection";
+import { getJewelleryByCategory, hasPhotography, photosFirst, productUrl } from "@/lib/products";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, collectionLd } from "@/lib/seo";
@@ -51,6 +52,8 @@ function Sparkle() {
 export default function RingStylesPage() {
   const styles = ringStyles();
   const readyToShip = collectionPieces();
+  // Photographed pieces first: a rail leads with what it can actually show.
+  const weddingBands = getJewelleryByCategory("wedding-rings").sort(photosFirst);
   const renders = rendersOrigin();
 
   return (
