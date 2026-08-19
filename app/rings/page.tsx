@@ -93,7 +93,10 @@ export default function RingStylesPage() {
             see. Two across is close to a shop's window: fewer at once, each
             large enough to read the band. */}
         <ScrollReveal>
-          <section className="px-[52px] pb-16 max-md:px-6 max-md:pb-12">
+          <section
+            id="engagement-rings"
+            className="scroll-mt-[var(--nav-h)] px-[52px] pb-16 max-md:px-6 max-md:pb-12"
+          >
             <ul className="grid grid-cols-2 gap-x-8 gap-y-12 max-md:gap-x-4 max-md:gap-y-8">
               {styles.map((style) => {
                 const image = styleImage(style);
@@ -176,7 +179,10 @@ export default function RingStylesPage() {
             same decision. */}
         {readyToShip.length > 0 && (
           <ScrollReveal>
-            <section className="border-t border-sheet-line py-12 max-md:py-9">
+            <section
+              id="ready-to-ship"
+              className="scroll-mt-[var(--nav-h)] border-t border-sheet-line py-12 max-md:py-9"
+            >
               <div className="px-[52px] max-md:px-6">
                 <h2 className="t-sub">Ready to Ship Rings</h2>
                 <p className="mt-2 max-w-[58ch] t-copy">

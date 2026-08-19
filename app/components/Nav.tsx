@@ -55,7 +55,14 @@ function MonogramFlat() {
 const LINKS: { label: string; href: string; hidden?: boolean }[] = [
   { label: "Watches", href: "/watches" },
   { label: "Jewellery", href: "/jewellery" },
-  { label: "Ring Styles", href: "/rings" },
+  // Three ways into the same page. Somebody arriving to buy a wedding band and
+  // somebody arriving to design an engagement ring are on different errands,
+  // and a single "Rings" entry makes both of them hunt for their half of it.
+  // The page carries all three, so the menu names all three and each lands on
+  // its own section.
+  { label: "Engagement Rings", href: "/rings#engagement-rings" },
+  { label: "Wedding Rings", href: "/rings#wedding-rings" },
+  { label: "Ready to Ship Rings", href: "/rings#ready-to-ship" },
   // Not ready to be shown to visitors yet.
   { label: "Ring Builder", href: "/ring-builder", hidden: true },
   { label: "Bespoke", href: "/bespoke" },
