@@ -86,13 +86,12 @@ export function ringSpecLines(config: RingConfig): SpecLine[] {
     lines.push({ label: "Engraving", value: `"${config.engraving.trim()}"` });
   }
 
-  // Hallmarking is not optional in the UK and no engagement ring is ever light
-  // enough to be exempt, so the fineness belongs in the spec rather than in
-  // small print somewhere else.
-  lines.push({
-    label: "Hallmark",
-    value: `${metal(config.bandMetal).hallmark}, London Assay Office`,
-  });
+  // No hallmark line. It said nothing the metal line above does not already
+  // say — "18ct Gold — 750, London Assay Office" under "18ct Yellow Gold" is
+  // the same fact twice, the second time in language for an assay office
+  // rather than for a customer. Hallmarking is not optional in the UK and
+  // every ring gets one; that it happens is not a specification choice, and
+  // /hallmarking exists to explain it properly to anyone who wants to know.
 
   return lines;
 }

@@ -191,7 +191,15 @@ export default function RingViewport({
           On desktop it sits in its own column, so it is centred and capped in
           pixels as well: a tall window should not spend all of itself on one
           photograph. */}
-      <div className="mx-auto w-full max-lg:max-w-none lg:max-w-[min(50vh,420px)]">
+      {/* Bounded by height on every screen, not just desktop, and deliberately
+          small.
+
+          This is what the fill scale bought. A fifth of every frame used to be
+          white sweep, so a 390px panel on a phone was showing about 300px of
+          ring; now the ring meets the edges, and a 36vh panel shows the same
+          300px in a quarter less room. Smaller box, same ring, more of the page
+          left for the controls it exists to serve. */}
+      <div className="mx-auto w-full max-w-[min(36vh,320px)]">
         {shown.length > 0 ? (
           <>
             <div className="relative">
@@ -211,17 +219,12 @@ export default function RingViewport({
                 scrollerRef={rail}
                 onScroll={onScroll}
                 ariaLabel="Views of your ring"
-                // 6:5 rather than square, which trims a sixth of the height
-                // for nothing. The renders are square with the ring floating in
-                // white sweep: measured across 220 images from every band,
-                // shape, head, metal and view, the ring never reaches above
-                // 9.8% or below 87.1% of the frame — 77.3% of the height, so a
-                // frame keeping 83% cannot clip one.
-                //
-                // Nothing is re-processed and no ring gets smaller. `object-cover`
-                // scales the image to the frame's width exactly as `contain`
-                // did in a square, and the crop falls entirely on empty sweep.
-                className={`aspect-[6/5] max-h-[50vh] w-full snap-mandatory overscroll-x-contain bg-white transition-opacity duration-150 ${
+                // Square, because the ring's own bounding box is 1.02:1 — see
+                // FILL in ZoomView, which scales the dead sweep away so the ring
+                // meets the edges. A square subject cannot fill a wider frame
+                // without being clipped or leaving margin, so the panel spends
+                // less room by being smaller rather than flatter.
+                className={`aspect-square w-full snap-mandatory overscroll-x-contain bg-white transition-opacity duration-150 ${
                   pending ? "opacity-60" : "opacity-100"
                 }`}
               >
@@ -278,7 +281,7 @@ export default function RingViewport({
              specification is the honest fallback: it is never wrong, and it
              visibly changes on every selection, which is the whole reason the
              panel is pinned. */
-          <div className="flex aspect-[6/5] max-h-[50vh] w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center">
+          <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center">
             <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
               {pieceName}
             </p>

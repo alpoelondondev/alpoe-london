@@ -55,7 +55,27 @@ import { useCallback, useRef, useState } from "react";
 
 const HOLD_MS = 260;
 const MOVE_CANCELS_PX = 10;
-const SCALE = 2.4;
+
+/**
+ * The render's own dead margin, scaled away.
+ *
+ * Every image is square with the ring floating in white sweep. Measured across
+ * 200 images spanning every band, shape, head, metal and view, no ring reaches
+ * outside 11.6–90.7% horizontally or 9.8–87.1% vertically — so roughly a fifth
+ * of every frame is white the viewer was displaying at full size.
+ *
+ * 1.26x is what makes the worst-case ring meet the edges. Anything more clips
+ * one, and the figure comes from the measurement rather than from taste.
+ *
+ * The ring's bounding box is 1.02:1 — square, in other words — which is why
+ * the frame is square too. A wider frame cannot be filled by a square subject
+ * without either clipping it or leaving side margin, so the way to spend less
+ * height is to make the whole panel smaller, not to flatten it.
+ */
+const FILL = 1.26;
+
+/** Multiplied on top of FILL, not instead of it. */
+const ZOOM = 2.0;
 
 /** Short tap, matching DragCarousel's. Android only; silently ignored elsewhere. */
 function haptic() {
@@ -72,7 +92,9 @@ export default function ZoomView({
   eager: boolean;
 }) {
   const [zoomed, setZoomed] = useState(false);
-  const [origin, setOrigin] = useState("50% 50%");
+  // The content's own centre, not the frame's: that 11.6–90.7 by 9.8–87.1 box
+  // has its midpoint at 51% across and 48% down.
+  const [origin, setOrigin] = useState("51% 48%");
   const box = useRef<HTMLDivElement>(null);
   const timer = useRef<number | null>(null);
   const start = useRef({ x: 0, y: 0 });
@@ -134,6 +156,7 @@ export default function ZoomView({
     const el = e.currentTarget as HTMLElement;
     if (el.hasPointerCapture?.(e.pointerId)) el.releasePointerCapture(e.pointerId);
     setZoomed(false);
+    setOrigin("51% 48%");
   };
 
   return (
@@ -161,7 +184,7 @@ export default function ZoomView({
         fetchPriority={eager ? "high" : "low"}
         draggable={false}
         style={{
-          transform: zoomed ? `scale(${SCALE})` : "scale(1)",
+          transform: `scale(${zoomed ? FILL * ZOOM : FILL})`,
           transformOrigin: origin,
           // The one that stops iOS raising its share sheet mid-gesture.
           WebkitTouchCallout: "none",
@@ -175,7 +198,7 @@ export default function ZoomView({
         // 48% rather than dead centre because the rings do not sit centred in
         // the frame — measured across the library they span 9.8% to 87.1%,
         // whose midpoint is 48.4%.
-        className="h-full w-full select-none object-cover object-[50%_48%] transition-transform duration-200 ease-out"
+        className="h-full w-full select-none object-contain transition-transform duration-200 ease-out"
       />
     </div>
   );

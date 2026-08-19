@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import OptionTile from "./OptionTile";
 import OptionRow from "./OptionRow";
@@ -178,6 +178,47 @@ export default function StudioClient() {
     if (!urls.length) return;
     return whenIdle(() => urls.forEach((u) => preload(u)));
   }, [config]);
+
+  /**
+   * The engraving is typed locally and pushed to the URL only once the typing
+   * pauses.
+   *
+   * Every other control here writes straight to the query string, which is
+   * right for them: one tap, one navigation. An `<input>` is different, because
+   * it fires on every keystroke — and each of those was a `router.replace`,
+   * re-rendering the whole studio underneath the field. On a phone that took
+   * the focus with it, so the keyboard closed after a single character and the
+   * customer had to tap back in for the next one. Thirty characters, thirty
+   * taps.
+   *
+   * So the field owns its own value while it is being used, and the URL catches
+   * up 400ms after the last key — plus immediately on blur, so a fast typist
+   * who taps straight to the WhatsApp button never sends a stale specification.
+   * The URL stays the source of truth; it just stops being written mid-word.
+   */
+  const [engraving, setEngraving] = useState(config.engraving);
+  const engravingSync = useRef<number | null>(null);
+
+  // A shared link or the back button changes the configuration from outside,
+  // and the field has to follow. Guarded on inequality so it cannot fight the
+  // customer's own typing.
+  useEffect(() => {
+    setEngraving((current) => (current === config.engraving ? current : config.engraving));
+  }, [config.engraving]);
+
+  const typeEngraving = (value: string) => {
+    setEngraving(value);
+    if (engravingSync.current !== null) window.clearTimeout(engravingSync.current);
+    engravingSync.current = window.setTimeout(() => set({ engraving: value }), 400);
+  };
+
+  const flushEngraving = () => {
+    if (engravingSync.current !== null) {
+      window.clearTimeout(engravingSync.current);
+      engravingSync.current = null;
+    }
+    if (engraving !== config.engraving) set({ engraving });
+  };
 
   const [origin, setOrigin] = useState("");
   useEffect(() => setOrigin(window.location.origin), []);
@@ -420,15 +461,20 @@ export default function StudioClient() {
               <input
                 type="text"
                 maxLength={30}
-                value={config.engraving}
-                onChange={(e) => set({ engraving: e.target.value })}
+                value={engraving}
+                onChange={(e) => typeEngraving(e.target.value)}
+                onBlur={flushEngraving}
+                enterKeyHint="done"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 placeholder="e.g. Forever, 12.09.26"
                 aria-label="Engraving"
                 className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[14px] text-sheet-ink outline-none transition placeholder:text-sheet-dim/60 focus:border-sheet-ink"
               />
               <p className="t-copy mt-2 flex justify-between">
                 <span>Set inside the shank, where the hallmark goes.</span>
-                <span>{config.engraving.length}/30</span>
+                <span>{engraving.length}/30</span>
               </p>
             </div>
           </section>
