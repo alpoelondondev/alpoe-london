@@ -63,11 +63,6 @@ export default function WatchesIndex() {
         </section>
 
         <section className="px-[52px] pb-14 max-md:px-6">
-          <ScrollReveal>
-            <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 flex items-center gap-[18px]">
-              Browse by Brand
-            </p>
-          </ScrollReveal>
           <ul className="grid grid-cols-12 gap-4 max-md:gap-3 auto-rows-fr">
             {WATCH_BRANDS.map((b) => (
               <li key={b.slug} className="col-span-3 max-md:col-span-6 flex">

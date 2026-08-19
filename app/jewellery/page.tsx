@@ -54,11 +54,6 @@ export default function JewelleryIndex() {
         </section>
 
         <section className="px-[52px] pb-14 max-md:px-6">
-          <ScrollReveal>
-            <p className="section-label text-[11px] tracking-[0.2em] uppercase text-accent mb-8 flex items-center gap-[18px]">
-              Browse by Category
-            </p>
-          </ScrollReveal>
           {/* Ready to Ship is not a product category — those pieces are not in
               the catalogue — but somebody browsing jewellery categories is
               exactly who wants to know a finished ring can go out this week, so

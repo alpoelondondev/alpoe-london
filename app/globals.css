@@ -477,14 +477,3 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
 .list-scroll::-webkit-scrollbar-thumb {
   background: rgba(242, 234, 228, 0.22);
 }
-
-/* Section label. The rule takes the label's own colour rather than a fixed
-   token, so it tracks whichever rose stop the label uses — no separate rule
-   colour to keep in sync. */
-.section-label::before {
-  content: "";
-  display: block;
-  width: 28px;
-  height: 1px;
-  background: currentColor;
-}
