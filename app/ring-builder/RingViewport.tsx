@@ -186,17 +186,12 @@ export default function RingViewport({
 
   return (
     <div className="flex flex-col">
-      {/* ---- the picture, in a band of its own ---------------------------
-          The renders carry their own ground: every one of the 32,115 files is
-          #F8F8F8 corner to corner. Sat on the studio's white, each photograph
-          showed a square edge where the two met. Giving the picture a row in
-          that same colour makes the join disappear, and the band reads as a
-          deliberate surface rather than as a mistake.
-
-          Only the picture belongs in it. The title and the dots are page
-          furniture, not part of the photograph, and leaving them inside the
-          band made it look like a card with a caption printed on it. */}
-      <div className="relative bg-render-ground">
+      {/* ---- the picture ---------------------------------------------------
+          The colour comes from the pinned strip this sits in, not from here.
+          Painting it on a box around the picture is what made it read as a
+          border: the strip had white padding above and below, so the grey
+          became a framed panel rather than a band of the page. */}
+      <div className="relative">
         <div className="mx-auto w-full max-w-[min(32vh,268px)] lg:max-w-[min(42vh,356px)]">
           {shown.length > 0 ? (
             <div className="relative">
@@ -264,7 +259,7 @@ export default function RingViewport({
 
       {/* ---- below the band, on the page ---------------------------------- */}
       {shown.length > 0 && (
-        <div className="mt-3 flex items-center justify-center gap-2 max-lg:px-6">
+        <div className="mt-3 flex items-center justify-center gap-2 pb-3 max-lg:px-6">
           {shown.map((v, i) => (
             <button
               key={v.id}

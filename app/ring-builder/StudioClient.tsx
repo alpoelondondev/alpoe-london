@@ -274,7 +274,11 @@ export default function StudioClient() {
             the rails would scroll through the strip between the bar and the
             panel rather than behind it. */}
         <div
-          className="sticky z-20 self-start bg-white pb-3 lg:pt-3 max-lg:px-0"
+          // The whole pinned strip is the row, not a grey box sitting inside a
+          // white one. It was `bg-white` with `pb-3 lg:pt-3`, so the band had
+          // white above and below it and read as a framed panel rather than as
+          // a band of the page.
+          className="sticky z-20 self-start bg-render-ground max-lg:px-0"
           style={{ top: "var(--nav-h)" }}
         >
           <RingViewport
