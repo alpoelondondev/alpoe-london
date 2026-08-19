@@ -6,6 +6,7 @@ import WhatsAppButton from "../../components/WhatsAppButton";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Link from "next/link";
 import BrandHero from "../../components/BrandHero";
+import PageCover from "../../components/PageCover";
 import Filters from "../../components/Filters";
 import ProductGrid from "../../components/ProductGrid";
 import CategoryFilms from "../../components/CategoryFilms";
@@ -95,7 +96,26 @@ export default async function JewelleryCategoryPage(
     <>
       <SiteHeader />
       <main>
-        <BrandHero eyebrow="Jewellery" title={c.name} copy={c.heritage} />
+        {/* Rings gets the film cover rather than the text hero. It is the one
+            category that leads with moving pictures, and a still text band on
+            top of a page of films read as two openings stacked. The others keep
+            BrandHero, which is right for a page that opens on a grid.
+
+            Both carry the page's h1, so swapping one for the other never leaves
+            two or none. */}
+        {c.slug === "rings" ? (
+          <PageCover
+            eyebrow="Jewellery"
+            title={c.name}
+            video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
+            poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
+          >
+            <p className="t-copy !text-fg/75">{c.heritage}</p>
+          </PageCover>
+        ) : (
+          <BrandHero eyebrow="Jewellery" title={c.name} copy={c.heritage} />
+        )}
+
         {/* The Rings category is statement, eternity, signet and cocktail
             pieces, which is not what most people mean when they arrive looking
             for a ring. Rather than redirect the page away from the products

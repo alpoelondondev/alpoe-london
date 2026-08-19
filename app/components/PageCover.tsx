@@ -20,10 +20,22 @@ import type { ReactNode } from "react";
 export default function PageCover({
   eyebrow,
   title,
+  video = "/alpoe-london-hero.mp4",
+  poster = "/alpoe-london-hero.jpg",
   children,
 }: {
   eyebrow?: string;
   title: string;
+  /**
+   * The film, without its extension assumed. Defaults to the house hero, which
+   * is right for a page about the business and wrong for a page about a
+   * product: the rings pages take the oval three stone footage, which is the
+   * same piece the home page's own Engagement & Wedding Rings card uses, so
+   * clicking that card lands on the shot it just showed.
+   */
+  video?: string;
+  /** Shown until the film has buffered, so the band is never empty. */
+  poster?: string;
   /** Anything under the title — a sentence, a link, a control. */
   children?: ReactNode;
 }) {
@@ -33,16 +45,17 @@ export default function PageCover({
           autoplay, and both are set. `loop` keeps it running: a cover that
           plays once and freezes reads as a broken video rather than a still. */}
       <video
+        key={video}
         autoPlay
         muted
         loop
         playsInline
         preload="metadata"
-        poster="/alpoe-london-hero.jpg"
+        poster={poster}
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
       >
-        <source src="/alpoe-london-hero.mp4" type="video/mp4" />
+        <source src={video} type="video/mp4" />
       </video>
 
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-bg/55" />

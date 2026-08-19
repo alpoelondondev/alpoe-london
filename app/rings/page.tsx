@@ -84,7 +84,12 @@ export default function RingsHubPage() {
             under the fixed bar rather than clearing it, exactly as the home
             page's hero does — the bar is translucent over nothing here, so the
             band reads as continuous behind it. */}
-        <PageCover eyebrow="Alpoe London" title="Rings">
+        <PageCover
+          eyebrow="Alpoe London"
+          title="Rings"
+          video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
+          poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
+        >
           <p className="t-copy !text-fg/75">
             Everything we make and hold for the finger. Engagement rings are built to
             your own specification with wedding bands sized to match, and our ready to
