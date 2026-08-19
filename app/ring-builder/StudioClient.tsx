@@ -1,58 +1,65 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import OptionTile from "./OptionTile";
 import OptionRow from "./OptionRow";
+import RingViewport from "./RingViewport";
 import {
-  CARAT_MAX,
-  CARAT_MIN,
-  CARAT_STEP,
+  CARAT_PRESETS,
   DEFAULT_CONFIG,
   magicSizeHint,
   ORIGINS,
   QUALITIES,
-  SETTINGS,
   quality,
-  resolveForSetting,
-  resolveForShape,
-  setting,
   type OriginId,
   type QualityId,
   type RingConfig,
-  type SettingId,
 } from "@/lib/ring/config";
-import { METALS, type MetalId } from "@/lib/ring/metals";
-import { SHAPES, shape, type ShapeId } from "@/lib/ring/shapes";
+import { BANDS, band, bandIcon, type BandId } from "@/lib/ring/bands";
+import {
+  HEADS,
+  head,
+  headIcon,
+  headHoldsShape,
+  resolveHead,
+  type HeadId,
+} from "@/lib/ring/heads";
+import { METALS, metalIcon, type MetalId } from "@/lib/ring/metals";
+import { SHAPES, shape, shapeIcon, type ShapeId } from "@/lib/ring/shapes";
 import { commonSizes, RING_SIZES, SIZE_UNKNOWN } from "@/lib/ring/sizes";
 import { ringSpecLines, ringSpecText } from "@/lib/ring/spec";
-import { settingPhoto, shapePhoto } from "@/lib/ring/photos";
-import { compositePhoto } from "@/lib/ring/composites";
-import { hasSpin, spinFrames } from "@/lib/ring/spins";
+import { renderUrl, renderViews } from "@/lib/ring/renders";
+import { preload, whenIdle } from "./renderCache";
 import { buildRingSpecUrl } from "@/lib/whatsapp";
 
 /**
- * Lands after hydration: the spin viewer preloads 36 photographs before it is
- * draggable, which does not belong in the first paint. It is the only viewer
- * here — the studio is photography end to end, with no 3D model to load.
+ * The studio.
+ *
+ * ── The layout ──
+ *
+ * Two columns on a desktop: the ring pinned in the left, every control
+ * scrolling in the right. That is the shape because it is the only one where
+ * the customer can see the ring and the control they are touching at the same
+ * time — which is the entire job. Stacked, the picture is either above the
+ * controls (and gone by the third one) or pinned over them (and eating the
+ * screen they need).
+ *
+ * On a phone there is no second column to have, so the viewport goes back on
+ * top and sticks — capped at half the height, which is the rule the viewport
+ * enforces for itself.
+ *
+ * ── The order of the controls ──
+ *
+ * Band, stone, head, metal — the library's own order, and it is also the order
+ * people decide in. The band is the silhouette and the thing somebody says
+ * they want ("something twisted", "a plain one"); the stone is the decision
+ * with the money in it; the head is a refinement of the stone; metal is nearly
+ * always already settled before anyone opens the page. Carat sits with the
+ * stone rather than in a row of its own, because it is the same decision.
  */
-const SpinViewer = dynamic(() => import("./SpinViewer"), { ssr: false });
 
-const GUTTER = "mx-auto max-w-6xl px-[52px] max-md:px-6";
-
-/**
- * What the setting photographs actually show. Every one is shot in the same
- * metal with the same centre stone so the grid reads as one family — see
- * docs/ring-builder-photography.md — which also means a photograph is only an
- * honest picture of the customer's ring while their choices match these.
- */
-const PHOTOGRAPHED = {
-  shape: "round" as ShapeId,
-  carat: 1.0,
-  metal: "platinum-950" as MetalId,
-};
+const GUTTER = "px-[52px] max-md:px-6";
 
 export default function StudioClient() {
   const router = useRouter();
@@ -62,12 +69,12 @@ export default function StudioClient() {
   /**
    * The configuration lives entirely in the URL: shareable, back-button-safe,
    * and it means the WhatsApp message can carry a link the counter opens to see
-   * the exact ring. It also makes a lost WebGL context a non-event, because
-   * there is no asset to reload — the config *is* the asset.
+   * the exact ring.
    */
   const config: RingConfig = useMemo(
     () => ({
-      setting: (params.get("setting") as SettingId) ?? DEFAULT_CONFIG.setting,
+      band: (params.get("band") as BandId) ?? DEFAULT_CONFIG.band,
+      head: (params.get("head") as HeadId) ?? DEFAULT_CONFIG.head,
       shape: (params.get("shape") as ShapeId) ?? DEFAULT_CONFIG.shape,
       carat: Number(params.get("ct") ?? DEFAULT_CONFIG.carat),
       origin: (params.get("origin") as OriginId) ?? DEFAULT_CONFIG.origin,
@@ -99,324 +106,357 @@ export default function StudioClient() {
       ? set({ metal: id, headMetal: id })
       : set({ metal: id });
 
-  const active = setting(config.setting);
+  const activeBand = band(config.band);
+  const activeHead = head(config.head);
   const activeShape = shape(config.shape);
-  const supported = new Set(active.supports);
-  const specLines = ringSpecLines(config);
-  const hint = magicSizeHint(config.carat);
   const activeMetal = METALS.find((m) => m.id === config.bandMetal)!;
   const activeQuality = quality(config.quality);
   const activeOrigin = ORIGINS.find((o) => o.id === config.origin)!;
-  /**
-   * Prefer the composite showing the customer's actual stone; fall back to the
-   * plain setting photograph, which is shot with a round. Falling back is not a
-   * failure state — it is the correct picture whenever the stone IS round.
-   */
-  const photo =
-    compositePhoto(config.setting, config.shape) ?? settingPhoto(config.setting);
-  const spin = spinFrames(config.setting);
+  const specLines = ringSpecLines(config);
+  const hint = magicSizeHint(config.carat);
+  const views = renderViews(config);
 
-  /**
-   * Reading `window.location` during render is a server/client branch, and the
-   * href would then differ between the two without React patching it — a silent
-   * wrong-link bug rather than a visible one. Resolve after mount instead.
-   */
   /** A one-line note when a choice moved the other axis to accommodate it. */
   const [adjusted, setAdjusted] = useState<string | null>(null);
 
+  /**
+   * Changing the stone can invalidate the head — a heart will not sit in a
+   * six-claw. The customer keeps their head wherever it is legal, and is only
+   * moved when it genuinely cannot hold the new stone. Silently moving them
+   * without saying so is how a builder loses trust; refusing the change outright
+   * is how it feels broken.
+   */
   const chooseShape = (id: ShapeId) => {
-    const { setting: nextSetting, changed } = resolveForShape(config.setting, id);
+    const { head: nextHead, changed } = resolveHead(config.head, id);
     setAdjusted(
       changed
-        ? `A ${shape(id).label.toLowerCase()} won't sit in the ${active.label.toLowerCase()} setting, so we've moved you to ${setting(nextSetting).label}.`
+        ? `A ${shape(id).label.toLowerCase()} won't sit in the ${activeHead.label.toLowerCase()}, so the head is now a ${head(nextHead).label.toLowerCase()}.`
         : null,
     );
-    set({ shape: id, setting: nextSetting });
+    set({ shape: id, head: nextHead });
   };
 
-  const chooseSetting = (id: SettingId) => {
-    const { shape: nextShape, changed } = resolveForSetting(id, config.shape);
-    setAdjusted(
-      changed
-        ? `The ${setting(id).label.toLowerCase()} can't hold a ${activeShape.label.toLowerCase()}, so the stone is now a ${shape(nextShape).label.toLowerCase()}.`
-        : null,
-    );
-    set({ setting: id, shape: nextShape });
+  const chooseHead = (id: HeadId) => {
+    if (!headHoldsShape(id, config.shape)) {
+      setAdjusted(
+        `The ${head(id).label.toLowerCase()} can't hold a ${activeShape.label.toLowerCase()} — pick another stone first and it opens up.`,
+      );
+      return;
+    }
+    setAdjusted(null);
+    set({ head: id });
   };
+
+  /**
+   * The render one click away, for any single change to the configuration.
+   *
+   * One helper rather than four, because every rail is asking the same
+   * question: "what would the ring look like if only this changed?" That is
+   * literally the config with one field replaced, which is also exactly what
+   * `renderUrl` takes.
+   */
+  const neighbour = useCallback(
+    (patch: Partial<typeof config>) => {
+      const url = renderUrl({ ...config, ...patch });
+      return url ? () => preload(url) : undefined;
+    },
+    [config],
+  );
+
+  /**
+   * Warm the two rails people actually move most, once the page is quiet.
+   *
+   * Shape and metal, and only those: ten plus seven renders is about 350 KB,
+   * which is affordable at low priority after load, whereas warming all four
+   * rails would be over a megabyte competing with the image that IS the LCP
+   * element. Bands and heads are left to hover intent, which covers them for
+   * the cost of nothing.
+   */
+  useEffect(() => {
+    const urls = [
+      ...SHAPES.map((s) => renderUrl({ ...config, shape: s.id, head: resolveHead(config.head, s.id).head })),
+      ...METALS.map((m) => renderUrl({ ...config, bandMetal: m.id })),
+    ].filter((u): u is string => Boolean(u));
+    if (!urls.length) return;
+    return whenIdle(() => urls.forEach((u) => preload(u)));
+  }, [config]);
 
   const [origin, setOrigin] = useState("");
   useEffect(() => setOrigin(window.location.origin), []);
   const shareUrl = origin ? `${origin}${pathname}?${params.toString()}` : undefined;
 
-  const pieceName = `${config.carat.toFixed(2)}ct ${activeShape.label} ${active.label}`;
+  const pieceName = `${config.carat.toFixed(2)}ct ${activeShape.label} ${activeHead.label}`;
+  const twoTone = config.headMetal !== config.bandMetal;
 
   return (
-    <div>
-      {/* ---- the hero ------------------------------------------------------
-          Full-bleed, and now purely photographic. The live 3D preview that used
-          to sit behind a toggle here has been removed along with the rest of
-          the modelling — what the customer sees is a picture of a real ring,
-          spun if we have shot the sequence and still if we have not. */}
-      <div className="relative h-[68vh] min-h-[460px] w-full bg-white">
-        {spin.length > 0 ? (
-          <SpinViewer
-            frames={spin}
-            label={`${active.label} setting`}
-            className="h-full w-full"
-          />
-        ) : photo ? (
-          <Image
-            src={photo}
-            alt={`${active.label} setting`}
-            fill
-            sizes="100vw"
-            className="object-contain p-12 max-md:p-8"
-            priority
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-[11px] tracking-[0.16em] uppercase text-sheet-dim">
-              {active.label}
-            </span>
-          </div>
-        )}
+    /* `on-sheet` flips the type roles — which carry their own colour — onto the
+       sheet's ink; see the note beside it in globals.css. The studio is a light
+       document because a diamond is photographed against white for a physical
+       reason, and the page was the thing disagreeing with the pictures. */
+    <div className="on-sheet bg-sheet">
+      <div className={`mx-auto grid max-w-7xl grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-10 ${GUTTER} py-6 max-lg:grid-cols-1 max-lg:gap-0 max-lg:px-0 max-lg:py-0`}>
+        {/* ---- the ring ---------------------------------------------------
+            Sticky in its own column on desktop; on a phone it stacks above the
+            rails and stays pinned to the top of the viewport, so it is on
+            screen for every selection made below it. That is the whole reason
+            it is pinned — it changes on each one, and a control whose effect
+            has scrolled out of sight is indistinguishable from a broken one.
 
-        <p className="pointer-events-none absolute left-6 top-6 text-[10px] tracking-[0.18em] uppercase text-sheet-dim max-md:left-4 max-md:top-4">
-          {active.label}
-          {spin.length > 0 && " — drag to turn"}
-        </p>
-      </div>
-
-      {/* ---- the piece, named ---------------------------------------------- */}
-      <div className={`${GUTTER} flex items-baseline justify-between gap-6 py-8`}>
-        <div>
-          <h2 className="t-section">
-            {pieceName}
-          </h2>
-          <p className="mt-1 text-[13px] text-dim">
-            {activeMetal.label} · {activeOrigin.label}
-          </p>
-        </div>
-        <p className="shrink-0 text-right text-[11px] tracking-[0.16em] uppercase text-champagne">
-          Price on request
-        </p>
-      </div>
-
-      {/* ---- the options ---------------------------------------------------
-          Each group is a rail rather than a grid. Seventeen settings in a grid
-          is a wall; in a rail it is a run you flick through, and every group
-          keeps the same height so the page has a rhythm. */}
-      <div className="divide-y divide-fg/[0.07] border-t border-fg/[0.10]">
-        <OptionRow
-          label="Setting"
-          value={active.label}
-          hint={
-            <>
-              <p className="max-w-[58ch] t-copy">
-                {active.description}
-              </p>
-              {adjusted && (
-                <p className="t-copy mt-2 max-w-[58ch] !text-champagne">
-                  {adjusted}
-                </p>
-              )}
-            </>
-          }
+            `--nav-h` is the fixed bar's measured height, kept in one place so
+            this cannot drift the next time a row is added to the bar. The sheet
+            ground and the padding are on the sticky box itself: without them
+            the rails would scroll through the strip between the bar and the
+            panel rather than behind it. */}
+        <div
+          className="sticky z-20 self-start bg-sheet py-3 max-lg:px-6"
+          style={{ top: "var(--nav-h)" }}
         >
-          {SETTINGS.map((s) => (
-            <OptionTile
-              key={s.id}
-              value={s.id}
-              label={s.label}
-              photo={compositePhoto(s.id, config.shape) ?? settingPhoto(s.id)}
-              active={s.id === config.setting}
-              title={
-                s.supports.includes(config.shape)
-                  ? s.description
-                  : `${s.description} — takes a round rather than a ${activeShape.label.toLowerCase()}`
+          <div>
+            <RingViewport
+              views={views}
+              pieceName={pieceName}
+              meta={`${activeBand.label} band · ${activeMetal.label} · ${activeOrigin.label}`}
+              note={
+                twoTone
+                  ? "Shown in the band metal — we have no two-tone photograph, but the specification carries both."
+                  : undefined
               }
-              onSelect={() => chooseSetting(s.id)}
             />
-          ))}
-        </OptionRow>
+          </div>
+        </div>
 
-        <OptionRow label="Centre stone" value={activeShape.label}>
-          {SHAPES.map((s) => (
-            <OptionTile
-              key={s.id}
-              value={s.id}
-              label={s.label}
-              photo={shapePhoto(s.id)}
-              active={s.id === config.shape}
-              title={
-                supported.has(s.id)
-                  ? s.label
-                  : `A ${s.label.toLowerCase()} needs a setting built for it — we'll move you to one`
-              }
-              onSelect={() => chooseShape(s.id)}
-            />
-          ))}
-        </OptionRow>
+        {/* ---- the selections ---------------------------------------------
+            Rails rather than grids. Fifteen bands in a grid is a wall; in a
+            rail it is a run you flick through, and every group keeps the same
+            height so the column has a rhythm. */}
+        <div className="min-w-0 divide-y divide-sheet-line max-lg:border-t max-lg:border-sheet-line">
+          <OptionRow
+            label="Band"
+            value={activeBand.label}
+            hint={<p className="max-w-[56ch] t-copy">{activeBand.description}</p>}
+          >
+            {BANDS.map((b) => (
+              <OptionTile
+                key={b.id}
+                label={b.label}
+                icon={bandIcon(b.id)}
+                active={b.id === config.band}
+                title={b.description}
+                onPrefetch={neighbour({ band: b.id })}
+                onSelect={() => set({ band: b.id })}
+              />
+            ))}
+          </OptionRow>
 
-        {/* Carat is a continuum, so it stays a slider rather than being forced
-            into the rail pattern for the sake of consistency. */}
-        <section className="py-10 max-md:py-8">
-          <div className={GUTTER}>
-            <div className="flex items-baseline justify-between gap-6">
-              <p className="text-[10px] tracking-[0.22em] uppercase text-dim">
-                Carat weight
-              </p>
-              <p className="font-serif text-[20px] text-blush">
-                {config.carat.toFixed(2)}ct
-              </p>
-            </div>
-            <input
-              type="range"
-              min={CARAT_MIN}
-              max={CARAT_MAX}
-              step={CARAT_STEP}
-              value={config.carat}
-              onChange={(e) => set({ ct: e.target.value })}
-              aria-label="Carat weight"
-              className="mt-5 w-full accent-[var(--color-accent)]"
-            />
-            <p className="mt-3 max-w-[58ch] t-copy">
-              A guide only — slide roughly to where you&rsquo;d like to be and we&rsquo;ll
-              show you comparable stones either side of it.
+          <OptionRow
+            label="Centre stone"
+            value={`${config.carat.toFixed(2)}ct ${activeShape.label}`}
+          >
+            {SHAPES.map((s) => (
+              <OptionTile
+                key={s.id}
+                label={s.label}
+                icon={shapeIcon(s.id)}
+                active={s.id === config.shape}
+                title={s.label}
+                onPrefetch={neighbour({ shape: s.id, head: resolveHead(config.head, s.id).head })}
+                onSelect={() => chooseShape(s.id)}
+              />
+            ))}
+          </OptionRow>
+
+          {/* Carat sits directly under the shapes because it is the same
+              decision, and it is a row of fixed choices rather than a slider —
+              see the note on CARAT_PRESETS for why. It keeps the rail pattern
+              so the column has one rhythm, but the cards are numbers rather
+              than pictures: there is nothing to photograph, since every render
+              in the library is the 1.00ct preview size. */}
+          <OptionRow label="Carat weight" value={`${config.carat.toFixed(2)}ct`}>
+            {CARAT_PRESETS.map((ct) => (
+              <button
+                key={ct}
+                type="button"
+                data-haptic
+                onClick={() => set({ ct: String(ct) })}
+                aria-pressed={ct === config.carat}
+                className={`flex h-[52px] w-[74px] shrink-0 snap-start items-center justify-center border font-serif text-[15px] tabular-nums transition-[border-color,transform,background-color] duration-200 max-sm:w-[66px] ${
+                  ct === config.carat
+                    ? "border-accent-deep bg-accent/[0.10] text-sheet-ink"
+                    : "border-sheet-line text-sheet-ink/70 hover:border-sheet-ink/40 active:scale-[0.97]"
+                }`}
+              >
+                {ct % 1 === 0 ? ct.toFixed(0) : ct}
+              </button>
+            ))}
+          </OptionRow>
+
+          <section className={`-mt-2 pb-5 ${GUTTER}`}>
+            <p className="max-w-[56ch] t-copy">
+              A guide only — tell us roughly where you&rsquo;d like to be and we&rsquo;ll
+              show you comparable stones either side of it. The photograph stays at one
+              carat; your millimetres are in the specification below.
             </p>
             {hint && (
-              <p className="t-copy mt-2 max-w-[58ch] !text-champagne">
-                Worth knowing — a {hint.toFixed(2)}ct stone looks all but identical to a{" "}
-                {(hint + 0.1).toFixed(2)}ct and usually costs around 10% less.
+              <p className="t-copy mt-2 max-w-[56ch]">
+                {/* The saving is real and worth naming, so the shy weight is a
+                    control rather than a fact to act on manually — being told
+                    about a cheaper stone and then having to go and find it is a
+                    worse experience than not being told. */}
+                <span className="text-sheet-ink/72">Worth knowing — a </span>
+                <button
+                  type="button"
+                  data-haptic
+                  onClick={() => set({ ct: hint.toFixed(2) })}
+                  className="text-accent-deep underline underline-offset-4 transition hover:text-sheet-ink"
+                >
+                  {hint.toFixed(2)}ct
+                </button>
+                <span className="text-sheet-ink/72">
+                  {" "}
+                  stone looks all but identical to a {(hint + 0.1).toFixed(2)}ct and
+                  usually costs around 10% less.
+                </span>
               </p>
             )}
-          </div>
-        </section>
+          </section>
 
-        <OptionRow
-          label="Origin"
-          value={activeOrigin.label}
-          hint={
-            <p className="max-w-[58ch] t-copy">
-              {activeOrigin.note}{" "}
-              <a
-                href="/guides/natural-vs-lab-grown-diamonds"
-                className="text-accent underline underline-offset-4"
-              >
-                A straight answer on the difference
-              </a>
-            </p>
-          }
-        >
-          {ORIGINS.map((o) => (
-            <Chip
-              key={o.id}
-              label={o.label}
-              active={o.id === config.origin}
-              onSelect={() => set({ origin: o.id })}
-            />
-          ))}
-        </OptionRow>
-
-        <OptionRow
-          label="Quality"
-          value={activeQuality.label}
-          hint={
-            activeQuality.note ? (
-              <p className="max-w-[58ch] t-copy">
-                {activeQuality.note}
-              </p>
-            ) : undefined
-          }
-        >
-          {QUALITIES.map((q) => (
-            <Chip
-              key={q.id}
-              label={q.label}
-              sub={config.origin === "laboratory-grown" ? q.laboratoryGrown : q.natural}
-              active={q.id === config.quality}
-              onSelect={() => set({ quality: q.id })}
-            />
-          ))}
-        </OptionRow>
-
-        <OptionRow
-          label="Precious metal"
-          value={activeMetal.label}
-          hint={
-            activeMetal.note ? (
-              <p className="max-w-[58ch] t-copy">
-                {activeMetal.note}
-              </p>
-            ) : undefined
-          }
-        >
-          {METALS.map((m) => (
-            <button
-              key={m.id}
-              type="button"
-              data-haptic
-              onClick={() => setMetal(m.id)}
-              aria-pressed={m.id === config.bandMetal}
-              title={m.label}
-              className={`flex w-[104px] shrink-0 snap-start flex-col items-center gap-3 border px-2 py-4 transition-[border-color,transform,background-color] duration-200 ${
-                m.id === config.bandMetal
-                  ? "border-accent bg-accent/[0.07]"
-                  : "border-fg/[0.12] hover:border-fg/45 active:scale-[0.97]"
-              }`}
-            >
-              <span
-                className="block h-10 w-10 rounded-full border border-fg/15"
-                style={{ background: m.hex }}
-              />
-              <span className="text-center text-[9px] leading-tight tracking-[0.1em] uppercase text-fg/70">
-                {m.label}
-              </span>
-            </button>
-          ))}
-        </OptionRow>
-
-        {/* ---- finishing ---------------------------------------------------- */}
-        <section className="py-12 max-md:py-8">
-          <div
-            className={`${GUTTER} grid grid-cols-2 gap-10 max-md:grid-cols-1 max-md:gap-8`}
+          <OptionRow
+            label="Head"
+            value={activeHead.label}
+            hint={
+              <>
+                <p className="max-w-[56ch] t-copy">{activeHead.description}</p>
+                {adjusted && (
+                  <p className="t-copy mt-2 max-w-[56ch] !text-accent-deep">{adjusted}</p>
+                )}
+              </>
+            }
           >
+            {HEADS.map((h) => {
+              const holds = headHoldsShape(h.id, config.shape);
+              return (
+                <OptionTile
+                  key={h.id}
+                  label={h.label}
+                  icon={headIcon(h.id)}
+                  active={h.id === config.head}
+                  unavailable={!holds}
+                  onPrefetch={holds ? neighbour({ head: h.id }) : undefined}
+                  title={
+                    holds
+                      ? h.description
+                      : `${h.description} — not made for a ${activeShape.label.toLowerCase()}`
+                  }
+                  onSelect={() => chooseHead(h.id)}
+                />
+              );
+            })}
+          </OptionRow>
+
+          <OptionRow
+            label="Precious metal"
+            value={activeMetal.label}
+            hint={
+              activeMetal.note ? (
+                <p className="max-w-[56ch] t-copy">{activeMetal.note}</p>
+              ) : undefined
+            }
+          >
+            {METALS.map((m) => (
+              <OptionTile
+                key={m.id}
+                label={m.label}
+                icon={metalIcon(m.id)}
+                active={m.id === config.bandMetal}
+                title={m.label}
+                onPrefetch={neighbour({ bandMetal: m.id })}
+                onSelect={() => setMetal(m.id)}
+              />
+            ))}
+          </OptionRow>
+
+          <OptionRow
+            label="Origin"
+            value={activeOrigin.label}
+            hint={
+              <p className="max-w-[56ch] t-copy">
+                {activeOrigin.note}{" "}
+                <a
+                  href="/guides/natural-vs-lab-grown-diamonds"
+                  className="text-accent-deep underline underline-offset-4"
+                >
+                  A straight answer on the difference
+                </a>
+              </p>
+            }
+          >
+            {ORIGINS.map((o) => (
+              <Chip
+                key={o.id}
+                label={o.label}
+                active={o.id === config.origin}
+                onSelect={() => set({ origin: o.id })}
+              />
+            ))}
+          </OptionRow>
+
+          <OptionRow
+            label="Quality"
+            value={activeQuality.label}
+            hint={
+              activeQuality.note ? (
+                <p className="max-w-[56ch] t-copy">{activeQuality.note}</p>
+              ) : undefined
+            }
+          >
+            {QUALITIES.map((q) => (
+              <Chip
+                key={q.id}
+                label={q.label}
+                sub={config.origin === "laboratory-grown" ? q.laboratoryGrown : q.natural}
+                active={q.id === config.quality}
+                onSelect={() => set({ quality: q.id })}
+              />
+            ))}
+          </OptionRow>
+
+          {/* ---- finishing ------------------------------------------------ */}
+          <section className={`grid grid-cols-2 gap-6 py-7 max-sm:grid-cols-1 ${GUTTER}`}>
             <div>
-              <p className="text-[10px] tracking-[0.22em] uppercase text-dim">
+              <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
                 UK ring size
               </p>
               <select
                 value={config.size}
                 onChange={(e) => set({ size: e.target.value })}
                 aria-label="UK ring size"
-                className="mt-4 w-full border border-fg/20 bg-transparent px-4 py-3 text-[14px] text-fg outline-none transition focus:border-accent"
+                className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[13px] text-sheet-ink outline-none transition focus:border-accent-deep"
               >
-                <option value={SIZE_UNKNOWN} className="bg-bg">
+                <option value={SIZE_UNKNOWN} className="bg-sheet-panel">
                   I&rsquo;m not sure — measure me in store
                 </option>
-                <optgroup label="Most common" className="bg-bg">
+                <optgroup label="Most common" className="bg-sheet-panel">
                   {commonSizes().map((s) => (
-                    <option key={s.id} value={s.id} className="bg-bg">
+                    <option key={s.id} value={s.id} className="bg-sheet-panel">
                       UK {s.label} — {s.diameterMm.toFixed(2)}mm
                     </option>
                   ))}
                 </optgroup>
-                <optgroup label="Full range" className="bg-bg">
+                <optgroup label="Full range" className="bg-sheet-panel">
                   {RING_SIZES.map((s) => (
-                    <option key={`all-${s.id}`} value={s.id} className="bg-bg">
+                    <option key={`all-${s.id}`} value={s.id} className="bg-sheet-panel">
                       UK {s.label} — {s.diameterMm.toFixed(2)}mm
                     </option>
                   ))}
                 </optgroup>
               </select>
-              <p className="mt-3 t-copy">
-                No problem at all — we&rsquo;ll size you free of charge at Hatton Garden,
-                or post you a free ring sizer if it&rsquo;s a surprise.
+              <p className="mt-2 t-copy">
+                We&rsquo;ll size you free of charge at Hatton Garden.
               </p>
             </div>
 
             <div>
-              <p className="text-[10px] tracking-[0.22em] uppercase text-dim">
+              <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
                 Engraving — optional
               </p>
               <input
@@ -426,59 +466,57 @@ export default function StudioClient() {
                 onChange={(e) => set({ engraving: e.target.value })}
                 placeholder="e.g. Forever, 12.09.26"
                 aria-label="Engraving"
-                className="mt-4 w-full border border-fg/20 bg-transparent px-4 py-3 text-[14px] text-fg outline-none transition placeholder:text-dim/60 focus:border-accent"
+                className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[13px] text-sheet-ink outline-none transition placeholder:text-sheet-dim/60 focus:border-accent-deep"
               />
-              <p className="mt-3 flex justify-between text-[13px] text-dim">
+              <p className="mt-2 flex justify-between text-[12px] text-sheet-dim">
                 <span>Set inside the shank, where the hallmark goes.</span>
                 <span>{config.engraving.length}/30</span>
               </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ---- specification ------------------------------------------------ */}
-        <section className="py-12 max-md:py-10">
-          <div className={GUTTER}>
-            <p className="text-[10px] tracking-[0.22em] uppercase text-dim">
+          {/* ---- specification -------------------------------------------- */}
+          <section className={`py-7 ${GUTTER}`}>
+            <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
               Your specification
             </p>
 
-            <dl className="mt-6 flex max-w-2xl flex-col divide-y divide-fg/[0.07]">
+            <dl className="mt-4 flex flex-col divide-y divide-sheet-line">
               {specLines.map((line) => (
-                <div key={line.label} className="flex gap-6 py-2.5 text-[13px]">
-                  <dt className="w-24 shrink-0 tracking-[0.06em] text-dim">
+                <div key={line.label} className="flex gap-5 py-2 text-[13px]">
+                  <dt className="w-28 shrink-0 tracking-[0.06em] text-sheet-dim">
                     {line.label}
                   </dt>
-                  <dd className="text-fg/90">{line.value}</dd>
+                  <dd className="text-sheet-ink">{line.value}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href={buildRingSpecUrl(ringSpecText(config, shareUrl))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-accent px-10 py-4 font-serif text-[16px] font-semibold tracking-[0.08em] uppercase text-bg transition hover:bg-accent-deep"
+                className="inline-flex items-center justify-center bg-accent px-8 py-3.5 font-serif text-[15px] font-semibold tracking-[0.08em] uppercase text-sheet-panel transition hover:bg-accent-deep"
               >
                 Send to our workshop
               </a>
               <a
                 href="/book-appointment"
-                className="inline-flex items-center justify-center gap-3 border border-fg/25 px-10 py-4 font-serif text-[16px] font-semibold tracking-[0.08em] uppercase text-fg transition hover:border-fg/50"
+                className="inline-flex items-center justify-center border border-sheet-ink/25 px-8 py-3.5 font-serif text-[15px] font-semibold tracking-[0.08em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
               >
                 Book an appointment
               </a>
             </div>
 
-            <p className="mt-5 max-w-[60ch] text-[12px] leading-relaxed text-dim">
-              Consultations at our Hatton Garden showroom. Every dimension above is real,
-              but the preview is an illustration — your ring is agreed with the bench
-              before anything is cut, hand-set in London, and hallmarked at the London
-              Assay Office.
+            <p className="mt-4 max-w-[58ch] text-[12px] leading-relaxed text-sheet-dim">
+              Every dimension above is real, but the photograph is an illustration — your
+              design is agreed with you before anything is cut, and hand-set in London.
+              We handle your booking privately, as a one-to-one service at our Hatton
+              Garden showroom.
             </p>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </div>
   );
@@ -486,8 +524,8 @@ export default function StudioClient() {
 
 /**
  * A text-only rail card, for the options that have no useful picture. Origin
- * and quality are words rather than objects — rendering a ring for them would
- * say nothing, and four identical rings would say less than nothing.
+ * and quality are words rather than objects — an icon for them would say
+ * nothing, and four identical rings would say less than nothing.
  */
 function Chip({
   label,
@@ -506,14 +544,14 @@ function Chip({
       data-haptic
       onClick={onSelect}
       aria-pressed={active}
-      className={`flex w-[190px] shrink-0 snap-start flex-col justify-center gap-2 border px-5 py-5 text-left transition-[border-color,transform,background-color] duration-200 max-sm:w-[160px] ${
+      className={`flex w-[170px] shrink-0 snap-start flex-col justify-center gap-1.5 border px-4 py-3.5 text-left transition-[border-color,transform,background-color] duration-200 max-sm:w-[150px] ${
         active
-          ? "border-accent bg-accent/[0.07]"
-          : "border-fg/[0.12] hover:border-fg/45 active:scale-[0.98]"
+          ? "border-accent-deep bg-accent/[0.10]"
+          : "border-sheet-line hover:border-sheet-ink/40 active:scale-[0.98]"
       }`}
     >
-      <span className="text-[11px] tracking-[0.14em] uppercase text-fg/90">{label}</span>
-      {sub && <span className="text-[11px] leading-snug text-dim">{sub}</span>}
+      <span className="text-[10px] tracking-[0.14em] uppercase text-sheet-ink">{label}</span>
+      {sub && <span className="text-[11px] leading-snug text-sheet-dim">{sub}</span>}
     </button>
   );
 }

@@ -1,3 +1,5 @@
+import type { BandId } from "./bands";
+import type { HeadId } from "./heads";
 import type { MetalId } from "./metals";
 import type { ShapeId } from "./shapes";
 
@@ -11,210 +13,18 @@ import type { ShapeId } from "./shapes";
  * there is no asset to re-download, the config *is* the asset.
  */
 
-export type HeadStyle = "claw-4" | "claw-6" | "rubover" | "halo" | "hidden-halo" | "double-halo" | "cluster";
-export type BandStyle = "plain" | "grain-set" | "cathedral" | "split-shank" | "knife-edge" | "channel" | "crossover";
-
 /**
- * The named settings, which is what the customer actually picks.
+ * The old single-axis model lived here: a `SettingId` union of seventeen named
+ * settings ("Halo", "Trilogy"), each resolving to a hidden head + band pair,
+ * with `resolveForShape` / `resolveForSetting` keeping the two in step.
  *
- * Two reference builders take opposite approaches: one splits head and band
- * into separate pickers, the other offers a single list of named settings. The
- * split model is the more capable — it is how you get a halo on a cathedral
- * band without adding a "cathedral halo" entry — but a list of named settings
- * is how people actually shop, because "Halo" is a thing you want and
- * "head=halo, band=plain" is a thing you configure.
- *
- * So: named settings on the surface, the two axes underneath. Each name simply
- * resolves to a pair, and anyone who wants to break them apart can. One
- * mapping, not a second system.
+ * It has been replaced by band and head as first-class axes — see the note at
+ * the top of bands.ts for why, which is short: the named list existed to keep
+ * the number of photographs affordable, and photographs are no longer the
+ * constraint. Which heads hold which stone now lives in heads.ts, beside the
+ * heads it constrains, rather than as a `supports` array on a third type that
+ * had to agree with both.
  */
-export type SettingId =
-  | "solitaire"
-  | "side-stone"
-  | "trilogy"
-  | "halo"
-  | "hidden-halo"
-  | "double-halo"
-  | "grain-set"
-  | "channel-set"
-  | "split-shank"
-  | "cluster"
-  | "vintage"
-  | "rubover"
-  | "tension"
-  | "trellis"
-  | "crossover"
-  | "toi-et-moi"
-  | "knife-edge";
-
-export type Setting = {
-  id: SettingId;
-  /** UK trade name. */
-  label: string;
-  /** US or older names, so search still finds it. */
-  aliases: string[];
-  description: string;
-  head: HeadStyle;
-  band: BandStyle;
-  /** Shapes this setting can actually hold. */
-  supports: ShapeId[];
-  /**
-   * Offered in the builder. Kept as a flag rather than removed because it is
-   * how a setting gets retired or held back without deleting its data — it no
-   * longer means "has 3D geometry", since there is no longer any.
-   */
-  ready: boolean;
-};
-
-const ALL_SHAPES: ShapeId[] = [
-  "round", "oval", "cushion", "emerald", "pear", "radiant", "marquise", "asscher",
-];
-/** Pointed stones need V-claws at the tips; settings without them can't hold one. */
-const NO_POINTS: ShapeId[] = ["round", "oval", "cushion", "emerald", "radiant", "asscher"];
-
-export const SETTINGS: Setting[] = [
-  {
-    id: "solitaire", label: "Solitaire", aliases: ["four claw", "4 prong"],
-    description: "A single centre diamond held in a timeless four-claw setting.",
-    head: "claw-4", band: "plain", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "rubover", label: "Rubover", aliases: ["bezel", "collet", "rub-over"],
-    description: "A wall of metal wrapped fully around the stone. The most protective setting, and the most modern.",
-    head: "rubover", band: "plain", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "halo", label: "Halo", aliases: ["cluster halo"],
-    description: "A ring of grain-set diamonds framing the centre stone, making it read considerably larger.",
-    head: "halo", band: "plain", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "grain-set", label: "Grain Set", aliases: ["pavé", "pave", "bead set"],
-    description: "Diamonds set into the shoulders with raised beads of metal, so the band itself catches light.",
-    head: "claw-4", band: "grain-set", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "hidden-halo", label: "Hidden Halo", aliases: ["under halo", "gallery set"],
-    description: "A halo set beneath the girdle, invisible from above and a surprise from the side.",
-    head: "hidden-halo", band: "plain", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "double-halo", label: "Double Halo", aliases: ["dual halo"],
-    description: "Two concentric rings of diamonds around the centre stone.",
-    head: "double-halo", band: "plain", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "trilogy", label: "Trilogy", aliases: ["three stone", "past present future"],
-    description: "Three stones together — traditionally read as past, present and future.",
-    head: "claw-4", band: "plain", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "side-stone", label: "Side Stone", aliases: ["shoulder set"],
-    description: "A centre stone flanked by smaller diamonds set into the shoulders.",
-    head: "claw-4", band: "grain-set", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "channel-set", label: "Channel Set", aliases: ["channel"],
-    description: "Diamonds sunk between two rails of metal, flush and hard-wearing.",
-    head: "claw-4", band: "channel", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "split-shank", label: "Split Shank", aliases: ["forked shoulders", "split band"],
-    description: "The band divides as it approaches the setting, lifting the stone.",
-    head: "claw-4", band: "split-shank", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "knife-edge", label: "Knife Edge", aliases: [],
-    description: "A band rising to a fine ridge, catching light as a single bright line.",
-    head: "claw-4", band: "knife-edge", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "crossover", label: "Crossover", aliases: ["twist", "bypass"],
-    description: "Two bands crossing beneath the stone, wrapping the finger.",
-    head: "claw-4", band: "crossover", supports: ALL_SHAPES, ready: true,
-  },
-  {
-    id: "cluster", label: "Cluster", aliases: ["target"],
-    description: "Similarly sized diamonds grouped as one flower-like head. A genuinely British setting, Georgian in origin.",
-    head: "cluster", band: "plain", supports: NO_POINTS, ready: true,
-  },
-  {
-    id: "vintage", label: "Vintage", aliases: ["trefoil", "milgrain"],
-    description: "Millgrain edging and fine scrollwork, drawn from Edwardian and Art Deco pieces.",
-    head: "claw-6", band: "plain", supports: NO_POINTS, ready: true,
-  },
-  {
-    id: "trellis", label: "Trellis", aliases: [],
-    description: "Claws that cross beneath the stone like woven basketwork.",
-    head: "claw-4", band: "plain", supports: NO_POINTS, ready: true,
-  },
-  {
-    id: "tension", label: "Tension Set", aliases: [],
-    description: "The stone appears suspended, held by the spring of the metal alone. It cannot be resized in the ordinary way, so we size it carefully with you.",
-    head: "rubover", band: "plain", supports: NO_POINTS, ready: true,
-  },
-  {
-    id: "toi-et-moi", label: "Toi et Moi", aliases: ["you and me", "two stone"],
-    description: "Two stones side by side — a French design meaning 'you and me'.",
-    head: "claw-4", band: "crossover", supports: ALL_SHAPES, ready: true,
-  },
-];
-
-const BY_ID = new Map(SETTINGS.map((s) => [s.id, s]));
-
-export function setting(id: SettingId): Setting {
-  return BY_ID.get(id) ?? SETTINGS[0];
-}
-
-export function readySettings(): Setting[] {
-  return SETTINGS.filter((s) => s.ready);
-}
-
-/**
- * Resolving a shape and a setting that disagree.
- *
- * Not every setting can hold every stone — a marquise needs V-claws at its
- * points, and a cluster has nowhere to put them — so some pairs are genuinely
- * impossible. The question is what the interface does about it.
- *
- * Disabling one picker based on the other is the obvious answer and it is
- * wrong: it dead-ends. Choose a marquise and half the settings grey out;
- * choose a cluster and half the shapes do. The customer is left looking at the
- * thing they want, unable to click it, with no explanation of which earlier
- * decision is to blame.
- *
- * So nothing is ever disabled. The most recent choice is treated as the real
- * intent and the *other* axis moves to accommodate it — because someone who
- * has just clicked "marquise" wants a marquise, and the setting is the part
- * they are still willing to negotiate. The interface then says what it did,
- * rather than silently rewriting the configuration underneath them.
- */
-export function resolveForShape(
-  settingId: SettingId,
-  shapeId: ShapeId,
-): { setting: SettingId; changed: boolean } {
-  const current = setting(settingId);
-  if (current.supports.includes(shapeId)) {
-    return { setting: settingId, changed: false };
-  }
-  // Prefer a setting that is actually built, and keep the customer as close to
-  // what they had as the list order allows.
-  const fallback =
-    SETTINGS.find((s) => s.ready && s.supports.includes(shapeId)) ??
-    SETTINGS.find((s) => s.supports.includes(shapeId));
-  return { setting: fallback?.id ?? settingId, changed: Boolean(fallback) };
-}
-
-export function resolveForSetting(
-  settingId: SettingId,
-  shapeId: ShapeId,
-): { shape: ShapeId; changed: boolean } {
-  const next = setting(settingId);
-  if (next.supports.includes(shapeId)) return { shape: shapeId, changed: false };
-  // Round is the safe landing: every setting takes one, and it is 36% of the
-  // UK market, so it is the least surprising place to end up.
-  return { shape: next.supports[0] ?? "round", changed: true };
-}
 
 // ---------------------------------------------------------------------------
 // Stone quality
@@ -305,7 +115,8 @@ export const ORIGINS: { id: OriginId; label: string; note: string }[] = [
 // ---------------------------------------------------------------------------
 
 export type RingConfig = {
-  setting: SettingId;
+  band: BandId;
+  head: HeadId;
   shape: ShapeId;
   carat: number;
   origin: OriginId;
@@ -319,7 +130,8 @@ export type RingConfig = {
 };
 
 export const DEFAULT_CONFIG: RingConfig = {
-  setting: "solitaire",
+  band: "solitaire",
+  head: "6-prong-nouveau",
   shape: "round",
   carat: 1.0,
   origin: "natural",
@@ -338,7 +150,22 @@ export const DEFAULT_CONFIG: RingConfig = {
  */
 export const CARAT_MIN = 0.3;
 export const CARAT_MAX = 3.0;
-export const CARAT_STEP = 0.05;
+
+/**
+ * The carat weights offered, as fixed choices rather than a slider.
+ *
+ * A slider implies a precision that does not exist. Stones are not made to
+ * order at 1.37ct — you buy the one that is in front of you, and the number the
+ * customer lands on is only ever a bracket to search within. Worse, a slider
+ * invites fiddling with a value that changes nothing on screen, because every
+ * render in the library is the 1.00ct preview size.
+ *
+ * Eight steps, and they are the ones the trade actually quotes. Half-carat
+ * intervals above 1.5ct because that is where the price steps are; quarter
+ * intervals below it because that is where the British market sits — the UK
+ * average is 0.6–0.8ct, and London bespoke around 1.25ct.
+ */
+export const CARAT_PRESETS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0];
 
 /**
  * Buying just under a magic size — 0.90 rather than 1.00 — saves around 10% for

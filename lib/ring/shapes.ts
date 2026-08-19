@@ -1,3 +1,5 @@
+import { ICON_FILES } from "./generated/icon-manifest";
+
 /**
  * Diamond shapes: what they're called, how big they are, and the girdle outline
  * every cut is generated from.
@@ -10,21 +12,29 @@
  *
  * Shapes are ordered by UK demand, not alphabetically and not by US convention.
  * Round and oval together are about 69% of the British market, and princess —
- * which most American shape guides rank second — is under 1% here. It is also
- * the one shape that is not really a brilliant (it needs chevron pavilion
- * facets, a different topology), so the hardest shape to build is also the
- * least wanted. It and heart, the only concave outline, are both out of v1.
+ * which most American shape guides rank second — is under 1% here. That is why
+ * it sits low in the rail rather than second, where an American guide would put
+ * it.
+ *
+ * Princess and heart were out of the first version because both were awkward to
+ * generate: a princess is not really a brilliant (it needs chevron pavilion
+ * facets, a different topology) and a heart is the only concave outline. That
+ * reasoning was about generating geometry, and there is no geometry any more —
+ * the builder is photographic, and the reference library has both. So both are
+ * in, and neither carries an `Outline` below; nothing reads one.
  */
 
 export type ShapeId =
   | "round"
   | "oval"
   | "cushion"
+  | "princess"
   | "emerald"
   | "pear"
   | "radiant"
   | "marquise"
-  | "asscher";
+  | "asscher"
+  | "heart";
 
 export type CutStyle = "brilliant" | "step";
 
@@ -68,6 +78,8 @@ export const SHAPES: Shape[] = [
   { id: "radiant",  label: "Radiant",         aliases: ["radiant cut"],             cut: "brilliant", widthAt1ct: 5.1,  lengthToWidth: 1.25, mains: 8, pointed: false },
   { id: "marquise", label: "Marquise",        aliases: ["navette"],                 cut: "brilliant", widthAt1ct: 5.25, lengthToWidth: 2.0,  mains: 8, pointed: true  },
   { id: "asscher",  label: "Asscher",         aliases: ["square emerald"],          cut: "step",      widthAt1ct: 5.5,  lengthToWidth: 1.05, mains: 4, pointed: false },
+  { id: "princess", label: "Princess",        aliases: ["square modified brilliant"], cut: "brilliant", widthAt1ct: 5.5, lengthToWidth: 1.0, mains: 4, pointed: true },
+  { id: "heart",    label: "Heart",           aliases: ["heart brilliant"],         cut: "brilliant", widthAt1ct: 6.2,  lengthToWidth: 1.0,  mains: 8, pointed: true  },
 ];
 
 const BY_ID = new Map(SHAPES.map((s) => [s.id, s]));
@@ -79,6 +91,23 @@ export function shape(id: ShapeId): Shape {
 export const DEFAULT_SHAPE: ShapeId = "round";
 
 /** Millimetre dimensions of a stone at a given carat. */
+/**
+ * The reference library's folder name for a shape.
+ *
+ * Every one is the id with `-diamond` appended, so this is a rule rather than a
+ * table — which is the point of keeping our ids as the bare cut name. The URL
+ * stays readable (`?shape=oval`, not `?shape=oval-diamond`) and the renders
+ * still resolve.
+ */
+export function shapeSlug(id: ShapeId): string {
+  return `${id}-diamond`;
+}
+
+export function shapeIcon(id: ShapeId): string | undefined {
+  const file = ICON_FILES[`shape/${shapeSlug(id)}`];
+  return file ? `/ring-builder/icons/shape/${file}` : undefined;
+}
+
 export function stoneSizeMm(id: ShapeId, carat: number) {
   const s = shape(id);
   const width = s.widthAt1ct * Math.cbrt(carat);
@@ -86,250 +115,14 @@ export function stoneSizeMm(id: ShapeId, carat: number) {
 }
 
 // ---------------------------------------------------------------------------
-// Girdle outlines
+// The girdle outlines used to live here: closed parametric curves per shape,
+// arc-length sampled with corner snapping, which is what let one brilliant-cut
+// generator produce a round, an oval, a cushion, a pear and a marquise from a
+// single piece of code. They were genuinely nice, and they went with the 3D.
+//
+// Deleted rather than left in place because they were also load-bearing on the
+// wrong thing: `girdleOutline` switched exhaustively on ShapeId, so a dead
+// two-hundred-line geometry section was the only obstacle to adding princess
+// and heart to a builder that is now photographic end to end. Nothing read
+// them. They are in the history if the 3D ever comes back.
 // ---------------------------------------------------------------------------
-
-export type Point2 = { x: number; y: number };
-
-/**
- * A closed girdle curve, in millimetres, centred on the origin. `x` is across
- * the width, `y` along the length.
- *
- * `corners` marks parameters that a sampler MUST land on. That matters for the
- * cut-corner shapes: sample a cut-corner rectangle at evenly spaced angles and
- * you miss the corners entirely, and every emerald cut comes out with rounded
- * ones. Twenty lines of arc-length sampling with corner snapping is the
- * difference between an emerald cut and a rounded rectangle.
- */
-export type Outline = {
-  /** t ∈ [0, 1), counter-clockwise from the +x axis. */
-  at(t: number): Point2;
-  corners: number[];
-  halfWidth: number;
-  halfLength: number;
-};
-
-/** Signed power that keeps the sign of the input — for superellipses. */
-function spow(v: number, p: number) {
-  return Math.sign(v) * Math.pow(Math.abs(v), p);
-}
-
-/** Walks a polyline built from `at` and returns cumulative arc length. */
-function polyline(at: (t: number) => Point2, steps = 720) {
-  const pts: Point2[] = [];
-  const cum: number[] = [0];
-  for (let i = 0; i < steps; i++) pts.push(at(i / steps));
-  for (let i = 1; i <= steps; i++) {
-    const a = pts[i - 1];
-    const b = pts[i % steps];
-    cum.push(cum[i - 1] + Math.hypot(b.x - a.x, b.y - a.y));
-  }
-  return { pts, cum, total: cum[steps], steps };
-}
-
-/**
- * Samples `count` points spaced evenly by arc length, then nudges the nearest
- * sample onto each required corner. Even angular spacing bunches samples at the
- * ends of an elongated stone and starves its flanks; arc length is what a
- * cutter would do.
- */
-export function sampleOutline(outline: Outline, count: number): Point2[] {
-  const { at, corners } = outline;
-  const { cum, total, steps } = polyline(at);
-
-  const tAt = (targetLen: number) => {
-    let lo = 0;
-    let hi = steps;
-    while (lo < hi) {
-      const mid = (lo + hi) >> 1;
-      if (cum[mid] < targetLen) lo = mid + 1;
-      else hi = mid;
-    }
-    return lo / steps;
-  };
-
-  const ts: number[] = [];
-  for (let i = 0; i < count; i++) ts.push(tAt((i / count) * total));
-
-  for (const corner of corners) {
-    let best = 0;
-    let bestD = Infinity;
-    for (let i = 0; i < ts.length; i++) {
-      // Compare around the wrap, so a corner at 0.99 snaps to a sample at 0.01.
-      const d = Math.min(
-        Math.abs(ts[i] - corner),
-        1 - Math.abs(ts[i] - corner),
-      );
-      if (d < bestD) {
-        bestD = d;
-        best = i;
-      }
-    }
-    ts[best] = corner;
-  }
-
-  return ts.map(at);
-}
-
-/** Rectangle with the corners cut off, as a fraction of the width. */
-function cutCornerOutline(
-  halfWidth: number,
-  halfLength: number,
-  cutFraction: number,
-): Outline {
-  const c = cutFraction * halfWidth * 2;
-  const verts: Point2[] = [
-    { x: halfWidth, y: halfLength - c },
-    { x: halfWidth - c, y: halfLength },
-    { x: -(halfWidth - c), y: halfLength },
-    { x: -halfWidth, y: halfLength - c },
-    { x: -halfWidth, y: -(halfLength - c) },
-    { x: -(halfWidth - c), y: -halfLength },
-    { x: halfWidth - c, y: -halfLength },
-    { x: halfWidth, y: -(halfLength - c) },
-  ];
-
-  // Parameter is proportional to perimeter travelled, so the corners land on
-  // known values we can hand to the sampler.
-  const segLens = verts.map((v, i) => {
-    const n = verts[(i + 1) % verts.length];
-    return Math.hypot(n.x - v.x, n.y - v.y);
-  });
-  const perimeter = segLens.reduce((a, b) => a + b, 0);
-  const starts: number[] = [];
-  let acc = 0;
-  for (const len of segLens) {
-    starts.push(acc / perimeter);
-    acc += len;
-  }
-
-  return {
-    corners: starts,
-    halfWidth,
-    halfLength,
-    at(t) {
-      const u = ((t % 1) + 1) % 1;
-      let i = starts.length - 1;
-      while (i > 0 && starts[i] > u) i--;
-      const from = verts[i];
-      const to = verts[(i + 1) % verts.length];
-      const spanEnd = i + 1 < starts.length ? starts[i + 1] : 1;
-      const local = (u - starts[i]) / (spanEnd - starts[i]);
-      return {
-        x: from.x + (to.x - from.x) * local,
-        y: from.y + (to.y - from.y) * local,
-      };
-    },
-  };
-}
-
-/**
- * Builds the girdle outline for a shape at a given carat.
- *
- * Note the marquise and pear are exact constructions rather than eyeballed
- * splines — a marquise is two circular arcs meeting at the tips, and its arc
- * radius falls out of the half-axes as (A² + B²)/2B. Getting that right is what
- * makes the tips read as points rather than as a squashed oval.
- */
-export function girdleOutline(id: ShapeId, carat: number): Outline {
-  const { widthMm, lengthMm } = stoneSizeMm(id, carat);
-  const a = widthMm / 2; // half-width, along x
-  const b = lengthMm / 2; // half-length, along y
-
-  switch (id) {
-    case "round":
-    case "oval":
-      return {
-        corners: [],
-        halfWidth: a,
-        halfLength: b,
-        at: (t) => ({
-          x: a * Math.cos(2 * Math.PI * t),
-          y: b * Math.sin(2 * Math.PI * t),
-        }),
-      };
-
-    case "cushion": {
-      // A superellipse does the whole cushion family with one exponent: 2.6 is
-      // a rounded cushion, 3.2 a squarer "cushion modified".
-      const n = 3.0;
-      const p = 2 / n;
-      return {
-        corners: [],
-        halfWidth: a,
-        halfLength: b,
-        at: (t) => {
-          const th = 2 * Math.PI * t;
-          return { x: a * spow(Math.cos(th), p), y: b * spow(Math.sin(th), p) };
-        },
-      };
-    }
-
-    case "marquise": {
-      // Two circular arcs meeting at (0, ±b). Solving for the arc that passes
-      // through the tip and the widest point puts its centre on the x-axis.
-      const R = (b * b + a * a) / (2 * a);
-      const cx = a - R;
-      return {
-        corners: [0.25, 0.75], // the two tips must be sampled
-        halfWidth: a,
-        halfLength: b,
-        at: (t) => {
-          const u = ((t % 1) + 1) % 1;
-          // Right arc sweeps tip-to-tip through +x, left arc mirrors it.
-          const right = u < 0.5;
-          const phase = right ? u * 2 : (u - 0.5) * 2;
-          const half = Math.asin(Math.min(1, b / R));
-          const ang = -half + phase * 2 * half;
-          const x = cx + R * Math.cos(ang);
-          const y = R * Math.sin(ang);
-          return { x: right ? x : -x, y: right ? y : -y };
-        },
-      };
-    }
-
-    case "pear": {
-      // A circular belly with two straight tangents running up to the point.
-      const rBelly = a;
-      const cy = -(b - rBelly);
-      const tipY = b;
-      const d = tipY - cy;
-      const touch = Math.acos(Math.min(1, rBelly / d));
-      return {
-        corners: [0.25], // the point
-        halfWidth: a,
-        halfLength: b,
-        at: (t) => {
-          const u = ((t % 1) + 1) % 1;
-          // Sweep: belly arc from the right tangent point, round the bottom, to
-          // the left tangent point; then straight up to the tip and back down.
-          const arcFrom = touch;
-          const arcTo = 2 * Math.PI - touch;
-          const arcSpan = arcTo - arcFrom;
-          const arcShare = 0.62;
-          if (u < arcShare) {
-            const ang = arcFrom + (u / arcShare) * arcSpan;
-            return { x: rBelly * Math.sin(ang), y: cy + rBelly * Math.cos(ang) };
-          }
-          const left = { x: -rBelly * Math.sin(touch), y: cy + rBelly * Math.cos(touch) };
-          const right = { x: rBelly * Math.sin(touch), y: cy + rBelly * Math.cos(touch) };
-          const tip = { x: 0, y: tipY };
-          const v = (u - arcShare) / (1 - arcShare);
-          if (v < 0.5) {
-            const k = v * 2;
-            return { x: left.x + (tip.x - left.x) * k, y: left.y + (tip.y - left.y) * k };
-          }
-          const k = (v - 0.5) * 2;
-          return { x: tip.x + (right.x - tip.x) * k, y: tip.y + (right.y - tip.y) * k };
-        },
-      };
-    }
-
-    case "emerald":
-      return cutCornerOutline(a, b, 0.16);
-    case "asscher":
-      return cutCornerOutline(a, b, 0.22);
-    case "radiant":
-      return cutCornerOutline(a, b, 0.13);
-  }
-}

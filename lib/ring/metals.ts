@@ -1,3 +1,4 @@
+import { ICON_FILES } from "./generated/icon-manifest";
 /**
  * The metals Alpoe offers, and the PBR values that make them read as metal.
  *
@@ -139,6 +140,41 @@ export const METALS: Metal[] = [
     envMapIntensity: 0.98,
   },
 ];
+
+/**
+ * The reference library's metal folder for one of ours, and it is not a
+ * one-to-one map on purpose.
+ *
+ * The library is American: 14k and 18k. We sell UK fineness — 9ct and 18ct —
+ * because that is what a British customer buys and what the London Assay
+ * Office strikes. Renaming our metals to match the pictures would put "14k
+ * White Gold" on a hallmark line that will read 375, so the map goes the other
+ * way and the customer never sees the library's vocabulary.
+ *
+ * The mapping is also cheaper than it looks. Only three renders actually exist
+ * — one white, one yellow, one rose — and the six library folders are six
+ * copies of those three. So 9ct and 18ct resolving to different folders is
+ * bookkeeping, not a visual claim: nothing is pretending to show the difference
+ * between 375 and 750, because no photograph of a finished ring shows it.
+ */
+const RENDER_METAL: Record<MetalId, string> = {
+  "platinum-950": "platinum",
+  "18ct-white": "18k-white-gold",
+  "9ct-white": "14k-white-gold",
+  "18ct-yellow": "18k-yellow-gold",
+  "9ct-yellow": "14k-yellow-gold",
+  "18ct-rose": "14k-rose-gold",
+  "9ct-rose": "14k-rose-gold",
+};
+
+export function metalSlug(id: MetalId): string {
+  return RENDER_METAL[id] ?? "platinum";
+}
+
+export function metalIcon(id: MetalId): string | undefined {
+  const file = ICON_FILES[`metal/${metalSlug(id)}`];
+  return file ? `/ring-builder/icons/metal/${file}` : undefined;
+}
 
 const BY_ID = new Map(METALS.map((m) => [m.id, m]));
 

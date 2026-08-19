@@ -1,7 +1,9 @@
 import { metal } from "./metals";
 import { shape, stoneSizeMm } from "./shapes";
 import { ringSize } from "./sizes";
-import { ORIGINS, quality, setting, type RingConfig } from "./config";
+import { ORIGINS, quality, type RingConfig } from "./config";
+import { band } from "./bands";
+import { head } from "./heads";
 
 /**
  * A ring configuration, written out the way the workshop needs to read it.
@@ -22,7 +24,8 @@ import { ORIGINS, quality, setting, type RingConfig } from "./config";
 export type SpecLine = { label: string; value: string };
 
 export function ringSpecLines(config: RingConfig): SpecLine[] {
-  const s = setting(config.setting);
+  const b = band(config.band);
+  const h = head(config.head);
   const sh = shape(config.shape);
   const q = quality(config.quality);
   const origin = ORIGINS.find((o) => o.id === config.origin)!;
@@ -30,14 +33,18 @@ export function ringSpecLines(config: RingConfig): SpecLine[] {
 
   const lines: SpecLine[] = [];
 
-  lines.push({ label: "Setting", value: s.label });
+  // Two lines rather than one, because the bench builds them as two parts. A
+  // combined "Cathedral Pavé Hidden Halo" reads as a catalogue name for a thing
+  // that has one, and most of these combinations do not.
+  lines.push({ label: "Band", value: b.label });
+  lines.push({ label: "Head", value: h.label });
 
   // Two-tone is worth spelling out; matched metals read better as one line.
   if (config.headMetal === config.bandMetal) {
     lines.push({ label: "Metal", value: metal(config.bandMetal).label });
   } else {
-    lines.push({ label: "Head", value: metal(config.headMetal).label });
-    lines.push({ label: "Band", value: metal(config.bandMetal).label });
+    lines.push({ label: "Head metal", value: metal(config.headMetal).label });
+    lines.push({ label: "Band metal", value: metal(config.bandMetal).label });
   }
 
   const dims =
@@ -48,6 +55,17 @@ export function ringSpecLines(config: RingConfig): SpecLine[] {
     label: "Diamond",
     value: `${config.carat.toFixed(2)}ct ${sh.label} — approx. ${dims}`,
   });
+
+  // Melee is quoted as a count-and-note rather than folded into the centre
+  // weight. See the rule at the top of this file — a halo's small stones added
+  // into one figure reads as a bigger centre stone than the customer is buying.
+  if (b.set || h.melee) {
+    const from = [b.set && "band", h.melee && "head"].filter(Boolean).join(" and ");
+    lines.push({
+      label: "Melee",
+      value: `Additional diamonds in the ${from} — total weight confirmed at CAD`,
+    });
+  }
 
   lines.push({ label: "Origin", value: origin.label });
 

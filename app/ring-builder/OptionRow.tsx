@@ -13,55 +13,56 @@ import DragCarousel from "../components/DragCarousel";
  * following click to the container, so nothing inside the rail ever receives
  * it. Capture is taken only once movement passes a 12px threshold, and a
  * click-capture guard cancels the click if a drag did happen. Touch is left to
- * the platform, which gives real momentum scrolling for free and behaves better
- * than any hand-rolled inertia.
+ * the platform, which gives real momentum scrolling for free.
  *
  * What it does not do on its own is fire a haptic for anything that is not a
  * link — it looks for `a, [data-haptic]`. The tiles here are buttons, so they
- * opt in with `data-haptic`, and a rail of them feels alive under the thumb
- * rather than dead.
+ * opt in with `data-haptic`.
  *
- * A note on "desktop haptics": there is no haptic API on the desktop web.
- * `navigator.vibrate` is Android-only and silently ignored by iOS and every
- * desktop browser. So on a pointer device the equivalent feedback has to be
- * visual and immediate — a border that responds on hover and a press state that
- * moves — which is what the tiles do.
+ * ── Gutters ──
+ *
+ * This component no longer owns them. It used to bleed to the page edges with
+ * a hard-coded `px-[52px]`, which was right when the rails ran the full width
+ * of the page and wrong the moment they moved into a column beside the
+ * viewport — the rail would have started 52px in from a column that is itself
+ * inset. The parent sets the inset now, and passes it back as `bleed` so the
+ * first and last card still clear the edge while the rail itself overflows.
  */
 export default function OptionRow({
   label,
   value,
   children,
   hint,
+  bleed = "px-6",
 }: {
   label: string;
   /** The current choice, shown beside the label rather than below the rail. */
   value?: string;
   hint?: ReactNode;
+  /** Horizontal padding for the rail's own edges — the parent's inset. */
+  bleed?: string;
   children: ReactNode;
 }) {
   return (
-    <section className="py-10 max-md:py-8">
-      <div className="mx-auto flex max-w-6xl items-baseline justify-between gap-6 px-[52px] max-md:px-6">
-        <p className="text-[10px] tracking-[0.22em] uppercase text-dim">{label}</p>
+    <section className="py-5">
+      <div className={`flex items-baseline justify-between gap-4 ${bleed}`}>
+        <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">{label}</p>
         {value && (
-          <p className="text-right text-[13px] tracking-[0.04em] text-blush">{value}</p>
+          <p className="truncate text-right text-[12px] tracking-[0.04em] text-accent-deep">
+            {value}
+          </p>
         )}
       </div>
 
-      {/* The rail bleeds to the page edges so a card can sit half off-screen —
+      {/* The rail overflows its container so a card can sit half off-screen —
           that overflow is the affordance telling you there is more to scroll,
-          and boxing it inside the gutter loses it. The first and last cards get
-          the gutter back as padding so nothing starts flush against the edge. */}
-      <DragCarousel
-        ariaLabel={label}
-        className="mt-4 gap-3 px-[52px] py-1 max-md:px-6"
-      >
+          and boxing it inside the inset loses it. The first and last cards get
+          the inset back as padding so nothing starts flush against the edge. */}
+      <DragCarousel ariaLabel={label} className={`mt-2.5 gap-2 py-1 ${bleed}`}>
         {children}
       </DragCarousel>
 
-      {hint && (
-        <div className="mx-auto mt-4 max-w-6xl px-[52px] max-md:px-6">{hint}</div>
-      )}
+      {hint && <div className={`mt-3 ${bleed}`}>{hint}</div>}
     </section>
   );
 }

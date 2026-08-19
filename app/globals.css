@@ -209,6 +209,33 @@ html {
   color: var(--color-sheet-ink);
 }
 
+/* `.t-ink` flips one heading. `.on-sheet` flips a whole region, which is what
+   the ring builder needs: the studio is a light document from the first pixel
+   to the last, and tagging every heading, every caption and every rule inside
+   it one at a time would leave the next component someone adds there dark on
+   white — a bug that only shows up after it ships.
+
+   Scoped to the type roles and the two accent tokens rather than declaring a
+   blanket `color`, because the roles already carry their own colour and a
+   blanket rule would be beaten by them. Rose and champagne are the two the
+   palette holds *pale* for a dark ground; on paper they wash out entirely, so
+   both resolve to the deep accent, which is the one gold cleared for 4.5:1 on
+   the sheet face. */
+.on-sheet .t-page,
+.on-sheet .t-section,
+.on-sheet .t-sub,
+.on-sheet .t-card {
+  color: var(--color-sheet-ink);
+}
+
+.on-sheet .t-eyebrow {
+  color: var(--color-accent-deep);
+}
+
+.on-sheet .t-copy {
+  color: color-mix(in srgb, var(--color-sheet-ink) 72%, transparent);
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-fg);
