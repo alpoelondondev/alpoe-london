@@ -250,7 +250,7 @@ export default function StudioClient() {
     
        `on-sheet` still does the typography: the type roles carry their own
        colour and would otherwise be cream-on-white. See globals.css. */
-    <div className="on-sheet bg-white">
+    <div className="on-sheet clears-nav bg-white">
       {/* Block on a phone, two columns from lg up — and the switch is not
           cosmetic. A grid item's containing block is its own grid area, so in a
           single-column grid the pinned viewport gets an area exactly its own

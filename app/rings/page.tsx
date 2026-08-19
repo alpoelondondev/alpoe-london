@@ -1,161 +1,199 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import ScrollReveal from "../components/ScrollReveal";
-import { collectionPieces, collectionStones } from "@/lib/rings/collection";
+import DragCarousel from "../components/DragCarousel";
+import { ringStyles, styleHref, styleImage, styleSubtitle, styleTitle } from "@/lib/rings/styles";
+import { collectionPieces } from "@/lib/rings/collection";
+import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
+import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, collectionLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 const PATH = "/rings";
 
 /**
- * The Ring Collection.
+ * Ring styles — fifteen bands, each as a finished ring, each a way into the
+ * builder.
  *
- * These photographs were the ring builder's option tiles until it became clear
- * they were answering a different question. The builder asks "what will MY ring
- * look like", and every one of these is shot with the same round stone in the
- * same platinum — so it could only ever answer "like this one, regardless of
- * what you chose". Here the constant is the whole value: seventeen settings
- * under identical light, with nothing changing frame to frame but the setting,
- * which is exactly the comparison somebody choosing one wants to make.
+ * The page this replaces showed seventeen borrowed photographs of settings we
+ * do not make, all shot with the same round platinum stone. This shows fifteen
+ * rings we do make, every one a real render of a real configuration, and every
+ * one differing in head, stone and metal as well as band — because the thing a
+ * customer needs to learn here is that all four are theirs to choose. A grid of
+ * identical solitaires teaches the opposite.
  *
- * Dark rather than on the market sheet, unlike /ring-builder. The artwork is
- * transparent cut-outs, so it takes whatever ground it is put on, and on the
- * house off-black the metal reads as metal instead of as a white box on a white
- * page. The builder needed the sheet for a different reason — a rendered
- * diamond refracts what is behind it and goes grey over dark — which does not
- * apply to a photograph that has already been lit.
+ * Every card lands in the builder on exactly the ring in its picture. That is
+ * the whole purpose of the page: it is a way in, not a catalogue, and nothing
+ * on it has a price because nothing on it is a product — it is a starting
+ * point that happens to be photographed.
  */
 export const metadata: Metadata = pageMetadata({
-  title: "Ring Collection — Engagement Ring Settings",
+  title: "Engagement Ring Styles — Design Your Own",
   description:
-    "The settings we make in Hatton Garden — solitaire, halo, trilogy, rubover, vintage and more — photographed under one light. Choose a style, then build it to your own stone, metal and size.",
+    "Fifteen engagement ring styles made in Hatton Garden — solitaire, knife edge, cathedral pavé, three stone, twist and more. Pick a style and customise the diamond shape, setting, metal and size to your own.",
   path: PATH,
 });
 
-export default function RingsPage() {
-  const pieces = collectionPieces();
-  const stones = collectionStones();
+export default function RingStylesPage() {
+  const styles = ringStyles();
+  const readyToShip = collectionPieces();
+  const renders = rendersOrigin();
 
   return (
     <>
+      {/* The cards are the page's LCP and they live on another host. */}
+      {renders && (
+        <>
+          <link rel="preconnect" href={renders} crossOrigin="" />
+          <link rel="dns-prefetch" href={renders} />
+        </>
+      )}
+
       <SiteHeader />
 
-      <main>
-        <section className="px-[52px] pt-16 pb-10 max-md:px-6 max-md:pt-12 max-md:pb-8">
-          <p className="t-eyebrow">Alpoe London</p>
-          <h1 className="t-page mt-3">Ring Collection</h1>
-          <p className="mt-6 max-w-[62ch] t-copy">
-            Every setting we make in Hatton Garden, photographed under one light so the
-            only thing changing between them is the ring itself. Each is
-            shown with a one-carat round brilliant in platinum — the constant is
-            deliberate, so you are comparing settings rather than stones.
-          </p>
-          <p className="mt-3 max-w-[62ch] t-copy">
-            Found one you like? Take it into the{" "}
-            <Link href="/ring-builder" className="text-accent underline underline-offset-4">
-              ring builder
-            </Link>{" "}
-            and specify your own stone, metal and size, or{" "}
-            <Link href="/bespoke" className="text-accent underline underline-offset-4">
-              start from a sketch
-            </Link>
-            .
+      <main className="on-sheet bg-white">
+        <section className="clears-nav px-[52px] pb-8 max-md:px-6 max-md:pb-6">
+          <p className="t-eyebrow font-semibold">Alpoe London</p>
+          <h1 className="t-page mt-3">Ring Styles</h1>
+          <p className="mt-5 max-w-[58ch] t-copy">
+            Fifteen bands, each shown here as a finished ring. Every one is made to order
+            in Hatton Garden, and every part of it is yours to choose — the stone, the
+            setting that holds it, the metal and the size. Pick the shape you like and
+            change the rest.
           </p>
         </section>
 
-        {/* A grid rather than the builder's rails. A rail is right when the
-            options are a control you are picking from; this is a catalogue you
-            are browsing, and a catalogue that hides fourteen of its seventeen
-            pieces off the right-hand edge is hiding the collection. */}
+        {/* Two columns, and no more. These are photographs of one object each,
+            and at four across a ring is smaller than the thumbnail that got you
+            here — you would be choosing between silhouettes you cannot actually
+            see. Two across is close to a shop's window: fewer at once, each
+            large enough to read the band. */}
         <ScrollReveal>
           <section className="px-[52px] pb-16 max-md:px-6 max-md:pb-12">
-            <ul className="grid grid-cols-4 gap-x-6 gap-y-10 max-lg:grid-cols-3 max-md:grid-cols-2 max-md:gap-x-4 max-md:gap-y-8">
-              {pieces.map((piece) => (
-                <li key={piece.id}>
-                  <Link
-                    href={piece.builderHref}
-                    data-haptic
-                    className="group block"
-                    title={piece.description}
-                  >
-                    {/* White behind the cut-out, not the page ground: these are
-                        lit as product shots on a white sweep, and dropping one
-                        onto off-black keeps the highlights but loses the
-                        shadow they were lit against. */}
-                    <span className="relative block aspect-square w-full overflow-hidden bg-white">
-                      <Image
-                        src={piece.image}
-                        alt={`${piece.label} engagement ring setting`}
-                        fill
-                        sizes="(max-width: 767px) 46vw, (max-width: 1023px) 30vw, 22vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    </span>
-                    <h2 className="t-card mt-4">{piece.label}</h2>
-                    <p className="mt-1.5 t-copy">{piece.description}</p>
-                    <p className="mt-3 text-[10px] tracking-[0.2em] uppercase text-accent transition group-hover:text-accent-deep">
-                      Build this ring
-                    </p>
-                  </Link>
-                </li>
-              ))}
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-12 max-md:gap-x-4 max-md:gap-y-8">
+              {styles.map((style) => {
+                const image = styleImage(style);
+                return (
+                  <li key={style.id}>
+                    <Link
+                      href={styleHref(style)}
+                      data-haptic
+                      className="group block"
+                      title={style.description}
+                    >
+                      <span className="relative block aspect-square w-full overflow-hidden bg-white">
+                        {image ? (
+                          // eslint-disable-next-line @next/next/no-img-element -- see lib/ring/renders.ts
+                          <img
+                            src={image}
+                            width={900}
+                            height={900}
+                            alt={`${styleTitle(style)} with a ${style.showcase.shape} diamond`}
+                            loading="lazy"
+                            decoding="async"
+                            // The same 1.26 fill the builder's viewer uses, and
+                            // for the same reason: a fifth of every render is
+                            // white sweep. Done by layout rather than transform
+                            // so the browser resamples once — see ZoomView.
+                            className="absolute left-[-14.3%] top-[-10.5%] h-[126%] w-[126%] max-w-none object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+                          />
+                        ) : (
+                          <span
+                            aria-hidden
+                            className="absolute inset-0 flex items-center justify-center"
+                          >
+                            <span className="block h-[38%] w-[38%] rounded-full border border-sheet-line" />
+                          </span>
+                        )}
+
+                        {/* The pill sits on the picture rather than under it.
+                            On a page whose every card is a doorway, the label
+                            has to be part of the thing you are looking at — put
+                            below, it reads as a caption and gets skipped. */}
+                        {/* Much smaller on a phone. The grid is two across
+                            there, so a card is about 170px wide — a pill sized
+                            for a desktop card covers a third of the ring it is
+                            meant to be inviting you to look at. */}
+                        <span className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-sheet-ink px-5 py-2.5 text-[11px] font-semibold tracking-[0.16em] whitespace-nowrap text-white uppercase shadow-[0_2px_10px_rgba(23,19,18,0.18)] transition group-hover:bg-sheet-ink/85 max-md:bottom-2 max-md:gap-1 max-md:px-2.5 max-md:py-1 max-md:text-[8px] max-md:tracking-[0.1em]">
+                          <svg viewBox="0 0 12 12" width="8" height="8" className="max-md:h-[6px] max-md:w-[6px]" aria-hidden>
+                            <path d="M6 0l1.6 4.4L12 6l-4.4 1.6L6 12l-1.6-4.4L0 6l4.4-1.6z" fill="currentColor" />
+                          </svg>
+                          Customise
+                        </span>
+                      </span>
+
+                      <h2 className="t-card mt-4 leading-snug max-md:mt-3">
+                        {styleTitle(style)}
+                      </h2>
+                      <p className="t-eyebrow mt-1.5 !tracking-[0.12em] text-sheet-dim">
+                        {styleSubtitle(style)}
+                      </p>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         </ScrollReveal>
 
-        {/* The stones came across with the rings — same shoot, same set — and
-            they belong under them rather than beside them: a cut is chosen
-            after a setting, not instead of one. */}
-        {stones.length > 0 && (
+        {/* ---- ready to ship ------------------------------------------------
+            A rail rather than a grid, and the difference is the proposition.
+            The styles above are made to order and the whole page invites you to
+            change them; these are finished rings that exist and can go out. A
+            rail says "a handful we happen to have" where a second grid would
+            read as more of the same and compete with the thing above it for the
+            same decision. */}
+        {readyToShip.length > 0 && (
           <ScrollReveal>
-            <section className="border-t border-fg/[0.10] px-[52px] py-16 max-md:px-6 max-md:py-12">
-              <h2 className="t-sub">Diamond shapes</h2>
-              <p className="mt-4 max-w-[62ch] t-copy">
-                The cuts we set, in order of what Britain actually buys. Round and oval
-                together are close to seven in ten British engagement rings; the rest are
-                the ones worth knowing about before you decide.
-              </p>
-              <ul className="mt-10 grid grid-cols-8 gap-4 max-lg:grid-cols-4 max-sm:grid-cols-4">
-                {stones.map((stone) => (
-                  <li key={stone.id}>
+            <section className="border-t border-sheet-line py-12 max-md:py-9">
+              <div className="px-[52px] max-md:px-6">
+                <h2 className="t-sub">Ready to Ship Rings</h2>
+                <p className="mt-2 max-w-[58ch] t-copy">
+                  Finished pieces we hold, rather than made to order — so they can be
+                  sized and sent far sooner than a commission. Ask about any of them.
+                </p>
+              </div>
+
+              <DragCarousel
+                ariaLabel="Ready to ship rings"
+                className="mt-6 gap-5 px-[52px] py-1 max-md:gap-4 max-md:px-6"
+              >
+                {readyToShip.map((piece) => (
+                  <a
+                    key={piece.id}
+                    href={buildGeneralWhatsAppUrl(
+                      `Hello — I am interested in the ${piece.label} ring from your ready to ship pieces.`,
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-haptic
+                    className="group w-[232px] shrink-0 snap-start max-md:w-[176px]"
+                    title={piece.description}
+                  >
                     <span className="relative block aspect-square w-full overflow-hidden bg-white">
-                      <Image
-                        src={stone.image}
-                        alt={`${stone.label} cut diamond`}
-                        fill
-                        sizes="(max-width: 1023px) 22vw, 11vw"
-                        className="object-cover"
+                      {/* eslint-disable-next-line @next/next/no-img-element -- local, already sized */}
+                      <img
+                        src={piece.image}
+                        alt={`${piece.label} engagement ring`}
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     </span>
-                    <p className="mt-3 text-center text-[10px] leading-tight tracking-[0.12em] uppercase text-fg/65">
-                      {stone.label}
+                    <h3 className="t-card mt-3 leading-snug">{piece.label}</h3>
+                    <p className="t-eyebrow mt-1 !tracking-[0.12em] text-sheet-dim">
+                      Enquire
                     </p>
-                  </li>
+                  </a>
                 ))}
-              </ul>
+              </DragCarousel>
             </section>
           </ScrollReveal>
         )}
 
-        <ScrollReveal>
-          <section className="border-t border-fg/[0.10] px-[52px] py-16 max-md:px-6 max-md:py-12">
-            <p className="max-w-[64ch] t-copy">
-              Every ring is made to order, cast and hand-set once you have approved a CAD
-              design. Prices depend on the stone, so they are quoted rather than listed,
-              and we handle your booking privately as a one-to-one service —{" "}
-              <Link
-                href="/book-appointment"
-                className="text-accent underline underline-offset-4"
-              >
-                book an appointment
-              </Link>{" "}
-              and we will show you comparable diamonds either side of your budget.
-            </p>
-          </section>
-        </ScrollReveal>
       </main>
 
       <Footer />
@@ -167,16 +205,16 @@ export default function RingsPage() {
             ldJsonGraph([
               breadcrumbLd([
                 { name: "Home", url: siteUrl("/") },
-                { name: "Ring Collection", url: siteUrl(PATH) },
+                { name: "Ring Styles", url: siteUrl(PATH) },
               ]),
               ...collectionLd({
-                name: "Ring Collection",
+                name: "Engagement Ring Styles",
                 description:
-                  "Engagement ring settings hand-made by Alpoe London in Hatton Garden.",
+                  "Engagement ring styles made to order by Alpoe London in Hatton Garden.",
                 path: PATH,
-                products: pieces.map((p) => ({
-                  title: `${p.label} Engagement Ring`,
-                  url: p.builderHref,
+                products: styles.map((s) => ({
+                  title: styleTitle(s),
+                  url: styleHref(s),
                 })),
               }),
             ]),

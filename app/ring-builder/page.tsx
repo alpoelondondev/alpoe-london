@@ -94,7 +94,7 @@ export default function RingBuilderPage() {
         <section>
           <Suspense
             fallback={
-              <p className="bg-white py-32 text-center text-[11px] tracking-[0.2em] uppercase text-sheet-dim">
+              <p className="clears-nav bg-white pb-32 text-center text-[11px] tracking-[0.2em] uppercase text-sheet-dim">
                 Loading the studio…
               </p>
             }

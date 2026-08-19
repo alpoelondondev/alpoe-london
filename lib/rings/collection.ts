@@ -36,89 +36,63 @@ export type CollectionPiece = {
   /** Trade synonyms — the same list search already indexes. */
   aliases: string[];
   image: string;
-  /**
-   * Into the builder, on the nearest band and head we can offer. Nearest, not
-   * exact — see the note above. Where a piece has no honest equivalent the link
-   * simply opens the builder, which is better than opening it on a ring that is
-   * not the one in the picture.
-   */
-  builderHref: string;
 };
 
 /**
- * The seventeen pieces, and the band + head that comes closest to each in the
- * builder's vocabulary. A `null` pair means nothing close enough exists.
+ * The seventeen finished pieces we hold.
+ *
+ * These used to link into the builder on a nearest-match band and head. That
+ * mapping has gone with the page it served: these are rings that exist and can
+ * be sized and sent, so the useful action is an enquiry about this ring, not a
+ * configuration of an approximation of it. /rings now shows them as a "Ready to
+ * Ship" rail beneath the styles, which is the honest distinction — everything
+ * above it is made to order.
  */
 const PIECES: {
   id: string;
   label: string;
   aliases: string[];
   description: string;
-  nearest: { band: string; head: string } | null;
 }[] = [
   { id: "solitaire", label: "Solitaire", aliases: ["four claw", "4 prong"],
-    description: "A single centre diamond held in a timeless four-claw setting.",
-    nearest: { band: "solitaire", head: "4-prong-nouveau" } },
+    description: "A single centre diamond held in a timeless four-claw setting." },
   { id: "rubover", label: "Rubover", aliases: ["bezel", "collet", "rub-over"],
-    description: "A wall of metal wrapped fully around the stone. The most protective setting, and the most modern.",
-    nearest: { band: "solitaire", head: "classic-bezel" } },
+    description: "A wall of metal wrapped fully around the stone. The most protective setting, and the most modern." },
   { id: "halo", label: "Halo", aliases: ["cluster halo"],
-    description: "A ring of grain-set diamonds framing the centre stone, making it read considerably larger.",
-    nearest: { band: "solitaire", head: "classic-halo" } },
+    description: "A ring of grain-set diamonds framing the centre stone, making it read considerably larger." },
   { id: "grain-set", label: "Grain Set", aliases: ["pavé", "pave", "bead set"],
-    description: "Diamonds set into the shoulders with raised beads of metal, so the band itself catches light.",
-    nearest: { band: "french-pave", head: "4-prong-nouveau" } },
+    description: "Diamonds set into the shoulders with raised beads of metal, so the band itself catches light." },
   { id: "hidden-halo", label: "Hidden Halo", aliases: ["under halo", "gallery set"],
-    description: "A halo set beneath the girdle, invisible from above and a surprise from the side.",
-    nearest: { band: "solitaire", head: "hidden-halo" } },
+    description: "A halo set beneath the girdle, invisible from above and a surprise from the side." },
   { id: "double-halo", label: "Double Halo", aliases: ["dual halo"],
-    description: "Two concentric rings of diamonds around the centre stone.",
-    nearest: { band: "solitaire", head: "dual-halo" } },
+    description: "Two concentric rings of diamonds around the centre stone." },
   { id: "trilogy", label: "Trilogy", aliases: ["three stone", "past present future"],
-    description: "Three stones together — traditionally read as past, present and future.",
-    nearest: { band: "three-stone", head: "4-prong-nouveau" } },
+    description: "Three stones together — traditionally read as past, present and future." },
   { id: "side-stone", label: "Side Stone", aliases: ["shoulder set"],
-    description: "A centre stone flanked by smaller diamonds set into the shoulders.",
-    nearest: { band: "cathedral-pave", head: "4-prong-nouveau" } },
+    description: "A centre stone flanked by smaller diamonds set into the shoulders." },
   { id: "channel-set", label: "Channel Set", aliases: ["channel"],
-    description: "Diamonds sunk between two rails of metal, flush and hard-wearing.",
-    nearest: { band: "round-channel", head: "4-prong-nouveau" } },
+    description: "Diamonds sunk between two rails of metal, flush and hard-wearing." },
   { id: "split-shank", label: "Split Shank", aliases: ["forked shoulders", "split band"],
-    description: "The band divides as it approaches the setting, lifting the stone.",
-    nearest: { band: "split-ring-solitaire", head: "4-prong-nouveau" } },
+    description: "The band divides as it approaches the setting, lifting the stone." },
   { id: "knife-edge", label: "Knife Edge", aliases: [],
-    description: "A band rising to a fine ridge, catching light as a single bright line.",
-    nearest: { band: "knife-edge-solitaire", head: "4-prong-nouveau" } },
+    description: "A band rising to a fine ridge, catching light as a single bright line." },
   { id: "crossover", label: "Crossover", aliases: ["twist", "bypass"],
-    description: "Two bands crossing beneath the stone, wrapping the finger.",
-    nearest: { band: "floral-bypass", head: "4-prong-nouveau" } },
+    description: "Two bands crossing beneath the stone, wrapping the finger." },
   { id: "cluster", label: "Cluster", aliases: ["target"],
-    description: "Similarly sized diamonds grouped as one flower-like head. A genuinely British setting, Georgian in origin.",
-    nearest: { band: "solitaire", head: "clustered-diamond" } },
+    description: "Similarly sized diamonds grouped as one flower-like head. A genuinely British setting, Georgian in origin." },
   { id: "vintage", label: "Vintage", aliases: ["trefoil", "milgrain"],
-    description: "Millgrain edging and fine scrollwork, drawn from Edwardian and Art Deco pieces.",
-    nearest: { band: "solitaire", head: "vintage-trefoil" } },
+    description: "Millgrain edging and fine scrollwork, drawn from Edwardian and Art Deco pieces." },
   { id: "trellis", label: "Trellis", aliases: [],
-    description: "Claws that cross beneath the stone like woven basketwork.",
-    nearest: { band: "solitaire", head: "classic-basket" } },
+    description: "Claws that cross beneath the stone like woven basketwork." },
   // Tension and toi et moi have no equivalent: the library has neither a
   // tension-set head nor a two-stone band, and pointing them at something
   // approximate would open the builder on a ring that is visibly not the one
   // in the photograph.
   { id: "tension", label: "Tension Set", aliases: [],
-    description: "The stone appears suspended, held by the spring of the metal alone. It cannot be resized in the ordinary way, so we size it carefully with you.",
-    nearest: null },
+    description: "The stone appears suspended, held by the spring of the metal alone. It cannot be resized in the ordinary way, so we size it carefully with you." },
   { id: "toi-et-moi", label: "Toi et Moi", aliases: ["you and me", "two stone"],
-    description: "Two stones side by side — a French design meaning 'you and me'.",
-    nearest: null },
+    description: "Two stones side by side — a French design meaning 'you and me'." },
 ];
-
-export type CollectionStone = {
-  id: ShapeId;
-  label: string;
-  aliases: string[];
-  image: string;
-};
 
 /**
  * Resolves a hashed filename to its URL.
@@ -145,18 +119,7 @@ export function collectionPieces(): CollectionPiece[] {
         description: p.description,
         aliases: p.aliases,
         image,
-        builderHref: p.nearest
-          ? `/ring-builder?band=${p.nearest.band}&head=${p.nearest.head}`
-          : "/ring-builder",
       },
     ];
-  });
-}
-
-export function collectionStones(): CollectionStone[] {
-  return SHAPES.flatMap((s) => {
-    const image = url("shapes", `${s.id}-diamond`) ?? url("shapes", s.id);
-    if (!image) return [];
-    return [{ id: s.id, label: s.label, aliases: s.aliases, image }];
   });
 }
