@@ -11,7 +11,8 @@ const SHOP_LINKS = [
 
 const HOUSE_LINKS = [
   { label: "Book an Appointment", href: "/book-appointment" },
-  { label: "Ring Collection", href: "/rings" },
+  { label: "Ring Styles", href: "/rings" },
+  { label: "Ring Size Guide", href: "/ring-size-guide" },
   { label: "Ring Builder", href: "/ring-builder" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell & Trade", href: "/sell" },

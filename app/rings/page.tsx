@@ -76,7 +76,14 @@ export default function RingStylesPage() {
             Fifteen bands, each shown here as a finished ring. Every one is made to order
             in Hatton Garden, and every part of it is yours to choose — the stone, the
             setting that holds it, the metal and the size. Pick the shape you like and
-            change the rest.
+            change the rest. Not sure of the size? Read our{" "}
+            <Link
+              href="/ring-size-guide"
+              className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
+            >
+              ring size guide
+            </Link>
+            .
           </p>
         </section>
 

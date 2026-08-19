@@ -55,7 +55,7 @@ function MonogramFlat() {
 const LINKS: { label: string; href: string; hidden?: boolean }[] = [
   { label: "Watches", href: "/watches" },
   { label: "Jewellery", href: "/jewellery" },
-  { label: "Ring Collection", href: "/rings" },
+  { label: "Ring Styles", href: "/rings" },
   // Not ready to be shown to visitors yet.
   { label: "Ring Builder", href: "/ring-builder", hidden: true },
   { label: "Bespoke", href: "/bespoke" },

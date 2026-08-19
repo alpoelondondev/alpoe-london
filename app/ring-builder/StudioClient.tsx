@@ -462,7 +462,14 @@ export default function StudioClient() {
                 </optgroup>
               </select>
               <p className="mt-2 t-copy">
-                We&rsquo;ll size you free of charge at Hatton Garden.
+                We&rsquo;ll size you free of charge at Hatton Garden, or read our{" "}
+                <a
+                  href="/ring-size-guide"
+                  className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
+                >
+                  ring size guide
+                </a>
+                .
               </p>
             </div>
 
