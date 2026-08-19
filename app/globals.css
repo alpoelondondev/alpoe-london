@@ -86,7 +86,12 @@
 }
 
 html {
-  overflow-x: hidden;
+  /* `clip`, not `hidden`. The two clip identically, but `hidden` also makes the
+     element a scroll container — and a `position: sticky` descendant then
+     resolves against that box instead of the page, so it silently stops
+     sticking. That is what was wrong with the ring builder's pinned viewport
+     on a phone. `clip` has no such side effect. */
+  overflow-x: clip;
   scroll-behavior: auto;
 }
 
@@ -248,11 +253,10 @@ body {
   color: var(--color-fg);
   font-family: var(--font-sans);
   font-weight: 300;
-  /* No `overflow-x: hidden` here. It is already on <html> above, and having it
-     on both is a well-worn way to break `position: sticky` in a descendant:
-     the declaration makes the body a scroll container, and a sticky element
-     then resolves against that rather than against the page. The ring builder's
-     pinned viewport is the thing that noticed. */
+  /* Kept, because something on the site does overflow and removing the clip
+     let the page shift sideways — but `clip` rather than `hidden`, for the
+     reason given on <html> above. */
+  overflow-x: clip;
   -webkit-tap-highlight-color: transparent;
 }
 

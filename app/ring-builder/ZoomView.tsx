@@ -167,7 +167,15 @@ export default function ZoomView({
           WebkitTouchCallout: "none",
           WebkitUserSelect: "none",
         }}
-        className="h-full w-full select-none object-contain transition-transform duration-200 ease-out"
+        // `cover`, with the frame shorter than the image is tall — see the
+        // note on the aspect ratio in RingViewport. The image still scales to
+        // the frame's WIDTH, so the ring is exactly the size it would be in a
+        // square; the only thing lost is empty sweep above and below it.
+        //
+        // 48% rather than dead centre because the rings do not sit centred in
+        // the frame — measured across the library they span 9.8% to 87.1%,
+        // whose midpoint is 48.4%.
+        className="h-full w-full select-none object-cover object-[50%_48%] transition-transform duration-200 ease-out"
       />
     </div>
   );

@@ -211,7 +211,17 @@ export default function RingViewport({
                 scrollerRef={rail}
                 onScroll={onScroll}
                 ariaLabel="Views of your ring"
-                className={`aspect-square max-h-[50vh] w-full snap-mandatory overscroll-x-contain bg-white transition-opacity duration-150 ${
+                // 6:5 rather than square, which trims a sixth of the height
+                // for nothing. The renders are square with the ring floating in
+                // white sweep: measured across 220 images from every band,
+                // shape, head, metal and view, the ring never reaches above
+                // 9.8% or below 87.1% of the frame — 77.3% of the height, so a
+                // frame keeping 83% cannot clip one.
+                //
+                // Nothing is re-processed and no ring gets smaller. `object-cover`
+                // scales the image to the frame's width exactly as `contain`
+                // did in a square, and the crop falls entirely on empty sweep.
+                className={`aspect-[6/5] max-h-[50vh] w-full snap-mandatory overscroll-x-contain bg-white transition-opacity duration-150 ${
                   pending ? "opacity-60" : "opacity-100"
                 }`}
               >
@@ -268,7 +278,7 @@ export default function RingViewport({
              specification is the honest fallback: it is never wrong, and it
              visibly changes on every selection, which is the whole reason the
              panel is pinned. */
-          <div className="flex aspect-square max-h-[50vh] w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center">
+          <div className="flex aspect-[6/5] max-h-[50vh] w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center">
             <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
               {pieceName}
             </p>
