@@ -6,6 +6,7 @@ import "./globals.css";
 // itself on mount, so nothing else needs changing either way.
 // import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
+import ScrollToTop from "./components/ScrollToTop";
 import SiteLDJSON from "./components/SiteLDJSON";
 import { SITE, siteUrl } from "@/lib/site";
 
@@ -112,6 +113,7 @@ export default function RootLayout({
         <SiteLDJSON />
         <CustomCursor />
         {/* <Loader /> */}
+        <ScrollToTop />
         {children}
       </body>
     </html>
