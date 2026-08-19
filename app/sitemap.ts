@@ -11,7 +11,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: siteUrl("/watches"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: siteUrl("/jewellery"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: siteUrl("/bespoke"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: siteUrl("/rings"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: siteUrl("/rings"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    {
+      url: siteUrl("/rings/engagement-rings"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: siteUrl("/rings/wedding-rings"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: siteUrl("/rings/ready-to-ship"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
     {
       url: siteUrl("/ring-size-guide"),
       lastModified: now,
