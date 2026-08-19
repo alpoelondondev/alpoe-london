@@ -1,9 +1,21 @@
 # Ring Builder — photography shot list
 
-The builder's option tiles use **real photography wherever it exists** and fall back to the
-live 3D render where it doesn't. Nothing breaks while this list is being worked through:
-each photograph that lands replaces one render, and the only code change is adding a line to
-`lib/ring/photos.ts`.
+## Superseded — see `ring-builder-renders.md`
+
+This document described a shot list for photographing settings one at a time, with the
+builder falling back to a placeholder for anything not yet shot. That plan existed because
+the combinatorics looked unaffordable: seventeen settings across eight shapes and seven
+metals is most of a thousand rings, none of which had been made.
+
+The render library closed it completely — 15 bands × 10 shapes × 15 heads × 6 metals, three
+views each, every one of them a real image. There is no longer a gap to shoot into, and
+`lib/ring/photos.ts` has been deleted along with the composite and spin pipelines it fed.
+
+**Read `docs/ring-builder-renders.md` instead.**
+
+What is still worth keeping from here is the "Do not use" note below, which is about the
+57 Jewellers reference set and is unrelated to the render library. Those images are the
+seventeen pieces now shown on `/rings` as the Ring Collection.
 
 ## Why photographs and not renders
 

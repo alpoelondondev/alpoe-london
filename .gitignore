@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template, which documents what the deployment needs and carries
+# no secrets. Without it the ring builder's bucket URL is undiscoverable except
+# by reading lib/ring/renders.ts.
+!.env.example
 
 # vercel
 .vercel
@@ -51,3 +55,6 @@ graphify-out/
 
 # video masters — the site serves the transcoded mp4, not these
 /public/*.mov
+
+# personal reference, not part of the project
+PLAYBOOK-*.md
