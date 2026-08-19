@@ -250,7 +250,10 @@ export default function StudioClient() {
     
        `on-sheet` still does the typography: the type roles carry their own
        colour and would otherwise be cream-on-white. See globals.css. */
-    <div className="on-sheet clears-nav bg-white">
+    // `pt-[var(--nav-h)]` rather than `clears-nav`, which adds 32px on top of
+    // the bar's height — and that 32px was white sitting above the pinned grey
+    // strip. The strip carries its own breathing room now, in its own colour.
+    <div className="on-sheet bg-white pt-[var(--nav-h)]">
       {/* Block on a phone, two columns from lg up — and the switch is not
           cosmetic. A grid item's containing block is its own grid area, so in a
           single-column grid the pinned viewport gets an area exactly its own
@@ -259,7 +262,11 @@ export default function StudioClient() {
           block flow its containing block is this whole element, which is as
           tall as every rail below it. */}
       <div
-        className={`mx-auto block max-w-7xl lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-10 ${GUTTER} max-lg:px-0 lg:py-6`}
+        // No GUTTER here. It carries `max-md:px-6`, which on a phone beat the
+        // `max-lg:px-0` sitting beside it and left 24px of white either side of
+        // the pinned strip. The gutter is applied per section instead, so the
+        // strip can run edge to edge while the rails keep their inset.
+        className="mx-auto block max-w-7xl lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-10 lg:px-[52px] lg:py-6"
       >
         {/* ---- the ring ---------------------------------------------------
             Sticky in its own column on desktop; on a phone it stacks above the
@@ -278,7 +285,7 @@ export default function StudioClient() {
           // white one. It was `bg-white` with `pb-3 lg:pt-3`, so the band had
           // white above and below it and read as a framed panel rather than as
           // a band of the page.
-          className="sticky z-20 self-start bg-render-ground max-lg:px-0"
+          className="sticky z-20 self-start bg-render-ground py-5 max-lg:px-0 lg:py-6"
           style={{ top: "var(--nav-h)" }}
         >
           <RingViewport
@@ -298,7 +305,7 @@ export default function StudioClient() {
         
             It still changes with every selection, because it is built from the
             band and the head rather than stored. */}
-        <div className="px-[52px] pt-3 pb-6 max-lg:px-6 lg:col-start-1">
+        <div className="px-6 pt-4 pb-6 lg:col-start-1 lg:px-0">
           <h2 className="t-card text-center leading-snug lg:text-left">{pieceTitle}</h2>
           {twoTone && (
             <p className="mt-2 max-w-[42ch] text-center t-copy !text-sheet-ink lg:text-left">
