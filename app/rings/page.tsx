@@ -229,6 +229,79 @@ export default function RingStylesPage() {
           </ScrollReveal>
         )}
 
+
+        {/* ---- wedding bands -----------------------------------------------
+            The catalogue's own Wedding Rings & Bands, on the page where
+            somebody is already thinking about rings. These are stocked
+            products with their own pages and prices, so the cards link into
+            /jewellery rather than into the builder or an enquiry. That is the
+            distinction the whole page is built on: everything above is
+            configured or held, and everything here is bought. */}
+        {weddingBands.length > 0 && (
+          <ScrollReveal>
+            <section
+              id="wedding-rings"
+              className="scroll-mt-[var(--nav-h)] border-t border-sheet-line py-12 max-md:py-9"
+            >
+              <div className="flex items-baseline justify-between gap-6 px-[52px] max-md:px-6">
+                <div>
+                  <h2 className="t-sub">Wedding Rings &amp; Bands</h2>
+                  <p className="mt-2 max-w-[58ch] t-copy">
+                    Court and D-shape profiles, plain and diamond set, in platinum and
+                    18ct gold. Sized and shaped to sit against the engagement ring.
+                  </p>
+                </div>
+                <Link
+                  href="/jewellery/wedding-rings"
+                  className="t-eyebrow shrink-0 font-semibold whitespace-nowrap underline underline-offset-4 transition hover:text-accent-deep"
+                >
+                  See all
+                </Link>
+              </div>
+
+              <DragCarousel
+                ariaLabel="Wedding rings and bands"
+                className="mt-6 gap-5 px-[52px] py-1 max-md:gap-4 max-md:px-6"
+              >
+                {weddingBands.map((p) => (
+                  <Link
+                    key={p.slug}
+                    href={productUrl(p)}
+                    data-haptic
+                    className="group w-[232px] shrink-0 snap-start max-md:w-[176px]"
+                  >
+                    <span className="relative block aspect-square w-full overflow-hidden bg-white">
+                      {hasPhotography(p) ? (
+                        // eslint-disable-next-line @next/next/no-img-element -- matches the rails above
+                        <img
+                          src={p.images[0]}
+                          alt={p.title}
+                          loading="lazy"
+                          decoding="async"
+                          draggable={false}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        />
+                      ) : (
+                        <span
+                          aria-hidden
+                          className="absolute inset-0 flex items-center justify-center"
+                        >
+                          <span className="block h-[38%] w-[38%] rounded-full border border-sheet-line" />
+                        </span>
+                      )}
+                    </span>
+                    <h3 className="t-card mt-3 leading-snug">{p.title}</h3>
+                    {p.materials && (
+                      <p className="t-eyebrow mt-1 !tracking-[0.12em] text-sheet-dim">
+                        {p.materials}
+                      </p>
+                    )}
+                  </Link>
+                ))}
+              </DragCarousel>
+            </section>
+          </ScrollReveal>
+        )}
       </main>
 
       <Footer />
