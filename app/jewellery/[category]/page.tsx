@@ -105,6 +105,12 @@ export default async function JewelleryCategoryPage(
         {c.slug === "rings" && (
           <PageCover
             strip
+            heading="Engagement &amp; Wedding Rings"
+            copy="Bespoke settings and bands, made to your specification."
+            cta={[
+              { label: "View Rings", href: "/rings/engagement-and-wedding-rings" },
+              { label: "Design Your Own Ring", href: "/ring-builder" },
+            ]}
             video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
             poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
           />
