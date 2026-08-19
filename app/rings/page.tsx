@@ -3,7 +3,7 @@ import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import ScrollReveal from "../components/ScrollReveal";
-import LockupMark from "../components/LockupMark";
+import PageCover from "../components/PageCover";
 import { Sparkle } from "./RingCards";
 import { ringStyles, styleImage } from "@/lib/rings/styles";
 import { collectionPieces } from "@/lib/rings/collection";
@@ -80,27 +80,21 @@ export default function RingsHubPage() {
       <SiteHeader />
 
       <main className="on-sheet bg-white">
-        <section className="clears-nav px-[52px] pb-10 max-md:px-6 max-md:pb-8">
-          {/* The mark rather than the words. "Alpoe London" set as a text
-              eyebrow above "Rings" was the brand name doing a label's job; the
-              lockup says the same thing and says it as the house. Ink here, not
-              the footer's rose, because the studio pages are black on white and
-              a gold mark on that ground reads as an ornament rather than a
-              signature.
-
-              The h1 still says Rings, in text, because that is what the page is
-              about and an image cannot be a heading. */}
-          <LockupMark
-            width="min(128px, 40vw)"
-            fill="var(--color-sheet-ink)"
-            className="mb-6"
-          />
-          <h1 className="t-page">Rings</h1>
-          <p className="mt-5 max-w-[58ch] t-copy">
+        {/* The home page's film, carrying this page's title. The cover sits
+            under the fixed bar rather than clearing it, exactly as the home
+            page's hero does — the bar is translucent over nothing here, so the
+            band reads as continuous behind it. */}
+        <PageCover eyebrow="Alpoe London" title="Rings">
+          <p className="t-copy !text-fg/75">
             Everything we make and hold for the finger. Engagement rings are built to
             your own specification with wedding bands sized to match, and our ready to
-            ship pieces are finished and waiting. If you are not sure of the size, start
-            with the{" "}
+            ship pieces are finished and waiting.
+          </p>
+        </PageCover>
+
+        <section className="px-[52px] pt-10 pb-2 max-md:px-6 max-md:pt-8">
+          <p className="max-w-[58ch] t-copy">
+            Not sure of the size? Start with the{" "}
             <Link
               href="/ring-size-guide"
               className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
