@@ -167,7 +167,7 @@ export default function RingViewport({
               aria-label="Views of your ring"
               // max-h-[50vh] is the hard half-screen rule; on a phone the
               // square would otherwise be as tall as the screen is wide.
-              className="scrollbar-none flex aspect-square max-h-[50vh] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-white max-lg:border-y lg:border max-lg:border-sheet-line lg:border-sheet-line lg:shadow-[0_1px_3px_rgba(23,19,18,0.10)]"
+              className="scrollbar-none flex aspect-square max-h-[50vh] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-white"
             >
               {shown.map((v, i) => (
                 <div key={v.id} className="relative w-full shrink-0 snap-center">
@@ -220,7 +220,7 @@ export default function RingViewport({
              specification is the honest fallback: it is never wrong, and it
              visibly changes on every selection, which is the whole reason the
              panel is pinned. */
-          <div className="flex aspect-square max-h-[50vh] w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center max-lg:border-y lg:border lg:border-sheet-line max-lg:border-sheet-line">
+          <div className="flex aspect-square max-h-[50vh] w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center">
             <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
               {pieceName}
             </p>

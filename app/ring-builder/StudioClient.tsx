@@ -187,11 +187,18 @@ export default function StudioClient() {
   const twoTone = config.headMetal !== config.bandMetal;
 
   return (
-    /* `on-sheet` flips the type roles — which carry their own colour — onto the
-       sheet's ink; see the note beside it in globals.css. The studio is a light
-       document because a diamond is photographed against white for a physical
-       reason, and the page was the thing disagreeing with the pictures. */
-    <div className="on-sheet bg-sheet">
+    /* Pure white, not the market sheet's warm off-white.
+    
+       The renders are lit on a white sweep and carry it in the file, so any
+       other ground puts a visible rectangle around every photograph — the
+       picture stops being a ring on the page and becomes a picture of a ring,
+       pasted on. `surface.ts` already made this argument for the tiles; it is
+       the same argument for the page behind them, and the two only agree if
+       both are #ffffff.
+    
+       `on-sheet` still does the typography: the type roles carry their own
+       colour and would otherwise be cream-on-white. See globals.css. */
+    <div className="on-sheet bg-white">
       <div className={`mx-auto grid max-w-7xl grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-10 ${GUTTER} py-6 max-lg:grid-cols-1 max-lg:gap-0 max-lg:px-0 max-lg:py-0`}>
         {/* ---- the ring ---------------------------------------------------
             Sticky in its own column on desktop; on a phone it stacks above the
@@ -206,7 +213,7 @@ export default function StudioClient() {
             the rails would scroll through the strip between the bar and the
             panel rather than behind it. */}
         <div
-          className="sticky z-20 self-start bg-sheet py-3 max-lg:px-0 max-lg:pt-0"
+          className="sticky z-20 self-start bg-white py-3 max-lg:px-0 max-lg:pt-0"
           style={{ top: "var(--nav-h)" }}
         >
           <div>
@@ -374,19 +381,19 @@ export default function StudioClient() {
                 aria-label="UK ring size"
                 className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[13px] text-sheet-ink outline-none transition focus:border-accent-deep"
               >
-                <option value={SIZE_UNKNOWN} className="bg-sheet-panel">
+                <option value={SIZE_UNKNOWN} className="bg-white">
                   I&rsquo;m not sure — measure me in store
                 </option>
-                <optgroup label="Most common" className="bg-sheet-panel">
+                <optgroup label="Most common" className="bg-white">
                   {commonSizes().map((s) => (
-                    <option key={s.id} value={s.id} className="bg-sheet-panel">
+                    <option key={s.id} value={s.id} className="bg-white">
                       UK {s.label} — {s.diameterMm.toFixed(2)}mm
                     </option>
                   ))}
                 </optgroup>
-                <optgroup label="Full range" className="bg-sheet-panel">
+                <optgroup label="Full range" className="bg-white">
                   {RING_SIZES.map((s) => (
-                    <option key={`all-${s.id}`} value={s.id} className="bg-sheet-panel">
+                    <option key={`all-${s.id}`} value={s.id} className="bg-white">
                       UK {s.label} — {s.diameterMm.toFixed(2)}mm
                     </option>
                   ))}

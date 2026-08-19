@@ -94,7 +94,7 @@ export default function RingBuilderPage() {
         <section>
           <Suspense
             fallback={
-              <p className="bg-sheet py-32 text-center text-[11px] tracking-[0.2em] uppercase text-sheet-dim">
+              <p className="bg-white py-32 text-center text-[11px] tracking-[0.2em] uppercase text-sheet-dim">
                 Loading the studio…
               </p>
             }
@@ -104,7 +104,7 @@ export default function RingBuilderPage() {
         </section>
 
         <ScrollReveal>
-          <section className="on-sheet border-t border-sheet-line bg-sheet px-[52px] py-14 max-md:px-6 max-md:py-10">
+          <section className="on-sheet border-t border-sheet-line bg-white px-[52px] py-14 max-md:px-6 max-md:py-10">
             <p className="max-w-[64ch] t-copy">
               Every ring here is made to order in Hatton Garden, cast and hand-set once
               you have approved a CAD design. We handle your booking privately, as a
