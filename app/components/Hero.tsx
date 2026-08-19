@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShuffleText } from "./Loader";
 import LockupMark from "./LockupMark";
+import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,9 +36,19 @@ type MonogramProps = { width?: number; height?: number };
  * that was right for one artwork stops being right the moment the artwork's
  * proportions change.
  */
-const LOCKUP_MAX_HEIGHT_VH = 44;
-const LOCKUP_MAX_WIDTH_PX = 1100;
-const LOCKUP_VIEWPORT_FRACTION = 0.92;
+/**
+ * The mark's size, trimmed to make room for the two controls beneath it.
+ *
+ * The controls sit inside the lockup group, which is absolutely positioned
+ * between the bar and a fixed offset from the bottom, so nothing added to it
+ * changes the hero's height. What it does change is how much room the mark has,
+ * and a mark at the old 44vh left the buttons crowding the wordmark. Down to
+ * 38vh and 0.82 of the viewport width, which reads as deliberate rather than
+ * shrunken and gives the group somewhere to breathe.
+ */
+const LOCKUP_MAX_HEIGHT_VH = 38;
+const LOCKUP_MAX_WIDTH_PX = 980;
+const LOCKUP_VIEWPORT_FRACTION = 0.82;
 
 /**
  * The 3D mark is sized in pixels, not CSS: three.js needs a drawing buffer of
@@ -82,6 +93,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const eyebrowRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   // Null until measured: the size depends on the window, which does not exist
   // until the client runs, and guessing would mean re-initialising the scene a
@@ -146,6 +158,23 @@ export default function Hero() {
     const reveal = () => {
       if (eyebrowRef.current) {
         gsap.to(eyebrowRef.current, { opacity: 1, duration: 0.8 });
+      }
+      // A beat behind the wordmark. They are an offer rather than the
+      // identity, so they should arrive after it has been read.
+      //
+      // `fromTo`, not `to`, and no `opacity-0` in the class list. The eyebrow
+      // can afford to start hidden because it is decoration: if the reveal
+      // never fires, the page is missing a flourish. These are the only two
+      // ways to contact the shop from the hero, and a button that starts
+      // invisible and waits for an animation is a button that does not exist
+      // whenever that animation fails. Starting visible means the worst case is
+      // no fade rather than no call to action.
+      if (ctaRef.current) {
+        gsap.fromTo(
+          ctaRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.7, delay: 0.35 },
+        );
       }
     };
 
@@ -235,6 +264,18 @@ export default function Hero() {
         ref={videoRef}
         data-hero
         muted
+        // `loop` alone was never enough, because nothing was starting it. The
+        // clip was written to hold its first frame until the splash's Enter
+        // click, which is a real user gesture and therefore always permitted.
+        // The splash is commented out of the layout, so that click never comes
+        // and the effect below falls back to calling play() on mount instead —
+        // which a browser is entitled to refuse, since it is not a gesture.
+        //
+        // `autoPlay` is the permission that does not depend on one. Muted and
+        // playsInline together are what every browser asks for in return, and
+        // both are already set, so the film starts on load and loop keeps it
+        // running.
+        autoPlay
         loop
         playsInline
         controls={false}
@@ -305,6 +346,47 @@ export default function Hero() {
               >
                 <ShuffleText fill />
               </p>
+            </div>
+
+            {/* Inside the lockup group, which is absolutely positioned between
+                the bar and a fixed offset from the bottom. Anything added here
+                costs the hero no height at all; it only takes room from the
+                mark, which is why the mark came down a few vh.
+
+                The group is pointer-events-none so the film behind it stays
+                un-clickable, so these have to opt back in.
+
+                Both go to WhatsApp rather than to a form. Somebody standing in
+                front of a hero at eleven at night wants an answer, not a
+                thread, and the shop already runs its enquiries there. The two
+                messages differ because the two intentions do: one is a
+                question, the other is a booking. */}
+            <div
+              ref={ctaRef}
+              className="mt-7 flex flex-wrap items-center justify-center gap-3 pointer-events-auto max-md:mt-5 max-md:gap-2"
+            >
+              <a
+                href={buildGeneralWhatsAppUrl(
+                  "Hello, I would like to speak to a client advisor about a piece.",
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-haptic
+                className="rounded-full border border-accent/70 px-5 py-2.5 text-[10px] font-semibold tracking-[0.18em] whitespace-nowrap text-accent uppercase transition hover:border-accent hover:bg-accent hover:text-bg max-md:px-4 max-md:py-2 max-md:text-[9px] max-md:tracking-[0.14em]"
+              >
+                Speak to a Client Advisor
+              </a>
+              <a
+                href={buildGeneralWhatsAppUrl(
+                  "Hello, I would like to book an appointment at your Hatton Garden showroom.",
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-haptic
+                className="rounded-full bg-accent px-5 py-2.5 text-[10px] font-semibold tracking-[0.18em] whitespace-nowrap text-bg uppercase transition hover:bg-accent-deep max-md:px-4 max-md:py-2 max-md:text-[9px] max-md:tracking-[0.14em]"
+              >
+                Book Appointment
+              </a>
             </div>
           </>
         ) : null}
