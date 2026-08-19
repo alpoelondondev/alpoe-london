@@ -255,26 +255,32 @@ export default function RingViewport({
         {shown.length > 1 && index < shown.length - 1 && (
           <Arrow side="right" onClick={() => goTo(index + 1)} />
         )}
-      </div>
 
-      {/* ---- below the band, on the page ---------------------------------- */}
-      {shown.length > 0 && (
-        <div className="mt-3 flex items-center justify-center gap-2 max-lg:px-6">
-          {shown.map((v, i) => (
-            <button
-              key={v.id}
-              type="button"
-              data-haptic
-              onClick={() => goTo(i)}
-              aria-label={`${VIEW_LABEL[v.id]} view`}
-              aria-current={i === index}
-              className={`h-1.5 rounded-full transition-all duration-200 ${
-                i === index ? "w-5 bg-sheet-ink" : "w-1.5 bg-sheet-ink/25 hover:bg-sheet-ink/45"
-              }`}
-            />
-          ))}
-        </div>
-      )}
+        {/* Inside the row rather than under it. Sitting below, they landed hard
+            against the row's bottom edge and read as two things touching. The
+            renders leave their lowest eighth empty — no ring reaches past 87%
+            of its frame — so there is room in the picture itself, and the dots
+            sit in it without covering anything. */}
+        {shown.length > 1 && (
+          <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-center gap-2 max-lg:bottom-3">
+            {shown.map((v, i) => (
+              <button
+                key={v.id}
+                type="button"
+                data-haptic
+                onClick={() => goTo(i)}
+                aria-label={`${VIEW_LABEL[v.id]} view`}
+                aria-current={i === index}
+                className={`h-1.5 rounded-full transition-all duration-200 ${
+                  i === index
+                    ? "w-5 bg-sheet-ink"
+                    : "w-1.5 bg-sheet-ink/25 hover:bg-sheet-ink/45"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
 
     </div>
   );

@@ -73,11 +73,14 @@
      whatever this is set to while the ring, being darker than both, is
      untouched. So this can be any light grey, and the picture takes it.
      
-     That is the only knob worth turning here. Darker reads as more of a surface
-     and lifts the metal off it; too dark and multiply starts eating the ring's
-     own highlights, since those are near-white too. Around #E5 is where that
-     begins to show. */
-  --color-render-ground: #ebebeb;
+     That is the only knob worth turning here. It was tested rather than
+     guessed: the multiply blend was simulated over a cathedral pavé double halo
+     — about as much fine highlight as the library holds — at #EB, #E5, #DE and
+     #D6. The stone stays bright and the pavé stays legible through all four.
+     #DE is a grey that reads as a surface with the metal still lifting off it.
+     Past #D0 the whole ring starts to dim, since multiply keeps whichever layer
+     is darker and a diamond's highlights are near-white. */
+  --color-render-ground: #dedede;
 
   --color-sheet: #e9e3de;
   --color-sheet-panel: #fbf9f7;
