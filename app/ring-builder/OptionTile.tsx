@@ -91,7 +91,9 @@ export default function OptionTile({
       </span>
       <span
         className={`block text-center text-[10px] leading-[1.2] tracking-[0.06em] uppercase transition ${
-          active ? "text-sheet-ink" : "text-sheet-ink/60 group-hover:text-sheet-ink/90"
+          active
+          ? "font-semibold text-sheet-ink"
+          : "text-sheet-ink/60 group-hover:text-sheet-ink/90"
         }`}
       >
         {label}

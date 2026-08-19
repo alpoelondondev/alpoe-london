@@ -169,6 +169,39 @@ The renders are the page's LCP element, so this is not incidental.
   417 KB → 112 KB. The shape icons alone arrived at 1300×1024 to be drawn in an
   86px tile.
 
+## Protecting the library
+
+Worth being clear about what is and is not possible.
+
+**Client-side measures are a speed bump, not a lock.** A browser has to decode
+an image to display it, so a screenshot, the network tab or `curl` will always
+work. What is implemented in `ZoomView.tsx` — `-webkit-touch-callout: none`,
+no context menu, no drag — is mostly doing UX work: a long press has to zoom
+rather than raise iOS's share sheet, or the gesture is broken. Treat the
+deterrence as a side effect.
+
+**The real exposure is the bucket, and it is worth understanding.** Every path
+is derivable from four ids — that is the whole design, and it is what makes the
+builder work without a manifest. It also means anyone who sees one URL can
+enumerate all 32,115 without guessing. A public `r2.dev` URL with predictable
+paths is a library anybody can mirror in an afternoon.
+
+Three things close that, in order of value:
+
+1. **Custom domain on the bucket**, proxied through Cloudflare. This is the
+   prerequisite for the other two — WAF rules cannot be applied to a
+   `pub-*.r2.dev` URL. R2 → bucket → Settings → Custom Domains.
+2. **Hotlink protection.** A WAF rule serving images only when `Referer`
+   matches the site's own domain. Stops other sites embedding the library at
+   our expense and defeats naive scrapers outright.
+3. **Rate limiting.** A WAF rule capping requests per IP — a real customer
+   might load thirty images in a session; a scraper wants thirty thousand.
+   Cloudflare's Bot Fight Mode is a reasonable blunt instrument alongside it.
+
+None of this is set up yet. The `r2.dev` development URL is also rate-limited
+by Cloudflare and explicitly not intended for production traffic, so moving to
+a custom domain is worth doing on those grounds alone.
+
 ## Verifying
 
 `/ring-builder/verify` asserts the coverage table still matches the library's

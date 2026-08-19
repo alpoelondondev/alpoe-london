@@ -381,7 +381,7 @@ export default function StudioClient() {
           {/* ---- finishing ------------------------------------------------ */}
           <section className={`grid grid-cols-2 gap-6 py-7 max-sm:grid-cols-1 ${GUTTER}`}>
             <div>
-              <p className="t-eyebrow">
+              <p className="t-eyebrow font-semibold">
                 UK ring size
               </p>
               <select
@@ -414,7 +414,7 @@ export default function StudioClient() {
             </div>
 
             <div>
-              <p className="t-eyebrow">
+              <p className="t-eyebrow font-semibold">
                 Engraving — optional
               </p>
               <input
@@ -435,7 +435,7 @@ export default function StudioClient() {
 
           {/* ---- specification -------------------------------------------- */}
           <section className={`py-7 ${GUTTER}`}>
-            <p className="t-eyebrow">
+            <p className="t-eyebrow font-semibold">
               Your specification
             </p>
 

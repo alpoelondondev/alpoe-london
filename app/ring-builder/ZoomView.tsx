@@ -34,6 +34,23 @@ import { useCallback, useRef, useState } from "react";
  * a percentage of the element, which is exactly what a pointer position gives
  * you, so the point under the finger stays under the finger at any scale — no
  * arithmetic relating scale to offset, and nothing to get wrong at the edges.
+ *
+ * ── Holding must zoom, not offer to save ──
+ *
+ * On iOS a long press on an image raises the share sheet, and on Android the
+ * download menu. Both would fire in the middle of this gesture, which is worse
+ * than a leak: the customer holds to look closer and gets a system dialogue
+ * instead, and the thing they were inspecting disappears behind it.
+ *
+ * `-webkit-touch-callout: none` is what actually suppresses that menu, and it
+ * is the only one of these that is doing UX work rather than deterrence. The
+ * context menu and the drag are blocked alongside it for consistency, so the
+ * image behaves the same way under every input.
+ *
+ * None of it stops a determined person, and it is not meant to. A browser has
+ * to decode an image to show it, so a screenshot or the network tab is always
+ * available. What actually protects the library is at the edge, not here — see
+ * the note in docs/ring-builder-renders.md.
  */
 
 const HOLD_MS = 260;
@@ -126,6 +143,8 @@ export default function ZoomView({
       onPointerMove={onPointerMove}
       onPointerUp={end}
       onPointerCancel={end}
+      onContextMenu={(e) => e.preventDefault()}
+      onDragStart={(e) => e.preventDefault()}
       // `none` only while zoomed: the rest of the time the browser needs
       // pan-x back, or the carousel cannot be swiped on a phone at all.
       style={{ touchAction: zoomed ? "none" : "pan-x" }}
@@ -144,6 +163,9 @@ export default function ZoomView({
         style={{
           transform: zoomed ? `scale(${SCALE})` : "scale(1)",
           transformOrigin: origin,
+          // The one that stops iOS raising its share sheet mid-gesture.
+          WebkitTouchCallout: "none",
+          WebkitUserSelect: "none",
         }}
         className="h-full w-full select-none object-contain transition-transform duration-200 ease-out"
       />

@@ -57,12 +57,19 @@ export default function OptionRow({
   return (
     <section className="py-5">
       <div className={`flex items-baseline justify-between gap-4 ${bleed}`}>
-        <p className="t-eyebrow flex items-baseline gap-3">
+        {/* Both weighted up. The site's body weight is 300, which is right for
+            paragraphs on a dark ground and much too faint for an eleven-pixel
+            uppercase label on white — the row headings and the current value
+            are the two things a customer scans to know where they are, and at
+            300 they read as greyed out rather than as headings. */}
+        <p className="t-eyebrow flex items-baseline gap-3 font-semibold">
           {label}
-          {action && <span className="normal-case tracking-normal">{action}</span>}
+          {action && (
+            <span className="font-normal normal-case tracking-normal">{action}</span>
+          )}
         </p>
         {value && (
-          <p className="truncate text-right text-[13px] tracking-[0.02em] text-sheet-ink">
+          <p className="truncate text-right text-[13px] font-medium tracking-[0.02em] text-sheet-ink">
             {value}
           </p>
         )}
