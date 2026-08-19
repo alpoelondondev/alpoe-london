@@ -30,7 +30,7 @@ const CARDS: {
   {
     title: "Engagement & Wedding Rings",
     copy: "Bespoke settings and bands, made to your specification.",
-    href: "/jewellery/engagement-rings",
+    href: "/rings/engagement-and-wedding-rings",
     image: "/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg",
   },
   {

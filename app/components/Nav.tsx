@@ -101,7 +101,13 @@ export default function Nav({
       {/* Pinned for the whole page rather than hiding on a downward scroll:
           the bar carries the only route list, the search field and the live
           spot strip, so it has to be reachable wherever the reader is. */}
-      <nav className="fixed top-0 left-0 right-0 z-200 px-[52px] pt-6 pb-4 bg-bg/80 backdrop-blur-md border-b border-fg/[0.10] max-md:px-6 max-md:pt-5 max-md:pb-3">
+      {/* Solid, not `bg-bg/80`. The translucent bar was designed against a
+          site that was off-black the whole way down, where 80% over a dark page
+          is still dark. The ring pages are white, and the same 80% lets that
+          white up through the bar and turns the house off-black into a washed
+          out grey. A fixed bar sits over every page, so it cannot be tinted by
+          the one underneath it. */}
+      <nav className="fixed top-0 left-0 right-0 z-200 px-[52px] pt-6 pb-4 bg-bg border-b border-fg/[0.10] max-md:px-6 max-md:pt-5 max-md:pb-3">
         {/* Three equal-weight columns rather than a flex row, so the lockup is
             centred against the bar itself and not against whatever the menu
             and Book button happen to measure. The outer columns are free to
@@ -184,7 +190,7 @@ export default function Nav({
         // hand-set padding — the bar has grown twice (search row, then the
         // spot strip) and a fixed pt- went under it both times.
         <div
-          className="fixed inset-0 z-[199] overflow-y-auto bg-bg/95 backdrop-blur-md px-[52px] pb-16 max-md:px-6"
+          className="fixed inset-0 z-[199] overflow-y-auto bg-bg px-[52px] pb-16 max-md:px-6"
           style={{ paddingTop: "calc(var(--nav-h) + 24px)" }}
         >
           {/* Ruled rather than spaced: at this size a gap alone left the
