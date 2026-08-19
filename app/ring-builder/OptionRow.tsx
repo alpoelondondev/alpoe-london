@@ -33,12 +33,23 @@ export default function OptionRow({
   value,
   children,
   hint,
+  action,
   bleed = "px-6",
 }: {
   label: string;
   /** The current choice, shown beside the label rather than below the rail. */
   value?: string;
   hint?: ReactNode;
+  /**
+   * A link that belongs to the row itself, set beside its label.
+   *
+   * Origin is the only row with something genuinely worth reading elsewhere,
+   * and a paragraph of explanation under the rail is the wrong place for it —
+   * it pushes every following control down the page to say something the
+   * customer can get in one word. A link beside the label costs nothing and is
+   * where somebody looks when they want to know more.
+   */
+  action?: ReactNode;
   /** Horizontal padding for the rail's own edges — the parent's inset. */
   bleed?: string;
   children: ReactNode;
@@ -46,7 +57,10 @@ export default function OptionRow({
   return (
     <section className="py-5">
       <div className={`flex items-baseline justify-between gap-4 ${bleed}`}>
-        <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">{label}</p>
+        <p className="flex items-baseline gap-3 text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
+          {label}
+          {action && <span className="text-[10px] normal-case">{action}</span>}
+        </p>
         {value && (
           <p className="truncate text-right text-[12px] tracking-[0.04em] text-accent-deep">
             {value}

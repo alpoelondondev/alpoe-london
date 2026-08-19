@@ -149,17 +149,25 @@ export default function RingViewport({
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Capped twice over: `50vh` is the promise that this never takes more
-          than half the screen, and the pixel cap stops a tall desktop window
-          from spending all of it on one photograph. */}
-      <div className="mx-auto w-full max-w-[min(50vh,420px)] max-lg:max-w-[min(42vh,340px)]">
+      {/* On a phone the picture runs the full width of the screen and is
+          pinned, so the customer scrolls the options underneath a ring that
+          never leaves. `50vh` still caps it — full-bleed is about width, and a
+          panel that took more than half the height would leave nothing to
+          scroll to.
+
+          On desktop it sits in its own column, so it is centred and capped in
+          pixels as well: a tall window should not spend all of itself on one
+          photograph. */}
+      <div className="mx-auto w-full max-lg:max-w-none lg:max-w-[min(50vh,420px)]">
         {shown.length > 0 ? (
           <>
             <div
               ref={rail}
               onScroll={onScroll}
               aria-label="Views of your ring"
-              className="scrollbar-none flex aspect-square w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain border border-sheet-line bg-white shadow-[0_1px_3px_rgba(23,19,18,0.10)]"
+              // max-h-[50vh] is the hard half-screen rule; on a phone the
+              // square would otherwise be as tall as the screen is wide.
+              className="scrollbar-none flex aspect-square max-h-[50vh] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-white max-lg:border-y lg:border max-lg:border-sheet-line lg:border-sheet-line lg:shadow-[0_1px_3px_rgba(23,19,18,0.10)]"
             >
               {shown.map((v, i) => (
                 <div key={v.id} className="relative w-full shrink-0 snap-center">
@@ -186,7 +194,7 @@ export default function RingViewport({
             {/* Dots, and they are buttons rather than decoration — a desktop
                 visitor with a mouse has no swipe, and a rail whose only control
                 is a gesture they cannot make is a rail with two hidden thirds. */}
-            <div className="mt-2.5 flex items-center justify-center gap-2">
+            <div className="mt-2.5 flex items-center justify-center gap-2 max-lg:px-6">
               {shown.map((v, i) => (
                 <button
                   key={v.id}
@@ -212,7 +220,7 @@ export default function RingViewport({
              specification is the honest fallback: it is never wrong, and it
              visibly changes on every selection, which is the whole reason the
              panel is pinned. */
-          <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 border border-sheet-line bg-white px-6 text-center">
+          <div className="flex aspect-square max-h-[50vh] w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center max-lg:border-y lg:border lg:border-sheet-line max-lg:border-sheet-line">
             <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
               {pieceName}
             </p>
@@ -224,7 +232,7 @@ export default function RingViewport({
         )}
       </div>
 
-      <div>
+      <div className="max-lg:px-6">
         <h2 className="t-sub">{pieceName}</h2>
         <p className="mt-1 text-[12px] leading-snug text-sheet-dim">{meta}</p>
         <p className="mt-1 text-[10px] tracking-[0.16em] uppercase text-sheet-dim">

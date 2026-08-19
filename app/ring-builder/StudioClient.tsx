@@ -8,7 +8,6 @@ import RingViewport from "./RingViewport";
 import {
   CARAT_PRESETS,
   DEFAULT_CONFIG,
-  magicSizeHint,
   ORIGINS,
   QUALITIES,
   quality,
@@ -113,7 +112,6 @@ export default function StudioClient() {
   const activeQuality = quality(config.quality);
   const activeOrigin = ORIGINS.find((o) => o.id === config.origin)!;
   const specLines = ringSpecLines(config);
-  const hint = magicSizeHint(config.carat);
   const views = renderViews(config);
 
   /** A one-line note when a choice moved the other axis to accommodate it. */
@@ -208,7 +206,7 @@ export default function StudioClient() {
             the rails would scroll through the strip between the bar and the
             panel rather than behind it. */}
         <div
-          className="sticky z-20 self-start bg-sheet py-3 max-lg:px-6"
+          className="sticky z-20 self-start bg-sheet py-3 max-lg:px-0 max-lg:pt-0"
           style={{ top: "var(--nav-h)" }}
         >
           <div>
@@ -230,11 +228,7 @@ export default function StudioClient() {
             rail it is a run you flick through, and every group keeps the same
             height so the column has a rhythm. */}
         <div className="min-w-0 divide-y divide-sheet-line max-lg:border-t max-lg:border-sheet-line">
-          <OptionRow
-            label="Band"
-            value={activeBand.label}
-            hint={<p className="max-w-[56ch] t-copy">{activeBand.description}</p>}
-          >
+          <OptionRow label="Band" value={activeBand.label}>
             {BANDS.map((b) => (
               <OptionTile
                 key={b.id}
@@ -290,46 +284,13 @@ export default function StudioClient() {
             ))}
           </OptionRow>
 
-          <section className={`-mt-2 pb-5 ${GUTTER}`}>
-            <p className="max-w-[56ch] t-copy">
-              A guide only — tell us roughly where you&rsquo;d like to be and we&rsquo;ll
-              show you comparable stones either side of it. The photograph stays at one
-              carat; your millimetres are in the specification below.
-            </p>
-            {hint && (
-              <p className="t-copy mt-2 max-w-[56ch]">
-                {/* The saving is real and worth naming, so the shy weight is a
-                    control rather than a fact to act on manually — being told
-                    about a cheaper stone and then having to go and find it is a
-                    worse experience than not being told. */}
-                <span className="text-sheet-ink/72">Worth knowing — a </span>
-                <button
-                  type="button"
-                  data-haptic
-                  onClick={() => set({ ct: hint.toFixed(2) })}
-                  className="text-accent-deep underline underline-offset-4 transition hover:text-sheet-ink"
-                >
-                  {hint.toFixed(2)}ct
-                </button>
-                <span className="text-sheet-ink/72">
-                  {" "}
-                  stone looks all but identical to a {(hint + 0.1).toFixed(2)}ct and
-                  usually costs around 10% less.
-                </span>
-              </p>
-            )}
-          </section>
-
           <OptionRow
             label="Head"
             value={activeHead.label}
             hint={
-              <>
-                <p className="max-w-[56ch] t-copy">{activeHead.description}</p>
-                {adjusted && (
-                  <p className="t-copy mt-2 max-w-[56ch] !text-accent-deep">{adjusted}</p>
-                )}
-              </>
+              adjusted ? (
+                <p className="t-copy max-w-[56ch] !text-accent-deep">{adjusted}</p>
+              ) : undefined
             }
           >
             {HEADS.map((h) => {
@@ -353,15 +314,7 @@ export default function StudioClient() {
             })}
           </OptionRow>
 
-          <OptionRow
-            label="Precious metal"
-            value={activeMetal.label}
-            hint={
-              activeMetal.note ? (
-                <p className="max-w-[56ch] t-copy">{activeMetal.note}</p>
-              ) : undefined
-            }
-          >
+          <OptionRow label="Precious metal" value={activeMetal.label}>
             {METALS.map((m) => (
               <OptionTile
                 key={m.id}
@@ -378,16 +331,13 @@ export default function StudioClient() {
           <OptionRow
             label="Origin"
             value={activeOrigin.label}
-            hint={
-              <p className="max-w-[56ch] t-copy">
-                {activeOrigin.note}{" "}
-                <a
-                  href="/guides/natural-vs-lab-grown-diamonds"
-                  className="text-accent-deep underline underline-offset-4"
-                >
-                  A straight answer on the difference
-                </a>
-              </p>
+            action={
+              <a
+                href="/guides/natural-vs-lab-grown-diamonds"
+                className="text-accent-deep underline underline-offset-4"
+              >
+                Read guide
+              </a>
             }
           >
             {ORIGINS.map((o) => (
@@ -400,15 +350,7 @@ export default function StudioClient() {
             ))}
           </OptionRow>
 
-          <OptionRow
-            label="Quality"
-            value={activeQuality.label}
-            hint={
-              activeQuality.note ? (
-                <p className="max-w-[56ch] t-copy">{activeQuality.note}</p>
-              ) : undefined
-            }
-          >
+          <OptionRow label="Quality" value={activeQuality.label}>
             {QUALITIES.map((q) => (
               <Chip
                 key={q.id}
