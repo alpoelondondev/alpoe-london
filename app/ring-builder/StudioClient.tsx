@@ -277,19 +277,31 @@ export default function StudioClient() {
           className="sticky z-20 self-start bg-white pb-3 lg:pt-3 max-lg:px-0"
           style={{ top: "var(--nav-h)" }}
         >
-          <div>
-            <RingViewport
-              views={views}
-              pieceName={pieceName}
-              title={pieceTitle}
-              meta={`${activeBand.label} band · ${activeMetal.label} · ${activeOrigin.label}`}
-              note={
-                twoTone
-                  ? "Shown in the band metal — we have no two-tone photograph, but the specification carries both."
-                  : undefined
-              }
-            />
-          </div>
+          <RingViewport
+            views={views}
+            pieceName={pieceName}
+            meta={`${activeBand.label} band · ${activeMetal.label} · ${activeOrigin.label}`}
+          />
+        </div>
+
+        {/* The name of the piece, outside the sticky box on purpose.
+        
+            Everything inside that box is pinned, and a title that stays on
+            screen while the page scrolls past it stops reading as a caption for
+            the photograph and starts reading as furniture. Here it belongs to
+            the page: it sits under the picture at rest and scrolls away with
+            everything else.
+        
+            It still changes with every selection, because it is built from the
+            band and the head rather than stored. */}
+        <div className="px-[52px] pt-3 pb-6 max-lg:px-6 lg:col-start-1">
+          <h2 className="t-card text-center leading-snug lg:text-left">{pieceTitle}</h2>
+          {twoTone && (
+            <p className="mt-2 max-w-[42ch] text-center t-copy !text-sheet-ink lg:text-left">
+              Shown in the band metal. We have no two-tone photograph, but the
+              specification carries both.
+            </p>
+          )}
         </div>
 
         {/* ---- the selections ---------------------------------------------

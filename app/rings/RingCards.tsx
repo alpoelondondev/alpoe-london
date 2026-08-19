@@ -43,7 +43,7 @@ export function StyleCard({ style }: { style: RingStyle }) {
   const image = styleImage(style);
   return (
     <Link href={styleHref(style)} data-haptic className="group block" title={style.description}>
-      <span className="relative block aspect-square w-full overflow-hidden bg-white">
+      <span className="relative block aspect-square w-full overflow-hidden bg-render-ground">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element -- see lib/ring/renders.ts
           <img

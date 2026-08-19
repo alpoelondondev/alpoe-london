@@ -14,6 +14,12 @@ import { hasFailed, isReady, preload, whenIdle } from "./renderCache";
  * choosing a metal for a ring you can no longer see. Changing something and not
  * being shown the change is indistinguishable from the control being broken.
  *
+ * The name of the piece is deliberately NOT in here. Everything this component
+ * renders is pinned, and a title that stays on screen while the page scrolls
+ * past it reads as part of the furniture rather than as a caption for the
+ * photograph. It is rendered by StudioClient, below the sticky box, where it
+ * scrolls away like the rest of the page.
+ *
  * ── Size ──
  *
  * Never more than half the screen, and that is a hard rule rather than a
@@ -81,18 +87,13 @@ const VIEW_LABEL: Record<RingView, string> = {
 export default function RingViewport({
   views,
   pieceName,
-  title,
   meta,
-  note,
 }: {
   /** The three views of the current configuration, empty if we have none. */
   views: { id: RingView; label: string; url: string }[];
+  /** Only for the alt text and the no-render fallback. */
   pieceName: string;
-  /** What the piece is called, written the way it would be on a ticket. */
-  title: string;
   meta: string;
-  /** A caveat the picture cannot express — two-tone, say. */
-  note?: string;
 }) {
   const rail = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
@@ -195,7 +196,7 @@ export default function RingViewport({
           Only the picture belongs in it. The title and the dots are page
           furniture, not part of the photograph, and leaving them inside the
           band made it look like a card with a caption printed on it. */}
-      <div style={{ background: "var(--color-render-ground)" }}>
+      <div className="bg-render-ground">
         <div className="mx-auto w-full max-w-[min(32vh,268px)] lg:max-w-[min(42vh,356px)]">
           {shown.length > 0 ? (
             <div className="relative">
@@ -273,13 +274,6 @@ export default function RingViewport({
         </div>
       )}
 
-      <h2 className="t-card mt-3 text-center leading-snug max-lg:px-6">{title}</h2>
-
-      {note && (
-        <p className="mt-2 max-w-[42ch] self-center text-center t-copy max-lg:px-6 !text-sheet-ink">
-          {note}
-        </p>
-      )}
     </div>
   );
 }

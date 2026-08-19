@@ -190,7 +190,7 @@ export default function ZoomView({
       // `none` only while zoomed: the rest of the time the browser needs
       // pan-x back, or the carousel cannot be swiped on a phone at all.
       style={{ touchAction: zoomed ? "none" : "pan-x" }}
-      className="relative h-full w-full overflow-hidden"
+      className="relative h-full w-full overflow-hidden bg-render-ground"
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- see renderCache.ts */}
       <img

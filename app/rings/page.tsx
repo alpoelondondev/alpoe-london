@@ -117,7 +117,7 @@ export default function RingsHubPage() {
               {cards.map((c) => (
                 <li key={c.href}>
                   <Link href={c.href} data-haptic className="group block">
-                    <span className="relative block aspect-[4/3] w-full overflow-hidden bg-white max-lg:aspect-[16/9]">
+                    <span className="relative block aspect-[4/3] w-full overflow-hidden bg-render-ground max-lg:aspect-[16/9]">
                       {c.image ? (
                         // eslint-disable-next-line @next/next/no-img-element -- see lib/ring/renders.ts
                         <img
