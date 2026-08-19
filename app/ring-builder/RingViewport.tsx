@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { RingView } from "@/lib/ring/renders";
+import DragCarousel from "../components/DragCarousel";
+import ZoomView from "./ZoomView";
 import { hasFailed, isReady, preload, whenIdle } from "./renderCache";
 
 /**
@@ -38,6 +40,37 @@ import { hasFailed, isReady, preload, whenIdle } from "./renderCache";
  * outside the scroll port, are not fetched until the customer swipes — so the
  * two views nobody looks at cost nothing on a page whose LCP is the first.
  */
+
+/**
+ * One overlay arrow.
+ *
+ * A translucent white disc rather than a solid one: the renders are lit on a
+ * white sweep, so a solid chip would read as a hole punched in the photograph,
+ * where a wash lets the ring show through behind it.
+ */
+function Arrow({ side, onClick }: { side: "left" | "right"; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      data-haptic
+      onClick={onClick}
+      aria-label={side === "left" ? "Previous view" : "Next view"}
+      className={`absolute top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/70 text-sheet-ink/70 backdrop-blur-sm transition hover:bg-white hover:text-sheet-ink active:scale-95 ${
+        side === "left" ? "left-2" : "right-2"
+      }`}
+    >
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
+        <path
+          d={side === "left" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
 
 const VIEW_LABEL: Record<RingView, string> = {
   angled: "Angled",
@@ -161,34 +194,52 @@ export default function RingViewport({
       <div className="mx-auto w-full max-lg:max-w-none lg:max-w-[min(50vh,420px)]">
         {shown.length > 0 ? (
           <>
-            <div
-              ref={rail}
-              onScroll={onScroll}
-              aria-label="Views of your ring"
-              // max-h-[50vh] is the hard half-screen rule; on a phone the
-              // square would otherwise be as tall as the screen is wide.
-              className="scrollbar-none flex aspect-square max-h-[50vh] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-white"
-            >
-              {shown.map((v, i) => (
-                <div key={v.id} className="relative w-full shrink-0 snap-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- see renderCache.ts */}
-                  <img
-                    src={v.url}
-                    width={900}
-                    height={900}
-                    alt={`${pieceName}, ${v.label.toLowerCase()} view`}
-                    decoding="async"
-                    // The first frame is the page's LCP element, so it is eager
-                    // and prioritised; the other two are off-screen in the rail
-                    // and are not fetched until somebody swipes.
-                    loading={i === 0 ? "eager" : "lazy"}
-                    fetchPriority={i === 0 ? "high" : "low"}
-                    className={`h-full w-full object-contain transition-opacity duration-150 ${
-                      pending ? "opacity-60" : "opacity-100"
-                    }`}
-                  />
-                </div>
-              ))}
+            <div className="relative">
+              {/* The site's own DragCarousel rather than a bare scroller.
+                  Native overflow gives a phone a perfect swipe and gives a
+                  desktop nothing at all — a mouse cannot flick, so the rail
+                  reads as a still photograph unless you find the arrows. This
+                  adds click-and-drag panning and the tap haptic, and it is the
+                  same component every other rail on the site uses, so the
+                  gesture is identical wherever you meet it.
+
+                  Its trick is worth knowing: it withholds setPointerCapture on
+                  pointerdown, because capturing there silently retargets the
+                  following click to the container. Capture is taken only once
+                  movement passes 12px. */}
+              <DragCarousel
+                scrollerRef={rail}
+                onScroll={onScroll}
+                ariaLabel="Views of your ring"
+                className={`aspect-square max-h-[50vh] w-full snap-mandatory overscroll-x-contain bg-white transition-opacity duration-150 ${
+                  pending ? "opacity-60" : "opacity-100"
+                }`}
+              >
+                {shown.map((v, i) => (
+                  <div key={v.id} data-haptic className="w-full shrink-0 snap-center">
+                    <ZoomView
+                      src={v.url}
+                      alt={`${pieceName}, ${v.label.toLowerCase()} view`}
+                      eager={i === 0}
+                    />
+                  </div>
+                ))}
+              </DragCarousel>
+
+            {/* On the picture rather than beside it. A rail with no visible
+                control reads as a static image on a desktop, where there is no
+                swipe to discover — and putting the controls outside the frame
+                spends vertical space the half-screen cap cannot afford.
+
+                Hidden at the ends rather than disabled: a greyed-out arrow is
+                still a control asking to be understood, where an absent one
+                says the same thing and asks nothing. */}
+            {index > 0 && (
+              <Arrow side="left" onClick={() => goTo(index - 1)} />
+            )}
+            {index < shown.length - 1 && (
+              <Arrow side="right" onClick={() => goTo(index + 1)} />
+            )}
             </div>
 
             {/* Dots, and they are buttons rather than decoration — a desktop
@@ -205,14 +256,11 @@ export default function RingViewport({
                   aria-current={i === index}
                   className={`h-1.5 rounded-full transition-all duration-200 ${
                     i === index
-                      ? "w-5 bg-accent-deep"
+                      ? "w-5 bg-sheet-ink"
                       : "w-1.5 bg-sheet-ink/25 hover:bg-sheet-ink/45"
                   }`}
                 />
               ))}
-              <span className="ml-2 text-[9px] tracking-[0.16em] uppercase text-sheet-dim">
-                {VIEW_LABEL[(shown[index] ?? shown[0]).id]}
-              </span>
             </div>
           </>
         ) : (
@@ -232,18 +280,18 @@ export default function RingViewport({
         )}
       </div>
 
-      <div className="max-lg:px-6">
-        <h2 className="t-sub">{pieceName}</h2>
-        <p className="mt-1 text-[12px] leading-snug text-sheet-dim">{meta}</p>
-        <p className="mt-1 text-[10px] tracking-[0.16em] uppercase text-sheet-dim">
-          Price on request
-        </p>
-        {note && (
-          <p className="mt-2 max-w-[42ch] text-[11px] leading-relaxed text-accent-deep">
-            {note}
-          </p>
-        )}
-      </div>
+      {/* The piece used to be named here, with its metal and "price on
+          request" underneath. All three said what the rows below already say —
+          every rail carries its own current value, and the specification at the
+          foot of the page carries the lot. Three lines of restatement directly
+          under the picture, on a panel whose whole justification is that it
+          never takes more than half the screen.
+
+          The two-tone caveat stays, because it is the one thing here the
+          picture genuinely cannot express. */}
+      {note && (
+        <p className="max-w-[42ch] t-copy max-lg:px-6 !text-sheet-ink">{note}</p>
+      )}
     </div>
   );
 }

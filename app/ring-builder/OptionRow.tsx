@@ -57,12 +57,12 @@ export default function OptionRow({
   return (
     <section className="py-5">
       <div className={`flex items-baseline justify-between gap-4 ${bleed}`}>
-        <p className="flex items-baseline gap-3 text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
+        <p className="t-eyebrow flex items-baseline gap-3">
           {label}
-          {action && <span className="text-[10px] normal-case">{action}</span>}
+          {action && <span className="normal-case tracking-normal">{action}</span>}
         </p>
         {value && (
-          <p className="truncate text-right text-[12px] tracking-[0.04em] text-accent-deep">
+          <p className="truncate text-right text-[13px] tracking-[0.02em] text-sheet-ink">
             {value}
           </p>
         )}

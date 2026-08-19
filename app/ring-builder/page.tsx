@@ -110,7 +110,7 @@ export default function RingBuilderPage() {
               you have approved a CAD design. We handle your booking privately, as a
               one-to-one service. If you would rather start from a sketch, an heirloom
               stone or simply a conversation, that is our{" "}
-              <a href="/bespoke" className="text-accent-deep underline underline-offset-4">
+              <a href="/bespoke" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                 bespoke service
               </a>
               .

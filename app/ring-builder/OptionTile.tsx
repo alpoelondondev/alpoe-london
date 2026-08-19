@@ -63,9 +63,9 @@ export default function OptionTile({
       // press deserves a tick — it only does that automatically for links, and
       // a rail of buttons feels dead under the thumb without it.
       data-haptic
-      className={`group flex w-[86px] shrink-0 snap-start flex-col items-center gap-1.5 border px-1.5 py-2 transition-[border-color,transform,background-color,opacity] duration-200 max-sm:w-[76px] ${
+      className={`group flex w-[92px] shrink-0 snap-start flex-col items-center gap-1.5 border px-1.5 py-2 transition-[border-color,transform,background-color,opacity] duration-200 max-sm:w-[80px] ${
         active
-          ? "border-accent-deep bg-accent/[0.10]"
+          ? "border-sheet-ink shadow-[inset_0_0_0_1px_var(--color-sheet-ink)]"
           : unavailable
             ? "border-sheet-line opacity-40 hover:opacity-70"
             : "border-sheet-line hover:border-sheet-ink/40 active:scale-[0.97]"
@@ -90,7 +90,7 @@ export default function OptionTile({
         )}
       </span>
       <span
-        className={`block text-center text-[8px] leading-[1.25] tracking-[0.08em] uppercase transition ${
+        className={`block text-center text-[10px] leading-[1.2] tracking-[0.06em] uppercase transition ${
           active ? "text-sheet-ink" : "text-sheet-ink/60 group-hover:text-sheet-ink/90"
         }`}
       >

@@ -228,8 +228,15 @@ html {
   color: var(--color-sheet-ink);
 }
 
+/* Ink rather than gold, unlike the dark site.
+   
+   The rose accent exists to lift a label off an off-black ground. On the ring
+   builder's white it does the opposite: every row label, every current value
+   and every note came out a warm brown that read as decoration competing with
+   the photographs, when all any of them do is tell you where you are. Black
+   labels disappear into the page and let the ring be the only colour on it. */
 .on-sheet .t-eyebrow {
-  color: var(--color-accent-deep);
+  color: var(--color-sheet-ink);
 }
 
 .on-sheet .t-copy {

@@ -280,9 +280,9 @@ export default function StudioClient() {
                 data-haptic
                 onClick={() => set({ ct: String(ct) })}
                 aria-pressed={ct === config.carat}
-                className={`flex h-[52px] w-[74px] shrink-0 snap-start items-center justify-center border font-serif text-[15px] tabular-nums transition-[border-color,transform,background-color] duration-200 max-sm:w-[66px] ${
+                className={`flex h-[52px] w-[74px] shrink-0 snap-start items-center justify-center border font-serif text-[16px] tabular-nums transition-[border-color,transform,background-color] duration-200 max-sm:w-[66px] ${
                   ct === config.carat
-                    ? "border-accent-deep bg-accent/[0.10] text-sheet-ink"
+                    ? "border-sheet-ink text-sheet-ink"
                     : "border-sheet-line text-sheet-ink/70 hover:border-sheet-ink/40 active:scale-[0.97]"
                 }`}
               >
@@ -296,7 +296,7 @@ export default function StudioClient() {
             value={activeHead.label}
             hint={
               adjusted ? (
-                <p className="t-copy max-w-[56ch] !text-accent-deep">{adjusted}</p>
+                <p className="t-copy max-w-[56ch] !text-sheet-ink">{adjusted}</p>
               ) : undefined
             }
           >
@@ -341,7 +341,7 @@ export default function StudioClient() {
             action={
               <a
                 href="/guides/natural-vs-lab-grown-diamonds"
-                className="text-accent-deep underline underline-offset-4"
+                className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
               >
                 Read guide
               </a>
@@ -372,14 +372,14 @@ export default function StudioClient() {
           {/* ---- finishing ------------------------------------------------ */}
           <section className={`grid grid-cols-2 gap-6 py-7 max-sm:grid-cols-1 ${GUTTER}`}>
             <div>
-              <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
+              <p className="t-eyebrow">
                 UK ring size
               </p>
               <select
                 value={config.size}
                 onChange={(e) => set({ size: e.target.value })}
                 aria-label="UK ring size"
-                className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[13px] text-sheet-ink outline-none transition focus:border-accent-deep"
+                className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[14px] text-sheet-ink outline-none transition focus:border-sheet-ink"
               >
                 <option value={SIZE_UNKNOWN} className="bg-white">
                   I&rsquo;m not sure — measure me in store
@@ -405,7 +405,7 @@ export default function StudioClient() {
             </div>
 
             <div>
-              <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
+              <p className="t-eyebrow">
                 Engraving — optional
               </p>
               <input
@@ -415,9 +415,9 @@ export default function StudioClient() {
                 onChange={(e) => set({ engraving: e.target.value })}
                 placeholder="e.g. Forever, 12.09.26"
                 aria-label="Engraving"
-                className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[13px] text-sheet-ink outline-none transition placeholder:text-sheet-dim/60 focus:border-accent-deep"
+                className="mt-3 w-full border border-sheet-line bg-transparent px-3 py-2.5 text-[14px] text-sheet-ink outline-none transition placeholder:text-sheet-dim/60 focus:border-sheet-ink"
               />
-              <p className="mt-2 flex justify-between text-[12px] text-sheet-dim">
+              <p className="t-copy mt-2 flex justify-between">
                 <span>Set inside the shank, where the hallmark goes.</span>
                 <span>{config.engraving.length}/30</span>
               </p>
@@ -426,17 +426,17 @@ export default function StudioClient() {
 
           {/* ---- specification -------------------------------------------- */}
           <section className={`py-7 ${GUTTER}`}>
-            <p className="text-[10px] tracking-[0.22em] uppercase text-sheet-dim">
+            <p className="t-eyebrow">
               Your specification
             </p>
 
             <dl className="mt-4 flex flex-col divide-y divide-sheet-line">
               {specLines.map((line) => (
-                <div key={line.label} className="flex gap-5 py-2 text-[13px]">
+                <div key={line.label} className="t-copy flex gap-5 py-2">
                   <dt className="w-28 shrink-0 tracking-[0.06em] text-sheet-dim">
                     {line.label}
                   </dt>
-                  <dd className="text-sheet-ink">{line.value}</dd>
+                  <dd className="!text-sheet-ink">{line.value}</dd>
                 </div>
               ))}
             </dl>
@@ -458,7 +458,7 @@ export default function StudioClient() {
               </a>
             </div>
 
-            <p className="mt-4 max-w-[58ch] text-[12px] leading-relaxed text-sheet-dim">
+            <p className="t-copy mt-4 max-w-[58ch]">
               Every dimension above is real, but the photograph is an illustration — your
               design is agreed with you before anything is cut, and hand-set in London.
               We handle your booking privately, as a one-to-one service at our Hatton
@@ -495,7 +495,7 @@ function Chip({
       aria-pressed={active}
       className={`flex w-[170px] shrink-0 snap-start flex-col justify-center gap-1.5 border px-4 py-3.5 text-left transition-[border-color,transform,background-color] duration-200 max-sm:w-[150px] ${
         active
-          ? "border-accent-deep bg-accent/[0.10]"
+          ? "border-sheet-ink"
           : "border-sheet-line hover:border-sheet-ink/40 active:scale-[0.98]"
       }`}
     >
