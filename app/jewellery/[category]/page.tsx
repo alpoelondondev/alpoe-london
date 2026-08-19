@@ -110,35 +110,6 @@ export default async function JewelleryCategoryPage(
           />
         )}
 
-        {/* The Rings category is statement, eternity, signet and cocktail
-            pieces, which is not what most people mean when they arrive looking
-            for a ring. Rather than redirect the page away from the products
-            that live in it, it points at the three that are usually wanted. */}
-        {c.slug === "rings" && (
-          <section className="px-[52px] pt-6 max-md:px-6">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-4">
-              Looking for
-            </p>
-            <ul className="flex flex-wrap gap-3">
-              {[
-                { name: "Engagement Rings", href: "/rings/engagement-and-wedding-rings" },
-                { name: "Wedding Rings", href: "/rings/engagement-and-wedding-rings#wedding-rings" },
-                { name: "Ready to Ship Rings", href: "/rings/ready-to-ship" },
-                { name: "Ring Size Guide", href: "/ring-size-guide" },
-              ].map((l) => (
-                <li key={l.href + l.name}>
-                  <Link
-                    href={l.href}
-                    className="inline-flex border border-fg/[0.18] px-5 py-2.5 text-[11px] font-semibold tracking-[0.14em] uppercase transition hover:border-accent hover:text-accent"
-                  >
-                    {l.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
         <section className="px-[52px] py-4 max-md:px-6">
           <Breadcrumbs
             items={[
@@ -152,7 +123,23 @@ export default async function JewelleryCategoryPage(
           {films.length ? (
             // No Filters here: they filter stock and material off the product
             // rows, and there are none left on a film page to filter.
-            <CategoryFilms films={films} />
+            <>
+              <CategoryFilms films={films} />
+              {/* Under the films rather than above them. Somebody who has
+                  watched the footage is the one most likely to want a finished
+                  ring, and a row of shortcuts before the films asked them to
+                  choose before they had seen anything. */}
+              {c.slug === "rings" && (
+                <div className="mt-12 flex justify-center max-md:mt-9">
+                  <Link
+                    href="/rings/ready-to-ship"
+                    className="inline-flex items-center justify-center border border-fg/[0.22] px-8 py-3.5 text-[11px] font-semibold tracking-[0.16em] uppercase transition hover:border-accent hover:text-accent"
+                  >
+                    View more ready to ship rings
+                  </Link>
+                </div>
+              )}
+            </>
           ) : (
             <>
               <Filters materialOptions={materialOptionsFor(all)} />
