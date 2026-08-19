@@ -71,7 +71,7 @@ export default function EngagementAndWeddingRingsPage() {
         <ScrollReveal>
           <section
             id="engagement-rings"
-            className="scroll-mt-[var(--nav-h)] px-[52px] pb-14 max-md:px-6 max-md:pb-10"
+            className="scroll-mt-8 px-[52px] pb-14 max-md:px-6 max-md:pb-10"
           >
             <StyleGrid styles={styles} />
           </section>
@@ -93,7 +93,7 @@ export default function EngagementAndWeddingRingsPage() {
           <ScrollReveal>
             <section
               id="ready-to-ship"
-              className="scroll-mt-[var(--nav-h)] border-t border-sheet-line py-12 max-md:py-9"
+              className="scroll-mt-8 border-t border-sheet-line py-12 max-md:py-9"
             >
               <div className="flex items-baseline justify-between gap-6 px-[52px] max-md:px-6">
                 <div>

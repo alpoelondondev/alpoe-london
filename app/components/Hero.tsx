@@ -254,7 +254,7 @@ export default function Hero() {
       // + the loop, which is its logo height plus the 10% hover padding either
       // side (30 * 1.2 = 36). Retune both if that logo height changes; the
       // min-h keeps the lockup breathing on a short laptop.
-      className="h-[calc(92svh-70px)] min-h-[600px] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
+      className="h-[calc(92svh-var(--nav-h))] min-h-[440px] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
       {/* Decorative footage, full-bleed: silent, uninteractive, and no
           user-agent transport controls. It runs behind the mark now rather
@@ -308,7 +308,7 @@ export default function Hero() {
           section's own box — half of which the bar sits over. */}
       <div
         className="absolute inset-x-0 z-3 flex flex-col items-center justify-center pointer-events-none"
-        style={{ top: "var(--nav-h)", bottom: LOCKUP_GROUP_LIFT }}
+        style={{ top: 0, bottom: LOCKUP_GROUP_LIFT }}
       >
         {markWidth ? (
           <>

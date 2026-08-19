@@ -250,10 +250,7 @@ export default function StudioClient() {
     
        `on-sheet` still does the typography: the type roles carry their own
        colour and would otherwise be cream-on-white. See globals.css. */
-    // `pt-[var(--nav-h)]` rather than `clears-nav`, which adds 32px on top of
-    // the bar's height — and that 32px was white sitting above the pinned grey
-    // strip. The strip carries its own breathing room now, in its own colour.
-    <div className="on-sheet bg-white pt-[var(--nav-h)]">
+    <div className="on-sheet bg-white">
       {/* Block on a phone, two columns from lg up — and the switch is not
           cosmetic. A grid item's containing block is its own grid area, so in a
           single-column grid the pinned viewport gets an area exactly its own
@@ -275,8 +272,9 @@ export default function StudioClient() {
             it is pinned — it changes on each one, and a control whose effect
             has scrolled out of sight is indistinguishable from a broken one.
 
-            `--nav-h` is the fixed bar's measured height, kept in one place so
-            this cannot drift the next time a row is added to the bar. The sheet
+            It sticks to the top of the viewport, not to an offset: the bar
+            scrolls away with the page now, so there is nothing above to clear.
+            The sheet
             ground and the padding are on the sticky box itself: without them
             the rails would scroll through the strip between the bar and the
             panel rather than behind it. */}
@@ -289,7 +287,7 @@ export default function StudioClient() {
           // grey ends where the photograph does rather than carrying a margin
           // above and below it.
           className="sticky z-20 self-start bg-render-ground max-lg:px-0"
-          style={{ top: "var(--nav-h)" }}
+          style={{ top: 0 }}
         >
           <RingViewport
             views={views}
