@@ -71,8 +71,13 @@
      `mix-blend-multiply` on the image removes the conflict: multiply keeps
      whichever is darker, so the image's near-white ground disappears into
      whatever this is set to while the ring, being darker than both, is
-     untouched. So this can be any light grey, and the picture takes it. */
-  --color-render-ground: #f1f1f1;
+     untouched. So this can be any light grey, and the picture takes it.
+     
+     That is the only knob worth turning here. Darker reads as more of a surface
+     and lifts the metal off it; too dark and multiply starts eating the ring's
+     own highlights, since those are near-white too. Around #E5 is where that
+     begins to show. */
+  --color-render-ground: #ebebeb;
 
   --color-sheet: #e9e3de;
   --color-sheet-panel: #fbf9f7;

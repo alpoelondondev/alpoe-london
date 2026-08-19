@@ -285,7 +285,10 @@ export default function StudioClient() {
           // white one. It was `bg-white` with `pb-3 lg:pt-3`, so the band had
           // white above and below it and read as a framed panel rather than as
           // a band of the page.
-          className="sticky z-20 self-start bg-render-ground py-5 max-lg:px-0 lg:py-6"
+          // No vertical padding. The picture defines the row's height, so the
+          // grey ends where the photograph does rather than carrying a margin
+          // above and below it.
+          className="sticky z-20 self-start bg-render-ground max-lg:px-0"
           style={{ top: "var(--nav-h)" }}
         >
           <RingViewport

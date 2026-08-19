@@ -259,7 +259,7 @@ export default function RingViewport({
 
       {/* ---- below the band, on the page ---------------------------------- */}
       {shown.length > 0 && (
-        <div className="mt-3 flex items-center justify-center gap-2 pb-3 max-lg:px-6">
+        <div className="mt-3 flex items-center justify-center gap-2 max-lg:px-6">
           {shown.map((v, i) => (
             <button
               key={v.id}
