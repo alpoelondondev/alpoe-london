@@ -3,8 +3,8 @@ import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
 import Footer from "../../components/Footer";
 import ScrollReveal from "../../components/ScrollReveal";
-import { ProductRingCard, StyleGrid } from "../RingCards";
-import { getJewelleryByCategory, photosFirst, productUrl } from "@/lib/products";
+import { CardRail, RAIL_ITEM, ReadyToShipCard, StyleGrid } from "../RingCards";
+import { collectionPieces } from "@/lib/rings/collection";
 import { ringStyles, styleHref, styleTitle } from "@/lib/rings/styles";
 import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, collectionLd } from "@/lib/seo";
@@ -31,7 +31,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function EngagementAndWeddingRingsPage() {
   const styles = ringStyles();
-  const bands = getJewelleryByCategory("wedding-rings").sort(photosFirst);
+  const pieces = collectionPieces();
   const renders = rendersOrigin();
 
   return (
@@ -77,42 +77,47 @@ export default function EngagementAndWeddingRingsPage() {
           </section>
         </ScrollReveal>
 
-        {/* ---- wedding bands ------------------------------------------------
-            Below the styles rather than on a page of their own, because a
-            wedding band is bought against an engagement ring and has to be
-            shaped to it. These are stocked products with prices, so the cards
-            go to their own pages: everything above is configured, everything
-            here is bought. */}
-        {bands.length > 0 && (
+        {/* ---- ready to ship ------------------------------------------------
+            A rail rather than a grid, and it is a teaser rather than the whole
+            set: these are finished pieces we hold, which is a different offer
+            from the styles above, and somebody who has just scrolled fifteen
+            made to order rings is exactly the person who might rather have one
+            this week. The full set has its own page.
+
+            The wedding bands that were here have gone back to the catalogue.
+            Every image we own is an engagement ring with a centre stone, so
+            there was nothing honest to put on those cards, and a grid of
+            hairline placeholders under a heading is worse than not raising the
+            subject on a page that cannot yet illustrate it. */}
+        {pieces.length > 0 && (
           <ScrollReveal>
             <section
-              id="wedding-rings"
-              className="scroll-mt-[var(--nav-h)] border-t border-sheet-line px-[52px] py-12 max-md:px-6 max-md:py-9"
+              id="ready-to-ship"
+              className="scroll-mt-[var(--nav-h)] border-t border-sheet-line py-12 max-md:py-9"
             >
-              <div className="flex items-baseline justify-between gap-6">
+              <div className="flex items-baseline justify-between gap-6 px-[52px] max-md:px-6">
                 <div>
-                  <h2 className="t-sub">Wedding Rings &amp; Bands</h2>
+                  <h2 className="t-sub">Ready to Ship Rings</h2>
                   <p className="mt-2 max-w-[58ch] t-copy">
-                    Court and D-shape profiles, plain and diamond set, in platinum and
-                    18ct gold. A band has to sit flush against the ring it is worn with,
-                    so bring the engagement ring in and we will fit it.
+                    Finished pieces we hold rather than make to order, so they can be
+                    sized and sent far sooner than a commission.
                   </p>
                 </div>
                 <Link
-                  href="/jewellery/wedding-rings"
+                  href="/rings/ready-to-ship"
                   className="t-eyebrow shrink-0 font-semibold whitespace-nowrap underline underline-offset-4 transition hover:text-accent-deep"
                 >
                   See all
                 </Link>
               </div>
 
-              <ul className="mt-8 grid grid-cols-3 gap-x-8 gap-y-10 max-lg:grid-cols-2 max-md:gap-x-4 max-md:gap-y-8">
-                {bands.map((p) => (
-                  <li key={p.slug}>
-                    <ProductRingCard product={p} />
-                  </li>
+              <CardRail label="Ready to ship rings">
+                {pieces.map((piece) => (
+                  <div key={piece.id} className={RAIL_ITEM}>
+                    <ReadyToShipCard piece={piece} />
+                  </div>
                 ))}
-              </ul>
+              </CardRail>
             </section>
           </ScrollReveal>
         )}
@@ -135,10 +140,7 @@ export default function EngagementAndWeddingRingsPage() {
                 description:
                   "Engagement ring styles made to order by Alpoe London in Hatton Garden, with wedding rings and bands to match.",
                 path: PATH,
-                products: [
-                  ...styles.map((s) => ({ title: styleTitle(s), url: styleHref(s) })),
-                  ...bands.map((p) => ({ title: p.title, url: productUrl(p) })),
-                ],
+                products: styles.map((s) => ({ title: styleTitle(s), url: styleHref(s) })),
               }),
             ]),
           ),
