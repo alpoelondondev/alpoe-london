@@ -67,6 +67,15 @@ const MOVE_CANCELS_PX = 10;
  * 1.26x is what makes the worst-case ring meet the edges. Anything more clips
  * one, and the figure comes from the measurement rather than from taste.
  *
+ * It is applied by LAYOUT — the image is sized to 126% of the frame and offset
+ * — rather than by `transform: scale()`. That distinction is the whole quality
+ * of the picture. A transform rasterises the element at its layout size and
+ * then stretches the resulting bitmap: at a 304px frame on a 2x screen the
+ * browser was resampling the 900px source down to 608 device pixels and then
+ * blowing that up by 26%, which is a visible softening of exactly the facets
+ * people are looking at. Sizing the element instead means the browser resamples
+ * the source once, straight to the size it will actually paint.
+ *
  * The ring's bounding box is 1.02:1 — square, in other words — which is why
  * the frame is square too. A wider frame cannot be filled by a square subject
  * without either clipping it or leaving side margin, so the way to spend less
@@ -74,8 +83,18 @@ const MOVE_CANCELS_PX = 10;
  */
 const FILL = 1.26;
 
-/** Multiplied on top of FILL, not instead of it. */
+/** The magnifier, on top of the fill. A transform is fine here: it is transient
+ *  and a moving magnifier is judged on responsiveness rather than sharpness. */
 const ZOOM = 2.0;
+
+/**
+ * Where the 126% image sits so the ring lands centred.
+ *
+ * The content's midpoint is 51% across and 48% down, not 50/50, so centring the
+ * image would not centre the ring. These are `50 - centre * FILL`.
+ */
+const OFFSET_X = 50 - 51 * FILL; // -14.3%
+const OFFSET_Y = 50 - 48 * FILL; // -10.5%
 
 /** Short tap, matching DragCarousel's. Android only; silently ignored elsewhere. */
 function haptic() {

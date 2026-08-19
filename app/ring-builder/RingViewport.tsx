@@ -196,10 +196,19 @@ export default function RingViewport({
 
           This is what the fill scale bought. A fifth of every frame used to be
           white sweep, so a 390px panel on a phone was showing about 300px of
-          ring; now the ring meets the edges, and a 36vh panel shows the same
-          300px in a quarter less room. Smaller box, same ring, more of the page
-          left for the controls it exists to serve. */}
-      <div className="mx-auto w-full max-w-[min(36vh,320px)]">
+          ring; now the ring meets the edges, and a 42vh panel shows appreciably
+          more ring than the old 50vh did while still leaving the page to the
+          controls the panel exists to serve.
+
+          356px is not a round number, it is the largest the renders actually
+          support. The fill scale means a panel of width W asks for W x 1.26
+          CSS pixels of image, so a 2x screen wants W x 2.52 device pixels —
+          and 900 / 2.52 is 357. Above that the browser is upscaling a 900px
+          render and the facets go soft, which is the one thing worth protecting
+          on a photograph of a diamond.
+
+          Raising it further is a re-conversion at 1200px, not a CSS change. */}
+      <div className="mx-auto w-full max-w-[min(42vh,356px)]">
         {shown.length > 0 ? (
           <>
             <div className="relative">
