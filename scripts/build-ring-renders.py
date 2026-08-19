@@ -77,11 +77,29 @@ SRC = os.path.expanduser("~/Desktop/Rings-Organised")
 OUT = os.path.expanduser("~/Desktop/Rings-Web")
 
 # Concurrency, and it is deliberately far above the core count. Encoding is
-# ~30ms of CPU; faulting a file in from iCloud is ~500ms of waiting, so the run
-# is network-bound and threads mostly sleep. Measured on this library: 8
-# threads is 539ms/file, 16 is 501ms, 48 is 190ms — a 4.5 hour job becomes a
-# 1.5 hour one. Beyond 48 iCloud starts throttling and it stops helping.
-JOBS_CLOUD = 48
+# ~30ms of CPU; faulting a file in from iCloud is hundreds of milliseconds of
+# waiting, so the run is network-bound and the threads mostly sleep. The
+# converter sits at 0% CPU throughout.
+#
+# The number is worth measuring rather than reasoning about, and the measuring
+# is worth doing GENTLY, which is the lesson here. A burst test at 48 / 96 /
+# 160 threads produced this:
+#
+#     48 threads   49.2s per 96 files
+#     96 threads   19.1s per 96 files   <- apparently best
+#    160 threads   46.4s per 96 files
+#
+# and then, a few minutes later, iCloud rate-limited the machine so hard that
+# individual reads went from 0.2s to between 9 and 35 seconds and throughput
+# fell to nothing. The 96-thread figure was not a sustainable rate, it was the
+# last of the allowance being spent.
+#
+# So: a modest, steady number. iCloud throttles bursts and the throttle decays
+# with time rather than with backing off mid-request, which means a slow run
+# that never trips it finishes sooner than a fast one that does. The connection
+# here measures 17 Mbps and iCloud never offered more than about a sixth of it,
+# so there was never much to win by pushing.
+JOBS_CLOUD = 16
 
 # 2x the viewport's 420px cap, plus headroom. Raising this is the one knob that
 # costs real bytes — it is roughly quadratic.
@@ -98,10 +116,19 @@ QUALITY = 75
 METHOD = 4
 
 
+LOCAL_ONLY = False
+
+
 def convert(job):
     src, dst = job
     try:
         st = os.stat(src)
+        # Reading a dataless file faults it in from iCloud, which is the whole
+        # mechanism this script relies on — and exactly what must not happen
+        # when the service is throttling or a bulk download is already running.
+        # Skipping banks the work that is free without adding to the pressure.
+        if LOCAL_ONLY and (st.st_flags & SF_DATALESS):
+            return ("cloud", 0)
         if os.path.exists(dst) and os.path.getmtime(dst) >= st.st_mtime:
             return ("skip", os.path.getsize(dst))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
@@ -113,6 +140,23 @@ def convert(job):
         return ("done", os.path.getsize(dst))
     except Exception as exc:  # noqa: BLE001 - one bad file must not kill the run
         return ("fail", f"{src}: {exc}")
+
+
+# Stop before the disk does. Converting into a nearly-full volume does not fail
+# once, it fails thousands of times: the run that hit this produced 2,040 errors
+# in one band and then four more bands of 2,142 instant failures each, because
+# every worker kept trying. Worse, macOS itself needs headroom — below about a
+# gigabyte, applications start failing to save.
+#
+# One band of output is roughly 45 MB and one band of source about 190 MB, so a
+# gigabyte is a comfortable floor with room for whatever else the machine is
+# doing.
+MIN_FREE_BYTES = 1_000_000_000
+
+
+def free_bytes(path):
+    st = os.statvfs(path)
+    return st.f_bavail * st.f_frsize
 
 
 def evict(folder):
@@ -153,12 +197,22 @@ def main():
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--jobs", type=int, default=JOBS_CLOUD)
     ap.add_argument(
+        "--local-only",
+        action="store_true",
+        help="convert only files already on disk, skipping anything still in "
+             "iCloud — safe to run while a download is in progress or the "
+             "service is throttling",
+    )
+    ap.add_argument(
         "--stream",
         action="store_true",
         help="download, convert and evict one band at a time — for a full disk "
              "or a library that lives in iCloud",
     )
     args = ap.parse_args()
+
+    global LOCAL_ONLY
+    LOCAL_ONLY = args.local_only
 
     if not os.path.isdir(args.src):
         sys.exit(f"source library not found: {args.src}")
@@ -217,12 +271,23 @@ def stream(args, jobs):
             print(f"[{n}/{len(bands)}] {band} — already done", flush=True)
             continue
 
+        free = free_bytes(args.out)
+        if free < MIN_FREE_BYTES:
+            print(
+                f"\nStopping: {free / 1e9:.1f} GB free, need at least "
+                f"{MIN_FREE_BYTES / 1e9:.1f} GB.\n"
+                f"Free some space and re-run — everything converted so far is kept.",
+                flush=True,
+            )
+            break
+
         t0 = time.time()
         with ThreadPoolExecutor(max_workers=args.jobs) as pool:
             results = list(pool.map(convert, outstanding))
 
         ok = [r for r in results if r[0] in ("done", "skip")]
         bad = [r[1] for r in results if r[0] == "fail"]
+        in_cloud = sum(1 for r in results if r[0] == "cloud")
         total_bytes += sum(r[1] for r in ok)
         converted += len(ok)
         failed += len(bad)
@@ -230,12 +295,14 @@ def stream(args, jobs):
         el = time.time() - t0
         print(
             f"[{n}/{len(bands)}] {band} — {len(ok)}/{len(outstanding)} in {el / 60:.1f} min"
+            + (f", {in_cloud} still in iCloud" if in_cloud else "")
             + (f", {len(bad)} failed" if bad else ""),
             flush=True,
         )
         for e in bad[:3]:
             print(f"    ! {e}", flush=True)
-        evict(folder)
+        if not LOCAL_ONLY:
+            evict(folder)
 
     print(
         f"\n{converted} renders, {total_bytes / 1e6:.0f} MB in {args.out}"

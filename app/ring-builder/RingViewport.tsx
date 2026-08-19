@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { RingView } from "@/lib/ring/renders";
-import { isReady, preload, whenIdle } from "./renderCache";
+import { hasFailed, isReady, preload, whenIdle } from "./renderCache";
 
 /**
  * The ring, held on screen for the whole of the studio.
@@ -94,6 +94,17 @@ export default function RingViewport({
     }
     setPending(true);
     preload(lead, "high").then(() => {
+      // Missing from the bucket. Falling back to the specification card is the
+      // only honest option: it is never wrong, whereas a broken-image icon
+      // tells the customer the site is broken rather than that one photograph
+      // is absent.
+      if (hasFailed(lead)) {
+        if (wanted.current === views) {
+          setShown([]);
+          setPending(false);
+        }
+        return;
+      }
       // A later selection may have overtaken this one mid-flight. Dropping the
       // stale result is what stops a slow render landing on top of a fast one
       // the customer picked afterwards.

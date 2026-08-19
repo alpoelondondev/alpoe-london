@@ -47,9 +47,26 @@ const cache = new Map<string, Promise<void>>();
  */
 const settled = new Set<string>();
 
+/**
+ * URLs that could not be fetched at all.
+ *
+ * A render is missing when the bucket does not have it — a combination that
+ * never made it into the upload, or a hand-edited URL. The viewport needs to
+ * know the difference between "not ready yet" and "will never be ready",
+ * because the first means wait and the second means show something else. Left
+ * unhandled, a 404 paints the browser's broken-image icon, which is worse than
+ * any fallback we could choose.
+ */
+const failed = new Set<string>();
+
 /** Already decoded, so a swap to it can happen in this frame. */
 export function isReady(url: string): boolean {
   return settled.has(url);
+}
+
+/** Tried and could not be fetched. */
+export function hasFailed(url: string): boolean {
+  return failed.has(url);
 }
 
 /**
@@ -79,16 +96,21 @@ export function preload(url: string, priority: "low" | "high" = "low"): Promise<
       settled.add(url);
       resolve();
     };
+    const gone = () => {
+      failed.add(url);
+      resolve();
+    };
     img
       .decode()
       .then(done)
       .catch(() => {
-        // Safari has historically rejected decode() for images that load fine.
-        // Fall back to the load event rather than treating it as a failure.
+        // Safari has historically rejected decode() for images that load fine,
+        // so a rejection is not itself proof of failure — check whether the
+        // bytes actually arrived before giving up on the URL.
         if (img.complete && img.naturalWidth > 0) done();
         else {
           img.onload = done;
-          img.onerror = () => resolve();
+          img.onerror = gone;
         }
       });
   });
