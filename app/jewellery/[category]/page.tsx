@@ -4,6 +4,7 @@ import SiteHeader from "../../components/SiteHeader";
 import Footer from "../../components/Footer";
 import WhatsAppButton from "../../components/WhatsAppButton";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import Link from "next/link";
 import BrandHero from "../../components/BrandHero";
 import Filters from "../../components/Filters";
 import ProductGrid from "../../components/ProductGrid";
@@ -95,6 +96,35 @@ export default async function JewelleryCategoryPage(
       <SiteHeader />
       <main>
         <BrandHero eyebrow="Jewellery" title={c.name} copy={c.heritage} />
+        {/* The Rings category is statement, eternity, signet and cocktail
+            pieces, which is not what most people mean when they arrive looking
+            for a ring. Rather than redirect the page away from the products
+            that live in it, it points at the three that are usually wanted. */}
+        {c.slug === "rings" && (
+          <section className="px-[52px] pt-6 max-md:px-6">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-4">
+              Looking for
+            </p>
+            <ul className="flex flex-wrap gap-3">
+              {[
+                { name: "Engagement Rings", href: "/rings/engagement-and-wedding-rings" },
+                { name: "Wedding Rings", href: "/rings/engagement-and-wedding-rings#wedding-rings" },
+                { name: "Ready to Ship Rings", href: "/rings/ready-to-ship" },
+                { name: "Ring Size Guide", href: "/ring-size-guide" },
+              ].map((l) => (
+                <li key={l.href + l.name}>
+                  <Link
+                    href={l.href}
+                    className="inline-flex border border-fg/[0.18] px-5 py-2.5 text-[11px] font-semibold tracking-[0.14em] uppercase transition hover:border-accent hover:text-accent"
+                  >
+                    {l.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="px-[52px] py-4 max-md:px-6">
           <Breadcrumbs
             items={[

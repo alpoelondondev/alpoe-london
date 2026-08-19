@@ -125,7 +125,7 @@ export default function Footer() {
               {featuredCategories.map((c) => (
                 <li key={c.slug}>
                   <Link
-                    href={`/jewellery/${c.slug}`}
+                    href={c.href ?? `/jewellery/${c.slug}`}
                     className="text-[13px] text-fg/55 hover:text-blush transition-colors"
                   >
                     {c.name}

@@ -53,7 +53,7 @@ export default async function SiteHeader() {
     })),
     ...JEWELLERY_CATEGORIES.map((c) => ({
       name: c.name,
-      url: `/jewellery/${c.slug}`,
+      url: c.href ?? `/jewellery/${c.slug}`,
       kind: "Category" as const,
     })),
   ];

@@ -59,11 +59,29 @@ export default function JewelleryIndex() {
               Browse by Category
             </p>
           </ScrollReveal>
+          {/* Ready to Ship is not a product category — those pieces are not in
+              the catalogue — but somebody browsing jewellery categories is
+              exactly who wants to know a finished ring can go out this week, so
+              it takes a card alongside them. */}
           <ul className="grid grid-cols-12 gap-4 max-md:gap-3 auto-rows-fr">
-            {JEWELLERY_CATEGORIES.map((c) => (
-              <li key={c.slug} className="col-span-4 max-md:col-span-6 flex">
+            {[
+              ...JEWELLERY_CATEGORIES.map((c) => ({
+                key: c.slug,
+                name: c.name,
+                heritage: c.heritage,
+                href: c.href ?? `/jewellery/${c.slug}`,
+              })),
+              {
+                key: "ready-to-ship",
+                name: "Ready to Ship Rings",
+                heritage:
+                  "Finished engagement rings we hold rather than make to order, sized and sent far sooner than a commission.",
+                href: "/rings/ready-to-ship",
+              },
+            ].map((c) => (
+              <li key={c.key} className="col-span-4 max-md:col-span-6 flex">
                 <Link
-                  href={`/jewellery/${c.slug}`}
+                  href={c.href}
                   className="flex flex-col justify-between gap-3 w-full border border-fg/[0.14] hover:border-accent/60 hover:bg-fg/[0.04] transition p-5 min-h-[180px]"
                 >
                   <p className="font-serif text-[22px] tracking-[0.02em] leading-none">{c.name}</p>

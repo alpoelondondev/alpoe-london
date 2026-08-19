@@ -89,15 +89,28 @@ export const JEWELLERY_CATEGORIES: {
   slug: JewelleryCategorySlug;
   name: string;
   heritage: string;
+  /**
+   * Where the category's card should actually send someone, when that is not
+   * its own catalogue page.
+   *
+   * Engagement and wedding rings are the case this exists for. They are still
+   * product categories — pieces live in them and hang their URLs off them, so
+   * the slugs cannot go — but the page a customer wants for either is the
+   * builder's, not a list of two items. The slug keeps the products; this sends
+   * the person.
+   */
+  href?: string;
 }[] = [
   {
     slug: "engagement-rings",
+    href: "/rings/engagement-and-wedding-rings",
     name: "Engagement Rings",
     heritage:
       "Bespoke diamond engagement rings designed and crafted in Hatton Garden. Round brilliant, oval, emerald, cushion and pear-cut centre stones set in platinum or 18ct gold.",
   },
   {
     slug: "wedding-rings",
+    href: "/rings/engagement-and-wedding-rings",
     name: "Wedding Rings & Bands",
     heritage:
       "Men's and women's wedding bands — plain, diamond-set, court-profile and D-shape — in platinum, 18ct white, yellow and rose gold.",
@@ -130,7 +143,7 @@ export const JEWELLERY_CATEGORIES: {
     slug: "rings",
     name: "Rings",
     heritage:
-      "Statement, eternity, signet and cocktail rings. Full-eternity and half-eternity diamond bands, cluster rings and bespoke cocktail pieces.",
+      "Engagement rings and wedding rings made to order in Hatton Garden, plus eternity bands, signet and cocktail rings. Choose a style and customise the diamond, setting, metal and size.",
   },
 ];
 
