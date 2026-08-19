@@ -184,63 +184,32 @@ export default function RingViewport({
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      {/* On a phone the picture runs the full width of the screen and is
-          pinned, so the customer scrolls the options underneath a ring that
-          never leaves. `50vh` still caps it — full-bleed is about width, and a
-          panel that took more than half the height would leave nothing to
-          scroll to.
+    <div className="flex flex-col">
+      {/* ---- the picture, in a band of its own ---------------------------
+          The renders carry their own ground: every one of the 32,115 files is
+          #F8F8F8 corner to corner. Sat on the studio's white, each photograph
+          showed a square edge where the two met. Giving the picture a row in
+          that same colour makes the join disappear, and the band reads as a
+          deliberate surface rather than as a mistake.
 
-          On desktop it sits in its own column, so it is centred and capped in
-          pixels as well: a tall window should not spend all of itself on one
-          photograph. */}
-      {/* Bounded by height on every screen, not just desktop, and deliberately
-          small.
-
-          This is what the fill scale bought. A fifth of every frame used to be
-          white sweep, so a 390px panel on a phone was showing about 300px of
-          ring; now the ring meets the edges, and a 42vh panel shows appreciably
-          more ring than the old 50vh did while still leaving the page to the
-          controls the panel exists to serve.
-
-          356px is not a round number, it is the largest the renders actually
-          support. The fill scale means a panel of width W asks for W x 1.26
-          CSS pixels of image, so a 2x screen wants W x 2.52 device pixels —
-          and 900 / 2.52 is 357. Above that the browser is upscaling a 900px
-          render and the facets go soft, which is the one thing worth protecting
-          on a photograph of a diamond.
-
-          Raising it further is a re-conversion at 1200px, not a CSS change. */}
-      {/* A quarter smaller on a phone, where the panel is competing with the
-          rails for a screen that has far less of it to give. Desktop keeps
-          356px, which is the largest the 900px renders support before the
-          browser starts upscaling them. */}
-      <div className="mx-auto w-full max-w-[min(32vh,268px)] lg:max-w-[min(42vh,356px)]">
-        {shown.length > 0 ? (
-          <>
+          Only the picture belongs in it. The title and the dots are page
+          furniture, not part of the photograph, and leaving them inside the
+          band made it look like a card with a caption printed on it. */}
+      <div style={{ background: "var(--color-render-ground)" }}>
+        <div className="mx-auto w-full max-w-[min(32vh,268px)] lg:max-w-[min(42vh,356px)]">
+          {shown.length > 0 ? (
             <div className="relative">
               {/* The site's own DragCarousel rather than a bare scroller.
                   Native overflow gives a phone a perfect swipe and gives a
-                  desktop nothing at all — a mouse cannot flick, so the rail
-                  reads as a still photograph unless you find the arrows. This
-                  adds click-and-drag panning and the tap haptic, and it is the
-                  same component every other rail on the site uses, so the
-                  gesture is identical wherever you meet it.
-
-                  Its trick is worth knowing: it withholds setPointerCapture on
-                  pointerdown, because capturing there silently retargets the
-                  following click to the container. Capture is taken only once
-                  movement passes 12px. */}
+                  desktop nothing at all, since a mouse cannot flick. This adds
+                  click and drag panning and the tap haptic, and it is the same
+                  component every other rail on the site uses, so the gesture is
+                  identical wherever you meet it. */}
               <DragCarousel
                 scrollerRef={rail}
                 onScroll={onScroll}
                 ariaLabel="Views of your ring"
-                // Square, because the ring's own bounding box is 1.02:1 — see
-                // FILL in ZoomView, which scales the dead sweep away so the ring
-                // meets the edges. A square subject cannot fill a wider frame
-                // without being clipped or leaving margin, so the panel spends
-                // less room by being smaller rather than flatter.
-                className={`aspect-square w-full snap-mandatory overscroll-x-contain bg-white max-lg:bg-[var(--color-render-ground)] transition-opacity duration-150 ${
+                className={`aspect-square w-full snap-mandatory overscroll-x-contain transition-opacity duration-150 ${
                   pending ? "opacity-60" : "opacity-100"
                 }`}
               >
@@ -255,80 +224,61 @@ export default function RingViewport({
                 ))}
               </DragCarousel>
 
-            {/* On the picture rather than beside it. A rail with no visible
-                control reads as a static image on a desktop, where there is no
-                swipe to discover — and putting the controls outside the frame
-                spends vertical space the half-screen cap cannot afford.
+              {/* On the picture rather than beside it. A rail with no visible
+                  control reads as a static image on a desktop, where there is
+                  no swipe to discover.
 
-                Hidden at the ends rather than disabled: a greyed-out arrow is
-                still a control asking to be understood, where an absent one
-                says the same thing and asks nothing. */}
-            {index > 0 && (
-              <Arrow side="left" onClick={() => goTo(index - 1)} />
-            )}
-            {index < shown.length - 1 && (
-              <Arrow side="right" onClick={() => goTo(index + 1)} />
-            )}
+                  Hidden at the ends rather than disabled: a greyed out arrow is
+                  still a control asking to be understood, where an absent one
+                  says the same thing and asks nothing. */}
+              {index > 0 && <Arrow side="left" onClick={() => goTo(index - 1)} />}
+              {index < shown.length - 1 && (
+                <Arrow side="right" onClick={() => goTo(index + 1)} />
+              )}
             </div>
-
-            {/* Dots, and they are buttons rather than decoration — a desktop
-                visitor with a mouse has no swipe, and a rail whose only control
-                is a gesture they cannot make is a rail with two hidden thirds. */}
-            <div className="mt-2.5 flex items-center justify-center gap-2 max-lg:px-6">
-              {shown.map((v, i) => (
-                <button
-                  key={v.id}
-                  type="button"
-                  data-haptic
-                  onClick={() => goTo(i)}
-                  aria-label={`${VIEW_LABEL[v.id]} view`}
-                  aria-current={i === index}
-                  className={`h-1.5 rounded-full transition-all duration-200 ${
-                    i === index
-                      ? "w-5 bg-sheet-ink"
-                      : "w-1.5 bg-sheet-ink/25 hover:bg-sheet-ink/45"
-                  }`}
-                />
-              ))}
+          ) : (
+            /* No renders configured, or none for this combination. The
+               specification is the honest fallback: it is never wrong, and it
+               visibly changes on every selection, which is the whole reason the
+               panel is pinned. */
+            <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 px-6 text-center">
+              <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
+                {pieceName}
+              </p>
+              <p className="text-[11px] leading-snug text-sheet-dim">{meta}</p>
+              <p className="mt-3 max-w-[26ch] text-[9px] leading-relaxed tracking-[0.16em] uppercase text-sheet-dim/70">
+                Photography loading shortly
+              </p>
             </div>
-
-            {/* Named under the picture, because a picture of a ring and the
-                name of that ring are one thing. It is assembled from the two
-                choices that define the piece rather than stored anywhere: band
-                and head are what a bench would call it, and every combination
-                of them is a ring nobody has named. */}
-            <h2 className="t-card mt-4 text-center leading-snug max-lg:px-6">
-              {title}
-            </h2>
-          </>
-        ) : (
-          /* No renders configured, or none for this combination. The
-             specification is the honest fallback: it is never wrong, and it
-             visibly changes on every selection, which is the whole reason the
-             panel is pinned. */
-          <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center max-lg:bg-[var(--color-render-ground)]">
-            <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
-              {pieceName}
-            </p>
-            <p className="text-[11px] leading-snug text-sheet-dim">{meta}</p>
-            <p className="mt-3 max-w-[26ch] text-[9px] leading-relaxed tracking-[0.16em] uppercase text-sheet-dim/70">
-              Photography loading shortly
-            </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
-      {/* The piece used to be named here, with its metal and "price on
-          request" underneath. All three said what the rows below already say —
-          every rail carries its own current value, and the specification at the
-          foot of the page carries the lot. Three lines of restatement directly
-          under the picture, on a panel whose whole justification is that it
-          never takes more than half the screen.
+      {/* ---- below the band, on the page ---------------------------------- */}
+      {shown.length > 0 && (
+        <div className="mt-3 flex items-center justify-center gap-2 max-lg:px-6">
+          {shown.map((v, i) => (
+            <button
+              key={v.id}
+              type="button"
+              data-haptic
+              onClick={() => goTo(i)}
+              aria-label={`${VIEW_LABEL[v.id]} view`}
+              aria-current={i === index}
+              className={`h-1.5 rounded-full transition-all duration-200 ${
+                i === index ? "w-5 bg-sheet-ink" : "w-1.5 bg-sheet-ink/25 hover:bg-sheet-ink/45"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
-          The two-tone caveat stays, because it is the one thing here the
-          picture genuinely cannot express. */}
+      <h2 className="t-card mt-3 text-center leading-snug max-lg:px-6">{title}</h2>
+
       {note && (
-        <p className="max-w-[42ch] t-copy max-lg:px-6 !text-sheet-ink">{note}</p>
+        <p className="mt-2 max-w-[42ch] self-center text-center t-copy max-lg:px-6 !text-sheet-ink">
+          {note}
+        </p>
       )}
     </div>
   );

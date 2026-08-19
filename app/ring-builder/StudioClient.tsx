@@ -274,7 +274,7 @@ export default function StudioClient() {
             the rails would scroll through the strip between the bar and the
             panel rather than behind it. */}
         <div
-          className="sticky z-20 self-start bg-white py-3 max-lg:bg-[var(--color-render-ground)] max-lg:px-0 max-lg:pt-0"
+          className="sticky z-20 self-start bg-white pb-3 lg:pt-3 max-lg:px-0"
           style={{ top: "var(--nav-h)" }}
         >
           <div>
