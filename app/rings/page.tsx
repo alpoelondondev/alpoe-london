@@ -36,6 +36,18 @@ export const metadata: Metadata = pageMetadata({
   path: PATH,
 });
 
+/** The mark on the Customise control, in both its forms. */
+function Sparkle() {
+  return (
+    <svg viewBox="0 0 12 12" width="8" height="8" aria-hidden>
+      <path
+        d="M6 0l1.6 4.4L12 6l-4.4 1.6L6 12l-1.6-4.4L0 6l4.4-1.6z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export default function RingStylesPage() {
   const styles = ringStyles();
   const readyToShip = collectionPieces();
@@ -112,14 +124,13 @@ export default function RingStylesPage() {
                             On a page whose every card is a doorway, the label
                             has to be part of the thing you are looking at — put
                             below, it reads as a caption and gets skipped. */}
-                        {/* Much smaller on a phone. The grid is two across
-                            there, so a card is about 170px wide — a pill sized
-                            for a desktop card covers a third of the ring it is
-                            meant to be inviting you to look at. */}
-                        <span className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-sheet-ink px-5 py-2.5 text-[11px] font-semibold tracking-[0.16em] whitespace-nowrap text-white uppercase shadow-[0_2px_10px_rgba(23,19,18,0.18)] transition group-hover:bg-sheet-ink/85 max-md:bottom-2 max-md:gap-1 max-md:px-2.5 max-md:py-1 max-md:text-[8px] max-md:tracking-[0.1em]">
-                          <svg viewBox="0 0 12 12" width="8" height="8" className="max-md:h-[6px] max-md:w-[6px]" aria-hidden>
-                            <path d="M6 0l1.6 4.4L12 6l-4.4 1.6L6 12l-1.6-4.4L0 6l4.4-1.6z" fill="currentColor" />
-                          </svg>
+                        {/* Desktop only. The grid is two across on a phone, so
+                            a card is about 170px wide and a pill over the
+                            picture covers a third of the ring it is inviting
+                            you to look at. Below md the same words appear under
+                            the title instead — see the card's text block. */}
+                        <span className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-sheet-ink px-5 py-2.5 text-[11px] font-semibold tracking-[0.16em] whitespace-nowrap text-white uppercase shadow-[0_2px_10px_rgba(23,19,18,0.18)] transition group-hover:bg-sheet-ink/85 max-md:hidden">
+                          <Sparkle />
                           Customise
                         </span>
                       </span>
@@ -129,6 +140,14 @@ export default function RingStylesPage() {
                       </h2>
                       <p className="t-eyebrow mt-1.5 !tracking-[0.12em] text-sheet-dim">
                         {styleSubtitle(style)}
+                      </p>
+
+                      {/* The phone's version of the pill. Under the title, in
+                          the card's own ink, so the picture stays clean at a
+                          size where anything laid over it is in the way. */}
+                      <p className="t-eyebrow mt-2 hidden items-center gap-1.5 font-semibold !text-sheet-ink max-md:flex">
+                        <Sparkle />
+                        Customise
                       </p>
                     </Link>
                   </li>
