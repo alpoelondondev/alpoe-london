@@ -1,7 +1,12 @@
 import type { ReactNode } from "react";
 
 /**
- * The home page's film, carrying another page's title.
+ * A band of film across the page.
+ *
+ * Two shapes. With a `title` it is a cover: the page opens on it and the
+ * heading sits over the footage. Without one it is a strip: a band of motion
+ * between two sections, carrying no text and taking no part in the document
+ * outline.
  *
  * Hero itself could not be reused. It is the home page's identity: the live
  * monogram, the wordmark, the two calls to action, and an `sr-only` h1 naming
@@ -20,12 +25,20 @@ import type { ReactNode } from "react";
 export default function PageCover({
   eyebrow,
   title,
+  strip = false,
   video = "/alpoe-london-hero.mp4",
   poster = "/alpoe-london-hero.jpg",
   children,
 }: {
   eyebrow?: string;
-  title: string;
+  /** Omitted on a strip, which carries no heading. */
+  title?: string;
+  /**
+   * A band rather than an opening: shorter, no text, and no gradient reaching
+   * for a heading that is not there. Use where the page already has a header
+   * and the film is punctuation rather than the introduction.
+   */
+  strip?: boolean;
   /**
    * The film, without its extension assumed. Defaults to the house hero, which
    * is right for a page about the business and wrong for a page about a
@@ -40,7 +53,14 @@ export default function PageCover({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative flex h-[46svh] min-h-[320px] w-full items-end overflow-hidden bg-bg">
+    <section
+      className={`relative w-full overflow-hidden bg-bg ${
+        strip
+          ? "h-[30svh] min-h-[200px] max-h-[320px]"
+          : "flex h-[46svh] min-h-[320px] items-end"
+      }`}
+      aria-hidden={strip || undefined}
+    >
       {/* Muted and playsInline are what a browser asks for in return for
           autoplay, and both are set. `loop` keeps it running: a cover that
           plays once and freezes reads as a broken video rather than a still. */}
@@ -64,15 +84,17 @@ export default function PageCover({
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg via-transparent to-bg"
       />
 
-      <div className="relative z-10 w-full px-[52px] pb-12 max-md:px-6 max-md:pb-9">
-        {eyebrow && (
-          <p className="mb-3 text-[11px] font-semibold tracking-[0.2em] text-accent uppercase">
-            {eyebrow}
-          </p>
-        )}
-        <h1 className="t-page">{title}</h1>
-        {children && <div className="mt-5 max-w-[58ch]">{children}</div>}
-      </div>
+      {!strip && (
+        <div className="relative z-10 w-full px-[52px] pb-12 max-md:px-6 max-md:pb-9">
+          {eyebrow && (
+            <p className="mb-3 text-[11px] font-semibold tracking-[0.2em] text-accent uppercase">
+              {eyebrow}
+            </p>
+          )}
+          {title && <h1 className="t-page">{title}</h1>}
+          {children && <div className="mt-5 max-w-[58ch]">{children}</div>}
+        </div>
+      )}
     </section>
   );
 }

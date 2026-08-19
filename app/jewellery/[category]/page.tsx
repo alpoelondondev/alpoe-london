@@ -96,24 +96,18 @@ export default async function JewelleryCategoryPage(
     <>
       <SiteHeader />
       <main>
-        {/* Rings gets the film cover rather than the text hero. It is the one
-            category that leads with moving pictures, and a still text band on
-            top of a page of films read as two openings stacked. The others keep
-            BrandHero, which is right for a page that opens on a grid.
+        <BrandHero eyebrow="Jewellery" title={c.name} copy={c.heritage} />
 
-            Both carry the page's h1, so swapping one for the other never leaves
-            two or none. */}
-        {c.slug === "rings" ? (
+        {/* A band of the ring footage under the header, on the one category
+            that is about rings. Not the header itself: the page already has
+            one, and a film carrying the heading would leave the text sitting on
+            moving pictures for the whole of the first screen. */}
+        {c.slug === "rings" && (
           <PageCover
-            eyebrow="Jewellery"
-            title={c.name}
+            strip
             video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
             poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
-          >
-            <p className="t-copy !text-fg/75">{c.heritage}</p>
-          </PageCover>
-        ) : (
-          <BrandHero eyebrow="Jewellery" title={c.name} copy={c.heritage} />
+          />
         )}
 
         {/* The Rings category is statement, eternity, signet and cocktail

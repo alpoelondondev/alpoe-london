@@ -80,26 +80,13 @@ export default function RingsHubPage() {
       <SiteHeader />
 
       <main className="on-sheet bg-white">
-        {/* The home page's film, carrying this page's title. The cover sits
-            under the fixed bar rather than clearing it, exactly as the home
-            page's hero does — the bar is translucent over nothing here, so the
-            band reads as continuous behind it. */}
-        <PageCover
-          eyebrow="Alpoe London"
-          title="Rings"
-          video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
-          poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
-        >
-          <p className="t-copy !text-fg/75">
+        <section className="clears-nav px-[52px] pb-8 max-md:px-6 max-md:pb-6">
+          <p className="t-eyebrow font-semibold">Alpoe London</p>
+          <h1 className="t-page mt-3">Rings</h1>
+          <p className="mt-5 max-w-[58ch] t-copy">
             Everything we make and hold for the finger. Engagement rings are built to
             your own specification with wedding bands sized to match, and our ready to
-            ship pieces are finished and waiting.
-          </p>
-        </PageCover>
-
-        <section className="px-[52px] pt-10 pb-2 max-md:px-6 max-md:pt-8">
-          <p className="max-w-[58ch] t-copy">
-            Not sure of the size? Start with the{" "}
+            ship pieces are finished and waiting. Not sure of the size? Start with the{" "}
             <Link
               href="/ring-size-guide"
               className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
@@ -109,6 +96,17 @@ export default function RingsHubPage() {
             .
           </p>
         </section>
+
+        {/* The film as a band between the header and the cards rather than as
+            the header itself. It is the same footage the home page's Engagement
+            & Wedding Rings card shows, so arriving from that card lands on the
+            shot it just showed. Carrying no heading, it stays out of the
+            document outline entirely. */}
+        <PageCover
+          strip
+          video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
+          poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
+        />
 
         <ScrollReveal>
           <section className="px-[52px] pb-16 max-md:px-6 max-md:pb-12">
