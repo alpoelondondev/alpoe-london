@@ -126,6 +126,19 @@ html {
    rows change. */
 :root {
   --nav-h: 177px;
+  /* How far down the page a pinned element has to start to clear the bar.
+     
+     The bar hides on a downward scroll and comes back on an upward one, so this
+     is not a constant: while it is away there is nothing to clear. Anything
+     using `position: sticky` reads this rather than `--nav-h`, so the pinned
+     row in the ring builder rides up into the space the bar vacates instead of
+     leaving a gap where it used to be. */
+  --nav-offset: var(--nav-h);
+}
+
+/* Set on <html> by Nav while the bar is off screen. */
+:root.nav-hidden {
+  --nav-offset: 0px;
 }
 
 @media (max-width: 767px) {

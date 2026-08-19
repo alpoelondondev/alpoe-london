@@ -275,8 +275,9 @@ export default function StudioClient() {
             it is pinned — it changes on each one, and a control whose effect
             has scrolled out of sight is indistinguishable from a broken one.
 
-            `--nav-h` is the fixed bar's measured height, kept in one place so
-            this cannot drift the next time a row is added to the bar. The sheet
+            `--nav-offset` rather than `--nav-h`: the bar hides on a downward
+            scroll, and this rides up into the space it leaves instead of
+            holding an offset against a bar that is no longer there. The sheet
             ground and the padding are on the sticky box itself: without them
             the rails would scroll through the strip between the bar and the
             panel rather than behind it. */}
@@ -289,7 +290,7 @@ export default function StudioClient() {
           // grey ends where the photograph does rather than carrying a margin
           // above and below it.
           className="sticky z-20 self-start bg-render-ground max-lg:px-0"
-          style={{ top: "var(--nav-h)" }}
+          style={{ top: "var(--nav-offset)" }}
         >
           <RingViewport
             views={views}

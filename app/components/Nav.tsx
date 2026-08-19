@@ -84,6 +84,7 @@ export default function Nav({
   tickerStale?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   // The panel is now the only route list on every screen, so it needs the
   // escape hatch a full-screen overlay is expected to have.
@@ -94,6 +95,59 @@ export default function Nav({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  /**
+   * Hide going down, show going up.
+   *
+   * Three rules, all of them there because the naive version is annoying:
+   *
+   * Nothing happens in the first `REVEAL_AT` pixels, or the bar flickers away
+   * the instant you nudge the page at the top, where it is least in the way.
+   *
+   * A movement has to exceed `DELTA` to count. Without it, the sub-pixel jitter
+   * of a trackpad or a phone's rubber banding flips the bar back and forth
+   * continuously.
+   *
+   * It never hides while the menu is open, because the menu's close control
+   * lives in it.
+   *
+   * The class on <html> is what lets `position: sticky` elements elsewhere
+   * follow — see `--nav-offset` in globals.css. Without it the ring builder's
+   * pinned row would hold its offset and leave a gap where the bar used to be.
+   */
+  useEffect(() => {
+    const REVEAL_AT = 120;
+    const DELTA = 6;
+    let last = window.scrollY;
+    let frame = 0;
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const y = window.scrollY;
+        if (Math.abs(y - last) < DELTA) return;
+        const goingDown = y > last;
+        last = y;
+        setHidden(goingDown && y > REVEAL_AT);
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+      document.documentElement.classList.remove("nav-hidden");
+    };
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("nav-hidden", hidden && !menuOpen);
+  }, [hidden, menuOpen]);
+
+  useEffect(() => {
+    if (menuOpen) setHidden(false);
   }, [menuOpen]);
 
   return (
@@ -107,7 +161,17 @@ export default function Nav({
           white up through the bar and turns the house off-black into a washed
           out grey. A fixed bar sits over every page, so it cannot be tinted by
           the one underneath it. */}
-      <nav className="fixed top-0 left-0 right-0 z-200 px-[52px] pt-6 pb-4 bg-bg border-b border-fg/[0.10] max-md:px-6 max-md:pt-5 max-md:pb-3">
+      {/* Away on a downward scroll, back on an upward one. Pinned bars cost
+          the top of every screen permanently; this one charges only while you
+          are going back for something, which is when you want it.
+
+          Transform rather than `top`, so the browser can composite the movement
+          off the main thread and it cannot jitter against the scroll. */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-200 px-[52px] pt-6 pb-4 bg-bg border-b border-fg/[0.10] transition-transform duration-300 ease-out max-md:px-6 max-md:pt-5 max-md:pb-3 ${
+          hidden ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         {/* Three equal-weight columns rather than a flex row, so the lockup is
             centred against the bar itself and not against whatever the menu
             and Book button happen to measure. The outer columns are free to
