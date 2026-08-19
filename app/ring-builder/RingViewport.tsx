@@ -81,12 +81,15 @@ const VIEW_LABEL: Record<RingView, string> = {
 export default function RingViewport({
   views,
   pieceName,
+  title,
   meta,
   note,
 }: {
   /** The three views of the current configuration, empty if we have none. */
   views: { id: RingView; label: string; url: string }[];
   pieceName: string;
+  /** What the piece is called, written the way it would be on a ticket. */
+  title: string;
   meta: string;
   /** A caveat the picture cannot express — two-tone, say. */
   note?: string;
@@ -284,6 +287,15 @@ export default function RingViewport({
                 />
               ))}
             </div>
+
+            {/* Named under the picture, because a picture of a ring and the
+                name of that ring are one thing. It is assembled from the two
+                choices that define the piece rather than stored anywhere: band
+                and head are what a bench would call it, and every combination
+                of them is a ring nobody has named. */}
+            <h2 className="t-card mt-4 text-center leading-snug max-lg:px-6">
+              {title}
+            </h2>
           </>
         ) : (
           /* No renders configured, or none for this combination. The

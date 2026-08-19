@@ -225,6 +225,17 @@ export default function StudioClient() {
   const shareUrl = origin ? `${origin}${pathname}?${params.toString()}` : undefined;
 
   const pieceName = `${config.carat.toFixed(2)}ct ${activeShape.label} ${activeHead.label}`;
+
+  /**
+   * What the piece is called, in the order a jeweller would say it: the band
+   * first because it is the silhouette, then what the object is, then the head.
+   * "Knife Edge Engagement Ring, Diamond Tulip Head".
+   *
+   * Assembled rather than stored. Fifteen bands against fifteen heads is 225
+   * rings, and naming each one would mean inventing 225 names for pieces that
+   * have never had one — the two choices already say it.
+   */
+  const pieceTitle = `${activeBand.label} Engagement Ring, ${activeHead.label} Head`;
   const twoTone = config.headMetal !== config.bandMetal;
 
   return (
@@ -270,6 +281,7 @@ export default function StudioClient() {
             <RingViewport
               views={views}
               pieceName={pieceName}
+              title={pieceTitle}
               meta={`${activeBand.label} band · ${activeMetal.label} · ${activeOrigin.label}`}
               note={
                 twoTone
