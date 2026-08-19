@@ -7,7 +7,7 @@ import LockupMark from "../components/LockupMark";
 import { Sparkle } from "./RingCards";
 import { ringStyles, styleImage } from "@/lib/rings/styles";
 import { collectionPieces } from "@/lib/rings/collection";
-import { getJewelleryByCategory, hasPhotography, photosFirst } from "@/lib/products";
+import { getJewelleryByCategory } from "@/lib/products";
 import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
@@ -38,7 +38,7 @@ export const metadata: Metadata = pageMetadata({
 export default function RingsHubPage() {
   const styles = ringStyles();
   const pieces = collectionPieces();
-  const bands = getJewelleryByCategory("wedding-rings").sort(photosFirst);
+  const bands = getJewelleryByCategory("wedding-rings");
   const renders = rendersOrigin();
 
   /**
@@ -49,22 +49,13 @@ export default function RingsHubPage() {
    */
   const cards = [
     {
-      href: "/rings/engagement-rings",
-      title: "Engagement Rings",
-      copy: "Fifteen styles, made to order. Choose the stone, the setting, the metal and the size.",
-      count: `${styles.length} styles`,
+      href: "/rings/engagement-and-wedding-rings",
+      title: "Engagement & Wedding Rings",
+      copy: "Fifteen styles made to order, and the bands to match. Choose the stone, the setting, the metal and the size.",
+      count: `${styles.length} styles · ${bands.length} bands`,
       image: styleImage(styles[0]),
       fill: true,
       action: "Customise",
-    },
-    {
-      href: "/rings/wedding-rings",
-      title: "Wedding Rings & Bands",
-      copy: "Court and D-shape profiles, plain and diamond set, shaped to sit against the engagement ring.",
-      count: bands.length ? `${bands.length} in stock` : "In the catalogue",
-      image: bands.find(hasPhotography)?.images[0],
-      fill: false,
-      action: "Browse",
     },
     {
       href: "/rings/ready-to-ship",
@@ -106,10 +97,10 @@ export default function RingsHubPage() {
           />
           <h1 className="t-page">Rings</h1>
           <p className="mt-5 max-w-[58ch] t-copy">
-            Everything we make and hold for the finger, in three parts. Engagement rings
-            are built to your own specification, wedding bands are stocked and sized to
-            match, and our ready to ship pieces are finished and waiting. If you are not
-            sure of the size, start with the{" "}
+            Everything we make and hold for the finger. Engagement rings are built to
+            your own specification with wedding bands sized to match, and our ready to
+            ship pieces are finished and waiting. If you are not sure of the size, start
+            with the{" "}
             <Link
               href="/ring-size-guide"
               className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
@@ -122,7 +113,7 @@ export default function RingsHubPage() {
 
         <ScrollReveal>
           <section className="px-[52px] pb-16 max-md:px-6 max-md:pb-12">
-            <ul className="grid grid-cols-3 gap-x-8 gap-y-10 max-lg:grid-cols-1 max-lg:gap-y-8">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-10 max-lg:grid-cols-1 max-lg:gap-y-8">
               {cards.map((c) => (
                 <li key={c.href}>
                   <Link href={c.href} data-haptic className="group block">

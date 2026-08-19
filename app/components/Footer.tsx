@@ -11,8 +11,7 @@ const SHOP_LINKS = [
 
 const HOUSE_LINKS = [
   { label: "Book an Appointment", href: "/book-appointment" },
-  { label: "Engagement Rings", href: "/rings/engagement-rings" },
-  { label: "Wedding Rings", href: "/rings/wedding-rings" },
+  { label: "Engagement & Wedding Rings", href: "/rings/engagement-and-wedding-rings" },
   { label: "Ready to Ship Rings", href: "/rings/ready-to-ship" },
   { label: "Ring Size Guide", href: "/ring-size-guide" },
   { label: "Ring Builder", href: "/ring-builder" },
