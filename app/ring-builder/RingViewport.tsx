@@ -211,7 +211,11 @@ export default function RingViewport({
           on a photograph of a diamond.
 
           Raising it further is a re-conversion at 1200px, not a CSS change. */}
-      <div className="mx-auto w-full max-w-[min(42vh,356px)]">
+      {/* A quarter smaller on a phone, where the panel is competing with the
+          rails for a screen that has far less of it to give. Desktop keeps
+          356px, which is the largest the 900px renders support before the
+          browser starts upscaling them. */}
+      <div className="mx-auto w-full max-w-[min(32vh,268px)] lg:max-w-[min(42vh,356px)]">
         {shown.length > 0 ? (
           <>
             <div className="relative">
@@ -236,7 +240,7 @@ export default function RingViewport({
                 // meets the edges. A square subject cannot fill a wider frame
                 // without being clipped or leaving margin, so the panel spends
                 // less room by being smaller rather than flatter.
-                className={`aspect-square w-full snap-mandatory overscroll-x-contain bg-white transition-opacity duration-150 ${
+                className={`aspect-square w-full snap-mandatory overscroll-x-contain bg-white max-lg:bg-[var(--color-render-ground)] transition-opacity duration-150 ${
                   pending ? "opacity-60" : "opacity-100"
                 }`}
               >
@@ -302,7 +306,7 @@ export default function RingViewport({
              specification is the honest fallback: it is never wrong, and it
              visibly changes on every selection, which is the whole reason the
              panel is pinned. */
-          <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center">
+          <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 bg-white px-6 text-center max-lg:bg-[var(--color-render-ground)]">
             <p className="font-serif text-[clamp(15px,2.4vw,22px)] leading-tight text-sheet-ink">
               {pieceName}
             </p>

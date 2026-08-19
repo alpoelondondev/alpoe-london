@@ -60,6 +60,12 @@
      it. The ink is the same warm off-black as the page ground, so the sheet
      is a tonal inversion of the site rather than a foreign white.
      --------------------------------------------------------------------- */
+  /* The render library's own ground, sampled from the files rather than
+     guessed: every one of the 32,115 images is #F8F8F8 corner to corner. A
+     panel behind them in pure white draws a visible square edge around each
+     photograph, which is the exact seam the white page was meant to remove. */
+  --color-render-ground: #f8f8f8;
+
   --color-sheet: #e9e3de;
   --color-sheet-panel: #fbf9f7;
   /* Alternating row, a whisper below the panel face. */
