@@ -73,7 +73,7 @@ export default async function JewelleryProductPage(
     <>
       <SiteHeader />
       <main>
-        <section className="px-[52px] pt-12 pb-6 max-md:px-6 max-md:pt-9">
+        <section className="px-[52px] pt-52 pb-6 max-md:px-6 max-md:pt-48">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },

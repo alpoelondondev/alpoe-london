@@ -12,7 +12,7 @@ export default function BrandHero({
   copy?: string;
 }) {
   return (
-    <section className="px-[52px] pt-12 pb-14 max-md:px-6 max-md:pt-9 max-md:pb-10">
+    <section className="px-[52px] pt-52 pb-14 max-md:px-6 max-md:pt-48 max-md:pb-10">
       <ScrollReveal>
         <h1 className="t-page max-w-4xl">
           {title}

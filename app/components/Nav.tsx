@@ -101,19 +101,13 @@ export default function Nav({
       {/* Pinned for the whole page rather than hiding on a downward scroll:
           the bar carries the only route list, the search field and the live
           spot strip, so it has to be reachable wherever the reader is. */}
-      {/* In the flow, not pinned over the page. Every page used to buy back
-          the height the bar was covering — `clears-nav`, `pt-52`, a sticky
-          offset of `var(--nav-h)` — and all of that has gone with it.
-
-          It goes fixed for exactly one case: while the menu is open. The menu
-          is a full screen overlay and its close control lives in this bar, so
-          on a scrolled page an in-flow bar would take the only way out of the
-          menu off screen with it. */}
-      <nav
-        className={`z-200 px-[52px] pt-6 pb-4 bg-bg border-b border-fg/[0.10] max-md:px-6 max-md:pt-5 max-md:pb-3 ${
-          menuOpen ? "fixed top-0 left-0 right-0" : "relative"
-        }`}
-      >
+      {/* Solid, not `bg-bg/80`. The translucent bar was designed against a
+          site that was off-black the whole way down, where 80% over a dark page
+          is still dark. The ring pages are white, and the same 80% lets that
+          white up through the bar and turns the house off-black into a washed
+          out grey. A fixed bar sits over every page, so it cannot be tinted by
+          the one underneath it. */}
+      <nav className="fixed top-0 left-0 right-0 z-200 px-[52px] pt-6 pb-4 bg-bg border-b border-fg/[0.10] max-md:px-6 max-md:pt-5 max-md:pb-3">
         {/* Three equal-weight columns rather than a flex row, so the lockup is
             centred against the bar itself and not against whatever the menu
             and Book button happen to measure. The outer columns are free to

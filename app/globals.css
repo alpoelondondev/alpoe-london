@@ -231,14 +231,18 @@ html {
   color: var(--color-accent);
 }
 
-/* Breathing room at the top of a page.
+/* Clears the fixed navigation bar.
    
-   This used to clear the fixed navigation bar, at the bar's measured height
-   plus 32px. The bar is in the flow now and makes its own room, so all that is
-   left is the 32px — kept as one class rather than scattered so the pages that
-   share an opening still share it. */
+   The bar is `position: fixed`, so it is out of flow and every page has to make
+   its own room or start underneath it. BrandHero does this with `pt-52` — 208px
+   against the bar's measured 177px — which works but is a second number that
+   has to be remembered whenever the bar changes height, and the pages that do
+   not use BrandHero simply forgot.
+   
+   This derives from `--nav-h` instead, so it cannot drift, and the 32px is
+   breathing room rather than clearance. */
 .clears-nav {
-  padding-top: 2rem;
+  padding-top: calc(var(--nav-h) + 32px);
 }
 
 /* The market sheet is the one light surface — see the palette note above. */
