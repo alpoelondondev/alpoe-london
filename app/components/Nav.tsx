@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import SearchTrigger from "./SearchTrigger";
@@ -85,6 +86,20 @@ export default function Nav({
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const pathname = usePathname();
+
+  /**
+   * The ring builder only gets the bar back at the very top of the page.
+   *
+   * Everywhere else, reappearing on an upward scroll is the whole point: you
+   * are going back for something and the bar is what you are going back for.
+   * The builder is the exception because its own picture is pinned directly
+   * beneath, and scrolling up through the option rails is what somebody does
+   * constantly while comparing settings. A bar that drops in every time they do
+   * lands on top of the ring they are comparing, which is the one thing on that
+   * page that must not be covered.
+   */
+  const revealOnlyAtTop = pathname === "/ring-builder";
 
   // The panel is now the only route list on every screen, so it needs the
   // escape hatch a full-screen overlay is expected to have.
@@ -118,6 +133,8 @@ export default function Nav({
    */
   useEffect(() => {
     const REVEAL_AT = 120;
+    // Small, because "at the top" should mean at the top rather than near it.
+    const AT_TOP = 24;
     const DELTA = 6;
     let last = window.scrollY;
     let frame = 0;
@@ -127,20 +144,26 @@ export default function Nav({
       frame = requestAnimationFrame(() => {
         frame = 0;
         const y = window.scrollY;
-        if (Math.abs(y - last) < DELTA) return;
+        // On the builder the rule is positional, so a tiny movement still has
+        // to be acted on — the guard exists only to stop direction flapping.
+        if (!revealOnlyAtTop && Math.abs(y - last) < DELTA) return;
         const goingDown = y > last;
         last = y;
-        setHidden(goingDown && y > REVEAL_AT);
+        setHidden(revealOnlyAtTop ? y > AT_TOP : goingDown && y > REVEAL_AT);
       });
     };
 
+    // Run once on mount as well: arriving part way down a page, or switching
+    // to a route with a different rule, must settle the bar without waiting for
+    // the customer to scroll.
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (frame) cancelAnimationFrame(frame);
       document.documentElement.classList.remove("nav-hidden");
     };
-  }, []);
+  }, [revealOnlyAtTop]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("nav-hidden", hidden && !menuOpen);
