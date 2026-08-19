@@ -53,9 +53,9 @@ export const metadata: Metadata = pageMetadata({
  * high priority the moment it mounts, which is the same request this tag would
  * have made, just later.
  *
- * Only the angled view. The other two are lazy inside the carousel, and
- * preloading three would triple the bytes on the critical path to save a swipe
- * most visitors never make.
+ * Only the first frame — the front view. The other two are lazy inside the
+ * carousel, and preloading three would triple the bytes on the critical path
+ * to save a swipe most visitors never make.
  */
 const PRELOAD = renderUrl(DEFAULT_CONFIG);
 

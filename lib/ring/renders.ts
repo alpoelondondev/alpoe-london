@@ -38,10 +38,19 @@ import type { BandId } from "./bands";
 
 export type RingView = "angled" | "front" | "side";
 
-/** The three views, in the order a customer wants them. */
+/**
+ * The three views, in the order a customer wants them — front first.
+ *
+ * Front is how you look at a ring on a hand, and it is the only view where the
+ * stone's outline, the head's proportion to it and a halo's real effect on
+ * apparent size are all legible at once. Angled is the more flattering
+ * photograph, which is why catalogues lead with it, but this is a tool for
+ * deciding rather than a shop window: the first frame should answer the
+ * question the customer is actually asking.
+ */
 export const RING_VIEWS: { id: RingView; label: string }[] = [
-  { id: "angled", label: "Angled" },
   { id: "front", label: "Front" },
+  { id: "angled", label: "Angled" },
   { id: "side", label: "Side" },
 ];
 
@@ -84,7 +93,7 @@ export type RenderConfig = {
   bandMetal: MetalId;
 };
 
-export function renderUrl(config: RenderConfig, view: RingView = "angled"): string | undefined {
+export function renderUrl(config: RenderConfig, view: RingView = "front"): string | undefined {
   if (!BASE) return undefined;
   if (!headHoldsShape(config.head, config.shape)) return undefined;
 

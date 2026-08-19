@@ -248,7 +248,11 @@ body {
   color: var(--color-fg);
   font-family: var(--font-sans);
   font-weight: 300;
-  overflow-x: hidden;
+  /* No `overflow-x: hidden` here. It is already on <html> above, and having it
+     on both is a well-worn way to break `position: sticky` in a descendant:
+     the declaration makes the body a scroll container, and a sticky element
+     then resolves against that rather than against the page. The ring builder's
+     pinned viewport is the thing that noticed. */
   -webkit-tap-highlight-color: transparent;
 }
 

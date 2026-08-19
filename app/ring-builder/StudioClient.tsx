@@ -199,7 +199,16 @@ export default function StudioClient() {
        `on-sheet` still does the typography: the type roles carry their own
        colour and would otherwise be cream-on-white. See globals.css. */
     <div className="on-sheet bg-white">
-      <div className={`mx-auto grid max-w-7xl grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-10 ${GUTTER} py-6 max-lg:grid-cols-1 max-lg:gap-0 max-lg:px-0 max-lg:py-0`}>
+      {/* Block on a phone, two columns from lg up — and the switch is not
+          cosmetic. A grid item's containing block is its own grid area, so in a
+          single-column grid the pinned viewport gets an area exactly its own
+          height and `position: sticky` has nowhere to stick to. It simply
+          scrolls away, which is the one thing it exists not to do. In normal
+          block flow its containing block is this whole element, which is as
+          tall as every rail below it. */}
+      <div
+        className={`mx-auto block max-w-7xl lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-10 ${GUTTER} max-lg:px-0 lg:py-6`}
+      >
         {/* ---- the ring ---------------------------------------------------
             Sticky in its own column on desktop; on a phone it stacks above the
             rails and stays pinned to the top of the viewport, so it is on
