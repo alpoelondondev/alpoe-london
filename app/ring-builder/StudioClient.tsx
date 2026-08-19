@@ -527,18 +527,23 @@ export default function StudioClient() {
               ))}
             </dl>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            {/* Centred and matched. Two buttons of different widths sitting
+                left-aligned read as a primary action with an afterthought
+                beside it; these are two ways of starting the same conversation
+                and neither outranks the other. A fixed min-width on both makes
+                the pair a block rather than a ragged edge. */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <a
                 href={buildRingSpecUrl(ringSpecText(config, shareUrl))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-accent px-8 py-3.5 font-serif text-[15px] font-semibold tracking-[0.08em] uppercase text-sheet-panel transition hover:bg-accent-deep"
+                className="inline-flex min-w-[236px] items-center justify-center bg-accent px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-sheet-panel transition hover:bg-accent-deep"
               >
-                Send to our workshop
+                Speak to a client advisor
               </a>
               <a
                 href="/book-appointment"
-                className="inline-flex items-center justify-center border border-sheet-ink/25 px-8 py-3.5 font-serif text-[15px] font-semibold tracking-[0.08em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
+                className="inline-flex min-w-[236px] items-center justify-center border border-sheet-ink/25 px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
               >
                 Book an appointment
               </a>

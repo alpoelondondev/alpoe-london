@@ -50,9 +50,9 @@ import { hasFailed, isReady, preload, whenIdle } from "./renderCache";
 /**
  * One overlay arrow.
  *
- * A translucent white disc rather than a solid one: the renders are lit on a
- * white sweep, so a solid chip would read as a hole punched in the photograph,
- * where a wash lets the ring show through behind it.
+ * No disc at all now that the arrows sit in the band's margin rather than over
+ * the photograph. The chip existed to keep them legible against the ring; out
+ * here there is nothing behind them but the band, and a bare stroke is quieter.
  */
 function Arrow({ side, onClick }: { side: "left" | "right"; onClick: () => void }) {
   return (
@@ -61,11 +61,11 @@ function Arrow({ side, onClick }: { side: "left" | "right"; onClick: () => void 
       data-haptic
       onClick={onClick}
       aria-label={side === "left" ? "Previous view" : "Next view"}
-      className={`absolute top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/70 text-sheet-ink/70 backdrop-blur-sm transition hover:bg-white hover:text-sheet-ink active:scale-95 ${
-        side === "left" ? "left-2" : "right-2"
+      className={`absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full text-sheet-ink/45 transition hover:text-sheet-ink active:scale-95 ${
+        side === "left" ? "left-2 lg:left-4" : "right-2 lg:right-4"
       }`}
     >
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden>
         <path
           d={side === "left" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}
           stroke="currentColor"
@@ -196,7 +196,7 @@ export default function RingViewport({
           Only the picture belongs in it. The title and the dots are page
           furniture, not part of the photograph, and leaving them inside the
           band made it look like a card with a caption printed on it. */}
-      <div className="bg-render-ground">
+      <div className="relative bg-render-ground">
         <div className="mx-auto w-full max-w-[min(32vh,268px)] lg:max-w-[min(42vh,356px)]">
           {shown.length > 0 ? (
             <div className="relative">
@@ -232,10 +232,6 @@ export default function RingViewport({
                   Hidden at the ends rather than disabled: a greyed out arrow is
                   still a control asking to be understood, where an absent one
                   says the same thing and asks nothing. */}
-              {index > 0 && <Arrow side="left" onClick={() => goTo(index - 1)} />}
-              {index < shown.length - 1 && (
-                <Arrow side="right" onClick={() => goTo(index + 1)} />
-              )}
             </div>
           ) : (
             /* No renders configured, or none for this combination. The
@@ -253,6 +249,17 @@ export default function RingViewport({
             </div>
           )}
         </div>
+
+        {/* Positioned against the band rather than the picture, so on a wide
+            column they sit out in the margin either side of the ring instead of
+            over it. The picture is capped at 356px and the band is the column,
+            so there is usually room to spare. */}
+        {shown.length > 1 && index > 0 && (
+          <Arrow side="left" onClick={() => goTo(index - 1)} />
+        )}
+        {shown.length > 1 && index < shown.length - 1 && (
+          <Arrow side="right" onClick={() => goTo(index + 1)} />
+        )}
       </div>
 
       {/* ---- below the band, on the page ---------------------------------- */}

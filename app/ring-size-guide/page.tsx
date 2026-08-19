@@ -351,16 +351,16 @@ export default function RingSizeGuidePage() {
                   down. If the ring is a surprise and you are not certain, tell us. We
                   would rather size a ring afterwards than have it not fit on the day.
                 </p>
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
                     href="/book-appointment"
-                    className="inline-flex items-center justify-center bg-accent px-8 py-3.5 font-serif text-[15px] font-semibold tracking-[0.08em] uppercase text-white transition hover:bg-accent-deep"
+                    className="inline-flex min-w-[236px] items-center justify-center bg-accent px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-white transition hover:bg-accent-deep"
                   >
                     Get measured in store
                   </Link>
                   <Link
                     href="/ring-builder"
-                    className="inline-flex items-center justify-center border border-sheet-ink/25 px-8 py-3.5 font-serif text-[15px] font-semibold tracking-[0.08em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
+                    className="inline-flex min-w-[236px] items-center justify-center border border-sheet-ink/25 px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
                   >
                     Design a ring
                   </Link>

@@ -60,11 +60,19 @@
      it. The ink is the same warm off-black as the page ground, so the sheet
      is a tonal inversion of the site rather than a foreign white.
      --------------------------------------------------------------------- */
-  /* The render library's own ground, sampled from the files rather than
-     guessed: every one of the 32,115 images is #F8F8F8 corner to corner. A
-     panel behind them in pure white draws a visible square edge around each
-     photograph, which is the exact seam the white page was meant to remove. */
-  --color-render-ground: #f8f8f8;
+  /* The ground behind a render.
+     
+     The files themselves are #F8F8F8 corner to corner, sampled rather than
+     guessed. Matching that exactly makes the join invisible, which is correct
+     and also indistinguishable from white — 3% off it. A row that is meant to
+     read AS a row needs to be darker than the photograph sitting in it, and
+     that normally means a visible lighter square wherever the image sits.
+     
+     `mix-blend-multiply` on the image removes the conflict: multiply keeps
+     whichever is darker, so the image's near-white ground disappears into
+     whatever this is set to while the ring, being darker than both, is
+     untouched. So this can be any light grey, and the picture takes it. */
+  --color-render-ground: #f1f1f1;
 
   --color-sheet: #e9e3de;
   --color-sheet-panel: #fbf9f7;

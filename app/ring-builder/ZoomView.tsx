@@ -190,7 +190,7 @@ export default function ZoomView({
       // `none` only while zoomed: the rest of the time the browser needs
       // pan-x back, or the carousel cannot be swiped on a phone at all.
       style={{ touchAction: zoomed ? "none" : "pan-x" }}
-      className="relative h-full w-full overflow-hidden bg-render-ground"
+      className="relative h-full w-full overflow-hidden"
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- see renderCache.ts */}
       <img
@@ -217,7 +217,11 @@ export default function ZoomView({
         // 48% rather than dead centre because the rings do not sit centred in
         // the frame — measured across the library they span 9.8% to 87.1%,
         // whose midpoint is 48.4%.
-        className="h-full w-full select-none object-contain transition-transform duration-200 ease-out"
+        // Multiply keeps whichever layer is darker, so the render's near-white
+        // ground takes the colour of the row behind it while the ring, darker
+        // than both, is left alone. It is what lets the row be a visible grey
+        // without a lighter square appearing wherever a photograph sits.
+        className="h-full w-full select-none object-contain mix-blend-multiply transition-transform duration-200 ease-out"
       />
     </div>
   );

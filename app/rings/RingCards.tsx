@@ -53,7 +53,7 @@ export function StyleCard({ style }: { style: RingStyle }) {
             alt={`${styleTitle(style)} with a ${style.showcase.shape} diamond`}
             loading="lazy"
             decoding="async"
-            className="absolute left-[-14.3%] top-[-10.5%] h-[126%] w-[126%] max-w-none object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+            className="absolute left-[-14.3%] top-[-10.5%] h-[126%] w-[126%] max-w-none object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.04]"
           />
         ) : (
           <span aria-hidden className="absolute inset-0 flex items-center justify-center">
