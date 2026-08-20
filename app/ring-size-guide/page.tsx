@@ -392,6 +392,7 @@ export default function RingSizeGuidePage() {
             ldJsonGraph([
               breadcrumbLd([
                 { name: "Home", url: siteUrl("/") },
+                { name: "Guides", url: siteUrl("/guides") },
                 { name: "Ring Size Guide", url: siteUrl(PATH) },
               ]),
               faqLd(FAQS.map((f) => ({ question: f.question, answer: f.answer }))),

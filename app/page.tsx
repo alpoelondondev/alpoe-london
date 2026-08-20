@@ -37,6 +37,9 @@ export const metadata: Metadata = pageMetadata({
   title: "Hatton Garden Bespoke Jeweller & Watch Dealer | Alpoe London",
   description:
     "Bespoke engagement rings, wedding rings and diamond jewellery made to order in Hatton Garden, plus authenticated Rolex, Patek Philippe and Audemars Piguet.",
+  // Next.js renders the root canonical as the bare origin whatever is passed
+  // here, so the sitemap matches that rather than the other way round —
+  // see app/sitemap.ts.
   path: "/",
 });
 

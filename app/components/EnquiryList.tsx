@@ -1,6 +1,21 @@
+import Link from "next/link";
+
 export type EnquiryListRow = {
   id: string;
+  /** WhatsApp enquiry, with the reference pre-filled. */
   href: string;
+  /**
+   * The piece's own page on this site, when it has one.
+   *
+   * Every row here used to be a single anchor straight out to WhatsApp, which
+   * meant that roughly 290 product pages — all of them built, all of them in
+   * the sitemap — had no internal link pointing at them from anywhere on the
+   * site. A crawler could not reach a single unphotographed watch or any of
+   * the thirteen jewellery pieces. The row now goes to the page and keeps the
+   * WhatsApp action beside it, so the fast path out is still one tap and the
+   * pages stop being orphans.
+   */
+  pageHref?: string;
   /** Brand · model line above the name. */
   eyebrow?: string;
   title: string;
@@ -39,41 +54,68 @@ export default function EnquiryList({
 
       <div className="relative mt-4">
         <ul className="list-scroll max-h-[60vh] min-h-0 overflow-y-auto border-y border-fg/[0.10]">
-          {rows.map((row) => (
-            <li key={row.id} className="border-b border-fg/[0.10] last:border-b-0">
-              <a
-                href={row.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={row.ariaLabel ?? `Enquire about ${row.title} on WhatsApp`}
-                className="group flex items-center gap-4 px-1 py-4 transition-colors hover:bg-fg/[0.04] max-md:flex-col max-md:items-stretch max-md:gap-2"
-              >
-                <div className="min-w-0 flex-1">
-                  {row.eyebrow ? (
-                    <p className="text-[10px] tracking-[0.18em] uppercase text-accent">
-                      {row.eyebrow}
-                    </p>
-                  ) : null}
-                  <h3 className="t-sub mt-1">
-                    {row.title}
-                  </h3>
-                </div>
-
-                {/* Reference and CTA share one line on mobile so a row stays compact. */}
-                <div className="flex shrink-0 items-baseline gap-4 max-md:w-full max-md:justify-between md:justify-end">
-                  {row.meta ? (
-                    <p className="text-[11px] tracking-[0.14em] uppercase text-dim">{row.meta}</p>
-                  ) : null}
-                  <p className="text-[11px] tracking-[0.14em] uppercase text-accent md:w-[132px] md:text-right">
-                    Enquire{" "}
-                    <span className="inline-block transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
+          {rows.map((row) => {
+            const detail = (
+              <div className="min-w-0 flex-1">
+                {row.eyebrow ? (
+                  <p className="text-[10px] tracking-[0.18em] uppercase text-accent">
+                    {row.eyebrow}
                   </p>
-                </div>
-              </a>
-            </li>
-          ))}
+                ) : null}
+                <h3 className="t-sub mt-1">{row.title}</h3>
+              </div>
+            );
+            const enquire = (
+              <span className="text-[11px] tracking-[0.14em] uppercase text-accent md:w-[132px] md:text-right">
+                Enquire{" "}
+                <span className="inline-block transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            );
+            const meta = row.meta ? (
+              <p className="text-[11px] tracking-[0.14em] uppercase text-dim">{row.meta}</p>
+            ) : null;
+
+            return (
+              <li key={row.id} className="border-b border-fg/[0.10] last:border-b-0">
+                {row.pageHref ? (
+                  // Two destinations, so two links: the row reads through to
+                  // the piece's page, and "Enquire" still goes to WhatsApp.
+                  <div className="group flex items-center gap-4 px-1 py-4 transition-colors hover:bg-fg/[0.04] max-md:flex-col max-md:items-stretch max-md:gap-2">
+                    <Link href={row.pageHref} className="min-w-0 flex-1">
+                      {detail}
+                    </Link>
+                    <div className="flex shrink-0 items-baseline gap-4 max-md:w-full max-md:justify-between md:justify-end">
+                      {meta}
+                      <a
+                        href={row.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={row.ariaLabel ?? `Enquire about ${row.title} on WhatsApp`}
+                      >
+                        {enquire}
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <a
+                    href={row.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={row.ariaLabel ?? `Enquire about ${row.title} on WhatsApp`}
+                    className="group flex items-center gap-4 px-1 py-4 transition-colors hover:bg-fg/[0.04] max-md:flex-col max-md:items-stretch max-md:gap-2"
+                  >
+                    {detail}
+                    <div className="flex shrink-0 items-baseline gap-4 max-md:w-full max-md:justify-between md:justify-end">
+                      {meta}
+                      {enquire}
+                    </div>
+                  </a>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* Hints that the list keeps going without a hard scrollbar edge. */}

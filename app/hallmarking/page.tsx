@@ -4,7 +4,8 @@ import Footer from "../components/Footer";
 import Breadcrumbs from "../components/Breadcrumbs";
 import BrandHero from "../components/BrandHero";
 import ScrollReveal from "../components/ScrollReveal";
-import { pageMetadata, ldJsonGraph } from "@/lib/seo";
+import FAQ from "../components/FAQ";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 const PATH = "/hallmarking";
@@ -30,9 +31,9 @@ const PATH = "/hallmarking";
  */
 
 export const metadata: Metadata = pageMetadata({
-  title: "Hallmarking — What the Marks Mean",
+  title: "UK Gold & Silver Hallmarks Explained",
   description:
-    "What the marks struck into a British gold or platinum piece certify: sponsor's mark, fineness, assay office, and the Dealer's Notice. From Alpoe London, EC1N.",
+    "How to read a UK hallmark: what 375, 585, 750, 916 and 925 mean, the sponsor's mark, the assay office town marks and the date letter. From Hatton Garden.",
   path: PATH,
 });
 
@@ -58,6 +59,64 @@ const FINENESS = [
   { metal: "Palladium", standards: "500 · 950 · 999" },
 ];
 
+/**
+ * Fineness in parts per thousand, which is what the number on a hallmark
+ * literally is. Written out because "what does 750 mean on a ring" is a real
+ * question people arrive with, and the page previously answered it only
+ * obliquely, inside a table of legal standards.
+ */
+const NUMBERS = [
+  { mark: "375", means: "9 carat gold — 375 parts gold per thousand" },
+  { mark: "585", means: "14 carat gold" },
+  { mark: "750", means: "18 carat gold — what most engagement rings are" },
+  { mark: "916", means: "22 carat gold" },
+  { mark: "925", means: "Sterling silver" },
+  { mark: "958", means: "Britannia silver" },
+  { mark: "950", means: "Platinum, the usual jewellery standard — or palladium" },
+  { mark: "999", means: "Fine gold or fine silver, effectively pure" },
+];
+
+/** The four UK assay offices still striking marks, and their symbols. */
+const TOWNS = [
+  { office: "London", mark: "A leopard's head" },
+  { office: "Birmingham", mark: "An anchor" },
+  { office: "Sheffield", mark: "A rose" },
+  { office: "Edinburgh", mark: "A three-towered castle" },
+];
+
+const HALLMARK_FAQS = [
+  {
+    question: "What does 750 mean on a ring?",
+    answer:
+      "750 parts of gold per thousand, which is 18 carat. The number on a British hallmark is always fineness in parts per thousand rather than carats, so 375 is 9 carat, 585 is 14 carat, 750 is 18 carat and 916 is 22 carat. On silver, 925 is sterling.",
+  },
+  {
+    question: "Does all gold jewellery have to be hallmarked in the UK?",
+    answer:
+      "Anything sold as gold must be, above one gram. The exemption weights are 1g for gold and palladium, 0.5g for platinum and 7.78g for silver — and no engagement ring comes near them, since a plain platinum shank alone is several times the platinum threshold. Below those weights an article may be sold unmarked; above them it is an offence.",
+  },
+  {
+    question: "What are the four UK assay office marks?",
+    answer:
+      "A leopard's head for London, an anchor for Birmingham, a rose for Sheffield and a three-towered castle for Edinburgh. Those are the four offices still operating. A mark matching none of them is likely from a closed office such as Chester, Exeter, Newcastle, Glasgow or Dublin, which dates the piece before that office shut.",
+  },
+  {
+    question: "Where is the London Assay Office?",
+    answer:
+      "Its main office is at Goldsmiths' Hall, Gutter Lane, London EC2V 8AQ, and it keeps a counter at 17 Greville Street, London EC1N 8SQ — inside Hatton Garden. Consignments are posted to Goldsmiths' Hall rather than Greville Street. Having the counter in the jewellery quarter is why hallmarking a piece made here is a walk rather than a wait.",
+  },
+  {
+    question: "Is a hallmark the same as a diamond certificate?",
+    answer:
+      "No, and the two are often confused. A hallmark is an independent test of the metal only — it says nothing whatsoever about the stone. A diamond's cut, colour, clarity and carat come from a separate grading report, usually GIA for a natural stone and IGI for most laboratory-grown ones.",
+  },
+  {
+    question: "Can a hallmarked ring be resized?",
+    answer:
+      "Usually, but it is regulated. Adding metal to size a ring up is permitted within set limits; removing metal to size it down counts as an alteration, and an improperly repaired article is treated in law as though it had never been hallmarked at all. We put resizes through the London Assay Office as a matter of course.",
+  },
+];
+
 export default function HallmarkingPage() {
   return (
     <>
@@ -74,6 +133,7 @@ export default function HallmarkingPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
+              { name: "Guides", href: "/guides" },
               { name: "Hallmarking", href: PATH },
             ]}
           />
@@ -178,6 +238,109 @@ export default function HallmarkingPage() {
           </section>
         </ScrollReveal>
 
+        {/* ---- reading the marks -----------------------------------------
+            The page explained what a hallmark is for and never explained how
+            to read one — which is the whole of what people search for.
+            "gold hallmarks uk", "925 hallmark meaning", "gold hallmark
+            identification chart" and "what is a hallmark on jewelry" are all
+            live queries, and every one of them is somebody holding a piece and
+            squinting at three tiny marks. */}
+        <ScrollReveal>
+          <section className="border-t border-fg/[0.10] px-[52px] py-20 max-md:px-6 max-md:py-14">
+            <h2 className="t-section">How to read the marks on your own jewellery</h2>
+            <p className="mt-4 max-w-[62ch] t-copy">
+              Find them inside the shank of a ring, on the clasp or the tag of a
+              chain, or on the case back of a British-cased watch. Under a loupe
+              there are three compulsory marks, sometimes with two more beside
+              them. Read left to right.
+            </p>
+
+            <div className="mt-10">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-accent">
+                The number — what the metal is
+              </p>
+              <dl className="mt-6 max-w-3xl divide-y divide-fg/[0.08] border-t border-fg/[0.08]">
+                {NUMBERS.map((n) => (
+                  <div
+                    key={n.mark}
+                    className="flex gap-8 py-3 text-[14px] max-sm:flex-col max-sm:gap-1"
+                  >
+                    <dt className="w-28 shrink-0 tabular-nums text-accent">{n.mark}</dt>
+                    <dd className="text-fg/85">{n.means}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-6 max-w-[62ch] t-copy">
+                The shape of the shield around the number tells you which metal
+                it is before you have read the number at all: gold sits in a
+                rectangle with clipped corners, silver in an oval, platinum in a
+                shape like a house on its side, palladium in three joined
+                circles.
+              </p>
+            </div>
+
+            <div className="mt-14">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-accent">
+                The town mark — where it was tested
+              </p>
+              <dl className="mt-6 max-w-3xl divide-y divide-fg/[0.08] border-t border-fg/[0.08]">
+                {TOWNS.map((t) => (
+                  <div
+                    key={t.office}
+                    className="flex gap-8 py-3 text-[14px] max-sm:flex-col max-sm:gap-1"
+                  >
+                    <dt className="w-28 shrink-0 text-dim">{t.office}</dt>
+                    <dd className="text-fg/85">{t.mark}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-6 max-w-[62ch] t-copy">
+                Those four are the offices still operating. A mark you cannot
+                match to any of them may be from an office long closed —
+                Chester, Exeter, Newcastle, Glasgow, Dublin — which usually
+                means the piece is older than the office&rsquo;s closing date,
+                and that is often the most interesting thing about it.
+              </p>
+            </div>
+
+            <div className="mt-14">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-accent">
+                The letter — when it was tested
+              </p>
+              <p className="mt-4 max-w-[62ch] t-copy">
+                The date letter is optional now and has been since 1998, but it
+                was compulsory for centuries and it is on almost anything old.
+                One letter per year, the typeface and the shield around it
+                changing each time the alphabet restarts, which is what makes a
+                letter datable rather than merely a letter. Bring a piece in and
+                we will read it with you.
+              </p>
+            </div>
+          </section>
+        </ScrollReveal>
+
+        {/* ---- the office is round the corner ---------------------------- */}
+        <ScrollReveal>
+          <section className="border-t border-fg/[0.10] bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">
+            <h2 className="t-section">The Assay Office is in Hatton Garden</h2>
+            <p className="mt-4 max-w-[62ch] t-copy">
+              The London Assay Office keeps a counter at 17 Greville Street,
+              London EC1N 8SQ — which is Hatton Garden, a few minutes&rsquo; walk
+              from the bench a piece is made on. Its main office and the address
+              everything is posted to is Goldsmiths&rsquo; Hall on Gutter Lane
+              in the City, but the Greville Street counter is why this quarter
+              works the way it does: a ring can be finished, walked round,
+              tested, marked and walked back inside a morning.
+            </p>
+            <p className="mt-4 max-w-[62ch] t-copy">
+              It is also why a hallmark from a Hatton Garden workshop is rarely
+              a delay. When a jeweller tells you hallmarking will add weeks to a
+              commission, they are usually telling you their bench is a long way
+              from an assay office.
+            </p>
+          </section>
+        </ScrollReveal>
+
         {/* ---- resizing ---------------------------------------------------- */}
         <ScrollReveal>
           <section className="border-t border-fg/[0.10] px-[52px] py-20 max-md:px-6 max-md:py-14">
@@ -195,6 +358,7 @@ export default function HallmarkingPage() {
             </p>
           </section>
         </ScrollReveal>
+        <FAQ items={HALLMARK_FAQS} />
       </main>
 
       <Footer />
@@ -204,10 +368,33 @@ export default function HallmarkingPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             ldJsonGraph([
-    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
-    // renders, which is the single source of truth for the trail. Building
-    // a second BreadcrumbList here published two competing trails per
-    // document — Google picks one arbitrarily, or neither.
+              // Breadcrumbs are emitted by the <Breadcrumbs> component this
+              // page renders, which is the single source of truth for the
+              // trail. Building a second BreadcrumbList here published two
+              // competing trails per document — Google picks one arbitrarily,
+              // or neither. Removing it left this graph empty, which is how a
+              // reference page this substantial came to publish no structured
+              // data at all.
+              {
+                "@type": "Article",
+                "@id": siteUrl(PATH) + "#article",
+                headline: "UK Gold and Silver Hallmarks Explained",
+                description:
+                  "How to read a British hallmark: the fineness numbers, the four assay office town marks, the date letter, and what a hallmark does and does not certify.",
+                about: [
+                  { "@type": "Thing", name: "Hallmarking" },
+                  { "@type": "Thing", name: "Assay office" },
+                  { "@type": "Thing", name: "Precious metal fineness" },
+                ],
+                author: { "@id": siteUrl("/") + "#organization" },
+                publisher: { "@id": siteUrl("/") + "#organization" },
+                inLanguage: "en-GB",
+                isPartOf: { "@id": siteUrl("/") + "#website" },
+                mainEntityOfPage: { "@type": "WebPage", "@id": siteUrl(PATH) },
+                url: siteUrl(PATH),
+              },
+              // Every one of these is rendered above by <FAQ>.
+              faqLd(HALLMARK_FAQS),
             ]),
           ),
         }}

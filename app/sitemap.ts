@@ -8,7 +8,17 @@ import { SELL_BRANDS } from "@/lib/sell/brands";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [
-    { url: siteUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
+    /*
+     * siteUrl() rather than siteUrl("/") — no trailing slash.
+     *
+     * Not pedantry: Next.js normalises the rendered canonical for the root
+     * route to the bare origin whatever you pass it, so the homepage was
+     * advertising https://alpoelondon.com in its <link rel="canonical"> while
+     * this file advertised https://alpoelondon.com/. Google resolves the two
+     * to one URL, but disagreeing with yourself in the two places you fully
+     * control is free to fix and costs nothing to keep right.
+     */
+    { url: siteUrl(), lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: siteUrl("/watches"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: siteUrl("/jewellery"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: siteUrl("/bespoke"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },

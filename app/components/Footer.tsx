@@ -33,6 +33,10 @@ const HOUSE_LINKS = [
   { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },
   { label: "Hallmarking", href: "/hallmarking" },
+  // Listed here because it was in the sitemap and linked from nowhere at all —
+  // the definition of an orphan. Last in the house column, which is honest
+  // about how much it matters.
+  { label: "Our Brand", href: "/ourbrand" },
   { label: "Contact", href: "/contact" },
 ];
 

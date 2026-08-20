@@ -289,9 +289,19 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
 }
 
 export function productLd(product: Product, path: string) {
-  const images = product.images.length
-    ? product.images.map((p) => (p.startsWith("http") ? p : siteUrl(p)))
-    : [siteUrl("/alpoe-london-logo-full-rosegold.svg")];
+  /*
+   * No photography means no `image` property at all.
+   *
+   * The fallback used to be the rose gold lockup — an SVG, which Google will
+   * not accept as a Product image under any circumstances, on roughly 280 of
+   * the site's product pages. That is not a neutral default: it asserts that
+   * the picture of this watch is a company logo. An absent property is
+   * honest and costs nothing, since a Product rich result was never going to
+   * be granted on a logo anyway.
+   */
+  const images = product.images.map((p) =>
+    p.startsWith("http") ? p : siteUrl(p),
+  );
 
   const availability =
     product.stockState === "in_stock"
@@ -305,7 +315,7 @@ export function productLd(product: Product, path: string) {
     description: product.description,
     sku: product.referenceNumber ?? product.id,
     mpn: product.referenceNumber,
-    image: images,
+    ...(images.length ? { image: images } : {}),
     ...(product.brand
       ? { brand: { "@type": "Brand", name: product.brand } }
       : {}),
@@ -327,7 +337,20 @@ export function collectionLd(opts: {
   name: string;
   description: string;
   path: string;
-  products: { title: string; url: string }[];
+  /**
+   * `url` is optional, and omitting it is the point.
+   *
+   * Two callers were emitting an ItemList in which every entry carried the
+   * same URL — the jewellery category pages, where the films are the listing
+   * and there is no page behind each one, and the engagement ring styles,
+   * whose fifteen links were query strings on /ring-builder that all
+   * canonicalise back to /ring-builder. An ItemList of fifteen names against
+   * one URL is not a list of fifteen things; it tells a crawler the page is
+   * describing the same item over and over, which is worse than saying
+   * nothing. A ListItem is perfectly valid with a name and a position alone,
+   * so those callers now name the items honestly and claim no URLs.
+   */
+  products: { title: string; url?: string }[];
 }) {
   return [
     {
@@ -339,11 +362,13 @@ export function collectionLd(opts: {
     },
     {
       "@type": "ItemList",
+      numberOfItems: opts.products.length,
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
       itemListElement: opts.products.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: p.title,
-        url: siteUrl(p.url),
+        ...(p.url ? { url: siteUrl(p.url) } : {}),
       })),
     },
   ];

@@ -21,12 +21,18 @@ function CatalogueCard({ item }: { item: CatalogueItem }) {
   );
 }
 
-// No photography yet — the enquiry goes straight to WhatsApp with the reference
-// pre-filled rather than to a page with nothing to look at.
+/*
+ * No photography yet. The WhatsApp enquiry with the reference pre-filled is
+ * still the fast path — but the reference does have a page of its own, with
+ * its specification and its research write-up on it, and until now nothing on
+ * the site linked to it. Around 210 of these were in the sitemap and reachable
+ * only by typing the URL.
+ */
 function toRow(item: CatalogueItem): EnquiryListRow {
   return {
     id: item.id,
     href: buildCatalogueEnquiryUrl(item),
+    pageHref: catalogueItemUrl(item),
     eyebrow: `${item.brand}${item.model ? ` · ${item.model}` : ""}`,
     title: item.variant || item.model,
     meta: item.reference ? `Ref ${item.reference}` : undefined,

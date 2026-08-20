@@ -96,8 +96,10 @@ export default async function JewelleryCategoryPage(
       name: c.name,
       description: c.heritage,
       path: `/jewellery/${c.slug}`,
+      // Films have no page behind them, so they are named without a URL
+      // rather than all pointing back at this one. See collectionLd.
       products: films.length
-        ? films.map((f) => ({ title: f.title, url: `/jewellery/${c.slug}` }))
+        ? films.map((f) => ({ title: f.title }))
         : filtered.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
   );
@@ -153,6 +155,23 @@ export default async function JewelleryCategoryPage(
                   >
                     View more ready to ship rings
                   </Link>
+                </div>
+              )}
+
+              {/*
+                The catalogued pieces, under the films.
+
+                On the four categories with footage the films replace the
+                product grid entirely — which meant every piece in those
+                categories had a page, and a sitemap entry, and not one link
+                anywhere on the site pointing at it. A crawler could reach the
+                category and then stop. The films are still the listing; this
+                is the index beneath it, and it is how those pages become
+                reachable at all.
+              */}
+              {filtered.length > 0 && (
+                <div className="mt-14">
+                  <ProductGrid products={filtered} />
                 </div>
               )}
             </>

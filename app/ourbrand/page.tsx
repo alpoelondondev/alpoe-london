@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
@@ -10,7 +11,7 @@ import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Our Brand — The Alpoe London Mark in Three Dimensions",
+  title: "Our Brand — The Alpoe London Mark",
   description:
     "The Alpoe London lockup, modelled and rendered in rose gold. Rotate the mark in your browser, and see the orthographic views the artwork is drawn from.",
   path: "/ourbrand",
@@ -81,6 +82,53 @@ export default function OurBrandPage() {
           className="relative mx-[52px] mt-36 h-[62vh] min-h-[380px] max-h-[720px] overflow-hidden rounded-sm border border-fg/[0.10] bg-panel-soft max-md:mx-6 max-md:mt-28 max-md:h-[52vh]"
         >
           <BrandModelViewer />
+        </section>
+
+        {/*
+          Some words.
+
+          This page carried about ten of them — a 3D canvas, four images and
+          nothing a reader or a crawler could get hold of. A page nothing can
+          read is a page nothing can rank, and it had just been linked from the
+          footer, so it needed to be worth arriving at. Everything here is
+          true and specific: the mark really is modelled rather than drawn, and
+          the elevations below really are rendered from that model.
+        */}
+        <section className="px-[52px] pt-12 max-md:px-6 max-md:pt-9">
+          <ScrollReveal>
+            <h2 className="t-section">A mark built rather than drawn</h2>
+            <p className="mt-4 max-w-[64ch] t-copy">
+              The Alpoe London lockup — the AP monogram, the wordmark and the
+              frame rules around them — exists first as geometry. It was modelled
+              in three dimensions, given a 5&nbsp;mm extrusion and a bevelled
+              edge, and finished in the same rose gold the house works in, so
+              the mark catches light the way a piece of jewellery does rather
+              than the way a logo does.
+            </p>
+            <p className="mt-4 max-w-[64ch] t-copy">
+              Everything else follows from that single model. The viewer above
+              loads the mesh itself. The flat artwork used across the site is
+              traced from the same geometry rather than redrawn, and the four
+              elevations below are orthographic renders of it — which is why
+              the bevel reads identically at every size, on every page, and why
+              the version in the header cannot drift away from the version on
+              a business card.
+            </p>
+            <p className="mt-4 max-w-[64ch] t-copy">
+              It is a deliberate piece of an otherwise quiet identity. A house
+              that makes things by hand in{" "}
+              <Link href="/about" className="text-accent underline underline-offset-4">
+                Hatton Garden
+              </Link>{" "}
+              should have a mark that was made rather than picked, and the
+              rose gold is the same metal that turns up in half of what leaves
+              the{" "}
+              <Link href="/bespoke" className="text-accent underline underline-offset-4">
+                workshop
+              </Link>
+              .
+            </p>
+          </ScrollReveal>
         </section>
 
         {/* ---------------------------------------------------------------

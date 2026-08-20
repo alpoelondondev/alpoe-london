@@ -35,6 +35,44 @@ export const metadata: Metadata = pageMetadata({
   path: PATH,
 });
 
+/**
+ * The ring types people arrive asking for, each pointed at the page that can
+ * actually serve them. Eternity, signet and dress rings had no mention
+ * anywhere on the site before this, and all three are real UK queries.
+ */
+const RING_TYPES: { title: string; copy: string; href: string }[] = [
+  {
+    title: "Engagement rings",
+    copy: "Fifteen band styles, any diamond shape, any setting, in platinum or 18ct gold. Natural or lab-grown, and we do not steer you toward either.",
+    href: "/rings/engagement-and-wedding-rings",
+  },
+  {
+    title: "Wedding rings and bands",
+    copy: "Court, flat court, D-shape and flat profiles, plain or set, and shaped to sit flush against an engagement ring that will not take a straight band.",
+    href: "/rings/engagement-and-wedding-rings",
+  },
+  {
+    title: "Eternity rings",
+    copy: "Full, half and three-quarter. Worth knowing before you choose: a full eternity band cannot be resized, because the stones run the whole way round and the spacing cannot be altered.",
+    href: "/ring-size-guide",
+  },
+  {
+    title: "Signet rings",
+    copy: "Oxford, Oxford oval and cushion faces in 9ct or 18ct gold, engraved by hand with a crest, a monogram or initials.",
+    href: "/bespoke",
+  },
+  {
+    title: "Dress and statement rings",
+    copy: "Cocktail rings, pav\u00e9 bands and cluster pieces \u2014 the ones bought for no occasion at all, which are often the most interesting to make.",
+    href: "/jewellery/rings",
+  },
+  {
+    title: "Remodelled and inherited rings",
+    copy: "An old ring remade rather than replaced, or an inherited stone reset into something you will actually wear. We will tell you honestly whether a stone is worth resetting first.",
+    href: "/bespoke",
+  },
+];
+
 export default function RingsHubPage() {
   const styles = ringStyles();
   const pieces = collectionPieces();
@@ -159,6 +197,39 @@ export default function RingsHubPage() {
                 </li>
               ))}
             </ul>
+          </section>
+        </ScrollReveal>
+
+        {/* ---- by type, not by style ----------------------------------------
+            This hub had two cards and about a hundred words, which made it a
+            weaker copy of the page directly beneath it — the audit flagged the
+            two as competing for the same query. They should not compete: the
+            child page sorts rings by *style*, and this one sorts them by
+            *what the ring is for*, which is how somebody arrives. It also lets
+            eternity, signet and dress rings say they exist, none of which had
+            a mention anywhere on the site despite all three being searched. */}
+        <ScrollReveal>
+          <section className="border-t border-sheet-line px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-sub">Every kind of ring we make</h2>
+            <p className="mt-3 max-w-[64ch] t-copy">
+              All of it made to order in Hatton Garden, cast and set by hand, and
+              hallmarked at the London Assay Office before it reaches you.
+            </p>
+            <dl className="mt-8 grid grid-cols-2 gap-x-10 gap-y-8 max-md:grid-cols-1">
+              {RING_TYPES.map((t) => (
+                <div key={t.title} className="border-t border-sheet-line pt-4">
+                  <dt className="text-[15px] font-medium text-sheet-ink">
+                    <Link
+                      href={t.href}
+                      className="underline underline-offset-4 transition hover:text-accent-deep"
+                    >
+                      {t.title}
+                    </Link>
+                  </dt>
+                  <dd className="mt-2 max-w-[52ch] t-copy">{t.copy}</dd>
+                </div>
+              ))}
+            </dl>
           </section>
         </ScrollReveal>
       </main>

@@ -196,6 +196,7 @@ export default async function MetalPricesPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
+              { name: "Guides", href: "/guides" },
               { name: "Metal Prices", href: "/metal-prices", current: true },
             ]}
           />

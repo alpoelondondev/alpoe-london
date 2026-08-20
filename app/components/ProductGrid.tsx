@@ -12,6 +12,7 @@ function toRow(p: Product): EnquiryListRow {
   return {
     id: p.id,
     href: buildEnquiryUrl(p),
+    pageHref: productUrl(p),
     eyebrow,
     title: p.title,
     meta: p.referenceNumber ? `Ref ${p.referenceNumber}` : p.materials,
