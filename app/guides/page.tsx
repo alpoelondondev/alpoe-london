@@ -66,6 +66,13 @@ const GUIDES: Guide[] = [
       "A lab-grown diamond is a real diamond — same carbon, same hardness, same sparkle, and the same grading laboratories. What differs is price, rarity and how each holds its value. The whole comparison, without the sales pitch.",
   },
   {
+    href: "/guides/wedding-bands",
+    title: "What wedding band goes with your ring",
+    kicker: "Pairing",
+    blurb:
+      "Which engagement ring shapes take a plain straight band, which three usually need one cut to fit, and how to choose the profile, width and metal beside a stone you already own.",
+  },
+  {
     href: "/ring-size-guide",
     title: "Ring size guide and UK size chart",
     kicker: "Sizing",

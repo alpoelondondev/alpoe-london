@@ -4,7 +4,20 @@
 
 Alpoe London is a jeweller and watch specialist working out of Hatton Garden, the London street that has been the centre of the British jewellery trade since the nineteenth century. The work splits three ways. First, bespoke commissions: engagement rings, wedding bands, earrings, pendants, chains and bracelets designed with the client and made to order — from a sketch, a photograph, a loose stone or an inherited piece to be remade. Second, an online ring builder that lets someone specify a ring themselves — setting style, diamond shape, carat, metal and UK ring size — and send that specification straight to the workshop. Third, luxury watches: authenticated pre-owned and unworn pieces sourced to order, plus buying and part-exchange with same-day payment. Diamonds are offered both natural and laboratory-grown, and the house position is that neither is the right answer for everyone — the guide below sets out the actual trade-offs rather than steering. There is also a mentorship programme for people entering the watch and jewellery trade.
 
-## Rings and engagement rings
+## Rings and engagement rings, by diamond shape
+
+- [Oval Engagement Rings](https://alpoelondon.com/rings/oval-engagement-rings): The ratio to ask for (1.30–1.50), what the bow tie is and why some of one is unavoidable, and why an oval faces up larger than a round of the same weight.
+- [Round Brilliant Engagement Rings](https://alpoelondon.com/rings/round-brilliant-engagement-rings): 57 or 58 facets, and the only shape GIA awards a cut grade. The most expensive per carat, because cutting a circle wastes the most rough.
+- [Emerald Cut Engagement Rings](https://alpoelondon.com/rings/emerald-cut-engagement-rings): A step cut — it gleams rather than sparkles, and shows every inclusion. GIA recommends VS2 clarity and G colour or better.
+- [Radiant Cut Engagement Rings](https://alpoelondon.com/rings/radiant-cut-engagement-rings): A mixed cut, 70 facets — step-cut crown, brilliant pavilion. The most forgiving of the rectangular shapes on colour and clarity.
+- [Marquise Engagement Rings](https://alpoelondon.com/rings/marquise-engagement-rings): The shape that looks largest face-up for its weight, per GIA. Ratio 1.75–2.25, and the points need V-claws.
+- [Cushion Cut Engagement Rings](https://alpoelondon.com/rings/cushion-cut-engagement-rings): Chunky versus crushed ice, elongated cushions, and why a cushion faces up smaller than its carat weight suggests.
+- [Pear Shaped Engagement Rings](https://alpoelondon.com/rings/pear-shaped-engagement-rings): Also called a teardrop. Worn point outwards. GIA's own guides disagree on the ideal ratio, and the page says so.
+- [Princess Cut Engagement Rings](https://alpoelondon.com/rings/princess-cut-engagement-rings): A square modified brilliant, created in 1981. Hides inclusions well in the corners; faces up smaller than its weight.
+- [Asscher Cut Engagement Rings](https://alpoelondon.com/rings/asscher-cut-engagement-rings): A square step cut, 58 facets, first cut in 1902. Not the same as a Royal Asscher, which has 74 and is patented.
+- [Heart Shaped Engagement Rings](https://alpoelondon.com/rings/heart-shaped-engagement-rings): Needs half a carat and above to read as a heart at all, per GIA. Symmetry between the lobes is everything.
+
+## Rings, by style and stock
 
 - [Engagement & Wedding Rings](https://alpoelondon.com/rings/engagement-and-wedding-rings): Fifteen engagement ring styles made to order in Hatton Garden — solitaire, halo, three-stone, rubover, vintage and more — plus wedding rings and matching bands. Choose the diamond shape, setting, metal and UK size.
 - [Ring Builder](https://alpoelondon.com/ring-builder): Design your own engagement ring. Pick the setting, diamond shape, carat, metal and ring size and see the result before it is made.
@@ -23,9 +36,17 @@ Alpoe London is a jeweller and watch specialist working out of Hatton Garden, th
 
 - [Luxury Watches](https://alpoelondon.com/watches): Authenticated Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot and Omega — live stock and sourced to order.
 - [Sell or Part-Exchange](https://alpoelondon.com/sell): Free, no-obligation valuation on a luxury watch or piece of jewellery. Authenticated in Hatton Garden and paid the same day.
+- [Sell Your Rolex in London](https://alpoelondon.com/sell/rolex): What moves the number on a Rolex — the reference rather than the model, box and papers, bracelet stretch, service history.
+- [Sell Your Patek Philippe in London](https://alpoelondon.com/sell/patek-philippe): A thinner, more informed market than Rolex. Originality and the Extract from the Archives carry unusual weight.
+- [Sell Your Audemars Piguet in London](https://alpoelondon.com/sell/audemars-piguet): Royal Oak condition is a category rather than a deduction — bevel sharpness and bracelet stretch decide the price.
+- [Sell Your Cartier in London](https://alpoelondon.com/sell/cartier): Watches and jewellery both — Tank, Santos, Ballon Bleu, Love bracelets, Juste un Clou and Trinity.
+- [Sell Your Omega in London](https://alpoelondon.com/sell/omega): The maker sellers are most often underpaid for, because the high street prices an Omega as a used watch rather than as a reference.
 
 ## Guides and reference
 
+- [Guides index](https://alpoelondon.com/guides): Everything below, indexed.
+- [Buying Jewellery in Hatton Garden](https://alpoelondon.com/guides/buying-jewellery-in-hatton-garden): Whether Hatton Garden is really cheaper for an engagement ring and why, the three cases where it is not, how three hundred jewellers came to share a few streets, and what to ask before buying. Historical figures cited to London Museum.
+- [What Wedding Band Goes With Your Engagement Ring](https://alpoelondon.com/guides/wedding-bands): Which shapes take a plain straight band, which three usually need one cut to fit, band profiles, width, metal matching and whether to solder the pair.
 - [Natural vs Lab-Grown Diamonds](https://alpoelondon.com/guides/natural-vs-lab-grown-diamonds): Lab-grown diamonds are real diamonds — chemically, physically and optically identical to mined stones. What actually differs, what each costs, how both are graded, and how to choose between them.
 - [Ring Size Guide](https://alpoelondon.com/ring-size-guide): How to measure a ring size accurately at home, the full UK ring size chart A–Z in millimetres, average UK ring sizes for men and women, four ways to find someone's size without asking, and which rings can and cannot be resized.
 - [Hallmarking](https://alpoelondon.com/hallmarking): What the marks struck into a British precious metal piece certify — sponsor's mark, fineness mark and assay office mark — and the statutory Dealer's Notice.
@@ -48,6 +69,7 @@ Alpoe London is a jeweller and watch specialist working out of Hatton Garden, th
 - Email: info@alpoelondon.com
 - Opening hours: Monday to Saturday, 10:00–18:00. Closed Sunday.
 - Hallmarking: London Assay Office
+- Diamond shapes cut and set: round brilliant, oval, cushion, emerald, pear, radiant, marquise, asscher, princess, heart
 - Diamonds: natural and laboratory-grown, GIA certified
 - Metals: platinum, 18ct and 9ct white, yellow and rose gold
 - Watch brands handled: Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega

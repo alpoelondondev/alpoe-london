@@ -247,6 +247,15 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
               <div>
                 <h2 className="t-sub">The wedding ring beside it</h2>
                 <p className="mt-3 max-w-[56ch] t-copy">{g.band}</p>
+                <p className="mt-3 max-w-[56ch] t-copy">
+                  <Link
+                    href="/guides/wedding-bands"
+                    className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
+                  >
+                    All ten shapes compared
+                  </Link>
+                  , with profile, width and whether to solder the pair.
+                </p>
               </div>
             </div>
             {g.history ? (
