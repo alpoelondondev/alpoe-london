@@ -11,6 +11,7 @@ import { getJewelleryByCategory } from "@/lib/products";
 import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 
 const PATH = "/rings";
 
@@ -193,6 +194,33 @@ export default function RingsHubPage() {
                       {c.action}
                       <span className="text-sheet-dim">· {c.count}</span>
                     </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </ScrollReveal>
+
+        {/* ---- by shape -----------------------------------------------------
+            Ten pages, one per diamond shape, each targeting a phrase people
+            actually type. This block is their only route in besides the
+            sitemap, so it is not decoration. */}
+        <ScrollReveal>
+          <section className="border-t border-sheet-line px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-sub">By diamond shape</h2>
+            <p className="mt-3 max-w-[64ch] t-copy">
+              What the shape changes about the stone — how it sparkles, what it
+              hides, the ratio to ask for and how it has to be set. Written
+              from the bench, and sourced.
+            </p>
+            <ul className="mt-8 grid grid-cols-3 gap-x-8 gap-y-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+              {SHAPE_GUIDES.map((g) => (
+                <li key={g.slug} className="border-t border-sheet-line pt-3">
+                  <Link
+                    href={`/rings/${g.slug}`}
+                    className="text-[15px] font-medium text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
+                  >
+                    {g.h1}
                   </Link>
                 </li>
               ))}

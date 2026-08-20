@@ -4,6 +4,7 @@ import { getAllProducts, productUrl } from "@/lib/products";
 import { getCatalogueProductsByBrand } from "@/lib/catalogue";
 import { siteUrl } from "@/lib/site";
 import { SELL_BRANDS } from "@/lib/sell/brands";
+import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -79,6 +80,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // /search is deliberately absent: it carries noindex, and asking a crawler
     // to fetch a URL only to be told not to index it wastes the budget twice.
   ];
+
+  // One page per diamond shape, under /rings. Commercial intent with a local
+  // modifier, so weighted alongside the engagement hub they sit beneath.
+  for (const g of SHAPE_GUIDES) {
+    entries.push({
+      url: siteUrl(`/rings/${g.slug}`),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+  }
 
   // The per-brand selling pages. Transactional intent, so weighted just under
   // the /sell hub they sit beneath.

@@ -10,6 +10,7 @@ import { ringStyles, styleHref, styleTitle } from "@/lib/rings/styles";
 import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, collectionLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 
 const PATH = "/rings/engagement-and-wedding-rings";
 
@@ -182,6 +183,34 @@ export default function EngagementAndWeddingRingsPage() {
             </section>
           </ScrollReveal>
         )}
+        {/* ---- shapes ------------------------------------------------------
+            The grid above sorts by band style; this sorts by stone. They are
+            the two axes people actually shop on, and somebody who has just
+            scrolled fifteen bands often knows the shape they want and not the
+            shank. */}
+        <ScrollReveal>
+          <section className="border-t border-sheet-line px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-sub">Or start from the diamond shape</h2>
+            <p className="mt-3 max-w-[64ch] t-copy">
+              Each of these covers what the shape changes — how it sparkles,
+              what it hides, the length-to-width ratio to ask for, and how it
+              has to be set to survive being worn.
+            </p>
+            <ul className="mt-8 grid grid-cols-3 gap-x-8 gap-y-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+              {SHAPE_GUIDES.map((g) => (
+                <li key={g.slug} className="border-t border-sheet-line pt-3">
+                  <Link
+                    href={`/rings/${g.slug}`}
+                    className="text-[15px] font-medium text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
+                  >
+                    {g.h1}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </ScrollReveal>
+
         {/* ---- what actually happens ---------------------------------------
             The page was fifteen cards, five words each, and about 140 words of
             indexable copy — on the single most commercially important URL on
