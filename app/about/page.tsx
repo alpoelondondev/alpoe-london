@@ -13,9 +13,9 @@ import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Alpoe London — Hatton Garden Jewellers & Watch Specialists",
+  title: "About Us — Hatton Garden Jewellers",
   description:
-    "Alpoe London is a Hatton Garden house dealing in bespoke diamond jewellery and authenticated luxury watches. Private consultations, personal sourcing and white-glove delivery, London based and worldwide shipped.",
+    "Alpoe London is a Hatton Garden jeweller and watch specialist: bespoke diamond pieces made at our own bench, authenticated timepieces, private consultations.",
   path: "/about",
 });
 

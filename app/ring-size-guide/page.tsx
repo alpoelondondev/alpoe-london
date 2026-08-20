@@ -34,10 +34,11 @@ const PATH = "/ring-size-guide";
  * shop does not do is worse than useless once somebody asks for it.
  */
 export const metadata: Metadata = pageMetadata({
-  title: "Ring Size Guide: How to Measure Ring Size (UK Chart)",
+  title: "Ring Size Guide — UK Ring Size Chart",
   description:
-    "How to measure ring size accurately, the full UK ring size chart from A to Z in mm, average UK ring sizes for men and women, four ways to find a size in secret, and what happens if a ring needs resizing.",
+    "How to measure your ring size at home, the full UK ring size chart A to Z in mm, average UK sizes for men and women, and how to find a size in secret.",
   path: PATH,
+  image: "/og/ring-size-guide.jpg",
 });
 
 const WHOLE_SIZES = RING_SIZES.filter((s) => !s.label.includes("½"));

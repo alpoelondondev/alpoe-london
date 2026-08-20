@@ -29,7 +29,7 @@ const PATH = "/rings";
  * routes and does not duplicate leaves each child to rank for its own query.
  */
 export const metadata: Metadata = pageMetadata({
-  title: "Rings: Engagement, Wedding and Ready to Ship",
+  title: "Rings — Engagement, Wedding & Ready to Ship",
   description:
     "Engagement rings made to order, wedding rings and bands, and finished rings ready to be sized and sent. Hand made in Hatton Garden by Alpoe London.",
   path: PATH,
@@ -82,7 +82,16 @@ export default function RingsHubPage() {
       <main className="on-sheet bg-white">
         <section className="clears-nav px-[52px] pb-8 max-md:px-6 max-md:pb-6">
           <p className="t-eyebrow font-semibold">Alpoe London</p>
-          <h1 className="t-page mt-3">Rings</h1>
+          {/*
+            "Rings" on its own is a word, not a query. The <title> on this page
+            already targets the three things it holds; the headline should say
+            the same thing, and say where they are made — this page competes
+            with every national retailer for the same term and the location is
+            the one thing they cannot claim.
+          */}
+          <h1 className="t-page mt-3">
+            Rings Made in Hatton Garden
+          </h1>
           <p className="mt-5 max-w-[58ch] t-copy">
             Everything we make and hold for the finger. Engagement rings are built to
             your own specification with wedding bands sized to match, and our ready to

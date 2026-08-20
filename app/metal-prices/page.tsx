@@ -23,9 +23,9 @@ import { pageMetadata, ldJsonGraph } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Live Metal Prices — Gold, Silver & Platinum Spot",
+  title: "Live Gold, Silver & Platinum Prices",
   description:
-    "Live gold, silver, platinum and palladium spot prices in GBP and USD per troy ounce and per gram, with carat breakdowns and the latest metals news. Reference rates from Alpoe London, Hatton Garden.",
+    "Live gold, silver, platinum and palladium spot prices in GBP and USD, per troy ounce and per gram, with carat breakdowns. Reference rates from Hatton Garden.",
   path: "/metal-prices",
 });
 

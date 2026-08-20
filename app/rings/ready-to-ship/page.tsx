@@ -11,10 +11,11 @@ import { siteUrl } from "@/lib/site";
 const PATH = "/rings/ready-to-ship";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Ready to Ship Engagement Rings, Hatton Garden",
+  title: "Ready to Ship Engagement Rings",
   description:
-    "Finished engagement rings we hold in Hatton Garden, ready to be sized and sent rather than made to order. Solitaire, halo, trilogy, rubover and vintage settings.",
+    "Finished engagement rings held in Hatton Garden, ready to be sized and sent rather than made to order. Solitaire, halo, trilogy, rubover and vintage settings.",
   path: PATH,
+  image: "/og/wedding-rings.jpg",
 });
 
 export default function ReadyToShipPage() {

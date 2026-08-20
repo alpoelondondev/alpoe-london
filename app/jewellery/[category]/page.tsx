@@ -13,7 +13,7 @@ import CategoryFilms from "../../components/CategoryFilms";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import { filmsForCategory } from "@/lib/films";
 import { getJewelleryByCategory, hasPhotography, photosFirst, productUrl } from "@/lib/products";
-import { pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
+import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { JewelleryCategorySlug, Product } from "@/lib/types";
 
 type RouteParams = { category: string };
@@ -29,10 +29,20 @@ export async function generateMetadata(
   const { category } = await props.params;
   const c = jewelleryCategoryBySlug(category);
   if (!c) return {};
+  /*
+   * `heritage` is written as body copy, not as a snippet — some categories run
+   * to 181 characters and earrings to only 99, so half were truncated and half
+   * left most of the space unused. Wrapping it in a sentence that names the
+   * category and the location gives every one of them a floor, and the
+   * truncation gives them all a ceiling.
+   */
   return pageMetadata({
     title: `${c.name} — Bespoke & Ready-to-Wear`,
-    description: c.heritage,
+    description: truncateForSerp(
+      `${c.name} from Alpoe London, made and sourced in Hatton Garden. ${c.heritage}`,
+    ),
     path: `/jewellery/${c.slug}`,
+    image: "/og/jewellery.jpg",
   });
 }
 

@@ -15,9 +15,9 @@ import { pageMetadata, ldJsonGraph, faqLd, localBusinessLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Book An Appointment — Alpoe London, Hatton Garden Showroom",
+  title: "Book a Hatton Garden Showroom Appointment",
   description:
-    "Book a private appointment at the Alpoe London showroom in Hatton Garden. Engagement ring consultations, bespoke design, luxury watch viewings and general visits — pick a time and confirm on WhatsApp.",
+    "Book a private appointment at our Hatton Garden showroom — engagement ring consultations, bespoke design and luxury watch viewings. Mon to Sat, 10am to 6pm.",
   path: "/book-appointment",
 });
 

@@ -14,10 +14,28 @@ import { siteUrl } from "@/lib/site";
 
 const PATH = "/guides/natural-vs-lab-grown-diamonds";
 
+/**
+ * When this guide was written, and when it was last revised.
+ *
+ * Kept as constants because they are used twice — in the Article schema and in
+ * the byline printed under the headline — and a page whose visible date
+ * disagrees with its markup is worse than one with no date at all. Update
+ * UPDATED whenever the substance changes; leave it alone for typo fixes.
+ */
+const PUBLISHED: string = "2026-02-14";
+const UPDATED: string = "2026-08-20";
+
+const DATE_FORMAT = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+
 export const metadata: Metadata = pageMetadata({
-  title: "Lab Grown vs Natural Diamonds: A Straight Answer",
+  title: "Lab Grown vs Natural Diamonds",
   description:
-    "Lab grown diamonds are real diamonds. What actually differs from a natural stone, what each costs, how they are graded, and how to choose. From the Alpoe London counter in Hatton Garden.",
+    "Lab grown diamonds are real diamonds. What actually differs from a natural stone, what each costs and how both are graded — straight from a Hatton Garden bench.",
   path: PATH,
   image: "/alpoe-lab-grown-vs-natural-diamond-comparison-chart.jpg",
 });
@@ -88,11 +106,28 @@ export default function DiamondsGuidePage() {
     {
       "@type": "Article",
       "@id": siteUrl(PATH) + "#article",
-      headline: "Lab Grown vs Natural Diamonds",
+      headline: "Lab Grown vs Natural Diamonds: A Straight Answer",
       description:
         "What actually differs between a lab grown and a natural diamond, what each costs, and how to choose.",
-      about: "Lab grown diamonds and natural diamonds",
+      about: [
+        { "@type": "Thing", name: "Lab-grown diamond" },
+        { "@type": "Thing", name: "Natural diamond" },
+        { "@type": "Thing", name: "Diamond grading" },
+      ],
+      // An Article with no dates and no author is, to Google and to any
+      // assistant weighing whether to quote it, a page of unattributed text of
+      // unknown age. These three fields are most of what "who says so, and
+      // when" means in structured data — and on a question as contested as
+      // this one, that is the difference between being cited and being
+      // skipped. PUBLISHED and UPDATED are declared at the top of this file
+      // and printed on the page, so the two can never disagree.
+      datePublished: PUBLISHED,
+      dateModified: UPDATED,
+      author: { "@id": siteUrl("/") + "#organization" },
       publisher: { "@id": siteUrl("/") + "#organization" },
+      inLanguage: "en-GB",
+      isPartOf: { "@id": siteUrl("/") + "#website" },
+      mainEntityOfPage: { "@type": "WebPage", "@id": siteUrl(PATH) },
       image: siteUrl("/alpoe-lab-grown-vs-natural-diamond-comparison-chart.jpg"),
       url: siteUrl(PATH),
     },
@@ -107,11 +142,37 @@ export default function DiamondsGuidePage() {
     <>
       <SiteHeader />
       <main>
+        {/*
+          The h1 used to be the single word "Diamonds", which threw away a
+          well-targeted <title>: the page ranks for "lab grown vs natural
+          diamonds" or it ranks for nothing, and the headline is the strongest
+          on-page statement of what a page is about. Naming the comparison also
+          matches how the question is actually asked.
+        */}
         <BrandHero
           eyebrow="Guide"
-          title="Diamonds"
+          title="Lab-Grown vs Natural Diamonds"
           copy="Lab grown or natural. Both are real diamonds, both sit on our counter, and the right one depends on what you want from the stone. Here is the whole thing without the sales pitch."
         />
+
+        {/* The byline the Article schema claims. Visible, so the claim holds. */}
+        <p className="px-[52px] text-[11px] uppercase tracking-[0.14em] text-dim max-md:px-6">
+          Alpoe London, Hatton Garden
+          <span aria-hidden="true"> · </span>
+          Published{" "}
+          <time dateTime={PUBLISHED}>
+            {DATE_FORMAT.format(new Date(PUBLISHED))}
+          </time>
+          {UPDATED !== PUBLISHED ? (
+            <>
+              <span aria-hidden="true"> · </span>
+              Updated{" "}
+              <time dateTime={UPDATED}>
+                {DATE_FORMAT.format(new Date(UPDATED))}
+              </time>
+            </>
+          ) : null}
+        </p>
 
         <section className="px-[52px] py-8 max-md:px-6">
           <Breadcrumbs

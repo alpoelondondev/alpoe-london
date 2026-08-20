@@ -30,9 +30,9 @@ const PATH = "/hallmarking";
  */
 
 export const metadata: Metadata = pageMetadata({
-  title: "Hallmarking — What the Marks on Your Ring Mean",
+  title: "Hallmarking — What the Marks Mean",
   description:
-    "Every precious metal piece Alpoe London makes is hallmarked at the London Assay Office. The Dealer's Notice, the four UK assay offices, and what a hallmark does and does not certify.",
+    "What the marks struck into a British gold or platinum piece certify: sponsor's mark, fineness, assay office, and the Dealer's Notice. From Alpoe London, EC1N.",
   path: PATH,
 });
 

@@ -15,9 +15,9 @@ import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Alpoe Mentorship — Learn The Watch & Jewellery Trade From Hatton Garden",
+  title: "Jewellery & Watch Trade Mentorship",
   description:
-    "A private mentorship group run by Alpoe London for people entering the watch and jewellery trade. Sourcing, valuation, margin, marketing and reputation, taught from the floor of Hatton Garden.",
+    "A private mentorship for people entering the watch and jewellery trade — sourcing, valuation, margin, marketing and reputation, taught from Hatton Garden.",
   path: "/mentorship",
 });
 
@@ -124,7 +124,16 @@ export default function MentorshipPage() {
     <>
       <SiteHeader />
       <main>
-        <BrandHero title="Our Mentorship" />
+        {/*
+          Was "Our Mentorship" with no supporting paragraph — a headline that
+          names nothing anyone searches for, above nothing. The title tag
+          targets the watch and jewellery trade; so should the h1.
+        */}
+        <BrandHero
+          eyebrow="Mentorship"
+          title="Learn the Watch & Jewellery Trade"
+          copy="A private mentorship run from the floor of Hatton Garden, for people getting into the trade properly. Sourcing, valuation, margin, marketing and the reputation the whole thing runs on."
+        />
 
         <section className="px-[52px] py-8 max-md:px-6">
           <Breadcrumbs

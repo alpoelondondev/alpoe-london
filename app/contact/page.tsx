@@ -15,9 +15,9 @@ import { SITE, siteUrl } from "@/lib/site";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact Alpoe London — Hatton Garden Showroom",
+  title: "Contact Us — Hatton Garden Showroom",
   description:
-    "Talk to Alpoe London about a bespoke commission, a watch you're hunting, or a piece you'd like to sell. WhatsApp for an instant reply, or visit our Hatton Garden showroom.",
+    "Talk to Alpoe London about a bespoke commission, a watch you are hunting or a piece you would like to sell. WhatsApp for a fast reply, or visit Hatton Garden.",
   path: "/contact",
 });
 

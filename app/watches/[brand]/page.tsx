@@ -11,7 +11,7 @@ import AvailabilityCatalogue from "../../components/AvailabilityCatalogue";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
 import { getWatchesByBrand, hasPhotography, photosFirst, productUrl } from "@/lib/products";
 import { getBrandCatalogue } from "@/lib/catalogue";
-import { pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
+import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { WatchBrandSlug, Product } from "@/lib/types";
 
 type RouteParams = { brand: string };
@@ -27,10 +27,36 @@ export async function generateMetadata(
   const { brand } = await props.params;
   const b = watchBrandBySlug(brand);
   if (!b) return {};
+  /*
+   * Both halves of this used to overflow. The title stacked three model names
+   * onto the brand and the "| Alpoe London" template, which put Audemars
+   * Piguet at 99 characters — Google renders about sixty, so the models the
+   * title existed to name were the first thing cut. And the description
+   * appended the whole `heritage` paragraph, reaching 267 characters on Rolex.
+   *
+   * Two models is enough to signal depth, and the description now leads with
+   * what this page offers before it borrows any house history.
+   */
+  const stem = `${b.name} Watches for Sale`;
+  // 60 characters is what Google renders; the layout template spends 15 of
+  // them on "| Alpoe London". Add model names only while they fit, so
+  // "Rolex" gets two and "Vacheron Constantin" gets none.
+  const room = 60 - " | Alpoe London".length - stem.length - " — ".length;
+  const models: string[] = [];
+  for (const m of b.models) {
+    const next = [...models, m].join(" & ");
+    if (next.length > room) break;
+    models.push(m);
+  }
   return pageMetadata({
-    title: `${b.name} Watches — Authentic ${b.models.slice(0, 3).join(", ")} & More`,
-    description: `${b.name} watches available at Alpoe London, Hatton Garden. ${b.heritage}`,
+    title: models.length ? `${stem} — ${models.join(" & ")}` : stem,
+    description: truncateForSerp(
+      `Authenticated ${b.name} watches from Alpoe London in Hatton Garden — ${b.models
+        .slice(0, 3)
+        .join(", ")} and more, in stock and sourced to order. ${b.heritage}`,
+    ),
     path: `/watches/${b.slug}`,
+    image: "/og/watches.jpg",
   });
 }
 
@@ -85,7 +111,17 @@ export default async function BrandPage(
     <>
       <SiteHeader />
       <main>
-        <BrandHero eyebrow="Watches" title={`${b.name}`} copy={b.heritage} />
+        {/*
+          The bare brand name was the h1 on all eleven of these pages — a term
+          the brand's own site owns outright, and one that says nothing about
+          what this page offers. "Rolex Watches for Sale in London" is what the
+          page is, and it is what somebody looking for one types.
+        */}
+        <BrandHero
+          eyebrow="Watches"
+          title={`${b.name} Watches for Sale in London`}
+          copy={b.heritage}
+        />
         <section className="px-[52px] py-4 max-md:px-6">
           <Breadcrumbs
             items={[

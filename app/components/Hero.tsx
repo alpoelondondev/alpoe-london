@@ -393,8 +393,15 @@ export default function Hero() {
       </div>
 
       <div ref={contentRef} className="relative z-4">
+        {/*
+          The hero is the 3D lockup, so there is no drawn headline for this to
+          be — but the page still needs one sentence that states what the
+          business does, and it was repeating the <title> word for word rather
+          than adding anything. This names the trade instead of the company.
+        */}
         <h1 className="sr-only">
-          Alpoe London — Luxury Watches &amp; Bespoke Jewellery, Hatton Garden
+          Bespoke engagement rings, diamond jewellery and luxury watches, made
+          and sourced in Hatton Garden, London
         </h1>
       </div>
     </section>

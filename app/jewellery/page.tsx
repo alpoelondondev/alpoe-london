@@ -14,10 +14,11 @@ import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { JEWELLERY_FAQS } from "@/lib/faqs";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Fine Jewellery — Engagement Rings, Wedding Bands, Diamonds & More",
+  title: "Fine Jewellery — Diamond Rings & Earrings",
   description:
-    "Bespoke fine jewellery from Alpoe London, Hatton Garden. Engagement rings, wedding bands, men's jewellery, bracelets, earrings, necklaces, pendants and statement rings — designed and made in London.",
+    "Bespoke fine jewellery made in Hatton Garden — diamond engagement rings, wedding bands, earrings, necklaces, pendants and bracelets, designed around you.",
   path: "/jewellery",
+  image: "/og/jewellery.jpg",
 });
 
 export default function JewelleryIndex() {

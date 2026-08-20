@@ -9,12 +9,23 @@ const SHOP_LINKS = [
   { label: "Search", href: "/search" },
 ];
 
+/*
+ * The footer is the site's most reliable crawl path — it is a server
+ * component, it renders identically on every route, and until the nav panel
+ * was fixed it was the *only* set of links a crawler could see. Two pages that
+ * belong here were missing: /rings, which nothing but its own two children
+ * linked to, and the lab-grown diamonds guide, which had exactly one crawlable
+ * inbound link on the whole site despite being the strongest piece of writing
+ * on it.
+ */
 const HOUSE_LINKS = [
   { label: "Book an Appointment", href: "/book-appointment" },
   { label: "Engagement & Wedding Rings", href: "/rings/engagement-and-wedding-rings" },
   { label: "Ready to Ship Rings", href: "/rings/ready-to-ship" },
+  { label: "All Rings", href: "/rings" },
   { label: "Ring Size Guide", href: "/ring-size-guide" },
   { label: "Ring Builder", href: "/ring-builder" },
+  { label: "Natural vs Lab-Grown Diamonds", href: "/guides/natural-vs-lab-grown-diamonds" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell & Trade", href: "/sell" },
   { label: "Metal Prices", href: "/metal-prices" },
@@ -100,9 +111,9 @@ export default function Footer() {
 
           <div className="grid grid-cols-4 gap-x-6 gap-y-10 max-sm:grid-cols-2">
           <div>
-            <h4 className="t-eyebrow mb-5">
+            <h2 className="t-eyebrow mb-5">
               Watches
-            </h4>
+            </h2>
             <ul className="flex flex-col gap-3">
               {featuredBrands.map((b) => (
                 <li key={b.slug}>
@@ -118,9 +129,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="t-eyebrow mb-5">
+            <h2 className="t-eyebrow mb-5">
               Jewellery
-            </h4>
+            </h2>
             <ul className="flex flex-col gap-3">
               {featuredCategories.map((c) => (
                 <li key={c.slug}>
@@ -137,9 +148,9 @@ export default function Footer() {
 
           {/* Widest of the three so its links sit two-across without wrapping */}
           <div className="col-span-2 max-sm:col-span-2">
-            <h4 className="t-eyebrow mb-5">
+            <h2 className="t-eyebrow mb-5">
               House
-            </h4>
+            </h2>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
               {SHOP_LINKS.concat(HOUSE_LINKS).map((l) => (
                 <li key={l.href}>

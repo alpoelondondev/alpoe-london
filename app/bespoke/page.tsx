@@ -14,10 +14,11 @@ import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Bespoke Jewellery — Custom Diamond Pieces Made In Hatton Garden",
+  title: "Bespoke Jewellery Made in Hatton Garden",
   description:
-    "Commission a one-off diamond piece from Alpoe London. Engagement rings, chains, pendants and statement pieces designed around you and hand-set in Hatton Garden. Lab-grown or natural, GIA certified.",
+    "Commission a one-off diamond piece in Hatton Garden. Engagement rings, pendants and chains designed around you and hand-set in London. Natural or lab-grown.",
   path: "/bespoke",
+  image: "/og/bespoke.jpg",
 });
 
 const STEPS = [

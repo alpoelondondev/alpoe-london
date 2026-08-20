@@ -27,6 +27,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Fifteen engagement ring styles made to order in Hatton Garden, plus wedding rings and bands to match. Choose the diamond shape, setting, metal and UK size.",
   path: PATH,
+  image: "/og/engagement-rings.jpg",
 });
 
 export default function EngagementAndWeddingRingsPage() {

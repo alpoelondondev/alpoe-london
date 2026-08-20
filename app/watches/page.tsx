@@ -15,10 +15,11 @@ import { WATCH_FAQS } from "@/lib/faqs";
 import { productUrl } from "@/lib/products";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Luxury Watches — Rolex, Patek Philippe, Audemars Piguet & More",
+  title: "Luxury Watches — Rolex, Patek, AP",
   description:
-    "Authenticated luxury watches sourced through Alpoe London in Hatton Garden. Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega and more — live stock and sourceable to order.",
+    "Authenticated luxury watches sourced through Alpoe London in Hatton Garden — Rolex, Patek Philippe, Audemars Piguet and Cartier. Live stock and made to order.",
   path: "/watches",
+  image: "/og/watches.jpg",
 });
 
 export default function WatchesIndex() {

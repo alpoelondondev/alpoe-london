@@ -14,10 +14,11 @@ import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Sell & Trade Your Watch — Same-Day Payment, Hatton Garden",
+  title: "Sell Your Watch — Paid the Same Day",
   description:
-    "Sell or part-exchange your luxury watch with Alpoe London. Free no-obligation valuation on Rolex, Patek Philippe, Audemars Piguet and more. Authenticated in Hatton Garden, paid same day.",
+    "Sell or part-exchange a luxury watch with Alpoe London. Free valuation on Rolex, Patek Philippe and AP, authenticated in Hatton Garden, paid the same day.",
   path: "/sell",
+  image: "/og/sell.jpg",
 });
 
 const STEPS = [
