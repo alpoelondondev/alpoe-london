@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
 import type { SearchIndexEntry } from "@/lib/types";
 import SearchDialog from "./SearchDialog";
 
@@ -15,13 +16,38 @@ type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
  * and no state to hand across.
  */
 export default function SearchTrigger({
-  index,
   suggestions,
 }: {
-  index: SearchIndexEntry[];
   suggestions: Suggestion[];
 }) {
   const [open, setOpen] = useState(false);
+  /*
+   * The index arrives over the wire instead of inside the page — see
+   * app/api/search-index/route.ts for why. Fetched once, on whichever comes
+   * first: the browser going idle after load, or somebody opening search. By
+   * the time the dialog can be opened by hand it is almost always already
+   * here, and if it is not, the dialog shows its suggestions while it lands.
+   */
+  const [index, setIndex] = useState<SearchIndexEntry[]>([]);
+  const loadedRef = useRef(false);
+
+  const loadIndex = useCallback(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+    fetch("/api/search-index")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: SearchIndexEntry[]) => setIndex(data))
+      .catch(() => {
+        // Leave it empty and let the user try again — the suggestions still
+        // give them somewhere to go, and a failed search is not a failed page.
+        loadedRef.current = false;
+      });
+  }, []);
+
+  const idle = useDeferredUntilIdle();
+  useEffect(() => {
+    if (idle) loadIndex();
+  }, [idle, loadIndex]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -29,20 +55,23 @@ export default function SearchTrigger({
         const tag = (document.activeElement as HTMLElement | null)?.tagName;
         if (tag === "INPUT" || tag === "TEXTAREA") return;
         e.preventDefault();
+        loadIndex();
         setOpen(true);
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, loadIndex]);
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          loadIndex();
+          setOpen(true);
+        }}
         className="group flex w-full items-center gap-2.5 border border-fg/15 bg-fg/[0.03] px-4 py-2.5 text-left transition hover:border-accent/50 hover:bg-fg/[0.06]"
-        aria-label="Search"
       >
         <svg
           width="16"

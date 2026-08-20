@@ -74,8 +74,20 @@ export default function FindUs() {
     let map: { remove: () => void } | null = null;
     let cancelled = false;
 
-    // Loaded on demand — only this strip needs Leaflet.
-    (async () => {
+    /*
+     * Wait until the strip is near the viewport before loading anything.
+     *
+     * "On demand" used to mean "on mount", which on the homepage meant Leaflet,
+     * its stylesheet and a full screen of CARTO raster tiles all downloading
+     * during the hero's paint — roughly 150KB of third-party imagery for a map
+     * several screens below the fold that most visitors never scroll to.
+     * Lighthouse was still counting those tiles among the largest transfers on
+     * a mobile homepage load.
+     *
+     * 400px of rootMargin means it is ready by the time it is actually looked
+     * at, and browsers without IntersectionObserver simply load it as before.
+     */
+    const start = () => (async () => {
       try {
         const L = await import("leaflet");
         if (cancelled || !holder.current) return;
@@ -110,8 +122,25 @@ export default function FindUs() {
       }
     })();
 
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver === "undefined") {
+      start();
+    } else {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((e) => e.isIntersecting)) return;
+          observer?.disconnect();
+          observer = null;
+          start();
+        },
+        { rootMargin: "400px" },
+      );
+      observer.observe(holder.current);
+    }
+
     return () => {
       cancelled = true;
+      observer?.disconnect();
       map?.remove();
     };
   }, []);

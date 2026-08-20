@@ -69,9 +69,15 @@ export default function CategoryGrid() {
   return (
     <section
       id="shop-by-category"
-      aria-label="Shop by category"
+      aria-labelledby="shop-by-category-heading"
       className="px-[52px] pt-8 pb-8 max-md:px-4 max-md:pt-6 max-md:pb-6"
     >
+      {/* An aria-label named this section but no heading did, so the outline
+          jumped h1 -> h3 across the five category tiles. See Collections. */}
+      <h2 id="shop-by-category-heading" className="sr-only">
+        Shop by category — luxury watches, rings, bracelets, earrings and
+        necklaces
+      </h2>
       {/* Two up on a phone, one row of four once there is width for it. The
           square tiles stay square at every size — the grid gains columns, not
           height — while the wide one spans the row as a banner. */}

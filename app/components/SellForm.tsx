@@ -15,8 +15,23 @@ export default function SellForm() {
   return (
     <section
       id="sell"
+      aria-labelledby="sell-heading"
       className="px-[52px] border-t border-fg/[0.10] max-md:px-6"
     >
+      {/*
+        A section heading that is announced rather than drawn.
+
+        The homepage's design has no visible headline over these bands, which
+        left the document outline running h1 straight to h3 and left three
+        whole sections with no name at all — a screen-reader user landing in
+        the middle of the page had nothing telling them what they were in. It
+        also meant the page said nothing, in heading text, about the things it
+        exists to sell. This is the standard fix for a section whose identity
+        is carried by a picture: state it for the readers who cannot see it.
+      */}
+      <h2 id="sell-heading" className="sr-only">
+        Sell your watch or jewellery to Alpoe London
+      </h2>
       <ScrollReveal>
         <button
           type="button"
@@ -105,8 +120,16 @@ export default function SellForm() {
               </div>
 
               {/* Item type */}
+              {/*
+                A <select> whose only description is its placeholder option is
+                unlabelled as far as a screen reader is concerned — it
+                announces the current value and nothing about what is being
+                chosen. The visible design has no room for a label, so it is
+                supplied directly.
+              */}
               <select
                 name="itemType"
+                aria-label="What are you selling?"
                 required
                 defaultValue=""
                 className="bg-transparent border-b border-fg/25 px-0 py-5 text-[15px] text-fg tracking-[0.03em] outline-none focus:border-accent/40 transition-colors appearance-none cursor-pointer [&:invalid]:text-dim/60 [&>option]:bg-bg [&>option]:text-fg"

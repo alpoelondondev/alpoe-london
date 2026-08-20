@@ -388,8 +388,21 @@ const LogoLoop = memo(function LogoLoop({
     [effectiveHoverSpeed]
   );
 
+  /*
+   * `hidden` marks the duplicate copies. The loop works by rendering the same
+   * row two or more times so one can scroll in as another scrolls out, and
+   * every copy after the first is aria-hidden because a screen reader should
+   * hear the brand list once, not three times.
+   *
+   * Hiding them was only half the job: they still contained real <a>
+   * elements, so a keyboard user tabbing through the page walked into a set of
+   * links that had been declared not to exist and could not be read out. That
+   * is axe's aria-hidden-focus rule, and it is a genuine trap rather than a
+   * technicality. tabindex="-1" takes them out of the tab order to match what
+   * aria-hidden already claims.
+   */
   const renderLogoItem = useCallback(
-    (item: LogoItem, key: string) => {
+    (item: LogoItem, key: string, hidden = false) => {
       if (renderItem) {
         return (
           <li className="logoloop__item" key={key} role="listitem">
@@ -425,6 +438,7 @@ const LogoLoop = memo(function LogoLoop({
           className="logoloop__link"
           href={item.href}
           aria-label={itemAriaLabel || "logo link"}
+          tabIndex={hidden ? -1 : undefined}
           {...(isInternal ? {} : { target: "_blank", rel: "noreferrer noopener" })}
         >
           {content}
@@ -452,7 +466,7 @@ const LogoLoop = memo(function LogoLoop({
           ref={copyIndex === 0 ? seqRef : undefined}
         >
           {logos.map((item, itemIndex) =>
-            renderLogoItem(item, `${copyIndex}-${itemIndex}`)
+            renderLogoItem(item, `${copyIndex}-${itemIndex}`, copyIndex > 0)
           )}
         </ul>
       )),

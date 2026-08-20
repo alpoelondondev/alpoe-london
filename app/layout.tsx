@@ -36,6 +36,15 @@ const playfairDisplay = Playfair_Display({
   weight: "500",
   subsets: ["latin"],
   variable: "--font-playfair-display",
+  /*
+   * Not preloaded. next/font preloads every family by default, which put a
+   * 42KB face at the front of the queue on every page — ahead of the hero
+   * poster that defines the largest contentful paint, on a connection where
+   * 42KB is a third of a second. Playfair sets headings, not the first thing
+   * anyone reads, and `display: swap` plus next/font's metric-adjusted
+   * fallback means it arrives without moving anything (CLS stays at 0).
+   */
+  preload: false,
 });
 
 export const metadata: Metadata = {

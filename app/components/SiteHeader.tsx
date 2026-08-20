@@ -1,6 +1,5 @@
 import Nav from "./Nav";
 import type { TickerItem } from "./MarketTicker";
-import { buildSearchIndex } from "@/lib/products";
 import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import {
   getMetalPrices,
@@ -43,7 +42,6 @@ async function tickerItems(): Promise<{ items: TickerItem[]; stale: boolean }> {
 }
 
 export default async function SiteHeader() {
-  const index = buildSearchIndex();
   const { items: ticker, stale: tickerStale } = await tickerItems();
   const suggestions = [
     ...WATCH_BRANDS.map((b) => ({
@@ -59,7 +57,6 @@ export default async function SiteHeader() {
   ];
   return (
     <Nav
-      searchIndex={index}
       suggestions={suggestions}
       ticker={ticker}
       tickerStale={tickerStale}

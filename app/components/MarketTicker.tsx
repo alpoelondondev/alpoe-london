@@ -57,7 +57,13 @@ export default function MarketTicker({
   return (
     <Link
       href="/metal-prices"
-      aria-label="Live metal prices"
+      /*
+       * No aria-label. It read "Live metal prices" while the visible content
+       * is a run of metal names and figures, so voice control had no way to
+       * address the link by anything a user could see — which is exactly what
+       * axe's label-content-name-mismatch rule is for. The prices themselves
+       * are a better name than any summary of them.
+       */
       className="group relative block overflow-hidden border-t border-fg/[0.10] bg-fg/[0.02]"
     >
       <style dangerouslySetInnerHTML={{ __html: TICKER_CSS }} />
@@ -82,8 +88,10 @@ export default function MarketTicker({
                 <span className="tabular-nums text-accent transition-colors group-hover:text-champagne">
                   {item.value}
                 </span>
+                {/* Was text-dim/70: 2.91:1 at 10px, well under the 4.5:1
+                    minimum. Full-strength dim clears it. */}
                 {item.unit ? (
-                  <span className="text-dim/70">{item.unit}</span>
+                  <span className="text-dim">{item.unit}</span>
                 ) : null}
                 <span aria-hidden="true" className="ml-4 h-2.5 w-px bg-fg/15" />
               </li>

@@ -8,7 +8,7 @@ import SearchTrigger from "./SearchTrigger";
 import MarketTicker, { type TickerItem } from "./MarketTicker";
 import LockupMark from "./LockupMark";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
-import type { SearchIndexEntry } from "@/lib/types";
+import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
 
 type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
 
@@ -74,18 +74,18 @@ const LINKS: { label: string; href: string; hidden?: boolean }[] = [
 ];
 
 export default function Nav({
-  searchIndex,
   suggestions,
   ticker,
   tickerStale,
 }: {
-  searchIndex: SearchIndexEntry[];
   suggestions: Suggestion[];
   /** Live spot for the announcement strip; omitted, the strip is not drawn. */
   ticker?: TickerItem[];
   tickerStale?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  // See useDeferredUntilIdle: three.js waits until the page has settled.
+  const markReady = useDeferredUntilIdle();
   const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
 
@@ -243,7 +243,9 @@ export default function Nav({
             className="flex h-14 shrink-0 items-center justify-self-center"
             aria-label="Alpoe London — Home"
           >
-            <Monogram3D height={48} />
+            {/* Flat until the browser is idle. The bar is on every page and
+                this is the only thing on it that costs half a megabyte. */}
+            {markReady ? <Monogram3D height={48} /> : <MonogramFlat />}
           </Link>
 
           {/* Booking is the one action the bar carries rather than another
@@ -262,7 +264,7 @@ export default function Nav({
             hung under the lockup rather than a second banner. */}
         <div className="mt-3 flex justify-center">
           <div className="w-full max-w-md">
-            <SearchTrigger index={searchIndex} suggestions={suggestions} />
+            <SearchTrigger suggestions={suggestions} />
           </div>
         </div>
         {/* Full-bleed along the bar's bottom edge — the negative margins undo
@@ -308,6 +310,7 @@ export default function Nav({
           <li>
             <Link
               href="/book-appointment"
+              prefetch={menuOpen ? undefined : false}
               onClick={() => setMenuOpen(false)}
               className="t-sub block py-4 !text-accent"
             >
@@ -318,6 +321,16 @@ export default function Nav({
             <li key={link.href}>
               <Link
                 href={link.href}
+                /*
+                 * Keeping the panel mounted for crawlers had a cost nobody
+                 * asked for: Next prefetches every <Link> it finds in the
+                 * viewport, and the closed panel is laid out full-screen, so
+                 * eleven routes were being speculatively fetched on every
+                 * single page load — competing with the hero for connections
+                 * while none of them was on screen. Prefetch when the menu is
+                 * actually open and somebody might use one.
+                 */
+                prefetch={menuOpen ? undefined : false}
                 onClick={() => setMenuOpen(false)}
                 className="t-sub block py-4 transition-colors hover:!text-accent"
               >

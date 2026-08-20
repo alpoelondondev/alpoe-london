@@ -7,6 +7,8 @@ import { ShuffleText } from "./Loader";
 import LockupMark from "./LockupMark";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
+import { supportsWebGL } from "./webgl";
+import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,23 +68,6 @@ function lockupWidth() {
 }
 
 /**
- * Whether this browser can draw the live mark at all. Asked before the chunk
- * is fetched, so a browser that cannot goes straight to the flat lockup rather
- * than downloading three.js to find out.
- */
-function hasWebGL() {
-  try {
-    const canvas = document.createElement("canvas");
-    return Boolean(
-      window.WebGLRenderingContext &&
-        (canvas.getContext("webgl2") || canvas.getContext("webgl")),
-    );
-  } catch {
-    return false;
-  }
-}
-
-/**
  * How far the mark's box is lifted off the hero's floor. The eyebrow sits
  * below it and is only ever a line tall, so centring the mark on its own
  * leaves the pair sitting low in the band.
@@ -110,13 +95,52 @@ export default function Hero() {
   // is in flight rather than showing the flat mark first — drawing the flat
   // one and replacing it a moment later is a visible swap, and the hero is the
   // first thing on the page. The flat mark appears only if the 3D one cannot.
+  // Not on mount — once the browser is idle. Half a megabyte of three.js
+  // fetched and evaluated during the hero's paint is the single largest thing
+  // standing between a phone and its largest contentful paint, and the flat
+  // lockup is already on screen in the meantime. See useDeferredUntilIdle.
+  const idle = useDeferredUntilIdle();
+
+  /*
+   * Attach the film after the page has painted, and pick the encode by
+   * viewport.
+   *
+   * What shipped here was a 12.7MB, 1920x960, 4.1Mbps H.264 with
+   * `preload="auto"` — several megabytes downloaded before the page settled,
+   * for a silent decorative loop sitting at 45% opacity behind a scrim. Worse,
+   * because this <video> is the page's largest element, Chrome would not
+   * record a largest contentful paint until the film painted a frame: LCP was
+   * measuring the download of a texture.
+   *
+   * Re-encoded at CRF 30 it is 6.6MB and frame-for-frame indistinguishable
+   * (macro diamond sparkle is genuinely expensive to compress; this is as far
+   * as it goes without visible mush), and phones get a 1080-wide cut at 2.5MB
+   * — a viewport 390 CSS pixels across has no use for 1920 of them. Attaching
+   * it after `load` means the preloaded poster satisfies LCP and the film
+   * arrives into a page that has already finished being a page.
+   */
+  useEffect(() => {
+    if (!idle) return;
+    const video = videoRef.current;
+    if (!video || video.src) return;
+    video.src = window.matchMedia("(max-width: 900px)").matches
+      ? "/alpoe-london-hero-1080.mp4"
+      : "/alpoe-london-hero.mp4";
+    video.load();
+    video.muted = true;
+    video.play().catch(() => {
+      /* A browser that refuses is left on the poster, which is the same frame. */
+    });
+  }, [idle]);
+
   useEffect(() => {
     let cancelled = false;
 
-    if (!hasWebGL()) {
+    if (!supportsWebGL()) {
       setFlatOnly(true);
       return;
     }
+    if (!idle) return;
 
     import("./Monogram3D")
       .then((m) => {
@@ -128,7 +152,7 @@ export default function Hero() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [idle]);
 
   // React only reflects `muted` on first render, so anything that flips it later
   // (an extension, a restored media session) would leave the hero audible.
@@ -256,6 +280,27 @@ export default function Hero() {
       // min-h keeps the lockup breathing on a short laptop.
       className="h-[calc(92svh-70px)] min-h-[600px] relative overflow-hidden flex flex-col justify-end bg-bg px-[52px] pb-[60px] max-md:px-3 max-md:pb-12"
     >
+      {/*
+        Tell the browser about the poster before it reaches the <video>.
+
+        Lighthouse measured 2,611ms of "load delay" on mobile — the gap between
+        the page being ready to fetch the LCP resource and actually starting
+        to. A poster attribute is discovered late and fetched at low priority,
+        so it queued behind the fonts, the stylesheets and every script chunk
+        while the largest thing on screen stayed empty. Preloading it at high
+        priority moves it to the front, where the element that defines the
+        page's LCP belongs.
+
+        React 19 hoists a bare <link> into the head from wherever it is
+        rendered, so this does not need to live in `metadata`.
+      */}
+      <link
+        rel="preload"
+        as="image"
+        href="/alpoe-london-hero-poster.webp"
+        fetchPriority="high"
+      />
+
       {/* Decorative footage, full-bleed: silent, uninteractive, and no
           user-agent transport controls. It runs behind the mark now rather
           than through it, so it is held well back — see the scrim below. */}
@@ -281,13 +326,30 @@ export default function Hero() {
         controls={false}
         disablePictureInPicture
         controlsList="nodownload noplaybackrate noremoteplayback"
-        preload="auto"
-        poster="/alpoe-london-hero.jpg"
+        /*
+         * Nothing to load until we say so. See the effect that sets `src`.
+         */
+        preload="none"
+        /*
+         * A WebP poster at 1280 wide rather than the 1920-wide JPEG.
+         *
+         * This element is the page's LCP, and with no source attached yet the
+         * poster is what satisfies it — so LCP now measures how quickly one
+         * preloaded 90KB image arrives, instead of how quickly several
+         * megabytes of film do. It was a 189KB JPEG at a resolution no phone
+         * can out-resolve.
+         */
+        poster="/alpoe-london-hero-poster.webp"
         onVolumeChange={keepMuted}
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover opacity-45 pointer-events-none"
       >
-        <source src="/alpoe-london-hero.mp4" type="video/mp4" />
+        {/*
+          No <source> children on purpose — the effect above picks the encode
+          and attaches it once the page has painted. A <source media="..."> is
+          evaluated only at load time and never re-evaluated, so choosing in JS
+          is both more predictable and lets us choose *when*.
+        */}
       </video>
 
       {/* The page ground laid back over the film: flat at 55% so the footage

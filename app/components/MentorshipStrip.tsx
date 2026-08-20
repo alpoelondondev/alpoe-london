@@ -51,7 +51,24 @@ const MOTIFS = [
 
 export default function MentorshipStrip() {
   return (
-    <section className="relative overflow-hidden bg-bg px-[52px] py-10 max-md:px-6 max-md:py-8">
+    <section
+      aria-labelledby="mentorship-heading"
+      className="relative overflow-hidden bg-bg px-[52px] py-10 max-md:px-6 max-md:py-8"
+    >
+      {/*
+        A section heading that is announced rather than drawn.
+
+        The homepage's design has no visible headline over these bands, which
+        left the document outline running h1 straight to h3 and left three
+        whole sections with no name at all — a screen-reader user landing in
+        the middle of the page had nothing telling them what they were in. It
+        also meant the page said nothing, in heading text, about the things it
+        exists to sell. This is the standard fix for a section whose identity
+        is carried by a picture: state it for the readers who cannot see it.
+      */}
+      <h2 id="mentorship-heading" className="sr-only">
+        Alpoe London mentorship for the watch and jewellery trade
+      </h2>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         {MOTIFS.map((m, i) => (
           <svg
