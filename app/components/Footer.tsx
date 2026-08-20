@@ -27,6 +27,7 @@ const HOUSE_LINKS = [
   { label: "Ring Builder", href: "/ring-builder" },
   { label: "Guides", href: "/guides" },
   { label: "Natural vs Lab-Grown Diamonds", href: "/guides/natural-vs-lab-grown-diamonds" },
+  { label: "Buying in Hatton Garden", href: "/guides/buying-jewellery-in-hatton-garden" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell & Trade", href: "/sell" },
   { label: "Metal Prices", href: "/metal-prices" },

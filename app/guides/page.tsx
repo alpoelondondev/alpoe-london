@@ -52,6 +52,13 @@ type Guide = {
 
 const GUIDES: Guide[] = [
   {
+    href: "/guides/buying-jewellery-in-hatton-garden",
+    title: "Buying jewellery in Hatton Garden",
+    kicker: "The quarter",
+    blurb:
+      "Whether it is really cheaper and why, when it is not, how three hundred jewellers came to share a few streets, and the four things to ask before you hand over a card.",
+  },
+  {
     href: "/guides/natural-vs-lab-grown-diamonds",
     title: "Lab-grown vs natural diamonds",
     kicker: "Diamonds",

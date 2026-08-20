@@ -56,6 +56,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     { url: siteUrl("/guides"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     {
+      url: siteUrl("/guides/buying-jewellery-in-hatton-garden"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: siteUrl("/guides/natural-vs-lab-grown-diamonds"),
       lastModified: now,
       changeFrequency: "monthly",
