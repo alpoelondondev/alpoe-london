@@ -9,7 +9,9 @@ import EnquiryForm, { type EnquiryField } from "../components/EnquiryForm";
 import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import { SELL_FAQS } from "@/lib/faqs";
+import Link from "next/link";
 import { WATCH_BRANDS } from "@/lib/taxonomy";
+import { SELL_BRANDS } from "@/lib/sell/brands";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
@@ -123,6 +125,47 @@ export default function SellPage() {
               </ScrollReveal>
             ))}
           </div>
+        </section>
+
+        {/*
+          The hub's job is to hand off to the brand pages. Without this block
+          they would sit in the sitemap with no internal link pointing at them
+          — which is how /ourbrand ended up invisible.
+        */}
+        <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+          <ScrollReveal>
+            <h2 className="t-section">What are you selling?</h2>
+            <p className="mt-3 max-w-[64ch] t-copy">
+              We buy across the market. These five have their own page, because
+              what moves the price on a Royal Oak is not what moves it on a
+              Speedmaster and the advice is worth separating.
+            </p>
+            <ul className="mt-8 grid grid-cols-3 gap-px bg-fg/[0.10] max-md:grid-cols-1">
+              {SELL_BRANDS.map((sb) => (
+                <li key={sb.slug} className="bg-bg">
+                  <Link
+                    href={`/sell/${sb.slug}`}
+                    className="block h-full p-7 transition-colors hover:bg-fg/[0.04]"
+                  >
+                    <span className="font-serif text-[20px] leading-tight text-blush">
+                      Sell your {sb.name}
+                    </span>
+                    <span className="mt-2 block t-copy">
+                      {sb.models
+                        .slice(0, 3)
+                        .map((m) => m.name)
+                        .join(" · ")}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 t-copy">
+              Selling something else — Breitling, IWC, Panerai, Richard Mille,
+              Hublot, Vacheron Constantin, or a piece of jewellery? Use the form
+              below; we buy all of it.
+            </p>
+          </ScrollReveal>
         </section>
 
         <section id="sell-form" className="bg-panel-soft px-[52px] py-20 max-md:px-6 max-md:py-14">

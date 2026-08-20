@@ -178,7 +178,10 @@ export default function DiamondsGuidePage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Diamonds", href: PATH, current: true },
+              // /guides exists now, so the trail this page was already
+              // claiming has the parent it was missing.
+              { name: "Guides", href: "/guides" },
+              { name: "Lab-Grown vs Natural Diamonds", href: PATH, current: true },
             ]}
           />
         </section>

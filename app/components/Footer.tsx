@@ -25,6 +25,7 @@ const HOUSE_LINKS = [
   { label: "All Rings", href: "/rings" },
   { label: "Ring Size Guide", href: "/ring-size-guide" },
   { label: "Ring Builder", href: "/ring-builder" },
+  { label: "Guides", href: "/guides" },
   { label: "Natural vs Lab-Grown Diamonds", href: "/guides/natural-vs-lab-grown-diamonds" },
   { label: "Bespoke Jewellery", href: "/bespoke" },
   { label: "Sell & Trade", href: "/sell" },

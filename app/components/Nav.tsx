@@ -66,6 +66,7 @@ const LINKS: { label: string; href: string; hidden?: boolean }[] = [
   // Not ready to be shown to visitors yet.
   { label: "Ring Builder", href: "/ring-builder", hidden: true },
   { label: "Bespoke", href: "/bespoke" },
+  { label: "Guides", href: "/guides" },
   { label: "Sell & Trade", href: "/sell" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "About", href: "/about" },

@@ -3,6 +3,7 @@ import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { getAllProducts, productUrl } from "@/lib/products";
 import { getCatalogueProductsByBrand } from "@/lib/catalogue";
 import { siteUrl } from "@/lib/site";
+import { SELL_BRANDS } from "@/lib/sell/brands";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -43,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    { url: siteUrl("/guides"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     {
       url: siteUrl("/guides/natural-vs-lab-grown-diamonds"),
       lastModified: now,
@@ -61,6 +63,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // /search is deliberately absent: it carries noindex, and asking a crawler
     // to fetch a URL only to be told not to index it wastes the budget twice.
   ];
+
+  // The per-brand selling pages. Transactional intent, so weighted just under
+  // the /sell hub they sit beneath.
+  for (const b of SELL_BRANDS) {
+    entries.push({
+      url: siteUrl(`/sell/${b.slug}`),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    });
+  }
 
   for (const b of WATCH_BRANDS) {
     entries.push({

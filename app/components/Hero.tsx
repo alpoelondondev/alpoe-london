@@ -394,14 +394,20 @@ export default function Hero() {
 
       <div ref={contentRef} className="relative z-4">
         {/*
-          The hero is the 3D lockup, so there is no drawn headline for this to
-          be — but the page still needs one sentence that states what the
-          business does, and it was repeating the <title> word for word rather
-          than adding anything. This names the trade instead of the company.
+          "Hatton Garden Jewellers", verbatim, first.
+          
+          That is not a stylistic choice — it is the one thing every jeweller
+          currently ranking for the district does. Queensmith, Regal, MOUZA and
+          Rennie & Co all run that exact phrase as their homepage h1, and three
+          of the four put the brand name nowhere in it. The businesses that
+          lead with their own name instead (Harper Tait among them) rank on
+          reviews rather than on the page. The hero itself is the 3D lockup, so
+          this is announced rather than drawn; the sentence after it says what
+          the house actually makes.
         */}
         <h1 className="sr-only">
-          Bespoke engagement rings, diamond jewellery and luxury watches, made
-          and sourced in Hatton Garden, London
+          Hatton Garden Jewellers — bespoke engagement rings, diamond
+          jewellery and luxury watches, made and sourced in London
         </h1>
       </div>
     </section>
