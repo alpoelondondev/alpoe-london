@@ -19,7 +19,7 @@ import {
 } from "@/lib/metal-prices";
 import { getMetalsNews, formatAge } from "@/lib/metals-news";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
-import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -177,10 +177,10 @@ export default async function MetalPricesPage() {
   ];
 
   const ld = ldJsonGraph([
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Metal Prices", url: siteUrl("/metal-prices") },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
   ]);
 
   return (

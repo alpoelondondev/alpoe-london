@@ -16,6 +16,8 @@ const CARDS: {
   copy: string;
   href: string;
   image: string;
+  /** What the photograph shows — see CategoryGrid for why this is mandatory. */
+  imageAlt: string;
   /** Per-photograph framing: crop, zoom and how far it sits back. */
   imageClass?: string;
   /**
@@ -32,12 +34,14 @@ const CARDS: {
     copy: "Bespoke settings and bands, made to your specification.",
     href: "/rings/engagement-and-wedding-rings",
     image: "/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg",
+    imageAlt: "Oval-cut three-stone diamond engagement ring in platinum, made to order by Alpoe London in Hatton Garden",
   },
   {
     title: "Preowned Watches",
     copy: "Authenticated timepieces, sourced and traded.",
     href: "/watches",
     image: "/buss-down-ap.jpg",
+    imageAlt: "Fully diamond-set Audemars Piguet Royal Oak, authenticated and traded by Alpoe London in Hatton Garden",
     // Shot square-on in its box, and at the card's own 4:3 — so object-cover
     // crops nothing and object-position has nothing to move. The framing has
     // to come from the transform instead: enlarged past the box edges, pushed
@@ -72,7 +76,7 @@ export default function FeatureCards() {
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]">
                   <Image
                     src={card.image}
-                    alt=""
+                    alt={card.imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className={`object-cover ${card.imageClass ?? ""}`}

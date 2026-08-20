@@ -9,6 +9,15 @@ const categories: {
   href: string;
   /** Poster: the film's own first frame, so the tile never paints empty. */
   image: string;
+  /**
+   * What the photograph shows, written out. These five tiles are the biggest
+   * pictures on the site and every one of them shipped with `alt=""`, which
+   * tells a screen reader to skip it entirely and tells Google Images there is
+   * nothing here worth ranking — on a business whose product *is* the
+   * photograph. The tile's own heading names the category; the alt describes
+   * the piece, so the two are not read out twice.
+   */
+  alt: string;
   video: string;
   /**
    * Spans the whole grid as a banner instead of taking a square cell. Watches
@@ -18,6 +27,7 @@ const categories: {
 }[] = [
   {
     title: "Luxury Watches",
+    alt: "Rose gold Rolex dial set with pavé diamonds, photographed at Alpoe London in Hatton Garden",
     href: "/watches",
     image: "/alpoe-luxury-watches-rolex-dial-hatton-garden.jpg",
     video: "/alpoe-luxury-watches-rolex-dial-hatton-garden.mp4",
@@ -25,24 +35,28 @@ const categories: {
   },
   {
     title: "Rings",
+    alt: "Hand-set diamond rings in white and rose gold, made at the Alpoe London bench in Hatton Garden",
     href: "/jewellery/rings",
     image: "/alpoe-diamond-rings-hatton-garden.jpg",
     video: "/alpoe-diamond-rings-hatton-garden.mp4",
   },
   {
     title: "Bracelets",
+    alt: "Diamond tennis and cluster bracelets in 18ct gold, made to order by Alpoe London, Hatton Garden",
     href: "/jewellery/bracelets",
     image: "/alpoe-diamond-bracelets-hatton-garden.jpg",
     video: "/alpoe-diamond-bracelets-hatton-garden.mp4",
   },
   {
     title: "Earrings",
+    alt: "Diamond stud, hoop and drop earrings in 18ct white gold, hand-set by Alpoe London in Hatton Garden",
     href: "/jewellery/earrings",
     image: "/alpoe-diamond-earrings-hatton-garden.jpg",
     video: "/alpoe-diamond-earrings-hatton-garden.mp4",
   },
   {
     title: "Necklaces & Chains",
+    alt: "Diamond tennis necklaces and gold link chains, made in London by Alpoe London, Hatton Garden",
     href: "/jewellery/necklaces-pendants",
     image: "/alpoe-diamond-necklaces-chains-hatton-garden.jpg",
     video: "/alpoe-diamond-necklaces-chains-hatton-garden.mp4",
@@ -78,7 +92,7 @@ export default function CategoryGrid() {
             >
               <Image
                 src={category.image}
-                alt=""
+                alt={category.alt}
                 fill
                 sizes={
                   category.wide

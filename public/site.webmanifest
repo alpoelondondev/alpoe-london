@@ -1,0 +1,16 @@
+{
+  "name": "Alpoe London — Bespoke Jewellery & Luxury Watches",
+  "short_name": "Alpoe London",
+  "description": "Bespoke engagement rings, diamond jewellery and luxury watches, made and sourced in Hatton Garden, London.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#131010",
+  "theme_color": "#131010",
+  "lang": "en-GB",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

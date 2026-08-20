@@ -63,6 +63,13 @@ export default function OurBrandPage() {
     <>
       <SiteHeader />
       <main>
+        {/* Same reasoning as the ring builder: the model is the page, so the
+            heading is announced rather than drawn. Without it this route had
+            no <h1> at all. */}
+        <h1 className="sr-only">
+          The Alpoe London mark — our brand identity in three dimensions
+        </h1>
+
         {/* ---------------------------------------------------------------
             THE LIVE MODEL. Height is capped in vh so the section can never
             grow taller than the viewport, and floored in px so it stays

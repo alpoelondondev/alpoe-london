@@ -12,6 +12,13 @@ const items: {
   blurb: string;
   /** Background photography. Cards fall back to the flat tint without one. */
   image?: string;
+  /**
+   * What the photograph shows. Required alongside `image`: an empty alt on a
+   * real product photograph forfeits both the screen-reader description and
+   * the Google Images listing, and these three are among the largest pictures
+   * on the homepage.
+   */
+  imageAlt?: string;
   /** Optional silent loop; `image` is its poster while it buffers. */
   video?: string;
   /**
@@ -29,17 +36,20 @@ const items: {
     href: "/guides/natural-vs-lab-grown-diamonds",
     blurb: "Natural vs lab diamonds — what's the difference, and what works for you?",
     image: "/alpoe-natural-vs-lab-grown-diamonds-hatton-garden.jpg",
+    imageAlt: "A natural diamond and a lab-grown diamond side by side, compared at Alpoe London in Hatton Garden",
   },
   {
     title: "Bespoke Jewellery",
     href: "/jewellery",
     blurb: "One-off pieces designed around you and hand-set in Hatton Garden.",
     image: "/alpoe-bespoke-jewellery-stone-setting-hatton-garden.jpg",
+    imageAlt: "A jeweller setting diamonds into a bespoke piece by hand at the Alpoe London workshop in Hatton Garden",
   },
   {
     title: "Merchandise",
     blurb: "Alpoe London custom merch coming soon.",
     image: "/alpoe-london-merchandise-cap-gift-bag-hatton-garden.jpg",
+    imageAlt: "Alpoe London embroidered cap and foil-printed gift bag",
     // The cap and bag sit small in a wide shot with dark air above and below —
     // pushed in so the embroidery and foil read at card size.
     imageScale: "scale-[1.35] group-hover:scale-[1.4]",
@@ -74,7 +84,7 @@ export default function Collections() {
                       swallow the click-and-drag that pans this strip. */}
                   <Image
                     src={item.image}
-                    alt=""
+                    alt={item.imageAlt ?? ""}
                     fill
                     draggable={false}
                     sizes="(max-width: 768px) 82vw, 50vw"

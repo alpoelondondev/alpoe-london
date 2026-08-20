@@ -207,6 +207,8 @@ export default function Nav({
             type="button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
+            // The panel is now always in the DOM, so the button can name it.
+            aria-controls="site-menu"
             onClick={() => setMenuOpen((v) => !v)}
             className="group flex h-14 w-10 shrink-0 flex-col justify-center gap-[5px] justify-self-start"
           >
@@ -272,42 +274,58 @@ export default function Nav({
         ) : null}
       </nav>
 
-      {menuOpen ? (
-        // Cleared off the bar by the bar's own measured height rather than a
-        // hand-set padding — the bar has grown twice (search row, then the
-        // spot strip) and a fixed pt- went under it both times.
-        <div
-          className="fixed inset-0 z-[199] overflow-y-auto bg-bg px-[52px] pb-16 max-md:px-6"
-          style={{ paddingTop: "calc(var(--nav-h) + 24px)" }}
-        >
+      {/*
+        Always in the document, hidden with visibility rather than unmounted.
+
+        The panel used to be `{menuOpen ? <div>…</div> : null}`, and since
+        `menuOpen` is false on the server, the HTML every crawler received
+        contained exactly two links: the logo and "Book". Ten of the site's
+        eleven top-level routes existed only after a click. The footer was
+        carrying the entire crawlable link graph on its own, and whatever the
+        footer omitted was effectively unreachable.
+
+        Keeping it mounted costs nothing — it is markup that was already being
+        rendered a moment later — and puts the real navigation in the served
+        HTML. `inert` (and pointer-events-none) make sure the hidden panel
+        cannot be focused, clicked or read out while it is closed, so nothing
+        about the closed state changes for anyone using the page.
+      */}
+      <div
+        id="site-menu"
+        inert={!menuOpen}
+        aria-hidden={!menuOpen}
+        className={`fixed inset-0 z-[199] overflow-y-auto bg-bg px-[52px] pb-16 max-md:px-6 ${
+          menuOpen ? "visible" : "invisible pointer-events-none"
+        }`}
+        style={{ paddingTop: "calc(var(--nav-h) + 24px)" }}
+      >
           {/* Ruled rather than spaced: at this size a gap alone left the
               labels reading as one column of words, so each route gets its own
               row with a hairline under it. divide-y draws the rules between
               rows only, so the list does not close itself off top and bottom. */}
-          <ul className="mx-auto flex w-full max-w-xl flex-col divide-y divide-fg/[0.12]">
-            <li>
+        <ul className="mx-auto flex w-full max-w-xl flex-col divide-y divide-fg/[0.12]">
+          <li>
+            <Link
+              href="/book-appointment"
+              onClick={() => setMenuOpen(false)}
+              className="t-sub block py-4 !text-accent"
+            >
+              Book an Appointment
+            </Link>
+          </li>
+          {LINKS.filter((link) => !link.hidden).map((link) => (
+            <li key={link.href}>
               <Link
-                href="/book-appointment"
+                href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="t-sub block py-4 !text-accent"
+                className="t-sub block py-4 transition-colors hover:!text-accent"
               >
-                Book an Appointment
+                {link.label}
               </Link>
             </li>
-            {LINKS.filter((link) => !link.hidden).map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="t-sub block py-4 transition-colors hover:!text-accent"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

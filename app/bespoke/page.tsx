@@ -10,7 +10,7 @@ import EnquiryForm, { type EnquiryField } from "../components/EnquiryForm";
 import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import { BESPOKE_FAQS } from "@/lib/faqs";
-import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -130,10 +130,10 @@ export default function BespokePage() {
         "Custom diamond jewellery designed and hand-set in Hatton Garden, London. Lab-grown or natural, GIA certified.",
       url: siteUrl("/bespoke"),
     },
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Bespoke", url: siteUrl("/bespoke") },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
     faqLd(BESPOKE_FAQS),
   ]);
 

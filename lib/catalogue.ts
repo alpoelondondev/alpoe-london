@@ -5,6 +5,7 @@ import { WATCH_BRANDS } from "./taxonomy";
 import type { Product, WatchBrandSlug } from "./types";
 import { IMAGE_MANIFEST, VARIANT_IMAGES } from "./generated/image-manifest";
 import { getDescription, getModelOverview, getReferenceResearch } from "./research";
+import { truncateForSerp } from "./seo";
 
 // Live "Available to Source" catalogue, driven by the published Google Sheet.
 // Columns: Brand, Sub-Collection, Variant / Name, Reference No.
@@ -252,8 +253,20 @@ export function catalogueItemToProduct(item: CatalogueItem): Product {
     year: spec?.year,
     images: item.images,
     featured: false,
-    metaTitle: `${title}${item.reference ? ` ${item.reference}` : ""} | Alpoe London Hatton Garden`,
-    metaDescription: description.slice(0, 300),
+    /*
+     * Two duplications used to live on this line and both reached production.
+     *
+     * The layout's title template already appends "| Alpoe London" to every
+     * page, so hard-coding a second brand suffix here shipped ~200 watch pages
+     * titled "… | Alpoe London Hatton Garden | Alpoe London" — long past the
+     * point Google truncates, with the brand stated twice and the model pushed
+     * out of view. And `title` above already ends in the reference whenever
+     * there is no variant, so appending it again produced "Submariner 124060
+     * 124060". Add the reference only when the variant form left it out.
+     */
+    metaTitle: item.variant && item.reference ? `${title} ${item.reference}` : title,
+    // 300 characters is roughly twice what a SERP shows. Cut on a word.
+    metaDescription: truncateForSerp(description),
     placeholder: false,
   };
 }

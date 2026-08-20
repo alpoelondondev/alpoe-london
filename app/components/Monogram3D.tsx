@@ -7,6 +7,7 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { createRoseGoldEnvironment } from "./roseGoldEnvironment";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 import { LOCKUP_MODEL_URL } from "./lockupModel";
+import { supportsWebGL } from "./webgl";
 
 /**
  * The lockup as live rose gold — a drop-in stand-in for the flat SVG in the
@@ -22,6 +23,8 @@ import { LOCKUP_MODEL_URL } from "./lockupModel";
  * Deliberately lean for a header: no controls, no shadows, pixel ratio capped,
  * and the loop pauses whenever the tab is hidden. Falls back to rendering
  * nothing on failure — the <Link> around it still carries the accessible name.
+ * "Failure" includes having no WebGL at all, which is the common case for
+ * crawlers and audit tools; supportsWebGL() catches that before three does.
  */
 export default function Monogram3D({
   height = 40,
@@ -38,14 +41,26 @@ export default function Monogram3D({
     const mount = mountRef.current;
     if (!mount) return;
 
+    // No GPU, no mark. Bailing here rather than letting the renderer throw is
+    // the difference between a nav that renders flat and a page that unmounts
+    // itself — see webgl.ts for why that mattered so much.
+    if (!supportsWebGL()) return;
+
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-    });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+    } catch {
+      // The probe passed and the real context still failed — it happens when
+      // the browser is already at its context limit. Leave the mount empty.
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(w, height);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -149,7 +164,14 @@ export default function Monogram3D({
           Math.abs(Math.sin(t * 0.6)) * 3 + 1.5,
         );
       }
-      renderer.render(scene, camera);
+      // A context lost mid-session throws from render(). Inside rAF that
+      // cannot reach React, but it would fire every frame forever, so stop
+      // the loop on the first failure instead of logging sixty times a second.
+      try {
+        renderer.render(scene, camera);
+      } catch {
+        cancelAnimationFrame(raf);
+      }
     }
     animate();
 

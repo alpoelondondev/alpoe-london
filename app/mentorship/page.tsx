@@ -11,7 +11,7 @@ import MentorshipRails from "./MentorshipRails";
 import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import { MENTORSHIP_FAQS } from "@/lib/faqs";
-import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -113,10 +113,10 @@ export default function MentorshipPage() {
         },
       },
     },
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Mentorship", url: siteUrl("/mentorship") },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
     faqLd(MENTORSHIP_FAQS),
   ]);
 

@@ -10,7 +10,7 @@ import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import FindUs from "../components/FindUs";
 import { CONTACT_FAQS } from "@/lib/faqs";
-import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd, localBusinessLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd, localBusinessLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -57,10 +57,10 @@ export default function ContactPage() {
       url: siteUrl("/contact"),
       name: `Contact ${SITE.name}`,
     },
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Contact", url: siteUrl("/contact") },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
     faqLd(CONTACT_FAQS),
   ]);
 

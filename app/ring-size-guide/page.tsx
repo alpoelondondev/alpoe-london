@@ -10,6 +10,7 @@ import {
 } from "@/lib/ring/sizes";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import SheetFaq from "../components/SheetFaq";
 
 const PATH = "/ring-size-guide";
 
@@ -341,6 +342,16 @@ export default function RingSizeGuidePage() {
                 </p>
               </section>
             </ScrollReveal>
+
+            {/*
+              These six answers were, until now, published only as FAQPage
+              JSON-LD — marked up for Google and shown to nobody. Rendering
+              them is what makes that markup legitimate, and it happens to be
+              the best content on the page: "what is the average UK ring size"
+              and "can a ring be resized" are the questions people actually
+              type.
+            */}
+            <SheetFaq items={FAQS} heading="Ring size questions, answered" />
 
             {/* ---- close ------------------------------------------------ */}
             <ScrollReveal>

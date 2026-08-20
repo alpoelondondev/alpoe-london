@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Breadcrumbs from "../components/Breadcrumbs";
 import BrandHero from "../components/BrandHero";
 import ScrollReveal from "../components/ScrollReveal";
-import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 const PATH = "/hallmarking";
@@ -204,10 +204,10 @@ export default function HallmarkingPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             ldJsonGraph([
-              breadcrumbLd([
-                { name: "Home", url: siteUrl("/") },
-                { name: "Hallmarking", url: siteUrl(PATH) },
-              ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
             ]),
           ),
         }}

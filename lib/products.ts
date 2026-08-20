@@ -9,6 +9,7 @@ import type {
   WatchBrandSlug,
 } from "./types";
 import { JEWELLERY_CATEGORIES, WATCH_BRANDS } from "./taxonomy";
+import { truncateForSerp } from "./seo";
 
 function slugify(s: string) {
   return s
@@ -64,6 +65,26 @@ function parseCsv(raw: string): Record<string, string>[] {
     });
     return obj;
   });
+}
+
+/**
+ * Strip the brand suffix the spreadsheet appends to every `meta_title`.
+ *
+ * All 117 rows are authored as "Rolex Submariner 41 124060 | Alpoe London
+ * Hatton Garden", and the root layout's title template then appends
+ * "| Alpoe London" on top — so the tag that shipped read
+ * "… | Alpoe London Hatton Garden | Alpoe London". Google renders about 60
+ * characters, which meant the visible half of many of these titles was the
+ * brand name, twice, and the model number never made it into view.
+ *
+ * Done here rather than by rewriting the CSV because the CSV is the business's
+ * to edit: whoever adds row 118 will follow the pattern of the 117 above it,
+ * and this makes that harmless instead of a regression.
+ */
+function normaliseMetaTitle(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  const trimmed = raw.replace(/\s*\|\s*Alpoe London.*$/i, "").trim();
+  return trimmed || undefined;
 }
 
 function truthy(v: string) {
@@ -124,8 +145,10 @@ function toProduct(row: Record<string, string>): Product | null {
     bracelets,
     images,
     featured: truthy(row.featured),
-    metaTitle: row.meta_title || undefined,
-    metaDescription: row.meta_description || undefined,
+    metaTitle: normaliseMetaTitle(row.meta_title),
+    metaDescription: row.meta_description
+      ? truncateForSerp(row.meta_description)
+      : undefined,
     placeholder: truthy(row.placeholder),
   };
 }

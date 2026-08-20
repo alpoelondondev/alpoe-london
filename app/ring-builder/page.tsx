@@ -91,6 +91,18 @@ export default function RingBuilderPage() {
       <SiteHeader />
 
       <main>
+        {/*
+          The studio fills the viewport and carries no headline of its own, so
+          the page shipped without an <h1> — a document-level defect, not a
+          styling one: assistive tech gets no page title to land on and search
+          engines get no statement of what the page is for. Visually hidden
+          rather than drawn, because there is nowhere to put a headline above a
+          full-bleed tool without pushing the tool off the fold.
+        */}
+        <h1 className="sr-only">
+          Ring builder — design your own engagement ring in Hatton Garden
+        </h1>
+
         <section>
           <Suspense
             fallback={

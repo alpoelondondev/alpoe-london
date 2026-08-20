@@ -10,7 +10,7 @@ import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import { SELL_FAQS } from "@/lib/faqs";
 import { WATCH_BRANDS } from "@/lib/taxonomy";
-import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -82,10 +82,10 @@ export default function SellPage() {
         "Free no-obligation valuations on pre-owned luxury watches, authenticated in Hatton Garden with same-day payment.",
       url: siteUrl("/sell"),
     },
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Sell & Trade", url: siteUrl("/sell") },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
     faqLd(SELL_FAQS),
   ]);
 

@@ -9,10 +9,23 @@ import { getAllProducts, photosFirst } from "@/lib/products";
 import { pageMetadata } from "@/lib/seo";
 import type { Product } from "@/lib/types";
 
+/**
+ * Noindex, follow.
+ *
+ * Internal search results are the textbook case Google's own guidelines ask
+ * you to keep out of the index: every distinct `?q=` mints a new URL, they are
+ * near-duplicates of each other and of the category pages, and none of them is
+ * a page anyone should arrive on from a search engine. `follow` is kept so the
+ * product links on the page still pass through to the pages that *should*
+ * rank. robots.txt blocks the query form as well, so most crawlers never spend
+ * a fetch discovering this.
+ */
 export const metadata: Metadata = pageMetadata({
-  title: "Search",
-  description: "Search the Alpoe London catalogue — watches, jewellery, brands and references.",
+  title: "Search the Alpoe London Collection",
+  description:
+    "Search Alpoe London for watches, engagement rings, diamond jewellery, brands and reference numbers — bespoke and ready to wear, from our Hatton Garden showroom.",
   path: "/search",
+  noindex: true,
 });
 
 type SearchParams = { [k: string]: string | string[] | undefined };

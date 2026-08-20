@@ -9,7 +9,7 @@ import ScrollReveal from "../../components/ScrollReveal";
 import CTAStrip from "../../components/CTAStrip";
 import FAQ from "../../components/FAQ";
 import { DIAMOND_FAQS } from "@/lib/faqs";
-import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 const PATH = "/guides/natural-vs-lab-grown-diamonds";
@@ -96,10 +96,10 @@ export default function DiamondsGuidePage() {
       image: siteUrl("/alpoe-lab-grown-vs-natural-diamond-comparison-chart.jpg"),
       url: siteUrl(PATH),
     },
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Diamonds", url: siteUrl(PATH) },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
     faqLd(DIAMOND_FAQS),
   ]);
 

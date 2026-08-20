@@ -7,6 +7,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { createRoseGoldEnvironment } from "../components/roseGoldEnvironment";
 import { LOCKUP_MODEL_URL } from "../components/lockupModel";
+import { supportsWebGL } from "../components/webgl";
 
 /**
  * The lockup as it was actually built in Blender — same geometry, same rose
@@ -27,12 +28,26 @@ export default function BrandModelViewer() {
     const mount = mountRef.current;
     if (!mount) return;
 
+    // Without WebGL the renderer's constructor throws, and a throw inside an
+    // effect unmounts the whole page — head included. Say so in the status
+    // line instead; see components/webgl.ts.
+    if (!supportsWebGL()) {
+      setStatus("3D preview needs WebGL, which this browser has turned off.");
+      return;
+    }
+
     // Respect the OS setting — the idle spin is decoration, not information.
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch {
+      setStatus("3D preview could not start in this browser.");
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -222,7 +237,12 @@ export default function BrandModelViewer() {
     function animate() {
       raf = requestAnimationFrame(animate);
       controls.update();
-      renderer.render(scene, camera);
+      // A context lost mid-session throws every frame. Stop after the first.
+      try {
+        renderer.render(scene, camera);
+      } catch {
+        cancelAnimationFrame(raf);
+      }
     }
     animate();
 

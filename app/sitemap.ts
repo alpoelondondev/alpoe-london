@@ -54,7 +54,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: siteUrl("/mentorship"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: siteUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: siteUrl("/contact"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: siteUrl("/search"), lastModified: now, changeFrequency: "monthly", priority: 0.3 },
+    // /ourbrand was built, metadata'd and then listed nowhere — not here, and
+    // not in any link on the site. A page nothing points at and no sitemap
+    // names is a page that does not exist as far as a crawler is concerned.
+    { url: siteUrl("/ourbrand"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    // /search is deliberately absent: it carries noindex, and asking a crawler
+    // to fetch a URL only to be told not to index it wastes the budget twice.
   ];
 
   for (const b of WATCH_BRANDS) {

@@ -11,7 +11,7 @@ import FindUs from "../components/FindUs";
 import BookingFlow from "./BookingFlow";
 import { APPOINTMENT_FAQS } from "@/lib/faqs";
 import { APPOINTMENT_TYPES } from "@/lib/appointments";
-import { pageMetadata, ldJsonGraph, faqLd, breadcrumbLd, localBusinessLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd, localBusinessLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -63,10 +63,10 @@ export default function BookAppointmentPage() {
         result: { "@type": "Reservation", name: "Showroom appointment" },
       },
     },
-    breadcrumbLd([
-      { name: "Home", url: siteUrl("/") },
-      { name: "Book an appointment", url: siteUrl("/book-appointment") },
-    ]),
+    // Breadcrumbs are emitted by the <Breadcrumbs> component this page
+    // renders, which is the single source of truth for the trail. Building
+    // a second BreadcrumbList here published two competing trails per
+    // document — Google picks one arbitrarily, or neither.
     faqLd(APPOINTMENT_FAQS),
   ]);
 
