@@ -86,9 +86,39 @@ function parseCsv(raw: string): string[][] {
   return rows;
 }
 
-async function loadRaw(): Promise<string> {
+/**
+ * How long to wait for Google before giving up and using the snapshot.
+ *
+ * `fetch` has no default timeout, and without one a slow response does not
+ * fail — it hangs. During `next build` that turned into real breakage: around
+ * 400 watch pages prerender across seven worker processes, each of which pulls
+ * the sheet, and Google throttling seven near-simultaneous requests was enough
+ * to push individual pages past Next's 60-second prerender deadline. The build
+ * retried and eventually completed, but a slower CI machine or a worse day at
+ * Google would have failed it outright — for a file we already have a copy of
+ * on disk.
+ *
+ * Eight seconds is far longer than the sheet has ever legitimately taken and
+ * far shorter than the deadline it was blowing through.
+ */
+const SHEET_TIMEOUT_MS = 8_000;
+
+/**
+ * One fetch per process, not one per page.
+ *
+ * Next's own fetch cache should collapse these, but "should" is doing a lot of
+ * work across seven workers and several hundred pages, and the failure mode is
+ * a build that dies. Holding the promise rather than the result means callers
+ * arriving mid-flight await the same request instead of starting another.
+ */
+let rawPromise: Promise<string> | null = null;
+
+async function fetchRaw(): Promise<string> {
   try {
-    const res = await fetch(CSV_URL, { next: { revalidate: REVALIDATE_SECONDS } });
+    const res = await fetch(CSV_URL, {
+      next: { revalidate: REVALIDATE_SECONDS },
+      signal: AbortSignal.timeout(SHEET_TIMEOUT_MS),
+    });
     if (!res.ok) throw new Error(`sheet fetch failed: ${res.status}`);
     const text = await res.text();
     if (!text.includes(",")) throw new Error("sheet returned unexpected content");
@@ -98,6 +128,17 @@ async function loadRaw(): Promise<string> {
     console.error("[catalogue] live sheet unavailable, using bundled snapshot:", err);
     return readFileSync(FALLBACK_PATH, "utf8");
   }
+}
+
+async function loadRaw(): Promise<string> {
+  if (!rawPromise) {
+    rawPromise = fetchRaw().catch((err) => {
+      // A rejected cached promise would poison every later call, so clear it.
+      rawPromise = null;
+      throw err;
+    });
+  }
+  return rawPromise;
 }
 
 // References are not all filename-safe — Patek uses "5811/1G-001", Cartier
