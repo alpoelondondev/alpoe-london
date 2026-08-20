@@ -81,14 +81,14 @@ const BUILDER_FAQS = [
       "Choose a diamond shape, a setting, a band and a metal, and the studio shows that exact combination as you go. Add your carat weight and UK ring size, then send the specification to us. We come back with a CAD design and a price, and nothing is cast until you have approved both.",
   },
   {
-    question: "Can I use a lab-grown diamond?",
+    question: "Can I use a laboratory-grown diamond?",
     answer:
-      "Yes. Every setting in the builder can be made with either a natural or a laboratory-grown stone, and both are certified. A lab-grown diamond is chemically and optically identical to a mined one and typically costs a good deal less for the same size and grade, which is why many people put the difference into a larger stone.",
+      "Yes. Every setting in the builder can be made with either a natural or a laboratory-grown stone, and both are certified. A laboratory-grown diamond is chemically and optically identical to a mined one and typically costs a good deal less for the same size and grade, which is why many people put the difference into a larger stone.",
   },
   {
     question: "How long does a made-to-order ring take?",
     answer:
-      "Allow around four to six weeks from approved CAD to finished ring — casting, setting, finishing and hallmarking at the London Assay Office all happen in that window. If you are working to a date, tell us at the start and we will say honestly whether it is possible.",
+      "A made-to-order ring has to be cast, set, finished and then hallmarked at the London Assay Office, and each of those is a real step rather than a formality. We give you a date when we quote, because it depends on the piece. If you are working to a deadline, say so at the start and we will tell you honestly whether it can be met.",
   },
   {
     question: "What if I do not know the ring size?",
@@ -237,7 +237,7 @@ export default function RingBuilderPage() {
                 </li>
                 <li>
                   <Link href="/guides/natural-vs-lab-grown-diamonds" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
-                    Natural vs lab-grown diamonds
+                    Natural vs laboratory-grown diamonds
                   </Link>
                   <span className="text-sheet-dim"> — what actually differs, and what each costs.</span>
                 </li>

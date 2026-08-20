@@ -150,9 +150,10 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
             <h2 className="t-section">Box, papers and provenance</h2>
             <p className="mt-4 max-w-[68ch] t-copy">{b.papers}</p>
             <p className="mt-4 max-w-[68ch] t-copy">
-              None of it is a condition of sale. We buy watch-only every week, and
-              we would rather tell you what the paperwork is worth than have you
-              assume it is worth nothing —{" "}
+              None of it is a condition of sale. A watch with no box and no card is
+              still a straightforward sale, and
+              we would rather tell you what the paperwork is worth than have
+              you assume it is worth nothing —{" "}
               <Link
                 href="/sell#sell-form"
                 className="text-accent underline underline-offset-4"

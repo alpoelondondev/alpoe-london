@@ -44,12 +44,12 @@ export const metadata: Metadata = pageMetadata({
 const RING_TYPES: { title: string; copy: string; href: string }[] = [
   {
     title: "Engagement rings",
-    copy: "Fifteen band styles, any diamond shape, any setting, in platinum or 18ct gold. Natural or lab-grown, and we do not steer you toward either.",
+    copy: "Fifteen band styles, any diamond shape, any setting, in platinum or 18ct gold. Natural or laboratory-grown, and we do not steer you toward either.",
     href: "/rings/engagement-and-wedding-rings",
   },
   {
     title: "Wedding rings and bands",
-    copy: "Court, flat court, D-shape and flat profiles, plain or set, and shaped to sit flush against an engagement ring that will not take a straight band.",
+    copy: "Plain or set, in a profile chosen against the ring it will sit beside — and shaped to fit where an engagement ring will not take a straight band.",
     href: "/rings/engagement-and-wedding-rings",
   },
   {
@@ -59,7 +59,7 @@ const RING_TYPES: { title: string; copy: string; href: string }[] = [
   },
   {
     title: "Signet rings",
-    copy: "Oxford, Oxford oval and cushion faces in 9ct or 18ct gold, engraved by hand with a crest, a monogram or initials.",
+    copy: "A signet is one of the few pieces still bought to be engraved, whether with a crest, a monogram or initials. Talk to us about the face and the metal.",
     href: "/bespoke",
   },
   {
@@ -69,7 +69,7 @@ const RING_TYPES: { title: string; copy: string; href: string }[] = [
   },
   {
     title: "Remodelled and inherited rings",
-    copy: "An old ring remade rather than replaced, or an inherited stone reset into something you will actually wear. We will tell you honestly whether a stone is worth resetting first.",
+    copy: "An inherited stone reset into something you will actually wear. Bring it in and we will tell you honestly whether it is worth resetting first.",
     href: "/bespoke",
   },
 ];

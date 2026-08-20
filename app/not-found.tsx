@@ -37,7 +37,7 @@ const ROUTES: { href: string; label: string; note: string }[] = [
   { href: "/ring-size-guide", label: "Ring size guide", note: "Measure a UK ring size at home" },
   {
     href: "/guides/natural-vs-lab-grown-diamonds",
-    label: "Natural vs lab-grown diamonds",
+    label: "Natural vs laboratory-grown diamonds",
     note: "How they differ, and how to choose",
   },
   { href: "/book-appointment", label: "Book an appointment", note: "See us in Hatton Garden" },

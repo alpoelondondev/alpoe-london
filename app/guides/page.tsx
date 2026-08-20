@@ -26,7 +26,7 @@ const PATH = "/guides";
  * breadcrumb trail they were already claiming, it gives every guide a second
  * and third inbound link from a page that itself sits one click off the
  * footer, and it gives /guides/* somewhere to grow: the shape pages, the
- * wedding-band-for-X cluster and the lab-grown sub-guides all belong under
+ * wedding-band-for-X cluster and the laboratory-grown sub-guides all belong under
  * here rather than scattered at the root.
  *
  * The reference pages that live elsewhere (/ring-size-guide, /hallmarking,
@@ -37,7 +37,7 @@ const PATH = "/guides";
 export const metadata: Metadata = pageMetadata({
   title: "Diamond & Jewellery Guides",
   description:
-    "Straight answers from a Hatton Garden bench: lab grown vs natural diamonds, UK ring sizes, what a hallmark certifies and live precious metal prices.",
+    "Straight answers from a Hatton Garden bench: laboratory-grown vs natural diamonds, UK ring sizes, what a hallmark certifies and live precious metal prices.",
   path: PATH,
   image: "/og/lab-grown.jpg",
 });
@@ -60,10 +60,10 @@ const GUIDES: Guide[] = [
   },
   {
     href: "/guides/natural-vs-lab-grown-diamonds",
-    title: "Lab-grown vs natural diamonds",
+    title: "Laboratory-grown vs natural diamonds",
     kicker: "Diamonds",
     blurb:
-      "A lab-grown diamond is a real diamond — same carbon, same hardness, same sparkle, and the same grading laboratories. What differs is price, rarity and how each holds its value. The whole comparison, without the sales pitch.",
+      "A laboratory-grown diamond is a diamond — same carbon, same hardness, same grading laboratories. What differs is how it was formed, what it costs, and how each holds its value. The whole comparison, without the sales pitch.",
   },
   {
     href: "/guides/wedding-bands",
@@ -116,9 +116,9 @@ const TOOLS = [
 
 const GUIDE_FAQS = [
   {
-    question: "Are lab-grown diamonds real diamonds?",
+    question: "Is a laboratory-grown diamond a real diamond?",  // the query as typed; the answer is careful
     answer:
-      "Yes. A lab-grown diamond is chemically, physically and optically identical to a mined one — the same crystalline carbon, the same 10 on the Mohs scale, the same refractive index. It is graded by the same laboratories against the same four Cs. The difference is how it was formed, and what that does to the price.",
+      "It is a diamond, and UK terminology rules ask that it always be called a laboratory-grown one rather than simply a diamond — the qualifier is the point. ISO 18323 defines it as having essentially the same chemical composition, crystal structure and physical properties as a mined stone: the same crystalline carbon, the same 10 on the Mohs scale. GIA grades both against the same four Cs. What differs is how it was formed, and what that does to the price.",
   },
   {
     question: "What is the average ring size in the UK?",
@@ -133,7 +133,7 @@ const GUIDE_FAQS = [
   {
     question: "How long does a bespoke ring take to make?",
     answer:
-      "Around four to six weeks from an approved CAD design: casting, setting, finishing and hallmarking all happen inside that window. If you are working to a date, say so at the start and we will tell you honestly whether it can be met.",
+      "Longer than most people expect, because casting, setting, finishing and hallmarking at the London Assay Office are each a real step. We give you a date when we quote rather than a rule of thumb, since it depends on the piece. If you are working to a deadline, say so at the start.",
   },
 ];
 
@@ -214,7 +214,7 @@ export default function GuidesPage() {
 
         {/*
           Answer-first and unhedged on purpose. A definitional opening — "a
-          lab-grown diamond is…" — is the single most extractable shape of
+          laboratory-grown diamond is…" — is the single most extractable shape of
           sentence there is, and hedged prose is the least. Every one of these
           answers is also stated at length on the page it points at.
         */}

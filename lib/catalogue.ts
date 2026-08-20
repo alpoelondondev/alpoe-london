@@ -113,7 +113,29 @@ const SHEET_TIMEOUT_MS = 8_000;
  */
 let rawPromise: Promise<string> | null = null;
 
+/**
+ * Never call Google during `next build`.
+ *
+ * An 8-second AbortSignal plus per-process memoisation cut the prerender
+ * timeouts sharply but did not remove them — they came back on a later run
+ * against a different brand, which means the abort is not reliably firing
+ * through Next's fetch-cache wrapper, or the stall is not purely in the fetch.
+ * Rather than keep guessing at the mechanism, remove the dependency: a build
+ * that prerenders ~400 pages should not make several hundred third-party HTTP
+ * calls to do it, and we already ship a snapshot of exactly this file.
+ *
+ * Nothing is lost. Every page carries `revalidate`, so the first request after
+ * a deploy refreshes from the live sheet and the snapshot is only ever the
+ * starting state. The trade is a few minutes of staleness immediately after a
+ * deploy in exchange for a build that cannot be broken by somebody else's
+ * server.
+ */
+function isBuildPhase(): boolean {
+  return process.env.NEXT_PHASE === "phase-production-build";
+}
+
 async function fetchRaw(): Promise<string> {
+  if (isBuildPhase()) return readFileSync(FALLBACK_PATH, "utf8");
   try {
     const res = await fetch(CSV_URL, {
       next: { revalidate: REVALIDATE_SECONDS },

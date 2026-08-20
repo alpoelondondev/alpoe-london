@@ -170,7 +170,7 @@ const BAND_FAQS = [
   {
     question: "Can I have a wedding ring made to match a ring I already own?",
     answer:
-      "Yes, and it is a large part of what we do — including matching rings we did not make. We need the engagement ring at the bench to cut a band against it, or long enough to model it precisely. Send a photograph and the finger size and we will tell you what is possible before you come in.",
+      "Bring it in and we will tell you what is possible. Cutting a band to fit an existing ring means having that ring at the bench, or having it long enough to model precisely — a photograph is not enough to cut against. Send one anyway, with the finger size, and we can tell you roughly what is involved before you come in.",
   },
   {
     question: "What is the difference between a wedding band and an eternity ring?",

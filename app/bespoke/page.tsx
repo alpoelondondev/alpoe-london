@@ -16,7 +16,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: "Bespoke Jewellery Made in Hatton Garden",
   description:
-    "Commission a one-off diamond piece in Hatton Garden. Engagement rings, pendants and chains designed around you and hand-set in London. Natural or lab-grown.",
+    "Commission a one-off diamond piece in Hatton Garden. Engagement rings, pendants and chains designed around you and hand-set in London. Natural or laboratory-grown.",
   path: "/bespoke",
   image: "/og/bespoke.jpg",
 });
@@ -95,7 +95,7 @@ const FIELDS: EnquiryField[] = [
     required: true,
     half: true,
     options: [
-      "Lab-grown diamonds",
+      "Laboratory-grown diamonds",
       "Natural diamonds",
       "Not sure — talk me through it",
       "Other gemstone",
@@ -128,7 +128,7 @@ export default function BespokePage() {
       areaServed: "Worldwide",
       provider: { "@id": siteUrl("/") + "#organization" },
       description:
-        "Custom diamond jewellery designed and hand-set in Hatton Garden, London. Lab-grown or natural, GIA certified.",
+        "Custom diamond jewellery designed and hand-set in Hatton Garden, London. Laboratory-grown or natural, GIA certified.",
       url: siteUrl("/bespoke"),
     },
     // Breadcrumbs are emitted by the <Breadcrumbs> component this page
@@ -145,7 +145,7 @@ export default function BespokePage() {
         <BrandHero
           eyebrow="Bespoke Jewellery"
           title="Designed Around You, Set By Hand"
-          copy="One-off diamond pieces drawn, cast and hand-set in our Hatton Garden workshop. Lab-grown or natural, GIA certified, and yours alone."
+          copy="One-off diamond pieces drawn, cast and hand-set in our Hatton Garden workshop. Laboratory-grown or natural, GIA certified, and yours alone."
         />
 
         <section className="px-[52px] py-8 max-md:px-6">

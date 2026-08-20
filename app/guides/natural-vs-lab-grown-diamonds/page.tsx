@@ -33,9 +33,9 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-GB", {
 
 
 export const metadata: Metadata = pageMetadata({
-  title: "Lab Grown vs Natural Diamonds",
+  title: "Laboratory-grown vs Natural Diamonds",
   description:
-    "Lab grown diamonds are real diamonds. What actually differs from a natural stone, what each costs and how both are graded — straight from a Hatton Garden bench.",
+    "A laboratory-grown diamond is a diamond. What actually differs from a natural stone, what each costs, how both are graded, and how to choose — from a Hatton Garden counter.",
   path: PATH,
   image: "/alpoe-lab-grown-vs-natural-diamond-comparison-chart.jpg",
 });
@@ -106,11 +106,11 @@ export default function DiamondsGuidePage() {
     {
       "@type": "Article",
       "@id": siteUrl(PATH) + "#article",
-      headline: "Lab Grown vs Natural Diamonds: A Straight Answer",
+      headline: "Laboratory-grown vs Natural Diamonds: A Straight Answer",
       description:
-        "What actually differs between a lab grown and a natural diamond, what each costs, and how to choose.",
+        "What actually differs between a laboratory-grown and a natural diamond, what each costs, and how to choose.",
       about: [
-        { "@type": "Thing", name: "Lab-grown diamond" },
+        { "@type": "Thing", name: "Laboratory-grown diamond" },
         { "@type": "Thing", name: "Natural diamond" },
         { "@type": "Thing", name: "Diamond grading" },
       ],
@@ -144,7 +144,7 @@ export default function DiamondsGuidePage() {
       <main>
         {/*
           The h1 used to be the single word "Diamonds", which threw away a
-          well-targeted <title>: the page ranks for "lab grown vs natural
+          well-targeted <title>: the page ranks for "laboratory-grown vs natural
           diamonds" or it ranks for nothing, and the headline is the strongest
           on-page statement of what a page is about. Naming the comparison also
           matches how the question is actually asked.
@@ -152,7 +152,7 @@ export default function DiamondsGuidePage() {
         <BrandHero
           eyebrow="Guide"
           title="Lab-Grown vs Natural Diamonds"
-          copy="Lab grown or natural. Both are real diamonds, both sit on our counter, and the right one depends on what you want from the stone. Here is the whole thing without the sales pitch."
+          copy="Laboratory-grown or natural. Both are diamonds, both sit on our counter, and the right one depends on what you want from the stone. Here is the whole thing without the sales pitch."
         />
 
         {/* The byline the Article schema claims. Visible, so the claim holds. */}
@@ -191,7 +191,7 @@ export default function DiamondsGuidePage() {
           <ScrollReveal>
             <div className="max-w-3xl border-l-2 border-accent pl-8 max-md:pl-5">
               <h2 className="t-section">
-                Are lab grown diamonds real diamonds?
+                Is a laboratory-grown diamond a diamond?
               </h2>
               <p className="mt-5 t-copy">
                 Yes. Chemically, structurally and optically the same as a stone pulled
@@ -212,7 +212,7 @@ export default function DiamondsGuidePage() {
               <div className="col-span-7 relative aspect-[1195/896] w-full overflow-hidden border border-fg/[0.10] bg-white">
                 <Image
                   src="/alpoe-lab-grown-vs-natural-diamond-comparison-chart.jpg"
-                  alt="Comparison chart showing lab grown and natural diamonds share the same chemical composition, hardness, refractive index, crystal structure, dispersion and density"
+                  alt="Comparison chart showing laboratory-grown and natural diamonds share the same chemical composition, hardness, refractive index, crystal structure, dispersion and density"
                   fill
                   sizes="(max-width: 768px) 100vw, 58vw"
                   className="object-contain"
@@ -224,7 +224,7 @@ export default function DiamondsGuidePage() {
                   Measured side by side
                 </p>
                 <h2 className="t-section mt-4">
-                  Every property that matters is identical
+                  Every property that matters is essentially the same
                 </h2>
                 <dl className="mt-6 border-t border-fg/[0.14]">
                   {IDENTICAL.map(([property, value]) => (
@@ -255,7 +255,7 @@ export default function DiamondsGuidePage() {
             </h2>
             <p className="mt-4 max-w-2xl t-copy">
               Two methods, both a few weeks from seed to rough. Both produce stones that
-              are chemically and optically identical to natural.
+              are essentially the same as natural stones.
             </p>
             <div className="mt-10 grid grid-cols-2 gap-6 max-md:grid-cols-1">
               {METHODS.map((m) => (
@@ -290,7 +290,7 @@ export default function DiamondsGuidePage() {
             <div className="mt-8 overflow-x-auto border border-fg/[0.14]">
               <table className="w-full min-w-[560px] border-collapse text-left">
                 <caption className="sr-only">
-                  Typical price of a 1ct natural diamond compared with a 1ct lab grown
+                  Typical price of a 1ct natural diamond compared with a 1ct laboratory-grown
                   diamond at the same cut, colour and clarity
                 </caption>
                 <thead>

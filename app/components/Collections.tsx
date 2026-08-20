@@ -36,7 +36,7 @@ const items: {
     href: "/guides/natural-vs-lab-grown-diamonds",
     blurb: "Natural vs lab diamonds — what's the difference, and what works for you?",
     image: "/alpoe-natural-vs-lab-grown-diamonds-hatton-garden.jpg",
-    imageAlt: "A natural diamond and a lab-grown diamond side by side, compared at Alpoe London in Hatton Garden",
+    imageAlt: "A natural diamond and a laboratory-grown diamond side by side, compared at Alpoe London in Hatton Garden",
   },
   {
     title: "Bespoke Jewellery",

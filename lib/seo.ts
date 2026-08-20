@@ -138,7 +138,7 @@ function offerCatalogLd() {
       name: "Diamond jewellery",
       path: "/jewellery",
       description:
-        "Diamond earrings, necklaces, pendants and bracelets, natural or lab-grown, made in London.",
+        "Diamond earrings, necklaces, pendants and bracelets, natural or laboratory-grown, made in London.",
     },
     {
       name: "Luxury watch sourcing",
@@ -239,7 +239,7 @@ export function localBusinessLd() {
     knowsAbout: [
       "Bespoke engagement rings",
       "Diamond grading and certification",
-      "Lab-grown diamonds",
+      "Laboratory-grown diamonds",
       "Natural diamonds",
       "Wedding rings and eternity bands",
       "UK hallmarking",

@@ -32,9 +32,9 @@ const FAQS = {
       "Most bespoke commissions take three to six weeks from approved design to finished piece, depending on the stones and the complexity of the setting. Rush timelines can often be arranged for an occasion date — tell us the deadline when you enquire.",
   },
   labGrown: {
-    question: "Do you work with lab-grown as well as natural diamonds?",
+    question: "Do you work with laboratory-grown as well as natural diamonds?",
     answer:
-      "Both. Lab-grown diamonds are chemically and optically identical to natural stones and typically let you go significantly larger for the same budget. Natural diamonds hold their rarity and resale position. We will show you the same design in both so you can compare in person.",
+      "Both. Laboratory-grown diamonds have essentially the same properties as natural stones and typically let you go significantly larger for the same budget. Natural diamonds hold their rarity and resale position. We will show you the same design in both so you can compare in person.",
   },
   designProcess: {
     question: "What happens after I send my enquiry?",
@@ -104,7 +104,7 @@ const FAQS = {
   labCertification: {
     question: "Are lab diamonds certified?",
     answer:
-      "Yes, and you should not buy one that is not. Look for GIA or IGI. Both laser inscribe a number on the girdle that matches the certificate, readable at 50x magnification, and IGI marks lab stones as lab grown alongside it.",
+      "Yes, and you should not buy one that is not. Look for GIA or IGI. Both laser inscribe a number on the girdle that matches the certificate, readable at 50x magnification, and IGI marks lab stones as laboratory-grown alongside it.",
   },
   labResale: {
     question: "Will a lab diamond hold its value?",

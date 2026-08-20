@@ -304,7 +304,7 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
                 href="/guides/natural-vs-lab-grown-diamonds"
                 className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
               >
-                natural and lab-grown comparison
+                natural and laboratory-grown comparison
               </Link>{" "}
               and the{" "}
               <Link

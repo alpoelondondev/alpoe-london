@@ -80,12 +80,12 @@ export const SELL_BRANDS: SellBrand[] = [
       { name: "Explorer, Sea-Dweller, Yacht-Master, Sky-Dweller", note: "All bought. All valued reference by reference — send the number." },
     ],
     papers:
-      "Rolex warranty cards have been digital-format plastic since 2006 and carry the serial. A card matching the watch is the strongest single piece of provenance there is. No card is not a problem — we buy watch-only every week — but it does move the number, and we will tell you by how much before you commit to anything.",
+      "Rolex warranty cards have been digital-format plastic since 2006 and carry the serial. A card matching the watch is the strongest single piece of provenance there is. No card is not a problem — a watch-only Rolex is still a straightforward sale — but it does move the number, and we will tell you by how much before you commit to anything.",
     faqs: [
       {
         question: "Can I sell my Rolex without box and papers?",
         answer:
-          "Yes. A watch with no box and no card is still a straightforward sale — we buy them regularly. Expect the offer to sit below a full set of the same reference, because the next buyer will price it the same way. We will always show you both figures so you can decide whether tracking down the card is worth it.",
+          "Yes. A watch with no box and no card is still a straightforward sale. Expect the offer to sit below a full set of the same reference, because the next buyer will price it the same way. We will always show you both figures so you can decide whether tracking down the card is worth it.",
       },
       {
         question: "Where can I sell my Rolex in London?",
@@ -109,7 +109,7 @@ export const SELL_BRANDS: SellBrand[] = [
     name: "Patek Philippe",
     title: "Patek Philippe",
     intro:
-      "We buy Patek Philippe and broker it privately, from Hatton Garden. Send the reference and the paperwork and we will come back with a figure the same day; where a piece is better served by a private sale than an outright purchase we will say so, and tell you what each route is likely to net you.",
+      "We buy Patek Philippe from our counter in Hatton Garden. Send the reference and the paperwork and we will come back with a figure; on a scarce or discontinued reference we will also tell you honestly if you are likely to do better taking your time than taking our offer today.",
     context:
       "Patek is a thinner market than Rolex and a more informed one. Fewer watches change hands, buyers are collectors rather than passers-by, and the difference between a correct example and a compromised one is enormous. That means provenance carries far more weight here than it does on a steel sports watch, and it means the right buyer is worth waiting a few days for.",
     valueDrivers: [
@@ -143,7 +143,7 @@ export const SELL_BRANDS: SellBrand[] = [
       {
         question: "Where can I sell my Patek Philippe in London?",
         answer:
-          "To a specialist rather than a general watch buyer. Patek's market is narrow enough that a desk without collector contacts will price defensively — it has to, because it may hold the watch for months. We are in Hatton Garden and we broker as well as buy, which means on the right piece we can go to an end buyer rather than to the trade.",
+          "To a specialist rather than a general watch buyer. Patek's market is narrow enough that a desk without collector contacts prices defensively — it has to, because it may hold the watch for months. Ask any buyer how they intend to sell it on: the answer tells you a great deal about the number they have just given you.",
       },
       {
         question: "Should I sell my Patek outright or on consignment?",
@@ -205,7 +205,7 @@ export const SELL_BRANDS: SellBrand[] = [
       {
         question: "Do you buy Royal Oaks without papers?",
         answer:
-          "Yes. Watch-only Royal Oaks trade every week. The card and packaging move the figure rather than decide the sale, and we will show you the difference before you commit.",
+          "Yes. The card and packaging move the figure rather than decide the sale, and we will show you the difference before you commit.",
       },
     ],
   },

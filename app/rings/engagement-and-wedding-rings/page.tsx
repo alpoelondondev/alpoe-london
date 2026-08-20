@@ -62,7 +62,7 @@ const ENGAGEMENT_FAQS = [
   {
     question: "How long does a bespoke engagement ring take?",
     answer:
-      "Around four to six weeks from an approved CAD design. Casting, setting, finishing and hallmarking all happen inside that window. If you are working to a date, tell us at the very start and we will say honestly whether it can be met — we would rather turn a deadline down than miss it.",
+      "It depends on the ring, so we give you a date when we quote rather than quoting a standard one. Casting, setting, finishing and hallmarking at the London Assay Office are each a real step. If you are working to a deadline, tell us at the very start — we would rather turn a date down than miss it.",
   },
   {
     question: "How much should I spend on an engagement ring?",
@@ -72,12 +72,12 @@ const ENGAGEMENT_FAQS = [
   {
     question: "Can I use a diamond or a ring I already own?",
     answer:
-      "Yes, and it is some of the best work we do. An inherited stone can be reset into something modern, and an old ring can be remade rather than replaced. We will tell you honestly whether a stone is worth resetting before you commit to anything.",
+      "Yes — the ring builder already opens on starting from a sketch, an heirloom stone or a conversation. An inherited stone can be reset into something you will actually wear. Bring it in and we will tell you honestly whether it is worth resetting before you commit to anything.",
   },
   {
-    question: "Do you offer lab-grown diamonds?",
+    question: "Do you offer laboratory-grown diamonds?",
     answer:
-      "Yes, on every setting here, and we do not steer you toward either one. A lab-grown diamond is chemically and optically identical to a mined one and graded by the same laboratories, and typically costs a good deal less for the same size and grade — which is why many people put the difference into a larger stone. Our guide sets out the whole comparison.",
+      "Yes, on every setting here, and we do not steer you toward either one. A laboratory-grown diamond is chemically and optically identical to a mined one and graded by the same laboratories, and typically costs a good deal less for the same size and grade — which is why many people put the difference into a larger stone. Our guide sets out the whole comparison.",
   },
   {
     question: "Can I come and see the diamonds in person?",
@@ -87,7 +87,7 @@ const ENGAGEMENT_FAQS = [
   {
     question: "What if the ring does not fit?",
     answer:
-      "We size it, at no charge. Most rings can be adjusted a size or two either way. The exception is a full eternity band, where the diamonds run the whole way round and the spacing cannot be altered — which is exactly why the size matters most on the rings that are hardest to change.",
+      "Most rings can be adjusted a size or two either way, and we will tell you what that involves before you commission anything. The exception is a full eternity band, where the diamonds run the whole way round and the spacing cannot be altered — which is exactly why the size matters most on the rings that are hardest to change.",
   },
 ];
 

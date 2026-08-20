@@ -14,7 +14,7 @@ const SHOP_LINKS = [
  * component, it renders identically on every route, and until the nav panel
  * was fixed it was the *only* set of links a crawler could see. Two pages that
  * belong here were missing: /rings, which nothing but its own two children
- * linked to, and the lab-grown diamonds guide, which had exactly one crawlable
+ * linked to, and the laboratory-grown diamonds guide, which had exactly one crawlable
  * inbound link on the whole site despite being the strongest piece of writing
  * on it.
  */
