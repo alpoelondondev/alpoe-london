@@ -1,3 +1,13 @@
+"use client";
+
+/*
+ * Client for the same reason as EnquiryList: no interactivity, but a
+ * server-rendered tile is serialised twice — HTML, then again inside the RSC
+ * payload — and ninety-odd of them on a brand hub is a couple of hundred
+ * kilobytes of repeated Tailwind. As a client component the payload carries
+ * the props (a URL, a title, a line of meta) and the HTML is unchanged.
+ * The `badge` node is rendered on the server and arrives as a prop.
+ */
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";

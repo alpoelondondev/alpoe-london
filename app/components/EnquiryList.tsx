@@ -1,3 +1,16 @@
+"use client";
+
+/*
+ * A client component, and not because it has any interactivity — it has none.
+ *
+ * Rendered on the server, every row's markup is written into the page twice:
+ * once as HTML and once again inside the React Server Components payload that
+ * hydration reads. With a hundred and forty Tailwind-classed rows on the Rolex
+ * hub that second copy came to half a megabyte, and the page weighed 954KB.
+ * A client component's payload is its props instead — a few hundred bytes of
+ * strings per row — while the HTML is server-rendered exactly as before, so
+ * crawlers still see every link. The component is ~2KB of JS to ship for it.
+ */
 import Link from "next/link";
 
 export type EnquiryListRow = {
