@@ -7,7 +7,17 @@ import { SELL_BRANDS } from "@/lib/sell/brands";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
+  /*
+   * No `lastModified`. It used to be `new Date()` on every entry, which made
+   * every URL claim it changed at the moment of the last deploy — 462 pages,
+   * one identical timestamp, rolling forward on every push. Google documents
+   * that it ignores lastmod once it sees it does not track real change, so
+   * the field was buying nothing and teaching the crawler to distrust the
+   * file. Nothing here carries a real content date (the catalogue sheet has
+   * none, and a shallow deploy clone has no git history to ask), and an
+   * absent value is honest where a wrong one is not. Add it back per-entry
+   * only when a genuine date exists.
+   */
   const entries: MetadataRoute.Sitemap = [
     /*
      * siteUrl() rather than siteUrl("/") — no trailing slash.
@@ -19,70 +29,62 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
      * to one URL, but disagreeing with yourself in the two places you fully
      * control is free to fix and costs nothing to keep right.
      */
-    { url: siteUrl(), lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: siteUrl("/watches"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: siteUrl("/jewellery"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: siteUrl("/bespoke"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: siteUrl("/rings"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: siteUrl(), changeFrequency: "weekly", priority: 1 },
+    { url: siteUrl("/watches"), changeFrequency: "weekly", priority: 0.9 },
+    { url: siteUrl("/jewellery"), changeFrequency: "weekly", priority: 0.9 },
+    { url: siteUrl("/bespoke"), changeFrequency: "monthly", priority: 0.9 },
+    { url: siteUrl("/rings"), changeFrequency: "monthly", priority: 0.8 },
     {
       url: siteUrl("/rings/engagement-and-wedding-rings"),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: siteUrl("/rings/ready-to-ship"),
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: siteUrl("/ring-size-guide"),
-      lastModified: now,
       changeFrequency: "yearly",
       priority: 0.8,
     },
     {
       url: siteUrl("/ring-builder"),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    { url: siteUrl("/sell"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: siteUrl("/sell"), changeFrequency: "monthly", priority: 0.8 },
     {
       url: siteUrl("/book-appointment"),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    { url: siteUrl("/guides"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: siteUrl("/guides"), changeFrequency: "monthly", priority: 0.8 },
     {
       url: siteUrl("/guides/wedding-bands"),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: siteUrl("/guides/buying-jewellery-in-hatton-garden"),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: siteUrl("/guides/natural-vs-lab-grown-diamonds"),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    { url: siteUrl("/metal-prices"), lastModified: now, changeFrequency: "daily", priority: 0.7 },
-    { url: siteUrl("/hallmarking"), lastModified: now, changeFrequency: "yearly", priority: 0.4 },
-    { url: siteUrl("/mentorship"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: siteUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: siteUrl("/contact"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: siteUrl("/metal-prices"), changeFrequency: "daily", priority: 0.7 },
+    { url: siteUrl("/hallmarking"), changeFrequency: "yearly", priority: 0.4 },
+    { url: siteUrl("/mentorship"), changeFrequency: "monthly", priority: 0.7 },
+    { url: siteUrl("/about"), changeFrequency: "monthly", priority: 0.6 },
+    { url: siteUrl("/contact"), changeFrequency: "monthly", priority: 0.6 },
     // /ourbrand was built, metadata'd and then listed nowhere — not here, and
     // not in any link on the site. A page nothing points at and no sitemap
     // names is a page that does not exist as far as a crawler is concerned.
-    { url: siteUrl("/ourbrand"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: siteUrl("/ourbrand"), changeFrequency: "yearly", priority: 0.3 },
     // /search is deliberately absent: it carries noindex, and asking a crawler
     // to fetch a URL only to be told not to index it wastes the budget twice.
   ];
@@ -92,7 +94,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const g of SHAPE_GUIDES) {
     entries.push({
       url: siteUrl(`/rings/${g.slug}`),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     });
@@ -103,7 +104,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const b of SELL_BRANDS) {
     entries.push({
       url: siteUrl(`/sell/${b.slug}`),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.75,
     });
@@ -112,7 +112,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const b of WATCH_BRANDS) {
     entries.push({
       url: siteUrl(`/watches/${b.slug}`),
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
     });
@@ -120,7 +119,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const c of JEWELLERY_CATEGORIES) {
     entries.push({
       url: siteUrl(`/jewellery/${c.slug}`),
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
     });
@@ -131,7 +129,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const p of getAllProducts()) {
     entries.push({
       url: siteUrl(productUrl(p)),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -146,7 +143,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (curatedSlugs.has(key)) continue;
       entries.push({
         url: siteUrl(productUrl(p)),
-        lastModified: now,
         changeFrequency: "monthly",
         priority: 0.6,
       });
