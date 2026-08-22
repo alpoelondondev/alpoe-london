@@ -175,6 +175,23 @@ export function hasPhotography(p: Pick<Product, "images">): boolean {
   return p.images.length > 0;
 }
 
+/**
+ * Whether the listing's own copy says the piece is sourced on request.
+ *
+ * products.csv marks 99 watches `in_stock`, and 83 of those carry a
+ * description ending "Sourced to order through Alpoe London". Both cannot be
+ * true, and until the data is corrected one way or the other the only honest
+ * reading for anything machine-readable is the one the customer can see on
+ * the page. Structured data that contradicts visible content is the specific
+ * thing Google's guidelines say earns a manual action, so `productLd` asks
+ * this rather than trusting the column.
+ */
+export function isSourcedToOrder(
+  p: Pick<Product, "stockState" | "description">,
+): boolean {
+  return p.stockState !== "in_stock" || /sourced to order/i.test(p.description);
+}
+
 /** Photographed pieces lead, enquire-now references follow. Pair with a tiebreak. */
 export function photosFirst(a: Product, b: Product): number {
   return Number(hasPhotography(b)) - Number(hasPhotography(a));

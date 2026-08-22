@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE, siteUrl } from "./site";
 import type { Product } from "./types";
+import { isSourcedToOrder } from "./products";
 
 /**
  * The card every share falls back to. Without an explicit `images` entry
@@ -314,10 +315,10 @@ export function productLd(product: Product, path: string) {
     p.startsWith("http") ? p : siteUrl(p),
   );
 
-  const availability =
-    product.stockState === "in_stock"
-      ? "https://schema.org/InStock"
-      : "https://schema.org/PreOrder";
+  // Decided from the visible copy, not the stock column — see isSourcedToOrder.
+  const availability = isSourcedToOrder(product)
+    ? "https://schema.org/PreOrder"
+    : "https://schema.org/InStock";
 
   return {
     "@type": "Product",
