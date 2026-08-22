@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 030",
+  "modelSlug": "rm-030",
+  "modelOverview": "The RM 030 line is built around Richard Mille's declutchable rotor, a mechanism that disengages the oscillating weight from the barrel once the mainspring is fully wound, preventing over-tension and wear. The 2023 RM 30-01 reworked the concept with the new Calibre RMAR2, a redesigned tonneau case and a clearer indicator layout, taking over from the original RM 030 launched in 2011.",
+  "references": {
+    "RM 30-01": {
+      "caseSize": "42.00mm x 49.94mm x 17.59mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre RMAR2 · skeletonised, declutchable variable-geometry rotor with 18k white gold wings · 28,800vph · ~55h power reserve",
+      "materials": "Available in grade 5 titanium, or 18k 5N red gold bezel and caseback with a grade 5 titanium caseband",
+      "bezel": "",
+      "dial": "Skeletonised dial exposing the grade 5 titanium baseplate and bridges, with oversize date, clutch-engagement and power-reserve indicators and a function selector",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The RM 30-01 Automatic with Declutchable Rotor is the second generation of Richard Mille's self-winding movement that automatically disconnects its rotor from the barrel at full wind, a state the wearer can read off the dial alongside the power reserve and oversize date. The Calibre RMAR2 sits in a tonneau case weighing 96 grams complete with strap, in titanium or red gold and titanium. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic with Declutchable Rotor": "The RM 30-01 as introduced in 2023 — tonneau case with skeletonised Calibre RMAR2, declutchable variable-geometry rotor, oversize date, clutch and power-reserve indicators and function selector, in titanium or red gold and titanium."
+      }
+    }
+  }
+}

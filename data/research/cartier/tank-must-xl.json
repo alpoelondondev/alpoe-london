@@ -1,0 +1,22 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Must XL",
+  "modelSlug": "tank-must-xl",
+  "modelOverview": "The Tank Must XL (Extra-Large) is the largest size in Cartier's 2021 revival of the Must de Cartier line and the only one fitted with a mechanical movement: the in-house automatic Calibre 1847 MC with a date at 6 o'clock. Its 41mm x 31mm steel case carries the silvered flinqué dial, Roman numerals and blued-steel sword hands shared with the quartz models, on an interchangeable leather strap.",
+  "references": {
+    "WSTA0040": {
+      "caseSize": "41mm x 31mm (8.4mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · 28,800 vph · 23 jewels · ~42h power reserve",
+      "materials": "Stainless steel case; interchangeable black grained calfskin strap with interchangeable steel folding buckle",
+      "bezel": "",
+      "dial": "Silvered flinqué dial with black Roman numerals, blued-steel sword-shaped hands and a date aperture at 6 o'clock; beaded crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2021–present",
+      "description": "Note: Cartier lists reference WSTA0040 as the Extra-Large Tank Must rather than a Large model. It is the automatic member of the 2021 Tank Must family, housing the in-house Calibre 1847 MC with a date window beneath a silvered flinqué dial in a 41mm x 31mm steel case on a black calfskin strap. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Silver Dial": "Extra-Large Tank Must in steel on an interchangeable black grained calfskin strap, with a silvered flinqué Roman-numeral dial, blued-steel sword hands and a date at 6 o'clock, powered by the automatic Calibre 1847 MC."
+      }
+    }
+  }
+}

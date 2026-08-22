@@ -15,6 +15,45 @@
       "year": "2017–present",
       "description": "The Panthère de Cartier Small in steel pairs the model's signature square case and screwed bezel with a silvered dial, Roman numerals and blued sword-shaped hands, worn on Cartier's flexible steel brick-link bracelet. Its crown is set with a synthetic blue spinel, a detail carried across the modern Panthère range. Every piece we offer is sourced and authenticated prior to sale.",
       "variants": {}
+    },
+    "WJPN0057": {
+      "caseSize": "30mm x 22mm (width x height), 6mm thick",
+      "movement": "Quartz",
+      "materials": "18k yellow gold (750/1000) case set with 37 brilliant-cut diamonds (0.26ct); textured 18k yellow gold bracelet",
+      "bezel": "Square yellow gold bezel set with brilliant-cut diamonds",
+      "dial": "Golden grained dial with a sparkling effect, Roman numerals and gold-finish sword-shaped hands; octagonal yellow gold crown set with a brilliant-cut diamond (0.02ct)",
+      "waterResistance": "30m / 3 bar",
+      "year": "Current collection",
+      "description": "The WJPN0057 is the Small Panthère de Cartier in 18k yellow gold with a diamond-set case, its golden grained dial and gold-finish hands matched to a textured yellow gold bracelet. A brilliant-cut diamond replaces the usual spinel on the octagonal crown. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Yellow Gold – Diamonds": "Small Panthère de Cartier in 18k yellow gold with 37 brilliant-cut diamonds on the case, a golden grained dial with gold-finish sword hands and a diamond-set crown, on the textured yellow gold bracelet."
+      }
+    },
+    "WJPN0061": {
+      "caseSize": "30.3mm x 22.0mm (width x height), 6.05mm thick",
+      "movement": "Quartz",
+      "materials": "18k rose gold (750/1000) case set with 36 brilliant-cut diamonds (0.25ct); 18k rose gold bracelet semi-set with 142 brilliant-cut diamonds (1.29ct)",
+      "bezel": "Square rose gold bezel set with brilliant-cut diamonds",
+      "dial": "Silver dial with Roman numerals and blued-steel sword-shaped hands; octagonal rose gold crown set with a brilliant-cut diamond (0.02ct)",
+      "waterResistance": "30m / 3 bar",
+      "year": "Current collection",
+      "description": "The WJPN0061 is the Small Panthère de Cartier in 18k rose gold with diamonds on both case and bracelet: 36 brilliant-cut stones frame the silver dial and a further 142 are semi-set into the flexible brick-link bracelet. The octagonal crown carries a single brilliant-cut diamond. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold – Diamonds": "Small Panthère de Cartier in 18k rose gold with a 36-diamond case, silver Roman-numeral dial with blued sword hands and a diamond-set crown, on the rose gold bracelet semi-set with 142 brilliant-cut diamonds."
+      }
+    },
+    "WJPN0062": {
+      "caseSize": "30.3mm x 22.0mm (width x height), 6.32mm thick",
+      "movement": "Quartz",
+      "materials": "18k rose gold (750/1000) case set with 36 brilliant-cut diamonds (0.25ct); 18k rose gold double-loop bracelet semi-set with 286 brilliant-cut diamonds (2.59ct)",
+      "bezel": "Square rose gold bezel set with brilliant-cut diamonds",
+      "dial": "18k rose gold dial set with 172 brilliant-cut diamonds (0.47ct) with rose gold-finish sword-shaped hands; octagonal rose gold crown set with a brilliant-cut diamond (0.02ct)",
+      "waterResistance": "30m / 3 bar",
+      "year": "Current collection",
+      "description": "Note: Cartier's specification for reference WJPN0062 is 18k rose gold rather than white gold. It is the most heavily set Small Panthère in the range, with a fully diamond-paved rose gold dial, a diamond-set case and crown, and a double-loop rose gold bracelet semi-set with 286 brilliant-cut diamonds. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Rose Gold – Diamond Dial": "Small Panthère de Cartier in 18k rose gold (documented reference is rose rather than white gold) with a dial paved with 172 diamonds, a 36-diamond case and a double-loop bracelet semi-set with 286 brilliant-cut diamonds."
+      }
     }
   }
 }

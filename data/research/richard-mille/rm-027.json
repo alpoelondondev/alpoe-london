@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 027",
+  "modelSlug": "rm-027",
+  "modelOverview": "The RM 027 line began in 2010 as the tourbillon Richard Mille built for Rafael Nadal to wear on court, and each generation since has pushed the limits of weight and shock resistance. The RM 27-05 of 2024 is the lightest mechanical watch the brand has made, a monobloc Carbon TPT B.4 case and flying tourbillon movement weighing 11.5 grams without its strap and rated to 14,000g.",
+  "references": {
+    "RM 27-05": {
+      "caseSize": "37.25mm x 47.25mm x 7.20mm (tonneau, monobloc)",
+      "movement": "Manual · Richard Mille Calibre RM27-05 · flying tourbillon · 21,600vph · ~55h power reserve · 3.79g movement",
+      "materials": "Monobloc case in Carbon TPT B.4 with 5N PVD-treated details; black textile strap",
+      "bezel": "",
+      "dial": "Skeletonised dial beneath a 1.20mm LEXAN polymer crystal, exposing the flying tourbillon and openworked baseplate with hours and minutes",
+      "waterResistance": "10m",
+      "year": "2024 (limited edition of 80 pieces)",
+      "description": "The RM 27-05 Flying Tourbillon Rafael Nadal weighs 11.5 grams without its strap, making it the lightest mechanical watch Richard Mille has produced, and is engineered to withstand shocks beyond 14,000g. Its monobloc case is machined from Carbon TPT B.4 and houses a flying tourbillon movement just 2.12mm thick, produced in a limited edition of 80 pieces. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Flying Tourbillon Rafael Nadal": "The RM 27-05 as launched in 2024 — monobloc Carbon TPT B.4 tonneau case, manual-winding flying tourbillon Calibre RM27-05, LEXAN crystal and textile strap, limited to 80 pieces."
+      }
+    }
+  }
+}

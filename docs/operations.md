@@ -8,7 +8,7 @@ Day-to-day instructions for running and updating the Alpoe London site. Written 
 |---|---|
 | Edit a product (price, stock, condition) | Edit `data/products.csv` directly, save, commit |
 | Mark a Rolex as sold (or no longer held) | Open `data/products.csv`, find the row, change `in_stock` → `sourceable` |
-| Add new Rolex images | Drop PNGs into `public/products/rolex/{ref}/`, run `node scripts/build-rolex-catalogue.mjs` |
+| Add new watch images | Add a row to `data/image-sources/{brand}.tsv`, run `python3 scripts/build-product-images.py {brand}`, `pnpm gen:data`, then upload `public/products` to R2 (see `lib/assets.ts`) |
 | Add a new Rolex reference | Edit `scripts/build-rolex-catalogue.mjs`, add the entry, run `node scripts/build-rolex-catalogue.mjs` |
 | Add a non-Rolex watch (Patek/AP/etc.) | Add a row to `data/products.csv` directly |
 | Add a jewellery item | Add a row to `data/products.csv` directly |
@@ -85,6 +85,19 @@ Easiest: delete its row. The page disappears at the next build. The image folder
 If you want the page to remain but show as out-of-stock, leave the row and change `stock_state` to `sourceable`. There is no "sold out" state — sourceable covers it.
 
 ---
+
+> **Since 22 Aug 2026 product images are WebP and served from the R2 bucket.** The files in
+> `public/products/{brand}/{ref}/{n}.webp` are built from `data/image-sources/{brand}.tsv`
+> (reference, source URL, provenance) by `scripts/build-product-images.py` — 800px wide, q80 —
+> and mirrored to `r2:alpoe-ring-renders/site/products/` with:
+>
+>     rclone copy public/products r2:alpoe-ring-renders/site/products \
+>       --header-upload "Cache-Control: public, max-age=31536000, immutable" --s3-no-check-bucket
+>
+> The manifest stamps every path with `?v=<hash>`, so replacing a file and re-uploading is safe.
+> Listings the Google Sheet does not carry yet go in `data/catalogue-extra.csv` (same four columns);
+> a row there disappears automatically once the sheet has the same brand / reference / variant.
+> The PNG drop-in instructions below still describe the folder layout but the format is now WebP.
 
 ## 2. Adding new Rolex images
 

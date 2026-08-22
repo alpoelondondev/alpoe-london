@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Flyback Chronograph Annual Calendar 5905",
+  "modelSlug": "flyback-chronograph-annual-calendar-5905",
+  "modelOverview": "The 5905 pairs Patek Philippe's patented Annual Calendar, which needs correcting only once a year at the end of February, with a self-winding flyback chronograph in a 42mm case. Introduced in 2015 in platinum and rose gold, it uses the Calibre CH 28-520 QA 24H, a column-wheel, vertical-clutch chronograph with a 60-minute counter at 6 o'clock and day, date and month apertures arranged across the upper dial with a day/night indicator. In 2021 Patek Philippe added the steel 5905/1A-001 on an integrated bracelet, a rare complicated reference in steel within the Complications collection.",
+  "references": {
+    "5905/1A-001": {
+      "caseSize": "42mm (14.13mm thick)",
+      "movement": "Automatic · Patek Philippe Calibre CH 28-520 QA 24H · 28,800 vph · 45–55h power reserve",
+      "materials": "Stainless steel case and integrated steel bracelet with fold-over clasp",
+      "bezel": "Polished steel round bezel",
+      "dial": "Sunburst olive green dial with white gold applied faceted baton hour markers and white gold faceted dauphine hands with white luminescent coating; day, date and month apertures across the upper dial, 60-minute chronograph counter with day/night indication at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2021–present",
+      "description": "The 5905/1A-001 is the steel execution of the Annual Calendar Flyback Chronograph, launched in 2021 with a sunburst olive green dial and an integrated bracelet that gives the complication a distinctly sporting character. Its 402-part Calibre CH 28-520 QA 24H combines a flyback chronograph with the annual calendar's day, date and month apertures and a 24-hour day/night display, all shown through a sapphire caseback. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Olive Green": "5905/1A-001 in stainless steel on its integrated steel bracelet with the sunburst olive green dial, the only steel configuration of the 5905."
+      }
+    }
+  }
+}

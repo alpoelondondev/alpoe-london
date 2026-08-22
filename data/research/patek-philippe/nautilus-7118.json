@@ -1,0 +1,35 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Nautilus 7118",
+  "modelSlug": "nautilus-7118",
+  "modelOverview": "The Nautilus 7118 is Patek Philippe's ladies' automatic Nautilus, introduced at Baselworld 2019 as the successor to the 7018/1A. Its 35.2mm case keeps the collection's rounded-octagonal bezel, porthole construction and integrated bracelet, with a wave-pattern dial in place of the men's horizontal embossing and the self-winding Calibre 26-330 S C with date and sweep seconds visible through a sapphire caseback. It is offered with or without a diamond-set bezel in stainless steel and 18k rose gold.",
+  "references": {
+    "7118/1A-001": {
+      "caseSize": "35.2mm (8.62mm thick)",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · 28,800 vph · 35–45h power reserve",
+      "materials": "Stainless steel case and integrated bracelet with patented fold-over clasp and lockable adjustment system",
+      "bezel": "Steel rounded-octagonal Nautilus bezel with contrasting polished and satin-brushed finishes, no diamonds",
+      "dial": "Blue opaline dial with wave pattern, white gold applied numerals and hour markers with white luminescent coating, white gold alpha-style hands, date aperture at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The 7118/1A-001 is the non-gem-set steel ladies' Nautilus with a blue opaline wave-pattern dial, the closest counterpart in the women's line to the men's blue-dial steel Nautilus. Its 35.2mm case houses the 215-part Calibre 26-330 S C with date, sweep seconds and 21k gold central rotor. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Blue Dial": "7118/1A-001 in stainless steel on its integrated steel bracelet with the blue opaline wave-pattern dial and plain steel bezel."
+      }
+    },
+    "7118/1R-001": {
+      "caseSize": "35.2mm (8.62mm thick)",
+      "movement": "Automatic · Patek Philippe Calibre 26-330 S C · 28,800 vph · 35–45h power reserve",
+      "materials": "18k rose gold case and integrated bracelet with patented fold-over clasp and lockable adjustment system",
+      "bezel": "Rose gold rounded-octagonal Nautilus bezel with contrasting polished and satin-brushed finishes, no diamonds",
+      "dial": "Silvery opaline dial with wave pattern, rose gold applied numerals and hour markers with white luminescent coating, rose gold alpha-style hands, date aperture at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2019–present",
+      "description": "The 7118/1R-001 renders the ladies' Nautilus entirely in 18k rose gold, from the 35.2mm case to the integrated bracelet, with a silvery opaline wave-pattern dial and rose gold numerals. It carries the same Calibre 26-330 S C with date and sweep seconds as the steel model, shown through a sapphire caseback. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Rose Gold – Silvery Opaline": "7118/1R-001 in 18k rose gold on its integrated rose gold bracelet with the silvery opaline wave-pattern dial and plain rose gold bezel."
+      }
+    }
+  }
+}

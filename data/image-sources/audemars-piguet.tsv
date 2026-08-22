@@ -1,0 +1,48 @@
+# reference	source	provenance
+# Audemars Piguet official 'standup' renders (dynamicmedia.audemarspiguet.com). The DAM holds these at
+# 400px; wid/hei only pad the canvas, so they are fetched at native size. Matched to our references by
+# the reference number shown against each render on 57 Jewellers' catalogue (their image source for AP).
+# Four references 57 Jewellers lists could not be verified as real AP references (26405CE.OO.A002CA.03,
+# 26421TI.OO.A001CA.01, 15720ST.OO.A001CA.01, 26600OR.OO.D002CR.02 — AP's site and every reference
+# database know only other suffixes), so their renders are deliberately not carried.
+15510ST.OO.1320ST.06	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1038?fmt=png-alpha	standup-1038 — Audemars Piguet Royal Oak Selfwinding 41mm Blue Dial
+15510ST.OO.1320ST.07	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1060?fmt=png-alpha	standup-1060 — Audemars Piguet Royal Oak Selfwinding 41mm Grey Dial
+15510ST.OO.1320ST.08	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-996?fmt=png-alpha	standup-996 — Audemars Piguet Royal Oak Selfwinding 41mm Black Dial
+15510ST.OO.1320ST.09	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1010?fmt=png-alpha	standup-1010 — Audemars Piguet Royal Oak Selfwinding 41mm Green Dial
+15510ST.OO.1320ST.10	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1014?fmt=png-alpha	standup-1014 — Audemars Piguet Royal Oak Selfwinding 41mm Salmon Dial
+15510OR.OO.1320OR.03	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1058?fmt=png-alpha	standup-1058 — Audemars Piguet Royal Oak Selfwinding 41mm Rose Gold Blue Dial
+15510OR.OO.1320OR.04	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1049?fmt=png-alpha	standup-1049 — Audemars Piguet Royal Oak Selfwinding 41mm Rose Gold Grey Dial
+15510BC.OO.1320BC.04	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1285?fmt=png-alpha	standup-1285 — Audemars Piguet Royal Oak Selfwinding 41mm White Gold Blue Dial
+15513BA.OO.1320BA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1337?fmt=png-alpha	standup-1337 — Audemars Piguet Royal Oak Selfwinding 41mm Yellow Gold Yellow Gold
+26240ST.OO.1320ST.05	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-973?fmt=png-alpha	standup-973 — Audemars Piguet Royal Oak Chronograph 41mm Blue Dial
+26240ST.OO.1320ST.06	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1031?fmt=png-alpha	standup-1031 — Audemars Piguet Royal Oak Chronograph 41mm Black Dial
+26240ST.OO.1320ST.07	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1021?fmt=png-alpha	standup-1021 — Audemars Piguet Royal Oak Chronograph 41mm Grey Dial
+26240ST.OO.1320ST.08	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-994?fmt=png-alpha	standup-994 — Audemars Piguet Royal Oak Chronograph 41mm Green Dial
+26240OR.OO.1320OR.05	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1037?fmt=png-alpha	standup-1037 — Audemars Piguet Royal Oak Chronograph 41mm Rose Gold Rose Gold
+26240CE.OO.1225CE.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1040?fmt=png-alpha	standup-1040 — Audemars Piguet Royal Oak Chronograph 41mm Ceramic Black Ceramic
+26240BC.OO.1320BC.04	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1283?fmt=png-alpha	standup-1283 — Audemars Piguet Royal Oak Chronograph 41mm White Gold White Gold
+16202ST.OO.1240ST.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-986?fmt=png-alpha	standup-986 — Audemars Piguet Royal Oak Jumbo Extra-Thin 39mm Steel Blue
+16202BA.HH.1241BA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1090?fmt=png-alpha	standup-1090 — Audemars Piguet Royal Oak Jumbo Extra-Thin Fully Set 39mm Yellow Gold
+16202BC.OO.1240BC.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1009?fmt=png-alpha	standup-1009 — Audemars Piguet Royal Oak Jumbo Extra-Thin 39mm White Gold
+16202XT.OO.1240XT.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1095?fmt=png-alpha	standup-1095 — Audemars Piguet Royal Oak Jumbo Extra-Thin 39mm Titanium
+26674ST.OO.1320ST.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-993?fmt=png-alpha	standup-993 — Audemars Piguet Royal Oak Perpetual Calendar 41mm Steel Blue
+26674CD.OO.1225CD.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1329?fmt=png-alpha	standup-1329 — Audemars Piguet Royal Oak Perpetual Calendar 41mm Bleu Nuit Ceramic
+15407ST.OO.1220ST.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1233?fmt=png-alpha	standup-1233 — Audemars Piguet Royal Oak Openworked 41mm Steel
+15407BA.OO.1220BA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1234?fmt=png-alpha	standup-1234 — Audemars Piguet Royal Oak Openworked 41mm Yellow Gold
+15412OR.YG.1224OR.01-B	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1019?fmt=png-alpha	standup-1019 — Audemars Piguet Royal Oak Frosted Gold 41mm Rose Gold
+15412BC.YG.1224BC.03-B	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1048?fmt=png-alpha	standup-1048 — Audemars Piguet Royal Oak Frosted Gold 41mm White Gold
+15412BA.YG.1224BA.01-B	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1036?fmt=png-alpha	standup-1036 — Audemars Piguet Royal Oak Frosted Gold 41mm Yellow Gold
+26730ST.OO.1320ST.05	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1132?fmt=png-alpha	standup-1132 — Audemars Piguet Royal Oak Flying Tourbillon 41mm Steel
+26730TI.OO.1320TI.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-875?fmt=png-alpha	standup-875 — Audemars Piguet Royal Oak Flying Tourbillon 41mm Titanium
+26400IO.OO.A004CA.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-978?fmt=png-alpha	standup-978 — Audemars Piguet Royal Oak Offshore Chronograph 44mm Black Dial
+26400IO.OO.A004CA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-969?fmt=png-alpha	standup-969 — Audemars Piguet Royal Oak Offshore Chronograph 44mm Blue Dial
+26401RO.OO.A002CA.02	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-970?fmt=png-alpha	standup-970 — Audemars Piguet Royal Oak Offshore Chronograph 44mm Rose Gold Rose Gold Black
+26400SO.OO.A055CA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-975?fmt=png-alpha	standup-975 — Audemars Piguet Royal Oak Offshore Chronograph 44mm Titanium Green Camo
+15720ST.OO.A027CA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-979?fmt=png-alpha	standup-979 — Audemars Piguet Royal Oak Offshore Diver 42mm Blue Dial
+15720ST.OO.A052CA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-980?fmt=png-alpha	standup-980 — Audemars Piguet Royal Oak Offshore Diver 42mm Green Dial
+15720CE.OO.A002CA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-977?fmt=png-alpha	standup-977 — Audemars Piguet Royal Oak Offshore Diver 42mm Ceramic Black Ceramic
+26400SO.OO.A054CA.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-974?fmt=png-alpha	standup-974 — Audemars Piguet Royal Oak Offshore Chronograph 44mm Camo
+26393BC.OO.A002CR.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1100?fmt=png-alpha	standup-1100 — Audemars Piguet Code 11.59 Chronograph 41mm White Gold Blue
+26393OR.OO.A002CR.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1101?fmt=png-alpha	standup-1101 — Audemars Piguet Code 11.59 Chronograph 41mm Rose Gold Grey
+15210BC.OO.A002CR.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1108?fmt=png-alpha	standup-1108 — Audemars Piguet Code 11.59 Selfwinding 41mm White Gold Blue Lacquer
+15210OR.OO.A002CR.01	https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/standup-1107?fmt=png-alpha	standup-1107 — Audemars Piguet Code 11.59 Selfwinding 41mm Rose Gold Smoked

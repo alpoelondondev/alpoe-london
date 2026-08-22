@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 016",
+  "modelSlug": "rm-016",
+  "modelOverview": "The RM 016 is Richard Mille's rectangular extra-flat automatic, the brand's principal departure from its tonneau silhouette. The RM 16-02 Automatic Extraflat of 2025 reduces the case by around ten per cent against the original RM 016, keeps the curved, tapered profile that fits the wrist, and introduces the Calibre CRMA9 with a platinum rotor.",
+  "references": {
+    "RM 16-02": {
+      "caseSize": "36.00mm x 45.64mm x 9.50mm (rectangular)",
+      "movement": "Automatic · Richard Mille Calibre CRMA9 · skeletonised, platinum rotor with OneWay winding system · 28,800vph · ~50h power reserve",
+      "materials": "Available in satin-finished grade 5 titanium with polished bevels, or terracotta Quartz TPT with a white Quartz TPT caseband",
+      "bezel": "",
+      "dial": "Skeletonised dial with hour indices set along a continuous wire-like track across the openworked movement, and a black PVD-coated minute bridge",
+      "waterResistance": "30m",
+      "year": "2025–present",
+      "description": "The RM 16-02 Automatic Extraflat gives Richard Mille's rectangular case a slimmer 9.5mm profile built around the skeletonised Calibre CRMA9, whose platinum rotor and OneWay ceramic-bearing system wind the barrel within a 4.12mm movement. The dial's indices follow a single thread-like line across the open architecture, in titanium or terracotta Quartz TPT. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Extraflat": "The RM 16-02 as launched in 2025 — rectangular extra-flat case in titanium or terracotta Quartz TPT, skeletonised Calibre CRMA9 automatic with platinum rotor and thread-line hour track."
+      }
+    }
+  }
+}

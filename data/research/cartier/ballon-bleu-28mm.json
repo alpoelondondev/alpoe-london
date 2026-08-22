@@ -1,0 +1,22 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Ballon Bleu 28mm",
+  "modelSlug": "ballon-bleu-28mm",
+  "modelOverview": "Launched in 2007, the Ballon Bleu de Cartier is instantly recognisable for its rounded, pebble-like case and the fluted crown set with a blue cabochon. The 28mm size is the smallest in the range and is offered on quartz movements, frequently with diamond-set bezels and dials, making it the most jewellery-led proportion of the line.",
+  "references": {
+    "W4BB0034": {
+      "caseSize": "28mm (9.35mm thick)",
+      "movement": "Quartz",
+      "materials": "Stainless steel case and interchangeable steel bracelet; sapphire crystal",
+      "bezel": "Steel bezel set with 42 brilliant-cut diamonds (0.48ct)",
+      "dial": "Silvered sunray-brushed dial set with 19 brilliant-cut diamonds (0.08ct), Roman numeral XII and blued-steel sword-shaped hands; fluted steel crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "30m / 3 bar",
+      "year": "Current collection",
+      "description": "The W4BB0034 is the diamond-set quartz Ballon Bleu de Cartier in 28mm, with 42 brilliant-cut diamonds around the bezel and 19 more as hour markers on a silvered sunray dial. It is worn on the interchangeable steel bracelet. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Diamond Bezel": "28mm steel Ballon Bleu on a quartz movement, with a 42-diamond bezel, silvered sunray dial set with 19 diamond markers and blued sword hands, on the interchangeable steel bracelet."
+      }
+    }
+  }
+}

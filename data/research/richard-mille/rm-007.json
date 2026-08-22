@@ -1,0 +1,35 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 007",
+  "modelSlug": "rm-007",
+  "modelOverview": "The RM 007 family is Richard Mille's core women's collection, pairing a compact tonneau case with skeletonised in-house automatic calibres. The RM 07-01 of 2014 introduced the Calibre CRMA2 and has since been offered in gold, ceramic and Carbon TPT with gem-set and hardstone dials, while the RM 07-04 Automatic Sport of 2023 brought the same footprint to a 36-gram sports watch developed with six female athletes.",
+  "references": {
+    "RM 07-01": {
+      "caseSize": "31.40mm x 45.66mm x 11.85mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre CRMA2 · skeletonised, variable-geometry rotor with 5N red gold rim · 28,800vph · ~50h power reserve",
+      "materials": "Available in 18k red gold, 18k grey gold, Carbon TPT, Gold Carbon TPT, white ATZ ceramic and black TZP ceramic case constructions",
+      "bezel": "",
+      "dial": "Open-worked dial over the CRMA2 movement, offered with gem-set, jasper, onyx, mother-of-pearl or Carbon TPT centres and snow-set options on selected models",
+      "waterResistance": "50m",
+      "year": "2014–present",
+      "description": "The RM 07-01 Automatic Winding is the mainstay of Richard Mille's women's collection, a 31.40mm tonneau case housing the skeletonised Calibre CRMA2 with its variable-geometry rotor. It has been produced in an unusually wide range of case materials and dial treatments, from plain red gold to ceramic, Carbon TPT and gem-set executions. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Winding": "The core RM 07-01 execution — compact tonneau case with skeletonised Calibre CRMA2 automatic movement and variable-geometry rotor, offered across gold, ceramic and Carbon TPT cases with a choice of gem-set or hardstone dials."
+      }
+    },
+    "RM 07-04": {
+      "caseSize": "30.50mm x 44.95mm x 10.35mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre CRMA8 · skeletonised, platinum rotor with OneWay winding system · function selector · 28,800vph · ~50h power reserve",
+      "materials": "Available in five colours of Quartz TPT or in Carbon TPT, on an elastic textile strap; 36 grams complete",
+      "bezel": "",
+      "dial": "Skeletonised dial exposing the CRMA8 movement, with hours, minutes and a function selector, colour-matched to each athlete edition",
+      "waterResistance": "50m",
+      "year": "2023–present",
+      "description": "The RM 07-04 Automatic Sport is Richard Mille's first women's sports watch, developed over three years with athletes including Nelly Korda, Nafi Thiam, Ester Ledecká, Yuliya Levchenko, Margot Laffite and Aurora Straus. Its compact Calibre CRMA8 is rated to 5,000g of shock and sits in a Quartz TPT or Carbon TPT case that weighs 36 grams with its strap. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Sport": "The RM 07-04 as launched in 2023 — 36-gram tonneau case in coloured Quartz TPT or Carbon TPT, skeletonised Calibre CRMA8 automatic with platinum rotor and function selector, one colourway per athlete."
+      }
+    }
+  }
+}

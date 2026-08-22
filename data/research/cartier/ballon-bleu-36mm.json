@@ -15,6 +15,19 @@
       "year": "2019–present",
       "description": "The WSBB0048 is the steel-on-steel Ballon Bleu 36mm, pairing a silvered guilloché dial with blued sword-shaped hands and Cartier's signature fluted crown set with a synthetic spinel cabochon. Its rounded, softly curved case and interchangeable steel bracelet make it a versatile everyday Cartier icon. Every piece we offer is sourced and authenticated prior to sale.",
       "variants": {}
+    },
+    "W4BB0036": {
+      "caseSize": "36mm (12.06mm thick)",
+      "movement": "Automatic · mechanical movement with automatic winding",
+      "materials": "Stainless steel case and interchangeable steel bracelet; sapphire crystal",
+      "bezel": "Steel bezel set with 54 brilliant-cut diamonds (0.78ct)",
+      "dial": "Silvered sunray-brushed dial set with 21 brilliant-cut diamonds (0.19ct), Roman numeral XII and blued-steel sword-shaped hands; fluted steel crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "30m / 3 bar",
+      "year": "Current collection",
+      "description": "Note: reference W4BB0036 is an all-steel Ballon Bleu rather than a steel-and-gold model. In the 36mm case it sets 54 brilliant-cut diamonds around the bezel and 21 more as hour markers on a silvered sunray dial, driven by a self-winding movement and worn on the interchangeable steel bracelet. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Steel – Diamond Bezel": "36mm steel Ballon Bleu (documented as full steel rather than steel and gold) with a 54-diamond bezel, silvered sunray dial set with 21 diamond markers and blued sword hands, on the automatic movement and the interchangeable steel bracelet."
+      }
     }
   }
 }

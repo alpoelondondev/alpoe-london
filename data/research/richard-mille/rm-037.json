@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 037",
+  "modelSlug": "rm-037",
+  "modelOverview": "Unveiled at the end of 2011 ahead of SIHH 2012, the RM 037 was the first watch to carry a fully in-house Richard Mille movement, the Calibre CRMA1. It pairs a skeletonised automatic with an oversize date at 12 o'clock and a pusher-operated function selector, and has since become one of the brand's longest-running references across titanium, gold, ceramic and Carbon TPT cases.",
+  "references": {
+    "RM 037": {
+      "caseSize": "34.40mm x 52.20mm x 12.50mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre CRMA1 · skeletonised, variable-geometry rotor · oversize date · function selector · 28,800vph · ~50h power reserve",
+      "materials": "Available in grade 5 titanium, 18k red gold, 18k white gold, Carbon TPT and ceramic case constructions",
+      "bezel": "",
+      "dial": "Skeletonised dial exposing the CRMA1 movement, with oversize date at 12 o'clock and a function-selector window at 4 o'clock showing winding, neutral and hand-setting modes",
+      "waterResistance": "50m",
+      "year": "2011–present",
+      "description": "The RM 037 Automatic Winding introduced the Calibre CRMA1, Richard Mille's first movement designed and built in-house, with an oversize date and a push-button function selector that moves between winding, neutral and hand-setting. Its tonneau case has been produced in titanium, red and white gold, ceramic and Carbon TPT, including gem-set versions. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Winding": "The core RM 037 execution — tonneau case with skeletonised Calibre CRMA1 automatic movement, variable-geometry rotor, oversize date at 12 o'clock and pusher-operated function selector, offered across titanium, gold, ceramic and Carbon TPT cases."
+      }
+    }
+  }
+}

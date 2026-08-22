@@ -17,6 +17,32 @@
       "variants": {
         "Steel & Gold": "Two-tone steel and 18k yellow gold Tank Française Medium with a silver-grained Roman numeral dial, date window, and matching two-tone bracelet with concealed clasp."
       }
+    },
+    "W4TA0028": {
+      "caseSize": "32mm x 27mm (7.1mm thick)",
+      "movement": "Quartz",
+      "materials": "Stainless steel case set with 26 brilliant-cut diamonds (1.09ct) and integrated steel bracelet; sapphire crystal",
+      "bezel": "Steel bezel set with brilliant-cut diamonds",
+      "dial": "Silvered sunray dial with Roman numerals and blued-steel sword-shaped hands; faceted steel crown set with a synthetic blue cabochon spinel",
+      "waterResistance": "30m / 3 bar",
+      "year": "2023–present",
+      "description": "Note: reference W4TA0028 is the Medium Tank Française in steel with a diamond-set case, rather than a white gold Tank Louis Cartier. It belongs to the 2023 relaunch of the integrated-bracelet Tank, pairing 26 brilliant-cut diamonds with a silvered sunray dial and blued sword hands on a quartz movement. Every piece is fully sourced and authenticated before sale.",
+      "variants": {
+        "Steel – Diamond Bezel": "Medium Tank Française in stainless steel with a case set with 26 brilliant-cut diamonds (1.09ct), silvered sunray dial and blued-steel sword hands, on the integrated steel bracelet."
+      }
+    },
+    "WSTA0105": {
+      "caseSize": "32mm x 27mm (7.1mm thick)",
+      "movement": "Quartz · silver oxide battery",
+      "materials": "Stainless steel case and integrated steel bracelet; sapphire crystal",
+      "bezel": "",
+      "dial": "Silvered dial with Roman numerals and blued-steel sword-shaped hands; faceted steel crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "30m / 3 bar",
+      "year": "2023–present",
+      "description": "Note: Cartier lists reference WSTA0105 as the Medium Tank Française in steel with a silvered dial, rather than a blue-dial Tank Must. It is the standard quartz configuration of the 2023-generation Tank Française, with the redesigned integrated bracelet and faceted spinel-set crown. Every piece is fully sourced and authenticated before sale.",
+      "variants": {
+        "Steel – Silver Dial": "Medium Tank Française in stainless steel with a silvered Roman-numeral dial and blued-steel sword hands (documented by Cartier as silvered rather than blue), on the integrated steel bracelet."
+      }
     }
   }
 }

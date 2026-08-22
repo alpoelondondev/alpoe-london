@@ -1,0 +1,48 @@
+{
+  "brand": "Cartier",
+  "brandSlug": "cartier",
+  "model": "Tank Must Small",
+  "modelSlug": "tank-must-small",
+  "modelOverview": "The Tank Must Small is the smallest of the core sizes in Cartier's 2021 revival of the Must de Cartier line, the steel-cased, more accessible reading of Louis Cartier's 1917 Tank first produced in 1977. Cased at 29.5mm x 22mm in steel with a high-autonomy quartz movement, it keeps the Roman-numeral dial, blued-steel sword hands and beaded spinel-set crown of the larger models, and is offered on interchangeable leather straps or a steel bracelet, with diamond-set bezels on selected references.",
+  "references": {
+    "WSTA0042": {
+      "caseSize": "29.5mm x 22mm (6.6mm thick)",
+      "movement": "Quartz · Cartier High Autonomy movement",
+      "materials": "Stainless steel case; interchangeable black grained calfskin strap with steel ardillon buckle",
+      "bezel": "",
+      "dial": "Silvered dial with black Roman numerals and blued-steel sword-shaped hands; beaded crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2021–present",
+      "description": "Note: Cartier lists reference WSTA0042 as the Small-model Tank Must with a silvered dial rather than a green-dial Large model. It is the standard leather-strap configuration of the 2021 relaunch, pairing the 29.5mm x 22mm steel case with a silvered Roman-numeral dial, blued sword hands and a high-autonomy quartz movement. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Silver Dial": "Small-model Tank Must in steel on an interchangeable black grained calfskin strap, with a silvered Roman-numeral dial and blued-steel sword hands (documented by Cartier as silvered rather than green)."
+      }
+    },
+    "WSTA0051": {
+      "caseSize": "29.5mm x 22mm (6.6mm thick)",
+      "movement": "Quartz · Cartier High Autonomy movement",
+      "materials": "Stainless steel case and interchangeable steel bracelet",
+      "bezel": "",
+      "dial": "Silvered dial with black Roman numerals and blued-steel sword-shaped hands; beaded crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2022–present",
+      "description": "The WSTA0051 is the steel-bracelet version of the Small Tank Must, sharing the 29.5mm x 22mm case, silvered Roman-numeral dial and high-autonomy quartz movement of the leather-strap reference but fitted with Cartier's interchangeable steel bracelet. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel Bracelet – Silver Dial": "Small-model Tank Must in steel on the interchangeable steel bracelet, with a silvered Roman-numeral dial, blued-steel sword hands and a spinel-set beaded crown."
+      }
+    },
+    "W4TA0016": {
+      "caseSize": "29.5mm x 22mm (6.6mm thick)",
+      "movement": "Quartz · Cartier High Autonomy movement",
+      "materials": "Stainless steel case; interchangeable black brushed calfskin strap with steel ardillon buckle",
+      "bezel": "Steel bezel set with 40 brilliant-cut diamonds (0.39ct)",
+      "dial": "Silvered dial with black Roman numerals and blued-steel sword-shaped hands; beaded crown set with a synthetic cabochon-shaped spinel",
+      "waterResistance": "3 bar (approx. 30m / 100ft)",
+      "year": "2021–present",
+      "description": "Note: reference W4TA0016 is a steel Small-model Tank Must with a diamond-set bezel, rather than a yellow gold Tank Louis Cartier. Forty brilliant-cut diamonds frame the silvered Roman-numeral dial, and the watch runs Cartier's high-autonomy quartz movement on a black calfskin strap. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Diamond Bezel": "Small-model Tank Must in steel (documented reference is steel rather than yellow gold) with a bezel set with 40 brilliant-cut diamonds, silvered Roman-numeral dial and blued sword hands, on a black brushed calfskin strap."
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { WATCH_BRANDS } from "./taxonomy";
 import type { Product, WatchBrandSlug } from "./types";
 import { IMAGE_MANIFEST, VARIANT_IMAGES } from "./generated/image-manifest";
+import { asset } from "./assets";
 import { getDescription, getModelOverview, getReferenceResearch } from "./research";
 import { truncateForSerp } from "./seo";
 
@@ -20,6 +21,18 @@ const CSV_URL =
 const REVALIDATE_SECONDS = 600;
 
 const FALLBACK_PATH = join(process.cwd(), "data", "catalogue-fallback.csv");
+
+/**
+ * Listings the sheet does not carry yet.
+ *
+ * Same four columns as the sheet. A row here behaves exactly like a sheet row
+ * — research-backed page, reference-matched photo, enquiry list — and is
+ * dropped the moment the sheet gains a row with the same brand, reference and
+ * variant name, so copying these into the sheet is safe and leaves nothing
+ * showing twice. Added 22 Aug 2026 for the 64 references we hold photography
+ * and verified specifications for but which were never on the sheet.
+ */
+const EXTRA_PATH = join(process.cwd(), "data", "catalogue-extra.csv");
 
 export type CatalogueItem = {
   id: string;
@@ -190,10 +203,25 @@ function imagesFor(
   const refK = referenceKey(reference);
   const all = IMAGE_MANIFEST[`${brandSlug}/${refK}`] ?? [];
   if (!all.length) return [];
-  if (!shared) return all;
+  if (!shared) return all.map(asset);
 
   const pinned = VARIANT_IMAGES[`${brandSlug}/${refK}/${referenceKey(variant)}`];
-  return pinned ? [pinned] : [];
+  return pinned ? [asset(pinned)] : [];
+}
+
+function rowKey(cols: string[]): string {
+  return [cols[0], cols[3], cols[2]].map((c) => referenceKey(c ?? "")).join("/");
+}
+
+function withExtraRows(rows: string[][]): string[][] {
+  let extra: string[][];
+  try {
+    extra = parseCsv(readFileSync(EXTRA_PATH, "utf8")).slice(1); // header row
+  } catch {
+    return rows;
+  }
+  const seen = new Set(rows.map(rowKey));
+  return [...rows, ...extra.filter((cols) => cols.length >= 4 && !seen.has(rowKey(cols)))];
 }
 
 function toItems(rows: string[][]): CatalogueItem[] {
@@ -248,7 +276,7 @@ function toItems(rows: string[][]): CatalogueItem[] {
 
 export async function getWatchCatalogue(): Promise<CatalogueItem[]> {
   const raw = await loadRaw();
-  return toItems(parseCsv(raw));
+  return toItems(withExtraRows(parseCsv(raw)));
 }
 
 export function groupByModel(items: CatalogueItem[]): CatalogueGroup[] {

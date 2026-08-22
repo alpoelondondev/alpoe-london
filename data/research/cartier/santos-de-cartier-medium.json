@@ -30,6 +30,32 @@
       "variants": {
         "Steel & Gold": "Steel case with 18k rose gold bezel and crown, satin-brushed silver sunray dial with Roman numerals, on a black alligator leather strap with a steel ardillon buckle."
       }
+    },
+    "WSSA0063": {
+      "caseSize": "35.1mm (8.83mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~40h power reserve",
+      "materials": "Stainless steel case and bracelet; second strap in blue alligator leather with interchangeable folding steel buckle (QuickSwitch)",
+      "bezel": "Steel bezel with exposed signature screws",
+      "dial": "Graduated blue dial with Roman numerals and polished steel sword-shaped hands with luminescent material",
+      "waterResistance": "100m / 10 bar",
+      "year": "2023–present",
+      "description": "Note: Cartier lists reference WSSA0063 as the Medium (35.1mm) Santos de Cartier with a graduated blue dial, rather than a Large model with a black dial; the dial shades to near-black at its edge. It carries the in-house automatic Calibre 1847 MC and is supplied with the SmartLink steel bracelet and a blue alligator strap on the QuickSwitch system, fully sourced and authenticated before sale.",
+      "variants": {
+        "Steel – Blue Dial": "Medium steel Santos de Cartier with the graduated blue dial that darkens towards the edge, luminous sword hands and a 7-sided spinel-set crown, on the interchangeable steel bracelet with a blue alligator strap."
+      }
+    },
+    "WSSA0065": {
+      "caseSize": "35.1mm (8.83mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~42h power reserve",
+      "materials": "Stainless steel case and bracelet; second strap in brown alligator leather with interchangeable folding steel buckle (QuickSwitch)",
+      "bezel": "Steel bezel with exposed signature screws",
+      "dial": "Satin-finish graduated brown sunray-brushed dial with Roman numerals and rhodium-finish polished steel sword-shaped hands with luminescent material",
+      "waterResistance": "100m / 10 bar",
+      "year": "2024–present",
+      "description": "Note: Cartier documents reference WSSA0065 as the Medium (35.1mm) Santos de Cartier with a graduated brown sunray dial rather than a Large night-blue model. The dial shades from a warm centre to a dark rim beneath the squared, screwed bezel, and the watch runs the automatic Calibre 1847 MC with the SmartLink bracelet and a brown alligator strap included, fully sourced and authenticated before sale.",
+      "variants": {
+        "Steel – Brown Dial": "Medium steel Santos de Cartier with the graduated brown sunray dial (documented by Cartier as brown rather than night blue), luminous rhodium-finish sword hands and spinel-set crown, on the interchangeable steel bracelet with a brown alligator strap."
+      }
     }
   }
 }

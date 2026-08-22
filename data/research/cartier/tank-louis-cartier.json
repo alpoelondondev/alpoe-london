@@ -30,6 +30,32 @@
       "variants": {
         "Rose Gold – Silver": "Medium/large-model Tank Louis Cartier as verified against official specifications: 18K yellow gold case on a black alligator leather strap with a black lacquer dial, gold-finish steel hands and beaded, sapphire-set crown, on Cartier's slim manual Calibre 1917 MC."
       }
+    },
+    "WGTA0190": {
+      "caseSize": "33.7mm x 25.5mm, large model (case thickness 6.6mm)",
+      "movement": "Manual winding · Cartier Calibre 1917 MC · ~38h power reserve",
+      "materials": "18K yellow gold (750/1000) case on a semi-matt burgundy alligator leather strap with an 18K yellow gold ardillon buckle; mineral crystal",
+      "bezel": "",
+      "dial": "Red lacquer-effect dial with golden-finish steel sword-shaped hands; beaded crown set with a sapphire cabochon",
+      "waterResistance": "3 bar (~30m)",
+      "year": "2023–present",
+      "description": "Note: reference WGTA0190 is a Tank Louis Cartier rather than a Tank Américaine, and is cased in 18K yellow gold rather than rose gold. Its red lacquer-effect dial and burgundy alligator strap give the 1922 silhouette an unusually bold colourway, while the slim hand-wound Calibre 1917 MC keeps the large-model case at 6.6mm. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Yellow Gold – Red Dial": "Large-model Tank Louis Cartier in 18K yellow gold (documented reference is yellow rather than rose gold) with a red lacquer-effect dial, golden-finish sword hands and sapphire-set crown, on a burgundy alligator strap with a yellow gold ardillon buckle."
+      }
+    },
+    "WGTA0191": {
+      "caseSize": "33.7mm x 25.5mm, large model (case thickness 6.6mm)",
+      "movement": "Manual winding · Cartier Calibre 1917 MC · ~38h power reserve",
+      "materials": "18K yellow gold (750/1000) case on a semi-matt green alligator leather strap with an 18K yellow gold ardillon buckle; mineral crystal",
+      "bezel": "",
+      "dial": "Green lacquer-effect dial with golden-finish steel sword-shaped hands; beaded crown set with a sapphire cabochon",
+      "waterResistance": "3 bar (~30m)",
+      "year": "2023–present",
+      "description": "Note: reference WGTA0191 is a Tank Louis Cartier rather than a Tank Américaine, and is cased in 18K yellow gold rather than rose gold. Its green lacquer-effect dial is matched to a green alligator strap, and the large-model case houses Cartier's slim hand-wound Calibre 1917 MC. Every piece we offer is sourced and authenticated prior to sale.",
+      "variants": {
+        "Yellow Gold – Green Dial": "Large-model Tank Louis Cartier in 18K yellow gold (documented reference is yellow rather than rose gold) with a green lacquer-effect dial, golden-finish sword hands and sapphire-set crown, on a green alligator strap with a yellow gold ardillon buckle."
+      }
     }
   }
 }

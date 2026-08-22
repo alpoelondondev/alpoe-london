@@ -14,35 +14,35 @@
 
 # GMT-Master II — the pairs differ only by bracelet. Note vtnr is ordered the
 # opposite way round to blnr/grnr, so these are not derivable from file order.
-rolex	126710BLNR	Batman – Jubilee	1.png
-rolex	126710BLNR	Batgirl – Oyster	2.png
-rolex	126710BLRO	Pepsi – Jubilee	1.png
-rolex	126710BLRO	Pepsi – Oyster	2.png
-rolex	126720VTNR	Sprite – Oyster	1.png
-rolex	126720VTNR	Sprite – Jubilee	2.png
-rolex	126710GRNR	Bruce Wayne – Jubilee	1.png
-rolex	126710GRNR	Bruce Wayne – Oyster	2.png
-rolex	126719BLRO	White Gold Pepsi – Meteorite Dial	1.png
-rolex	126719BLRO	White Gold Pepsi – Blue Dial	2.png
+rolex	126710BLNR	Batman – Jubilee	1.webp
+rolex	126710BLNR	Batgirl – Oyster	2.webp
+rolex	126710BLRO	Pepsi – Jubilee	1.webp
+rolex	126710BLRO	Pepsi – Oyster	2.webp
+rolex	126720VTNR	Sprite – Oyster	1.webp
+rolex	126720VTNR	Sprite – Jubilee	2.webp
+rolex	126710GRNR	Bruce Wayne – Jubilee	1.webp
+rolex	126710GRNR	Bruce Wayne – Oyster	2.webp
+rolex	126719BLRO	White Gold Pepsi – Meteorite Dial	1.webp
+rolex	126719BLRO	White Gold Pepsi – Blue Dial	2.webp
 
 # Daytona
-rolex	126500LN	Panda	1.png
-rolex	126500LN	Reverse Panda	2.png
-rolex	126503	Steel & Gold – Black Dial	2.png
-rolex	126505	Rose Gold – Black Dial	1.png
-rolex	126506	Platinum – Blue Dial	1.png
-rolex	126506	Platinum – Baguette Blue Dial	2.png
-rolex	126509	White Gold – Reverse Panda	1.png
-rolex	126509	White Gold – Panda	3.png
-rolex	126508	Yellow Gold – White Dial	1.png
+rolex	126500LN	Panda	1.webp
+rolex	126500LN	Reverse Panda	2.webp
+rolex	126503	Steel & Gold – Black Dial	2.webp
+rolex	126505	Rose Gold – Black Dial	1.webp
+rolex	126506	Platinum – Blue Dial	1.webp
+rolex	126506	Platinum – Baguette Blue Dial	2.webp
+rolex	126509	White Gold – Reverse Panda	1.webp
+rolex	126509	White Gold – Panda	3.webp
+rolex	126508	Yellow Gold – White Dial	1.webp
 
 # Sky-Dweller
-rolex	336933	Steel & Gold – Champagne	1.png
-rolex	336938	Yellow Gold – Black Dial	2.png
+rolex	336933	Steel & Gold – Champagne	1.webp
+rolex	336938	Yellow Gold – Black Dial	2.webp
 
 # Datejust 41
-rolex	126334	Silver	2.png
-rolex	126334	White	5.png
+rolex	126334	Silver	2.webp
+rolex	126334	White	5.webp
 
 # Photos present but matching NO listing we carry, and listings with no photo:
 #   336933/2 champagne on Jubilee (dup dial)  ·  336933 "Black Dial" has no photo
@@ -55,3 +55,87 @@ rolex	126334	White	5.png
 #   126509/2  black + diamond ·  126509/4 blue dial
 # Unmatched listings: 126505 Chocolate, Sundust Baguette · 126508 John Mayer, Pikachu
 #   · 126509 Le Mans 100th, Tahitian · 126503 Champagne
+
+# ── Added 22 Aug 2026 ──────────────────────────────────────────────────────────
+# Every pin below was set from rolex.com's own page for the configuration code in the trailing
+# comment (the code is what data/image-sources/rolex.tsv fetches), matched on Rolex's dial and
+# bracelet wording. 57 Jewellers — where this render set was first taken from — labels many of the
+# same codes differently (their 'Mint Green' 126300 is Rolex's white dial; their 'White Dial' 228235
+# is a black one), so their catalogue was NOT used as a source for these.
+#
+# Sheet rows still without a photo because Rolex publishes no such configuration in this set:
+#   126300 Silver (0004 is on Jubilee), Green · 126331 all six (0001 is plain chocolate on Oyster)
+#   126333 all five (0001 is silver) · 126334 Wimbledon, Mint Green, Champagne, Palm Motif, MOP, MOP Diamond,
+#   Champagne Diamond Dot, Azzurro ×3, Ombré, Olive Green, Motif Roman, Meteorite · 126503 Champagne
+#   126505 Chocolate, Sundust Baguette · 126508 John Mayer, Pikachu · 126509 Le Mans, Tahitian
+#   126519LN Ghost ×2, Pikachu · 228235 White Dial, Chocolate Motif · 228236 Smooth, Fluted, Roman, Ice Blue Roman
+#   228238 Ombré, Silver Anniversary, Onyx, Green Ombré · 228239 Olive RBR, Blue RBR, Meteorite
+#   228345RBR Sundust Diamond Dot · 336933 Black Dial · 336935 Sundust · 336938 Green Dial
+
+# 126300
+rolex	126300	Black – Oyster Smooth	7.webp	# m126300-0011 — Bright black dial, Oyster
+rolex	126300	Blue – Oyster Smooth	1.webp	# m126300-0001 — Bright blue dial, Oyster
+rolex	126300	Bright Blue – Oyster	1.webp	# m126300-0001 — Bright blue dial, Oyster — same configuration as the row above
+rolex	126300	Slate – Oyster	5.webp	# m126300-0007 — Slate dial, Oyster
+rolex	126300	Dark Rhodium – Oyster	5.webp	# m126300-0007 — Slate dial, Oyster — Rolex calls this colour slate; nearest to "dark rhodium"
+
+# 126334
+rolex	126334	Blue Dial – Fluted	1.webp	# m126334-0001 — Bright blue dial, Oyster
+rolex	126334	Black	13.webp	# m126334-0017 — Bright black dial, Oyster
+rolex	126334	Black Fluted	14.webp	# m126334-0018 — Bright black dial, Jubilee
+rolex	126334	Slate	9.webp	# m126334-0013 — Slate dial, Oyster
+rolex	126334	Grey Rhodium	10.webp	# m126334-0014 — Slate dial, Jubilee — same colour as Slate, on the other bracelet
+
+# 126610LV
+rolex	126610LV	Starbucks (GMT filter)	1.webp	# m126610lv-0002 — Black dial, Oyster — duplicate sheet row for the same watch
+
+# 126519LN
+rolex	126519LN	Oysterflex – Black	1.webp	# m126519ln-0002 — Bright black and steel dial, Oysterflex
+
+# 228235
+rolex	228235	Rose Gold – Olive RBR	5.webp	# m228235-0025 — Olive green dial
+rolex	228235	Rose Gold – Chocolate RBR	3.webp	# m228235-0003 — Chocolate set with diamonds dial
+rolex	228235	Rose Gold – Ombré RBR	7.webp	# m228235-0055 — Slate ombré dial
+rolex	228235	Rose Gold – Eisenkiesel RBR	6.webp	# m228235-0045 — Eisenkiesel set with diamonds dial
+rolex	228235	Rose Gold – Sundust Baguette RBR	4.webp	# m228235-0004 — Sundust set with diamonds dial
+
+# 228236
+rolex	228236	Platinum – Ice Blue	10.webp	# m228236-0012 — Ice blue dial
+rolex	228236	Platinum – Blue Dial	5.webp	# m228236-0007 — Bright blue dial
+rolex	228236	Platinum – Green Arabic TBR	6.webp	# m228236-0008 — Olive green dial
+rolex	228236	Platinum – Blue TBR	7.webp	# m228236-0009 — Paved with diamonds and sapphires dial
+rolex	228236	Platinum – Baguette Dial	4.webp	# m228236-0006 — Ice blue set with diamonds dial
+rolex	228236	Platinum – Black Baguette	3.webp	# m228236-0004 — Bright black set with diamonds dial
+
+# 228238
+rolex	228238	Yellow Gold – Black RBR	3.webp	# m228238-0004 — Bright black set with diamonds dial
+rolex	228238	Yellow Gold – Champagne RBR	4.webp	# m228238-0005 — Champagne-colour set with diamonds dial
+
+# 228239
+rolex	228239	White Gold – Olive	5.webp	# m228239-0033 — Olive green dial
+rolex	228239	White Gold – Blue Dial	4.webp	# m228239-0007 — Bright blue dial
+
+# 228345RBR
+rolex	228345RBR	Rose Gold – DD2	1.webp	# m228345rbr-0002 — Diamond-paved dial
+
+# 336934
+rolex	336934	Blue Dial – Oyster	5.webp	# m336934-0005 — Bright blue dial, Oyster
+rolex	336934	Blue Dial – Jubilee	6.webp	# m336934-0006 — Bright blue dial, Jubilee
+rolex	336934	Mint Green – Oyster	1.webp	# m336934-0001 — Mint green dial, Oyster
+rolex	336934	Mint Green – Jubilee	2.webp	# m336934-0002 — Mint green dial, Jubilee
+rolex	336934	White – Oyster	3.webp	# m336934-0003 — Intense white dial, Oyster
+
+# 336935
+rolex	336935	Rose Gold – Chocolate	2.webp	# m336935-0002 — Chocolate dial
+
+# Datejust 36 126234 — data/catalogue-extra.csv rows, named from rolex.com's own dial/bracelet wording.
+rolex	126234	Bright Black – Jubilee	3.webp	# m126234-0015
+rolex	126234	Bright Blue – Jubilee	5.webp	# m126234-0017
+rolex	126234	Silver – Jubilee	1.webp	# m126234-0013
+rolex	126234	Silver – Oyster	2.webp	# m126234-0014
+rolex	126234	Bright Black – Oyster	4.webp	# m126234-0016
+rolex	126234	Bright Blue – Oyster	6.webp	# m126234-0018
+rolex	126234	Mother of Pearl Diamond – Jubilee	7.webp	# m126234-0019
+rolex	126234	Mother of Pearl Diamond – Oyster	8.webp	# m126234-0020
+rolex	126234	Aubergine Roman Diamond – Jubilee	9.webp	# m126234-0021
+rolex	126234	Aubergine Roman Diamond – Oyster	10.webp	# m126234-0022

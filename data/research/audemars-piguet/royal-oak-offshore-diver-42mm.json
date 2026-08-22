@@ -1,0 +1,35 @@
+{
+  "brand": "Audemars Piguet",
+  "brandSlug": "audemars-piguet",
+  "model": "Royal Oak Offshore Diver 42mm",
+  "modelSlug": "royal-oak-offshore-diver-42mm",
+  "modelOverview": "The Royal Oak Offshore Diver is Audemars Piguet's purpose-built dive watch: a 42mm octagonal Offshore case with an internal rotating dive bezel operated by a second crown at 10 o'clock, screw-locked crowns and 300m of water resistance. The current 15720ST generation, introduced in 2021, replaced the long-running 15710ST with the in-house Calibre 4308, a sapphire caseback, black ceramic crowns and a tool-free interchangeable rubber strap system, offered in a range of Méga Tapisserie dial colours. Every example we offer is sourced and authenticated before sale.",
+  "references": {
+    "15720ST.OO.A027CA.01": {
+      "caseSize": "42mm (14.2mm thick)",
+      "movement": "Automatic · Audemars Piguet Calibre 4308 · ~60h power reserve · 28,800vph (4Hz)",
+      "materials": "Stainless steel case, black ceramic screw-locked crowns, glareproofed sapphire crystal and caseback, blue rubber strap with stainless steel pin buckle and interchangeable strap system (additional black rubber strap)",
+      "bezel": "Stainless steel octagonal bezel with exposed hexagonal screws and a black rotating inner dive bezel with 60-to-15-minute zone in white",
+      "dial": "Blue \"Méga Tapisserie\" dial with white-gold applied hour markers and luminescent Royal Oak hands",
+      "waterResistance": "300m",
+      "year": "2021–present",
+      "description": "The 15720ST.OO.A027CA.01 is the blue-dial version of the 2021 Royal Oak Offshore Diver, pairing a 42mm stainless steel case and black ceramic crowns with a blue Méga Tapisserie dial and a black inner rotating bezel marked in white. It runs the in-house Calibre 4308 with a 60-hour reserve, visible through the sapphire caseback, and is delivered on a blue rubber strap with a second black strap for the quick-change system. Every example we offer is sourced and authenticated before sale.",
+      "variants": {
+        "Blue Dial": "Stainless steel Diver with blue Méga Tapisserie dial, black rotating inner bezel and blue interchangeable rubber strap (black strap supplied); 42mm, Calibre 4308, 300m."
+      }
+    },
+    "15720ST.OO.A052CA.01": {
+      "caseSize": "42mm (14.2mm thick)",
+      "movement": "Automatic · Audemars Piguet Calibre 4308 · ~60h power reserve · 28,800vph (4Hz)",
+      "materials": "Stainless steel case, black ceramic screw-locked crowns, glareproofed sapphire crystal and caseback, khaki green rubber strap with stainless steel pin buckle and interchangeable strap system (additional black rubber strap)",
+      "bezel": "Stainless steel octagonal bezel with exposed hexagonal screws and a black rotating inner dive bezel with 60-to-15-minute zone in beige",
+      "dial": "Khaki green \"Méga Tapisserie\" dial with pink-gold applied hour markers and luminescent Royal Oak hands",
+      "waterResistance": "300m",
+      "year": "2021–present",
+      "description": "The 15720ST.OO.A052CA.01 is the khaki green member of the 2021 Royal Oak Offshore Diver line-up, its green Méga Tapisserie dial set off by pink-gold hour markers and a beige-marked black inner rotating bezel within the 42mm steel case. Power comes from the in-house Calibre 4308 with a 60-hour reserve, and the watch ships on a khaki green rubber strap with an additional black strap on the interchangeable system. Every example we offer is sourced and authenticated before sale.",
+      "variants": {
+        "Khaki Green Dial": "Stainless steel Diver with khaki green Méga Tapisserie dial, pink-gold markers, black rotating inner bezel and khaki green interchangeable rubber strap (black strap supplied); 42mm, Calibre 4308, 300m."
+      }
+    }
+  }
+}

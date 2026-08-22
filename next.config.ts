@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
+      // Product photography lives in the assets bucket (lib/assets.ts); the
+      // optimiser must be allowed to fetch from it.
+      { protocol: "https", hostname: "*.r2.dev" },
     ],
   },
 };

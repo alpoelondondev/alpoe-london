@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 063",
+  "modelSlug": "rm-063",
+  "modelOverview": "The RM 063 is Richard Mille's round automatic line, launched with the RM 63-01 Dizzy Hands and followed in 2015 by the RM 63-02 Automatic Worldtimer. The 63-02 reinterprets the world-time complication by placing the adjustment on a rotating bezel mounted on ball bearings rather than a crown or pusher, and was reissued in 2025 in red gold and titanium.",
+  "references": {
+    "RM 63-02": {
+      "caseSize": "47.00mm x 13.45mm (round)",
+      "movement": "Automatic · Richard Mille Calibre CRMA4 · skeletonised · oversize date · universal 24-hour display · 28,800vph · ~50h power reserve",
+      "materials": "Originally in grade 5 titanium (2015); current edition in satin-finished 18k 5N red gold bezel and caseback with a grade 5 titanium caseband, limited to 100 pieces",
+      "bezel": "Rotating world-time bezel on ball bearings, carrying 24 city names and geared directly to the hour wheel",
+      "dial": "Skeletonised dial with oversize date at 12 o'clock and a graduated 24-hour inner flange on a two-tone rose and burgundy disc distinguishing day from night",
+      "waterResistance": "30m",
+      "year": "2015–present",
+      "description": "The RM 63-02 Automatic Worldtimer sets the wearer's home city at 12 o'clock and reads local time plus 23 further cities from its 24-hour flange, with the entire adjustment carried out by turning the bezel. First shown in titanium in 2015, the current execution pairs a satin-finished red gold bezel and caseback with a titanium caseband in a limited run of 100 pieces. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Worldtimer": "The RM 63-02 — 47mm round case with bezel-operated world-time mechanism, skeletonised Calibre CRMA4 automatic with oversize date and 24-hour day/night flange, in titanium or red gold and titanium."
+      }
+    }
+  }
+}

@@ -10,6 +10,8 @@ import type {
 } from "./types";
 import { JEWELLERY_CATEGORIES, WATCH_BRANDS } from "./taxonomy";
 import { truncateForSerp } from "./seo";
+import { asset } from "./assets";
+import { IMAGE_VERSIONS } from "./generated/image-manifest";
 
 function slugify(s: string) {
   return s
@@ -112,8 +114,16 @@ function toProduct(row: Record<string, string>): Product | null {
 
   const stockState: StockState = row.stock_state === "in_stock" ? "in_stock" : "sourceable";
 
+  // The sheet names a bare "/products/…/1.webp"; resolve it to the versioned
+  // path the manifest knows (so a re-exported image busts the CDN cache) and
+  // then to wherever the assets bucket is. Anything the manifest has not seen
+  // — jewellery shots under /public, say — passes through unchanged.
   const images = row.images
-    ? row.images.split("|").map((s) => s.trim()).filter(Boolean)
+    ? row.images
+        .split("|")
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .map((p) => asset(IMAGE_VERSIONS[p] ?? p))
     : [];
 
   const bracelets = row.bracelets

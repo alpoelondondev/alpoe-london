@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM UP-01",
+  "modelSlug": "rm-up-01",
+  "modelOverview": "The RM UP-01 Ferrari, unveiled in 2022 as the first fruit of Richard Mille's partnership with Ferrari, is an ultra-flat mechanical watch just 1.75mm thick. Rather than a concept piece, it was engineered as a wearable watch that passes the brand's standard validation tests, with a monobloc grade 5 titanium case, a 1.18mm manual-winding movement and a patented ultra-flat escapement.",
+  "references": {
+    "RM UP-01": {
+      "caseSize": "51.00mm x 39.00mm x 1.75mm (rectangular, monobloc)",
+      "movement": "Manual · Richard Mille Calibre RMUP-01 · 1.18mm thick · patented ultra-flat escapement with titanium balance · function selector · 28,800vph · ~45h power reserve",
+      "materials": "Monobloc grade 5 titanium case, satin-brushed with polished bevels, with black ceramic inserts; rubber strap; approximately 30 grams complete",
+      "bezel": "",
+      "dial": "Separate sapphire-covered apertures for the off-centre hours and minutes counter and the visible balance wheel, with a winding and hand-setting function selector",
+      "waterResistance": "10m (1 atm)",
+      "year": "2022 (limited edition of 150 pieces)",
+      "description": "The RM UP-01 Ferrari was the thinnest mechanical watch in the world at its launch, its 1.75mm titanium case and 1.18mm movement made possible by a patented ultra-flat escapement and a movement that forms part of the case structure. Hours and minutes sit in a recessed counter under their own sapphire window, with the balance visible under a second, in a limited edition of 150 pieces. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Ferrari Ultraflat": "The RM UP-01 Ferrari as launched in 2022 — 1.75mm monobloc grade 5 titanium case, manual-winding Calibre RMUP-01 with ultra-flat escapement and function selector, limited to 150 pieces."
+      }
+    }
+  }
+}

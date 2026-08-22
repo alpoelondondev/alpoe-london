@@ -54,8 +54,8 @@ export default function ProductTile({
           fill
           draggable={false}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          // Pack shots are transparent PNGs of differing heights (Rolex 600x893,
-          // Patek 600x841). object-cover would crop the bracelet off the taller
+          // Pack shots are transparent cut-outs of differing heights (Rolex 800x1190,
+          // Patek 800x1121). object-cover would crop the bracelet off the taller
           // ones; contain sits the whole watch on the tile's own background.
           className="object-contain transition-transform duration-500 group-hover:scale-[1.04]"
           priority={priority}

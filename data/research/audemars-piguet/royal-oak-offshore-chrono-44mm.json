@@ -82,6 +82,58 @@
       "variants": {
         "Green – Titanium": "Titanium case paired with a green ceramic bezel and green dial accents; 44mm case, Calibre 3126/3840, 50h power reserve."
       }
+    },
+    "26400IO.OO.A004CA.02": {
+      "caseSize": "44mm (14.5mm thick)",
+      "movement": "Automatic · AP Calibre 3126/3840 · ~50h power reserve · 21,600vph (3Hz)",
+      "materials": "Titanium case, grey ceramic bezel, pushpieces and screw-locked crown, sandblasted titanium pushpiece guards, titanium caseback, grey rubber strap with titanium pin buckle",
+      "bezel": "Grey ceramic octagonal bezel with exposed screws",
+      "dial": "Grey \"Méga Tapisserie\" dial with blue counters and blue external zone, white-gold applied hour markers and luminescent Royal Oak hands, blue inner bezel",
+      "waterResistance": "100m",
+      "year": "",
+      "description": "The 26400IO.OO.A004CA.02 is the grey-ceramic follow-up to AP's titanium 44mm Offshore chronograph: a titanium case with a grey ceramic bezel, pushers and crown, and a grey Méga Tapisserie dial lifted by blue counters, external zone and inner bezel. It runs the self-winding Calibre 3126/3840 with a 50-hour reserve and is worn on a grey rubber strap with titanium pin buckle. Sourced and authenticated.",
+      "variants": {
+        "Grey – Titanium": "Titanium case with grey ceramic bezel, pushers and crown, grey Méga Tapisserie dial with blue counters and inner bezel, grey rubber strap; 44mm, Calibre 3126/3840, 50h power reserve."
+      }
+    },
+    "26401RO.OO.A002CA.02": {
+      "caseSize": "44mm (14.5mm thick)",
+      "movement": "Automatic · AP Calibre 3126/3840 · ~50h power reserve · 21,600vph (3Hz)",
+      "materials": "18-carat pink (rose) gold case and pushpiece guards, black ceramic bezel, pushpieces and screw-locked crown, black rubber strap with 18-carat pink gold pin buckle",
+      "bezel": "Black ceramic octagonal bezel with exposed screws",
+      "dial": "Black \"Méga Tapisserie\" dial with black counters, pink-gold applied hour markers and luminescent Royal Oak hands, black inner bezel",
+      "waterResistance": "100m",
+      "year": "2017 (discontinued)",
+      "description": "The 26401RO.OO.A002CA.02 sets an 18-carat pink gold 44mm Offshore case against black ceramic for the bezel, pushers and crown, with an all-black Méga Tapisserie dial relieved only by pink gold markers and hands. Inside is the self-winding Calibre 3126/3840 chronograph with a 50-hour reserve, and the watch is delivered on a black rubber strap with a pink gold pin buckle. Sourced and authenticated.",
+      "variants": {
+        "Black – Rose Gold": "18-carat pink gold case with black ceramic bezel, pushers and crown, black Méga Tapisserie dial with pink gold markers, black rubber strap; 44mm, Calibre 3126/3840, 50h power reserve."
+      }
+    },
+    "26400SO.OO.A055CA.01": {
+      "caseSize": "44mm (14.5mm thick)",
+      "movement": "Automatic · AP Calibre 3126/3840 · ~50h power reserve · 21,600vph (3Hz)",
+      "materials": "Stainless steel case and pushpiece guards, khaki green ceramic bezel, pushpieces and screw-locked crown, khaki green \"Camouflage\" rubber strap with stainless steel pin buckle (additional plain khaki green rubber strap)",
+      "bezel": "Khaki green ceramic octagonal bezel with exposed screws",
+      "dial": "Khaki green \"Méga Tapisserie\" dial with rhodium-toned counters and external zone, white-gold applied hour markers and Royal Oak hands, black inner bezel",
+      "waterResistance": "100m",
+      "year": "2019 (limited edition of 400)",
+      "description": "The 26400SO.OO.A055CA.01 is the green-camouflage Offshore chronograph, a limited edition of 400 pieces pairing a 44mm steel case with a khaki green ceramic bezel, pushers and crown and a matching khaki green Méga Tapisserie dial with rhodium-toned counters. It runs the self-winding Calibre 3126/3840 with a 50-hour reserve and comes on a khaki camouflage rubber strap with a second plain khaki strap. Sourced and authenticated.",
+      "variants": {
+        "Green Camo – Steel": "Steel case with khaki green ceramic bezel, khaki green Méga Tapisserie dial with rhodium-toned counters and green camouflage rubber strap; 44mm, Calibre 3126/3840, limited to 400 pieces."
+      }
+    },
+    "26400SO.OO.A054CA.01": {
+      "caseSize": "44mm (14.5mm thick)",
+      "movement": "Automatic · AP Calibre 3126/3840 · ~50h power reserve · 21,600vph (3Hz)",
+      "materials": "Stainless steel case and pushpiece guards, green ceramic bezel, pushpieces and screw-locked crown, \"Camouflage\" rubber strap with stainless steel pin buckle (additional khaki rubber strap)",
+      "bezel": "Green (khaki) ceramic octagonal bezel with exposed screws",
+      "dial": "Beige \"Méga Tapisserie\" dial with brown counters and brown external zone, white-gold applied hour markers and Royal Oak hands, beige inner bezel",
+      "waterResistance": "100m",
+      "year": "2018 (discontinued)",
+      "description": "The 26400SO.OO.A054CA.01 was the first 44mm Royal Oak Offshore to take on the camouflage theme, introducing a khaki green ceramic bezel, pushers and crown on a steel case with a beige Méga Tapisserie dial and brown counters. The self-winding Calibre 3126/3840 chronograph gives a 50-hour reserve, and the watch was supplied with both a camouflage-print rubber strap and a plain khaki strap. Sourced and authenticated.",
+      "variants": {
+        "Beige Camo – Steel": "Steel case with khaki green ceramic bezel, beige Méga Tapisserie dial with brown counters and camouflage rubber strap; 44mm, Calibre 3126/3840, 50h power reserve."
+      }
     }
   }
 }

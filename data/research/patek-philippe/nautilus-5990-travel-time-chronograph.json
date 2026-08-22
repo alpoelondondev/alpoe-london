@@ -1,0 +1,35 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Nautilus 5990 Travel Time Chronograph",
+  "modelSlug": "nautilus-5990-travel-time-chronograph",
+  "modelOverview": "Launched at Baselworld 2014, the Nautilus 5990 combines a flyback chronograph with Patek Philippe's Travel Time dual time-zone mechanism, making it the most complicated steel Nautilus of its era. Two pushers set into the left flank of the case advance or retard the local-time hour hand, with twin day/night apertures and an analogue date linked to local time, while the self-winding Calibre CH 28-520 C FUS drives a column-wheel, vertical-clutch chronograph with a 60-minute counter at 6 o'clock. The original black-gradient steel 5990/1A-001 ran from 2014 until 2021; it was joined by an 18k rose gold 5990/1R-001 in 2021 and succeeded in steel by the blue-grey 5990/1A-011 in 2022.",
+  "references": {
+    "5990/1A-011": {
+      "caseSize": "40.5mm (12.53mm thick)",
+      "movement": "Automatic · Patek Philippe Calibre CH 28-520 C FUS · 28,800 vph · 45–55h power reserve",
+      "materials": "Stainless steel case and integrated bracelet with patented fold-over clasp and lockable adjustment system",
+      "bezel": "Steel rounded-octagonal Nautilus bezel with contrasting polished and satin-brushed finishes",
+      "dial": "Sunburst blue-grey dial with black-gradient rim and horizontal embossing, white gold applied baton hour markers with luminescent coating; 60-minute chronograph counter and date at 6 o'clock, day/night apertures at 3 and 9 o'clock, skeletonised home-time hour hand",
+      "waterResistance": "30m",
+      "year": "2022–present",
+      "description": "The 5990/1A-011 is the current steel Nautilus Travel Time Chronograph, replacing the black-dial 5990/1A-001 in 2022 with a blue-grey sunburst dial that shades to black at the rim. It retains the flyback chronograph, dual time zones with day/night indication and local-date display of the original, driven by the 370-part Calibre CH 28-520 C FUS visible through the sapphire caseback. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Steel – Blue Dial": "5990/1A-011 in stainless steel on its integrated steel bracelet with the blue-grey to black gradient dial, the current steel configuration of the Travel Time Chronograph."
+      }
+    },
+    "5990/1R-001": {
+      "caseSize": "40.5mm (12.53mm thick)",
+      "movement": "Automatic · Patek Philippe Calibre CH 28-520 C FUS · 28,800 vph · 45–55h power reserve",
+      "materials": "18k rose gold case and integrated bracelet with patented fold-over clasp",
+      "bezel": "Rose gold rounded-octagonal Nautilus bezel with contrasting polished and satin-brushed finishes",
+      "dial": "Sunburst blue dial with horizontal embossing, rose gold applied baton hour markers and hands with white luminescent coating; 60-minute chronograph counter and date at 6 o'clock, day/night apertures at 3 and 9 o'clock, skeletonised home-time hour hand",
+      "waterResistance": "30m",
+      "year": "2021–present",
+      "description": "Introduced in 2021, the 5990/1R-001 was the first Nautilus Travel Time Chronograph in precious metal, pairing a full 18k rose gold case and bracelet with a sunburst blue dial and rose gold markers. Mechanically it is identical to the steel model, with the flyback chronograph, dual time-zone pushers at 9 o'clock and local-date display of the Calibre CH 28-520 C FUS. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Rose Gold – Blue Dial": "5990/1R-001 in 18k rose gold on its integrated rose gold bracelet with the sunburst blue embossed dial, the only gold configuration of the Travel Time Chronograph."
+      }
+    }
+  }
+}

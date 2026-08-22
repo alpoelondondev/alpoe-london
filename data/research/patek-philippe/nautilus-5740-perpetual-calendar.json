@@ -1,0 +1,22 @@
+{
+  "brand": "Patek Philippe",
+  "brandSlug": "patek-philippe",
+  "model": "Nautilus 5740 Perpetual Calendar",
+  "modelSlug": "nautilus-5740-perpetual-calendar",
+  "modelOverview": "Presented at Baselworld 2018, the Nautilus 5740 is the first Grand Complication in the Nautilus collection, fitting a full perpetual calendar with moon phases into the familiar rounded-octagonal case and integrated bracelet. It is built around the ultra-thin micro-rotor Calibre 240 Q, which keeps the case to just 8.42mm thick despite displaying day, date, month, leap year, 24-hour indication and moon phases across three sub-dials. Patek Philippe has offered it in 18k white gold with a sunburst blue dial since launch.",
+  "references": {
+    "5740/1G-001": {
+      "caseSize": "40mm (8.42mm thick)",
+      "movement": "Automatic · Patek Philippe Calibre 240 Q · 21,600 vph · 38–48h power reserve",
+      "materials": "18k white gold case and integrated bracelet with patented fold-over clasp",
+      "bezel": "White gold rounded-octagonal Nautilus bezel with contrasting polished and satin-brushed finishes",
+      "dial": "Sunburst blue dial with horizontal embossing, white gold applied baton hour markers and rounded baton hands with white luminescent coating; day and 24-hour sub-dial at 9 o'clock, month and leap-year sub-dial at 3 o'clock, date and moon phases at 6 o'clock",
+      "waterResistance": "30m",
+      "year": "2018–present",
+      "description": "The 5740/1G-001 brings a perpetual calendar with moon phases to the Nautilus for the first time, using the micro-rotor Calibre 240 Q to keep the white gold case remarkably slim at 8.42mm. The three-register layout sits on the collection's signature horizontally embossed sunburst blue dial, with a sapphire caseback showing the 22k gold micro-rotor and the Patek Philippe Seal movement. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "White Gold – Blue Dial": "5740/1G-001 in 18k white gold on its integrated white gold bracelet with the sunburst blue embossed dial, the sole configuration of the Nautilus Perpetual Calendar since its 2018 launch."
+      }
+    }
+  }
+}

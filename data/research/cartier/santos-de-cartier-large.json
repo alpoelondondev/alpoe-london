@@ -95,6 +95,71 @@
       "variants": {
         "ADLC – Black": "Large-model Santos de Cartier with black ADLC-coated bezel and crown, worn over a satin-brushed grey dial with white Roman numerals, on the interchangeable steel bracelet and black rubber strap."
       }
+    },
+    "WSSA0064": {
+      "caseSize": "39.8mm (9.38mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~42h power reserve",
+      "materials": "Stainless steel case and bracelet; second strap in brown alligator leather with interchangeable folding steel buckle (QuickSwitch)",
+      "bezel": "",
+      "dial": "Satin-finish graduated brown sunray-brushed dial darkening towards the edge, with Roman numerals, rhodium-finish polished steel sword-shaped hands with luminescent material and a date aperture at 6 o'clock",
+      "waterResistance": "100m / 10 bar",
+      "year": "2024–present",
+      "description": "The WSSA0064 brings a graduated brown sunray dial to the Large-model steel Santos de Cartier, shading from a warm centre to near-black at the periphery beneath the squared bezel and exposed screws. It runs the in-house automatic Calibre 1847 MC and ships with both the SmartLink steel bracelet and a brown alligator strap on the QuickSwitch system. Sourced and authenticated for the Hatton Garden market.",
+      "variants": {
+        "Steel – Brown Dial": "Large-model steel Santos de Cartier with the graduated brown sunray dial, luminous rhodium-finish sword hands and a date at 6 o'clock, on the interchangeable steel bracelet with a brown alligator strap."
+      }
+    },
+    "WSSA0071": {
+      "caseSize": "39.8mm (9.38mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~40h power reserve",
+      "materials": "Stainless steel case and bracelet; second strap in blue alligator leather with interchangeable folding steel buckle (QuickSwitch)",
+      "bezel": "",
+      "dial": "Graduated blue dial with Roman numerals, polished steel sword-shaped hands with luminescent material and a date aperture at 6 o'clock",
+      "waterResistance": "100m / 10 bar",
+      "year": "2023–present",
+      "description": "Note: Cartier documents reference WSSA0071 as an all-steel Large-model Santos de Cartier rather than a steel-and-titanium piece. Its graduated blue dial deepens towards the edge of the squared case, and the watch is delivered with the SmartLink steel bracelet and a blue alligator strap, both fitted with the QuickSwitch system. Sourced and authenticated for the Hatton Garden market.",
+      "variants": {
+        "Steel – Blue Dial": "Large-model steel Santos de Cartier with the graduated blue dial (documented by Cartier as full steel rather than steel and titanium), luminous sword hands and a date at 6 o'clock, on the interchangeable steel bracelet with a blue alligator strap."
+      }
+    },
+    "WHSA0042": {
+      "caseSize": "39.7mm (9.08mm thick)",
+      "movement": "Manual winding · Cartier Calibre 9612 MC skeleton · 20 jewels · 28,800 vph · ~72h power reserve",
+      "materials": "18k yellow gold (750/1000) case and bracelet; second strap in grey alligator leather with interchangeable folding buckle (QuickSwitch); sapphire crystal case back",
+      "bezel": "",
+      "dial": "Open-worked movement with skeletonised bridges forming the Roman numerals; golden-finish sword-shaped hands",
+      "waterResistance": "100m / 10 bar",
+      "year": "Current collection",
+      "description": "The WHSA0042 is the Santos de Cartier Skeleton in 18k yellow gold, a Large-model case in which the hand-wound Calibre 9612 MC replaces the dial entirely, its bridges cut to form the Roman numerals. A 7-sided crown set with a faceted sapphire, a yellow gold SmartLink bracelet and a grey alligator strap complete the specification. Sourced and authenticated for the Hatton Garden market.",
+      "variants": {
+        "Yellow Gold – Skeleton": "18k yellow gold Santos de Cartier Skeleton with the openworked Calibre 9612 MC, golden-finish sword hands and sapphire-set crown, on the interchangeable yellow gold bracelet with a grey alligator strap."
+      }
+    },
+    "WGSA0095": {
+      "caseSize": "39.8mm (9.38mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~42h power reserve",
+      "materials": "18k yellow gold (750/1000) case and bracelet; second strap in brown alligator leather with interchangeable folding gold buckle (QuickSwitch)",
+      "bezel": "",
+      "dial": "Satin-finish graduated gold sunray-brushed dial with Roman numerals and gold-plated polished steel sword-shaped hands",
+      "waterResistance": "100m / 10 bar",
+      "year": "Current collection",
+      "description": "Note: Cartier's specification for reference WGSA0095 is an 18k yellow gold Large-model Santos de Cartier rather than rose gold. Its graduated gold sunray dial is matched by gold-plated sword hands and a 7-sided crown set with a faceted blue sapphire, and the watch is supplied on the yellow gold SmartLink bracelet with a brown alligator strap. Sourced and authenticated for the Hatton Garden market.",
+      "variants": {
+        "Yellow Gold – Gold Dial": "Large-model Santos de Cartier in 18k yellow gold (documented reference is yellow rather than rose gold) with a graduated gold sunray dial and gold-plated sword hands, on the interchangeable yellow gold bracelet with a brown alligator strap."
+      }
+    },
+    "W2SA0030": {
+      "caseSize": "39.8mm (9.38mm thick)",
+      "movement": "Automatic · Cartier Calibre 1847 MC · ~40h power reserve",
+      "materials": "Stainless steel case with 18k yellow gold (750/1000) bezel; steel bracelet; second strap in grey alligator leather with interchangeable folding steel buckle (QuickSwitch)",
+      "bezel": "18k yellow gold bezel with exposed screws",
+      "dial": "Anthracite grey dial with satin-finish gradation, Roman numerals, polished gold-plated steel sword-shaped hands and a date aperture at 6 o'clock",
+      "waterResistance": "100m / 10 bar",
+      "year": "Current collection",
+      "description": "The W2SA0030 is the Large-model two-tone Santos de Cartier, setting an 18k yellow gold bezel and screws against a steel case and a graduated anthracite grey dial with gold-plated hands. It is powered by the automatic Calibre 1847 MC and delivered with the SmartLink steel bracelet and a grey alligator strap on the QuickSwitch system. Sourced and authenticated for the Hatton Garden market.",
+      "variants": {
+        "Steel & Yellow Gold – Grey Dial": "Large-model Santos de Cartier in steel with an 18k yellow gold bezel, graduated anthracite grey dial and gold-plated sword hands, on the interchangeable steel bracelet with a grey alligator strap."
+      }
     }
   }
 }

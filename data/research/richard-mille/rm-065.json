@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 065",
+  "modelSlug": "rm-065",
+  "modelOverview": "Launched in 2020 after some five years of development, the RM 65-01 is Richard Mille's first automatic split-seconds chronograph and the most complex movement the brand had produced at the time. Its Calibre RMAC4 runs at 5Hz for tenth-of-a-second timing, adds a rapid-winding pusher to the crown-side function selector, and colour-codes each control to the function it operates.",
+  "references": {
+    "RM 65-01": {
+      "caseSize": "44.50mm x 49.94mm x 16.10mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre RMAC4 · skeletonised, variable-geometry rotor · split-seconds chronograph · rapid winding · 36,000vph (5Hz) · ~60h power reserve",
+      "materials": "Available in grade 5 titanium, Carbon TPT, 18k red gold with Carbon TPT, and grey, dark yellow or pastel blue Quartz TPT case constructions",
+      "bezel": "",
+      "dial": "Skeletonised sapphire dial with titanium counters — 30-minute counter at 3 o'clock, 12-hour counter at 9 o'clock, small seconds at 6 o'clock, date at 11 o'clock and function indicator — with colour-coded markings matching the pushers",
+      "waterResistance": "50m",
+      "year": "2020–present",
+      "description": "The RM 65-01 Automatic Split-Seconds Chronograph combines a rattrapante chronograph with a high-frequency 5Hz balance, a rapid-winding pusher at 8 o'clock and a function selector, all driven by the skeletonised Calibre RMAC4. Its tonneau case is offered in titanium, Carbon TPT, red gold and Carbon TPT and coloured Quartz TPT, with each dial accent keyed to the control it relates to. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Automatic Split-Seconds Chronograph": "The core RM 65-01 execution — tonneau case with skeletonised Calibre RMAC4 automatic split-seconds chronograph at 5Hz, rapid winding and function selector, offered in titanium, Carbon TPT, red gold and Carbon TPT or Quartz TPT."
+      }
+    }
+  }
+}

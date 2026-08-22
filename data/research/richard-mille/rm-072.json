@@ -1,0 +1,22 @@
+{
+  "brand": "Richard Mille",
+  "brandSlug": "richard-mille",
+  "model": "RM 072",
+  "modelSlug": "rm-072",
+  "modelOverview": "Introduced in 2020, the RM 72-01 Lifestyle Flyback Chronograph was the first chronograph movement Richard Mille developed entirely in-house. Its Calibre CRMC1 uses a patented double-oscillating-pinion flyback architecture that isolates the chronograph from the timekeeping train, and the model brought the tonneau case down to a slimmer, dressier 11.68mm profile than the RM 011 family it complements.",
+  "references": {
+    "RM 72-01": {
+      "caseSize": "38.40mm x 47.34mm x 11.68mm (tonneau)",
+      "movement": "Automatic · Richard Mille Calibre CRMC1 · skeletonised, bidirectional winding with platinum rotor · flyback chronograph · 28,800vph · ~50h power reserve",
+      "materials": "Available in grade 5 titanium, 18k 5N red gold, and white ATZ or black TZP ceramic with a red gold caseband",
+      "bezel": "",
+      "dial": "Skeletonised dial with three colour-coded chronograph counters at 1, 4 and 9 o'clock, small seconds, semi-instantaneous date at 7 o'clock and a function indicator",
+      "waterResistance": "30m",
+      "year": "2020–present",
+      "description": "The RM 72-01 Lifestyle Flyback Chronograph carries Richard Mille's first in-house chronograph, the Calibre CRMC1, whose patented double-oscillating-pinion system spreads torque across the counters so the base movement runs undisturbed when the chronograph is engaged. The slimmer tonneau case and asymmetric counter layout give it a more formal character than the brand's sport chronographs, in titanium, red gold or ceramic and red gold. Every piece we offer is sourced and independently authenticated before sale.",
+      "variants": {
+        "Lifestyle Flyback Chronograph": "The RM 72-01 as launched in 2020 — 11.68mm tonneau case, skeletonised Calibre CRMC1 automatic flyback chronograph with platinum rotor and three colour-accented counters, offered in titanium, red gold and ceramic executions."
+      }
+    }
+  }
+}

@@ -1,22 +1,24 @@
-# reference	source_url	provenance (manufacturer DAM alt text)
-# Patek Philippe official DAM (patek-res.cloudinary.com). Asset IDs harvested from
-# rendered markup; each row was matched to our reference on model + metal + dial.
-# Rows marked [dial-unverified] matched on model + metal only — the source caption
-# carried no dial colour, so the variant suffix is inferred from our own catalogue.
+# reference	source	provenance (manufacturer DAM alt text)
+# Patek Philippe official DAM (patek-res.cloudinary.com). Asset IDs harvested from rendered markup
+# (originally via 57 Jewellers' catalogue, which hot-links the same DAM); each row was matched to our
+# reference on model + metal + dial and checked by eye against the render.
 5811/1G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4827-51887	Nautilus 5811 White Gold Blue Dial
 5712/1R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4808-51887	Nautilus 5712 Moon Phases Rose Gold
 5726A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202217-51887	Nautilus 5726 Annual Calendar, steel on leather strap [dial tone reads brown, cf. official black-blue]
+5726/1A-014	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202222-51887	Nautilus 5726 Annual Calendar, steel bracelet, blue-grey gradient dial — previously rejected because the sheet calls this row 'Green Dial'; the render IS the 5726/1A-014 (blue), it is the sheet label that is wrong
 5167A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202472-51887	Aquanaut 5167 Steel Black Dial
+5167R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202465-51887	Aquanaut 5167 Rose Gold Brown Dial
 5164R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202475-51887	Aquanaut 5164 Travel Time Rose Gold
+5164G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202477-51887	Aquanaut 5164 Travel Time White Gold
 5168G-010	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202459-51887	Aquanaut 5168 White Gold Green Dial
+5168G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202460-51887	Aquanaut 5168 White Gold Blue Dial
 5968A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202154-51887	Aquanaut 5968 Chronograph Steel
-# REJECTED on visual check — the source caption did not match the actual image.
-# Do not re-add without confirming the render against the reference.
-# 5726/1A-014	.../202222-51887	captioned "Steel Green Dial"; render is blue-grey on bracelet (a 5726/1A-010)
-# 5320G-011	.../202198-51887	captioned "Perpetual Calendar 5320 White Gold"; render is a steel green-dial chronograph (a 5905/1A)
-#
-# Matched to a reference, but the asset ID is retired — 404 from the DAM. Needs a
-# replacement URL from a current Patek source before it can be fetched.
-# 5227G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4882-51887	Calatrava 5227 White Gold Silver Dial [DEAD]
-# 5205G-013	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202363-51887	Annual Calendar 5205 White Gold Blue Dial [DEAD]
-# 5230G-010	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202263-51887	World Time 5230 White Gold Blue Dial [DEAD]
+5740/1G-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202201-51887	Nautilus 5740 Perpetual Calendar White Gold
+5990/1A-011	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4858-51887	Nautilus 5990 Travel Time Chronograph Steel
+5990/1R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202132-51887	Nautilus 5990 Travel Time Chronograph Rose Gold
+7118/1A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202002-51887	Nautilus 7118 Steel Blue Dial
+7118/1R-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/201975-51887	Nautilus 7118 Rose Gold
+5905/1A-001	https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202198-51887	Flyback Chronograph Annual Calendar 5905 steel green dial — 57 Jewellers files this render under 5320G-001, which it plainly is not
+# Dead on the DAM (404) as of 22 Aug 2026 — listed by 57 Jewellers but unfetchable, so no image:
+# 5227G-010 4882 · 5227R-001 4879 · 5227J-001 4876 · 6119G-001 202424 · 6119R-001 202427 · 5296R-001 4889
+# 5205G-013 202363 · 5205R-010 202360 · 5905R-001 202302 · 5230G-014 202263 · 5230R-012 202260 · 5930G-001 202269
