@@ -41,6 +41,17 @@ export function pageMetadata(opts: {
   imageAlt?: string;
   /** Set on pages that must never rank — thin search results, utilities. */
   noindex?: boolean;
+  /**
+   * Skip the root layout's `%s | Alpoe London` template.
+   *
+   * For a product the title IS the name people search — brand, model,
+   * reference — and it is long before any suffix: a Royal Oak with its full
+   * reference runs past 60 characters on its own, and Google truncates the
+   * tab title at roughly that. The suffix was pushing the reference number
+   * off the end of 259 watch listings. The brand still appears in the URL,
+   * the breadcrumb and the Organization schema, so nothing is lost.
+   */
+  absoluteTitle?: boolean;
 }): Metadata {
   const canonical = siteUrl(opts.path);
   const src = opts.image ?? DEFAULT_OG_IMAGE;
@@ -51,7 +62,7 @@ export function pageMetadata(opts: {
     alt: opts.imageAlt ?? `${opts.title} — ${SITE.name}, Hatton Garden`,
   };
   return {
-    title: opts.title,
+    title: opts.absoluteTitle ? { absolute: opts.title } : opts.title,
     description: opts.description,
     alternates: { canonical },
     ...(opts.noindex ? { robots: { index: false, follow: true } } : {}),

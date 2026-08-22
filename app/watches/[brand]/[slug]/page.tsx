@@ -57,10 +57,15 @@ export async function generateMetadata(
     (await getCatalogueProductBySlug(b.slug as WatchBrandSlug, slug));
   if (!p) return {};
 
-  const title = p.metaTitle ?? `${p.title}${p.referenceNumber ? ` ${p.referenceNumber}` : ""}`;
+  // Append the reference only when the title does not already carry it —
+  // "Cartier Santos de Cartier WSSA0018 WSSA0018" was live on six listings.
+  const ref = p.referenceNumber;
+  const hasRef = ref ? p.title.toLowerCase().includes(ref.toLowerCase()) : true;
+  const title = p.metaTitle ?? `${p.title}${hasRef ? "" : ` ${ref}`}`;
   const desc = p.metaDescription ?? `${p.title}${p.year ? `, ${p.year}` : ""}. ${p.description}`;
   return pageMetadata({
     title,
+    absoluteTitle: true,
     description: desc.slice(0, 300),
     path: `/watches/${b.slug}/${p.slug}`,
     image: p.images[0],

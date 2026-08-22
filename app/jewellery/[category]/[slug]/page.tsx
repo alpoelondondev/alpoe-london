@@ -43,6 +43,7 @@ export async function generateMetadata(
 
   return pageMetadata({
     title: p.metaTitle ?? p.title,
+    absoluteTitle: true,
     description: (p.metaDescription ?? p.description).slice(0, 300),
     path: `/jewellery/${c.slug}/${p.slug}`,
     image: p.images[0],

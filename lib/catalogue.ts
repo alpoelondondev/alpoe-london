@@ -295,6 +295,17 @@ export function catalogueItemToProduct(item: CatalogueItem): Product {
     ? `${item.brand} ${item.model} — ${item.variant}`
     : `${item.brand} ${item.model}${item.reference ? ` ${item.reference}` : ""}`;
 
+  /*
+   * Two variants of one reference — "Batman – Jubilee" and "Batgirl – Oyster"
+   * on 126710BLNR — share the reference's description unless the research
+   * file wrote one per variant, and so shipped byte-identical meta
+   * descriptions on six pairs of pages. Google reads that as duplicate
+   * content and picks one to show. Leading with the title, which carries the
+   * variant, makes each snippet its own while saying nothing new.
+   */
+  const variantSpecific = Boolean(item.variant && spec?.variants?.[item.variant]);
+  const snippet = item.variant && !variantSpecific ? `${title}. ${description}` : description;
+
   return {
     id: item.id,
     type: "watch",
@@ -329,7 +340,7 @@ export function catalogueItemToProduct(item: CatalogueItem): Product {
      */
     metaTitle: item.variant && item.reference ? `${title} ${item.reference}` : title,
     // 300 characters is roughly twice what a SERP shows. Cut on a word.
-    metaDescription: truncateForSerp(description),
+    metaDescription: truncateForSerp(snippet),
     placeholder: false,
   };
 }
