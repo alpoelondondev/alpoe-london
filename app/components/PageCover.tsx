@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { asset } from "@/lib/assets";
 
 /**
  * A band of film across the page.
@@ -92,7 +93,7 @@ export default function PageCover({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
       >
-        <source src={video} type="video/mp4" />
+        <source src={asset(video)} type="video/mp4" />
       </video>
 
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-bg/55" />

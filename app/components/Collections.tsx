@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 import DragCarousel from "./DragCarousel";
+import { asset } from "@/lib/assets";
 
 const items: {
   title: string;
@@ -127,7 +128,7 @@ export default function Collections() {
                       }}
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-[1.04]"
                     >
-                      <source src={item.video} type="video/mp4" />
+                      <source src={asset(item.video)} type="video/mp4" />
                     </video>
                   ) : null}
                   {/* Scrim keeps the title readable over whatever the media does */}

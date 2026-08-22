@@ -36,6 +36,7 @@ yarn-error.log*
 # no secrets. Without it the ring builder's bucket URL is undiscoverable except
 # by reading lib/ring/renders.ts.
 !.env.example
+!.env.production
 
 # vercel
 .vercel

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useViewportVideos } from "./useViewportVideos";
+import { asset } from "@/lib/assets";
 
 const categories: {
   title: string;
@@ -129,7 +130,7 @@ export default function CategoryGrid() {
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-[1.04]"
               >
-                <source src={category.video} type="video/mp4" />
+                <source src={asset(category.video)} type="video/mp4" />
               </video>
               {/* Flat scrim rather than a gradient — the title sits dead centre,
                   and diamond footage throws highlights everywhere, not just top. */}

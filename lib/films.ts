@@ -1,4 +1,5 @@
 import type { JewelleryCategorySlug } from "./types";
+import { asset } from "./assets";
 
 /**
  * Workshop films, one per piece. These stand in for photographed stock on the
@@ -17,7 +18,7 @@ export type Film = {
   spec: string;
 };
 
-const filmSrc = (slug: string) => `/${slug}.mp4`;
+const filmSrc = (slug: string) => asset(`/${slug}.mp4`);
 const filmPoster = (slug: string) => `/${slug}.jpg`;
 
 export function filmVideo(film: Film) {

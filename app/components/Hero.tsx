@@ -9,6 +9,7 @@ import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 import { supportsWebGL } from "./webgl";
 import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
+import { asset } from "@/lib/assets";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -123,9 +124,11 @@ export default function Hero() {
     if (!idle) return;
     const video = videoRef.current;
     if (!video || video.src) return;
-    video.src = window.matchMedia("(max-width: 900px)").matches
-      ? "/alpoe-london-hero-1080.mp4"
-      : "/alpoe-london-hero.mp4";
+    video.src = asset(
+      window.matchMedia("(max-width: 900px)").matches
+        ? "/alpoe-london-hero-1080.mp4"
+        : "/alpoe-london-hero.mp4",
+    );
     video.load();
     video.muted = true;
     video.play().catch(() => {

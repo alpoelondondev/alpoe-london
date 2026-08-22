@@ -11,6 +11,7 @@ import SiteLDJSON from "./components/SiteLDJSON";
 import { SITE, siteUrl } from "@/lib/site";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { Analytics } from "@vercel/analytics/next";
+import { assetsOrigin } from "@/lib/assets";
 
 /**
  * Open Sans carries the whole site — body, headings, labels, everything.
@@ -126,6 +127,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const assets = assetsOrigin();
+
   return (
     <html
       lang="en-GB"
@@ -144,6 +147,20 @@ export default function RootLayout({
         as strictly as before. This is the case the flag exists for.
       */}
       <body suppressHydrationWarning>
+        {/*
+          The films live on object storage, on a different host to the document.
+          Warming that connection while the HTML is still arriving saves the
+          DNS + TCP + TLS round trips on the first play — the homepage hero
+          attaches its film after load, and the category pages start theirs on
+          scroll. React hoists a bare <link> into <head>; omitted when no bucket
+          is configured, because a preconnect to nothing is what Lighthouse flags.
+        */}
+        {assets && (
+          <>
+            <link rel="preconnect" href={assets} crossOrigin="" />
+            <link rel="dns-prefetch" href={assets} />
+          </>
+        )}
         <SiteLDJSON />
         <CustomCursor />
         {/* <Loader /> */}
