@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import SiteLDJSON from "./components/SiteLDJSON";
 import { SITE, siteUrl } from "@/lib/site";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 /**
  * Open Sans carries the whole site — body, headings, labels, everything.
@@ -148,6 +149,13 @@ export default function RootLayout({
         {/* <Loader /> */}
         <ScrollToTop />
         {children}
+        {/*
+          Vercel Web Analytics. Renders nothing; injects one deferred script
+          that reports page views to the project's Analytics tab. Cookieless
+          and no personal data, so nothing to declare in a consent banner. It
+          is a no-op outside Vercel, so local dev and previews stay quiet.
+        */}
+        <Analytics />
       </body>
     </html>
   );
