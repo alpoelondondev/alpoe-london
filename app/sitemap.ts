@@ -134,7 +134,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Live-sheet "sourceable" catalogue products aren't in products.csv, so they
+  // Live-sheet catalogue products aren't in products.csv, so they
   // need their own sitemap pass — otherwise these indexable pages go unlisted.
   for (const b of WATCH_BRANDS) {
     const catalogueProducts = await getCatalogueProductsByBrand(b.slug);

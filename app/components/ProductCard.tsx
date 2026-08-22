@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { Product } from "@/lib/types";
 import { productUrl } from "@/lib/products";
 import { buildEnquiryUrl } from "@/lib/whatsapp";
-import StockBadge from "./StockBadge";
 
 export default function ProductCard({
   product,
@@ -45,9 +44,6 @@ export default function ProductCard({
       {hero ? (
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(19,16,16,0.88)] via-[rgba(19,16,16,0.1)] to-transparent pointer-events-none" />
       ) : null}
-      <div className="absolute top-3 left-3">
-        <StockBadge state={product.stockState} onDark={onDark && !hero} />
-      </div>
       <div className="absolute bottom-4 left-4 right-4">
         {product.brand ? (
           <p className={`text-[10px] tracking-[0.18em] uppercase mb-1 ${hero ? "text-blush" : onDark ? "text-champagne" : "text-accent"}`}>

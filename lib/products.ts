@@ -112,7 +112,8 @@ function toProduct(row: Record<string, string>): Product | null {
           | undefined)
       : undefined;
 
-  const stockState: StockState = row.stock_state === "in_stock" ? "in_stock" : "sourceable";
+  // Everything listed is held in stock — there is no sourced-to-order tier.
+  const stockState: StockState = "in_stock";
 
   // The sheet names a bare "/products/…/1.webp"; resolve it to the versioned
   // path the manifest knows (so a re-exported image busts the CDN cache) and
@@ -179,30 +180,12 @@ export function getAllProducts(): Product[] {
   return loadAll();
 }
 
-// Photography is what separates a piece we can put in front of someone from one
-// we source to order, so it drives both the stock filter and the listing order.
+// Photographed pieces lead every listing, so this drives the ordering.
 export function hasPhotography(p: Pick<Product, "images">): boolean {
   return p.images.length > 0;
 }
 
-/**
- * Whether the listing's own copy says the piece is sourced on request.
- *
- * products.csv marks 99 watches `in_stock`, and 83 of those carry a
- * description ending "Sourced to order through Alpoe London". Both cannot be
- * true, and until the data is corrected one way or the other the only honest
- * reading for anything machine-readable is the one the customer can see on
- * the page. Structured data that contradicts visible content is the specific
- * thing Google's guidelines say earns a manual action, so `productLd` asks
- * this rather than trusting the column.
- */
-export function isSourcedToOrder(
-  p: Pick<Product, "stockState" | "description">,
-): boolean {
-  return p.stockState !== "in_stock" || /sourced to order/i.test(p.description);
-}
-
-/** Photographed pieces lead, enquire-now references follow. Pair with a tiebreak. */
+/** Photographed pieces lead, unphotographed ones follow. Pair with a tiebreak. */
 export function photosFirst(a: Product, b: Product): number {
   return Number(hasPhotography(b)) - Number(hasPhotography(a));
 }

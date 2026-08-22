@@ -8,7 +8,7 @@ import { asset } from "./assets";
 import { getDescription, getModelOverview, getReferenceResearch } from "./research";
 import { truncateForSerp } from "./seo";
 
-// Live "Available to Source" catalogue, driven by the published Google Sheet.
+// Live watch catalogue, driven by the published Google Sheet.
 // Columns: Brand, Sub-Collection, Variant / Name, Reference No.
 // The sheet holds no images — photos are matched by reference number against the
 // build-time IMAGE_MANIFEST (see scripts/gen-image-manifest.mjs).
@@ -26,7 +26,7 @@ const FALLBACK_PATH = join(process.cwd(), "data", "catalogue-fallback.csv");
  * Listings the sheet does not carry yet.
  *
  * Same four columns as the sheet. A row here behaves exactly like a sheet row
- * — research-backed page, reference-matched photo, enquiry list — and is
+ * — research-backed page, reference-matched photo, listing tile — and is
  * dropped the moment the sheet gains a row with the same brand, reference and
  * variant name, so copying these into the sheet is safe and leaves nothing
  * showing twice. Added 22 Aug 2026 for the 64 references we hold photography
@@ -191,7 +191,7 @@ export function referenceKey(reference: string): string {
 // differ only by dial and bracelet. Keying images on the reference alone made all
 // 21 show the same photo, so a shared reference resolves through the variant pins
 // in data/variant-images.tsv. A row we have no pin for yields no image at all and
-// drops to the enquiry list — better a listing with no photo than one wearing
+// shows without a photo — better a listing with no photo than one wearing
 // another variant's dial.
 function imagesFor(
   brandSlug: WatchBrandSlug,
@@ -311,13 +311,13 @@ export function catalogueItemUrl(item: CatalogueItem): string {
 
 // Turn a live-catalogue row into a full Product by layering in verified research
 // (specs + exact description) and reference-matched images. Falls back to a plain
-// sourced-to-order description when a model has not been researched yet.
+// one-line description when a model has not been researched yet.
 export function catalogueItemToProduct(item: CatalogueItem): Product {
   const spec = getReferenceResearch(item.brandSlug, item.reference);
   const description =
     getDescription(item.brandSlug, item.reference, item.variant) ??
     getModelOverview(item.brandSlug, item.modelSlug) ??
-    `${item.brand} ${item.model}${item.reference ? ` ${item.reference}` : ""} — authenticated and sourced to order through Alpoe London in Hatton Garden, London.`;
+    `${item.brand} ${item.model}${item.reference ? ` ${item.reference}` : ""} — authenticated and in stock at Alpoe London in Hatton Garden, London.`;
 
   const title = item.variant
     ? `${item.brand} ${item.model} — ${item.variant}`
@@ -344,7 +344,7 @@ export function catalogueItemToProduct(item: CatalogueItem): Product {
     slug: item.slug,
     title,
     description,
-    stockState: "sourceable",
+    stockState: "in_stock",
     materials: spec?.materials,
     dial: spec?.dial,
     bezel: spec?.bezel,

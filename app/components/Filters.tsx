@@ -8,18 +8,15 @@ type Option = { value: string; label: string };
 export default function Filters({
   modelOptions,
   materialOptions,
-  showStock = true,
 }: {
   modelOptions?: Option[];
   materialOptions?: Option[];
-  showStock?: boolean;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
 
   const current = {
-    stock: params.get("stock") ?? "all",
     model: params.get("model") ?? "",
     material: params.get("material") ?? "",
     sort: params.get("sort") ?? "featured",
@@ -38,33 +35,6 @@ export default function Filters({
 
   return (
     <div className="flex flex-wrap gap-3 items-center mt-6 mb-10 text-[11px] tracking-[0.14em] uppercase">
-      {showStock ? (
-        <div role="group" aria-label="Stock filter" className="flex border border-fg/20">
-          {(
-            [
-              { value: "all", label: "All" },
-              { value: "in_stock", label: "In Stock" },
-              { value: "sourceable", label: "Sourceable" },
-            ] as const
-          ).map((opt) => {
-            const active = current.stock === opt.value;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => setParam("stock", opt.value)}
-                className={`px-3 py-2 transition ${
-                  active ? "bg-accent text-bg" : "text-fg/70 hover:text-fg"
-                }`}
-                aria-pressed={active}
-              >
-                {opt.label}
-              </button>
-            );
-          })}
-        </div>
-      ) : null}
-
       {modelOptions?.length ? (
         <label className="flex items-center gap-2 border border-fg/20 px-3 py-2">
           <span className="text-dim">Model</span>

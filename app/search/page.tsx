@@ -67,7 +67,7 @@ export default async function SearchPage(
           title={q ? `Results for “${q}”` : "Search the catalogue"}
           copy={
             q
-              ? `${results.length} matching ${results.length === 1 ? "piece" : "pieces"}. Anything not in stock can be sourced — enquire on WhatsApp.`
+              ? `${results.length} matching ${results.length === 1 ? "piece" : "pieces"}. Every piece is held in stock — enquire on WhatsApp for pricing.`
               : "Press / to open search, or type a brand, model, reference number or category in the header."
           }
         />

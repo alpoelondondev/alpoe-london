@@ -7,7 +7,7 @@ Day-to-day instructions for running and updating the Alpoe London site. Written 
 | I want to… | Do this |
 |---|---|
 | Edit a product (price, stock, condition) | Edit `data/products.csv` directly, save, commit |
-| Mark a Rolex as sold (or no longer held) | Open `data/products.csv`, find the row, change `in_stock` → `sourceable` |
+| Remove a watch from the site | Delete its row from `data/products.csv` (or the Google Sheet). There is no sold / sourceable state — everything listed is held in stock. |
 | Add new watch images | Add a row to `data/image-sources/{brand}.tsv`, run `python3 scripts/build-product-images.py {brand}`, `pnpm gen:data`, then upload `public/products` to R2 (see `lib/assets.ts`) |
 | Add a new Rolex reference | Edit `scripts/build-rolex-catalogue.mjs`, add the entry, run `node scripts/build-rolex-catalogue.mjs` |
 | Add a non-Rolex watch (Patek/AP/etc.) | Add a row to `data/products.csv` directly |
@@ -41,7 +41,7 @@ Open `data/products.csv` in any spreadsheet app (Numbers, Excel, Google Sheets) 
 | `slug` | URL slug. Stable — don't change after launch. | `rolex-submariner-starbucks-126610lv` |
 | `title` | Page title shown in big serif | `Rolex Submariner Date "Starbucks" 126610LV` |
 | `description` | 1–2 sentence body copy | |
-| `stock_state` | `in_stock` or `sourceable` | `sourceable` |
+| `stock_state` | always `in_stock` (the column is kept for compatibility; the site no longer shows a stock tier) | `in_stock` |
 | `materials` | Case material(s) | `Oystersteel` |
 | `gemstones` | Empty for most watches; `Diamond` for diamond-set bezels | |
 | `carat` | Diamond carat weight (jewellery) | `2.00ct` |
@@ -60,13 +60,11 @@ Open `data/products.csv` in any spreadsheet app (Numbers, Excel, Google Sheets) 
 
 ### Common edits
 
-**Mark a Rolex as sold or no longer held**
+**A watch has been sold or is no longer held**
 
-1. Find the row in `data/products.csv`.
-2. Change `stock_state` from `in_stock` to `sourceable`.
-3. Save and commit.
-
-The default for Rolex rows generated from Joe's sheet is `in_stock` — flip back to `sourceable` if a piece has been sold or is no longer physically held in the showroom.
+Delete its row from `data/products.csv` (or from the Google Sheet / `data/catalogue-extra.csv`
+if it came from there) and commit. The site no longer has a sold or sourceable state —
+everything listed is presented as held in stock, so a piece that is not should not be listed.
 
 **Update a description**
 
@@ -82,7 +80,7 @@ Change `featured` to `true`. Featured products appear in the highlights strip on
 
 Easiest: delete its row. The page disappears at the next build. The image folder under `public/` can stay — Next.js won't expose it without a CSV row pointing at it.
 
-If you want the page to remain but show as out-of-stock, leave the row and change `stock_state` to `sourceable`. There is no "sold out" state — sourceable covers it.
+There is no "sold out" or "sourceable" state any more: a listing is either on the site, in stock, or it is not on the site.
 
 ---
 

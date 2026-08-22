@@ -12,7 +12,7 @@ import ProductGrid from "../../components/ProductGrid";
 import CategoryFilms from "../../components/CategoryFilms";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import { filmsForCategory } from "@/lib/films";
-import { getJewelleryByCategory, hasPhotography, photosFirst, productUrl } from "@/lib/products";
+import { getJewelleryByCategory, photosFirst, productUrl } from "@/lib/products";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { JewelleryCategorySlug, Product } from "@/lib/types";
 
@@ -53,16 +53,10 @@ function materialOptionsFor(products: Product[]) {
 }
 
 function applyFilters(products: Product[], sp: SearchParams) {
-  const stock = typeof sp.stock === "string" ? sp.stock : undefined;
   const material = typeof sp.material === "string" ? sp.material : undefined;
   const sort = typeof sp.sort === "string" ? sp.sort : "featured";
 
   let out = products.slice();
-  // Photography is the stock signal here: shot pieces are the ones we can show,
-  // everything else is an enquire-now reference we source to order.
-  if (stock === "in_stock") out = out.filter(hasPhotography);
-  else if (stock === "sourceable") out = out.filter((p) => !hasPhotography(p));
-
   if (material) out = out.filter((p) => p.materials === material);
 
   const tiebreak =

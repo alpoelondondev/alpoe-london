@@ -17,7 +17,7 @@ import { productUrl } from "@/lib/products";
 export const metadata: Metadata = pageMetadata({
   title: "Luxury Watches — Rolex, Patek, AP",
   description:
-    "Authenticated luxury watches sourced through Alpoe London in Hatton Garden — Rolex, Patek Philippe, Audemars Piguet and Cartier. Live stock and made to order.",
+    "Authenticated luxury watches sourced through Alpoe London in Hatton Garden — Rolex, Patek Philippe, Audemars Piguet and Cartier, all held in stock.",
   path: "/watches",
   image: "/og/watches.jpg",
 });
@@ -37,7 +37,7 @@ export default function WatchesIndex() {
     ...collectionLd({
       name: "Luxury Watches",
       description:
-        "Luxury watches at Alpoe London — every major brand, live stock and sourceable references.",
+        "Luxury watches at Alpoe London — every major brand, every reference held in stock.",
       path: "/watches",
       products: featured.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
@@ -50,8 +50,8 @@ export default function WatchesIndex() {
       <main>
         <BrandHero
           eyebrow="Watches"
-          title="Luxury Watches, Authenticated & Sourced"
-          copy="Every major Swiss maison — Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega, Breitling, IWC, Panerai and Vacheron Constantin. Pieces we hold in our Hatton Garden showroom and pieces sourced from our global dealer network."
+          title="Luxury Watches, Authenticated & In Stock"
+          copy="Every major Swiss maison — Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega, Breitling, IWC, Panerai and Vacheron Constantin. Every piece held in stock at our Hatton Garden showroom."
         />
 
         <section className="px-[52px] py-8 max-md:px-6">

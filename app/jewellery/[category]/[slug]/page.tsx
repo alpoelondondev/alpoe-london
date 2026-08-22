@@ -9,7 +9,6 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
 import EnquireCTA from "../../../components/EnquireCTA";
-import StockBadge from "../../../components/StockBadge";
 import FeaturedCarousel from "../../../components/FeaturedCarousel";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import {
@@ -90,14 +89,11 @@ export default async function JewelleryProductPage(
             <ProductGallery images={product.images} alt={alt} />
           </div>
           <div className="col-span-5 max-md:col-span-12">
-            <div className="flex items-center gap-3 mb-4">
-              <StockBadge state={product.stockState} />
-              {product.referenceNumber ? (
-                <span className="text-[10px] tracking-[0.18em] uppercase text-dim">
-                  {product.referenceNumber}
-                </span>
-              ) : null}
-            </div>
+            {product.referenceNumber ? (
+              <p className="mb-4 text-[10px] tracking-[0.18em] uppercase text-dim">
+                {product.referenceNumber}
+              </p>
+            ) : null}
             <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-2">
               {product.category}
             </p>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SITE, siteUrl } from "./site";
 import type { Product } from "./types";
-import { isSourcedToOrder } from "./products";
 
 /**
  * The card every share falls back to. Without an explicit `images` entry
@@ -153,10 +152,10 @@ function offerCatalogLd() {
         "Diamond earrings, necklaces, pendants and bracelets, natural or laboratory-grown, made in London.",
     },
     {
-      name: "Luxury watch sourcing",
+      name: "Luxury watches",
       path: "/watches",
       description:
-        "Rolex, Patek Philippe, Audemars Piguet, Cartier and more — authenticated, sourced to order and sold from Hatton Garden.",
+        "Rolex, Patek Philippe, Audemars Piguet, Cartier and more — authenticated and in stock in Hatton Garden.",
     },
     {
       name: "Watch and jewellery buying",
@@ -315,10 +314,8 @@ export function productLd(product: Product, path: string) {
     p.startsWith("http") ? p : siteUrl(p),
   );
 
-  // Decided from the visible copy, not the stock column — see isSourcedToOrder.
-  const availability = isSourcedToOrder(product)
-    ? "https://schema.org/PreOrder"
-    : "https://schema.org/InStock";
+  // Every piece on the site is held in stock and the page copy says so.
+  const availability = "https://schema.org/InStock";
 
   return {
     "@type": "Product",

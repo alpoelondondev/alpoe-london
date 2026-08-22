@@ -9,7 +9,6 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
 import WatchOptions from "../../../components/WatchOptions";
-import StockBadge from "../../../components/StockBadge";
 import FeaturedCarousel from "../../../components/FeaturedCarousel";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
 import {
@@ -114,14 +113,11 @@ export default async function WatchProductPage(
             <ProductGallery images={product.images} alt={alt} />
           </div>
           <div className="col-span-5 max-md:col-span-12">
-            <div className="flex items-center gap-3 mb-4">
-              <StockBadge state={product.stockState} />
-              {product.year ? (
-                <span className="text-[10px] tracking-[0.18em] uppercase text-dim">
-                  {product.year}
-                </span>
-              ) : null}
-            </div>
+            {product.year ? (
+              <p className="mb-4 text-[10px] tracking-[0.18em] uppercase text-dim">
+                {product.year}
+              </p>
+            ) : null}
             <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-2">
               {product.brand}
               {product.model ? ` · ${product.model}` : ""}

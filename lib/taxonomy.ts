@@ -10,21 +10,21 @@ export const WATCH_BRANDS: {
     slug: "rolex",
     name: "Rolex",
     heritage:
-      "Founded in 1905, Rolex is the benchmark for Swiss precision. Alpoe London sources authenticated Rolex timepieces including discontinued and limited-edition references — delivered from our Hatton Garden showroom.",
+      "Founded in 1905, Rolex is the benchmark for Swiss precision. Alpoe London holds authenticated Rolex timepieces including discontinued and limited-edition references — delivered from our Hatton Garden showroom.",
     models: ["Submariner", "Daytona", "GMT-Master II", "Datejust", "Lady-Datejust", "Day-Date", "Explorer", "Yacht-Master", "Sky-Dweller", "Sea-Dweller", "Oyster Perpetual", "Land-Dweller"],
   },
   {
     slug: "patek-philippe",
     name: "Patek Philippe",
     heritage:
-      "Patek Philippe represents the pinnacle of haute horlogerie. We source Nautilus, Aquanaut, Calatrava and Grand Complication references for discerning collectors.",
+      "Patek Philippe represents the pinnacle of haute horlogerie. Nautilus, Aquanaut, Calatrava and Grand Complication references, held in stock for discerning collectors.",
     models: ["Nautilus", "Aquanaut", "Calatrava", "Complications", "Grand Complications", "Twenty~4"],
   },
   {
     slug: "audemars-piguet",
     name: "Audemars Piguet",
     heritage:
-      "Since 1875. Home of the Royal Oak — the watch that redefined luxury in steel. Alpoe London sources Royal Oak, Royal Oak Offshore and Code 11.59 references.",
+      "Since 1875. Home of the Royal Oak — the watch that redefined luxury in steel. Alpoe London holds Royal Oak, Royal Oak Offshore and Code 11.59 references in stock.",
     models: ["Royal Oak", "Royal Oak Offshore", "Code 11.59", "Millenary"],
   },
   {
@@ -45,42 +45,42 @@ export const WATCH_BRANDS: {
     slug: "hublot",
     name: "Hublot",
     heritage:
-      "The art of fusion — unconventional materials and bold design. Big Bang, Classic Fusion and Spirit of Big Bang available to order.",
+      "The art of fusion — unconventional materials and bold design. Big Bang, Classic Fusion and Spirit of Big Bang, held in stock.",
     models: ["Big Bang", "Classic Fusion", "Spirit of Big Bang", "MP Collection"],
   },
   {
     slug: "omega",
     name: "Omega",
     heritage:
-      "From the Moon to the seabed. Speedmaster and Seamaster references sourced to order through our London dealership.",
+      "From the Moon to the seabed. Speedmaster and Seamaster references, held in stock at our London dealership.",
     models: ["Speedmaster", "Seamaster", "Constellation", "De Ville", "Aqua Terra"],
   },
   {
     slug: "breitling",
     name: "Breitling",
     heritage:
-      "Instruments for professionals since 1884. Navitimer, Chronomat and Superocean available in live stock and to order.",
+      "Instruments for professionals since 1884. Navitimer, Chronomat and Superocean, held in stock.",
     models: ["Navitimer", "Chronomat", "Superocean", "Avenger", "Premier"],
   },
   {
     slug: "iwc",
     name: "IWC",
     heritage:
-      "International Watch Company, Schaffhausen. Engineering-led design — Portugieser, Pilot's, Portofino and Ingenieur sourced to order.",
+      "International Watch Company, Schaffhausen. Engineering-led design — Portugieser, Pilot's, Portofino and Ingenieur, held in stock.",
     models: ["Portugieser", "Pilot's Watch", "Portofino", "Ingenieur", "Aquatimer"],
   },
   {
     slug: "panerai",
     name: "Panerai",
     heritage:
-      "Italian design, Swiss precision, maritime heritage. Luminor and Radiomir references sourced worldwide.",
+      "Italian design, Swiss precision, maritime heritage. Luminor and Radiomir references, held in stock.",
     models: ["Luminor", "Radiomir", "Submersible", "Luminor Due"],
   },
   {
     slug: "vacheron-constantin",
     name: "Vacheron Constantin",
     heritage:
-      "Founded in 1755 — the oldest continuously operating watch manufacturer. Overseas, Patrimony and Historiques available to source.",
+      "Founded in 1755 — the oldest continuously operating watch manufacturer. Overseas, Patrimony and Historiques, held in stock.",
     models: ["Overseas", "Patrimony", "Traditionnelle", "Historiques", "Fiftysix"],
   },
 ];

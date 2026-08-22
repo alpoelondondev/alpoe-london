@@ -1,5 +1,6 @@
 export type ProductType = "watch" | "jewellery";
-export type StockState = "in_stock" | "sourceable";
+/** Every piece on the site is held in stock; the type is kept for the CSV column. */
+export type StockState = "in_stock";
 
 export type WatchBrandSlug =
   | "rolex"

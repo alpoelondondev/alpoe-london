@@ -7,10 +7,9 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import BrandHero from "../../components/BrandHero";
 import Filters from "../../components/Filters";
 import ProductGrid from "../../components/ProductGrid";
-import AvailabilityCatalogue from "../../components/AvailabilityCatalogue";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
-import { getWatchesByBrand, hasPhotography, photosFirst, productUrl } from "@/lib/products";
-import { getBrandCatalogue } from "@/lib/catalogue";
+import { getWatchesByBrand, photosFirst, productUrl } from "@/lib/products";
+import { getCatalogueProductsByBrand, referenceKey } from "@/lib/catalogue";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { WatchBrandSlug, Product } from "@/lib/types";
 
@@ -53,24 +52,36 @@ export async function generateMetadata(
     description: truncateForSerp(
       `Authenticated ${b.name} watches from Alpoe London in Hatton Garden — ${b.models
         .slice(0, 3)
-        .join(", ")} and more, in stock and sourced to order. ${b.heritage}`,
+        .join(", ")} and more, all held in stock. ${b.heritage}`,
     ),
     path: `/watches/${b.slug}`,
     image: "/og/watches.jpg",
   });
 }
 
+/**
+ * One list per brand: the curated rows in products.csv and the live-sheet
+ * catalogue, together. Where both carry the same reference the sheet wins —
+ * its rows are per dial and bracelet, so a generic "Datejust 41 126334" card
+ * beside twenty-one specific ones was the same watch listed twice. The curated
+ * page still exists (and is still linked from search); it just isn't a second
+ * tile here.
+ */
+function mergeListings(curated: Product[], catalogue: Product[]): Product[] {
+  const inSheet = new Set(
+    catalogue.map((p) => referenceKey(p.referenceNumber ?? "")).filter(Boolean),
+  );
+  const unique = curated.filter(
+    (p) => !p.referenceNumber || !inSheet.has(referenceKey(p.referenceNumber)),
+  );
+  return [...unique, ...catalogue];
+}
+
 function applyFilters(products: Product[], sp: SearchParams) {
-  const stock = typeof sp.stock === "string" ? sp.stock : undefined;
   const model = typeof sp.model === "string" ? sp.model : undefined;
   const sort = typeof sp.sort === "string" ? sp.sort : "featured";
 
   let out = products.slice();
-  // Photography is the stock signal here: shot pieces are the ones we can show,
-  // everything else is an enquire-now reference we source to order.
-  if (stock === "in_stock") out = out.filter(hasPhotography);
-  else if (stock === "sourceable") out = out.filter((p) => !hasPhotography(p));
-
   if (model) out = out.filter((p) => p.model === model);
 
   const tiebreak =
@@ -92,11 +103,16 @@ export default async function BrandPage(
   const b = watchBrandBySlug(brand);
   if (!b) notFound();
 
-  const all = getWatchesByBrand(b.slug as WatchBrandSlug);
+  const all = mergeListings(
+    getWatchesByBrand(b.slug as WatchBrandSlug),
+    await getCatalogueProductsByBrand(b.slug as WatchBrandSlug),
+  );
   const filtered = applyFilters(all, sp);
-  const modelOptions = b.models.map((m) => ({ value: m, label: m }));
-
-  const catalogue = await getBrandCatalogue(b.slug as WatchBrandSlug);
+  // The model filter lists what is actually on the page, not the taxonomy's
+  // three headline lines — the sheet names models the taxonomy never will.
+  const modelOptions = [...new Set(all.map((p) => p.model).filter(Boolean))]
+    .sort()
+    .map((m) => ({ value: m as string, label: m as string }));
 
   const ld = ldJsonGraph(
     collectionLd({
@@ -134,11 +150,6 @@ export default async function BrandPage(
         <section className="px-[52px] pb-20 max-md:px-6">
           <Filters modelOptions={modelOptions} />
           <ProductGrid products={filtered} />
-          <AvailabilityCatalogue
-            brandName={b.name}
-            items={catalogue.items}
-            total={catalogue.total}
-          />
         </section>
       </main>
       <Footer />
