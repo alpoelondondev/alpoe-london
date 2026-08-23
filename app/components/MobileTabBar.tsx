@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 
 /**
  * The phone's standing navigation: four destinations pinned to the bottom of
@@ -20,9 +20,35 @@ import type { ReactNode } from "react";
  * control rather than a chrome bar. The inset keeps it clear of the curved
  * corners and the home indicator, which the old edge-to-edge strip sat on.
  *
- * Solid `bg-bg`, not a tint — the same reason Nav gives. The ring pages are
- * white, and a translucent bar over them turns the house off-black into grey.
- * Floating on white, the solid off-black pill is the house mark at its best.
+ * ── Glass ──
+ *
+ * It was solid `bg-bg` for a long time, on the argument that a translucent bar
+ * over the white ring pages turns the house off-black into grey. What it
+ * actually did was make the pill read as a slab bolted over the page rather
+ * than a control floating above it, which is the opposite of the point of
+ * floating it.
+ *
+ * So: blurred and saturated backdrop with the house off-black at 72% on top.
+ * That is dark enough to stay off-black over white (72% of #131010 over paper
+ * lands near #4f4e4d, not grey), and the blur is what sells it as glass — a
+ * flat tint alone just looks like a mistake. The opaque `bg-bg` stays as the
+ * base declaration and the tint is applied only inside
+ * `@supports (backdrop-filter: blur(0))`, so a browser without it gets the old
+ * solid pill rather than a see-through one. Tailwind emits the `-webkit-`
+ * prefix alongside, which is what Safari on iOS still needs.
+ *
+ * ── Drag across to choose ──
+ *
+ * The highlight is a physical thing on glass, so it can be pushed. Put a
+ * finger anywhere on the bar and slide: the pill follows under it and the tab
+ * it lands on is the one that opens on release. A tap is untouched — the drag
+ * only takes over past a few pixels of travel, and the anchors underneath stay
+ * ordinary links, so keyboard, screen reader and middle-click all still work
+ * and the whole thing degrades to four links if the JS never arrives.
+ *
+ * `touch-action: pan-y` is what makes it feel native: the browser keeps
+ * vertical scrolling for itself and hands us the horizontal axis, instead of
+ * the two fighting over the same gesture.
  *
  * Its footprint lives in `--tab-h` (globals.css) because two other things
  * have to clear it: the page itself, via body padding, and the WhatsApp badge.
@@ -106,8 +132,17 @@ const TABS: { label: string; href: string; icon: ReactNode; elite?: boolean }[] 
   { label: "Elite", href: "/mentorship", icon: ELITE, elite: true },
 ];
 
+/** How far a finger has to travel before it counts as a drag and not a tap. */
+const DRAG_THRESHOLD = 8;
+
 export default function MobileTabBar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const listRef = useRef<HTMLUListElement>(null);
+  const startX = useRef(0);
+  /** Set on release after a drag, so the click it produces is not a second navigation. */
+  const swallowClick = useRef(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
 
   // A brand page is still the Watches tab, so the whole subtree counts as
   // current — but `/jewellery` must not light up for `/jewellery-x`.
@@ -116,13 +151,69 @@ export default function MobileTabBar() {
   const active = TABS.findIndex((t) => isCurrent(t.href));
   const activeTab = active >= 0 ? TABS[active] : undefined;
 
+  /** Which tab a page x-coordinate is over, clamped to the ends of the bar. */
+  const indexAt = (clientX: number) => {
+    const box = listRef.current?.getBoundingClientRect();
+    if (!box) return null;
+    const inner = box.width - 8; // the ul's p-1 either side
+    const i = Math.floor(((clientX - box.left - 4) / inner) * TABS.length);
+    return Math.min(TABS.length - 1, Math.max(0, i));
+  };
+
+  const onPointerDown = (e: ReactPointerEvent<HTMLUListElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startX.current = e.clientX;
+  };
+
+  const onPointerMove = (e: ReactPointerEvent<HTMLUListElement>) => {
+    // Buttons is 0 for a finger merely hovering a trackpad or a mouse moving
+    // across the bar; only a held pointer drags.
+    if (e.buttons === 0) return;
+    if (dragIndex === null && Math.abs(e.clientX - startX.current) < DRAG_THRESHOLD) return;
+    if (dragIndex === null) listRef.current?.setPointerCapture(e.pointerId);
+    const i = indexAt(e.clientX);
+    if (i !== null) setDragIndex(i);
+  };
+
+  const onPointerUp = (e: ReactPointerEvent<HTMLUListElement>) => {
+    if (dragIndex === null) return;
+    const target = TABS[dragIndex];
+    setDragIndex(null);
+    listRef.current?.releasePointerCapture?.(e.pointerId);
+    // The release lands on whichever anchor is under the finger, which is not
+    // necessarily the one that was chosen — so navigate ourselves and eat the
+    // click that follows.
+    swallowClick.current = true;
+    if (!isCurrent(target.href)) router.push(target.href);
+  };
+
+  const onPointerCancel = () => setDragIndex(null);
+
+  /** Where the pill is: under the finger while dragging, on the route otherwise. */
+  const shown = dragIndex ?? active;
+  const dragging = dragIndex !== null;
+
   return (
     <nav
       aria-label="Primary"
-      className="fixed left-4 right-4 z-[150] rounded-full border border-fg/[0.12] bg-bg shadow-lg shadow-black/40 md:hidden"
+      className="fixed left-4 right-4 z-[150] rounded-full border border-fg/[0.12] bg-bg shadow-lg shadow-black/40 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-bg/72 md:hidden"
       style={{ bottom: `calc(${FLOAT_GAP}px + env(safe-area-inset-bottom))` }}
     >
-      <ul className="relative grid grid-cols-4 overflow-hidden rounded-full p-1">
+      <ul
+        ref={listRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerCancel}
+        onClickCapture={(e) => {
+          if (!swallowClick.current) return;
+          swallowClick.current = false;
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        style={{ touchAction: "pan-y" }}
+        className="relative grid grid-cols-4 overflow-hidden rounded-full p-1 select-none"
+      >
         {/*
           One highlight for the whole bar rather than one per tab, so moving
           between sections slides it across instead of snapping it off one
@@ -133,16 +224,25 @@ export default function MobileTabBar() {
         */}
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute bottom-1 left-1 top-1 w-[calc((100%-0.5rem)/4)] rounded-full transition-[transform,opacity,background-color] duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none ${
-            activeTab?.elite ? "bg-elite/[0.12]" : "bg-fg/[0.07]"
-          } ${active < 0 ? "opacity-0" : "opacity-100"}`}
-          style={{ transform: `translateX(${Math.max(active, 0) * 100}%)` }}
+          className={`pointer-events-none absolute bottom-1 left-1 top-1 w-[calc((100%-0.5rem)/4)] rounded-full border border-fg/[0.14] shadow-[inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-saturate-150 transition-[transform,opacity,background-color] ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none ${
+            dragging ? "duration-100" : "duration-300"
+          } ${
+            (dragIndex === null ? activeTab?.elite : TABS[dragIndex]?.elite)
+              ? "bg-elite/[0.16]"
+              : "bg-fg/[0.12]"
+          } ${shown < 0 ? "opacity-0" : "opacity-100"}`}
+          style={{ transform: `translateX(${Math.max(shown, 0) * 100}%)` }}
         />
-        {TABS.map((tab) => {
+        {TABS.map((tab, i) => {
           const current = isCurrent(tab.href);
+          // While dragging, the tab under the finger takes the lit styling so
+          // the bar previews where the release will land. `aria-current` stays
+          // on the real route throughout — the page has not changed yet, and a
+          // screen reader should not be told otherwise mid-gesture.
+          const lit = dragging ? i === dragIndex : current;
           const tone = tab.elite
             ? "text-elite"
-            : current
+            : lit
               ? "text-accent"
               : "text-dim";
           return (
@@ -151,7 +251,7 @@ export default function MobileTabBar() {
                 href={tab.href}
                 aria-current={current ? "page" : undefined}
                 className={`relative flex h-[50px] flex-col items-center justify-center gap-1 rounded-full text-[9px] tracking-[0.16em] uppercase transition-colors ${tone} ${
-                  current ? "" : "hover:text-fg"
+                  lit ? "" : "hover:text-fg"
                 }`}
               >
                 {/* The current tab sits on the sliding pill above rather than
