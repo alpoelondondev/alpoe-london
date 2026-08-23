@@ -148,9 +148,10 @@ html {
   --nav-offset: 0px;
 }
 
-/* The phone's bottom tab bar (MobileTabBar): its 58px row plus whatever the
-   device reserves for a home indicator. Written down once because three things
-   read it — the bar itself, the page's bottom padding below, and the WhatsApp
+/* The phone's floating tab bar (MobileTabBar): a 58px pill (50px row inside
+   4px of padding), held 12px off the bottom edge, plus whatever the device
+   reserves for a home indicator. Written down once because three things read
+   it — the bar's own offset, the page's bottom padding below, and the WhatsApp
    badge, which sits on top of it and has to be lifted clear. Zero above the
    breakpoint, where the bar is not drawn, so anything using it collapses back
    to where it was on a desktop. */
@@ -160,7 +161,7 @@ html {
 
 @media (max-width: 767px) {
   :root {
-    --tab-h: calc(58px + env(safe-area-inset-bottom));
+    --tab-h: calc(58px + 12px + env(safe-area-inset-bottom));
   }
 
   /* The bar is fixed, so it sits over the foot of every page — the last row of

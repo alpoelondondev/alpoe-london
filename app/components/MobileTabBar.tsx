@@ -15,12 +15,21 @@ import type { ReactNode } from "react";
  * the bar is already on screen and a fixed strip along the bottom would just
  * be taking a row off the page.
  *
+ * It floats: a pill held off the screen edges rather than a strip welded to
+ * the bottom, so the page is visibly passing underneath it and it reads as a
+ * control rather than a chrome bar. The inset keeps it clear of the curved
+ * corners and the home indicator, which the old edge-to-edge strip sat on.
+ *
  * Solid `bg-bg`, not a tint — the same reason Nav gives. The ring pages are
  * white, and a translucent bar over them turns the house off-black into grey.
+ * Floating on white, the solid off-black pill is the house mark at its best.
  *
- * Height lives in `--tab-h` (globals.css) because two other things have to
- * clear it: the page itself, via body padding, and the WhatsApp badge.
+ * Its footprint lives in `--tab-h` (globals.css) because two other things
+ * have to clear it: the page itself, via body padding, and the WhatsApp badge.
  */
+
+/** Gap between the pill and the screen's bottom edge. Mirrored in --tab-h. */
+const FLOAT_GAP = 12;
 
 /** House icon set: 24 box, hairline stroke, round joins. Matches FAQ's watch. */
 function Glyph({ children }: { children: ReactNode }) {
@@ -100,18 +109,37 @@ const TABS: { label: string; href: string; icon: ReactNode; elite?: boolean }[] 
 export default function MobileTabBar() {
   const pathname = usePathname();
 
+  // A brand page is still the Watches tab, so the whole subtree counts as
+  // current — but `/jewellery` must not light up for `/jewellery-x`.
+  const isCurrent = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
+  const active = TABS.findIndex((t) => isCurrent(t.href));
+  const activeTab = active >= 0 ? TABS[active] : undefined;
+
   return (
     <nav
       aria-label="Primary"
-      className="fixed bottom-0 left-0 right-0 z-[150] border-t border-fg/[0.10] bg-bg md:hidden"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      className="fixed left-4 right-4 z-[150] rounded-full border border-fg/[0.12] bg-bg shadow-lg shadow-black/40 md:hidden"
+      style={{ bottom: `calc(${FLOAT_GAP}px + env(safe-area-inset-bottom))` }}
     >
-      <ul className="grid grid-cols-4">
+      <ul className="relative grid grid-cols-4 overflow-hidden rounded-full p-1">
+        {/*
+          One highlight for the whole bar rather than one per tab, so moving
+          between sections slides it across instead of snapping it off one
+          tab and on to the next. It is a quarter of the inner width and
+          translated by whole multiples of itself; on a page that belongs to
+          no tab it fades out in place rather than jumping to a corner.
+          Sapphire when it lands on Elite, for the same reason that tab is.
+        */}
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute bottom-1 left-1 top-1 w-[calc((100%-0.5rem)/4)] rounded-full transition-[transform,opacity,background-color] duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none ${
+            activeTab?.elite ? "bg-elite/[0.12]" : "bg-fg/[0.07]"
+          } ${active < 0 ? "opacity-0" : "opacity-100"}`}
+          style={{ transform: `translateX(${Math.max(active, 0) * 100}%)` }}
+        />
         {TABS.map((tab) => {
-          // A brand page is still the Watches tab, so the whole subtree counts
-          // as current — but `/jewellery` must not light up for `/jewellery-x`.
-          const current =
-            pathname === tab.href || pathname.startsWith(`${tab.href}/`);
+          const current = isCurrent(tab.href);
           const tone = tab.elite
             ? "text-elite"
             : current
@@ -122,24 +150,15 @@ export default function MobileTabBar() {
               <Link
                 href={tab.href}
                 aria-current={current ? "page" : undefined}
-                className={`relative flex h-[58px] flex-col items-center justify-center gap-1 text-[9px] tracking-[0.16em] uppercase transition-colors ${tone} ${
+                className={`relative flex h-[50px] flex-col items-center justify-center gap-1 rounded-full text-[9px] tracking-[0.16em] uppercase transition-colors ${tone} ${
                   current ? "" : "hover:text-fg"
                 }`}
               >
+                {/* The current tab sits on the sliding pill above rather than
+                    being marked by colour alone, so it still reads for anyone
+                    who cannot separate the rose from the cream. */}
                 {tab.icon}
                 <span>{tab.label}</span>
-                {/* The current tab is marked at the bar's own edge rather than
-                    by colour alone, so it still reads for anyone who cannot
-                    separate the rose from the cream. */}
-                <span
-                  className={`absolute top-0 h-px w-10 ${
-                    current
-                      ? tab.elite
-                        ? "bg-elite"
-                        : "bg-accent"
-                      : "bg-transparent"
-                  }`}
-                />
               </Link>
             </li>
           );
