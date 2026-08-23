@@ -1,22 +1,31 @@
-import {
-  LOCKUP_ASPECT,
-  LOCKUP_MONOGRAM_PATHS,
-  LOCKUP_RULES,
-  LOCKUP_WORDS,
-  LOCKUP_VIEWBOX,
-} from "./heroLockupShapes";
+import { LOCKUP_ASPECT } from "./heroLockupShapes";
+
+/** Generated from the same path data by scripts/build-lockup-svg.mjs. */
+const LOCKUP_SRC = "/alpoe-london-lockup-mark.svg";
 
 /**
  * The full lockup — AP monogram, frame and both words — painted flat in one
  * colour.
  *
- * The hero draws this same artwork as a mask so its footage plays through the
- * letterforms; wherever the ground is a flat colour there is nothing to see
- * through, so the shapes are simply painted. Sized from a width, since the
- * artwork's own aspect decides the height.
+ * ── Why this is a mask and not inline SVG ──
  *
- * The words stay live `<text>` rather than outlines, which is only possible
- * because this is inline SVG in the page and can reach the webfonts.
+ * It used to render the compound path inline: about 28,000 characters of
+ * geometry. The bar and the footer both draw it, so every document on the site
+ * carried it twice over — and twice again inside the RSC payload, since both
+ * are server-rendered. That is roughly 100KB of identical artwork in every
+ * page, which no browser can cache between pages because it is not a file.
+ *
+ * As a CSS mask it is one 27KB file, fetched once for the whole site and cached
+ * like any other asset. A mask rather than an `<img>` because every call site
+ * passes a colour: the artwork supplies the alpha and `background-color`
+ * supplies the paint, so one file serves the mark in any colour.
+ *
+ * Nothing was outlined to make this work. LOCKUP_WORDS and LOCKUP_RULES have
+ * been empty since ALPOE and LONDON were merged into the compound path, so the
+ * words are geometry and always were — there is no webfont in the mark to lose.
+ *
+ * The hero keeps the inline paths, because it punches the footage through them
+ * with an SVG mask element and needs the geometry in the document to do it.
  */
 export default function LockupMark({
   width,
@@ -29,27 +38,25 @@ export default function LockupMark({
   className?: string;
 }) {
   return (
-    <svg
-      viewBox={LOCKUP_VIEWBOX}
-      className={className}
-      style={{ width, aspectRatio: `${LOCKUP_ASPECT}` }}
-      fill={fill}
+    <span
       aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {LOCKUP_MONOGRAM_PATHS.map((d, i) => (
-        <path key={i} d={d} />
-      ))}
-      {LOCKUP_RULES.map((r, i) => (
-        <rect key={i} {...r} />
-      ))}
-      {LOCKUP_WORDS.map((w) =>
-        w.glyphs.map((g, i) => (
-          <g key={`${w.word}-${i}`} transform={g.transform}>
-            <path d={g.d} />
-          </g>
-        )),
-      )}
-    </svg>
+      className={className}
+      style={{
+        display: "block",
+        width,
+        aspectRatio: `${LOCKUP_ASPECT}`,
+        backgroundColor: fill,
+        maskImage: `url(${LOCKUP_SRC})`,
+        WebkitMaskImage: `url(${LOCKUP_SRC})`,
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        // `contain` rather than the default, so the mark scales to whatever
+        // width it is given instead of being cropped at its natural size.
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        maskPosition: "center",
+        WebkitMaskPosition: "center",
+      }}
+    />
   );
 }
