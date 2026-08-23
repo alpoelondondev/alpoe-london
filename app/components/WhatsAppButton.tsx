@@ -13,7 +13,10 @@ export default function WhatsAppButton() {
       // The badge alone now — no "Chat with us" label, so the cream pill that
       // used to carry it is gone too and the green disc is the whole control.
       // aria-label above is what still says what it does.
-      className="group fixed bottom-8 right-6 z-[100] flex shadow-lg shadow-black/50 rounded-full transition-transform duration-200 hover:scale-105"
+      // `--tab-h` is the phone's bottom tab bar, and zero above that
+      // breakpoint — so this is bottom-8 on a desktop and clears the bar
+      // by the same 12px on a phone, home indicator included.
+      className="group fixed bottom-[calc(var(--tab-h)+12px)] right-6 z-[100] flex shadow-lg shadow-black/50 rounded-full transition-transform duration-200 hover:scale-105 md:bottom-8"
     >
       {/* Turns a half-circle clockwise. `group-active` covers touch, where
           there is no hover to drive it — and on the devices that do fake one, a

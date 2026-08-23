@@ -6,6 +6,7 @@ import "./globals.css";
 // itself on mount, so nothing else needs changing either way.
 // import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
+import MobileTabBar from "./components/MobileTabBar";
 import ScrollToTop from "./components/ScrollToTop";
 import SiteLDJSON from "./components/SiteLDJSON";
 import { SITE, siteUrl } from "@/lib/site";
@@ -166,6 +167,8 @@ export default function RootLayout({
         {/* <Loader /> */}
         <ScrollToTop />
         {children}
+        {/* Phone-only standing navigation; renders nothing above 768px. */}
+        <MobileTabBar />
         {/*
           Vercel Web Analytics. Renders nothing; injects one deferred script
           that reports page views to the project's Analytics tab. Cookieless

@@ -95,6 +95,13 @@
   --color-up: #14803c;
   --color-down: #b3261e;
 
+  /* Sapphire, and the only cool colour on the site. It belongs to Alpoe London
+     Elite alone — the phone's tab bar paints that one tab in it so the way into
+     the programme cannot be mistaken for a third aisle of the shop. 6.9:1 on
+     the page ground, and far enough round the wheel from the rose that the two
+     never read as the same mark in the same bar. */
+  --color-elite: #6c9bff;
+
   /* One face for the entire site. `font-serif` is a historical name — 38 files
      use it for display type — so it stays as the heading token rather than
      being renamed through all of them, but it now resolves to the same family
@@ -139,6 +146,28 @@ html {
 /* Set on <html> by Nav while the bar is off screen. */
 :root.nav-hidden {
   --nav-offset: 0px;
+}
+
+/* The phone's bottom tab bar (MobileTabBar): its 58px row plus whatever the
+   device reserves for a home indicator. Written down once because three things
+   read it — the bar itself, the page's bottom padding below, and the WhatsApp
+   badge, which sits on top of it and has to be lifted clear. Zero above the
+   breakpoint, where the bar is not drawn, so anything using it collapses back
+   to where it was on a desktop. */
+:root {
+  --tab-h: 0px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --tab-h: calc(58px + env(safe-area-inset-bottom));
+  }
+
+  /* The bar is fixed, so it sits over the foot of every page — the last row of
+     a grid, the footer's bottom rule — unless the document ends above it. */
+  body {
+    padding-bottom: var(--tab-h);
+  }
 }
 
 @media (max-width: 767px) {
