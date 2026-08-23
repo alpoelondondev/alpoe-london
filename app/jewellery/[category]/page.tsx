@@ -7,17 +7,16 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import Link from "next/link";
 import BrandHero from "../../components/BrandHero";
 import PageCover from "../../components/PageCover";
-import Filters from "../../components/Filters";
-import ProductGrid from "../../components/ProductGrid";
+import CatalogueGrid from "../../components/CatalogueGrid";
+import ProductGrid, { toGridTiles } from "../../components/ProductGrid";
 import CategoryFilms from "../../components/CategoryFilms";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import { filmsForCategory } from "@/lib/films";
-import { getJewelleryByCategory, photosFirst, productUrl } from "@/lib/products";
+import { getJewelleryByCategory, productUrl } from "@/lib/products";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { JewelleryCategorySlug, Product } from "@/lib/types";
 
 type RouteParams = { category: string };
-type SearchParams = { [k: string]: string | string[] | undefined };
 
 export async function generateStaticParams() {
   return JEWELLERY_CATEGORIES.map((c) => ({ category: c.slug }));
@@ -52,33 +51,17 @@ function materialOptionsFor(products: Product[]) {
   return Array.from(set).sort().map((m) => ({ value: m, label: m }));
 }
 
-function applyFilters(products: Product[], sp: SearchParams) {
-  const material = typeof sp.material === "string" ? sp.material : undefined;
-  const sort = typeof sp.sort === "string" ? sp.sort : "featured";
-
-  let out = products.slice();
-  if (material) out = out.filter((p) => p.materials === material);
-
-  const tiebreak =
-    sort === "a-z"
-      ? (a: Product, b: Product) => a.title.localeCompare(b.title)
-      : sort === "z-a"
-        ? (a: Product, b: Product) => b.title.localeCompare(a.title)
-        : (a: Product, b: Product) => Number(b.featured) - Number(a.featured);
-  out.sort((a, b) => photosFirst(a, b) || tiebreak(a, b));
-  return out;
-}
-
+/* Filtered in the browser now — see CatalogueGrid, and the note on the brand
+   page: reading `searchParams` here made every category page a per-visit
+   render. */
 export default async function JewelleryCategoryPage(
-  props: { params: Promise<RouteParams>; searchParams: Promise<SearchParams> },
+  props: { params: Promise<RouteParams> },
 ) {
   const { category } = await props.params;
-  const sp = await props.searchParams;
   const c = jewelleryCategoryBySlug(category);
   if (!c) notFound();
 
   const all = getJewelleryByCategory(c.slug as JewelleryCategorySlug);
-  const filtered = applyFilters(all, sp);
 
   // Where we have workshop footage, the films are the listing: they show the
   // real piece and enquire directly, which the unphotographed reference rows
@@ -94,7 +77,7 @@ export default async function JewelleryCategoryPage(
       // rather than all pointing back at this one. See collectionLd.
       products: films.length
         ? films.map((f) => ({ title: f.title }))
-        : filtered.map((p) => ({ title: p.title, url: productUrl(p) })),
+        : all.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
   );
 
@@ -163,16 +146,18 @@ export default async function JewelleryCategoryPage(
                 is the index beneath it, and it is how those pages become
                 reachable at all.
               */}
-              {filtered.length > 0 && (
+              {all.length > 0 && (
                 <div className="mt-14">
-                  <ProductGrid products={filtered} />
+                  <ProductGrid products={all} />
                 </div>
               )}
             </>
           ) : (
             <>
-              <Filters materialOptions={materialOptionsFor(all)} />
-              <ProductGrid products={filtered} />
+              <CatalogueGrid
+                tiles={toGridTiles(all)}
+                materialOptions={materialOptionsFor(all)}
+              />
             </>
           )}
         </section>

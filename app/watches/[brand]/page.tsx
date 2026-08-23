@@ -5,16 +5,15 @@ import Footer from "../../components/Footer";
 import WhatsAppButton from "../../components/WhatsAppButton";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import BrandHero from "../../components/BrandHero";
-import Filters from "../../components/Filters";
-import ProductGrid from "../../components/ProductGrid";
+import CatalogueGrid from "../../components/CatalogueGrid";
+import { toGridTiles } from "../../components/ProductGrid";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
-import { getWatchesByBrand, photosFirst, productUrl } from "@/lib/products";
+import { getWatchesByBrand, productUrl } from "@/lib/products";
 import { getCatalogueProductsByBrand, referenceKey } from "@/lib/catalogue";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
 import type { WatchBrandSlug, Product } from "@/lib/types";
 
 type RouteParams = { brand: string };
-type SearchParams = { [k: string]: string | string[] | undefined };
 
 export async function generateStaticParams() {
   return WATCH_BRANDS.map((b) => ({ brand: b.slug }));
@@ -77,29 +76,16 @@ function mergeListings(curated: Product[], catalogue: Product[]): Product[] {
   return [...unique, ...catalogue];
 }
 
-function applyFilters(products: Product[], sp: SearchParams) {
-  const model = typeof sp.model === "string" ? sp.model : undefined;
-  const sort = typeof sp.sort === "string" ? sp.sort : "featured";
-
-  let out = products.slice();
-  if (model) out = out.filter((p) => p.model === model);
-
-  const tiebreak =
-    sort === "a-z"
-      ? (a: Product, b: Product) => a.title.localeCompare(b.title)
-      : sort === "z-a"
-        ? (a: Product, b: Product) => b.title.localeCompare(a.title)
-        : (a: Product, b: Product) => Number(b.featured) - Number(a.featured);
-  out.sort((a, b) => photosFirst(a, b) || tiebreak(a, b));
-
-  return out;
-}
-
-export default async function BrandPage(
-  props: { params: Promise<RouteParams>; searchParams: Promise<SearchParams> },
-) {
+/*
+ * Filtering and sorting moved into the browser — see CatalogueGrid.
+ *
+ * This page read `searchParams` to do it here, and reading `searchParams` opts
+ * the whole route out of static rendering: eight brand pages, every one of them
+ * linked from the top bar, rendering in a serverless function on every visit to
+ * apply a dropdown. The order below is the default the grid opens on.
+ */
+export default async function BrandPage(props: { params: Promise<RouteParams> }) {
   const { brand } = await props.params;
-  const sp = await props.searchParams;
   const b = watchBrandBySlug(brand);
   if (!b) notFound();
 
@@ -107,7 +93,6 @@ export default async function BrandPage(
     getWatchesByBrand(b.slug as WatchBrandSlug),
     await getCatalogueProductsByBrand(b.slug as WatchBrandSlug),
   );
-  const filtered = applyFilters(all, sp);
   // The model filter lists what is actually on the page, not the taxonomy's
   // three headline lines — the sheet names models the taxonomy never will.
   const modelOptions = [...new Set(all.map((p) => p.model).filter(Boolean))]
@@ -119,7 +104,7 @@ export default async function BrandPage(
       name: `${b.name} Watches`,
       description: b.heritage,
       path: `/watches/${b.slug}`,
-      products: filtered.map((p) => ({ title: p.title, url: productUrl(p) })),
+      products: all.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
   );
 
@@ -148,8 +133,7 @@ export default async function BrandPage(
           />
         </section>
         <section className="px-[52px] pb-20 max-md:px-6">
-          <Filters modelOptions={modelOptions} />
-          <ProductGrid products={filtered} />
+          <CatalogueGrid tiles={toGridTiles(all)} modelOptions={modelOptions} />
         </section>
       </main>
       <Footer />
