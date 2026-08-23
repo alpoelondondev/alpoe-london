@@ -1,13 +1,7 @@
 import Link from "next/link";
+import type { TickerItem } from "@/lib/metal-prices";
 
-export type TickerItem = {
-  /** What the figure is — "Gold", "18ct". */
-  label: string;
-  /** The figure itself, already formatted. */
-  value: string;
-  /** The unit it is quoted in — "/oz", "/g". */
-  unit?: string;
-};
+export type { TickerItem };
 
 /**
  * The scroll, carried by the component rather than the global sheet.

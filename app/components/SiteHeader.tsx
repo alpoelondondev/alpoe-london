@@ -1,48 +1,24 @@
 import Nav from "./Nav";
-import type { TickerItem } from "./MarketTicker";
 import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
-import {
-  getMetalPrices,
-  formatGbp,
-  perGram,
-  isSpotMarketOpen,
-  GOLD_CARATS,
-} from "@/lib/metal-prices";
+import { SEED_QUOTE, tickerItems } from "@/lib/metal-prices";
 
 /**
- * The bar's announcement strip reads off the same spot feed as /metal-prices —
- * one cached upstream call per five-minute window, shared by every page, so
- * the strip and the market sheet can never disagree with each other.
+ * The bar's announcement strip is filled in by the browser, not by this
+ * component.
  *
- * Ounces for the four metals, then the two carats a counter actually quotes
- * per gram. If the fetch is down this returns the last figures we held, and
- * the strip says so.
+ * It used to await the live spot feed here. `SiteHeader` renders on every route
+ * on the site, so the feed's five-minute cache became a five-minute revalidate
+ * on all 535 pages, and each one re-rendered in a serverless function the first
+ * time it was requested after its window expired. Five numbers in a scrolling
+ * strip were the reason nothing on the site could be served as plain static
+ * HTML. See app/api/metal-prices/route.ts.
+ *
+ * What is passed down is the seed: the last figures we recorded, formatted
+ * exactly as the live ones will be, so the strip opens at its right width and
+ * nothing moves when the real quote arrives.
  */
-async function tickerItems(): Promise<{ items: TickerItem[]; stale: boolean }> {
-  const quote = await getMetalPrices();
-  const items: TickerItem[] = quote.prices.map((p) => ({
-    label: p.name,
-    value: formatGbp(p.priceGbp),
-    unit: "/oz",
-  }));
-
-  const gold = quote.prices.find((p) => p.symbol === "XAU");
-  if (gold) {
-    for (const carat of GOLD_CARATS) {
-      if (carat.label !== "18ct" && carat.label !== "9ct") continue;
-      items.push({
-        label: `${carat.label} Gold`,
-        value: formatGbp(perGram(gold.priceGbp) * carat.fineness),
-        unit: "/g",
-      });
-    }
-  }
-
-  return { items, stale: quote.stale || !isSpotMarketOpen() };
-}
-
-export default async function SiteHeader() {
-  const { items: ticker, stale: tickerStale } = await tickerItems();
+export default function SiteHeader() {
+  const { items: ticker } = tickerItems(SEED_QUOTE);
   const suggestions = [
     ...WATCH_BRANDS.map((b) => ({
       name: b.name,
@@ -56,10 +32,6 @@ export default async function SiteHeader() {
     })),
   ];
   return (
-    <Nav
-      suggestions={suggestions}
-      ticker={ticker}
-      tickerStale={tickerStale}
-    />
+    <Nav suggestions={suggestions} ticker={ticker} />
   );
 }

@@ -23,10 +23,17 @@ const METALS: { symbol: MetalSymbol; name: string }[] = [
 ];
 
 /**
- * Seed figures, recorded 16 Aug 2026. Only ever shown if the very first fetch
- * on a cold server fails — once any fetch succeeds this is replaced in memory.
+ * Seed figures, recorded 16 Aug 2026.
+ *
+ * Two jobs now. It is still the fallback if the very first fetch on a cold
+ * server fails, and it is also what the announcement strip paints before the
+ * browser has fetched anything: the strip used to be rendered on the server
+ * from a live quote, which gave every page on the site a five-minute
+ * revalidate and put a serverless render behind every stale page view. The
+ * seed holds the strip's shape and size so nothing moves when the live figures
+ * land a moment later.
  */
-const SEED: MetalQuote = {
+export const SEED_QUOTE: MetalQuote = {
   prices: [
     { symbol: "XAU", name: "Gold", priceUsd: 4377.6, priceGbp: 3234.66 },
     { symbol: "XAG", name: "Silver", priceUsd: 64.83, priceGbp: 47.89 },
@@ -38,7 +45,7 @@ const SEED: MetalQuote = {
   stale: true,
 };
 
-let lastGood: MetalQuote = SEED;
+let lastGood: MetalQuote = SEED_QUOTE;
 
 /**
  * Live spot in USD per troy ounce, converted to GBP.
@@ -178,4 +185,43 @@ export function formatTimestamp(iso: string) {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+/** One item on the announcement strip. */
+export type TickerItem = {
+  /** What the figure is — "Gold", "18ct". */
+  label: string;
+  /** The figure itself, already formatted. */
+  value: string;
+  /** The unit it is quoted in — "/oz", "/g". */
+  unit?: string;
+};
+
+/**
+ * A quote as the strip reads it: ounces for the four metals, then the two
+ * carats a counter actually quotes per gram.
+ *
+ * Pure, so the server can paint the seed with it and the browser can re-run it
+ * on the live figures without the two disagreeing about rounding.
+ */
+export function tickerItems(quote: MetalQuote): { items: TickerItem[]; stale: boolean } {
+  const items: TickerItem[] = quote.prices.map((p) => ({
+    label: p.name,
+    value: formatGbp(p.priceGbp),
+    unit: "/oz",
+  }));
+
+  const gold = quote.prices.find((p) => p.symbol === "XAU");
+  if (gold) {
+    for (const carat of GOLD_CARATS) {
+      if (carat.label !== "18ct" && carat.label !== "9ct") continue;
+      items.push({
+        label: `${carat.label} Gold`,
+        value: formatGbp(perGram(gold.priceGbp) * carat.fineness),
+        unit: "/g",
+      });
+    }
+  }
+
+  return { items, stale: quote.stale || !isSpotMarketOpen() };
 }

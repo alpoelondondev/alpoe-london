@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import SearchTrigger from "./SearchTrigger";
-import MarketTicker, { type TickerItem } from "./MarketTicker";
+import LiveTicker from "./LiveTicker";
+import type { TickerItem } from "@/lib/metal-prices";
 import LockupMark from "./LockupMark";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
@@ -76,12 +77,13 @@ const LINKS: { label: string; href: string; hidden?: boolean }[] = [
 export default function Nav({
   suggestions,
   ticker,
-  tickerStale,
 }: {
   suggestions: Suggestion[];
-  /** Live spot for the announcement strip; omitted, the strip is not drawn. */
+  /**
+   * The strip's opening figures; omitted, the strip is not drawn. Whether they
+   * are live is LiveTicker's business, not the server's — see LiveTicker.
+   */
   ticker?: TickerItem[];
-  tickerStale?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   // See useDeferredUntilIdle: three.js waits until the page has settled.
@@ -272,7 +274,7 @@ export default function Nav({
             border rather than floating above it. */}
         {ticker?.length ? (
           <div className="-mx-[52px] -mb-4 mt-3 max-md:-mx-6 max-md:-mb-3">
-            <MarketTicker items={ticker} stale={tickerStale} />
+            <LiveTicker seed={ticker} />
           </div>
         ) : null}
       </nav>
