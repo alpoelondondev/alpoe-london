@@ -20,14 +20,14 @@ The 84-ref mapping lives **inline** in `scripts/build-rolex-catalogue.mjs` as a 
 Every reference that has photography lives at:
 
 ```
-public/products/rolex/{ref-lowercase}/1.png, 2.png, 3.png, …
+public/products/rolex/{ref-lowercase}/01-<what-it-is>.webp, 02-…, 03-…, …
 ```
 
 The build script auto-discovers files in each folder and builds the `images` column. References with no folder (or empty folders) emit empty `images` and the PDP shows the "High-resolution photography on request" placeholder from `app/components/ProductGallery.tsx`.
 
 To add images to a reference:
 
-1. Drop PNGs into `public/products/rolex/{ref-lowercase}/` named `1.png`, `2.png`, etc.
+1. Drop PNGs into `public/products/rolex/{ref-lowercase}/` named `01-<what-it-is>.png`, `02-…`, etc.
 2. Re-run `node scripts/build-rolex-catalogue.mjs`.
 3. Commit the changes to `data/products.csv`.
 

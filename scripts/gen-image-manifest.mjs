@@ -17,7 +17,7 @@ const VARIANTS_TSV = join(ROOT, "data", "variant-images.tsv");
 const IMG_RE = /\.(png|jpe?g|webp|avif)$/i;
 
 // Product images are served from the assets bucket (lib/assets.ts) with a
-// year-long immutable cache header, so a re-exported 1.webp would otherwise be
+// year-long immutable cache header, so a re-exported file would otherwise be
 // invisible to anyone who had seen the old one. Every path therefore carries a
 // content hash as a query string — the bucket ignores it, the browser does not.
 const version = (file) =>
@@ -114,7 +114,7 @@ export const IMAGE_MANIFEST: Record<string, string[]> = ${JSON.stringify(ordered
 // Maps "<brandSlug>/<reference>/<variant>" to the one image for that configuration.
 export const VARIANT_IMAGES: Record<string, string> = ${JSON.stringify(vOrdered, null, 2)};
 
-// Maps a bare "/products/…/1.webp" path to its versioned form.
+// Maps a bare "/products/…/01-submariner-date.webp" path to its versioned form.
 export const IMAGE_VERSIONS: Record<string, string> = ${JSON.stringify(byPath, null, 2)};
 `;
 

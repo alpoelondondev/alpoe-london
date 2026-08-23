@@ -56,12 +56,14 @@ export default function ProductTile({
           fill
           draggable={false}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          // Pack shots are transparent cut-outs of differing heights (Rolex 800x1190,
-          // Patek 800x1121). object-cover would crop the bracelet off the taller
-          // ones; contain sits the whole watch on the tile's own background. The
-          // padding is what keeps brands looking alike: Rolex's renders carry
-          // their own margin, Richard Mille's run to the very edge of the file.
-          className="object-contain p-6 transition-transform duration-500 group-hover:scale-[1.04]"
+          // Pack shots are transparent cut-outs, and every one of them is now
+          // built as a 4:5 canvas with the watch mounted at a fixed fraction of
+          // it (scripts/build-product-images.py) — so the frame below matches
+          // the file and contain neither crops nor letterboxes. The margin
+          // comes from the file, which is what keeps the brands looking alike;
+          // the padding here is only a hairline against the tile border, and
+          // more of it would just shrink every watch again.
+          className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.04]"
           priority={priority}
         />
         ) : (

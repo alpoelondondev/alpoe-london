@@ -52,7 +52,7 @@ Open `data/products.csv` in any spreadsheet app (Numbers, Excel, Google Sheets) 
 | `year` | Production year | `2024` |
 | `condition` | `Unworn`, `Pre-owned`, `Vintage`, or `New` for jewellery | `Unworn` |
 | `bracelets` | Pipe-separated bracelet options (Rolex). Empty for non-Rolex. | `Oyster\|Jubilee` |
-| `images` | Pipe-separated image paths | `/products/rolex/126610lv/1.png\|/products/rolex/126610lv/2.png` |
+| `images` | Pipe-separated image paths | `/products/rolex/126610lv/01-submariner-green.webp\|/products/rolex/126610lv/02-submariner-green-clasp.webp` |
 | `featured` | `true` to highlight on the homepage | `false` |
 | `meta_title` | SEO title | |
 | `meta_description` | SEO description | |
@@ -92,6 +92,13 @@ There is no "sold out" or "sourceable" state any more: a listing is either on th
 >     rclone copy public/products r2:alpoe-ring-renders/site/products \
 >       --header-upload "Cache-Control: public, max-age=31536000, immutable" --s3-no-check-bucket
 >
+> Every file is normalised on the way out: the watch is cut from its backdrop (a shot on white
+> paper is flood-filled away from the edges), trimmed to what is actually visible — the Rolex
+> renders' soft shadow is deliberately not counted — and re-mounted centred on a 4:5 canvas at a
+> fixed size. That is why the brands look alike in one grid, and why `object-cover` on the product
+> gallery no longer crops: the file is the same shape as the frame. Changing `CANVAS_RATIO`,
+> `CONTENT_W/H` or `ALPHA_FLOOR` means rebuilding everything (`all --force`) and re-uploading.
+>
 > The manifest stamps every path with `?v=<hash>`, so replacing a file and re-uploading is safe.
 > Listings the Google Sheet does not carry yet go in `data/catalogue-extra.csv` (same four columns);
 > a row there disappears automatically once the sheet has the same brand / reference / variant.
@@ -101,7 +108,7 @@ There is no "sold out" or "sourceable" state any more: a listing is either on th
 
 You already have 142 Rolex press-kit images organised under `public/products/rolex/{ref}/`. To add more:
 
-1. Get the new images. Naming should be `1.png`, `2.png`, `3.png` per reference.
+1. Get the new images. Name them `01-<what-it-is>.webp`, `02-…` per reference — the number orders the set (01 is the hero) and the rest says which configuration it is.
 2. Drop them into `public/products/rolex/{ref-lowercase}/`. If the folder doesn't exist, create it.
 3. From the project root, run:
    ```
@@ -196,7 +203,7 @@ If you need to revert a bad deploy: `git revert HEAD && git push`.
 
 - **Format**: PNG preferred (transparency); JPG fine for product photography.
 - **Size**: 1600×1600 pixels max. Anything larger gets resampled by Next.js anyway.
-- **Naming**: lowercase, hyphens, no spaces. `1.png`, `2.png`, etc., for multi-angle.
+- **Naming**: lowercase, hyphens, no spaces, `NN-` first. `01-royal-oak-blue-dial.webp`, `02-…` for multi-angle.
 - **Where**: `public/products/{brand-or-category}/{ref-or-slug}/`. The path you put in the CSV must exactly match the actual file path.
 - **What not to do**: don't hot-link images from other websites. Always host your own.
 

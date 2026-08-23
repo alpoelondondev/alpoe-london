@@ -115,7 +115,7 @@ function toProduct(row: Record<string, string>): Product | null {
   // Everything listed is held in stock — there is no sourced-to-order tier.
   const stockState: StockState = "in_stock";
 
-  // The sheet names a bare "/products/…/1.webp"; resolve it to the versioned
+  // The sheet names a bare "/products/…/<nn>-<name>.webp"; resolve it to the versioned
   // path the manifest knows (so a re-exported image busts the CDN cache) and
   // then to wherever the assets bucket is. Anything the manifest has not seen
   // — jewellery shots under /public, say — passes through unchanged.
