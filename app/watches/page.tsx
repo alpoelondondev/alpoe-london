@@ -59,7 +59,7 @@ export default function WatchesIndex() {
         <BrandHero
           eyebrow="Watches"
           title="Luxury Watches, Authenticated & In Stock"
-          copy="Every major Swiss maison — Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega, Breitling, IWC, Panerai and Vacheron Constantin. Every piece held in stock at our Hatton Garden showroom."
+          copy="Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega and Breitling. Every piece held in stock at our Hatton Garden showroom, and anything we do not hold we can source."
         />
 
         <section className="px-[52px] py-8 max-md:px-6">

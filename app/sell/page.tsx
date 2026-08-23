@@ -161,9 +161,9 @@ export default function SellPage() {
               ))}
             </ul>
             <p className="mt-6 t-copy">
-              Selling something else — Breitling, IWC, Panerai, Richard Mille,
-              Hublot, Vacheron Constantin, or a piece of jewellery? Use the form
-              below; we buy all of it.
+              Selling something else — Breitling, Richard Mille, Hublot, IWC,
+              Panerai, Vacheron Constantin, or a piece of jewellery? Use the form
+              below; we buy all of it, whether or not we list it.
             </p>
           </ScrollReveal>
         </section>

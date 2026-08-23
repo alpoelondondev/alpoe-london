@@ -62,27 +62,6 @@ export const WATCH_BRANDS: {
       "Instruments for professionals since 1884. Navitimer, Chronomat and Superocean, held in stock.",
     models: ["Navitimer", "Chronomat", "Superocean", "Avenger", "Premier"],
   },
-  {
-    slug: "iwc",
-    name: "IWC",
-    heritage:
-      "International Watch Company, Schaffhausen. Engineering-led design — Portugieser, Pilot's, Portofino and Ingenieur, held in stock.",
-    models: ["Portugieser", "Pilot's Watch", "Portofino", "Ingenieur", "Aquatimer"],
-  },
-  {
-    slug: "panerai",
-    name: "Panerai",
-    heritage:
-      "Italian design, Swiss precision, maritime heritage. Luminor and Radiomir references, held in stock.",
-    models: ["Luminor", "Radiomir", "Submersible", "Luminor Due"],
-  },
-  {
-    slug: "vacheron-constantin",
-    name: "Vacheron Constantin",
-    heritage:
-      "Founded in 1755 — the oldest continuously operating watch manufacturer. Overseas, Patrimony and Historiques, held in stock.",
-    models: ["Overseas", "Patrimony", "Traditionnelle", "Historiques", "Fiftysix"],
-  },
 ];
 
 export const JEWELLERY_CATEGORIES: {

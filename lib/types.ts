@@ -10,10 +10,7 @@ export type WatchBrandSlug =
   | "cartier"
   | "hublot"
   | "omega"
-  | "breitling"
-  | "iwc"
-  | "panerai"
-  | "vacheron-constantin";
+  | "breitling";
 
 export type JewelleryCategorySlug =
   | "engagement-rings"

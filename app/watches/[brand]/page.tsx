@@ -39,7 +39,7 @@ export async function generateMetadata(
   const stem = `${b.name} Watches for Sale`;
   // 60 characters is what Google renders; the layout template spends 15 of
   // them on "| Alpoe London". Add model names only while they fit, so
-  // "Rolex" gets two and "Vacheron Constantin" gets none.
+  // "Rolex" gets two and "Audemars Piguet" gets one.
   const room = 60 - " | Alpoe London".length - stem.length - " — ".length;
   const models: string[] = [];
   for (const m of b.models) {

@@ -13,6 +13,22 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "*.r2.dev" },
     ],
   },
+  /**
+   * IWC, Panerai and Vacheron Constantin were retired from the catalogue on
+   * 23 Aug 2026. Each had a brand page and one listing, both in the sitemap
+   * and therefore possibly in an index or somebody's history, so the addresses
+   * answer with a redirect to the brands we do carry rather than a 404.
+   * Permanent, because they are not coming back — if one does, delete its
+   * entry here before adding the brand to lib/taxonomy.ts, or the redirect
+   * will shadow the page.
+   */
+  async redirects() {
+    return ["iwc", "panerai", "vacheron-constantin"].map((brand) => ({
+      source: `/watches/${brand}/:path*`,
+      destination: "/watches",
+      permanent: true,
+    }));
+  },
 };
 
 export default nextConfig;

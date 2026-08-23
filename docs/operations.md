@@ -160,7 +160,7 @@ For Patek, AP, Cartier, Omega, etc., **edit `data/products.csv` directly** — n
 4. For images: drop them into `public/products/{brand-slug}/{slug}/` (e.g. `public/products/patek-philippe/patek-nautilus-5711/1.jpg`). Reference them in the `images` column with `|` separators.
 5. Save, commit.
 
-The brand must already exist in `lib/taxonomy.ts`. Currently supported: Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega, Breitling, IWC, Panerai, Vacheron Constantin. To add a brand not on that list, edit `lib/taxonomy.ts` first.
+The brand must already exist in `lib/taxonomy.ts`. Currently supported: Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega, Breitling. To add a brand not on that list, edit `lib/taxonomy.ts` first.
 
 ---
 
