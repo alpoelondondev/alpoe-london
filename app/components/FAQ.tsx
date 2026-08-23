@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import type { FaqItem } from "@/lib/faqs";
@@ -75,6 +76,19 @@ function FaqCard({ item }: { item: FaqItem }) {
           <p className="t-copy px-6 pb-6">
             {item.answer}
           </p>
+          {/* The long form, for the answers that have one. Outside the <p> the
+              schema quotes, so what Google is given as the answer is the answer
+              rather than an invitation to click. */}
+          {item.href ? (
+            <p className="px-6 pb-6 -mt-3">
+              <Link
+                href={item.href}
+                className="t-eyebrow font-semibold text-accent underline underline-offset-4 transition hover:text-accent-deep"
+              >
+                {item.linkLabel ?? "Read the full guide"} &rarr;
+              </Link>
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

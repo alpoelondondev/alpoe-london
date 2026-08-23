@@ -1,4 +1,19 @@
-export type FaqItem = { question: string; answer: string };
+export type FaqItem = {
+  question: string;
+  answer: string;
+  /**
+   * A guide this answer is the short version of.
+   *
+   * The answer text stays complete on its own — it is what the FAQ schema
+   * carries, and a schema answer that ends in "read more" answers nothing. The
+   * link is an extra affordance under it for the reader who wants the long
+   * form, which is how the ring pages send people to the size chart and the
+   * laboratory-grown comparison without a second row of promo cards.
+   */
+  href?: string;
+  /** What the link calls itself. Defaults to "Read the full guide". */
+  linkLabel?: string;
+};
 
 const FAQS = {
   prices: {
@@ -35,6 +50,8 @@ const FAQS = {
     question: "Do you work with laboratory-grown as well as natural diamonds?",
     answer:
       "Both. Laboratory-grown diamonds have essentially the same properties as natural stones and typically let you go significantly larger for the same budget. Natural diamonds hold their rarity and resale position. We will show you the same design in both so you can compare in person.",
+    href: "/guides/natural-vs-lab-grown-diamonds",
+    linkLabel: "Laboratory-grown vs natural diamonds",
   },
   designProcess: {
     question: "What happens after I send my enquiry?",
@@ -126,6 +143,46 @@ const FAQS = {
     answer:
       "Yes, and we would rather you did. Come to the Hatton Garden counter and we will put the same design in front of you with a lab stone and a natural stone in it. Most people decide in about a minute once they are looking at both.",
   },
+  ringSize: {
+    question: "How do I find out my ring size?",
+    answer:
+      "Measure the finger it will actually be worn on, at the end of the day when hands are largest, and measure the same finger twice on different days. UK sizes run A to Z, so a number from an American or European chart has to be converted rather than used as it stands. Our size guide has the full UK chart in millimetres, three ways to measure at home, the average UK sizes for men and women, and four ways to work out somebody else's size without asking them.",
+    href: "/ring-size-guide",
+    linkLabel: "Ring size guide and UK size chart",
+  },
+  ringResize: {
+    question: "Can a ring be resized later?",
+    answer:
+      "Most can, usually a size or two either way, and we will tell you what is involved before you commission anything. The exception is a full eternity band: the stones run the whole way round, so the spacing cannot be altered and the ring cannot be sized. That is exactly why the measurement matters most on the rings that are hardest to change.",
+  },
+  ringWeddingBand: {
+    question: "Which wedding band goes with my engagement ring?",
+    answer:
+      "It depends on the shape of the engagement ring. Many take a plain straight band beside them, and a few settings will not sit flush against one at all, so the band is cut to fit around the ring instead. Bring the engagement ring in, or start from our pairing guide, which covers the profile, the width and the metal to choose beside a stone you already own.",
+    href: "/guides/wedding-bands",
+    linkLabel: "What wedding band goes with your ring",
+  },
+  ringHallmark: {
+    question: "Are your rings hallmarked?",
+    answer:
+      "Yes. Every ring is struck at the London Assay Office, whose counter is on Greville Street, a few doors from our own. The hallmark is independent of us: it certifies the fineness of the metal, who sponsored the piece and where it was tested, which is why it is worth understanding before you buy anything in precious metal.",
+    href: "/hallmarking",
+    linkLabel: "What a British hallmark certifies",
+  },
+  ringReadyNow: {
+    question: "Do you have rings that are ready now?",
+    answer:
+      "Yes. Alongside the made-to-order styles we hold a set of finished engagement rings, which only need sizing before they go out — far sooner than a commission. Ask about any of them and we will confirm what is available in your size.",
+    href: "/rings/ready-to-ship",
+    linkLabel: "See the ready to ship rings",
+  },
+  ringDesignOnline: {
+    question: "Can I design the ring myself?",
+    answer:
+      "Yes. The ring builder takes you through the band style, the diamond and its shape, the setting, the metal and the UK size, and shows the ring as you change it. Whatever you land on comes to us as a starting point rather than a finished order — we model the exact ring in CAD and send it back to you with the price before anything is cast.",
+    href: "/ring-builder",
+    linkLabel: "Open the ring builder",
+  },
   appointmentNeeded: {
     question: "Do I need an appointment to visit?",
     answer:
@@ -178,6 +235,17 @@ export const JEWELLERY_FAQS: FaqItem[] = [
   FAQS.certification,
   FAQS.prices,
   FAQS.showroom,
+];
+
+export const RING_FAQS: FaqItem[] = [
+  FAQS.ringSize,
+  FAQS.labGrown,
+  FAQS.ringWeddingBand,
+  FAQS.ringResize,
+  FAQS.ringReadyNow,
+  FAQS.ringDesignOnline,
+  FAQS.ringHallmark,
+  FAQS.prices,
 ];
 
 export const BESPOKE_FAQS: FaqItem[] = [
