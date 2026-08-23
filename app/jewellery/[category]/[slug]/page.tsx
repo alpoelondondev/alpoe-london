@@ -22,6 +22,9 @@ import type { JewelleryCategorySlug } from "@/lib/types";
 
 type RouteParams = { category: string; slug: string };
 
+/* Every listed piece is prerendered; anything else is not one. */
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const out: RouteParams[] = [];
   for (const c of JEWELLERY_CATEGORIES) {

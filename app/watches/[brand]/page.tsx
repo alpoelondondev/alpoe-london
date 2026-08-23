@@ -15,6 +15,9 @@ import type { WatchBrandSlug, Product } from "@/lib/types";
 
 type RouteParams = { brand: string };
 
+/* Eight brands, all prerendered; anything else is not a brand. */
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return WATCH_BRANDS.map((b) => ({ brand: b.slug }));
 }

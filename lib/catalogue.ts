@@ -8,30 +8,33 @@ import { asset } from "./assets";
 import { getDescription, getModelOverview, getReferenceResearch } from "./research";
 import { truncateForSerp } from "./seo";
 
-// Live watch catalogue, driven by the published Google Sheet.
+// The watch catalogue, read from data/catalogue.csv.
 // Columns: Brand, Sub-Collection, Variant / Name, Reference No.
 // The sheet holds no images — photos are matched by reference number against the
 // build-time IMAGE_MANIFEST (see scripts/gen-image-manifest.mjs).
+//
+// ── Why this is a file and not a fetch ──
+//
+// It used to fetch the published Google Sheet with `revalidate: 600`, and fall
+// back to a committed snapshot. Three things had already made that fetch
+// pointless and one made it harmful.
+//
+// Pointless: the build phase deliberately never called it (prerendering ~400
+// pages should not make several hundred calls to somebody else's server), and
+// with the site now fully static there is no revalidation pass either — so in
+// production the snapshot WAS the catalogue and the live sheet was a fiction.
+//
+// Harmful: `dynamicParams` defaults to true, so any URL shaped like a watch
+// page but not in generateStaticParams — a stale link, a crawler guessing —
+// rendered on demand, and that render called Google. The one path where the
+// fetch could still fire was the one where it could only cost us.
+//
+// So the file is the source, and `pnpm refresh:catalogue` is how the sheet gets
+// into it: run it, look at the diff, commit. Editing the sheet no longer
+// changes the site without anyone seeing what changed.
 
-const CSV_URL =
-  process.env.NEXT_PUBLIC_CATALOGUE_CSV_URL ??
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTU-BOtAETP_4U3y1C0g-2Tb4QSFj9GUAWOBddqJeByRQyO0gl5aFVSc8m_9cUtwBN4CdmiLZT1PVGC/pub?output=csv";
+const SOURCE_PATH = join(process.cwd(), "data", "catalogue.csv");
 
-// How often the live sheet is re-fetched (seconds). Edits appear within this window.
-const REVALIDATE_SECONDS = 600;
-
-const FALLBACK_PATH = join(process.cwd(), "data", "catalogue-fallback.csv");
-
-/**
- * Listings the sheet does not carry yet.
- *
- * Same four columns as the sheet. A row here behaves exactly like a sheet row
- * — research-backed page, reference-matched photo, listing tile — and is
- * dropped the moment the sheet gains a row with the same brand, reference and
- * variant name, so copying these into the sheet is safe and leaves nothing
- * showing twice. Added 22 Aug 2026 for the 64 references we hold photography
- * and verified specifications for but which were never on the sheet.
- */
 const EXTRA_PATH = join(process.cwd(), "data", "catalogue-extra.csv");
 
 export type CatalogueItem = {
@@ -99,81 +102,12 @@ function parseCsv(raw: string): string[][] {
   return rows;
 }
 
-/**
- * How long to wait for Google before giving up and using the snapshot.
- *
- * `fetch` has no default timeout, and without one a slow response does not
- * fail — it hangs. During `next build` that turned into real breakage: around
- * 400 watch pages prerender across seven worker processes, each of which pulls
- * the sheet, and Google throttling seven near-simultaneous requests was enough
- * to push individual pages past Next's 60-second prerender deadline. The build
- * retried and eventually completed, but a slower CI machine or a worse day at
- * Google would have failed it outright — for a file we already have a copy of
- * on disk.
- *
- * Eight seconds is far longer than the sheet has ever legitimately taken and
- * far shorter than the deadline it was blowing through.
- */
-const SHEET_TIMEOUT_MS = 8_000;
+/** Read once per process — the file cannot change under a running server. */
+let raw: string | null = null;
 
-/**
- * One fetch per process, not one per page.
- *
- * Next's own fetch cache should collapse these, but "should" is doing a lot of
- * work across seven workers and several hundred pages, and the failure mode is
- * a build that dies. Holding the promise rather than the result means callers
- * arriving mid-flight await the same request instead of starting another.
- */
-let rawPromise: Promise<string> | null = null;
-
-/**
- * Never call Google during `next build`.
- *
- * An 8-second AbortSignal plus per-process memoisation cut the prerender
- * timeouts sharply but did not remove them — they came back on a later run
- * against a different brand, which means the abort is not reliably firing
- * through Next's fetch-cache wrapper, or the stall is not purely in the fetch.
- * Rather than keep guessing at the mechanism, remove the dependency: a build
- * that prerenders ~400 pages should not make several hundred third-party HTTP
- * calls to do it, and we already ship a snapshot of exactly this file.
- *
- * Nothing is lost. Every page carries `revalidate`, so the first request after
- * a deploy refreshes from the live sheet and the snapshot is only ever the
- * starting state. The trade is a few minutes of staleness immediately after a
- * deploy in exchange for a build that cannot be broken by somebody else's
- * server.
- */
-function isBuildPhase(): boolean {
-  return process.env.NEXT_PHASE === "phase-production-build";
-}
-
-async function fetchRaw(): Promise<string> {
-  if (isBuildPhase()) return readFileSync(FALLBACK_PATH, "utf8");
-  try {
-    const res = await fetch(CSV_URL, {
-      next: { revalidate: REVALIDATE_SECONDS },
-      signal: AbortSignal.timeout(SHEET_TIMEOUT_MS),
-    });
-    if (!res.ok) throw new Error(`sheet fetch failed: ${res.status}`);
-    const text = await res.text();
-    if (!text.includes(",")) throw new Error("sheet returned unexpected content");
-    return text;
-  } catch (err) {
-    // Never let a sheet hiccup blank the catalogue — fall back to the bundled snapshot.
-    console.error("[catalogue] live sheet unavailable, using bundled snapshot:", err);
-    return readFileSync(FALLBACK_PATH, "utf8");
-  }
-}
-
-async function loadRaw(): Promise<string> {
-  if (!rawPromise) {
-    rawPromise = fetchRaw().catch((err) => {
-      // A rejected cached promise would poison every later call, so clear it.
-      rawPromise = null;
-      throw err;
-    });
-  }
-  return rawPromise;
+function loadRaw(): string {
+  if (raw === null) raw = readFileSync(SOURCE_PATH, "utf8");
+  return raw;
 }
 
 // References are not all filename-safe — Patek uses "5811/1G-001", Cartier
@@ -274,9 +208,13 @@ function toItems(rows: string[][]): CatalogueItem[] {
   return items;
 }
 
+/**
+ * Kept async though nothing in it awaits: every call site awaits it, and a
+ * signature that says "this may go and get something" is the honest one to
+ * leave in place for whatever the catalogue is read from next.
+ */
 export async function getWatchCatalogue(): Promise<CatalogueItem[]> {
-  const raw = await loadRaw();
-  return toItems(withExtraRows(parseCsv(raw)));
+  return toItems(withExtraRows(parseCsv(loadRaw())));
 }
 
 export function groupByModel(items: CatalogueItem[]): CatalogueGroup[] {

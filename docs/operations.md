@@ -7,7 +7,7 @@ Day-to-day instructions for running and updating the Alpoe London site. Written 
 | I want to… | Do this |
 |---|---|
 | Edit a product (price, stock, condition) | Edit `data/products.csv` directly, save, commit |
-| Remove a watch from the site | Delete its row from `data/products.csv` (or the Google Sheet). There is no sold / sourceable state — everything listed is held in stock. |
+| Remove a watch from the site | Delete its row from `data/products.csv` (or from the Google Sheet, then `pnpm refresh:catalogue`). There is no sold / sourceable state — everything listed is held in stock. |
 | Add new watch images | Add a row to `data/image-sources/{brand}.tsv`, run `python3 scripts/build-product-images.py {brand}`, `pnpm gen:data`, then upload `public/products` to R2 (see `lib/assets.ts`) |
 | Add a new Rolex reference | Edit `scripts/build-rolex-catalogue.mjs`, add the entry, run `node scripts/build-rolex-catalogue.mjs` |
 | Add a non-Rolex watch (Patek/AP/etc.) | Add a row to `data/products.csv` directly |
@@ -105,6 +105,12 @@ There is no "sold out" or "sourceable" state any more: a listing is either on th
 > `CONTENT_W/H` or `ALPHA_FLOOR` means rebuilding everything (`all --force`) and re-uploading.
 >
 > The manifest stamps every path with `?v=<hash>`, so replacing a file and re-uploading is safe.
+> **The sheet is not live any more.** `data/catalogue.csv` is what the site reads.
+> Edit the sheet, run `pnpm refresh:catalogue` to pull it into that file, check the
+> diff, and commit — the deploy is what publishes it. The site used to fetch the
+> sheet itself every ten minutes, which meant a spreadsheet edit changed the live
+> site unreviewed and no page showing a listing could be static.
+>
 > Listings the Google Sheet does not carry yet go in `data/catalogue-extra.csv` (same four columns);
 > a row there disappears automatically once the sheet has the same brand / reference / variant.
 > The PNG drop-in instructions below still describe the folder layout but the format is now WebP.

@@ -26,6 +26,14 @@ import type { WatchBrandSlug } from "@/lib/types";
 
 type RouteParams = { brand: string; slug: string };
 
+/*
+ * Anything not in generateStaticParams is not a watch we list, so it should be
+ * a 404 rather than a render. Left at the default (true), a stale link or a
+ * crawler guessing slugs invoked a function per request — and, until the
+ * catalogue moved to a file, made that function call Google.
+ */
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const out: RouteParams[] = [];
   for (const b of WATCH_BRANDS) {
