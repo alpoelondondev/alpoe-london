@@ -485,6 +485,33 @@ video[data-decorative]::-webkit-media-controls-start-playback-button {
   }
 }
 
+/* WhatsApp badge: a halo pulsing out from under the green disc.
+   Same shape as the map pin above — a sibling ring on the same centre, scaled
+   and faded — rather than pulsing the disc itself, which would make the thing
+   you are trying to tap a moving target. */
+.wa-halo {
+  animation: wa-halo-pulse 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes wa-halo-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-halo {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* Work item hover effect */
 .work-item .work-thumb {
   filter: grayscale(20%) brightness(0.85);
