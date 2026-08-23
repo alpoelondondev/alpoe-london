@@ -89,8 +89,13 @@ There is no "sold out" or "sourceable" state any more: a listing is either on th
 > (reference, source URL, provenance) by `scripts/build-product-images.py` — 800px wide, q80 —
 > and mirrored to `r2:alpoe-ring-renders/site/products/` with:
 >
->     rclone copy public/products r2:alpoe-ring-renders/site/products \
+>     rclone sync public/products r2:alpoe-ring-renders/site/products \
 >       --header-upload "Cache-Control: public, max-age=31536000, immutable" --s3-no-check-bucket
+>
+> `sync`, not `copy`: renaming a file leaves the old object behind for ever otherwise, and the
+> bucket pays for it. Sync deletes whatever is in `site/products` and not in `public/products`,
+> so run it against a full, freshly built library — never against a partial one. Check the plan
+> with `--dry-run` first if the rename touched many files.
 >
 > Every file is normalised on the way out: the watch is cut from its backdrop (a shot on white
 > paper is flood-filled away from the edges), trimmed to what is actually visible — the Rolex
