@@ -15,10 +15,13 @@ export default function ProductCard({
   onDark?: boolean;
 }) {
   const hero = product.images[0];
-  const alt = [product.brand, product.model, product.referenceNumber, product.materials]
-    .filter(Boolean)
-    .join(" ")
-    .trim() || product.title;
+  // Deduped, because a Richard Mille's model *is* its reference — "RM 35-03
+  // RM 35-03" is the kind of alt text that makes a screen reader sound broken.
+  const alt =
+    [...new Set([product.brand, product.model, product.referenceNumber, product.materials])]
+      .filter(Boolean)
+      .join(" ")
+      .trim() || product.title;
 
   const inner = (
     <>

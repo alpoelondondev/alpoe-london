@@ -24,14 +24,22 @@ export const metadata: Metadata = pageMetadata({
 
 export default function WatchesIndex() {
   const watches = getWatches();
-  // Featured strip is photography-led — a card with no shot has nothing to
-  // show. Only one flagged-featured watch is photographed, so the strip leads
-  // with the flagged ones and tops up from the rest of the shot pieces.
+  /*
+   * Featured strip is photography-led — a card with no shot has nothing to
+   * show — and capped at two per brand.
+   *
+   * Taking the first eight photographed watches gave eight Rolexes, because
+   * Rolex is most of the catalogue: a strip on a page headed "every major Swiss
+   * maison" that shows one of them is an argument against its own headline.
+   * Two each, flagged pieces first within a brand, brands in the order the
+   * navigation lists them. A brand with no photographed piece simply does not
+   * appear, which is the same rule the strip already applied per card.
+   */
   const photographed = watches.filter(hasPhotography);
-  const featured = [
-    ...photographed.filter((w) => w.featured),
-    ...photographed.filter((w) => !w.featured),
-  ].slice(0, 8);
+  const featured = WATCH_BRANDS.flatMap((b) => {
+    const mine = photographed.filter((w) => w.brandSlug === b.slug);
+    return [...mine.filter((w) => w.featured), ...mine.filter((w) => !w.featured)].slice(0, 2);
+  });
 
   const ld = ldJsonGraph([
     ...collectionLd({
