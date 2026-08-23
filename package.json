@@ -6,6 +6,7 @@
     "gen:data": "node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs",
     "refresh:catalogue": "node scripts/refresh-catalogue.mjs",
     "build:lockup": "node scripts/build-lockup-svg.mjs",
+    "build:watch-list": "python3 scripts/build-watch-list-xlsx.py",
     "dev": "node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs && next dev",
     "build": "node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs && next build",
     "start": "next start",
