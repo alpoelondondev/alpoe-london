@@ -65,6 +65,13 @@ export default function ProductTile({
           // more of it would just shrink every watch again.
           className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.04]"
           priority={priority}
+          // Not run through the image optimiser. These are pack shots built by
+          // scripts/build-product-images.py — 800px WebP at q80, cut out on a
+          // 4:5 canvas — and served from the bucket behind an immutable
+          // Cache-Control. Optimising them means paying, per source image, to
+          // re-encode a file that is already the format and near enough the
+          // size it will be painted at; the widest this is ever drawn is 640.
+          unoptimized
         />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-[10px] tracking-[0.18em] uppercase text-dim">

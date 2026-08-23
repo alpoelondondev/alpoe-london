@@ -41,6 +41,8 @@ export default function ProductCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 420px"
             className="object-cover pointer-events-none"
             priority={priority}
+            // Already 800px WebP from the bucket — see ProductTile.
+            unoptimized
           />
         ) : null}
       </div>

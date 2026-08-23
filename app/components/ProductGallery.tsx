@@ -31,6 +31,8 @@ export default function ProductGallery({
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
           className="object-cover"
           priority
+          // Already 800px WebP from the bucket — see ProductTile.
+          unoptimized
         />
       </div>
       {images.length > 1 ? (
@@ -45,7 +47,7 @@ export default function ProductGallery({
                 i === idx ? "ring-1 ring-accent" : "ring-1 ring-transparent hover:ring-fg/30"
               }`}
             >
-              <Image src={src} alt="" fill sizes="80px" className="object-cover" />
+              <Image src={src} alt="" fill sizes="80px" className="object-cover" unoptimized />
             </button>
           ))}
         </div>
