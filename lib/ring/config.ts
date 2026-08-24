@@ -146,10 +146,12 @@ export const DEFAULT_CONFIG: RingConfig = {
  * Carat range. Anchored on London rather than on the national average — the UK
  * as a whole sits at 0.6–0.8ct, but London bespoke averages 1.25ct, and 98% of
  * stones bought above two carats are laboratory-grown. Opening the slider at
- * the national figure would read as a different shop.
+ * the national figure would read as a different shop. The top end runs to 6ct
+ * because laboratory-grown supply put those weights within reach of a bespoke
+ * commission rather than an auction.
  */
 export const CARAT_MIN = 0.3;
-export const CARAT_MAX = 3.0;
+export const CARAT_MAX = 6.0;
 
 /**
  * The carat weights offered, as fixed choices rather than a slider.
@@ -160,12 +162,15 @@ export const CARAT_MAX = 3.0;
  * invites fiddling with a value that changes nothing on screen, because every
  * render in the library is the 1.00ct preview size.
  *
- * Eight steps, and they are the ones the trade actually quotes. Half-carat
- * intervals above 1.5ct because that is where the price steps are; quarter
- * intervals below it because that is where the British market sits — the UK
- * average is 0.6–0.8ct, and London bespoke around 1.25ct.
+ * Fourteen steps, and they are the ones the trade actually quotes. Half-carat
+ * intervals above 1.5ct because that is where the price steps are, all the way
+ * to the top of the range; quarter intervals below it because that is where the
+ * British market sits — the UK average is 0.6–0.8ct, and London bespoke around
+ * 1.25ct.
  */
-export const CARAT_PRESETS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0];
+export const CARAT_PRESETS = [
+  0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0,
+];
 
 /**
  * Buying just under a magic size — 0.90 rather than 1.00 — saves around 10% for
