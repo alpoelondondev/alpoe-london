@@ -9,8 +9,9 @@ import ScrollReveal from "../../components/ScrollReveal";
 import FAQ from "../../components/FAQ";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/guides/buying-jewellery-in-hatton-garden";
+const PATH = ROUTES.guideHattonGarden;
 
 /**
  * The page that answers the questions the commercial pages cannot.
@@ -55,6 +56,11 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-GB", {
 });
 
 const HG_FAQS = [
+  {
+    question: "What should I look for when buying wedding rings in Hatton Garden?",
+    answer:
+      "Get the lead time in writing — six to eight weeks is normal and longer over the summer, with hallmarking on top. Have both fingers measured in person on a normal day rather than working from a guess. Bring the engagement ring so the band can be checked against it, because a marquise, pear or heart usually needs a shaped band. Try all four profiles before choosing a width. Insist on the hallmark, which is the one part of the deal that does not depend on trusting the seller. And get the pair quoted together rather than as two separate rings.",
+  },
   {
     question: "Is Hatton Garden cheaper for engagement rings?",
     answer:
@@ -157,7 +163,7 @@ export default function HattonGardenGuidePage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Guides", href: "/guides" },
+              { name: "Guides", href: ROUTES.guides },
               { name: "Buying in Hatton Garden", href: PATH, current: true },
             ]}
           />
@@ -317,6 +323,128 @@ export default function HattonGardenGuidePage() {
           </section>
         </ScrollReveal>
 
+        {/*
+          * Wedding rings, specifically.
+          *
+          * Search Console has this page appearing for "what to look for when
+          * buying wedding rings in hatton garden" — a long, specific, clearly
+          * transactional question that the guide answered only by implication,
+          * because everything above it is written about jewellery in general
+          * and about engagement rings in particular. A wedding ring is bought
+          * differently: two rings at once, to a deadline, with sizing and
+          * hallmarking on the critical path, and none of that was on the page.
+          *
+          * A section rather than a new guide. /guides/wedding-bands already
+          * owns the pairing question and /rings owns the product; a rival page
+          * would compete with two incumbents that both have ranking history
+          * for the sake of one query.
+          */}
+        <ScrollReveal>
+          <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-section">Buying wedding rings here</h2>
+            <p className="mt-4 max-w-[68ch] t-copy">
+              Wedding rings are the quarter&rsquo;s bread and butter and the
+              thing it does best, because a plain band is mostly metal and
+              labour and both are cheaper when the bench is upstairs. They are
+              also bought to a date that cannot move, which changes what you
+              should be asking about.
+            </p>
+            <div className="mt-8 grid grid-cols-2 gap-x-10 gap-y-9 max-md:grid-cols-1">
+              <div className="border-t border-accent/40 pt-4">
+                <h3 className="font-serif text-[19px] leading-tight text-blush">
+                  Ask for the lead time in writing
+                </h3>
+                <p className="mt-3 t-copy">
+                  Six to eight weeks is normal for a made-to-order pair, and it
+                  is longer between May and September when everyone is marrying.
+                  Hallmarking adds a few days on top, and it happens after the
+                  ring is made rather than alongside it. Get the date on the
+                  order, not in conversation.
+                </p>
+              </div>
+              <div className="border-t border-accent/40 pt-4">
+                <h3 className="font-serif text-[19px] leading-tight text-blush">
+                  Have both fingers measured, on the day
+                </h3>
+                <p className="mt-3 t-copy">
+                  Fingers change size with heat, salt and time of day, and a
+                  band ordered from a size guessed in a warm shop in August is
+                  the most common wedding-ring problem there is. Get measured on
+                  a normal day at a normal temperature, and ask what a resize
+                  will cost before you need one.{" "}
+                  <Link
+                    href={ROUTES.ringSizeGuide}
+                    className="text-accent underline underline-offset-4"
+                  >
+                    The UK size chart
+                  </Link>{" "}
+                  is here if you want to check a ring you already own.
+                </p>
+              </div>
+              <div className="border-t border-accent/40 pt-4">
+                <h3 className="font-serif text-[19px] leading-tight text-blush">
+                  Check the band will sit against the engagement ring
+                </h3>
+                <p className="mt-3 t-copy">
+                  Bring the engagement ring with you. Most shapes take a plain
+                  straight band, but a marquise, a pear or a heart usually needs
+                  one cut to follow the outline, and that is a different price
+                  and a different lead time. Deciding it at the counter with
+                  both rings in front of you takes ten minutes.{" "}
+                  <Link
+                    href={ROUTES.guideWeddingBands}
+                    className="text-accent underline underline-offset-4"
+                  >
+                    Which band suits which shape
+                  </Link>
+                  .
+                </p>
+              </div>
+              <div className="border-t border-accent/40 pt-4">
+                <h3 className="font-serif text-[19px] leading-tight text-blush">
+                  Insist on the hallmark, and read it
+                </h3>
+                <p className="mt-3 t-copy">
+                  Anything sold as gold over one gram or platinum over half a
+                  gram must be hallmarked by law. It is the one part of the
+                  transaction that does not rely on trusting the seller, because
+                  the metal was independently tested by an assay office rather
+                  than described by the shop.{" "}
+                  <Link
+                    href={ROUTES.hallmarking}
+                    className="text-accent underline underline-offset-4"
+                  >
+                    What each mark certifies
+                  </Link>
+                  .
+                </p>
+              </div>
+              <div className="border-t border-accent/40 pt-4">
+                <h3 className="font-serif text-[19px] leading-tight text-blush">
+                  Choose the profile before the width
+                </h3>
+                <p className="mt-3 t-copy">
+                  Court, flat court, D-shape and flat feel completely different
+                  on a hand at the same width, and it is the profile people
+                  regret rather than the millimetres. Try all four. A ring worn
+                  every day for decades is worth ten minutes of trying on.
+                </p>
+              </div>
+              <div className="border-t border-accent/40 pt-4">
+                <h3 className="font-serif text-[19px] leading-tight text-blush">
+                  Get the pair quoted together
+                </h3>
+                <p className="mt-3 t-copy">
+                  Two rings ordered at once from the same bench should cost less
+                  than two ordered separately, and they will match properly —
+                  same alloy batch, same finish, same hand. If a quote for the
+                  pair is simply two individual prices added up, ask why.
+                </p>
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
+
         <ScrollReveal>
           <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
             <h2 className="t-section">What is actually on the street</h2>
@@ -336,7 +464,7 @@ export default function HattonGardenGuidePage() {
                   City, but the counter being inside the quarter is why
                   hallmarking a ring made here is a walk rather than a wait.{" "}
                   <Link
-                    href="/hallmarking"
+                    href={ROUTES.hallmarking}
                     className="text-accent underline underline-offset-4"
                   >
                     What the marks mean
@@ -375,25 +503,25 @@ export default function HattonGardenGuidePage() {
               We are one of the jewellers on it, so treat this page as written
               from a bench rather than from nowhere. What we do is bespoke: rings
               and pieces{" "}
-              <Link href="/bespoke" className="text-accent underline underline-offset-4">
+              <Link href={ROUTES.bespoke} className="text-accent underline underline-offset-4">
                 made to order
               </Link>{" "}
               at our own bench, natural or laboratory-grown stones with no
               steering toward either, and{" "}
-              <Link href="/watches" className="text-accent underline underline-offset-4">
+              <Link href={ROUTES.watches} className="text-accent underline underline-offset-4">
                 watches
               </Link>{" "}
               bought, sold and sourced alongside. If you would rather start by
               reading, the{" "}
               <Link
-                href="/guides/natural-vs-lab-grown-diamonds"
+                href={ROUTES.guideLabGrownDiamonds}
                 className="text-accent underline underline-offset-4"
               >
                 diamond guide
               </Link>{" "}
               and the{" "}
               <Link
-                href="/ring-size-guide"
+                href={ROUTES.ringSizeGuide}
                 className="text-accent underline underline-offset-4"
               >
                 ring size guide
@@ -401,7 +529,7 @@ export default function HattonGardenGuidePage() {
               are the two things people ask about most. If you would rather come
               and look,{" "}
               <Link
-                href="/book-appointment"
+                href={ROUTES.bookAppointment}
                 className="text-accent underline underline-offset-4"
               >
                 book a time

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import { ROUTES } from "@/lib/routes";
 
 export default function About() {
   return (
@@ -93,7 +94,7 @@ export default function About() {
       <ScrollReveal delay={0.08} className="relative">
         <div className="mt-5 flex justify-center max-md:mt-4">
           <Link
-            href="/book-appointment"
+            href={ROUTES.bookAppointment}
             className="inline-flex items-center justify-center bg-accent px-5 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-bg transition hover:bg-accent-deep"
           >
             Speak To A Client Advisor

@@ -31,6 +31,7 @@ import { ringSpecLines, ringSpecText } from "@/lib/ring/spec";
 import { renderUrl, renderViews } from "@/lib/ring/renders";
 import { preload, whenIdle } from "./renderCache";
 import { buildRingSpecUrl } from "@/lib/whatsapp";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * The studio.
@@ -429,7 +430,7 @@ export default function StudioClient() {
             value={activeOrigin.label}
             action={
               <a
-                href="/guides/natural-vs-lab-grown-diamonds"
+                href={ROUTES.guideLabGrownDiamonds}
                 className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
               >
                 Read guide
@@ -491,7 +492,7 @@ export default function StudioClient() {
               <p className="mt-2 t-copy">
                 We&rsquo;ll size you free of charge at Hatton Garden, or read our{" "}
                 <a
-                  href="/ring-size-guide"
+                  href={ROUTES.ringSizeGuide}
                   className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
                 >
                   ring size guide
@@ -557,7 +558,7 @@ export default function StudioClient() {
                 Speak to a client advisor
               </a>
               <a
-                href="/book-appointment"
+                href={ROUTES.bookAppointment}
                 className="inline-flex min-w-[236px] items-center justify-center border border-sheet-ink/25 px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
               >
                 Book an appointment

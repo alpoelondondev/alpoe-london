@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
-"""Normalise the brand-strip PNGs in public/logos to a consistent optical size.
+"""Normalise the brand-strip logos in public/logos to a consistent optical size.
 
 Manual asset step — NOT part of `pnpm build`. Run it after dropping a new brand
-logo into public/logos, then commit the rewritten PNGs.
+logo into public/logos, then commit the rewritten files.
+
+Takes **raw press-kit PNGs**. It does not touch the `.webp` files currently in
+`public/logos` and must not be pointed at them: those are the delivered assets,
+already normalised through here and then downscaled to 120px tall for the strip.
+Re-running this over them upscales 120px back to 500px — measured on 6 Sep 2026,
+it inflated all six from ~5KB to 20–220KB and resampled them upwards, which is
+loss dressed up as a bigger file.
+
+So: drop the raw PNG in, run this, downscale the result to the delivery size,
+save as WebP, remove the PNG. If the folder holds no PNGs this exits saying so
+rather than doing nothing quietly, which is how the mismatch went unnoticed.
 
     python3 scripts/normalize-logos.py
 
@@ -41,13 +52,24 @@ ALPHA_FLOOR = 25
 # For marks whose bounding box lies about how big they read — Patek is a crest
 # over a short wordmark, so it is mostly internal whitespace and has to run
 # larger than its box suggests to sit level with the plain wordmarks.
+# Keyed by stem, not filename, so it survives a change of image format.
 NUDGE = {
-    "patek-philippe-watches-logo.png": 1.15,
+    "patek-philippe-watches-logo": 1.15,
 }
 
 
+
+
 def main() -> None:
-    for path in sorted(DIR.glob("*.png")):
+    paths = sorted(DIR.glob("*.png"))
+    if not paths:
+        raise SystemExit(
+            f"no .png files in {DIR} — nothing to normalise.\n"
+            "The delivered logos there are .webp and are deliberately not touched: "
+            "they are already normalised and downscaled, and re-running this over "
+            "them would upscale them. Add the raw press-kit PNG first."
+        )
+    for path in paths:
         src = Image.open(path).convert("RGBA")
 
         # Threshold the alpha before measuring: several of these have a haze of
@@ -59,7 +81,7 @@ def main() -> None:
             raise SystemExit(f"{path.name} is fully transparent")
         mark = src.crop(bbox)
 
-        nudge = NUDGE.get(path.name, 1.0)
+        nudge = NUDGE.get(path.stem, 1.0)
         target_h = MARK_H * nudge
         # A very wide wordmark set to the common height would tower over the
         # others in overall footprint, so cap the aspect and let it sit shorter.

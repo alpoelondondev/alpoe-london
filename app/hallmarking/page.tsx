@@ -7,8 +7,9 @@ import ScrollReveal from "../components/ScrollReveal";
 import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/hallmarking";
+const PATH = ROUTES.hallmarking;
 
 /**
  * The Dealer's Notice, and what a hallmark actually certifies.
@@ -133,7 +134,7 @@ export default function HallmarkingPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Guides", href: "/guides" },
+              { name: "Guides", href: ROUTES.guides },
               { name: "Hallmarking", href: PATH },
             ]}
           />

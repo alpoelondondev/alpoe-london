@@ -2,11 +2,19 @@ import Link from "next/link";
 import LockupMark from "./LockupMark";
 import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
+import { ROUTES, type Route } from "@/lib/routes";
 
-const SHOP_LINKS = [
-  { label: "All Watches", href: "/watches" },
-  { label: "All Jewellery", href: "/jewellery" },
-  { label: "Search", href: "/search" },
+/**
+ * One element type for both link lists, because the footer concatenates
+ * them. Without it TypeScript infers each array's element from its own
+ * literals and `SHOP_LINKS.concat(HOUSE_LINKS)` has no common type.
+ */
+type FooterLink = { label: string; href: Route };
+
+const SHOP_LINKS: FooterLink[] = [
+  { label: "All Watches", href: ROUTES.watches },
+  { label: "All Jewellery", href: ROUTES.jewellery },
+  { label: "Search", href: ROUTES.search },
 ];
 
 /*
@@ -18,28 +26,31 @@ const SHOP_LINKS = [
  * inbound link on the whole site despite being the strongest piece of writing
  * on it.
  */
-const HOUSE_LINKS = [
-  { label: "Book an Appointment", href: "/book-appointment" },
-  { label: "Engagement & Wedding Rings", href: "/rings/engagement-and-wedding-rings" },
-  { label: "Ready to Ship Rings", href: "/rings/ready-to-ship" },
-  { label: "All Rings", href: "/rings" },
-  { label: "Ring Size Guide", href: "/ring-size-guide" },
-  { label: "Ring Builder", href: "/ring-builder" },
-  { label: "Guides", href: "/guides" },
-  { label: "Natural vs Lab-Grown Diamonds", href: "/guides/natural-vs-lab-grown-diamonds" },
-  { label: "Buying in Hatton Garden", href: "/guides/buying-jewellery-in-hatton-garden" },
-  { label: "Wedding Band Pairing", href: "/guides/wedding-bands" },
-  { label: "Bespoke Jewellery", href: "/bespoke" },
-  { label: "Sell & Trade", href: "/sell" },
-  { label: "Metal Prices", href: "/metal-prices" },
-  { label: "Mentorship", href: "/mentorship" },
-  { label: "About", href: "/about" },
-  { label: "Hallmarking", href: "/hallmarking" },
+const HOUSE_LINKS: FooterLink[] = [
+  { label: "Book an Appointment", href: ROUTES.bookAppointment },
+  { label: "Engagement & Wedding Rings", href: ROUTES.engagementAndWeddingRings },
+  { label: "Ready to Ship Rings", href: ROUTES.readyToShipRings },
+  { label: "All Rings", href: ROUTES.rings },
+  { label: "Ring Size Guide", href: ROUTES.ringSizeGuide },
+  { label: "Ring Builder", href: ROUTES.ringBuilder },
+  { label: "Guides", href: ROUTES.guides },
+  { label: "Natural vs Lab-Grown Diamonds", href: ROUTES.guideLabGrownDiamonds },
+  { label: "Buying in Hatton Garden", href: ROUTES.guideHattonGarden },
+  { label: "Wedding Band Pairing", href: ROUTES.guideWeddingBands },
+  { label: "Where to Propose in London", href: ROUTES.guideProposeInLondon },
+  { label: "Selling a Watch in London", href: ROUTES.guideSellingAWatch },
+  { label: "Bespoke Jewellery", href: ROUTES.bespoke },
+  { label: "Workshop Services", href: ROUTES.services },
+  { label: "Sell & Trade", href: ROUTES.sell },
+  { label: "Metal Prices", href: ROUTES.metalPrices },
+  { label: "Mentorship", href: ROUTES.mentorship },
+  { label: "About", href: ROUTES.about },
+  { label: "Hallmarking", href: ROUTES.hallmarking },
   // Listed here because it was in the sitemap and linked from nowhere at all —
   // the definition of an orphan. Last in the house column, which is honest
   // about how much it matters.
-  { label: "Our Brand", href: "/ourbrand" },
-  { label: "Contact", href: "/contact" },
+  { label: "Our Brand", href: ROUTES.ourBrand },
+  { label: "Contact", href: ROUTES.contact },
 ];
 
 export default function Footer() {
@@ -125,7 +136,7 @@ export default function Footer() {
               {featuredBrands.map((b) => (
                 <li key={b.slug}>
                   <Link
-                    href={`/watches/${b.slug}`}
+                    href={ROUTES.watchBrand(b.slug)}
                     className="text-[13px] text-fg/55 hover:text-blush transition-colors"
                   >
                     {b.name}
@@ -143,7 +154,7 @@ export default function Footer() {
               {featuredCategories.map((c) => (
                 <li key={c.slug}>
                   <Link
-                    href={c.href ?? `/jewellery/${c.slug}`}
+                    href={c.href ?? ROUTES.jewelleryCategory(c.slug)}
                     className="text-[13px] text-fg/55 hover:text-blush transition-colors"
                   >
                     {c.name}

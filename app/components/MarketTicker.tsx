@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { TickerItem } from "@/lib/metal-prices";
+import { ROUTES } from "@/lib/routes";
 
 export type { TickerItem };
 
@@ -50,7 +51,7 @@ export default function MarketTicker({
 
   return (
     <Link
-      href="/metal-prices"
+      href={ROUTES.metalPrices}
       /*
        * No aria-label. It read "Live metal prices" while the visible content
        * is a run of metal names and figures, so voice control had no way to

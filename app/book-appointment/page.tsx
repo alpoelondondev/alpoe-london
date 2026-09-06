@@ -11,14 +11,15 @@ import FindUs from "../components/FindUs";
 import BookingFlow from "./BookingFlow";
 import { APPOINTMENT_FAQS } from "@/lib/faqs";
 import { APPOINTMENT_TYPES } from "@/lib/appointments";
-import { pageMetadata, ldJsonGraph, faqLd, localBusinessLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Book a Hatton Garden Showroom Appointment",
   description:
     "Book a private appointment at our Hatton Garden showroom — engagement ring consultations, bespoke design and luxury watch viewings. Mon to Sat, 10am to 6pm.",
-  path: "/book-appointment",
+  path: ROUTES.bookAppointment,
 });
 
 const INTRO = "Hi Alpoe, I'd like to book an appointment at the showroom.";
@@ -40,12 +41,17 @@ const WHAT_TO_EXPECT = [
 ];
 
 export default function BookAppointmentPage() {
+  /*
+   * No localBusinessLd() here: <SiteLDJSON> in the root layout already emits
+   * that node on every page, and calling it again shipped a second identical
+   * JewelryStore under the same @id. The WebPage node below already points at
+   * it with `about`, which is the link that was actually doing the work.
+   */
   const ld = ldJsonGraph([
-    localBusinessLd(),
     {
       "@type": "WebPage",
-      "@id": siteUrl("/book-appointment") + "#webpage",
-      url: siteUrl("/book-appointment"),
+      "@id": siteUrl(ROUTES.bookAppointment) + "#webpage",
+      url: siteUrl(ROUTES.bookAppointment),
       name: `Book an appointment — ${SITE.name}`,
       description:
         "Book a private appointment at the Alpoe London showroom in Hatton Garden — engagement rings, bespoke design, luxury watches or a general visit.",
@@ -54,7 +60,7 @@ export default function BookAppointmentPage() {
         "@type": "ReserveAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: siteUrl("/book-appointment"),
+          urlTemplate: siteUrl(ROUTES.bookAppointment),
           actionPlatform: [
             "https://schema.org/DesktopWebPlatform",
             "https://schema.org/MobileWebPlatform",
@@ -84,7 +90,7 @@ export default function BookAppointmentPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Book an appointment", href: "/book-appointment", current: true },
+              { name: "Book an appointment", href: ROUTES.bookAppointment, current: true },
             ]}
           />
         </section>
@@ -147,7 +153,7 @@ export default function BookAppointmentPage() {
           copy={`If none of the slots work, send us a note on WhatsApp with the day you're free and we'll open the ${SITE.address.streetAddress} counter around you.`}
           whatsappMessage={INTRO}
           primaryLabel="Ask For A Time"
-          secondary={{ label: "Contact Us", href: "/contact" }}
+          secondary={{ label: "Contact Us", href: ROUTES.contact }}
         />
       </main>
       <Footer />

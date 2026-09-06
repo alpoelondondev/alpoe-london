@@ -14,7 +14,7 @@ Day-to-day instructions for running and updating the Alpoe London site. Written 
 | Add a jewellery item | Add a row to `data/products.csv` directly |
 | Preview the site locally | `pnpm dev`, open <http://localhost:3000> |
 | Push changes live | `git add . && git commit -m "..." && git push` |
-| Change the WhatsApp number | Edit `NEXT_PUBLIC_WA_NUMBER` in your `.env.local` and redeploy |
+| Change the WhatsApp number | Set `NEXT_PUBLIC_WA_NUMBER` in **Vercel's** environment variables and redeploy — see section 9. Editing `.env.local` only changes your own machine. |
 
 ---
 
@@ -127,13 +127,20 @@ You already have 142 Rolex press-kit images organised under `public/products/rol
    ```
 4. The script auto-discovers the new files and updates `data/products.csv`. Commit.
 
-If the new images come straight from Rolex's press kit (filenames like `imgi_42_m126610lv-0001.png`), drop them all into `public/products/rolex/` and run:
+**Legacy path, for a bulk press-kit drop only.** If images arrive in the old
+shape (`imgi_42_m126610lv-0001.png`) you can drop them into
+`public/products/rolex/` and run `node scripts/organize-rolex-images.mjs` to
+sort them into per-reference folders. Two warnings before you do:
 
-```
-node scripts/organize-rolex-images.mjs
-```
+- It is currently a no-op — there are no `imgi_*` files anywhere under
+  `public/`, so it finds nothing.
+- It names its output `1.png`, `2.png`, which is **not** the convention above.
+  Rename to `01-<what-it-is>.webp` before running the catalogue script, or you
+  will put unoptimised, undescribed images into `data/products.csv`.
 
-That script sorts them into per-reference folders. Then run the catalogue script as above.
+The maintained path is a row in `data/image-sources/rolex.tsv` followed by
+`python3 scripts/build-product-images.py rolex`, which writes the optimised
+800px WebP with the descriptive name.
 
 ---
 
@@ -163,7 +170,18 @@ For Patek, AP, Cartier, Omega, etc., **edit `data/products.csv` directly** — n
 1. Open the CSV.
 2. Copy an existing watch row.
 3. Edit every column to match the new watch.
-4. For images: drop them into `public/products/{brand-slug}/{slug}/` (e.g. `public/products/patek-philippe/patek-nautilus-5711/1.jpg`). Reference them in the `images` column with `|` separators.
+4. For images, **use the build script rather than dropping files in by hand** — see the TL;DR row above and section 3. Add a row to `data/image-sources/{brand}.tsv`, run `python3 scripts/build-product-images.py {brand}`, then `pnpm gen:data`. That writes `public/products/{brand-slug}/{reference-key}/{nn}-{description}.webp` — note it is keyed on the **reference**, not the slug, and the output is **WebP at 800px**, not a JPEG you supply. Then reference the paths in the `images` column with `|` separators, as bare `/products/…` paths:
+
+   ```
+   /products/patek-philippe/5726-1a-014/01-nautilus-5726-annual-calendar-steel-bracelet-blue.webp
+   ```
+
+   That is a real path from the current tree. Most references carry one image;
+   where there are several they are numbered in order (`01-`, `02-`, …) and the
+   row order in the TSV is the image order, so never reorder rows within a
+   reference. `public/products/rolex/126234/` is a ten-image example.
+
+   *(Corrected 6 Sep 2026. This step used to say "drop them into `public/products/{brand-slug}/{slug}/`" with a `1.jpg` example — the wrong directory key and the wrong file type, and it contradicted the TL;DR at the top of this document. The `|`-separated `images` column part was and remains right.)*
 5. Save, commit.
 
 The brand must already exist in `lib/taxonomy.ts`. Currently supported: Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega, Breitling. To add a brand not on that list, edit `lib/taxonomy.ts` first.
@@ -226,12 +244,32 @@ The site automatically converts to AVIF/WebP and serves the right resolution per
 
 Every product page has an "Enquire on WhatsApp" button. The message is auto-composed from the product data, including the bracelet the customer chose (for multi-bracelet Rolex refs).
 
-The phone number lives in environment variable `NEXT_PUBLIC_WA_NUMBER`. To change it:
+The phone number is read from the environment variable `NEXT_PUBLIC_WA_NUMBER`,
+**falling back to the number written in `lib/site.ts`** (`SITE.whatsapp`).
 
-1. Edit `.env.local` (locally) or your hosting provider's environment variables.
-2. Redeploy.
+As of 6 Sep 2026 that variable is **not set anywhere**, so the live site is using
+the fallback. Two consequences worth knowing before you change anything:
 
-Never hardcode the number in components.
+- **`.env.local` is gitignored and local-only.** It is not deployed, and it does
+  not currently contain `NEXT_PUBLIC_WA_NUMBER` at all. Editing it changes the
+  number on your machine and nowhere else — this document used to say "edit
+  `.env.local` and redeploy", which would have looked like it worked in `pnpm
+  dev` and changed nothing in production.
+- `NEXT_PUBLIC_*` variables are **inlined at build time**, so setting one always
+  needs a fresh deploy; editing the value alone does nothing.
+
+To change the number for real, pick one:
+
+1. **Set it in Vercel** → Project → Settings → Environment Variables →
+   `NEXT_PUBLIC_WA_NUMBER` → all environments → redeploy. Best if the number
+   may differ per environment.
+2. **Edit the fallback** in `lib/site.ts` and commit. Simplest, and it is what
+   the site is actually using today.
+
+Note `SITE.phone` is a separate field (the display number, `+44 7380 401226`).
+Change both, or the page will show one number and dial another.
+
+Never hardcode the number in a component.
 
 ---
 
@@ -252,6 +290,24 @@ Run `pnpm build` and read the error message. Most common causes:
 - A brand or model name doesn't match `lib/taxonomy.ts` exactly (case-sensitive, hyphens matter)
 - A required field is empty (id, type, slug, title)
 
+**The build stops with "Route guard found N problem(s)"**
+
+This runs *before* the site build, so nothing has compiled yet — it is not a
+broken page. Every internal link on the site is named once in `lib/routes.ts`,
+and the guard refuses a build that would ship a dead or unreachable link. The
+message names the file, the line and the fix. The usual causes:
+
+- **"Unregistered page"** — a new page was added without a token. Add one to
+  `STATIC_ROUTES` in `lib/routes.ts`.
+- **"hardcoded ..."** — a link was written as a plain string like `"/watches"`.
+  Use the token (`ROUTES.watches`) instead.
+- **"public/llms.txt lists ..."** — that file names a URL nothing serves. Fix
+  the URL or restore the page.
+- **"Orphan route"** — a page exists but nothing links to it.
+
+Run it on its own with `pnpm check:routes`. If you are only editing
+`data/products.csv`, this check cannot be the cause — it does not read the CSV.
+
 **The bracelet selector is showing on a single-bracelet product**
 
 That means the `bracelets` column has multiple values when it should have one. Edit the CSV — for Submariners, set `bracelets` to just `Oyster` (no pipe).
@@ -271,16 +327,20 @@ Check the `bracelets` column. If empty, no selector. If single value, no selecto
 | Brand list | `lib/taxonomy.ts` |
 | Category list | `lib/taxonomy.ts` |
 | WhatsApp message format | `lib/whatsapp.ts` |
-| WhatsApp number | `.env.local` (`NEXT_PUBLIC_WA_NUMBER`) |
+| WhatsApp number | `lib/site.ts` (`SITE.whatsapp`), overridable by `NEXT_PUBLIC_WA_NUMBER` in Vercel |
 | Site config (name, contact) | `lib/site.ts` |
 | Product page template | `app/watches/[brand]/[slug]/page.tsx` and `app/jewellery/[category]/[slug]/page.tsx` |
 | Brand grid page | `app/watches/[brand]/page.tsx` |
 | Catalogue grid (filters) | `app/components/Filters.tsx`, `app/components/ProductGrid.tsx` |
 | Bracelet selector | `app/components/BraceletSelector.tsx` |
 | Rolex build script | `scripts/build-rolex-catalogue.mjs` |
-| Rolex image organiser | `scripts/organize-rolex-images.mjs` |
+| Rolex image organiser (legacy, no-op) | `scripts/organize-rolex-images.mjs` |
+| Product image builder (current) | `scripts/build-product-images.py` + `data/image-sources/*.tsv` |
 | Detailed Rolex catalogue notes | `docs/rolex-catalogue.md` |
-| Ring builder spec (future) | `docs/ring-builder.md` |
+| Ring builder (live) | `app/ring-builder/`, `lib/ring/`, current doc `docs/ring-builder-renders.md` |
+| Ring builder — original plan, superseded | `docs/ring-builder.md` |
+| Route registry (every URL on the site) | `lib/routes.ts` |
+| Route guard (runs in `pnpm build`) | `scripts/check-routes.mjs` |
 
 ---
 

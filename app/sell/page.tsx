@@ -14,12 +14,13 @@ import { WATCH_BRANDS } from "@/lib/taxonomy";
 import { SELL_BRANDS } from "@/lib/sell/brands";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Sell Your Watch — Paid the Same Day",
   description:
     "Sell or part-exchange a luxury watch with Alpoe London. Free valuation on Rolex, Patek Philippe and AP, authenticated in Hatton Garden, paid the same day.",
-  path: "/sell",
+  path: ROUTES.sell,
   image: "/og/sell.jpg",
 });
 
@@ -76,14 +77,14 @@ export default function SellPage() {
   const ld = ldJsonGraph([
     {
       "@type": "Service",
-      "@id": siteUrl("/sell") + "#service",
+      "@id": siteUrl(ROUTES.sell) + "#service",
       name: "Sell & Trade Your Luxury Watch",
       serviceType: "Luxury watch buying and part-exchange",
       areaServed: "Worldwide",
       provider: { "@id": siteUrl("/") + "#organization" },
       description:
         "Free no-obligation valuations on pre-owned luxury watches, authenticated in Hatton Garden with same-day payment.",
-      url: siteUrl("/sell"),
+      url: siteUrl(ROUTES.sell),
     },
     // Breadcrumbs are emitted by the <Breadcrumbs> component this page
     // renders, which is the single source of truth for the trail. Building
@@ -106,7 +107,7 @@ export default function SellPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Sell & Trade", href: "/sell", current: true },
+              { name: "Sell & Trade", href: ROUTES.sell, current: true },
             ]}
           />
         </section>
@@ -144,7 +145,7 @@ export default function SellPage() {
               {SELL_BRANDS.map((sb) => (
                 <li key={sb.slug} className="bg-bg">
                   <Link
-                    href={`/sell/${sb.slug}`}
+                    href={ROUTES.sellBrand(sb.slug)}
                     className="block h-full p-7 transition-colors hover:bg-fg/[0.04]"
                   >
                     <span className="font-serif text-[20px] leading-tight text-blush">
@@ -188,13 +189,39 @@ export default function SellPage() {
           </ScrollReveal>
         </section>
 
+        {/*
+          * The route-comparison guide, linked from the hub rather than only
+          * from /guides. Somebody on this page is deciding *whether* to sell
+          * to a dealer at all, and the honest comparison is what earns the
+          * decision — sending them away to read it and come back converts
+          * better than pretending the other five routes do not exist.
+          */}
+        <ScrollReveal>
+          <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-section">Weighing up your options?</h2>
+            <p className="mt-3 max-w-[64ch] t-copy">
+              We wrote the comparison we would give a friend:{" "}
+              <Link
+                href={ROUTES.guideSellingAWatch}
+                className="text-accent underline underline-offset-4"
+              >
+                where to sell a luxury watch in London
+              </Link>{" "}
+              &mdash; dealer, auction, consignment, private sale, platform or
+              part-exchange, with what each one pays, what it costs in fees and
+              how long you wait. It includes the pieces we would tell you to take
+              to an auction house instead of to us.
+            </p>
+          </section>
+        </ScrollReveal>
+
         <FAQ items={SELL_FAQS} />
         <CTAStrip
           eyebrow="Got the watch to hand?"
           title="Send us a photo and the reference"
           copy="That's usually all we need to give you a figure — no forms, no appointment."
           whatsappMessage="Hi Alpoe, I'd like a valuation on a watch I'm looking to sell."
-          secondary={{ label: "Browse Watches", href: "/watches" }}
+          secondary={{ label: "Browse Watches", href: ROUTES.watches }}
         />
       </main>
       <Footer />

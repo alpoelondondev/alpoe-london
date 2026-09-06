@@ -11,8 +11,9 @@ import { rendersOrigin } from "@/lib/ring/renders";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, collectionLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/rings/engagement-and-wedding-rings";
+const PATH = ROUTES.engagementAndWeddingRings;
 
 /**
  * Engagement rings and wedding bands on one page, because they are one
@@ -27,7 +28,7 @@ const PATH = "/rings/engagement-and-wedding-rings";
 export const metadata: Metadata = pageMetadata({
   title: "Engagement & Wedding Rings, Hatton Garden",
   description:
-    "Fifteen engagement ring styles made to order in Hatton Garden, plus wedding rings and bands to match. Choose the diamond shape, setting, metal and UK size.",
+    "An engagement ring maker in Hatton Garden: fifteen styles made to order at our own bench, plus wedding rings to match. Choose the shape, setting, metal and UK size.",
   path: PATH,
   image: "/og/engagement-rings.jpg",
 });
@@ -63,6 +64,11 @@ const ENGAGEMENT_FAQS = [
     question: "How long does a bespoke engagement ring take?",
     answer:
       "It depends on the ring, so we give you a date when we quote rather than quoting a standard one. Casting, setting, finishing and hallmarking at the London Assay Office are each a real step. If you are working to a deadline, tell us at the very start — we would rather turn a date down than miss it.",
+  },
+  {
+    question: "Are you an engagement ring maker, or do you resell?",
+    answer:
+      "We are makers. Rings are designed with you and made to order at our own bench in Hatton Garden — cast or hand-fabricated here, set here, and sent to the London Assay Office to be hallmarked before they come back to us. Nothing on this page is a finished ring bought in from a wholesaler and marked up, which is why the lead time is measured in weeks rather than in next-day delivery.",
   },
   {
     question: "How much should I spend on an engagement ring?",
@@ -110,7 +116,7 @@ export default function EngagementAndWeddingRingsPage() {
       <main className="on-sheet bg-white">
         <section className="clears-nav px-[52px] pb-8 max-md:px-6 max-md:pb-6">
           <p className="t-eyebrow font-semibold">
-            <Link href="/rings" className="underline underline-offset-4">
+            <Link href={ROUTES.rings} className="underline underline-offset-4">
               Rings
             </Link>
           </p>
@@ -121,7 +127,7 @@ export default function EngagementAndWeddingRingsPage() {
             setting that holds it, the metal and the size. Pick the shape you like and
             change the rest. Not sure of the size? Read our{" "}
             <Link
-              href="/ring-size-guide"
+              href={ROUTES.ringSizeGuide}
               className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
             >
               ring size guide
@@ -166,7 +172,7 @@ export default function EngagementAndWeddingRingsPage() {
                   </p>
                 </div>
                 <Link
-                  href="/rings/ready-to-ship"
+                  href={ROUTES.readyToShipRings}
                   className="t-eyebrow shrink-0 font-semibold whitespace-nowrap underline underline-offset-4 transition hover:text-accent-deep"
                 >
                   See all
@@ -183,6 +189,55 @@ export default function EngagementAndWeddingRingsPage() {
             </section>
           </ScrollReveal>
         )}
+        {/*
+          * The settings, written out.
+          *
+          * Every one of these descriptions already existed in
+          * lib/rings/collection.ts and was rendered into a `title` attribute
+          * on the card above — a tooltip most people never see and search
+          * engines weight at close to nothing. Seventeen pieces of decent
+          * writing were on the page and invisible.
+          *
+          * The `aliases` were worse off: they were in the data and rendered
+          * nowhere at all. They are the names people actually use — "bypass"
+          * for a crossover, "shoulder set" for side stones, "you and me" for
+          * toi et moi, "milgrain" for vintage — and somebody searching one of
+          * those was arriving at a page that never said the word. That is a
+          * vocabulary gap rather than a content gap, and this is the cheap fix
+          * for it: the writing was already paid for.
+          *
+          * A list rather than more text on the cards, because the cards sit in
+          * a fixed-height rail and descriptions of uneven length would leave it
+          * ragged.
+          */}
+        {pieces.length > 0 && (
+          <ScrollReveal>
+            <section className="border-t border-sheet-line px-[52px] py-14 max-md:px-6 max-md:py-10">
+              <h2 className="t-sub">What each setting is called</h2>
+              <p className="mt-3 max-w-[64ch] t-copy">
+                The same setting goes by different names depending on who taught
+                you the word. These are the ones we make most, and what each one
+                is otherwise known as.
+              </p>
+              <dl className="mt-8 max-w-3xl divide-y divide-sheet-line border-t border-sheet-line">
+                {pieces.map((piece) => (
+                  <div key={piece.id} className="py-4">
+                    <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="t-card leading-snug">{piece.label}</span>
+                      {piece.aliases.length > 0 && (
+                        <span className="text-[12px] text-sheet-dim">
+                          also called {piece.aliases.join(", ")}
+                        </span>
+                      )}
+                    </dt>
+                    <dd className="mt-1.5 t-copy">{piece.description}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          </ScrollReveal>
+        )}
+
         {/* ---- shapes ------------------------------------------------------
             The grid above sorts by band style; this sorts by stone. They are
             the two axes people actually shop on, and somebody who has just
@@ -259,7 +314,7 @@ export default function EngagementAndWeddingRingsPage() {
             ldJsonGraph([
               breadcrumbLd([
                 { name: "Home", url: siteUrl("/") },
-                { name: "Rings", url: siteUrl("/rings") },
+                { name: "Rings", url: siteUrl(ROUTES.rings) },
                 { name: "Engagement & Wedding Rings", url: siteUrl(PATH) },
               ]),
               // Rendered by <SheetFaq> above — marking up an answer that is

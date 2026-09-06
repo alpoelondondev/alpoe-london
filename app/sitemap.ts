@@ -3,6 +3,7 @@ import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { getAllProducts, productUrl } from "@/lib/products";
 import { getCatalogueProductsByBrand } from "@/lib/catalogue";
 import { siteUrl } from "@/lib/site";
+import { ROUTES, staticSitemapRoutes } from "@/lib/routes";
 import { SELL_BRANDS } from "@/lib/sell/brands";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 
@@ -18,82 +19,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
    * absent value is honest where a wrong one is not. Add it back per-entry
    * only when a genuine date exists.
    */
-  const entries: MetadataRoute.Sitemap = [
-    /*
-     * siteUrl() rather than siteUrl("/") — no trailing slash.
-     *
-     * Not pedantry: Next.js normalises the rendered canonical for the root
-     * route to the bare origin whatever you pass it, so the homepage was
-     * advertising https://alpoelondon.com in its <link rel="canonical"> while
-     * this file advertised https://alpoelondon.com/. Google resolves the two
-     * to one URL, but disagreeing with yourself in the two places you fully
-     * control is free to fix and costs nothing to keep right.
-     */
-    { url: siteUrl(), changeFrequency: "weekly", priority: 1 },
-    { url: siteUrl("/watches"), changeFrequency: "weekly", priority: 0.9 },
-    { url: siteUrl("/jewellery"), changeFrequency: "weekly", priority: 0.9 },
-    { url: siteUrl("/bespoke"), changeFrequency: "monthly", priority: 0.9 },
-    { url: siteUrl("/rings"), changeFrequency: "monthly", priority: 0.8 },
-    {
-      url: siteUrl("/rings/engagement-and-wedding-rings"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: siteUrl("/rings/ready-to-ship"),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: siteUrl("/ring-size-guide"),
-      changeFrequency: "yearly",
-      priority: 0.8,
-    },
-    {
-      url: siteUrl("/ring-builder"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    { url: siteUrl("/sell"), changeFrequency: "monthly", priority: 0.8 },
-    {
-      url: siteUrl("/book-appointment"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    { url: siteUrl("/guides"), changeFrequency: "monthly", priority: 0.8 },
-    {
-      url: siteUrl("/guides/wedding-bands"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: siteUrl("/guides/buying-jewellery-in-hatton-garden"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: siteUrl("/guides/natural-vs-lab-grown-diamonds"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    { url: siteUrl("/metal-prices"), changeFrequency: "daily", priority: 0.7 },
-    { url: siteUrl("/hallmarking"), changeFrequency: "yearly", priority: 0.4 },
-    { url: siteUrl("/mentorship"), changeFrequency: "monthly", priority: 0.7 },
-    { url: siteUrl("/about"), changeFrequency: "monthly", priority: 0.6 },
-    { url: siteUrl("/contact"), changeFrequency: "monthly", priority: 0.6 },
-    // /ourbrand was built, metadata'd and then listed nowhere — not here, and
-    // not in any link on the site. A page nothing points at and no sitemap
-    // names is a page that does not exist as far as a crawler is concerned.
-    { url: siteUrl("/ourbrand"), changeFrequency: "yearly", priority: 0.3 },
-    // /search is deliberately absent: it carries noindex, and asking a crawler
-    // to fetch a URL only to be told not to index it wastes the budget twice.
-  ];
+
+  /*
+   * The static pages are read out of the route registry rather than listed
+   * here by hand.
+   *
+   * This used to be twenty-two literal `siteUrl("/...")` calls kept in step
+   * with the app directory by memory alone — which is how /ourbrand came to be
+   * built, given metadata and then listed in no sitemap and no link on the
+   * site for as long as it existed. A page is now listed because it is
+   * registered, and a registered page that should not be listed has to say
+   * why in `excludedBecause`. Both facts live next to the path in
+   * lib/routes.ts, where the person adding a route will see them.
+   *
+   * siteUrl() is still handed the raw path, and still resolves "/" to the bare
+   * origin with no trailing slash, so the homepage entry continues to agree
+   * with the canonical Next.js renders for it.
+   */
+  const entries: MetadataRoute.Sitemap = staticSitemapRoutes().map(
+    ({ path, weight }) => ({
+      url: siteUrl(path === ROUTES.home ? "" : path),
+      changeFrequency: weight.changeFrequency,
+      priority: weight.priority,
+    }),
+  );
 
   // One page per diamond shape, under /rings. Commercial intent with a local
   // modifier, so weighted alongside the engagement hub they sit beneath.
   for (const g of SHAPE_GUIDES) {
     entries.push({
-      url: siteUrl(`/rings/${g.slug}`),
+      url: siteUrl(ROUTES.ringShape(g.slug)),
       changeFrequency: "monthly",
       priority: 0.8,
     });
@@ -103,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // the /sell hub they sit beneath.
   for (const b of SELL_BRANDS) {
     entries.push({
-      url: siteUrl(`/sell/${b.slug}`),
+      url: siteUrl(ROUTES.sellBrand(b.slug)),
       changeFrequency: "monthly",
       priority: 0.75,
     });
@@ -111,14 +66,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const b of WATCH_BRANDS) {
     entries.push({
-      url: siteUrl(`/watches/${b.slug}`),
+      url: siteUrl(ROUTES.watchBrand(b.slug)),
       changeFrequency: "weekly",
       priority: 0.8,
     });
   }
   for (const c of JEWELLERY_CATEGORIES) {
     entries.push({
-      url: siteUrl(`/jewellery/${c.slug}`),
+      url: siteUrl(ROUTES.jewelleryCategory(c.slug)),
       changeFrequency: "weekly",
       priority: 0.8,
     });

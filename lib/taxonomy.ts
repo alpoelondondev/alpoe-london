@@ -1,4 +1,5 @@
 import type { WatchBrandSlug, JewelleryCategorySlug } from "./types";
+import { ROUTES } from "./routes";
 
 export const WATCH_BRANDS: {
   slug: WatchBrandSlug;
@@ -82,14 +83,14 @@ export const JEWELLERY_CATEGORIES: {
 }[] = [
   {
     slug: "engagement-rings",
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
     name: "Engagement Rings",
     heritage:
       "Bespoke diamond engagement rings designed and crafted in Hatton Garden. Round brilliant, oval, emerald, cushion and pear-cut centre stones set in platinum or 18ct gold.",
   },
   {
     slug: "wedding-rings",
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
     name: "Wedding Rings & Bands",
     heritage:
       "Men's and women's wedding bands — plain, diamond-set, court-profile and D-shape — in platinum, 18ct white, yellow and rose gold.",

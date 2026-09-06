@@ -1,6 +1,7 @@
 import Nav from "./Nav";
 import { WATCH_BRANDS, JEWELLERY_CATEGORIES } from "@/lib/taxonomy";
 import { SEED_QUOTE, tickerItems } from "@/lib/metal-prices";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * The bar's announcement strip is filled in by the browser, not by this
@@ -22,12 +23,12 @@ export default function SiteHeader() {
   const suggestions = [
     ...WATCH_BRANDS.map((b) => ({
       name: b.name,
-      url: `/watches/${b.slug}`,
+      url: ROUTES.watchBrand(b.slug),
       kind: "Brand" as const,
     })),
     ...JEWELLERY_CATEGORIES.map((c) => ({
       name: c.name,
-      url: c.href ?? `/jewellery/${c.slug}`,
+      url: c.href ?? ROUTES.jewelleryCategory(c.slug),
       kind: "Category" as const,
     })),
   ];

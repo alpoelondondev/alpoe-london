@@ -12,12 +12,13 @@ import FAQ from "../components/FAQ";
 import { BESPOKE_FAQS } from "@/lib/faqs";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Bespoke Jewellery Made in Hatton Garden",
   description:
     "Commission a one-off diamond piece in Hatton Garden. Engagement rings, pendants and chains designed around you and hand-set in London. Natural or laboratory-grown.",
-  path: "/bespoke",
+  path: ROUTES.bespoke,
   image: "/og/bespoke.jpg",
 });
 
@@ -122,14 +123,14 @@ export default function BespokePage() {
   const ld = ldJsonGraph([
     {
       "@type": "Service",
-      "@id": siteUrl("/bespoke") + "#service",
+      "@id": siteUrl(ROUTES.bespoke) + "#service",
       name: "Bespoke Jewellery Design",
       serviceType: "Bespoke diamond jewellery",
       areaServed: "Worldwide",
       provider: { "@id": siteUrl("/") + "#organization" },
       description:
         "Custom diamond jewellery designed and hand-set in Hatton Garden, London. Laboratory-grown or natural, GIA certified.",
-      url: siteUrl("/bespoke"),
+      url: siteUrl(ROUTES.bespoke),
     },
     // Breadcrumbs are emitted by the <Breadcrumbs> component this page
     // renders, which is the single source of truth for the trail. Building
@@ -152,7 +153,7 @@ export default function BespokePage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Bespoke", href: "/bespoke", current: true },
+              { name: "Bespoke", href: ROUTES.bespoke, current: true },
             ]}
           />
         </section>
@@ -217,7 +218,7 @@ export default function BespokePage() {
           title="Send us a photo of what you like"
           copy="A screenshot, a sketch or a piece you've seen elsewhere is enough for us to work from."
           whatsappMessage="Hi Alpoe, I'd like to enquire about a bespoke piece."
-          secondary={{ label: "Browse Jewellery", href: "/jewellery" }}
+          secondary={{ label: "Browse Jewellery", href: ROUTES.jewellery }}
         />
       </main>
       <Footer />

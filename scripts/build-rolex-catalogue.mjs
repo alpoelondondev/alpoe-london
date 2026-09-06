@@ -254,11 +254,28 @@ function slugify(s) {
 // Row construction
 // -----------------------------------------------------------------------------
 
+/**
+ * The photographs for one reference, in order.
+ *
+ * `.webp` is listed first because that is what the tree actually holds — all
+ * 142 Rolex images, built at 800px by scripts/build-product-images.py. This
+ * filter used to accept `.png` alone, which was true when the images were
+ * hand-dropped PNGs and silently stopped being true when the build script
+ * moved everything to WebP. Nothing failed: the function simply returned ""
+ * for every reference, so re-running this script rewrote 51 rows with an empty
+ * `images` column and dropped the photography from 51 product pages. It was
+ * the documented way to add a Rolex reference, so the loss would have looked
+ * like a normal regeneration.
+ *
+ * PNG and JPG stay accepted so a hand-dropped file still works.
+ */
+const IMAGE_EXTENSIONS = [".webp", ".png", ".jpg", ".jpeg"];
+
 function listImages(refLower) {
   const dir = join(ROOT, refLower);
   if (!existsSync(dir)) return "";
   const files = readdirSync(dir)
-    .filter((f) => f.toLowerCase().endsWith(".png"))
+    .filter((f) => IMAGE_EXTENSIONS.some((e) => f.toLowerCase().endsWith(e)))
     .sort((a, b) => {
       const na = parseInt(a, 10);
       const nb = parseInt(b, 10);
@@ -277,16 +294,31 @@ function buildTitle(meta, refUpper) {
   return `Rolex ${modelDisplay}${sizeBit}${nickBit} ${refUpper}`;
 }
 
+/*
+ * "In stock", not "sourced to order".
+ *
+ * This generator used to append "Sourced to order through Alpoe London" to
+ * every description and set `stock_state: "sourceable"` on the legacy and
+ * orphan rows. The rest of the codebase settled the other way and left this
+ * file behind: `StockState` in lib/types.ts now admits exactly one value,
+ * `"in_stock"`; lib/products.ts hardcodes it; and all 109 watch rows in
+ * data/products.csv say "in stock" with none saying "sourced to order".
+ *
+ * So re-running this script did not just add a reference — it reverted 94
+ * meta descriptions and 92 descriptions to the older claim and wrote a
+ * `stock_state` the type no longer accepts, putting the "In Stock" badge back
+ * into contradiction with the copy underneath it on 92 pages.
+ */
 function buildDescription(meta) {
   if (meta.description) {
     return meta.description.endsWith(".")
-      ? `${meta.description} Sourced to order through Alpoe London, Hatton Garden.`
-      : `${meta.description}. Sourced to order through Alpoe London, Hatton Garden.`;
+      ? `${meta.description} In stock at Alpoe London, Hatton Garden.`
+      : `${meta.description}. In stock at Alpoe London, Hatton Garden.`;
   }
   const bracePhrase = meta.bracelets.length > 1
     ? `available on ${meta.bracelets.slice(0, -1).join(", ")} or ${meta.bracelets[meta.bracelets.length - 1]} bracelet`
     : `on ${meta.bracelets[0]} bracelet`;
-  return `Rolex ${meta.model} ${meta.caseSize} in ${meta.materials}, ${bracePhrase}. Sourced to order through Alpoe London, Hatton Garden.`;
+  return `Rolex ${meta.model} ${meta.caseSize} in ${meta.materials}, ${bracePhrase}. In stock at Alpoe London, Hatton Garden.`;
 }
 
 function buildSlug(meta, refLower) {
@@ -305,7 +337,7 @@ function buildRolexRow(refLower, meta, headerCols) {
   const images = listImages(refLower);
   const gemstones = (refUpper.endsWith("RBR") || refUpper.endsWith("TBR")) ? "Diamond" : "";
   const metaTitle = `${title} | Alpoe London Hatton Garden`;
-  const metaDescription = `${title} — authenticated and sourced to order through Alpoe London in Hatton Garden, London.`;
+  const metaDescription = `${title} — authenticated and in stock at Alpoe London in Hatton Garden, London.`;
 
   const row = {
     id,
@@ -317,7 +349,8 @@ function buildRolexRow(refLower, meta, headerCols) {
     slug,
     title,
     description,
-    stock_state: meta.legacy || meta.orphan ? "sourceable" : "in_stock",
+    // Always in_stock: `StockState` admits no other value (lib/types.ts).
+    stock_state: "in_stock",
     materials: meta.materials,
     gemstones,
     carat: "",

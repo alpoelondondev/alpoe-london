@@ -137,3 +137,60 @@ export function innerRadiusMm(sizeId: string): number {
   const fallback = ringSize(AVERAGE_WOMENS_SIZE)!;
   return (size ?? fallback).diameterMm / 2;
 }
+
+/**
+ * The UK size nearest a measurement in millimetres.
+ *
+ * This exists because of what people actually type. Search Console has this
+ * site appearing for "ring size 58 in letters uk", "18mm ring size uk", "ring
+ * sizes uk in mm" and "ring size measurement uk" — a dozen variants of the
+ * same question, all of them arriving with a number and wanting a letter back.
+ * The guide answered the opposite direction only: it printed a letter-first
+ * chart and left the reader to scan it backwards.
+ *
+ * Nearest rather than a range, because a measurement is already an
+ * approximation of a finger and pretending otherwise would be false precision.
+ * Half sizes are included in the search — they are made as standard, and
+ * excluding them would round a genuine Q½ to Q and lose 0.62mm for no reason.
+ */
+export function nearestSizeTo(
+  mm: number,
+  by: "circumference" | "diameter" = "circumference",
+): RingSize {
+  const value = (s: RingSize) =>
+    by === "circumference" ? s.circumferenceMm : s.diameterMm;
+  return RING_SIZES.reduce((best, s) =>
+    Math.abs(value(s) - mm) < Math.abs(value(best) - mm) ? s : best,
+  );
+}
+
+/**
+ * Whole-millimetre circumferences across the range a hand actually occupies,
+ * for a reverse lookup table. 44mm is a little under UK E, 70mm a little over
+ * Z+4 — narrower than the full scale, because a table is only useful if it
+ * fits on a phone.
+ */
+export function circumferenceLookup(): { mm: number; size: RingSize }[] {
+  const rows: { mm: number; size: RingSize }[] = [];
+  for (let mm = 44; mm <= 70; mm++) {
+    rows.push({ mm, size: nearestSizeTo(mm, "circumference") });
+  }
+  return rows;
+}
+
+/**
+ * The same in diameter, at half-millimetre steps.
+ *
+ * Half steps rather than whole ones because diameter compresses the scale by
+ * π: one whole millimetre of diameter is more than three UK sizes, so a
+ * whole-millimetre table would skip sizes entirely and send a reader away with
+ * an answer two sizes wrong. 14mm to 22.5mm spans the same fingers as above.
+ */
+export function diameterLookup(): { mm: number; size: RingSize }[] {
+  const rows: { mm: number; size: RingSize }[] = [];
+  for (let x = 280; x <= 450; x += 10) {
+    const mm = x / 20;
+    rows.push({ mm, size: nearestSizeTo(mm, "diameter") });
+  }
+  return rows;
+}

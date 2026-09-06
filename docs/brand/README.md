@@ -1,5 +1,13 @@
 # Logo — brand source assets
 
+> **Moved out of `public/` on 6 Sep 2026.** This folder used to live at
+> `public/Logo/`, which meant all 6.8 MB of it — including the 6.7 MB editable
+> `.blend` master — was deployed and downloadable at
+> `alpoelondon.com/Logo/alpoe.london-final.blend`. Nothing loads from here (see
+> below), so it was serving no purpose in `public/` beyond shipping the brand
+> source to anyone who guessed the URL. Blender's `.blend1` auto-backup was
+> deleted at the same time; it is now gitignored.
+
 Master artwork for the Alpoe London lockup. Everything here is generated from
 `alpoe.london-final.blend`, which is the single source of truth for the mark.
 

@@ -23,6 +23,19 @@ broken images, no 404s, no console errors. `/ring-builder/verify` returns
 - [x] `scripts/build-ring-renders.py` — conversion pipeline
 - [x] `scripts/upload-ring-renders.sh` — upload, with the R2 traps handled
 
+### Status
+
+**The library is live.** Re-verified 6 Sep 2026: the renders serve `200`
+`image/webp` from `https://pub-58692fc1b63d4ff0b2011f9ad888bc28.r2.dev` on
+front, angled and side views, and `NEXT_PUBLIC_RING_RENDERS_URL` is set. The
+checklist below is kept because it is the procedure for rebuilding or moving
+the library, not because it is outstanding work.
+
+One caveat on step 1: spot checks confirm renders are serving, but nobody has
+recently counted the bucket against the full 32,115. A configuration whose
+render is missing degrades to a specification card rather than breaking, so a
+gap would be quiet.
+
 ### What is left
 
 - [ ] **1. Finish the conversion.** `python3 scripts/build-ring-renders.py --stream`
@@ -37,10 +50,14 @@ broken images, no 404s, no console errors. `/ring-builder/verify` returns
 - [ ] **4. Upload.** `brew install rclone`, then `rclone config` (new remote →
       `s3` → provider **Cloudflare R2**), then
       `./scripts/upload-ring-renders.sh r2:alpoe-ring-renders`
-- [ ] **5. Netlify.** Site configuration → Environment variables → add
+- [ ] **5. Vercel.** Project → Settings → Environment Variables → add
       `NEXT_PUBLIC_RING_RENDERS_URL` = the public URL from step 2. Scope it to
-      all deploy contexts. **Then trigger a redeploy** — `NEXT_PUBLIC_*` is
-      inlined at build time, so editing it without rebuilding does nothing.
+      all environments (Production, Preview, Development). **Then trigger a
+      redeploy** — `NEXT_PUBLIC_*` is inlined at build time, so editing it
+      without rebuilding does nothing.
+
+      *(Said Netlify until 6 Sep 2026. The site moved to Vercel on 22 Aug 2026;
+      see docs/ops/dns-backup-alpoelondon.md. Netlify is rollback only.)*
 - [ ] **6. Verify.** This must return `200` and `content-type: image/webp`:
       ```
       curl -sI "$URL/solitaire/round-diamond/6-prong-nouveau/platinum/solitaire_round-diamond_6-prong-nouveau_platinum_angled.webp"

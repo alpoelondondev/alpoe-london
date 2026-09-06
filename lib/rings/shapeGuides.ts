@@ -1,4 +1,5 @@
 import type { ShapeId } from "@/lib/ring/shapes";
+import type { ShapeGuideSlug } from "@/lib/routes";
 
 /**
  * A page per diamond shape, at /rings/{slug}.
@@ -48,8 +49,15 @@ import type { ShapeId } from "@/lib/ring/shapes";
  */
 
 export type ShapeGuide = {
-  /** URL segment under /rings. The exact phrase people search. */
-  slug: string;
+  /**
+   * URL segment under /rings. The exact phrase people search.
+   *
+   * Typed against the registry, not `string`: /rings also holds six static
+   * pages, and a static path beats a dynamic one. A slug that collides with
+   * one of them would leave this guide unreachable while the sitemap still
+   * listed it. Adding a guide means adding its slug to `ShapeGuideSlug`.
+   */
+  slug: ShapeGuideSlug;
   /** Ties the page to lib/ring/shapes.ts and to the builder deep link. */
   shape: ShapeId;
   /** "Oval", "Emerald cut" — as the trade writes it mid-sentence. */

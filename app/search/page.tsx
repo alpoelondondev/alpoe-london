@@ -8,6 +8,7 @@ import ProductGrid from "../components/ProductGrid";
 import { getAllProducts, photosFirst } from "@/lib/products";
 import { pageMetadata } from "@/lib/seo";
 import type { Product } from "@/lib/types";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * Noindex, follow.
@@ -24,7 +25,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Search the Alpoe London Collection",
   description:
     "Search Alpoe London for watches, engagement rings, diamond jewellery, brands and reference numbers — bespoke and ready to wear, from our Hatton Garden showroom.",
-  path: "/search",
+  path: ROUTES.search,
   noindex: true,
 });
 
@@ -75,7 +76,7 @@ export default async function SearchPage(
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Search", href: "/search", current: true },
+              { name: "Search", href: ROUTES.search, current: true },
             ]}
           />
         </section>

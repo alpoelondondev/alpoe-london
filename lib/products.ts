@@ -9,6 +9,8 @@ import type {
   WatchBrandSlug,
 } from "./types";
 import { JEWELLERY_CATEGORIES, WATCH_BRANDS } from "./taxonomy";
+import { productPath } from "./routes";
+import { getReferenceResearch } from "./research";
 import { truncateForSerp } from "./seo";
 import { asset } from "./assets";
 import { IMAGE_VERSIONS } from "./generated/image-manifest";
@@ -115,6 +117,30 @@ function toProduct(row: Record<string, string>): Product | null {
   // Everything listed is held in stock — there is no sourced-to-order tier.
   const stockState: StockState = "in_stock";
 
+  /*
+   * Verified specs for this reference, used to fill the gaps the CSV leaves.
+   *
+   * data/research/** carries case size, movement, materials, bezel, dial,
+   * water resistance and year per reference, checked against the manufacturer.
+   * lib/catalogue.ts has always layered it onto the live-sheet products; the
+   * curated rows in products.csv never did, and the difference showed. Measured
+   * on 6 Sep 2026: a curated product page carried ~51 words that were not site
+   * furniture, against ~106 on a catalogue page for a comparable watch.
+   *
+   * Two of the rows ProductSpecs renders — Bezel and Water resistance — have no
+   * column in products.csv at all, so they were blank on all 109 curated pages
+   * while the data sat in the research index unused. 58 of those references are
+   * covered by it.
+   *
+   * The CSV wins wherever it says anything. These rows are hand-written and
+   * are the authored record; research only fills a field the CSV left empty, so
+   * this can add detail but never silently contradict what someone typed.
+   */
+  const research =
+    type === "watch" && brandSlug && row.reference_number
+      ? getReferenceResearch(brandSlug, row.reference_number)
+      : undefined;
+
   // The sheet names a bare "/products/…/<nn>-<name>.webp"; resolve it to the versioned
   // path the manifest knows (so a re-exported image busts the CDN cache) and
   // then to wherever the assets bucket is. Anything the manifest has not seen
@@ -144,14 +170,16 @@ function toProduct(row: Record<string, string>): Product | null {
     title: row.title,
     description: row.description,
     stockState,
-    materials: row.materials || undefined,
+    materials: row.materials || research?.materials || undefined,
     gemstones: row.gemstones || undefined,
     carat: row.carat || undefined,
-    dial: row.dial || undefined,
-    caseSize: row.case_size || undefined,
-    movement: row.movement || undefined,
+    dial: row.dial || research?.dial || undefined,
+    bezel: research?.bezel || undefined,
+    caseSize: row.case_size || research?.caseSize || undefined,
+    movement: row.movement || research?.movement || undefined,
+    waterResistance: research?.waterResistance || undefined,
     referenceNumber: row.reference_number || undefined,
-    year: row.year || undefined,
+    year: row.year || research?.year || undefined,
     condition: row.condition || undefined,
     bracelets,
     images,
@@ -217,11 +245,16 @@ export function getJewelleryBySlug(
   return getJewelleryByCategory(categorySlug).find((p) => p.slug === slug);
 }
 
-export function productUrl(p: Product): string {
-  if (p.type === "watch" && p.brandSlug) return `/watches/${p.brandSlug}/${p.slug}`;
-  if (p.type === "jewellery" && p.categorySlug) return `/jewellery/${p.categorySlug}/${p.slug}`;
-  return "/";
-}
+/**
+ * Where a product's page lives.
+ *
+ * Re-exported from the route registry rather than reimplemented. The two
+ * product trees are the same shape — `/watches/:brand/:slug` and
+ * `/jewellery/:category/:slug` — and assembling either by hand is a segment
+ * swap waiting to happen, in a form that still compiles and still looks like a
+ * plausible URL. The name stays because roughly a dozen call sites use it.
+ */
+export const productUrl = productPath;
 
 export function getFeatured(limit = 6): Product[] {
   return loadAll()

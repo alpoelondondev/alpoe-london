@@ -14,7 +14,7 @@ No broken image references were found (every image path used by a page exists in
 
 ## How to add photos
 
-- **Watches**: drop images into `public/products/<brand-slug>/<reference>/` (e.g. `public/products/rolex/126610ln/01-submariner-date.webp`). The build regenerates the manifest automatically (`pnpm gen:data`). Photos are matched by reference number.
+- **Watches**: drop images into `public/products/<brand-slug>/<reference>/` (e.g. `public/products/rolex/126610ln/01-submariner-date-black-date.webp`). The build regenerates the manifest automatically (`pnpm gen:data`). Photos are matched by reference number.
 - **Jewellery**: put image paths in the `images` column of `data/products.csv` (pipe-separated, paths under /public). Currently **all 13 jewellery products have an empty images column**.
 
 ## Watch pages missing photos (212)

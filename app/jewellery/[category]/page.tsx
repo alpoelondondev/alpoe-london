@@ -13,8 +13,12 @@ import CategoryFilms from "../../components/CategoryFilms";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import { filmsForCategory } from "@/lib/films";
 import { getJewelleryByCategory, productUrl } from "@/lib/products";
-import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
+import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
+import { categoryGuide } from "@/lib/jewellery/categoryGuides";
+import ScrollReveal from "../../components/ScrollReveal";
+import FAQ from "../../components/FAQ";
 import type { JewelleryCategorySlug, Product } from "@/lib/types";
+import { ROUTES } from "@/lib/routes";
 
 type RouteParams = { category: string };
 
@@ -43,7 +47,7 @@ export async function generateMetadata(
     description: truncateForSerp(
       `${c.name} from Alpoe London, made and sourced in Hatton Garden. ${c.heritage}`,
     ),
-    path: `/jewellery/${c.slug}`,
+    path: ROUTES.jewelleryCategory(c.slug),
     image: "/og/jewellery.jpg",
   });
 }
@@ -71,18 +75,27 @@ export default async function JewelleryCategoryPage(
   // they replace could never do. Categories without footage keep the grid.
   const films = filmsForCategory(c.slug as JewelleryCategorySlug);
 
-  const ld = ldJsonGraph(
-    collectionLd({
+  // Present on the four categories that have their own page and their own
+  // buying advice; undefined on the three that redirect to the ring builder
+  // or sit above it, where the sections below simply do not render.
+  const guide = categoryGuide(c.slug);
+
+  const ld = ldJsonGraph([
+    ...collectionLd({
       name: c.name,
       description: c.heritage,
-      path: `/jewellery/${c.slug}`,
+      path: ROUTES.jewelleryCategory(c.slug),
       // Films have no page behind them, so they are named without a URL
       // rather than all pointing back at this one. See collectionLd.
       products: films.length
         ? films.map((f) => ({ title: f.title }))
         : all.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
-  );
+    // Only where the questions are actually rendered below — an FAQPage
+    // describing questions a reader cannot see is what gets a rich result
+    // revoked rather than granted.
+    ...(guide ? [faqLd(guide.faqs)] : []),
+  ]);
 
   return (
     <>
@@ -100,8 +113,8 @@ export default async function JewelleryCategoryPage(
             heading="Engagement &amp; Wedding Rings"
             copy="Bespoke settings and bands, made to your specification."
             cta={[
-              { label: "View Rings", href: "/rings/engagement-and-wedding-rings" },
-              { label: "Design Your Own Ring", href: "/ring-builder" },
+              { label: "View Rings", href: ROUTES.engagementAndWeddingRings },
+              { label: "Design Your Own Ring", href: ROUTES.ringBuilder },
             ]}
             video="/alpoe-oval-three-stone-diamond-ring-hatton-garden.mp4"
             poster="/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg"
@@ -112,11 +125,19 @@ export default async function JewelleryCategoryPage(
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Jewellery", href: "/jewellery" },
-              { name: c.name, href: `/jewellery/${c.slug}`, current: true },
+              { name: "Jewellery", href: ROUTES.jewellery },
+              { name: c.name, href: ROUTES.jewelleryCategory(c.slug), current: true },
             ]}
           />
         </section>
+        {guide ? (
+          <ScrollReveal>
+            <section className="px-[52px] pb-12 max-md:px-6">
+              <p className="max-w-[70ch] t-copy">{guide.intro}</p>
+            </section>
+          </ScrollReveal>
+        ) : null}
+
         <section className="px-[52px] pb-20 max-md:px-6">
           {films.length ? (
             // No Filters here: they filter stock and material off the product
@@ -130,7 +151,7 @@ export default async function JewelleryCategoryPage(
               {c.slug === "rings" && (
                 <div className="mt-12 flex justify-center max-md:mt-9">
                   <Link
-                    href="/rings/ready-to-ship"
+                    href={ROUTES.readyToShipRings}
                     className="inline-flex items-center justify-center border border-fg/[0.22] px-8 py-3.5 text-[11px] font-semibold tracking-[0.16em] uppercase transition hover:border-accent hover:text-accent"
                   >
                     View more ready to ship rings
@@ -164,6 +185,28 @@ export default async function JewelleryCategoryPage(
             </>
           )}
         </section>
+
+        {guide ? (
+          <>
+            <ScrollReveal>
+              <section className="border-t border-fg/10 bg-panel-soft px-[52px] py-14 max-md:px-6 max-md:py-10">
+                <h2 className="t-section">Choosing {c.name.toLowerCase()}</h2>
+                <div className="mt-8 grid grid-cols-2 gap-x-10 gap-y-9 max-md:grid-cols-1">
+                  {guide.choices.map((ch) => (
+                    <div key={ch.heading} className="border-t border-accent/40 pt-4">
+                      <h3 className="font-serif text-[19px] leading-tight text-blush">
+                        {ch.heading}
+                      </h3>
+                      <p className="mt-3 t-copy">{ch.copy}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </ScrollReveal>
+
+            <FAQ items={guide.faqs} />
+          </>
+        ) : null}
       </main>
       <Footer />
       <WhatsAppButton />

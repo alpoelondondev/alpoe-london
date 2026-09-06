@@ -9,8 +9,9 @@ import ScrollReveal from "../components/ScrollReveal";
 import SheetFaq from "../components/SheetFaq";
 import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/guides";
+const PATH = ROUTES.guides;
 
 /**
  * The guides index that did not exist.
@@ -52,42 +53,56 @@ type Guide = {
 
 const GUIDES: Guide[] = [
   {
-    href: "/guides/buying-jewellery-in-hatton-garden",
+    href: ROUTES.guideHattonGarden,
     title: "Buying jewellery in Hatton Garden",
     kicker: "The quarter",
     blurb:
       "Whether it is really cheaper and why, when it is not, how three hundred jewellers came to share a few streets, and the four things to ask before you hand over a card.",
   },
   {
-    href: "/guides/natural-vs-lab-grown-diamonds",
+    href: ROUTES.guideLabGrownDiamonds,
     title: "Laboratory-grown vs natural diamonds",
     kicker: "Diamonds",
     blurb:
       "A laboratory-grown diamond is a diamond — same carbon, same hardness, same grading laboratories. What differs is how it was formed, what it costs, and how each holds its value. The whole comparison, without the sales pitch.",
   },
   {
-    href: "/guides/wedding-bands",
+    href: ROUTES.guideProposeInLondon,
+    title: "Where to propose in London",
+    kicker: "Proposals",
+    blurb:
+      "Twelve places worth it and what each is really like on the day — which are busier than they look, which give you actual privacy, and the practical part: light, weather, where to keep the ring and getting the size right beforehand.",
+  },
+  {
+    href: ROUTES.guideSellingAWatch,
+    title: "Where to sell a luxury watch in London",
+    kicker: "Selling",
+    blurb:
+      "Dealer, auction, consignment, private sale, platform or part-exchange — what each route actually pays on the same watch, what it costs in fees, how long you wait, and the one thing that reduces your own offer.",
+  },
+  {
+    href: ROUTES.guideWeddingBands,
     title: "What wedding band goes with your ring",
     kicker: "Pairing",
     blurb:
       "Which engagement ring shapes take a plain straight band, which three usually need one cut to fit, and how to choose the profile, width and metal beside a stone you already own.",
   },
   {
-    href: "/ring-size-guide",
+    href: ROUTES.ringSizeGuide,
     title: "Ring size guide and UK size chart",
     kicker: "Sizing",
     blurb:
       "The full UK chart from A to Z in millimetres, three ways to measure accurately at home, the average UK sizes for men and women, and four ways to find someone's size without asking them.",
   },
   {
-    href: "/hallmarking",
+    href: ROUTES.hallmarking,
     title: "What a British hallmark certifies",
     kicker: "Assay",
     blurb:
       "The sponsor's mark, the fineness mark and the assay office mark, and what each one independently proves about the metal in your ring. Plus the statutory Dealer's Notice.",
   },
   {
-    href: "/metal-prices",
+    href: ROUTES.metalPrices,
     title: "Live gold, silver and platinum prices",
     kicker: "Reference",
     blurb:
@@ -98,17 +113,17 @@ const GUIDES: Guide[] = [
 /** Tools rather than reading — listed apart so the hub does not blur the two. */
 const TOOLS = [
   {
-    href: "/ring-builder",
+    href: ROUTES.ringBuilder,
     title: "Ring builder",
     blurb: "Specify a ring yourself — shape, setting, band, metal and size.",
   },
   {
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
     title: "Engagement ring styles",
     blurb: "Fifteen finished styles to start a commission from.",
   },
   {
-    href: "/book-appointment",
+    href: ROUTES.bookAppointment,
     title: "Book an appointment",
     blurb: "See stones side by side in Hatton Garden before you decide.",
   },

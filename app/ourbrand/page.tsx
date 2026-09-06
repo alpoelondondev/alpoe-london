@@ -9,12 +9,13 @@ import MerchandiseStrip from "../components/MerchandiseStrip";
 import BrandModelViewer from "./BrandModelViewer";
 import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Our Brand — The Alpoe London Mark",
   description:
     "The Alpoe London lockup, modelled and rendered in rose gold. Rotate the mark in your browser, and see the orthographic views the artwork is drawn from.",
-  path: "/ourbrand",
+  path: ROUTES.ourBrand,
 });
 
 /**
@@ -48,15 +49,15 @@ export default function OurBrandPage() {
   const ld = ldJsonGraph([
     {
       "@type": "WebPage",
-      "@id": siteUrl("/ourbrand") + "#ourbrand",
-      url: siteUrl("/ourbrand"),
+      "@id": siteUrl(ROUTES.ourBrand) + "#ourbrand",
+      url: siteUrl(ROUTES.ourBrand),
       name: `Our Brand — ${SITE.name}`,
       description:
         "The Alpoe London mark modelled in three dimensions, viewable and rotatable in the browser.",
     },
     breadcrumbLd([
       { name: "Home", url: siteUrl("/") },
-      { name: "Our Brand", url: siteUrl("/ourbrand") },
+      { name: "Our Brand", url: siteUrl(ROUTES.ourBrand) },
     ]),
   ]);
 
@@ -117,13 +118,13 @@ export default function OurBrandPage() {
             <p className="mt-4 max-w-[64ch] t-copy">
               It is a deliberate piece of an otherwise quiet identity. A house
               that makes things by hand in{" "}
-              <Link href="/about" className="text-accent underline underline-offset-4">
+              <Link href={ROUTES.about} className="text-accent underline underline-offset-4">
                 Hatton Garden
               </Link>{" "}
               should have a mark that was made rather than picked, and the
               rose gold is the same metal that turns up in half of what leaves
               the{" "}
-              <Link href="/bespoke" className="text-accent underline underline-offset-4">
+              <Link href={ROUTES.bespoke} className="text-accent underline underline-offset-4">
                 workshop
               </Link>
               .

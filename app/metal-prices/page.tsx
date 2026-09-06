@@ -21,12 +21,13 @@ import { getMetalsNews, formatAge } from "@/lib/metals-news";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { pageMetadata, ldJsonGraph } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Live Gold, Silver & Platinum Prices",
   description:
     "Live gold, silver, platinum and palladium spot prices in GBP and USD, per troy ounce and per gram, with carat breakdowns. Reference rates from Hatton Garden.",
-  path: "/metal-prices",
+  path: ROUTES.metalPrices,
 });
 
 export const revalidate = 300;
@@ -196,8 +197,8 @@ export default async function MetalPricesPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Guides", href: "/guides" },
-              { name: "Metal Prices", href: "/metal-prices", current: true },
+              { name: "Guides", href: ROUTES.guides },
+              { name: "Metal Prices", href: ROUTES.metalPrices, current: true },
             ]}
           />
         </section>
@@ -352,7 +353,7 @@ export default async function MetalPricesPage() {
           title="Get today's figure confirmed"
           copy="Message us and we'll confirm the live rate for your piece, with our premium set out in full."
           whatsappMessage="Hi Alpoe, I'd like today's confirmed rate on gold, silver or platinum."
-          secondary={{ label: "Sell & Trade", href: "/sell" }}
+          secondary={{ label: "Sell & Trade", href: ROUTES.sell }}
         />
       </main>
       <Footer />

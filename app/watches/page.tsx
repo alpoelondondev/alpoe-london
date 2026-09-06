@@ -13,12 +13,13 @@ import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { WATCH_FAQS } from "@/lib/faqs";
 import { productUrl } from "@/lib/products";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Luxury Watches — Rolex, Patek, AP",
+  title: "Luxury Watches for Sale in London",
   description:
-    "Authenticated luxury watches sourced through Alpoe London in Hatton Garden — Rolex, Patek Philippe, Audemars Piguet and Cartier, all held in stock.",
-  path: "/watches",
+    "Authenticated luxury watches in Hatton Garden — Rolex, Patek Philippe, Audemars Piguet, Cartier, Hublot and Omega, held in stock and sourced to order.",
+  path: ROUTES.watches,
   image: "/og/watches.jpg",
 });
 
@@ -46,7 +47,7 @@ export default function WatchesIndex() {
       name: "Luxury Watches",
       description:
         "Luxury watches at Alpoe London — every major brand, every reference held in stock.",
-      path: "/watches",
+      path: ROUTES.watches,
       products: featured.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
     faqLd(WATCH_FAQS),
@@ -58,7 +59,7 @@ export default function WatchesIndex() {
       <main>
         <BrandHero
           eyebrow="Watches"
-          title="Luxury Watches, Authenticated & In Stock"
+          title="Luxury Watches for Sale in London"
           copy="Rolex, Patek Philippe, Audemars Piguet, Richard Mille, Cartier, Hublot, Omega and Breitling. Every piece held in stock at our Hatton Garden showroom, and anything we do not hold we can source."
         />
 
@@ -66,7 +67,7 @@ export default function WatchesIndex() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Watches", href: "/watches", current: true },
+              { name: "Watches", href: ROUTES.watches, current: true },
             ]}
           />
         </section>
@@ -76,7 +77,7 @@ export default function WatchesIndex() {
             {WATCH_BRANDS.map((b) => (
               <li key={b.slug} className="col-span-3 max-md:col-span-6 flex">
                 <Link
-                  href={`/watches/${b.slug}`}
+                  href={ROUTES.watchBrand(b.slug)}
                   className="flex flex-col justify-between gap-4 w-full border border-fg/[0.14] hover:border-accent/60 hover:bg-fg/[0.04] transition p-5 min-h-[130px]"
                 >
                   <p className="font-serif text-[22px] tracking-[0.02em] leading-none">{b.name}</p>
@@ -94,6 +95,57 @@ export default function WatchesIndex() {
           ariaLabel="Featured timepieces"
           products={featured}
         />
+
+        {/*
+          * Prose, because there was none.
+          *
+          * This page carries the site's head commercial term — "luxury watches
+          * london" — on a hero line, a grid of eight brand links and a FAQ
+          * block, with no body copy at all between them. A page with nothing
+          * on it to read is a page with nothing to rank.
+          */}
+        <ScrollReveal>
+          <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-section">Buying a luxury watch in London</h2>
+            <p className="mt-4 max-w-[70ch] t-copy">
+              London is one of the three or four genuine centres of the
+              pre-owned watch trade, and Hatton Garden is where most of it
+              changes hands. The practical advantage to a buyer is not price so
+              much as choice and proximity: a reference you would wait months
+              for at an authorised dealer is usually available immediately on
+              the pre-owned market, and several dealers holding it sit within a
+              few streets of each other.
+            </p>
+            <p className="mt-4 max-w-[70ch] t-copy">
+              Everything we list is authenticated in our own showroom before it
+              is offered — opened, timed and inspected rather than taken on a
+              previous owner&rsquo;s word. Anything we do not hold, we source.
+              If you know the reference you want, tell us and we will find that
+              one rather than sell you the nearest thing in the case; if you do
+              not, the brand pages below set out how each maker&rsquo;s model
+              families differ and what separates a good example from a poor one.
+            </p>
+            <p className="mt-4 max-w-[70ch] t-copy">
+              Buying against something you already own?{" "}
+              <Link
+                href={ROUTES.sell}
+                className="text-accent underline underline-offset-4"
+              >
+                We take part-exchange
+              </Link>{" "}
+              on anything in the catalogue, and the allowance is often better
+              than selling outright &mdash;{" "}
+              <Link
+                href={ROUTES.guideSellingAWatch}
+                className="text-accent underline underline-offset-4"
+              >
+                our guide to the six ways to sell a watch in London
+              </Link>{" "}
+              explains why, and when it is not.
+            </p>
+          </section>
+        </ScrollReveal>
+
         <FAQ items={WATCH_FAQS} />
       </main>
       <Footer />

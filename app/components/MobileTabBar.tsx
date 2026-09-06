@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * The phone's standing navigation: four destinations pinned to the bottom of
@@ -126,10 +127,10 @@ const ELITE = (
  * into the programme, and it should not read as a third category.
  */
 const TABS: { label: string; href: string; icon: ReactNode; elite?: boolean }[] = [
-  { label: "Watches", href: "/watches", icon: WATCH },
-  { label: "Jewellery", href: "/jewellery", icon: JEWELLERY },
-  { label: "Rings", href: "/rings", icon: RING },
-  { label: "Elite", href: "/mentorship", icon: ELITE, elite: true },
+  { label: "Watches", href: ROUTES.watches, icon: WATCH },
+  { label: "Jewellery", href: ROUTES.jewellery, icon: JEWELLERY },
+  { label: "Rings", href: ROUTES.rings, icon: RING },
+  { label: "Elite", href: ROUTES.mentorship, icon: ELITE, elite: true },
 ];
 
 /** How far a finger has to travel before it counts as a drag and not a tap. */

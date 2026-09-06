@@ -11,8 +11,9 @@ import FAQ from "../../components/FAQ";
 import { DIAMOND_FAQS } from "@/lib/faqs";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/guides/natural-vs-lab-grown-diamonds";
+const PATH = ROUTES.guideLabGrownDiamonds;
 
 /**
  * When this guide was written, and when it was last revised.
@@ -180,7 +181,7 @@ export default function DiamondsGuidePage() {
               { name: "Home", href: "/" },
               // /guides exists now, so the trail this page was already
               // claiming has the parent it was missing.
-              { name: "Guides", href: "/guides" },
+              { name: "Guides", href: ROUTES.guides },
               { name: "Lab-Grown vs Natural Diamonds", href: PATH, current: true },
             ]}
           />
@@ -375,7 +376,7 @@ export default function DiamondsGuidePage() {
           copy="Tell us the budget and what it is for. We will come back with the two options, lab and natural, and what each gets you."
           whatsappMessage="Hi Alpoe, what diamond shall I pick?"
           primaryLabel="Ask on WhatsApp"
-          secondary={{ label: "Start a Bespoke Piece", href: "/bespoke" }}
+          secondary={{ label: "Start a Bespoke Piece", href: ROUTES.bespoke }}
         />
       </main>
       <Footer />

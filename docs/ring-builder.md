@@ -1,6 +1,28 @@
-# Ring Builder — Implementation Plan
+# Ring Builder — Implementation Plan (historical)
 
-Status: **not started**. This doc captures the full plan so we can resume cold.
+> **Status corrected 6 Sep 2026: the ring builder is BUILT AND LIVE.** This doc
+> said "not started", which was true when written and has not been true for a
+> long time. `/ring-builder` ships today from `app/ring-builder/` (eight files,
+> including `StudioClient.tsx` and `RingViewport.tsx`) and `lib/ring/` (nine
+> modules: bands, heads, shapes, metals, surface, spec, config, sizes,
+> renders).
+>
+> **It was not built the way this plan describes.** The CSV-backed design below
+> — `data/diamonds.csv`, `data/settings.csv`, `lib/diamonds.ts`,
+> `lib/settings.ts` — was abandoned and none of those four files were ever
+> created. What shipped is a render-library builder: **15 bands × 10 shapes ×
+> 15 heads × 7 metals**, three views each (front, angled, side), served from
+> Cloudflare R2 and addressed by concatenation with no manifest — see
+> `docs/ring-builder-renders.md`, which is the current document.
+>
+> Two things from this plan did survive and are still true: the enquiry goes
+> out over WhatsApp with no cart and no payments (`buildRingSpecUrl` in
+> `lib/whatsapp.ts`), and the build is encoded in the URL.
+>
+> Kept as a record of the reasoning, not as instructions. Do not implement
+> anything below.
+
+This doc captures the full original plan so we can resume cold.
 
 ## Goal
 

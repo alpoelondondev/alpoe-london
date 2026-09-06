@@ -29,5 +29,11 @@ Publishing them would be three separate problems:
 They are also wrong on the merits: the engraving sits on the *outside* of the band, where no UK
 jeweller puts one. Hallmarks and personal engraving go inside the shank.
 
-**The Ring Builder generates its own imagery from procedural geometry, so none of this is
-needed.** See `docs/ring-builder.md`.
+**The Ring Builder has its own imagery, so none of this is needed.** It draws on a
+library of pre-rendered photographs — 15 bands × 10 shapes × 15 heads × 7 metals, three
+views each — built from 3D geometry and served from Cloudflare R2. Nothing is generated
+in the browser, and no competitor asset is involved at any stage.
+
+See `docs/ring-builder-renders.md`, which is the current document. (This pointed at
+`docs/ring-builder.md` until 6 Sep 2026; that file is the original CSV-backed plan, which
+was abandoned, and is kept only as history.)

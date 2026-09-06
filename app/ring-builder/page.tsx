@@ -14,8 +14,9 @@ import { METALS } from "@/lib/ring/metals";
 import { DEFAULT_CONFIG } from "@/lib/ring/config";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/ring-builder";
+const PATH = ROUTES.ringBuilder;
 
 /**
  * The title targets the query, the page calls itself the Custom Studio.
@@ -198,7 +199,7 @@ export default function RingBuilderPage() {
               you have approved a CAD design. We handle your booking privately, as a
               one-to-one service. If you would rather start from a sketch, an heirloom
               stone or simply a conversation, that is our{" "}
-              <Link href="/bespoke" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
+              <Link href={ROUTES.bespoke} className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                 bespoke service
               </Link>
               .
@@ -230,31 +231,31 @@ export default function RingBuilderPage() {
               <h2 className="t-sub">Next steps</h2>
               <ul className="mt-4 flex flex-col gap-2 text-sm">
                 <li>
-                  <Link href="/ring-size-guide" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
+                  <Link href={ROUTES.ringSizeGuide} className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                     Ring size guide
                   </Link>
                   <span className="text-sheet-dim"> — the UK chart, and how to measure at home.</span>
                 </li>
                 <li>
-                  <Link href="/guides/natural-vs-lab-grown-diamonds" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
+                  <Link href={ROUTES.guideLabGrownDiamonds} className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                     Natural vs laboratory-grown diamonds
                   </Link>
                   <span className="text-sheet-dim"> — what actually differs, and what each costs.</span>
                 </li>
                 <li>
-                  <Link href="/rings/engagement-and-wedding-rings" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
+                  <Link href={ROUTES.engagementAndWeddingRings} className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                     Engagement &amp; wedding rings
                   </Link>
                   <span className="text-sheet-dim"> — fifteen finished styles to start from.</span>
                 </li>
                 <li>
-                  <Link href="/hallmarking" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
+                  <Link href={ROUTES.hallmarking} className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                     Hallmarking
                   </Link>
                   <span className="text-sheet-dim"> — what the marks struck into your ring certify.</span>
                 </li>
                 <li>
-                  <Link href="/book-appointment" className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
+                  <Link href={ROUTES.bookAppointment} className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep">
                     Book an appointment
                   </Link>
                   <span className="text-sheet-dim"> — see stones in person in Hatton Garden.</span>
@@ -274,7 +275,7 @@ export default function RingBuilderPage() {
             ldJsonGraph([
               breadcrumbLd([
                 { name: "Home", url: siteUrl("/") },
-                { name: "Bespoke", url: siteUrl("/bespoke") },
+                { name: "Bespoke", url: siteUrl(ROUTES.bespoke) },
                 { name: "Ring Builder", url: siteUrl(PATH) },
               ]),
               // Every one of these is rendered above by <SheetFaq>. Marking up

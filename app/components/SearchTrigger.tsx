@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
 import type { SearchIndexEntry } from "@/lib/types";
 import SearchDialog from "./SearchDialog";
+import { ROUTES } from "@/lib/routes";
 
 type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
 
@@ -34,7 +35,7 @@ export default function SearchTrigger({
   const loadIndex = useCallback(() => {
     if (loadedRef.current) return;
     loadedRef.current = true;
-    fetch("/api/search-index")
+    fetch(ROUTES.apiSearchIndex)
       .then((r) => (r.ok ? r.json() : []))
       .then((data: SearchIndexEntry[]) => setIndex(data))
       .catch(() => {

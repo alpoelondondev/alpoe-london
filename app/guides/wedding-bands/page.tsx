@@ -10,8 +10,9 @@ import FAQ from "../../components/FAQ";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/guides/wedding-bands";
+const PATH = ROUTES.guideWeddingBands;
 
 /**
  * What wedding ring goes beside the engagement ring.
@@ -38,9 +39,9 @@ const PATH = "/guides/wedding-bands";
  */
 
 export const metadata: Metadata = pageMetadata({
-  title: "What Wedding Band Goes With Your Ring",
+  title: "Wedding Bands for Engagement Rings",
   description:
-    "Which wedding ring sits flush against an oval, pear, marquise or emerald cut engagement ring, when you need a shaped band, and what a fitted one costs.",
+    "Which wedding band sits flush against an oval, pear, marquise or emerald cut engagement ring, when you need a shaped band, and what a fitted one costs.",
   path: PATH,
   image: "/og/wedding-rings.jpg",
 });
@@ -143,6 +144,16 @@ const PRINCIPLES = [
 
 const BAND_FAQS = [
   {
+    question: "How do I choose a wedding band for an engagement ring?",
+    answer:
+      "Hold a plain straight band against the engagement ring and look at the pair from the side rather than from above. If light shows between them you want a shaped band cut to follow the outline; if they meet, a straight band is right and nobody should be selling you a fitted one. After that it is profile, width and metal, in that order — profile changes how a ring feels on the hand far more than width does.",
+  },
+  {
+    question: "What is an engagement ring band?",
+    answer:
+      "People use it two ways. Usually it means the wedding ring worn next to an engagement ring — the plain or set band added at the wedding. Sometimes it means the shank of the engagement ring itself, the metal hoop the stone sits on. If you are asking a jeweller for a quote, say whether you mean a second ring to sit beside an existing one or the band of the ring itself, because the two are very different jobs.",
+  },
+  {
     question: "What wedding band goes with an oval engagement ring?",
     answer:
       "A straight band, in most cases. Ovals sit against a plain band more easily than people expect. The exception is a low-profile setting, where the curve of the stone passes over the band and leaves a small gap — and there a gently shaped band, scooped rather than fully contoured, closes it. Bring the engagement ring in and we will hold both against it.",
@@ -216,7 +227,7 @@ export default function WeddingBandsGuidePage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Guides", href: "/guides" },
+              { name: "Guides", href: ROUTES.guides },
               { name: "Wedding bands", href: PATH, current: true },
             ]}
           />
@@ -302,7 +313,7 @@ export default function WeddingBandsGuidePage() {
             <p className="mt-8 max-w-[64ch] t-copy">
               Bringing an existing ring for a band to be cut against?{" "}
               <Link
-                href="/book-appointment"
+                href={ROUTES.bookAppointment}
                 className="text-accent underline underline-offset-4"
               >
                 Book a time

@@ -10,15 +10,16 @@ import CTAStrip from "../components/CTAStrip";
 import FAQ from "../components/FAQ";
 import FindUs from "../components/FindUs";
 import { CONTACT_FAQS } from "@/lib/faqs";
-import { pageMetadata, ldJsonGraph, faqLd, localBusinessLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
 import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact Us — Hatton Garden Showroom",
   description:
     "Talk to Alpoe London about a bespoke commission, a watch you are hunting or a piece you would like to sell. WhatsApp for a fast reply, or visit Hatton Garden.",
-  path: "/contact",
+  path: ROUTES.contact,
 });
 
 const FIELDS: EnquiryField[] = [
@@ -49,13 +50,28 @@ const FIELDS: EnquiryField[] = [
 ];
 
 export default function ContactPage() {
+  /*
+   * The business is referenced, not re-declared.
+   *
+   * localBusinessLd() was being called here as well as in <SiteLDJSON>, which
+   * the root layout renders on every page — so this document shipped two
+   * complete JewelryStore nodes carrying the same @id in two separate script
+   * blocks. Google merges by @id so nothing broke, but it is duplicated
+   * payload on one of the site's two conversion pages and, worse, a standing
+   * invitation to drift: the moment somebody customises one copy the page
+   * asserts two different businesses under one identifier.
+   *
+   * `about` is what was actually wanted — it says this contact page is about
+   * that business, which a bare sibling node never said. /book-appointment
+   * already did it this way.
+   */
   const ld = ldJsonGraph([
-    localBusinessLd(),
     {
       "@type": "ContactPage",
-      "@id": siteUrl("/contact") + "#contact",
-      url: siteUrl("/contact"),
+      "@id": siteUrl(ROUTES.contact) + "#contact",
+      url: siteUrl(ROUTES.contact),
       name: `Contact ${SITE.name}`,
+      about: { "@id": `${siteUrl()}/#localbusiness` },
     },
     // Breadcrumbs are emitted by the <Breadcrumbs> component this page
     // renders, which is the single source of truth for the trail. Building
@@ -78,7 +94,7 @@ export default function ContactPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Contact", href: "/contact", current: true },
+              { name: "Contact", href: ROUTES.contact, current: true },
             ]}
           />
         </section>
@@ -151,7 +167,7 @@ export default function ContactPage() {
           title="We reply on WhatsApp, usually same day"
           copy="No forms, no waiting on hold — send a photo or a reference number and we'll take it from there."
           whatsappMessage="Hi Alpoe, I'd like to make an enquiry."
-          secondary={{ label: "Read Our Story", href: "/about" }}
+          secondary={{ label: "Read Our Story", href: ROUTES.about }}
         />
       </main>
       <Footer />

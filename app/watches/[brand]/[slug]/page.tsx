@@ -23,6 +23,7 @@ import {
 } from "@/lib/catalogue";
 import { pageMetadata, ldJsonGraph, productLd } from "@/lib/seo";
 import type { WatchBrandSlug } from "@/lib/types";
+import { ROUTES } from "@/lib/routes";
 
 type RouteParams = { brand: string; slug: string };
 
@@ -74,7 +75,7 @@ export async function generateMetadata(
     title,
     absoluteTitle: true,
     description: desc.slice(0, 300),
-    path: `/watches/${b.slug}/${p.slug}`,
+    path: ROUTES.watchProduct(b.slug, p.slug),
     image: p.images[0],
   });
 }
@@ -91,7 +92,7 @@ export default async function WatchProductPage(
     (await getCatalogueProductBySlug(b.slug as WatchBrandSlug, slug));
   if (!product) notFound();
 
-  const path = `/watches/${b.slug}/${product.slug}`;
+  const path = ROUTES.watchProduct(b.slug, product.slug);
   const related = getRelated(product, 3);
   const searchIndex = buildSearchIndex();
   const alt = [product.brand, product.model, product.referenceNumber, product.materials]
@@ -109,8 +110,8 @@ export default async function WatchProductPage(
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Watches", href: "/watches" },
-              { name: b.name, href: `/watches/${b.slug}` },
+              { name: "Watches", href: ROUTES.watches },
+              { name: b.name, href: ROUTES.watchBrand(b.slug) },
               { name: product.title, href: path, current: true },
             ]}
           />

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * Segment-level boundary. Where global-error.tsx is the airbag, this is the
@@ -34,15 +35,15 @@ export default function Error({ reset }: { error: Error & { digest?: string }; r
             Home
           </Link>
           <Link
-            href="/rings/engagement-and-wedding-rings"
+            href={ROUTES.engagementAndWeddingRings}
             className="opacity-70 hover:opacity-100 transition-opacity"
           >
             Engagement rings
           </Link>
-          <Link href="/bespoke" className="opacity-70 hover:opacity-100 transition-opacity">
+          <Link href={ROUTES.bespoke} className="opacity-70 hover:opacity-100 transition-opacity">
             Bespoke
           </Link>
-          <Link href="/contact" className="opacity-70 hover:opacity-100 transition-opacity">
+          <Link href={ROUTES.contact} className="opacity-70 hover:opacity-100 transition-opacity">
             Contact
           </Link>
         </div>

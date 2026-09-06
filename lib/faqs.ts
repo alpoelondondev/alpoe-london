@@ -1,3 +1,4 @@
+import { ROUTES } from "./routes";
 export type FaqItem = {
   question: string;
   answer: string;
@@ -50,7 +51,7 @@ const FAQS = {
     question: "Do you work with laboratory-grown as well as natural diamonds?",
     answer:
       "Both. Laboratory-grown diamonds have essentially the same properties as natural stones and typically let you go significantly larger for the same budget. Natural diamonds hold their rarity and resale position. We will show you the same design in both so you can compare in person.",
-    href: "/guides/natural-vs-lab-grown-diamonds",
+    href: ROUTES.guideLabGrownDiamonds,
     linkLabel: "Laboratory-grown vs natural diamonds",
   },
   designProcess: {
@@ -147,7 +148,7 @@ const FAQS = {
     question: "How do I find out my ring size?",
     answer:
       "Measure the finger it will actually be worn on, at the end of the day when hands are largest, and measure the same finger twice on different days. UK sizes run A to Z, so a number from an American or European chart has to be converted rather than used as it stands. Our size guide has the full UK chart in millimetres, three ways to measure at home, the average UK sizes for men and women, and four ways to work out somebody else's size without asking them.",
-    href: "/ring-size-guide",
+    href: ROUTES.ringSizeGuide,
     linkLabel: "Ring size guide and UK size chart",
   },
   ringResize: {
@@ -159,28 +160,28 @@ const FAQS = {
     question: "Which wedding band goes with my engagement ring?",
     answer:
       "It depends on the shape of the engagement ring. Many take a plain straight band beside them, and a few settings will not sit flush against one at all, so the band is cut to fit around the ring instead. Bring the engagement ring in, or start from our pairing guide, which covers the profile, the width and the metal to choose beside a stone you already own.",
-    href: "/guides/wedding-bands",
+    href: ROUTES.guideWeddingBands,
     linkLabel: "What wedding band goes with your ring",
   },
   ringHallmark: {
     question: "Are your rings hallmarked?",
     answer:
       "Yes. Every ring is struck at the London Assay Office, whose counter is on Greville Street, a few doors from our own. The hallmark is independent of us: it certifies the fineness of the metal, who sponsored the piece and where it was tested, which is why it is worth understanding before you buy anything in precious metal.",
-    href: "/hallmarking",
+    href: ROUTES.hallmarking,
     linkLabel: "What a British hallmark certifies",
   },
   ringReadyNow: {
     question: "Do you have rings that are ready now?",
     answer:
       "Yes. Alongside the made-to-order styles we hold a set of finished engagement rings, which only need sizing before they go out — far sooner than a commission. Ask about any of them and we will confirm what is available in your size.",
-    href: "/rings/ready-to-ship",
+    href: ROUTES.readyToShipRings,
     linkLabel: "See the ready to ship rings",
   },
   ringDesignOnline: {
     question: "Can I design the ring myself?",
     answer:
       "Yes. The ring builder takes you through the band style, the diamond and its shape, the setting, the metal and the UK size, and shows the ring as you change it. Whatever you land on comes to us as a starting point rather than a finished order — we model the exact ring in CAD and send it back to you with the price before anything is cast.",
-    href: "/ring-builder",
+    href: ROUTES.ringBuilder,
     linkLabel: "Open the ring builder",
   },
   appointmentNeeded: {
@@ -203,14 +204,58 @@ const FAQS = {
     answer:
       "Yes. Message us on the same WhatsApp thread and we will move it — no notice period and no charge. We would rather rearrange than have you rush.",
   },
+  /*
+   * The three gaps in the laboratory-grown set.
+   *
+   * The existing six cover carat, certification, resale, ethics, simulants and
+   * seeing both side by side, which is most of the cluster the keyword
+   * research listed as outstanding — so these three are additions to a page
+   * that already ranks rather than the six new pages that were queued. A rival
+   * page per question would have competed with the strongest writing on the
+   * site for the sake of splitting an answer in half.
+   *
+   * `labIdentify` is the one worth having. The common assumption is that a
+   * jeweller can spot a laboratory-grown stone with a loupe, or that a pocket
+   * diamond tester will out it. Neither is true, and the reason is the whole
+   * point of the guide: it is diamond, so it behaves like diamond on every
+   * test that asks whether it is diamond.
+   *
+   * No prices and no percentages in `labPriceDirection`. The direction is
+   * well established and safe to state; a figure written into a page in
+   * September is wrong by Christmas.
+   */
+  labIdentify: {
+    question: "How can you tell if a diamond is lab-grown?",
+    answer:
+      "Not by eye, and not with a loupe — a laboratory-grown diamond has the same optical properties as a mined one, so there is nothing to see. The pocket testers sold as diamond testers do not help either: they measure thermal and electrical conductivity to answer the question 'is this diamond', and a lab stone is diamond, so it passes. Telling the two apart takes specialist screening equipment that looks at growth structure and fluorescence, which is what the grading laboratories use. In practice you rely on the paperwork: GIA and IGI laser inscribe a number on the girdle that matches the certificate, and IGI marks lab stones as laboratory-grown. That inscription is the reason not to buy an uncertificated stone of either kind.",
+    href: ROUTES.guideLabGrownDiamonds,
+    linkLabel: "Laboratory-grown vs natural diamonds",
+  },
+  labInsurance: {
+    question: "How do I insure a lab-grown diamond?",
+    answer:
+      "The same way as any other ring, with one difference worth getting right. Jewellery is insured for replacement cost, so the sum insured should be what it would cost to replace the piece today rather than what you paid. Laboratory-grown prices have fallen since the market opened, which cuts both ways: an older valuation can have you paying premium on a figure well above what a replacement now costs, and a valuation that predates a fall may not be what your insurer settles at. Make sure the policy states the stone is laboratory-grown so a claim is settled like for like, keep the certificate with your documents, and have the valuation refreshed every few years.",
+    href: ROUTES.guideLabGrownDiamonds,
+    linkLabel: "Laboratory-grown vs natural diamonds",
+  },
+  labPriceDirection: {
+    question: "Are lab-grown diamond prices still falling?",
+    answer:
+      "They have fallen substantially since laboratory-grown stones became widely available, as production capacity grew and the technology matured, and the direction has been consistently downward rather than volatile. We will not put a number on where they go next, because nobody can — but it is the honest reason to buy a laboratory-grown stone for the size and the look rather than as something to sell on later. If resale matters to you, that is an argument for a natural stone. If wearing the largest, brightest diamond your budget allows matters more, it is an argument for lab.",
+    href: ROUTES.guideLabGrownDiamonds,
+    linkLabel: "Laboratory-grown vs natural diamonds",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const DIAMOND_FAQS: FaqItem[] = [
   FAQS.labCarat,
   FAQS.labCertification,
-  FAQS.labResale,
-  FAQS.labEthics,
+  FAQS.labIdentify,
   FAQS.labSimulants,
+  FAQS.labResale,
+  FAQS.labPriceDirection,
+  FAQS.labInsurance,
+  FAQS.labEthics,
   FAQS.labSeeBoth,
 ];
 

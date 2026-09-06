@@ -13,8 +13,10 @@ import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { RING_FAQS } from "@/lib/faqs";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
+import { METAL_GUIDES } from "@/lib/rings/metalGuides";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/rings";
+const PATH = ROUTES.rings;
 
 /**
  * The rings hub.
@@ -50,27 +52,27 @@ const CATEGORIES: { title: string; copy: string; href: string }[] = [
   {
     title: "Engagement Rings",
     copy: "Fifteen band styles made to order — any diamond shape, any setting, in platinum or 18ct gold. Natural or laboratory-grown, and we do not steer you toward either.",
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
   },
   {
     title: "Wedding Rings & Bands",
     copy: "Plain or diamond-set, in a profile chosen against the ring it will sit beside — and shaped to fit where an engagement ring will not take a straight band.",
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
   },
   {
     title: "Customise Your Own Ring",
     copy: "Build it on screen. Choose the style, the stone and its shape, the setting, the metal and the UK size, and see the ring change as you go.",
-    href: "/ring-builder",
+    href: ROUTES.ringBuilder,
   },
   {
     title: "Bespoke Rings",
     copy: "From a sketch, a photograph or a stone you already own. Modelled in CAD and sent to you with the price before anything is cast.",
-    href: "/bespoke",
+    href: ROUTES.bespoke,
   },
   {
     title: "Ready to Ship Rings",
     copy: "Finished pieces we hold rather than make to order, sized and sent far sooner than a commission.",
-    href: "/rings/ready-to-ship",
+    href: ROUTES.readyToShipRings,
   },
 ];
 
@@ -83,22 +85,22 @@ const OTHER_TYPES: { title: string; copy: string; href: string }[] = [
   {
     title: "Eternity rings",
     copy: "Full, half and three-quarter. A full band cannot be resized — the stones run the whole way round and the spacing cannot be altered.",
-    href: "/ring-size-guide",
+    href: ROUTES.ringSizeGuide,
   },
   {
     title: "Signet rings",
     copy: "One of the few pieces still bought to be engraved, whether with a crest, a monogram or initials.",
-    href: "/bespoke",
+    href: ROUTES.bespoke,
   },
   {
     title: "Dress and statement rings",
     copy: "Cocktail rings, pavé bands and cluster pieces — the ones bought for no occasion at all.",
-    href: "/jewellery/rings",
+    href: ROUTES.jewelleryCategory("rings"),
   },
   {
     title: "Remodelled and inherited rings",
     copy: "An inherited stone reset into something you will actually wear. Bring it in and we will tell you honestly whether it is worth resetting.",
-    href: "/bespoke",
+    href: ROUTES.bespoke,
   },
 ];
 
@@ -159,7 +161,7 @@ export default function RingsHubPage() {
           <p className="mt-6 text-[13px] text-fg/60 font-light">
             Not sure of the size?{" "}
             <Link
-              href="/ring-size-guide"
+              href={ROUTES.ringSizeGuide}
               className="text-fg underline underline-offset-4 transition hover:text-accent"
             >
               Start with the ring size guide
@@ -192,6 +194,40 @@ export default function RingsHubPage() {
                   >
                     <p className="font-serif text-[22px] tracking-[0.02em] leading-none">
                       {g.name}
+                    </p>
+                    <p className="text-[10px] tracking-[0.18em] uppercase text-dim">
+                      Engagement rings
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </ScrollReveal>
+
+        {/* Metal is the other axis, and it was the one the site never
+            covered — ten shape pages and nothing at all on platinum versus
+            white gold, which is the question most often asked at the
+            counter. */}
+        <ScrollReveal>
+          <section className="border-t border-fg/[0.14] px-[52px] py-14 max-md:px-6 max-md:py-10">
+            <h2 className="t-sub">By metal</h2>
+            <p className="mt-3 max-w-[64ch] t-copy">
+              What each metal actually does over a lifetime of wear &mdash; why
+              white gold needs replating and platinum never does, what the carat
+              changes about colour and hardness, and which of them can be
+              resized easily later.
+            </p>
+            <ul className="mt-8 grid grid-cols-12 gap-4 max-md:gap-3 auto-rows-fr">
+              {METAL_GUIDES.map((m) => (
+                <li key={m.slug} className="col-span-3 max-md:col-span-6 flex">
+                  <Link
+                    href={m.path}
+                    data-haptic
+                    className={`${CARD} min-h-[110px]`}
+                  >
+                    <p className="font-serif text-[22px] tracking-[0.02em] leading-none">
+                      {m.name.replace(/^\w/, (c) => c.toUpperCase())}
                     </p>
                     <p className="text-[10px] tracking-[0.18em] uppercase text-dim">
                       Engagement rings
@@ -245,7 +281,7 @@ export default function RingsHubPage() {
                 </p>
               </div>
               <Link
-                href="/rings/ready-to-ship"
+                href={ROUTES.readyToShipRings}
                 className="t-eyebrow shrink-0 font-semibold whitespace-nowrap underline underline-offset-4 transition hover:text-accent"
               >
                 See all

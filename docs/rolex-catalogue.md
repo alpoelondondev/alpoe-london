@@ -1,10 +1,41 @@
 # Rolex Catalogue
 
-Status: **wired up to Joe's Google Sheet.** All 84 unique sheet references plus 9 orphan/2 legacy rows are in `data/products.csv` and rendering on the site.
+Status: **live.** The 94 Rolex references in `scripts/build-rolex-catalogue.mjs`
+are in `data/products.csv` and rendering on the site. (Said "84 unique sheet
+references plus 9 orphan/2 legacy rows" until 6 Sep 2026; the mapping has grown
+to 94 and the orphan/legacy split no longer changes what is emitted.)
+
+> **Two bugs in this pipeline were fixed on 6 Sep 2026.** Both meant that
+> running step 3 below — the documented way to add a reference — silently
+> damaged data that was already correct:
+>
+> 1. `listImages()` filtered for `.png`, but every Rolex image has been `.webp`
+>    since the images moved to `scripts/build-product-images.py`. It matched
+>    nothing, so a regeneration blanked the `images` column on **51 rows** and
+>    dropped the photography from 51 product pages.
+> 2. The generator still wrote "Sourced to order through Alpoe London" into
+>    descriptions and `stock_state: "sourceable"` on legacy/orphan rows. The
+>    rest of the codebase settled on in-stock only — `StockState` in
+>    `lib/types.ts` admits one value — so a regeneration reverted **94 meta
+>    descriptions and 92 descriptions** and put the "In Stock" badge back into
+>    contradiction with the copy beneath it.
+>
+> Both are fixed, and the script now reproduces the committed
+> `data/products.csv` byte-for-byte. That is worth re-checking after any change
+> here: `cp data/products.csv /tmp/before && node scripts/build-rolex-catalogue.mjs && diff /tmp/before data/products.csv`
+> should print nothing.
 
 ## How the catalogue is generated
 
-Source of truth: Joe's Google Sheet (`WEBSITE BACKEND - ROLEX`, single tab as of writing).
+Source of truth for the **`data/products.csv` Rolex slice**: the `REFS` object
+inside `scripts/build-rolex-catalogue.mjs`.
+
+Not to be confused with the *other* catalogue: `data/catalogue.csv` (300 rows)
+is the live-sheet stock list, refreshed from Joe's published Google Sheet by
+`pnpm refresh:catalogue` and read from disk at build time by `lib/catalogue.ts`.
+The site no longer fetches that sheet at runtime — see commit dae469d, "Read the
+catalogue from a file, not from Google". The two feed different pages and
+neither writes to the other.
 
 The pipeline is:
 
@@ -27,11 +58,22 @@ The build script auto-discovers files in each folder and builds the `images` col
 
 To add images to a reference:
 
-1. Drop PNGs into `public/products/rolex/{ref-lowercase}/` named `01-<what-it-is>.png`, `02-…`, etc.
+1. Build the images with `python3 scripts/build-product-images.py rolex` from a
+   row in `data/image-sources/rolex.tsv` — that writes
+   `public/products/rolex/{ref-lowercase}/01-<what-it-is>.webp`, `02-…`, etc.
+   (This step said "drop PNGs" until 6 Sep 2026. The tree holds 142 images and
+   every one is WebP; the script that reads them accepts `.webp`, `.png`,
+   `.jpg` and `.jpeg`, so a hand-dropped file still works, but WebP built from
+   the TSV is the real path.)
 2. Re-run `node scripts/build-rolex-catalogue.mjs`.
 3. Commit the changes to `data/products.csv`.
 
-If new bulk images come from Rolex's press kit with the `imgi_{order}_m{ref}-{variant}.png` naming, run `node scripts/organize-rolex-images.mjs` first to sort them into the correct per-reference folders.
+`scripts/organize-rolex-images.mjs` sorted a bulk press-kit drop named
+`imgi_{order}_m{ref}-{variant}.png` into per-reference folders. It is **legacy**
+as of 6 Sep 2026: no `imgi_*` files remain under `public/`, so it is a no-op,
+and it emits `1.png` rather than the `01-<what-it-is>.webp` the rest of the
+pipeline expects. Use `data/image-sources/rolex.tsv` +
+`python3 scripts/build-product-images.py rolex` instead.
 
 ## Bracelet selection
 

@@ -1,6 +1,6 @@
 /* "ALPOE LONDON" wordmark — Bebas Neue outlines in a 225x225 viewBox (mark spans y 47-162).
    NOT the current mark: the lockup was redrawn in Blender and now lives in
-   public/Logo, served flat from public/alpoe-london-logo-full-rosegold.svg and
+   docs/brand, served flat from public/alpoe-london-logo-full-rosegold.svg and
    in 3D from public/models. These outlines are the retired Bebas wordmark and
    survive only because the splash Loader still draws them — and the splash is
    itself commented out of app/layout.tsx. Re-enable it and this needs

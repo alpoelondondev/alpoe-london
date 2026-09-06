@@ -10,8 +10,12 @@ import { toGridTiles } from "../../components/ProductGrid";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
 import { getWatchesByBrand, productUrl } from "@/lib/products";
 import { getCatalogueProductsByBrand, referenceKey } from "@/lib/catalogue";
-import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd } from "@/lib/seo";
+import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
+import { brandGuide } from "@/lib/watches/brandGuides";
+import ScrollReveal from "../../components/ScrollReveal";
+import FAQ from "../../components/FAQ";
 import type { WatchBrandSlug, Product } from "@/lib/types";
+import { ROUTES } from "@/lib/routes";
 
 type RouteParams = { brand: string };
 
@@ -56,7 +60,7 @@ export async function generateMetadata(
         .slice(0, 3)
         .join(", ")} and more, all held in stock. ${b.heritage}`,
     ),
-    path: `/watches/${b.slug}`,
+    path: ROUTES.watchBrand(b.slug),
     image: "/og/watches.jpg",
   });
 }
@@ -98,18 +102,27 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
   );
   // The model filter lists what is actually on the page, not the taxonomy's
   // three headline lines — the sheet names models the taxonomy never will.
+  // Present for the four brands the search data justifies; undefined for the
+  // rest, in which case the sections below simply do not render.
+  const guide = brandGuide(b.slug);
+
   const modelOptions = [...new Set(all.map((p) => p.model).filter(Boolean))]
     .sort()
     .map((m) => ({ value: m as string, label: m as string }));
 
-  const ld = ldJsonGraph(
-    collectionLd({
+  const ld = ldJsonGraph([
+    ...collectionLd({
       name: `${b.name} Watches`,
       description: b.heritage,
-      path: `/watches/${b.slug}`,
+      path: ROUTES.watchBrand(b.slug),
       products: all.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
-  );
+    // There was no FAQPage anywhere on the watch side of the site. The
+    // questions are only emitted where they are actually rendered on the
+    // page — an FAQPage describing questions a reader cannot see is the
+    // failure mode Google revokes rich results for.
+    ...(guide ? [faqLd(guide.faqs)] : []),
+  ]);
 
   return (
     <>
@@ -130,14 +143,62 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Watches", href: "/watches" },
-              { name: b.name, href: `/watches/${b.slug}`, current: true },
+              { name: "Watches", href: ROUTES.watches },
+              { name: b.name, href: ROUTES.watchBrand(b.slug), current: true },
             ]}
           />
         </section>
+        {guide ? (
+          <ScrollReveal>
+            <section className="px-[52px] pb-12 max-md:px-6">
+              <p className="max-w-[70ch] t-copy">{guide.intro}</p>
+            </section>
+          </ScrollReveal>
+        ) : null}
+
         <section className="px-[52px] pb-20 max-md:px-6">
           <CatalogueGrid tiles={toGridTiles(all)} modelOptions={modelOptions} />
         </section>
+
+        {guide ? (
+          <>
+            <ScrollReveal>
+              <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+                <h2 className="t-section">The {b.name} model families</h2>
+                <dl className="mt-8 divide-y divide-fg/[0.08] border-t border-fg/[0.08]">
+                  {guide.lines.map((l) => (
+                    <div key={l.name} className="py-5">
+                      <dt className="font-serif text-[19px] leading-tight text-blush">
+                        {l.name}
+                      </dt>
+                      <dd className="mt-2 max-w-[70ch] t-copy">{l.copy}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <section className="border-t border-fg/10 bg-panel-soft px-[52px] py-14 max-md:px-6 max-md:py-10">
+                <h2 className="t-section">
+                  What to check on a pre-owned {b.name}
+                </h2>
+                <div className="mt-8 grid grid-cols-2 gap-x-10 gap-y-9 max-md:grid-cols-1">
+                  {guide.checks.map((c) => (
+                    <div key={c.heading} className="border-t border-accent/40 pt-4">
+                      <h3 className="font-serif text-[19px] leading-tight text-blush">
+                        {c.heading}
+                      </h3>
+                      <p className="mt-3 t-copy">{c.copy}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </ScrollReveal>
+
+            <FAQ items={guide.faqs} />
+          </>
+        ) : null}
       </main>
       <Footer />
       <WhatsAppButton />

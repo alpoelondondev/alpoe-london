@@ -11,12 +11,13 @@ import FindUs from "../components/FindUs";
 import { ABOUT_FAQS } from "@/lib/faqs";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "About Us — Hatton Garden Jewellers",
   description:
     "Alpoe London is a Hatton Garden jeweller and watch specialist: bespoke diamond pieces made at our own bench, authenticated timepieces, private consultations.",
-  path: "/about",
+  path: ROUTES.about,
 });
 
 const PILLARS = [
@@ -42,8 +43,8 @@ export default function AboutPage() {
   const ld = ldJsonGraph([
     {
       "@type": "AboutPage",
-      "@id": siteUrl("/about") + "#about",
-      url: siteUrl("/about"),
+      "@id": siteUrl(ROUTES.about) + "#about",
+      url: siteUrl(ROUTES.about),
       name: `About ${SITE.name}`,
       description:
         "Hatton Garden specialists in bespoke diamond jewellery and authenticated luxury watches.",
@@ -69,7 +70,7 @@ export default function AboutPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "About", href: "/about", current: true },
+              { name: "About", href: ROUTES.about, current: true },
             ]}
           />
         </section>
@@ -112,7 +113,7 @@ export default function AboutPage() {
           title="Book a private consultation"
           copy="Walk-ins are welcome at our Hatton Garden showroom, or message us and we'll set aside a quiet hour."
           whatsappMessage="Hi Alpoe, I'd like to book a consultation at the showroom."
-          secondary={{ label: "Browse Watches", href: "/watches" }}
+          secondary={{ label: "Browse Watches", href: ROUTES.watches }}
         />
       </main>
       <Footer />

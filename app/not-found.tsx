@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "./components/SiteHeader";
 import Footer from "./components/Footer";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * A 404 that still does a job.
@@ -19,28 +20,28 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const ROUTES: { href: string; label: string; note: string }[] = [
+const SUGGESTIONS: { href: string; label: string; note: string }[] = [
   {
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
     label: "Engagement & wedding rings",
     note: "Bespoke solitaires, halos, three-stone and eternity bands",
   },
   {
-    href: "/ring-builder",
+    href: ROUTES.ringBuilder,
     label: "Build your own ring",
     note: "Choose the shape, stone, setting and metal",
   },
-  { href: "/bespoke", label: "Bespoke commissions", note: "From sketch to hallmarked piece" },
-  { href: "/jewellery", label: "Jewellery", note: "Earrings, necklaces, bracelets and pendants" },
-  { href: "/watches", label: "Luxury watches", note: "Rolex, Audemars Piguet, Patek Philippe and more" },
-  { href: "/sell", label: "Sell your watch or jewellery", note: "Valuation and part-exchange" },
-  { href: "/ring-size-guide", label: "Ring size guide", note: "Measure a UK ring size at home" },
+  { href: ROUTES.bespoke, label: "Bespoke commissions", note: "From sketch to hallmarked piece" },
+  { href: ROUTES.jewellery, label: "Jewellery", note: "Earrings, necklaces, bracelets and pendants" },
+  { href: ROUTES.watches, label: "Luxury watches", note: "Rolex, Audemars Piguet, Patek Philippe and more" },
+  { href: ROUTES.sell, label: "Sell your watch or jewellery", note: "Valuation and part-exchange" },
+  { href: ROUTES.ringSizeGuide, label: "Ring size guide", note: "Measure a UK ring size at home" },
   {
-    href: "/guides/natural-vs-lab-grown-diamonds",
+    href: ROUTES.guideLabGrownDiamonds,
     label: "Natural vs laboratory-grown diamonds",
     note: "How they differ, and how to choose",
   },
-  { href: "/book-appointment", label: "Book an appointment", note: "See us in Hatton Garden" },
+  { href: ROUTES.bookAppointment, label: "Book an appointment", note: "See us in Hatton Garden" },
 ];
 
 export default function NotFound() {
@@ -56,7 +57,7 @@ export default function NotFound() {
         </p>
 
         <ul className="mt-14 grid grid-cols-3 gap-px bg-white/10 max-lg:grid-cols-2 max-md:grid-cols-1">
-          {ROUTES.map((r) => (
+          {SUGGESTIONS.map((r) => (
             <li key={r.href} className="bg-bg">
               <Link href={r.href} className="block p-8 h-full hover:bg-white/5 transition-colors">
                 <span className="block text-[13px] uppercase tracking-[0.1em]">{r.label}</span>
@@ -68,7 +69,7 @@ export default function NotFound() {
 
         <p className="mt-14 text-sm font-light text-dim">
           Still stuck?{" "}
-          <Link href="/contact" className="text-accent underline underline-offset-4">
+          <Link href={ROUTES.contact} className="text-accent underline underline-offset-4">
             Get in touch
           </Link>{" "}
           and we&apos;ll point you at the right thing.

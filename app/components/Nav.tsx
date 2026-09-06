@@ -10,6 +10,7 @@ import type { TickerItem } from "@/lib/metal-prices";
 import LockupMark from "./LockupMark";
 import { LOCKUP_ASPECT } from "./heroLockupShapes";
 import { useDeferredUntilIdle } from "./useDeferredUntilIdle";
+import { ROUTES } from "@/lib/routes";
 
 type Suggestion = { name: string; url: string; kind: "Brand" | "Category" };
 
@@ -55,23 +56,23 @@ function MonogramFlat() {
  * flag to put it back; that is the whole restore.
  */
 const LINKS: { label: string; href: string; hidden?: boolean }[] = [
-  { label: "Watches", href: "/watches" },
-  { label: "Jewellery", href: "/jewellery" },
+  { label: "Watches", href: ROUTES.watches },
+  { label: "Jewellery", href: ROUTES.jewellery },
   // Three ways into the same page. Somebody arriving to buy a wedding band and
   // somebody arriving to design an engagement ring are on different errands,
   // and a single "Rings" entry makes both of them hunt for their half of it.
   // The page carries all three, so the menu names all three and each lands on
   // its own section.
-  { label: "Engagement & Wedding Rings", href: "/rings/engagement-and-wedding-rings" },
-  { label: "Ready to Ship Rings", href: "/rings/ready-to-ship" },
+  { label: "Engagement & Wedding Rings", href: ROUTES.engagementAndWeddingRings },
+  { label: "Ready to Ship Rings", href: ROUTES.readyToShipRings },
   // Not ready to be shown to visitors yet.
-  { label: "Ring Builder", href: "/ring-builder", hidden: true },
-  { label: "Bespoke", href: "/bespoke" },
-  { label: "Guides", href: "/guides" },
-  { label: "Sell & Trade", href: "/sell" },
-  { label: "Mentorship", href: "/mentorship" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Ring Builder", href: ROUTES.ringBuilder, hidden: true },
+  { label: "Bespoke", href: ROUTES.bespoke },
+  { label: "Guides", href: ROUTES.guides },
+  { label: "Sell & Trade", href: ROUTES.sell },
+  { label: "Mentorship", href: ROUTES.mentorship },
+  { label: "About", href: ROUTES.about },
+  { label: "Contact", href: ROUTES.contact },
 ];
 
 export default function Nav({
@@ -102,7 +103,7 @@ export default function Nav({
    * lands on top of the ring they are comparing, which is the one thing on that
    * page that must not be covered.
    */
-  const revealOnlyAtTop = pathname === "/ring-builder";
+  const revealOnlyAtTop = pathname === ROUTES.ringBuilder;
 
   // The panel is now the only route list on every screen, so it needs the
   // escape hatch a full-screen overlay is expected to have.
@@ -254,7 +255,7 @@ export default function Nav({
               destination, so it keeps its place out here while the routes sit
               behind the menu. */}
           <Link
-            href="/book-appointment"
+            href={ROUTES.bookAppointment}
             className="justify-self-end border border-accent px-5 py-2.5 text-[11px] tracking-[0.16em] uppercase text-accent transition hover:bg-accent hover:text-bg max-md:hidden"
           >
             Book
@@ -311,7 +312,7 @@ export default function Nav({
         <ul className="mx-auto flex w-full max-w-xl flex-col divide-y divide-fg/[0.12]">
           <li>
             <Link
-              href="/book-appointment"
+              href={ROUTES.bookAppointment}
               prefetch={menuOpen ? undefined : false}
               onClick={() => setMenuOpen(false)}
               className="t-sub block py-4 !text-accent"

@@ -19,6 +19,7 @@ import {
 } from "@/lib/products";
 import { pageMetadata, ldJsonGraph, productLd } from "@/lib/seo";
 import type { JewelleryCategorySlug } from "@/lib/types";
+import { ROUTES } from "@/lib/routes";
 
 type RouteParams = { category: string; slug: string };
 
@@ -47,7 +48,7 @@ export async function generateMetadata(
     title: p.metaTitle ?? p.title,
     absoluteTitle: true,
     description: (p.metaDescription ?? p.description).slice(0, 300),
-    path: `/jewellery/${c.slug}/${p.slug}`,
+    path: ROUTES.jewelleryProduct(c.slug, p.slug),
     image: p.images[0],
   });
 }
@@ -62,7 +63,7 @@ export default async function JewelleryProductPage(
   const product = getJewelleryBySlug(c.slug as JewelleryCategorySlug, slug);
   if (!product) notFound();
 
-  const path = `/jewellery/${c.slug}/${product.slug}`;
+  const path = ROUTES.jewelleryProduct(c.slug, product.slug);
   const related = getRelated(product, 3);
   const searchIndex = buildSearchIndex();
   const alt = [product.category, product.materials, product.gemstones, product.carat]
@@ -80,8 +81,8 @@ export default async function JewelleryProductPage(
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Jewellery", href: "/jewellery" },
-              { name: c.name, href: `/jewellery/${c.slug}` },
+              { name: "Jewellery", href: ROUTES.jewellery },
+              { name: c.name, href: ROUTES.jewelleryCategory(c.slug) },
               { name: product.title, href: path, current: true },
             ]}
           />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE, siteUrl } from "./site";
 import type { Product } from "./types";
+import { ROUTES } from "./routes";
 
 /**
  * The card every share falls back to. Without an explicit `images` entry
@@ -123,43 +124,43 @@ function offerCatalogLd() {
   const services: { name: string; path: string; description: string }[] = [
     {
       name: "Bespoke engagement rings",
-      path: "/rings/engagement-and-wedding-rings",
+      path: ROUTES.engagementAndWeddingRings,
       description:
         "Engagement rings designed with you and made to order in Hatton Garden — solitaire, halo, three-stone and eternity settings in platinum and 18ct gold.",
     },
     {
       name: "Bespoke jewellery commissions",
-      path: "/bespoke",
+      path: ROUTES.bespoke,
       description:
         "One-off pieces designed from a sketch, a stone or an heirloom and hand-set at our Hatton Garden bench.",
     },
     {
       name: "Ring builder",
-      path: "/ring-builder",
+      path: ROUTES.ringBuilder,
       description:
         "Design your own ring online — choose the setting, diamond shape, carat, metal and UK ring size, then send the specification to the workshop.",
     },
     {
       name: "Wedding rings and bands",
-      path: "/rings",
+      path: ROUTES.rings,
       description:
         "Wedding rings and matching bands in platinum, 18ct white, yellow and rose gold, hallmarked at the London Assay Office.",
     },
     {
       name: "Diamond jewellery",
-      path: "/jewellery",
+      path: ROUTES.jewellery,
       description:
         "Diamond earrings, necklaces, pendants and bracelets, natural or laboratory-grown, made in London.",
     },
     {
       name: "Luxury watches",
-      path: "/watches",
+      path: ROUTES.watches,
       description:
         "Rolex, Patek Philippe, Audemars Piguet, Cartier and more — authenticated and in stock in Hatton Garden.",
     },
     {
       name: "Watch and jewellery buying",
-      path: "/sell",
+      path: ROUTES.sell,
       description:
         "Sell or part-exchange a luxury watch or piece of jewellery. Free valuation, authenticated in Hatton Garden, paid the same day.",
     },
@@ -280,7 +281,7 @@ export function websiteLd() {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${siteUrl("/search")}?q={search_term_string}`,
+        urlTemplate: `${siteUrl(ROUTES.search)}?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -322,8 +323,24 @@ export function productLd(product: Product, path: string) {
     "@id": `${siteUrl(path)}#product`,
     name: product.title,
     description: product.description,
-    sku: product.referenceNumber ?? product.id,
-    mpn: product.referenceNumber,
+    /*
+     * sku identifies THIS listing; mpn identifies the manufacturer's part.
+     *
+     * They were both set to the reference number, which is wrong in a way that
+     * costs real listings. Rolex uses one reference for a case, bezel and
+     * bracelet combination and varies the dial within it, so 22 genuinely
+     * different watches on this site are all reference 126334 — and all 22
+     * were publishing `sku: "126334"`. A SKU is meant to be unique to the
+     * offer, so that told Google it had found the same product listed 22
+     * times, which is an invitation to consolidate them and drop 21.
+     *
+     * `mpn` staying as the reference is correct and stays: 126334 genuinely is
+     * the manufacturer's part number for that case family, shared across dials
+     * by Rolex's own numbering. The unique half is `product.id`, which is what
+     * the page is built from and is one-to-one with the URL.
+     */
+    sku: product.id,
+    ...(product.referenceNumber ? { mpn: product.referenceNumber } : {}),
     ...(images.length ? { image: images } : {}),
     ...(product.brand
       ? { brand: { "@type": "Brand", name: product.brand } }

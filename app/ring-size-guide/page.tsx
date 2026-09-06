@@ -7,12 +7,16 @@ import {
   RING_SIZES,
   AVERAGE_MENS_SIZE,
   AVERAGE_WOMENS_SIZE,
+  circumferenceLookup,
+  diameterLookup,
+  nearestSizeTo,
 } from "@/lib/ring/sizes";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import SheetFaq from "../components/SheetFaq";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/ring-size-guide";
+const PATH = ROUTES.ringSizeGuide;
 
 /**
  * The ring size guide.
@@ -34,14 +38,26 @@ const PATH = "/ring-size-guide";
  * shop does not do is worse than useless once somebody asks for it.
  */
 export const metadata: Metadata = pageMetadata({
-  title: "Ring Size Guide — UK Ring Size Chart",
+  title: "Ring Size Guide — UK Ring Size Chart in MM",
   description:
-    "How to measure your ring size at home, the full UK ring size chart A to Z in mm, average UK sizes for men and women, and how to find a size in secret.",
+    "The full UK ring size chart A to Z in mm, with US sizes, and a reverse lookup that turns a circumference or diameter measurement straight back into a UK letter.",
   path: PATH,
   image: "/og/ring-size-guide.jpg",
 });
 
 const WHOLE_SIZES = RING_SIZES.filter((s) => !s.label.includes("½"));
+
+/*
+ * The reverse tables. Built once at module scope rather than inside the
+ * component, because they are pure functions of the British Standard and do
+ * not change between renders.
+ */
+const AVERAGE_WOMENS_CIRCUMFERENCE = RING_SIZES.find(
+  (x) => x.label === AVERAGE_WOMENS_SIZE,
+)!.circumferenceMm.toFixed(1);
+
+const BY_CIRCUMFERENCE = circumferenceLookup();
+const BY_DIAMETER = diameterLookup();
 
 const FAQS = [
   {
@@ -73,6 +89,29 @@ const FAQS = [
     question: "How can I find someone's ring size without them knowing?",
     answer:
       "Borrow a ring they already wear on the right finger and have it measured, ask a close friend or family member, try rings on together while browsing, or bring a ring in to be measured against a calibrated set.",
+  },
+  /*
+   * The conversion questions, answered with the letter rather than with a link
+   * to a chart. Somebody typing "ring size 58 in letters uk" wants one
+   * character back, and a page that makes them scan a table for it has
+   * answered a different question than the one asked.
+   *
+   * The letters are computed, never typed. Writing "Q" here by hand would put
+   * a second source of truth on the page that could drift from the table three
+   * sections above it, which is the exact failure the generated chart exists
+   * to avoid.
+   */
+  {
+    question: "What is ring size 58 in letters UK?",
+    answer: `A 58mm inside circumference is a UK size ${nearestSizeTo(58, "circumference").label}, or roughly a US ${nearestSizeTo(58, "circumference").usSize}. European sizes are quoted as the circumference in millimetres directly, so a European size 58 and a 58mm measurement are the same thing.`,
+  },
+  {
+    question: "What UK ring size is 18mm?",
+    answer: `It depends which measurement you have. An inside diameter of 18mm — a ring laid flat and measured across — is a UK size ${nearestSizeTo(18, "diameter").label}. An inside circumference of 18mm is not a ring size at all; it is far too small for a finger, and if a chart gave you 18mm it almost certainly meant the diameter.`,
+  },
+  {
+    question: "How do I convert a ring size in mm to a UK letter?",
+    answer: `Work out whether your figure is the circumference (the distance around the inside of the band) or the diameter (straight across it), then read it off the conversion tables on this page. As a check: UK size A is 37.83mm around, and every whole letter adds 1.25mm. The UK average for a woman is ${AVERAGE_WOMENS_SIZE}, which is ${AVERAGE_WOMENS_CIRCUMFERENCE}mm around.`,
   },
 ];
 
@@ -133,7 +172,8 @@ export default function RingSizeGuidePage() {
                         <th className="t-eyebrow py-3 pr-4 font-semibold">
                           Circumference
                         </th>
-                        <th className="t-eyebrow py-3 font-semibold">Diameter</th>
+                        <th className="t-eyebrow py-3 pr-4 font-semibold">Diameter</th>
+                        <th className="t-eyebrow py-3 font-semibold">US size</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -145,8 +185,11 @@ export default function RingSizeGuidePage() {
                           <td className="py-2.5 pr-4 text-[15px] tabular-nums text-sheet-ink/80">
                             {s.circumferenceMm.toFixed(2)}mm
                           </td>
-                          <td className="py-2.5 text-[15px] tabular-nums text-sheet-ink/80">
+                          <td className="py-2.5 pr-4 text-[15px] tabular-nums text-sheet-ink/80">
                             {s.diameterMm.toFixed(2)}mm
+                          </td>
+                          <td className="py-2.5 text-[15px] tabular-nums text-sheet-ink/80">
+                            {s.usSize}
                           </td>
                         </tr>
                       ))}
@@ -157,6 +200,110 @@ export default function RingSizeGuidePage() {
                   Half sizes exist for every letter and we make to them as standard. The
                   figures follow the British Standard, where size A is 37.83mm inside
                   circumference.
+                </p>
+                <p className="mt-3 t-copy">
+                  The US column is a cross-reference, not a conversion to order from.
+                  Published UK&ndash;US charts genuinely disagree with each other by up
+                  to a quarter of a US size, and they disagree most at the small end of
+                  the scale. If you are having a ring made here, give us the UK letter
+                  or the millimetres and let us work from that.
+                </p>
+              </section>
+            </ScrollReveal>
+
+            {/* ---- mm to UK size (reverse lookup) ------------------------ */}
+            <ScrollReveal>
+              <section className="border-t border-sheet-line pt-8 mt-10">
+                <h2 className="t-sub">Ring sizes UK in mm: convert a measurement</h2>
+                <p className="mt-3 t-copy">
+                  The chart above goes letter first. This one goes the other way, for
+                  when you already have a number &mdash; because you measured a ring
+                  that fits, or a sizer gave you a figure in millimetres, or a European
+                  jeweller quoted you one. Find your measurement, read off the letter.
+                </p>
+                <p className="mt-3 t-copy">
+                  Check which measurement you have before you look it up, because the
+                  two are easy to confuse and the answer is very different. The{" "}
+                  <strong className="font-semibold text-sheet-ink">circumference</strong>{" "}
+                  is the distance all the way around the inside of the band &mdash; what
+                  you get from a paper strip around a finger, and the figure European
+                  sizes quote directly, so a &ldquo;size 58&rdquo; is 58mm around. The{" "}
+                  <strong className="font-semibold text-sheet-ink">diameter</strong> is
+                  the distance straight across the inside of a ring, which is what a
+                  ruler gives you when you lay a ring flat. Circumference is roughly
+                  three and a bit times the diameter.
+                </p>
+
+                <h3 className="t-card mt-8">Circumference in mm to UK ring size</h3>
+                <div className="mt-4 overflow-x-auto">
+                  <table className="w-full min-w-[380px] border-collapse text-left">
+                    <thead>
+                      <tr className="border-b border-sheet-ink/25">
+                        <th className="t-eyebrow py-3 pr-4 font-semibold">
+                          Circumference
+                        </th>
+                        <th className="t-eyebrow py-3 pr-4 font-semibold">UK size</th>
+                        <th className="t-eyebrow py-3 font-semibold">US size</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {BY_CIRCUMFERENCE.map((r) => (
+                        <tr key={r.mm} className="border-b border-sheet-line">
+                          <td className="py-2.5 pr-4 text-[15px] tabular-nums text-sheet-ink/80">
+                            {r.mm}mm
+                          </td>
+                          <td className="py-2.5 pr-4 text-[15px] font-semibold text-sheet-ink">
+                            {r.size.label}
+                          </td>
+                          <td className="py-2.5 text-[15px] tabular-nums text-sheet-ink/80">
+                            {r.size.usSize}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3 className="t-card mt-8">Diameter in mm to UK ring size</h3>
+                <p className="mt-2 t-copy">
+                  In half-millimetre steps, because diameter compresses the scale: one
+                  whole millimetre across is more than three UK sizes, so rounding to
+                  the nearest millimetre here is how people end up two sizes out.
+                </p>
+                <div className="mt-4 overflow-x-auto">
+                  <table className="w-full min-w-[380px] border-collapse text-left">
+                    <thead>
+                      <tr className="border-b border-sheet-ink/25">
+                        <th className="t-eyebrow py-3 pr-4 font-semibold">Diameter</th>
+                        <th className="t-eyebrow py-3 pr-4 font-semibold">UK size</th>
+                        <th className="t-eyebrow py-3 font-semibold">US size</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {BY_DIAMETER.map((r) => (
+                        <tr key={r.mm} className="border-b border-sheet-line">
+                          <td className="py-2.5 pr-4 text-[15px] tabular-nums text-sheet-ink/80">
+                            {r.mm.toFixed(1)}mm
+                          </td>
+                          <td className="py-2.5 pr-4 text-[15px] font-semibold text-sheet-ink">
+                            {r.size.label}
+                          </td>
+                          <td className="py-2.5 text-[15px] tabular-nums text-sheet-ink/80">
+                            {r.size.usSize}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-4 t-copy">
+                  Both tables give the nearest UK size rather than a range, and both
+                  include half sizes. A measurement of a finger is already an
+                  approximation &mdash; fingers change size through the day and through
+                  the year &mdash; so a letter and a half-letter either side is the
+                  honest width of the answer. If you land almost exactly between two,
+                  take the larger: a ring that is marginally loose can be worn, and a
+                  ring that will not pass the knuckle cannot.
                 </p>
               </section>
             </ScrollReveal>
@@ -365,13 +512,13 @@ export default function RingSizeGuidePage() {
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Link
-                    href="/book-appointment"
+                    href={ROUTES.bookAppointment}
                     className="inline-flex min-w-[236px] items-center justify-center bg-accent px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-white transition hover:bg-accent-deep"
                   >
                     Get measured in store
                   </Link>
                   <Link
-                    href="/ring-builder"
+                    href={ROUTES.ringBuilder}
                     className="inline-flex min-w-[236px] items-center justify-center border border-sheet-ink/25 px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
                   >
                     Design a ring
@@ -392,7 +539,7 @@ export default function RingSizeGuidePage() {
             ldJsonGraph([
               breadcrumbLd([
                 { name: "Home", url: siteUrl("/") },
-                { name: "Guides", url: siteUrl("/guides") },
+                { name: "Guides", url: siteUrl(ROUTES.guides) },
                 { name: "Ring Size Guide", url: siteUrl(PATH) },
               ]),
               faqLd(FAQS.map((f) => ({ question: f.question, answer: f.answer }))),

@@ -12,12 +12,13 @@ import { getJewellery, photosFirst, productUrl } from "@/lib/products";
 import FAQ from "../components/FAQ";
 import { pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { JEWELLERY_FAQS } from "@/lib/faqs";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Fine Jewellery — Diamond Rings & Earrings",
   description:
     "Bespoke fine jewellery made in Hatton Garden — diamond engagement rings, wedding bands, earrings, necklaces, pendants and bracelets, designed around you.",
-  path: "/jewellery",
+  path: ROUTES.jewellery,
   image: "/og/jewellery.jpg",
 });
 
@@ -29,7 +30,7 @@ export default function JewelleryIndex() {
     ...collectionLd({
       name: "Fine Jewellery",
       description: "Bespoke diamond jewellery designed and made in Hatton Garden, London.",
-      path: "/jewellery",
+      path: ROUTES.jewellery,
       products: featured.map((p) => ({ title: p.title, url: productUrl(p) })),
     }),
     faqLd(JEWELLERY_FAQS),
@@ -49,7 +50,7 @@ export default function JewelleryIndex() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Jewellery", href: "/jewellery", current: true },
+              { name: "Jewellery", href: ROUTES.jewellery, current: true },
             ]}
           />
         </section>
@@ -65,14 +66,14 @@ export default function JewelleryIndex() {
                 key: c.slug,
                 name: c.name,
                 heritage: c.heritage,
-                href: c.href ?? `/jewellery/${c.slug}`,
+                href: c.href ?? ROUTES.jewelleryCategory(c.slug),
               })),
               {
                 key: "ready-to-ship",
                 name: "Ready to Ship Rings",
                 heritage:
                   "Finished engagement rings we hold rather than make to order, sized and sent far sooner than a commission.",
-                href: "/rings/ready-to-ship",
+                href: ROUTES.readyToShipRings,
               },
             ].map((c) => (
               <li key={c.key} className="col-span-4 max-md:col-span-6 flex">

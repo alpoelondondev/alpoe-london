@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useViewportVideos } from "./useViewportVideos";
 import { asset } from "@/lib/assets";
+import { ROUTES } from "@/lib/routes";
 
 const categories: {
   title: string;
@@ -29,7 +30,7 @@ const categories: {
   {
     title: "Luxury Watches",
     alt: "Rose gold Rolex dial set with pavé diamonds, photographed at Alpoe London in Hatton Garden",
-    href: "/watches",
+    href: ROUTES.watches,
     image: "/alpoe-luxury-watches-rolex-dial-hatton-garden.jpg",
     video: "/alpoe-luxury-watches-rolex-dial-hatton-garden.mp4",
     wide: true,
@@ -37,28 +38,28 @@ const categories: {
   {
     title: "Rings",
     alt: "Hand-set diamond rings in white and rose gold, made at the Alpoe London bench in Hatton Garden",
-    href: "/jewellery/rings",
+    href: ROUTES.jewelleryCategory("rings"),
     image: "/alpoe-diamond-rings-hatton-garden.jpg",
     video: "/alpoe-diamond-rings-hatton-garden.mp4",
   },
   {
     title: "Bracelets",
     alt: "Diamond tennis and cluster bracelets in 18ct gold, made to order by Alpoe London, Hatton Garden",
-    href: "/jewellery/bracelets",
+    href: ROUTES.jewelleryCategory("bracelets"),
     image: "/alpoe-diamond-bracelets-hatton-garden.jpg",
     video: "/alpoe-diamond-bracelets-hatton-garden.mp4",
   },
   {
     title: "Earrings",
     alt: "Diamond stud, hoop and drop earrings in 18ct white gold, hand-set by Alpoe London in Hatton Garden",
-    href: "/jewellery/earrings",
+    href: ROUTES.jewelleryCategory("earrings"),
     image: "/alpoe-diamond-earrings-hatton-garden.jpg",
     video: "/alpoe-diamond-earrings-hatton-garden.mp4",
   },
   {
     title: "Necklaces & Chains",
     alt: "Diamond tennis necklaces and gold link chains, made in London by Alpoe London, Hatton Garden",
-    href: "/jewellery/necklaces-pendants",
+    href: ROUTES.jewelleryCategory("necklaces-pendants"),
     image: "/alpoe-diamond-necklaces-chains-hatton-garden.jpg",
     video: "/alpoe-diamond-necklaces-chains-hatton-garden.mp4",
   },

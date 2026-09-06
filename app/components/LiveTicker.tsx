@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import MarketTicker from "./MarketTicker";
 import { tickerItems, type MetalQuote, type TickerItem } from "@/lib/metal-prices";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * The announcement strip, filled in by the browser.
@@ -30,7 +31,7 @@ export default function LiveTicker({
 
   useEffect(() => {
     const ac = new AbortController();
-    fetch("/api/metal-prices", { signal: ac.signal })
+    fetch(ROUTES.apiMetalPrices, { signal: ac.signal })
       .then((r) => (r.ok ? (r.json() as Promise<MetalQuote>) : Promise.reject(r.status)))
       .then((quote) => setLive(tickerItems(quote)))
       // The seed stays on screen. A strip of week-old spot is a better answer

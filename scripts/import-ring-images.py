@@ -52,9 +52,8 @@ SRC = "docs/reference/ring-artwork"
 OUT = "public/rings/settings"
 STONES_SRC = "docs/reference/57-jewellers"
 STONES_OUT = "public/rings/shapes"
-COMPOSITES_OUT = "public/ring-builder/composites"
 
-# Two manifests, because the artwork and the builder are now separate things.
+# One manifest, for the artwork only — the builder is a separate thing.
 #
 # This set of rings is not the ring builder's. It is a collection of pieces we
 # hold, shown on /rings, and it was only ever standing in for photography the
@@ -64,10 +63,12 @@ COMPOSITES_OUT = "public/ring-builder/composites"
 # picture, so the builder now shows nothing until its own shoot lands, and
 # these go where they are honest.
 #
-# The builder keeps the composites manifest: those are generated per
-# setting × shape and belong to it.
+# There used to be a second manifest here — lib/ring/generated/photo-manifest.ts
+# — for setting × shape composites. That pipeline was never built (see
+# docs/ring-builder-composites.md, status: blocked), the directory it read from
+# does not exist, and nothing in lib/ or app/ ever imported the file. Every run
+# still emitted it, empty, as an untracked file. Removed 6 Sep 2026.
 COLLECTION_MANIFEST = "lib/rings/generated/artwork-manifest.ts"
-MANIFEST = "lib/ring/generated/photo-manifest.ts"
 
 # Source file -> the setting id it illustrates, from lib/ring/config.ts.
 MAPPING = {
@@ -169,7 +170,7 @@ def main():
 
     write_manifest()
     print(f"\n{len(written)} settings + {len(stones)} stones imported")
-    print(f"manifests written to {COLLECTION_MANIFEST} and {MANIFEST}")
+    print(f"manifest written to {COLLECTION_MANIFEST}")
 
 
 # Loose stones for the centre-stone picker. These arrive as plain PNGs rather
@@ -222,11 +223,10 @@ def write_manifest():
     ignore query strings when deciding what to cache, so `?v=` can fail to bust
     anything at all. A different filename is unambiguous everywhere.
     """
-    manifests = {COLLECTION_MANIFEST: [], MANIFEST: []}
+    manifests = {COLLECTION_MANIFEST: []}
     for folder, kind, target in (
         (OUT, "settings", COLLECTION_MANIFEST),
         (STONES_OUT, "shapes", COLLECTION_MANIFEST),
-        (COMPOSITES_OUT, "composites", MANIFEST),
     ):
         if not os.path.isdir(folder):
             continue

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 import MentorshipLockup from "./MentorshipLockup";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * Homepage band for Alpoe London Elite, carrying the stencilled lockup the
@@ -111,7 +112,7 @@ export default function MentorshipStrip() {
         </ScrollReveal>
         <ScrollReveal delay={0.16}>
           <Link
-            href="/mentorship"
+            href={ROUTES.mentorship}
             className="mt-5 inline-flex items-center justify-center bg-accent px-5 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-bg transition hover:bg-accent-deep"
           >
             Enquire

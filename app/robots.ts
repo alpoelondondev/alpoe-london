@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * Crawl rules.
@@ -49,7 +50,7 @@ const AI_AGENTS = [
 // Anything that is a real page but has no business in an index: the search
 // results screen and its query permutations, and the ring builder's internal
 // verification endpoint.
-const CRAWL_WASTE = ["/search?", "/*?q=", "/ring-builder/verify"];
+const CRAWL_WASTE = ["/search?", "/*?q=", ROUTES.ringBuilderVerify];
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -61,7 +62,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: CRAWL_WASTE,
       })),
     ],
-    sitemap: siteUrl("/sitemap.xml"),
+    sitemap: siteUrl(ROUTES.sitemapXml),
     host: siteUrl(),
   };
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 import DragCarousel from "./DragCarousel";
 import { asset } from "@/lib/assets";
+import { ROUTES } from "@/lib/routes";
 
 const items: {
   title: string;
@@ -34,14 +35,14 @@ const items: {
   // CategoryGrid. This strip is the editorial run: guide, workshop, teaser.
   {
     title: "Diamonds",
-    href: "/guides/natural-vs-lab-grown-diamonds",
+    href: ROUTES.guideLabGrownDiamonds,
     blurb: "Natural vs lab diamonds — what's the difference, and what works for you?",
     image: "/alpoe-natural-vs-lab-grown-diamonds-hatton-garden.jpg",
     imageAlt: "A natural diamond and a laboratory-grown diamond side by side, compared at Alpoe London in Hatton Garden",
   },
   {
     title: "Bespoke Jewellery",
-    href: "/jewellery",
+    href: ROUTES.jewellery,
     blurb: "One-off pieces designed around you and hand-set in Hatton Garden.",
     image: "/alpoe-bespoke-jewellery-stone-setting-hatton-garden.jpg",
     imageAlt: "A jeweller setting diamonds into a bespoke piece by hand at the Alpoe London workshop in Hatton Garden",

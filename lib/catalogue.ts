@@ -7,6 +7,7 @@ import { IMAGE_MANIFEST, VARIANT_IMAGES } from "./generated/image-manifest";
 import { asset } from "./assets";
 import { getDescription, getModelOverview, getReferenceResearch } from "./research";
 import { truncateForSerp } from "./seo";
+import { ROUTES } from "./routes";
 
 // The watch catalogue, read from data/catalogue.csv.
 // Columns: Brand, Sub-Collection, Variant / Name, Reference No.
@@ -244,7 +245,7 @@ export async function getBrandCatalogue(
 }
 
 export function catalogueItemUrl(item: CatalogueItem): string {
-  return `/watches/${item.brandSlug}/${item.slug}`;
+  return ROUTES.watchProduct(item.brandSlug, item.slug);
 }
 
 // Turn a live-catalogue row into a full Product by layering in verified research

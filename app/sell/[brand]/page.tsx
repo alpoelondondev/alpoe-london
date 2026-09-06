@@ -12,6 +12,7 @@ import CTAStrip from "../../components/CTAStrip";
 import { SELL_BRANDS, sellBrandBySlug } from "@/lib/sell/brands";
 import { pageMetadata, ldJsonGraph, faqLd, truncateForSerp } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * "Sell my rolex london", "where can i sell my patek philippe watch", "sell my
@@ -44,7 +45,7 @@ export async function generateMetadata(
     description: truncateForSerp(
       `Sell or part-exchange your ${b.name} with Alpoe London. Free no-obligation valuation, authenticated at our Hatton Garden counter, paid the same day by bank transfer.`,
     ),
-    path: `/sell/${b.slug}`,
+    path: ROUTES.sellBrand(b.slug),
     image: "/og/sell.jpg",
   });
 }
@@ -54,7 +55,7 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
   const b = sellBrandBySlug(brand);
   if (!b) notFound();
 
-  const PATH = `/sell/${b.slug}`;
+  const PATH = ROUTES.sellBrand(b.slug);
 
   const ld = ldJsonGraph([
     {
@@ -74,7 +75,7 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
       url: siteUrl(PATH),
       // No price and no rating. A valuation service has neither, and asserting
       // one to satisfy a validator is a claim we would then have to honour.
-      isRelatedTo: { "@id": siteUrl("/sell") + "#service" },
+      isRelatedTo: { "@id": siteUrl(ROUTES.sell) + "#service" },
     },
     faqLd(b.faqs),
   ]);
@@ -95,7 +96,7 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Sell & Trade", href: "/sell" },
+              { name: "Sell & Trade", href: ROUTES.sell },
               { name: b.name, href: PATH, current: true },
             ]}
           />
@@ -174,7 +175,7 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
               {others.map((o) => (
                 <li key={o.slug}>
                   <Link
-                    href={`/sell/${o.slug}`}
+                    href={ROUTES.sellBrand(o.slug)}
                     className="text-fg/60 transition-colors hover:text-accent"
                   >
                     Sell your {o.name}
@@ -182,20 +183,20 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
                 </li>
               ))}
               <li>
-                <Link href="/sell" className="text-fg/60 transition-colors hover:text-accent">
+                <Link href={ROUTES.sell} className="text-fg/60 transition-colors hover:text-accent">
                   Every other brand
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/metal-prices"
+                  href={ROUTES.metalPrices}
                   className="text-fg/60 transition-colors hover:text-accent"
                 >
                   Live metal prices
                 </Link>
               </li>
               <li>
-                <Link href="/watches" className="text-fg/60 transition-colors hover:text-accent">
+                <Link href={ROUTES.watches} className="text-fg/60 transition-colors hover:text-accent">
                   Buy a watch instead
                 </Link>
               </li>
@@ -209,7 +210,7 @@ export default async function SellBrandPage(props: { params: Promise<RouteParams
           copy="Send the reference, the year and a couple of photographs. No obligation, and no pressure if the number is not what you hoped."
           whatsappMessage={`Hi Alpoe, I'd like a valuation on a ${b.name} I'm looking to sell.`}
           primaryLabel="Get a valuation"
-          secondary={{ label: "Book an appointment", href: "/book-appointment" }}
+          secondary={{ label: "Book an appointment", href: ROUTES.bookAppointment }}
         />
       </main>
 

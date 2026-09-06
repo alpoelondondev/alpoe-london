@@ -7,8 +7,9 @@ import { ReadyToShipCard } from "../RingCards";
 import { collectionPieces } from "@/lib/rings/collection";
 import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
-const PATH = "/rings/ready-to-ship";
+const PATH = ROUTES.readyToShipRings;
 
 export const metadata: Metadata = pageMetadata({
   title: "Ready to Ship Engagement Rings",
@@ -28,7 +29,7 @@ export default function ReadyToShipPage() {
       <main className="on-sheet bg-white">
         <section className="clears-nav px-[52px] pb-8 max-md:px-6 max-md:pb-6">
           <p className="t-eyebrow font-semibold">
-            <Link href="/rings" className="underline underline-offset-4">
+            <Link href={ROUTES.rings} className="underline underline-offset-4">
               Rings
             </Link>
           </p>
@@ -39,7 +40,7 @@ export default function ReadyToShipPage() {
             what is available in your size. If you would rather have something built to
             your own specification, start in the{" "}
             <Link
-              href="/ring-builder"
+              href={ROUTES.ringBuilder}
               className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
             >
               ring builder
@@ -70,7 +71,7 @@ export default function ReadyToShipPage() {
             ldJsonGraph([
               breadcrumbLd([
                 { name: "Home", url: siteUrl("/") },
-                { name: "Rings", url: siteUrl("/rings") },
+                { name: "Rings", url: siteUrl(ROUTES.rings) },
                 { name: "Ready to Ship Rings", url: siteUrl(PATH) },
               ]),
             ]),

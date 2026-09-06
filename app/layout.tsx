@@ -77,7 +77,7 @@ export const metadata: Metadata = {
    * request for it 404'd — which is what Lighthouse was reporting as a console
    * error on every single page.
    *
-   * These are rendered from the AD monogram (public/Logo), which reads at tab
+   * These are rendered from the AD monogram (docs/brand), which reads at tab
    * size in a way the full lockup never could. See docs/seo.md to regenerate.
    */
   icons: {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * The two things people arrive for, given a full-bleed pair directly under the
@@ -32,14 +33,14 @@ const CARDS: {
   {
     title: "Engagement & Wedding Rings",
     copy: "Bespoke settings and bands, made to your specification.",
-    href: "/rings/engagement-and-wedding-rings",
+    href: ROUTES.engagementAndWeddingRings,
     image: "/alpoe-oval-three-stone-diamond-ring-hatton-garden.jpg",
     imageAlt: "Oval-cut three-stone diamond engagement ring in platinum, made to order by Alpoe London in Hatton Garden",
   },
   {
     title: "Preowned Watches",
     copy: "Authenticated timepieces, sourced and traded.",
-    href: "/watches",
+    href: ROUTES.watches,
     image: "/buss-down-ap.jpg",
     imageAlt: "Fully diamond-set Audemars Piguet Royal Oak, authenticated and traded by Alpoe London in Hatton Garden",
     // Shot square-on in its box, and at the card's own 4:3 — so object-cover

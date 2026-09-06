@@ -8,8 +8,9 @@
     "build:lockup": "node scripts/build-lockup-svg.mjs",
     "build:watch-list": "python3 scripts/build-watch-list-xlsx.py",
     "dev": "node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs && next dev",
-    "build": "node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs && next build",
+    "build": "node scripts/check-routes.mjs && node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs && next build",
     "start": "next start",
+    "check:routes": "node scripts/check-routes.mjs",
     "lint": "eslint"
   },
   "dependencies": {

@@ -13,12 +13,13 @@ import FAQ from "../components/FAQ";
 import { MENTORSHIP_FAQS } from "@/lib/faqs";
 import { pageMetadata, ldJsonGraph, faqLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
   title: "Jewellery & Watch Trade Mentorship",
   description:
     "A private mentorship for people entering the watch and jewellery trade — sourcing, valuation, margin, marketing and reputation, taught from Hatton Garden.",
-  path: "/mentorship",
+  path: ROUTES.mentorship,
 });
 
 const FIELDS: EnquiryField[] = [
@@ -89,9 +90,9 @@ export default function MentorshipPage() {
   const ld = ldJsonGraph([
     {
       "@type": "Course",
-      "@id": siteUrl("/mentorship") + "#course",
+      "@id": siteUrl(ROUTES.mentorship) + "#course",
       name: "Alpoe Mentorship",
-      url: siteUrl("/mentorship"),
+      url: siteUrl(ROUTES.mentorship),
       description:
         "A private mentorship group run by Alpoe London teaching the business of the watch and jewellery trade — sourcing, valuation, margin, negotiation, marketing and reputation.",
       provider: { "@id": siteUrl("/") + "#organization" },
@@ -139,7 +140,7 @@ export default function MentorshipPage() {
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Mentorship", href: "/mentorship", current: true },
+              { name: "Mentorship", href: ROUTES.mentorship, current: true },
             ]}
           />
         </section>
@@ -204,7 +205,7 @@ export default function MentorshipPage() {
           copy={`Message the ${SITE.name} team direct and we will talk you through what the group covers, how it runs and how to join. Nobody in there started out knowing this trade — the questions you would rather not ask out loud are the ones it exists for.`}
           whatsappMessage={INTRO}
           primaryLabel="Ask About Joining"
-          secondary={{ label: "About Alpoe", href: "/about" }}
+          secondary={{ label: "About Alpoe", href: ROUTES.about }}
         />
       </main>
       <Footer />

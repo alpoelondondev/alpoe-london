@@ -15,6 +15,7 @@ import {
 import { shape as shapeById, stoneSizeMm } from "@/lib/ring/shapes";
 import { pageMetadata, ldJsonGraph, faqLd, truncateForSerp } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * One page per diamond shape.
@@ -125,7 +126,7 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
       <main className="on-sheet bg-white">
         <section className="clears-nav px-[52px] pb-8 max-md:px-6 max-md:pb-6">
           <p className="t-eyebrow font-semibold">
-            <Link href="/rings" className="underline underline-offset-4">
+            <Link href={ROUTES.rings} className="underline underline-offset-4">
               Rings
             </Link>
           </p>
@@ -139,7 +140,7 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
               Build a {g.name.toLowerCase()} ring
             </Link>
             <Link
-              href="/book-appointment"
+              href={ROUTES.bookAppointment}
               className="inline-flex min-w-[236px] items-center justify-center border border-sheet-ink/25 px-6 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-sheet-ink transition hover:border-sheet-ink/50"
             >
               See stones in person
@@ -151,7 +152,7 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
-              { name: "Rings", href: "/rings" },
+              { name: "Rings", href: ROUTES.rings },
               { name: g.h1, href: PATH, current: true },
             ]}
           />
@@ -249,7 +250,7 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
                 <p className="mt-3 max-w-[56ch] t-copy">{g.band}</p>
                 <p className="mt-3 max-w-[56ch] t-copy">
                   <Link
-                    href="/guides/wedding-bands"
+                    href={ROUTES.guideWeddingBands}
                     className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
                   >
                     All ten shapes compared
@@ -294,21 +295,21 @@ export default async function ShapePage(props: { params: Promise<RouteParams> })
             <p className="mt-8 max-w-[64ch] t-copy">
               Undecided is a perfectly good place to start —{" "}
               <Link
-                href="/book-appointment"
+                href={ROUTES.bookAppointment}
                 className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
               >
                 come and see several side by side
               </Link>
               , which is the only way to settle it. Before that, the{" "}
               <Link
-                href="/guides/natural-vs-lab-grown-diamonds"
+                href={ROUTES.guideLabGrownDiamonds}
                 className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
               >
                 natural and laboratory-grown comparison
               </Link>{" "}
               and the{" "}
               <Link
-                href="/ring-size-guide"
+                href={ROUTES.ringSizeGuide}
                 className="text-sheet-ink underline underline-offset-4 transition hover:text-accent-deep"
               >
                 ring size guide

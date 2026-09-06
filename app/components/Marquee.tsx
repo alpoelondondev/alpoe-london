@@ -1,6 +1,7 @@
 "use client";
 
 import LogoLoop, { LogoItem } from "./LogoLoop";
+import { ROUTES } from "@/lib/routes";
 
 /*
  * Each mark links through to that brand's own selection on the site. Slugs
@@ -25,42 +26,42 @@ const brandLogos: LogoItem[] = [
     width: 209,
     height: 120,
     alt: "Rolex",
-    href: "/watches/rolex",
+    href: ROUTES.watchBrand("rolex"),
   },
   {
     src: "/logos/patek-philippe-watches-logo.webp",
     width: 246,
     height: 120,
     alt: "Patek Philippe",
-    href: "/watches/patek-philippe",
+    href: ROUTES.watchBrand("patek-philippe"),
   },
   {
     src: "/logos/audemars-piguet-watches-logo.webp",
     width: 281,
     height: 120,
     alt: "Audemars Piguet",
-    href: "/watches/audemars-piguet",
+    href: ROUTES.watchBrand("audemars-piguet"),
   },
   {
     src: "/logos/cartier-watches-logo.webp",
     width: 352,
     height: 120,
     alt: "Cartier",
-    href: "/watches/cartier",
+    href: ROUTES.watchBrand("cartier"),
   },
   {
     src: "/logos/hublot-watches-logo.webp",
     width: 216,
     height: 120,
     alt: "Hublot",
-    href: "/watches/hublot",
+    href: ROUTES.watchBrand("hublot"),
   },
   {
     src: "/logos/omega-watches-logo.webp",
     width: 234,
     height: 120,
     alt: "Omega",
-    href: "/watches/omega",
+    href: ROUTES.watchBrand("omega"),
   },
 ];
 
