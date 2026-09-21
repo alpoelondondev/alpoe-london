@@ -51,6 +51,10 @@ const HOUSE_LINKS: FooterLink[] = [
   // about how much it matters.
   { label: "Our Brand", href: ROUTES.ourBrand },
   { label: "Contact", href: ROUTES.contact },
+  // The second shop. In the house column rather than tucked at the bottom,
+  // because until 2026-09-21 the site did not mention Birmingham at all and
+  // a sitewide link is the fastest way for a crawler to learn it exists.
+  { label: "Birmingham", href: ROUTES.birmingham },
 ];
 
 export default function Footer() {

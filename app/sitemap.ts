@@ -6,6 +6,7 @@ import { siteUrl } from "@/lib/site";
 import { ROUTES, staticSitemapRoutes } from "@/lib/routes";
 import { SELL_BRANDS } from "@/lib/sell/brands";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
+import { birminghamSellBrands } from "@/lib/locations/copy";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   /*
@@ -69,6 +70,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: siteUrl(ROUTES.watchBrand(b.slug)),
       changeFrequency: "weekly",
       priority: 0.8,
+    });
+  }
+
+  /*
+   * The Birmingham spine.
+   *
+   * Weighted just under their London equivalents — not because they matter
+   * less, but because the London pages have three months of history behind
+   * them and these have none, and a sitemap that claims a brand-new page
+   * outranks an established one in importance is a claim it cannot support.
+   *
+   * Only the sell brands with Birmingham copy written for them are listed.
+   * `birminghamSellBrands()` is the same filter the route's
+   * generateStaticParams uses, so the sitemap cannot list a page that does
+   * not build.
+   */
+  for (const b of WATCH_BRANDS) {
+    entries.push({
+      url: siteUrl(ROUTES.birminghamWatchBrand(b.slug)),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    });
+  }
+  for (const b of birminghamSellBrands()) {
+    entries.push({
+      url: siteUrl(ROUTES.birminghamSellBrand(b.slug)),
+      changeFrequency: "monthly",
+      priority: 0.7,
     });
   }
   for (const c of JEWELLERY_CATEGORIES) {

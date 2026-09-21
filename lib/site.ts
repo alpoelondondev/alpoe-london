@@ -41,6 +41,109 @@ export const SITE = {
 } as const;
 
 /**
+ * The shops.
+ *
+ * This site was single-location until 2026-09-21: one `SITE.address`, one
+ * `SITE.geo`, one LocalBusiness node, and "Hatton Garden" written into the
+ * copy in 230 places. The Birmingham shop existed the whole time and the site
+ * never said so — which is why "hublot birmingham" drew 49 impressions in the
+ * three months to 2026-09-19, the largest non-brand query the site has, at
+ * position 61 against a page that does not mention the city. One guide was
+ * actively telling Birmingham sellers to travel to Hatton Garden.
+ *
+ * So locations are data now, and the pages that need to vary by city read
+ * from here. `SITE.address` and `SITE.geo` stay exactly as they were and
+ * still mean London: they are the primary location, the 230 call sites that
+ * assume London are correct about London, and rewriting them all to ask
+ * "which city?" would be a large change that buys nothing on any page that
+ * is genuinely about the Hatton Garden shop.
+ *
+ * ── The rule for adding a location ──
+ *
+ * `streetAddress`, `postalCode` and `geo` are optional and MUST be left
+ * undefined until somebody has the real ones. An invented address is not a
+ * placeholder, it is a wrong NAP, and a wrong NAP breaks the match between
+ * this site and the Google Business Profile it is supposed to reinforce —
+ * which costs more than having no address at all. `localBusinessLd()` omits
+ * the fields that are missing rather than guessing, and a location without
+ * coordinates simply does not publish a `geo`.
+ */
+export type Location = {
+  slug: string;
+  /** How the city is named in prose and in a page title. */
+  city: string;
+  /**
+   * The trade district, where the shop is in one. London's is the whole
+   * reason "Hatton Garden" carries weight; Birmingham's equivalent is the
+   * Jewellery Quarter, which this shop is not in, so it has none.
+   */
+  district?: string;
+  streetAddress?: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode?: string;
+  addressCountry: string;
+  geo?: { latitude: number; longitude: number };
+  /** Neighbourhoods and towns this shop actually draws from. */
+  areaServed: string[];
+};
+
+export const LOCATIONS: Location[] = [
+  {
+    slug: "london",
+    city: "London",
+    district: "Hatton Garden",
+    streetAddress: SITE.address.streetAddress,
+    addressLocality: SITE.address.addressLocality,
+    addressRegion: SITE.address.addressRegion,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.addressCountry,
+    geo: { latitude: SITE.geo.latitude, longitude: SITE.geo.longitude },
+    areaServed: [
+      "Hatton Garden, London EC1N",
+      "Clerkenwell, London EC1",
+      "Farringdon, London EC1",
+      "City of London",
+      "Islington, London N1",
+      "Greater London",
+    ],
+  },
+  {
+    slug: "birmingham",
+    city: "Birmingham",
+    // No district. The shop is in Birmingham generally, not the Jewellery
+    // Quarter, and claiming the Quarter for the search weight it carries
+    // would be a lie a customer discovers at the door.
+    addressLocality: "Birmingham",
+    addressRegion: "West Midlands",
+    addressCountry: "GB",
+    // streetAddress, postalCode and geo are deliberately absent. See the rule
+    // above — fill them in from the real shop, do not invent them.
+    areaServed: [
+      "Birmingham",
+      "West Midlands",
+      "Solihull",
+      "Coventry",
+      "Wolverhampton",
+      "Warwickshire",
+    ],
+  },
+];
+
+export const locationBySlug = (slug: string) =>
+  LOCATIONS.find((l) => l.slug === slug);
+
+/** The London shop — the primary location, and the default everywhere. */
+export const PRIMARY_LOCATION = LOCATIONS[0];
+
+/**
+ * How a location is named in prose: "Hatton Garden, London" where there is a
+ * district worth naming, plain "Birmingham" where there is not.
+ */
+export const locationLabel = (l: Location) =>
+  l.district ? `${l.district}, ${l.city}` : l.city;
+
+/**
  * Absolute URL for a site path.
  *
  * The absolute-input branch is not defensive tidiness — it is a bug fix. Call

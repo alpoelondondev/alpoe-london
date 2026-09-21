@@ -327,3 +327,30 @@ export async function getCatalogueProductBySlug(
   const item = all.find((i) => i.brandSlug === brandSlug && i.slug === slug);
   return item ? catalogueItemToProduct(item) : undefined;
 }
+
+/**
+ * The curated products and the sheet catalogue for one brand, as one list.
+ *
+ * A reference that appears in both wins from the sheet, because the sheet is
+ * the live stock record and products.csv is the hand-written subset with the
+ * better photography. Dropping the duplicate rather than showing both is the
+ * whole job — the same watch listed twice on a brand page reads as an error to
+ * a customer and as thin duplication to a crawler.
+ *
+ * This lived inside app/watches/[brand]/page.tsx until /birmingham/watches
+ * needed exactly the same list. Two copies of a de-duplication rule is two
+ * chances to de-duplicate differently, so it lives here now and both pages
+ * ask for it.
+ */
+export function mergeBrandListings(
+  curated: Product[],
+  catalogue: Product[],
+): Product[] {
+  const inSheet = new Set(
+    catalogue.map((p) => referenceKey(p.referenceNumber ?? "")).filter(Boolean),
+  );
+  const unique = curated.filter(
+    (p) => !p.referenceNumber || !inSheet.has(referenceKey(p.referenceNumber)),
+  );
+  return [...unique, ...catalogue];
+}

@@ -168,7 +168,7 @@ const FAQS = [
   {
     question: "Can I sell a watch in London if I do not live there?",
     answer:
-      "Yes. Most sales we handle from outside London start with photographs and the reference number by email or WhatsApp, and finish either with an insured, tracked courier or with a single trip in. Sellers come to Hatton Garden from Cambridge, Birmingham, Manchester and Brighton for exactly that reason — several counters within a few streets means several offers in one afternoon rather than one offer by post.",
+      "Yes. Most sales we handle from outside London start with photographs and the reference number by email or WhatsApp, and finish either with an insured, tracked courier or with a single trip in. Sellers come to Hatton Garden from Cambridge, Manchester and Brighton for exactly that reason — several counters within a few streets means several offers in one afternoon rather than one offer by post. If you are in the Midlands, do not make the journey on our account: we have a second counter in Birmingham that buys on identical terms.",
   },
 ];
 

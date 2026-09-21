@@ -9,7 +9,7 @@ import CatalogueGrid from "../../components/CatalogueGrid";
 import { toGridTiles } from "../../components/ProductGrid";
 import { WATCH_BRANDS, watchBrandBySlug } from "@/lib/taxonomy";
 import { getWatchesByBrand, productUrl } from "@/lib/products";
-import { getCatalogueProductsByBrand, referenceKey } from "@/lib/catalogue";
+import { getCatalogueProductsByBrand, mergeBrandListings } from "@/lib/catalogue";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { brandGuide } from "@/lib/watches/brandGuides";
 import ScrollReveal from "../../components/ScrollReveal";
@@ -74,16 +74,6 @@ export async function generateMetadata(
  * page still exists (and is still linked from search); it just isn't a second
  * tile here.
  */
-function mergeListings(curated: Product[], catalogue: Product[]): Product[] {
-  const inSheet = new Set(
-    catalogue.map((p) => referenceKey(p.referenceNumber ?? "")).filter(Boolean),
-  );
-  const unique = curated.filter(
-    (p) => !p.referenceNumber || !inSheet.has(referenceKey(p.referenceNumber)),
-  );
-  return [...unique, ...catalogue];
-}
-
 /*
  * Filtering and sorting moved into the browser — see CatalogueGrid.
  *
@@ -97,7 +87,7 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
   const b = watchBrandBySlug(brand);
   if (!b) notFound();
 
-  const all = mergeListings(
+  const all = mergeBrandListings(
     getWatchesByBrand(b.slug as WatchBrandSlug),
     await getCatalogueProductsByBrand(b.slug as WatchBrandSlug),
   );

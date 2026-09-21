@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE, siteUrl } from "./site";
+import { SITE, siteUrl, LOCATIONS, PRIMARY_LOCATION, type Location } from "./site";
 import type { Product } from "./types";
 import { ROUTES } from "./routes";
 
@@ -196,17 +196,35 @@ function offerCatalogLd() {
  * quoted per commission and inventing a number would be a claim we cannot
  * stand behind.
  */
-export function localBusinessLd() {
-  const { streetAddress, addressLocality, postalCode } = SITE.address;
+/**
+ * One shop as a LocalBusiness node.
+ *
+ * Each location is its own node with its own @id, because two shops are two
+ * businesses as far as a local result is concerned — one node listing two
+ * addresses matches neither. Both point at the same Organization as parent,
+ * which is what ties them together as one brand.
+ *
+ * Every optional field is omitted rather than defaulted. A location with no
+ * street address publishes a PostalAddress of locality and region only, which
+ * is true; one with no coordinates publishes no `geo` and no `hasMap`, because
+ * a map link built from an address we do not have points at the wrong shop.
+ */
+function locationLd(l: Location) {
+  const isPrimary = l.slug === PRIMARY_LOCATION.slug;
+  const mapQuery = [SITE.name, l.streetAddress, l.addressLocality, l.postalCode]
+    .filter(Boolean)
+    .join(" ");
+
   return {
-    // Two types, because both are true and each is queried differently: a
-    // JewelryStore for the ring and diamond searches, a Store for the watch
-    // buying-and-selling side.
     "@type": ["JewelryStore", "Store"],
-    "@id": `${siteUrl()}/#localbusiness`,
-    name: SITE.name,
+    // The primary keeps the original @id. It is referenced from other nodes
+    // across the site and changing it would orphan every one of them.
+    "@id": isPrimary
+      ? `${siteUrl()}/#localbusiness`
+      : `${siteUrl()}/#localbusiness-${l.slug}`,
+    name: isPrimary ? SITE.name : `${SITE.name} — ${l.city}`,
     description: SITE.tagline,
-    url: siteUrl(),
+    url: isPrimary ? siteUrl() : siteUrl(`/${l.slug}`),
     telephone: SITE.phone,
     email: SITE.email,
     logo: siteUrl("/alpoe-london-logo-full-rosegold.svg"),
@@ -217,16 +235,26 @@ export function localBusinessLd() {
     ],
     address: {
       "@type": "PostalAddress",
-      ...SITE.address,
+      ...(l.streetAddress ? { streetAddress: l.streetAddress } : {}),
+      addressLocality: l.addressLocality,
+      addressRegion: l.addressRegion,
+      ...(l.postalCode ? { postalCode: l.postalCode } : {}),
+      addressCountry: l.addressCountry,
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: SITE.geo.latitude,
-      longitude: SITE.geo.longitude,
-    },
-    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      `${SITE.name} ${streetAddress} ${addressLocality} ${postalCode}`,
-    )}`,
+    ...(l.geo
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: l.geo.latitude,
+            longitude: l.geo.longitude,
+          },
+        }
+      : {}),
+    ...(l.streetAddress && l.postalCode
+      ? {
+          hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`,
+        }
+      : {}),
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -235,17 +263,8 @@ export function localBusinessLd() {
         closes: SITE.hours.closes,
       },
     ],
-    // The neighbourhoods and boroughs a Hatton Garden showroom actually draws
-    // from, plus the country, because a good part of this trade ships.
     areaServed: [
-      { "@type": "Place", name: "Hatton Garden, London EC1N" },
-      { "@type": "Place", name: "Clerkenwell, London EC1" },
-      { "@type": "Place", name: "Farringdon, London EC1" },
-      { "@type": "Place", name: "City of London" },
-      { "@type": "Place", name: "Islington, London N1" },
-      { "@type": "Place", name: "Shoreditch, London EC2" },
-      { "@type": "Place", name: "Mayfair, London W1" },
-      { "@type": "Place", name: "Greater London" },
+      ...l.areaServed.map((name) => ({ "@type": "Place", name })),
       { "@type": "Country", name: "United Kingdom" },
     ],
     knowsAbout: [
@@ -261,12 +280,21 @@ export function localBusinessLd() {
       "Audemars Piguet",
       "Jewellery valuation",
     ],
-    hasOfferCatalog: offerCatalogLd(),
+    ...(isPrimary ? { hasOfferCatalog: offerCatalogLd() } : {}),
     currenciesAccepted: "GBP",
     priceRange: "£££££",
     parentOrganization: { "@id": `${siteUrl()}/#organization` },
     sameAs: SITE.sameAs,
   };
+}
+
+/** Every shop, as separate nodes. Spread into the graph. */
+export function allLocationsLd() {
+  return LOCATIONS.map(locationLd);
+}
+
+export function localBusinessLd() {
+  return locationLd(PRIMARY_LOCATION);
 }
 
 export function websiteLd() {

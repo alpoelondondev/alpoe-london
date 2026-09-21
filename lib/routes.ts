@@ -202,6 +202,19 @@ const STATIC_ROUTES = {
   contact: { path: "/contact", sitemap: { changeFrequency: "monthly", priority: 0.6 } },
   ourBrand: { path: "/ourbrand", sitemap: { changeFrequency: "yearly", priority: 0.3 } },
 
+  /*
+   * The Birmingham shop.
+   *
+   * Weighted like a top-level hub rather than an "about"-tier page, because
+   * it is the entry point for an entire city the site previously did not
+   * mention. "hublot birmingham" alone drew 49 impressions in the three
+   * months to 2026-09-19 — the largest non-brand query the site has.
+   */
+  birmingham: {
+    path: "/birmingham",
+    sitemap: { changeFrequency: "monthly", priority: 0.9 },
+  },
+
   // ── Deliberately unlisted ──
   search: {
     path: "/search",
@@ -331,6 +344,14 @@ const DYNAMIC_ROUTES = {
 
   /** A per-brand selling page: /sell/rolex */
   sellBrand: (brand: WatchBrandSlug): Route => `/sell/${brand}`,
+
+  /** A per-brand selling page at the Birmingham counter: /birmingham/sell/rolex */
+  birminghamSellBrand: (brand: WatchBrandSlug): Route =>
+    `/birmingham/sell/${brand}`,
+
+  /** A brand's watches, at Birmingham: /birmingham/watches/hublot */
+  birminghamWatchBrand: (brand: WatchBrandSlug): Route =>
+    `/birmingham/watches/${brand}`,
 
   /** A diamond-shape guide: /rings/oval-engagement-rings */
   ringShape: (shape: ShapeGuideSlug): Route => `/rings/${shape}`,
