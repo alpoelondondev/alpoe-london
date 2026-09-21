@@ -7,6 +7,7 @@ import { ROUTES, staticSitemapRoutes } from "@/lib/routes";
 import { SELL_BRANDS } from "@/lib/sell/brands";
 import { SHAPE_GUIDES } from "@/lib/rings/shapeGuides";
 import { birminghamSellBrands } from "@/lib/locations/copy";
+import { getPublishedFamilies } from "@/lib/watches/modelFamilies";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   /*
@@ -71,6 +72,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.8,
     });
+  }
+
+  // Model-family pages: /watches/rolex/submariner. Same weight as the brand
+  // pages they hang from, because they answer the queries people actually type.
+  for (const b of WATCH_BRANDS) {
+    for (const f of await getPublishedFamilies(b.slug)) {
+      entries.push({
+        url: siteUrl(ROUTES.watchFamily(b.slug, f.slug)),
+        changeFrequency: "weekly",
+        priority: 0.8,
+      });
+    }
   }
 
   /*

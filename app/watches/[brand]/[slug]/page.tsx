@@ -6,6 +6,7 @@ import WhatsAppButton from "../../../components/WhatsAppButton";
 import ProductSearch from "../../../components/ProductSearch";
 import ProductEnquiryStrip from "../../../components/ProductEnquiryStrip";
 import SellStrip from "../../../components/SellStrip";
+import FamilyView from "./FamilyView";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
@@ -22,7 +23,12 @@ import {
   getCatalogueProductsByBrand,
   getCatalogueProductBySlug,
 } from "@/lib/catalogue";
-import { pageMetadata, ldJsonGraph, productLd } from "@/lib/seo";
+import { pageMetadata, ldJsonGraph, productLd, truncateForSerp } from "@/lib/seo";
+import {
+  getPublishedFamilies,
+  getPublishedFamily,
+  getFamilyForProduct,
+} from "@/lib/watches/modelFamilies";
 import type { WatchBrandSlug } from "@/lib/types";
 import { ROUTES } from "@/lib/routes";
 
@@ -51,6 +57,15 @@ export async function generateStaticParams() {
       seen.add(p.slug);
       out.push({ brand: b.slug, slug: p.slug });
     }
+    // Model-family pages share this URL segment with the watches, so a family
+    // slug that matched a watch's slug would silently shadow it. Fail the
+    // build instead.
+    for (const f of await getPublishedFamilies(b.slug)) {
+      if (seen.has(f.slug)) {
+        throw new Error(`Model family "${f.slug}" collides with a watch slug under ${b.slug}`);
+      }
+      out.push({ brand: b.slug, slug: f.slug });
+    }
   }
   return out;
 }
@@ -61,6 +76,22 @@ export async function generateMetadata(
   const { brand, slug } = await props.params;
   const b = watchBrandBySlug(brand);
   if (!b) return {};
+  const fam = await getPublishedFamily(b.slug as WatchBrandSlug, slug);
+  if (fam) {
+    const refs = fam.products
+      .map((x) => x.referenceNumber)
+      .filter(Boolean)
+      .slice(0, 3)
+      .join(", ");
+    return pageMetadata({
+      title: `${b.name} ${fam.name} for Sale in London`,
+      description: truncateForSerp(
+        `${fam.products.length} authenticated ${b.name} ${fam.name} watches in stock${refs ? ` — ${refs} and more` : ""}. View at our Hatton Garden or Birmingham counter.`,
+      ),
+      path: ROUTES.watchFamily(b.slug, fam.slug),
+      image: fam.products.find((x) => x.images[0])?.images[0],
+    });
+  }
   const p =
     getWatchBySlug(b.slug as WatchBrandSlug, slug) ??
     (await getCatalogueProductBySlug(b.slug as WatchBrandSlug, slug));
@@ -88,12 +119,18 @@ export default async function WatchProductPage(
   const b = watchBrandBySlug(brand);
   if (!b) notFound();
 
+  const fam = await getPublishedFamily(b.slug as WatchBrandSlug, slug);
+  if (fam) {
+    return <FamilyView brandName={b.name} brandSlug={b.slug as WatchBrandSlug} family={fam} />;
+  }
+
   const product =
     getWatchBySlug(b.slug as WatchBrandSlug, slug) ??
     (await getCatalogueProductBySlug(b.slug as WatchBrandSlug, slug));
   if (!product) notFound();
 
   const path = ROUTES.watchProduct(b.slug, product.slug);
+  const family = await getFamilyForProduct(product);
   const related = getRelated(product, 3);
   const searchIndex = buildSearchIndex();
   const alt = [product.brand, product.model, product.referenceNumber, product.materials]
@@ -113,6 +150,9 @@ export default async function WatchProductPage(
               { name: "Home", href: "/" },
               { name: "Watches", href: ROUTES.watches },
               { name: b.name, href: ROUTES.watchBrand(b.slug) },
+              ...(family
+                ? [{ name: family.name, href: ROUTES.watchFamily(b.slug, family.slug) }]
+                : []),
               { name: product.title, href: path, current: true },
             ]}
           />

@@ -12,6 +12,8 @@ import { getWatchesByBrand, productUrl } from "@/lib/products";
 import { getCatalogueProductsByBrand, mergeBrandListings } from "@/lib/catalogue";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { brandGuide } from "@/lib/watches/brandGuides";
+import { getPublishedFamilies } from "@/lib/watches/modelFamilies";
+import Link from "next/link";
 import ScrollReveal from "../../components/ScrollReveal";
 import SellStrip from "../../components/SellStrip";
 import FAQ from "../../components/FAQ";
@@ -96,6 +98,7 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
   // Present for the four brands the search data justifies; undefined for the
   // rest, in which case the sections below simply do not render.
   const guide = brandGuide(b.slug);
+  const families = await getPublishedFamilies(b.slug as WatchBrandSlug);
 
   const modelOptions = [...new Set(all.map((p) => p.model).filter(Boolean))]
     .sort()
@@ -145,6 +148,26 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
               <p className="max-w-[70ch] t-copy">{guide.intro}</p>
             </section>
           </ScrollReveal>
+        ) : null}
+
+        {families.length ? (
+          <section className="px-[52px] pb-10 max-md:px-6">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-dim">
+              Browse by model
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-[14px]">
+              {families.map((f) => (
+                <li key={f.slug}>
+                  <Link
+                    href={ROUTES.watchFamily(b.slug as WatchBrandSlug, f.slug)}
+                    className="text-fg/70 transition-colors hover:text-accent"
+                  >
+                    {b.name} {f.name} ({f.products.length})
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
         ) : null}
 
         <section className="px-[52px] pb-20 max-md:px-6">

@@ -341,6 +341,10 @@ const DYNAMIC_ROUTES = {
   /** A watch brand's listing: /watches/rolex */
   watchBrand: (brand: WatchBrandSlug): Route => `/watches/${brand}`,
 
+  /** A model family's listing: /watches/rolex/submariner */
+  watchFamily: (brand: WatchBrandSlug, family: string): Route =>
+    `/watches/${brand}/${family}`,
+
   /** A single watch: /watches/rolex/submariner-126610ln */
   watchProduct: (brand: WatchBrandSlug, slug: string): Route =>
     `/watches/${brand}/${slug}`,
