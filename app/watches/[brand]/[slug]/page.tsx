@@ -5,6 +5,7 @@ import Footer from "../../../components/Footer";
 import WhatsAppButton from "../../../components/WhatsAppButton";
 import ProductSearch from "../../../components/ProductSearch";
 import ProductEnquiryStrip from "../../../components/ProductEnquiryStrip";
+import SellStrip from "../../../components/SellStrip";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
@@ -165,6 +166,7 @@ export default async function WatchProductPage(
           band={false}
         />
         <ProductEnquiryStrip product={product} />
+        <SellStrip brandSlug={product.brandSlug ?? ""} />
       </main>
       <Footer />
       <WhatsAppButton />

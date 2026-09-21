@@ -10,12 +10,25 @@ import type { WatchBrandSlug } from "../types";
  * those queries with a dedicated page except the two dealers who built exactly
  * this spine.
  *
- * Five brands, not eleven. Eleven pages built from one template with the noun
+ * Six brands, not eleven. Eleven pages built from one template with the noun
  * swapped is a doorway set — it reads as thin to a person and as duplicate to
- * a crawler, and it would dilute the five that can actually rank. These five
- * carry real UK search demand and, more importantly, are five businesses I can
+ * a crawler, and it would dilute the ones that can actually rank. Each of these
+ * six carries real UK search demand and, more importantly, is a business I can
  * say genuinely different things about: what moves a Royal Oak's price is not
  * what moves a Speedmaster's, and the pages should show that.
+ *
+ * Hublot was the sixth, added on the evidence rather than the hunch. Search
+ * Console for the three months to 2026-09-19 put /watches/hublot at 66
+ * impressions — the most of any brand page on the site — with "hublot pawn",
+ * "hublot pawn shop" and "hublot london" all drawing impressions against no
+ * sell page at all. "Pawn" is the tell: those sellers are being quoted against
+ * metal content by people who do not price the reference, which is precisely
+ * the gap these pages exist to close. Hublot also passes the "different things
+ * to say" test on its own merits — case material, Unico versus base calibre and
+ * the One-Click strap sets have no equivalent on the other five.
+ *
+ * Breitling and the remaining brands stay off until their own numbers say
+ * otherwise. Add the seventh the same way: from the data, not from symmetry.
  *
  * Nothing here quotes a price. Valuations move weekly and a figure written
  * into a page is wrong within a month — worse, it is a promise the desk then
@@ -131,10 +144,10 @@ export const SELL_BRANDS: SellBrand[] = [
       },
     ],
     models: [
-      { name: "Nautilus", note: "5711, 5712, 5980 and 5990. The 5711/1A in particular is priced by the market rather than by any list." },
+      { name: "Nautilus", note: "5711, 5712, 5980 and 5990, and the earlier 3700 and 3800. The 5711/1A in particular is priced by the market rather than by any list, and the vintage 3800 is valued on case sharpness and dial originality rather than on the modern Nautilus market." },
       { name: "Aquanaut", note: "5167 and 5168G. Strap condition and the presence of the spare strap both count." },
       { name: "Calatrava", note: "The dress reference. Valued on metal, dial and case condition — an unpolished Calatrava is a genuinely different proposition." },
-      { name: "Complications & Grand Complications", note: "Annual calendars, perpetual calendars, chronographs. Send the reference and the Extract if you have it." },
+      { name: "Complications & Grand Complications", note: "Annual calendars, perpetual calendars, chronographs, and the Grand Complications proper — 5236P in-line perpetual, 5316P minute repeater tourbillon perpetual, 7140G ladies perpetual. Each of these is valued as an individual watch rather than against a reference market, so send the reference and the Extract if you have it." },
       { name: "Twenty~4", note: "Both the original quartz and the automatic. A complete set matters here." },
     ],
     papers:
@@ -313,6 +326,69 @@ export const SELL_BRANDS: SellBrand[] = [
         question: "What is my Omega Speedmaster worth?",
         answer:
           "It depends entirely on which Speedmaster it is — hand-wound Professional, Reduced, Racing or a limited edition — and on the set. The caseback and the calibre number identify it. Send those and you will have a real figure the same day.",
+      },
+    ],
+  },
+  {
+    slug: "hublot",
+    name: "Hublot",
+    title: "Hublot",
+    intro:
+      "We buy Hublot outright and take Hublot in part-exchange from our counter in Hatton Garden. Send the reference number from the caseback, the year and a few photographs and you will have a no-obligation figure back the same day; payment goes out by bank transfer once our specialist has authenticated the watch.",
+    context:
+      "Hublot is the maker sellers are most often talked down on, because the trade prices it nervously and the pawn desks price it as scrap with a logo. Both are wrong. The spread between references is enormous — a steel Classic Fusion and a King Gold Big Bang are not the same conversation — and the limited editions have their own market that has nothing to do with Hublot’s general one. It is worth finding out which of those you are holding before you accept a figure.",
+    valueDrivers: [
+      {
+        heading: "The case material sets the floor",
+        copy: "Hublot builds the same case in titanium, steel, ceramic, King Gold and Magic Gold, and the material is the single largest factor in the number. King Gold and Magic Gold carry real intrinsic metal value beneath the watch; ceramic and titanium do not. The reference on the caseback states which it is.",
+      },
+      {
+        heading: "Movement: Unico versus base",
+        copy: "An in-house Unico chronograph is a different watch commercially to a Big Bang running a modified base calibre, even where the two look similar across a counter. The caseback is usually open on the Unico, which is the quickest way to tell.",
+      },
+      {
+        heading: "Limited editions and collaborations",
+        copy: "The Ferrari, Berluti, football and artist collaborations trade on edition size, not on Hublot’s general market, and some are worth a substantial multiple of the standard reference they are based on. The edition number is engraved on the caseback — send it.",
+      },
+      {
+        heading: "Straps, and how many of them",
+        copy: "Hublot’s One-Click strap system means most watches were sold with more than one strap, and the spares are expensive to replace. A watch that still has its extra straps, the deployant and the tool is worth meaningfully more than the same watch on a single worn rubber.",
+      },
+      {
+        heading: "Bezel screws and ceramic condition",
+        copy: "The exposed H-screws on the bezel are part of the design and are the first thing to look worn or mismatched. Ceramic does not scratch but it does chip, and a chipped ceramic bezel is a real deduction because the part is not cheap.",
+      },
+    ],
+    models: [
+      { name: "Big Bang", note: "The volume family and the widest spread on this list. 44mm, 41mm, Unico, Meca-10 and Tourbillon are separate markets, and the case material moves each of them again." },
+      { name: "Classic Fusion", note: "The dress line. Titanium and ceramic trade steadily; King Gold sits well above them. Size and whether it is a chronograph both matter." },
+      { name: "Spirit of Big Bang", note: "The barrel case. A narrower market than the Big Bang proper, priced reference by reference." },
+      { name: "MP Collection", note: "The Masterpiece pieces — MP-05, MP-09, MP-11 and the rest. Low production, valued individually. Send photographs and the box." },
+      { name: "Big Bang Unico Ferrari and other collaborations", note: "Priced on edition size and completeness rather than on the base reference. The caseback engraving is what identifies it." },
+      { name: "King Power, Aerofusion, Spirit", note: "All bought. All valued on material and movement — send the reference." },
+    ],
+    papers:
+      "Hublot warranty cards carry the reference and serial, and Hublot operates a well-run authentication and service network, so a service record from an official centre genuinely helps. The travel case, the spare straps, the One-Click tool and the screwdriver are all part of a full set and all cost money to replace — keep them together. No card is not a problem; it moves the number, and we will tell you by how much before you commit to anything.",
+    faqs: [
+      {
+        question: "Where can I sell my Hublot in London?",
+        answer:
+          "Hatton Garden, and preferably at a desk that prices the reference rather than the metal. A pawnbroker will typically quote against the gold content or against a blanket assumption about the brand, which is how Hublot sellers end up underpaid. Bring it in or ship it insured and you are paid by transfer the same week, with no seller’s commission taken off the top.",
+      },
+      {
+        question: "Do you buy Hublot without box and papers?",
+        answer:
+          "Yes. A watch-only Hublot is a straightforward sale. The set matters more on Hublot than on most makers because of the spare straps and the travel case, so expect a wider gap between a full set and a bare watch than you would see on a steel sports Rolex. We will show you both figures.",
+      },
+      {
+        question: "Is a Hublot a good watch to sell or part-exchange?",
+        answer:
+          "Part-exchange is usually the better deal on a Hublot specifically. The outright cash market for the brand is cautious, but against a purchase we can make the margin on the piece you are buying rather than the piece you are leaving, so the number we can put against your Hublot goes up. If you were considering a pawn or a quick cash sale, ask about part-exchange first.",
+      },
+      {
+        question: "What is my Big Bang worth?",
+        answer:
+          "It depends on the case material, the movement and the edition before anything else — a titanium Big Bang and a King Gold Big Bang of the same size are far apart. The reference number on the caseback answers all three. Send it with a few photographs and you will have a real figure the same day.",
       },
     ],
   },

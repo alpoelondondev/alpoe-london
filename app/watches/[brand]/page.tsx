@@ -13,6 +13,7 @@ import { getCatalogueProductsByBrand, referenceKey } from "@/lib/catalogue";
 import { truncateForSerp, pageMetadata, ldJsonGraph, collectionLd, faqLd } from "@/lib/seo";
 import { brandGuide } from "@/lib/watches/brandGuides";
 import ScrollReveal from "../../components/ScrollReveal";
+import SellStrip from "../../components/SellStrip";
 import FAQ from "../../components/FAQ";
 import type { WatchBrandSlug, Product } from "@/lib/types";
 import { ROUTES } from "@/lib/routes";
@@ -199,6 +200,8 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
             <FAQ items={guide.faqs} />
           </>
         ) : null}
+
+        <SellStrip brandSlug={b.slug} />
       </main>
       <Footer />
       <WhatsAppButton />
