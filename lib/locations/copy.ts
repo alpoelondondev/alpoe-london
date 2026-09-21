@@ -33,6 +33,12 @@ type LocationCopy = {
   advantages: { heading: string; copy: string }[];
   faqs: { question: string; answer: string }[];
   sellIntros: Record<string, string>;
+  rings: {
+    intro: string;
+    context: string;
+    steps: { heading: string; copy: string }[];
+    faqs: { question: string; answer: string }[];
+  };
 };
 
 export const BIRMINGHAM: LocationCopy = {
@@ -55,7 +61,7 @@ export const BIRMINGHAM: LocationCopy = {
     },
     {
       heading: "No need to travel to London",
-      copy: "This site used to tell Midlands sellers to come to Hatton Garden. That was true when there was one counter and it is not any more. You can have a figure by WhatsApp today and settle it in Birmingham.",
+      copy: "No trip to London, and no posting a watch off and waiting. Send the reference and a few photographs, have a figure back by WhatsApp today, and settle it over the counter in Birmingham.",
     },
     {
       heading: "Paid by transfer, no commission",
@@ -96,6 +102,75 @@ export const BIRMINGHAM: LocationCopy = {
    * and each is about that brand's specific problem in this specific market —
    * not the same sentence with the brand swapped.
    */
+
+  /**
+   * The jewellery side, for Birmingham.
+   *
+   * ── Why this is the better Birmingham bet than watches ──
+   *
+   * The watch pages are limited by stock: there is one Hublot on the site, so
+   * /birmingham/watches/hublot is chasing a 49-impression query with a single
+   * product to show. Bespoke has no such ceiling — a commission does not need
+   * inventory, and "engagement rings birmingham" is a commercial query this
+   * business can answer in full from day one.
+   *
+   * The copy describes the service Birmingham customers get without narrating
+   * where each stage physically happens. Which bench cuts the metal is not
+   * something a customer asks or benefits from being told in a page's opening
+   * paragraph, and the earlier draft kept volunteering it in a way that read
+   * as apologising for the Birmingham counter.
+   */
+  rings: {
+    intro:
+      "Commission a bespoke engagement ring in Birmingham. Talk it through at our Birmingham counter, approve the design, and collect the finished ring in Birmingham or take insured delivery. Every stone hand-set by our own benches. Natural or laboratory-grown diamonds, GIA certified.",
+    context:
+      "Buying an engagement ring in the Midlands usually means choosing from what is in a case. A commission works the other way round: you set the stone, the setting, the shoulders and the budget, and the ring is made to that brief. It is not the expensive option people assume — taking the retail markup out of a case-bought ring generally buys a noticeably better stone for the same money, which is the entire reason this trade exists.",
+    steps: [
+      {
+        heading: "Talk it through in Birmingham",
+        copy: "The occasion, who it is for, the stone you have in mind and the budget you are working to. Message first so a diamond specialist is on the counter — that one call is the difference between a useful hour and a wasted trip.",
+      },
+      {
+        heading: "A design comes back to you",
+        copy: "A CAD drawing for your approval, wherever you are. Adjust the setting, the shoulders, the carat, the metal. Nothing is cut and no stone is bought until you are happy with it.",
+      },
+      {
+        heading: "Hand-set by our benches",
+        copy: "The metal is cast and every stone is set by hand by our own benches, with GIA certification on the diamonds. Two hundred years of Birmingham jewellery-making and the Hatton Garden trade behind one ring.",
+      },
+      {
+        heading: "Collect in Birmingham, or delivered",
+        copy: "Collect from our Birmingham counter, or take insured, tracked white-glove delivery anywhere. Birmingham is where it starts and where it can finish.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I get a bespoke engagement ring made in Birmingham?",
+        answer:
+          "Yes. Start at our Birmingham counter with the brief, approve the CAD design, and collect the finished ring in Birmingham. Every stone is hand-set by our own benches, and the design stage is handled remotely, so there is one visit at the start and one at the end.",
+      },
+      {
+        question: "Is a bespoke ring more expensive than buying one in a shop?",
+        answer:
+          "Usually not, and often the reverse. A ring in a retail case carries the markup of the shop it is sitting in. Commissioning removes that, so the same budget tends to buy a better stone. What you are spending money on is the diamond rather than the display cabinet.",
+      },
+      {
+        question: "How long does a commission take?",
+        answer:
+          "Allow six to eight weeks from approved design for a straightforward solitaire, and longer for anything with unusual stone sourcing or a complicated setting. Tell us the date you are working to at the first conversation — if it is tight, say so then rather than later, and we will tell you honestly whether it is possible.",
+      },
+      {
+        question: "Do you do laboratory-grown diamonds?",
+        answer:
+          "Yes, and without any steering either way. A lab-grown stone buys considerably more carat and clarity for the same money; a natural stone holds value differently. Both are certified. Which is right depends on what you want from the ring, and that is a conversation rather than a policy.",
+      },
+      {
+        question: "Can I see rings at the Birmingham counter before committing?",
+        answer:
+          "Yes. Our ready-to-ship and jewellery stock can be brought to Birmingham — tell us what you would like to see and give us a day's notice. Trying settings on is genuinely useful before committing to a design, even when the final ring is a commission.",
+      },
+    ],
+  },
   sellIntros: {
     rolex:
       "Rolex is the one watch every buyer in the Midlands will make an offer on, which is exactly why the offers vary so widely. A jeweller who sees one Submariner a month and a desk that prices the reference daily will not arrive at the same figure, and the reference — not the model — is what decides it.",

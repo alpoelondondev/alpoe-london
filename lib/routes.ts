@@ -215,6 +215,17 @@ const STATIC_ROUTES = {
     sitemap: { changeFrequency: "monthly", priority: 0.9 },
   },
 
+  /*
+   * The jewellery half of Birmingham, and the better half of it. The watch
+   * pages are capped by stock — one Hublot on the whole site — whereas a
+   * commission needs no inventory, so "engagement rings birmingham" is a
+   * commercial query this business can answer completely from day one.
+   */
+  birminghamEngagementRings: {
+    path: "/birmingham/engagement-rings",
+    sitemap: { changeFrequency: "monthly", priority: 0.85 },
+  },
+
   // ── Deliberately unlisted ──
   search: {
     path: "/search",

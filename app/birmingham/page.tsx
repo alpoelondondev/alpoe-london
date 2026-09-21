@@ -110,6 +110,23 @@ export default function BirminghamPage() {
           </div>
         </section>
 
+        <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+          <ScrollReveal>
+            <h2 className="t-section">Bespoke engagement rings in Birmingham</h2>
+            <p className="mt-4 max-w-[68ch] t-copy">
+              Talk the brief through at the counter, approve the design, and
+              collect the finished ring in Birmingham.{" "}
+              <Link
+                href={ROUTES.birminghamEngagementRings}
+                className="text-accent underline underline-offset-4"
+              >
+                Commission an engagement ring in Birmingham
+              </Link>{" "}
+              sets out how it works.
+            </p>
+          </ScrollReveal>
+        </section>
+
         <section className="border-t border-fg/10 bg-panel-soft px-[52px] py-14 max-md:px-6 max-md:py-10">
           <ScrollReveal>
             <h2 className="t-section">Sell your watch in Birmingham</h2>
