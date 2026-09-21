@@ -11,6 +11,7 @@
     "build": "node scripts/check-routes.mjs && node scripts/gen-image-manifest.mjs && node scripts/gen-research-index.mjs && next build",
     "start": "next start",
     "check:routes": "node scripts/check-routes.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "lint": "eslint"
   },
   "dependencies": {
