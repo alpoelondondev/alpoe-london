@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Open_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 // Splash screen temporarily disabled — re-enable by uncommenting this import
@@ -176,6 +177,18 @@ export default function RootLayout({
           is a no-op outside Vercel, so local dev and previews stay quiet.
         */}
         <Analytics />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RQ9DMLG19G"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RQ9DMLG19G');
+          `}
+        </Script>
       </body>
     </html>
   );
