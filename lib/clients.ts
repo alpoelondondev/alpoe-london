@@ -29,6 +29,14 @@ export type Client = {
   role: string;
   /** One or two sentences. Kept short on purpose. */
   blurb: string;
+  /** What people know the client from — shown as pills under the blurb. */
+  knownFor: string[];
+  /**
+   * The photograph on the client's card. Alpoe's own jewellery photography
+   * unless there is a cleared picture of the client: a photo of a person needs
+   * their permission and the photographer's.
+   */
+  image: { src: string; alt: string };
   /** Shown as buttons on the card. */
   links: ClientLink[];
   /**
@@ -45,7 +53,12 @@ export const CLIENTS: Client[] = [
     name: "Gemma Collins",
     role: "Television personality",
     blurb:
-      "Known from The Only Way Is Essex, Dancing on Ice and I'm a Celebrity, Gemma Collins wears Alpoe London jewellery on screen and at her public appearances.",
+      "Gemma Collins wears Alpoe London jewellery on screen and at her public appearances — pieces made at our Hatton Garden bench.",
+    knownFor: ["The Only Way Is Essex", "Dancing on Ice", "I'm a Celebrity"],
+    image: {
+      src: "/alpoe-diamond-riviere-y-drop-necklace-hatton-garden.jpg",
+      alt: "Alpoe London diamond rivière Y-drop necklace on a black velvet bust",
+    },
     links: [
       {
         label: "Instagram",

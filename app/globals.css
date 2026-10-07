@@ -112,6 +112,13 @@
      artwork is drawn in Playfair. */
   --font-playfair: var(--font-playfair-display), serif;
   --font-opensans: var(--font-open-sans), sans-serif;
+
+  /* Corner radii — `rounded-card` and `rounded-inset`. The site is square-
+     cornered by default; these are for pages set in rounded panels (/clients
+     first). `card` is the outer panel, `inset` anything nested inside one, so
+     the inner curve sits concentric with the outer. Pills use `rounded-full`. */
+  --radius-card: 28px;
+  --radius-inset: 18px;
 }
 
 html {
