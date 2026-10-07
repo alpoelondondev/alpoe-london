@@ -199,6 +199,11 @@ const STATIC_ROUTES = {
     sitemap: { changeFrequency: "monthly", priority: 0.8 },
   },
   about: { path: "/about", sitemap: { changeFrequency: "monthly", priority: 0.6 } },
+  /*
+   * The client roster. Weighted above /about because it carries named
+   * searches — a client's name plus "jewellery" — that no other page answers.
+   */
+  clients: { path: "/clients", sitemap: { changeFrequency: "monthly", priority: 0.7 } },
   contact: { path: "/contact", sitemap: { changeFrequency: "monthly", priority: 0.6 } },
   ourBrand: { path: "/ourbrand", sitemap: { changeFrequency: "yearly", priority: 0.3 } },
 

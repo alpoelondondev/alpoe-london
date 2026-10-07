@@ -45,6 +45,7 @@ const HOUSE_LINKS: FooterLink[] = [
   { label: "Metal Prices", href: ROUTES.metalPrices },
   { label: "Mentorship", href: ROUTES.mentorship },
   { label: "About", href: ROUTES.about },
+  { label: "Our Clients", href: ROUTES.clients },
   { label: "Hallmarking", href: ROUTES.hallmarking },
   // Listed here because it was in the sitemap and linked from nowhere at all —
   // the definition of an orphan. Last in the house column, which is honest

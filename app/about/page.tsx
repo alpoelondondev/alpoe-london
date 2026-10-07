@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
@@ -79,8 +80,11 @@ export default function AboutPage() {
           <ScrollReveal>
             <div className="max-w-3xl">
               <p className="t-copy">
-                We serve clients of every calibre, from first-time buyers to a discreet roster
-                of high-profile and high-net-worth collectors. Every relationship is handled
+                We serve clients of every calibre, from first-time buyers to a discreet{" "}
+                <Link href={ROUTES.clients} className="text-accent hover:text-blush">
+                  roster of high-profile
+                </Link>{" "}
+                and high-net-worth collectors. Every relationship is handled
                 with the same VIP service: private consultations, personal sourcing, and
                 white-glove delivery.
               </p>

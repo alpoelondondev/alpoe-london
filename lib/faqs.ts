@@ -114,6 +114,21 @@ const FAQS = {
     answer:
       "Send us a message telling us where you are up to — starting from scratch, already reselling, or building a brand. We check the room is right for you, then send the invite to the private group.",
   },
+  clientsCelebrity: {
+    question: "Does Alpoe London work with celebrities and high-profile clients?",
+    answer:
+      "Yes. Alpoe London provides jewellery for television personalities and public figures to wear on screen and at appearances. Gemma Collins is one of them. We also look after high-net-worth collectors who are never named. The only clients listed on this page are those who have chosen to be.",
+  },
+  clientsFirstTime: {
+    question: "Do I need to be a VIP to buy from Alpoe London?",
+    answer:
+      "No. A first-time buyer gets the same service as our best-known clients: a private consultation, personal sourcing and insured delivery. The bench, the stones and the people you deal with are the same.",
+  },
+  clientsPrivacy: {
+    question: "Will you keep my purchase private?",
+    answer:
+      "Yes. We never name a client, show their piece or mention their purchase anywhere without their agreement. That applies to everyone, whether or not they are well known.",
+  },
   labSimulants: {
     question: "Is a lab diamond the same as moissanite or cubic zirconia?",
     answer:
@@ -327,6 +342,13 @@ export const MENTORSHIP_FAQS: FaqItem[] = [
   FAQS.mentorshipCost,
   FAQS.mentorshipCommit,
   FAQS.mentorshipJoin,
+  FAQS.showroom,
+];
+
+export const CLIENTS_FAQS: FaqItem[] = [
+  FAQS.clientsCelebrity,
+  FAQS.clientsFirstTime,
+  FAQS.clientsPrivacy,
   FAQS.showroom,
 ];
 
