@@ -36,33 +36,29 @@ visitor locations. VPNs and mobile networks can affect accuracy.
 
 Open **Web analytics** for traffic and geographic breakdowns, and **Session
 replay** for recordings. Filter recordings using country or city properties.
-New data starts after deployment and visitor opt-in; previous visits cannot be recovered.
+New data starts after deployment; previous visits cannot be recovered.
 
 ## Visitor controls
 
-The PostHog SDK only loads after the visitor allows recordings. Declining prevents
-PostHog initialization. Recording preferences allow withdrawal, stopping replay
-and opting out of further capture. Preferences synchronize between tabs.
-Missing configuration hides the prompt and leaves PostHog inactive.
+Every visit is tracked and recorded from the first page. There is no consent
+prompt and no on-site way for a visitor to opt out. Missing configuration leaves
+PostHog inactive.
 
 Form values are masked. The booking confirmation, including its message and
 contact details, is blocked from replay. Add `data-private` to any future element
 that displays customer data. Automatic click-event capture and console recording
 are disabled. Replay still records visual interactions and navigation.
-The existing Google Analytics and Vercel integrations are unchanged; this preference
-controls only PostHog. Update the site's published privacy information to describe
-PostHog and the retention settings selected in the dashboard.
+The existing Google Analytics and Vercel integrations are unchanged. Update the
+site's published privacy information to describe PostHog and the retention
+settings selected in the dashboard.
 
 ## Verify after connecting
 
-1. In a fresh browser session, confirm there are no PostHog requests before choosing.
-2. Decline, navigate, and confirm no PostHog requests are sent.
-3. Allow recordings in Recording preferences, browse multiple pages, and confirm
-   pageviews arrive in PostHog and one continuous recording appears.
-4. Fill an enquiry and booking with dummy data; check the replay hides inputs and
+1. In a fresh browser session, browse multiple pages and confirm no prompt
+   appears, pageviews arrive in PostHog and one continuous recording appears.
+2. Fill an enquiry and booking with dummy data; check the replay hides inputs and
    booking confirmation details.
-5. Decline again and confirm new capture stops, including in another open tab.
-6. Check new events for `$geoip_country_name` and `$geoip_city_name`.
+3. Check new events for `$geoip_country_name` and `$geoip_city_name`.
 
 References: https://posthog.com/docs/libraries/next-js and
 https://posthog.com/docs/session-replay/privacy
