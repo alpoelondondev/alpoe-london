@@ -14,6 +14,7 @@ import { SITE, siteUrl } from "@/lib/site";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { Analytics } from "@vercel/analytics/next";
 import { assetsOrigin } from "@/lib/assets";
+import PostHogAnalytics from "./components/PostHogAnalytics";
 
 /**
  * Open Sans carries the whole site — body, headings, labels, everything.
@@ -177,6 +178,7 @@ export default function RootLayout({
           is a no-op outside Vercel, so local dev and previews stay quiet.
         */}
         <Analytics />
+        <PostHogAnalytics />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RQ9DMLG19G"
           strategy="afterInteractive"

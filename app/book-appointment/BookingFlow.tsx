@@ -212,7 +212,7 @@ export default function BookingFlow() {
             {type.name} · {type.minutes} min. We are open Monday to Saturday, 10am until 6pm.
           </p>
 
-          <div className="mx-auto mt-10 max-w-3xl">
+          <div className="mx-auto mt-10 max-w-3xl" data-private>
             <p className="text-[10px] tracking-[0.18em] uppercase text-dim">Date</p>
             <div className="scrollbar-none mt-4 flex gap-3 overflow-x-auto pb-2">
               {days.length ? (
