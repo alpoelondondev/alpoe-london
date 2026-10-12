@@ -17,7 +17,7 @@ import { siteUrl } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Sell Your Watch — Paid the Same Day",
+  title: "Sell Your Watch in London — Paid the Same Day",
   description:
     "Sell or part-exchange a luxury watch with Alpoe London. Free valuation on Rolex, Patek Philippe and AP, authenticated in Hatton Garden, paid the same day.",
   path: ROUTES.sell,

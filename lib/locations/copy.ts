@@ -36,6 +36,7 @@ type LocationCopy = {
   rings: {
     intro: string;
     context: string;
+    labGrown: { heading: string; copy: string };
     steps: { heading: string; copy: string }[];
     faqs: { question: string; answer: string }[];
   };
@@ -125,6 +126,17 @@ export const BIRMINGHAM: LocationCopy = {
       "Commission a bespoke engagement ring in Birmingham. Talk it through at our Birmingham counter, approve the design, and collect the finished ring in Birmingham or take insured delivery. Every stone hand-set by our own benches. Natural or laboratory-grown diamonds, GIA certified.",
     context:
       "Buying an engagement ring in the Midlands usually means choosing from what is in a case. A commission works the other way round: you set the stone, the setting, the shoulders and the budget, and the ring is made to that brief. It is not the expensive option people assume — taking the retail markup out of a case-bought ring generally buys a noticeably better stone for the same money, which is the entire reason this trade exists.",
+    /*
+     * "lab grown diamond rings birmingham" sat at position 15 in the three
+     * months to 2026-10-09 — the nearest Birmingham ring query to page one —
+     * against a page whose only mention of it was one FAQ answer. The heading
+     * uses the words people type; the copy keeps to what the FAQ and the
+     * natural-vs-lab-grown guide already say.
+     */
+    labGrown: {
+      heading: "Lab-grown diamond engagement rings in Birmingham",
+      copy: "Any ring commissioned at the Birmingham counter can be set with a laboratory-grown diamond or a natural one. A laboratory-grown diamond is a diamond, and for the same money it buys considerably more carat and clarity; a natural stone holds its value differently. Both are certified. We will show you both options against your budget, with no steering either way, and you decide which the ring is built around.",
+    },
     steps: [
       {
         heading: "Talk it through in Birmingham",

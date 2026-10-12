@@ -108,6 +108,22 @@ export default function BirminghamEngagementRingsPage() {
           </ol>
         </section>
 
+        <section className="border-t border-fg/10 px-[52px] py-14 max-md:px-6 max-md:py-10">
+          <ScrollReveal>
+            <h2 className="t-section">{rings.labGrown.heading}</h2>
+            <p className="mt-4 max-w-[68ch] t-copy">
+              {rings.labGrown.copy}{" "}
+              <Link
+                href={ROUTES.guideLabGrownDiamonds}
+                className="text-accent underline underline-offset-4"
+              >
+                Natural vs lab-grown diamonds
+              </Link>{" "}
+              sets out the differences in full.
+            </p>
+          </ScrollReveal>
+        </section>
+
         <section className="border-t border-fg/10 bg-panel-soft px-[52px] py-14 max-md:px-6 max-md:py-10">
           <ScrollReveal>
             <h2 className="t-section">Start from a shape, or from scratch</h2>

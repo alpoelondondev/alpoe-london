@@ -172,6 +172,22 @@ export default async function BrandPage(props: { params: Promise<RouteParams> })
 
         <section className="px-[52px] pb-20 max-md:px-6">
           <CatalogueGrid tiles={toGridTiles(all)} modelOptions={modelOptions} />
+          {/*
+            Google answers "hublot birmingham" with this page, which had no
+            link to the Birmingham page built for that search — the only way
+            there was through the /birmingham hub.
+          */}
+          <p className="mt-10 max-w-[70ch] t-copy">
+            In the Midlands? The same stock can be viewed at our Birmingham
+            counter —{" "}
+            <Link
+              href={ROUTES.birminghamWatchBrand(b.slug as WatchBrandSlug)}
+              className="text-accent underline underline-offset-4"
+            >
+              {b.name} watches in Birmingham
+            </Link>
+            .
+          </p>
         </section>
 
         {guide ? (

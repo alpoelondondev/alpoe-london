@@ -118,6 +118,21 @@ export default async function BirminghamSellBrandPage(
         <section className="px-[52px] pb-14 max-md:px-6">
           <ScrollReveal>
             <p className="max-w-[68ch] t-copy">{b.intro}</p>
+            {/*
+              Google was showing this page for "patek philippe birmingham" — a
+              buying search — at position 10–14, with the way to the buying
+              page a small link at the foot. It sits up here now.
+            */}
+            <p className="mt-4 max-w-[68ch] t-copy">
+              Looking to buy rather than sell?{" "}
+              <Link
+                href={ROUTES.birminghamWatchBrand(b.slug)}
+                className="text-accent underline underline-offset-4"
+              >
+                {b.name} watches for sale in Birmingham
+              </Link>{" "}
+              lists the stock you can view at the Birmingham counter.
+            </p>
           </ScrollReveal>
         </section>
 
@@ -212,14 +227,6 @@ export default async function BirminghamSellBrandPage(
                   className="text-fg/60 transition-colors hover:text-accent"
                 >
                   The Birmingham counter
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={ROUTES.birminghamWatchBrand(b.slug)}
-                  className="text-fg/60 transition-colors hover:text-accent"
-                >
-                  Buy a {b.name} instead
                 </Link>
               </li>
             </ul>
