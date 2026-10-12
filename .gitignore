@@ -51,6 +51,11 @@ yarn-error.log*
 next-env.d.ts
 
 # agent / assistant notes (local only)
+# Per-machine tool connections (PostHog, Google Analytics). config.toml holds
+# absolute local paths and .codex/ is where a Google credentials file would be
+# dropped; neither belongs in the repo.
+/.codex/
+/.mcp.json
 
 # graphify (local codebase analysis output)
 graphify-out/
