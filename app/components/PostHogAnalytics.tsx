@@ -106,8 +106,9 @@ export default function PostHogAnalytics() {
       <h2 className="text-base font-medium">Help us improve your visit</h2>
       <p className="mt-2 text-sm leading-relaxed text-fg/80">
         With your permission, we use PostHog cookies to measure visits and record
-        how you browse, including clicks, scrolling and approximate country or
-        city. Form entries and booking details are hidden. You can change your
+        how you browse, including clicks, scrolling, your IP address and the
+        approximate country or city it points to. Form entries and booking
+        details are hidden. You can change your
         choice in Recording preferences at any time.
       </p>
       <div className="mt-4 flex gap-3">
