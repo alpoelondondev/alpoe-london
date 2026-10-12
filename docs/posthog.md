@@ -48,9 +48,9 @@ Form values are masked. The booking confirmation, including its message and
 contact details, is blocked from replay. Add `data-private` to any future element
 that displays customer data. Automatic click-event capture and console recording
 are disabled. Replay still records visual interactions and navigation.
-The existing Google Analytics and Vercel integrations are unchanged. Update the
-site's published privacy information to describe PostHog and the retention
-settings selected in the dashboard.
+The existing Google Analytics and Vercel integrations are unchanged. The public
+`/privacy` page declares all of this; update it whenever what is collected or the
+retention settings in the dashboard change.
 
 ## Verify after connecting
 

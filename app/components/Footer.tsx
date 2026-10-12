@@ -56,6 +56,7 @@ const HOUSE_LINKS: FooterLink[] = [
   // because until 2026-09-21 the site did not mention Birmingham at all and
   // a sitewide link is the fastest way for a crawler to learn it exists.
   { label: "Birmingham", href: ROUTES.birmingham },
+  { label: "Privacy", href: ROUTES.privacy },
 ];
 
 export default function Footer() {
