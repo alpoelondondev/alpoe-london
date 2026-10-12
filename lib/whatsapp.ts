@@ -3,6 +3,8 @@ import type { Product } from "./types";
 
 export type EnquiryOptions = {
   bracelet?: string;
+  /** What the message asks for. Availability unless told otherwise. */
+  ask?: "price";
 };
 
 function normalisePhone(n: string) {
@@ -16,7 +18,9 @@ export function buildEnquiryMessage(product: Product, opts?: EnquiryOptions): st
   const ref = product.referenceNumber ? ` (Ref: ${product.referenceNumber})` : "";
   const bracelet = opts?.bracelet?.trim();
   const braceletSuffix = bracelet ? ` on ${bracelet} bracelet` : "";
-  return `Hi, I'm interested in the ${name}${ref}${braceletSuffix}. Is it available?`;
+  const question =
+    opts?.ask === "price" ? "Could you send me the price?" : "Is it available?";
+  return `Hi, I'm interested in the ${name}${ref}${braceletSuffix}. ${question}`;
 }
 
 export function buildEnquiryUrl(product: Product, opts?: EnquiryOptions): string {

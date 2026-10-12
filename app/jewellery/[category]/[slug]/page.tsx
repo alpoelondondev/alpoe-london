@@ -9,6 +9,7 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductSpecs from "../../../components/ProductSpecs";
 import EnquireCTA from "../../../components/EnquireCTA";
+import PriceEnquiry from "../../../components/PriceEnquiry";
 import FeaturedCarousel from "../../../components/FeaturedCarousel";
 import { JEWELLERY_CATEGORIES, jewelleryCategoryBySlug } from "@/lib/taxonomy";
 import {
@@ -106,10 +107,7 @@ export default async function JewelleryProductPage(
             </h1>
             <p className="text-fg/80 leading-relaxed font-light">{product.description}</p>
 
-            <div className="mt-8 py-4 border-y border-fg/[0.14] flex items-baseline justify-between">
-              <span className="text-[11px] tracking-[0.18em] uppercase text-dim">Price</span>
-              <span className="font-serif text-2xl tracking-[0.02em]">On Request</span>
-            </div>
+            <PriceEnquiry product={product} />
 
             <EnquireCTA product={product} />
 
@@ -117,7 +115,11 @@ export default async function JewelleryProductPage(
           </div>
         </section>
 
-        <section className="px-[52px] pb-14 max-md:px-6">
+        {/* Directly under the piece, not below the related carousel: a buyer
+            who has read the details should meet the form before more stock. */}
+        <ProductEnquiryStrip product={product} />
+
+        <section className="px-[52px] py-14 max-md:px-6">
           <div className="max-w-xl">
             <ProductSearch index={searchIndex} />
           </div>
@@ -129,7 +131,6 @@ export default async function JewelleryProductPage(
           products={related}
           band={false}
         />
-        <ProductEnquiryStrip product={product} />
       </main>
       <Footer />
       <WhatsAppButton />

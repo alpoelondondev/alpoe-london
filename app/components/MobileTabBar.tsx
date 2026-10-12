@@ -4,15 +4,21 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { ROUTES } from "@/lib/routes";
+import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 /**
- * The phone's standing navigation: four destinations pinned to the bottom of
- * every page, under the thumb.
+ * The phone's standing navigation: four destinations and the way to reach us,
+ * pinned to the bottom of every page, under the thumb.
  *
  * The top bar carries the whole route list, but behind a menu button and above
  * the fold — on a phone that is two taps and a scroll back up for the things
  * people actually came for. This bar is those four, always reachable,
- * and it leaves the menu to everything else. It is phone-only: on a desktop
+ * and it leaves the menu to everything else.
+ *
+ * Enquire is the fifth and the only one that is not a page. Contact, booking
+ * and selling lived in the menu and the footer, and a whole evening of phone
+ * visitors browsed stock without opening any of them — so the three sit one
+ * tap away here, in a short list that opens above the bar. It is phone-only: on a desktop
  * the bar is already on screen and a fixed strip along the bottom would just
  * be taking a row off the page.
  *
@@ -121,16 +127,37 @@ const ELITE = (
   </Glyph>
 );
 
+/** A speech bubble: the one tab that is a conversation rather than an aisle. */
+const ENQUIRE = (
+  <Glyph>
+    <path d="M4.5 5.2h15v10.6h-8.3L7.2 19.4v-3.6H4.5Z" />
+    <path d="M8.4 9.2h7.2M8.4 12h4.6" />
+  </Glyph>
+);
+
 /**
  * `elite` paints the tab in the sapphire rather than the house rose, which is
  * the point of it: this one is not another aisle of the shop, it is the way
  * into the programme, and it should not read as a third category.
  */
-const TABS: { label: string; href: string; icon: ReactNode; elite?: boolean }[] = [
+/** A tab with no `href` is Enquire: it opens ENQUIRE_LINKS instead of a page. */
+type Tab = { label: string; href?: string; icon: ReactNode; elite?: boolean };
+
+const TABS: Tab[] = [
   { label: "Watches", href: ROUTES.watches, icon: WATCH },
   { label: "Jewellery", href: ROUTES.jewellery, icon: JEWELLERY },
   { label: "Rings", href: ROUTES.rings, icon: RING },
   { label: "Elite", href: ROUTES.mentorship, icon: ELITE, elite: true },
+  { label: "Enquire", icon: ENQUIRE },
+];
+
+const ENQUIRE_LINKS: { label: string; href: string }[] = [
+  {
+    label: "WhatsApp us",
+    href: buildGeneralWhatsAppUrl("Hi Alpoe, I'd like to make an enquiry about..."),
+  },
+  { label: "Book an appointment", href: ROUTES.bookAppointment },
+  { label: "Sell or trade a watch", href: ROUTES.sell },
 ];
 
 /** How far a finger has to travel before it counts as a drag and not a tap. */
@@ -144,12 +171,16 @@ export default function MobileTabBar() {
   /** Set on release after a drag, so the click it produces is not a second navigation. */
   const swallowClick = useRef(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [enquireOpen, setEnquireOpen] = useState(false);
 
   // A brand page is still the Watches tab, so the whole subtree counts as
   // current — but `/jewellery` must not light up for `/jewellery-x`.
   const isCurrent = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
-  const active = TABS.findIndex((t) => isCurrent(t.href));
+  // Enquire is current on any page its list leads to.
+  const tabIsCurrent = (tab: Tab) =>
+    tab.href ? isCurrent(tab.href) : ENQUIRE_LINKS.some((l) => isCurrent(l.href));
+  const active = TABS.findIndex(tabIsCurrent);
   const activeTab = active >= 0 ? TABS[active] : undefined;
 
   /** Which tab a page x-coordinate is over, clamped to the ends of the bar. */
@@ -185,7 +216,8 @@ export default function MobileTabBar() {
     // necessarily the one that was chosen — so navigate ourselves and eat the
     // click that follows.
     swallowClick.current = true;
-    if (!isCurrent(target.href)) router.push(target.href);
+    if (!target.href) setEnquireOpen(true);
+    else if (!isCurrent(target.href)) router.push(target.href);
   };
 
   const onPointerCancel = () => setDragIndex(null);
@@ -195,11 +227,53 @@ export default function MobileTabBar() {
   const dragging = dragIndex !== null;
 
   return (
+    <>
+    {/* Outside the nav, because its backdrop-filter would make a fixed child
+        cover the bar rather than the screen. A tap anywhere closes the list. */}
+    {enquireOpen ? (
+      <button
+        type="button"
+        aria-label="Close enquiry options"
+        onClick={() => setEnquireOpen(false)}
+        className="fixed inset-0 z-[149] md:hidden"
+      />
+    ) : null}
     <nav
       aria-label="Primary"
       className="fixed left-4 right-4 z-[150] rounded-full border border-fg/[0.12] bg-bg shadow-lg shadow-black/40 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-bg/72 md:hidden"
       style={{ bottom: `calc(${FLOAT_GAP}px + env(safe-area-inset-bottom))` }}
     >
+      {enquireOpen ? (
+        <ul
+          id="enquire-options"
+          className="absolute bottom-full right-0 mb-2 w-60 rounded-3xl border border-fg/[0.12] bg-bg p-2 shadow-lg shadow-black/40"
+        >
+          {ENQUIRE_LINKS.map((l) => {
+            const external = l.href.startsWith("https://");
+            const item =
+              "block rounded-2xl px-4 py-3 text-[13px] tracking-[0.04em] text-fg transition-colors hover:bg-fg/[0.08]";
+            return (
+              <li key={l.href}>
+                {external ? (
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setEnquireOpen(false)}
+                    className={item}
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link href={l.href} onClick={() => setEnquireOpen(false)} className={item}>
+                    {l.label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
       <ul
         ref={listRef}
         onPointerDown={onPointerDown}
@@ -212,30 +286,36 @@ export default function MobileTabBar() {
           e.preventDefault();
           e.stopPropagation();
         }}
-        style={{ touchAction: "pan-y" }}
-        className="relative grid grid-cols-4 overflow-hidden rounded-full p-1 select-none"
+        style={{
+          touchAction: "pan-y",
+          gridTemplateColumns: `repeat(${TABS.length}, minmax(0, 1fr))`,
+        }}
+        className="relative grid overflow-hidden rounded-full p-1 select-none"
       >
         {/*
           One highlight for the whole bar rather than one per tab, so moving
           between sections slides it across instead of snapping it off one
-          tab and on to the next. It is a quarter of the inner width and
+          tab and on to the next. It is one tab's share of the inner width and
           translated by whole multiples of itself; on a page that belongs to
           no tab it fades out in place rather than jumping to a corner.
           Sapphire when it lands on Elite, for the same reason that tab is.
         */}
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute bottom-1 left-1 top-1 w-[calc((100%-0.5rem)/4)] rounded-full border border-fg/[0.14] shadow-[inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-saturate-150 transition-[transform,opacity,background-color] ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none ${
+          className={`pointer-events-none absolute bottom-1 left-1 top-1 rounded-full border border-fg/[0.14] shadow-[inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-saturate-150 transition-[transform,opacity,background-color] ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none ${
             dragging ? "duration-100" : "duration-300"
           } ${
             (dragIndex === null ? activeTab?.elite : TABS[dragIndex]?.elite)
               ? "bg-elite/[0.16]"
               : "bg-fg/[0.12]"
           } ${shown < 0 ? "opacity-0" : "opacity-100"}`}
-          style={{ transform: `translateX(${Math.max(shown, 0) * 100}%)` }}
+          style={{
+            width: `calc((100% - 0.5rem) / ${TABS.length})`,
+            transform: `translateX(${Math.max(shown, 0) * 100}%)`,
+          }}
         />
         {TABS.map((tab, i) => {
-          const current = isCurrent(tab.href);
+          const current = tabIsCurrent(tab);
           // While dragging, the tab under the finger takes the lit styling so
           // the bar previews where the release will land. `aria-current` stays
           // on the real route throughout — the page has not changed yet, and a
@@ -246,25 +326,43 @@ export default function MobileTabBar() {
             : lit
               ? "text-accent"
               : "text-dim";
+          // Tracking is tighter than the house 0.16em: at five across, that
+          // much letter-spacing pushes "Jewellery" past its share of the bar.
+          const tabClass = `relative flex h-[50px] w-full flex-col items-center justify-center gap-1 rounded-full text-[9px] tracking-[0.08em] uppercase transition-colors ${tone} ${
+            lit ? "" : "hover:text-fg"
+          }`;
           return (
-            <li key={tab.href}>
-              <Link
-                href={tab.href}
-                aria-current={current ? "page" : undefined}
-                className={`relative flex h-[50px] flex-col items-center justify-center gap-1 rounded-full text-[9px] tracking-[0.16em] uppercase transition-colors ${tone} ${
-                  lit ? "" : "hover:text-fg"
-                }`}
-              >
-                {/* The current tab sits on the sliding pill above rather than
-                    being marked by colour alone, so it still reads for anyone
-                    who cannot separate the rose from the cream. */}
-                {tab.icon}
-                <span>{tab.label}</span>
-              </Link>
+            <li key={tab.label}>
+              {tab.href ? (
+                <Link
+                  href={tab.href}
+                  aria-current={current ? "page" : undefined}
+                  onClick={() => setEnquireOpen(false)}
+                  className={tabClass}
+                >
+                  {/* The current tab sits on the sliding pill above rather than
+                      being marked by colour alone, so it still reads for anyone
+                      who cannot separate the rose from the cream. */}
+                  {tab.icon}
+                  <span>{tab.label}</span>
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  aria-expanded={enquireOpen}
+                  aria-controls="enquire-options"
+                  onClick={() => setEnquireOpen((open) => !open)}
+                  className={tabClass}
+                >
+                  {tab.icon}
+                  <span>{tab.label}</span>
+                </button>
+              )}
             </li>
           );
         })}
       </ul>
     </nav>
+    </>
   );
 }
