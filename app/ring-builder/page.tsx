@@ -3,15 +3,13 @@ import { Suspense } from "react";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import ScrollReveal from "../components/ScrollReveal";
-import StudioClient from "./StudioClient";
+import BuilderEmbed from "./BuilderEmbed";
 import Link from "next/link";
 import SheetFaq from "../components/SheetFaq";
-import { renderUrl, rendersOrigin } from "@/lib/ring/renders";
 import { SHAPES } from "@/lib/ring/shapes";
 import { HEADS } from "@/lib/ring/heads";
 import { BANDS } from "@/lib/ring/bands";
 import { METALS } from "@/lib/ring/metals";
-import { DEFAULT_CONFIG } from "@/lib/ring/config";
 import { pageMetadata, ldJsonGraph, breadcrumbLd, faqLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
@@ -35,23 +33,7 @@ export const metadata: Metadata = pageMetadata({
   image: "/og/ring-builder.jpg",
 });
 
-/**
- * Everything the studio can build, written out on the server.
- *
- * The studio itself is a client component that reads the URL for its
- * configuration, which puts it behind a <Suspense> boundary on a statically
- * prerendered route — so what Next.js writes into the HTML is the fallback,
- * "Loading the studio…", and nothing else. The page therefore shipped with
- * about sixty crawlable words, no headings, and no link to the size guide or
- * the diamonds guide it points at once it hydrates. Its own copy was invisible
- * to the one audience that cannot press a button.
- *
- * So the options get stated as text as well as offered as controls. This is
- * not filler written for a crawler: it is the actual contents of the builder,
- * read from the same arrays the studio renders, which means it cannot drift
- * out of date and every term in it is one somebody types — "emerald cut",
- * "hidden halo", "cathedral pavé", "18ct rose gold".
- */
+// Catalogue options remain shared with the jewellery pages; the interactive builder is hosted by Softwarebosh.
 const OPTION_GROUPS = [
   {
     heading: "Diamond shapes",
@@ -79,7 +61,7 @@ const BUILDER_FAQS = [
   {
     question: "How does the ring builder work?",
     answer:
-      "Choose a diamond shape, a setting, a band and a metal, and the studio shows that exact combination as you go. Add your carat weight and UK ring size, then send the specification to us. We come back with a CAD design and a price, and nothing is cast until you have approved both.",
+      "Choose a diamond shape, a setting, a band and a metal, then explore your design in photographs, 3D or both. Virtual try-on lets you preview it on your hand using your camera. Add your carat weight and UK ring size, then send the specification to us. We come back with a CAD design and a price, and nothing is cast until you have approved both.",
   },
   {
     question: "Can I use a laboratory-grown diamond?",
@@ -103,67 +85,9 @@ const BUILDER_FAQS = [
   },
 ];
 
-/**
- * The first frame, resolved at build time.
- *
- * This is the single largest thing that can be done for this page's LCP. The
- * studio is a client component behind Suspense — it has to be, it reads
- * `useSearchParams` — so without a preload the browser does not discover the
- * ring's URL until React has downloaded, parsed, hydrated and rendered. That is
- * the entire JavaScript pipeline standing between the customer and the one
- * image they came for. Emitting the tag from the server puts the request in
- * flight while the HTML is still being parsed, before any of that begins.
- *
- * ── Why the default configuration and not the visitor's ──
- *
- * Reading `searchParams` to preload the exact ring somebody linked to is
- * possible, and it costs the whole page its static render: Next drops it from
- * ○ (prerendered, served from the edge) to ƒ (rendered on demand). That trades
- * a guaranteed TTFB for every visitor against a better LCP for the minority who
- * arrive on a shared link — a bad trade, because TTFB is upstream of LCP and
- * the page cannot start painting until it lands.
- *
- * So the page stays static and preloads the default, which is what everybody
- * arriving from search, the menu or the footer sees. Visitors on a shared link
- * are covered by the client instead: the viewport requests its lead frame at
- * high priority the moment it mounts, which is the same request this tag would
- * have made, just later.
- *
- * Only the first frame — the front view. The other two are lazy inside the
- * carousel, and preloading three would triple the bytes on the critical path
- * to save a swipe most visitors never make.
- */
-const PRELOAD = renderUrl(DEFAULT_CONFIG);
-
 export default function RingBuilderPage() {
-  const renders = rendersOrigin();
-
   return (
     <>
-      {/*
-        The renders live on object storage, on a different host to the document,
-        and the first one is this page's LCP element. Without this the browser
-        pays DNS + TCP + TLS — three round trips, easily 200–300ms on mobile —
-        and only starts paying once it has parsed far enough to discover the
-        image URL, which is after the studio has hydrated. Preconnecting opens
-        that connection while the HTML is still arriving, so the socket is warm
-        before anything asks for a picture.
-
-        React 19 hoists a bare <link> into the head from wherever it is
-        rendered, so this does not need to be in `metadata`. It is omitted
-        entirely when no bucket is configured — a preconnect to nothing is a
-        wasted connection, which is the exact thing Lighthouse flags.
-      */}
-      {renders && (
-        <>
-          <link rel="preconnect" href={renders} crossOrigin="" />
-          <link rel="dns-prefetch" href={renders} />
-        </>
-      )}
-      {PRELOAD && (
-        <link rel="preload" as="image" href={PRELOAD} fetchPriority="high" />
-      )}
-
       <SiteHeader />
 
       <main>
@@ -187,7 +111,7 @@ export default function RingBuilderPage() {
               </p>
             }
           >
-            <StudioClient />
+            <BuilderEmbed />
           </Suspense>
         </section>
 

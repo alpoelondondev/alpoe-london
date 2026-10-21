@@ -6,6 +6,7 @@ import Collections from "./components/Collections";
 import CategoryGrid from "./components/CategoryGrid";
 import About from "./components/About";
 import FeatureCards from "./components/FeatureCards";
+import RingBuilderCards from "./components/RingBuilderCards";
 import MentorshipStrip from "./components/MentorshipStrip";
 import MerchandiseStrip from "./components/MerchandiseStrip";
 import Contact from "./components/Contact";
@@ -53,6 +54,7 @@ export default function Home() {
       <CategoryGrid />
       <About />
       <FeatureCards />
+      <RingBuilderCards />
       <MentorshipStrip />
       <Contact />
       <SellForm />
