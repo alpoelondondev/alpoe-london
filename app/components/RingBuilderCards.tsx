@@ -18,7 +18,7 @@ const cards = [
     action: "Try a ring on",
     href: `${ROUTES.ringBuilder}?experience=try-on`,
     image: "/ring-experience/virtual-try-on.webp",
-    alt: "Illustration of a model's hand wearing a platinum diamond ring",
+    alt: "Hand wearing an oval diamond solitaire ring",
     imageClass: "object-cover object-[70%_center]",
   },
 ];
