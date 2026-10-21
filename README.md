@@ -57,4 +57,3 @@ Environment variables the deployment needs:
 
 All four are `NEXT_PUBLIC_*`, so they are **inlined at build time**. Adding or
 changing one requires a redeploy — editing the value alone does nothing.
-
