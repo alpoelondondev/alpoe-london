@@ -247,8 +247,11 @@ export default function Nav({
             aria-label="Alpoe London — Home"
           >
             {/* Flat until the browser is idle. The bar is on every page and
-                this is the only thing on it that costs half a megabyte. */}
-            {markReady ? <Monogram3D height={48} /> : <MonogramFlat />}
+                this is the only thing on it that costs half a megabyte.
+                Always flat on the ring builder: on an iPhone the page and the
+                embedded 3D builder share one graphics budget, and a second
+                live scene made Safari take the builder's away. */}
+            {markReady && pathname !== ROUTES.ringBuilder ? <Monogram3D height={48} /> : <MonogramFlat />}
           </Link>
 
           {/* Booking is the one action the bar carries rather than another
