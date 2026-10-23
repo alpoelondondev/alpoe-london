@@ -8,7 +8,7 @@ import { ROUTES } from "@/lib/routes";
  *
  * The photography runs full bleed and heavily darkened, so the band reads as a
  * ground rather than a picture, and the two lines of type stay legible over the
- * cap and the bag both.
+ * cap and the watches beneath it.
  *
  * The top edge is the point of it: an inset shadow raking down from above, with
  * a hairline catching the light just beneath, so the section reads as recessed
@@ -22,15 +22,15 @@ export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
       aria-label="Merchandise"
       className="relative isolate overflow-hidden bg-bg"
     >
-      {/* Scaled past the band it fills, so the cap and bag read at size rather
+      {/* Scaled past the band it fills, so the cap reads at size rather
           than as a distant still. The section clips it, so the strip keeps its
           own height — this only crops in, it never grows the band. */}
       <Image
-        src="/alpoe-london-merchandise-cap-gift-bag-hatton-garden.jpg"
+        src="/merchandise/alpoe-london-suede-trucker-cap-watch-tray.webp"
         alt=""
         fill
         sizes="100vw"
-        className="-translate-x-[4%] scale-120 object-cover object-center pointer-events-none"
+        className="scale-120 object-cover object-[center_35%] pointer-events-none"
       />
 
       {/* Darkened back so type sits on it comfortably. Weighted to the top,

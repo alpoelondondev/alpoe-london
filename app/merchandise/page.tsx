@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "The Alpoe London trucker cap: black suede-finish front, breathable mesh back and the AP lockup embroidered in raised white thread. Complimentary with high-value purchases at Alpoe London.",
   path: ROUTES.merchandise,
-  image: "/merchandise/alpoe-london-suede-trucker-cap-front.webp",
+  image: "/merchandise/alpoe-london-suede-trucker-cap-watch-tray.webp",
 });
 
 /**
@@ -25,8 +25,8 @@ export const metadata: Metadata = pageMetadata({
  */
 const PHOTOS = [
   {
-    src: "/merchandise/alpoe-london-suede-trucker-cap-front.webp",
-    alt: "Black Alpoe London trucker cap, front on, with the AP monogram and Alpoe London lockup embroidered in white",
+    src: "/merchandise/alpoe-london-suede-trucker-cap-watch-tray.webp",
+    alt: "Black Alpoe London trucker cap with the AP lockup embroidered in white, resting on a tray of Rolex watches",
   },
   {
     src: "/merchandise/alpoe-london-suede-trucker-cap-embroidery.webp",
