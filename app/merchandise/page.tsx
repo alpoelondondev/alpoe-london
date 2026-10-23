@@ -13,7 +13,7 @@ import { buildGeneralWhatsAppUrl } from "@/lib/whatsapp";
 export const metadata: Metadata = pageMetadata({
   title: "Merchandise — The Alpoe London Cap",
   description:
-    "The Alpoe London trucker cap: black suede-finish front, breathable mesh back and the AP lockup embroidered in raised white thread. In store now in Hatton Garden.",
+    "The Alpoe London trucker cap: black suede-finish front, breathable mesh back and the AP lockup embroidered in raised white thread. Complimentary with high-value purchases at Alpoe London.",
   path: ROUTES.merchandise,
   image: "/merchandise/alpoe-london-suede-trucker-cap-front.webp",
 });
@@ -65,7 +65,7 @@ export default function MerchandisePage() {
       "@id": siteUrl(ROUTES.merchandise) + "#merchandise",
       url: siteUrl(ROUTES.merchandise),
       name: `Merchandise — ${SITE.name}`,
-      description: "The Alpoe London embroidered trucker cap, available in store.",
+      description: "The Alpoe London embroidered trucker cap, complimentary with high-value purchases.",
     },
     breadcrumbLd([
       { name: "Home", url: siteUrl("/") },
@@ -118,8 +118,8 @@ export default function MerchandisePage() {
               ))}
             </ul>
             <p className="mt-6 max-w-[56ch] t-copy">
-              Pick one up at the counter in Hatton Garden, or message us and
-              we&apos;ll put one aside for you.
+              Complimentary with high-value purchases — ask us when you buy,
+              and we&apos;ll add one to your order.
             </p>
             <a
               href={enquire}

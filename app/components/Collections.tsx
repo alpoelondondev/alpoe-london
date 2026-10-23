@@ -50,7 +50,7 @@ const items: {
   {
     title: "Merchandise",
     href: ROUTES.merchandise,
-    blurb: "The Alpoe London cap — embroidered suede trucker, in store now.",
+    blurb: "The Alpoe London cap — complimentary with high-value purchases.",
     image: "/merchandise/alpoe-london-suede-trucker-cap-front.webp",
     imageAlt: "Black Alpoe London trucker cap with the AP lockup embroidered in white",
   },

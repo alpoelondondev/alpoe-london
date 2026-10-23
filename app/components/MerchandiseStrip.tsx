@@ -69,7 +69,7 @@ export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
         </ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className="t-eyebrow mt-4">
-            The Alpoe London cap — in store now
+            The Alpoe London cap — free with high-value purchases
           </p>
         </ScrollReveal>
         <ScrollReveal delay={0.16}>
