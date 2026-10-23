@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import { ROUTES } from "@/lib/routes";
 
 /**
  * Band for the merch, sitting between the FAQ and the socials.
@@ -69,6 +71,14 @@ export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
           <p className="t-eyebrow mt-4">
             The Alpoe London cap — free with high-value purchases
           </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.16}>
+          <Link
+            href={ROUTES.merchandise}
+            className="mt-8 inline-block border border-fg/40 px-6 py-3 text-[12px] uppercase tracking-[0.18em] text-fg transition hover:border-accent hover:text-accent"
+          >
+            See the cap
+          </Link>
         </ScrollReveal>
       </div>
     </section>
