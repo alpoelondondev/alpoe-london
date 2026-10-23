@@ -206,6 +206,7 @@ const STATIC_ROUTES = {
   clients: { path: "/clients", sitemap: { changeFrequency: "monthly", priority: 0.7 } },
   contact: { path: "/contact", sitemap: { changeFrequency: "monthly", priority: 0.6 } },
   ourBrand: { path: "/ourbrand", sitemap: { changeFrequency: "yearly", priority: 0.3 } },
+  merchandise: { path: "/merchandise", sitemap: { changeFrequency: "monthly", priority: 0.5 } },
   privacy: { path: "/privacy", sitemap: { changeFrequency: "yearly", priority: 0.3 } },
 
   /*

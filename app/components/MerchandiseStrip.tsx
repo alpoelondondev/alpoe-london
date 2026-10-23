@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import { ROUTES } from "@/lib/routes";
 
 /**
- * Teaser band for the merch, sitting between the FAQ and the socials.
+ * Band for the merch, sitting between the FAQ and the socials.
  *
  * The photography runs full bleed and heavily darkened, so the band reads as a
  * ground rather than a picture, and the two lines of type stay legible over the
@@ -67,8 +69,16 @@ export default function MerchandiseStrip({ tall = false }: { tall?: boolean }) {
         </ScrollReveal>
         <ScrollReveal delay={0.08}>
           <p className="t-eyebrow mt-4">
-            Alpoe London merch coming soon
+            The Alpoe London cap — in store now
           </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.16}>
+          <Link
+            href={ROUTES.merchandise}
+            className="mt-8 inline-block border border-fg/40 px-6 py-3 text-[12px] uppercase tracking-[0.18em] text-fg transition hover:border-accent hover:text-accent"
+          >
+            See the cap
+          </Link>
         </ScrollReveal>
       </div>
     </section>

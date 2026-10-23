@@ -49,12 +49,10 @@ const items: {
   },
   {
     title: "Merchandise",
-    blurb: "Alpoe London custom merch coming soon.",
-    image: "/alpoe-london-merchandise-cap-gift-bag-hatton-garden.jpg",
-    imageAlt: "Alpoe London embroidered cap and foil-printed gift bag",
-    // The cap and bag sit small in a wide shot with dark air above and below —
-    // pushed in so the embroidery and foil read at card size.
-    imageScale: "scale-[1.35] group-hover:scale-[1.4]",
+    href: ROUTES.merchandise,
+    blurb: "The Alpoe London cap — embroidered suede trucker, in store now.",
+    image: "/merchandise/alpoe-london-suede-trucker-cap-front.webp",
+    imageAlt: "Black Alpoe London trucker cap with the AP lockup embroidered in white",
   },
 ];
 
