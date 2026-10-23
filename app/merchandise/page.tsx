@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
     "The Alpoe London trucker cap: black suede-finish front, breathable mesh back and the AP lockup embroidered in raised white thread. Complimentary with high-value purchases at Alpoe London.",
   path: ROUTES.merchandise,
   image: "/merchandise/alpoe-london-suede-trucker-cap-front.webp",
+  // Hidden for now: unlinked and out of the sitemap, see lib/routes.ts.
+  noindex: true,
 });
 
 /**

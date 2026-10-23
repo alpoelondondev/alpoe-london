@@ -206,7 +206,12 @@ const STATIC_ROUTES = {
   clients: { path: "/clients", sitemap: { changeFrequency: "monthly", priority: 0.7 } },
   contact: { path: "/contact", sitemap: { changeFrequency: "monthly", priority: 0.6 } },
   ourBrand: { path: "/ourbrand", sitemap: { changeFrequency: "yearly", priority: 0.3 } },
-  merchandise: { path: "/merchandise", sitemap: { changeFrequency: "monthly", priority: 0.5 } },
+  merchandise: {
+    path: "/merchandise",
+    sitemap: null,
+    excludedBecause: "Hidden for now at the owner's request; the page carries noindex.",
+    unlinked: "Hidden for now at the owner's request. Re-link from Collections, MerchandiseStrip and Footer to bring it back.",
+  },
   privacy: { path: "/privacy", sitemap: { changeFrequency: "yearly", priority: 0.3 } },
 
   /*

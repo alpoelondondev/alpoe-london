@@ -51,7 +51,6 @@ const HOUSE_LINKS: FooterLink[] = [
   // the definition of an orphan. Last in the house column, which is honest
   // about how much it matters.
   { label: "Our Brand", href: ROUTES.ourBrand },
-  { label: "Merchandise", href: ROUTES.merchandise },
   { label: "Contact", href: ROUTES.contact },
   // The second shop. In the house column rather than tucked at the bottom,
   // because until 2026-09-21 the site did not mention Birmingham at all and
