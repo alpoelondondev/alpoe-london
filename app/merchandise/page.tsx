@@ -4,7 +4,6 @@ import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 import Breadcrumbs from "../components/Breadcrumbs";
-import BrandHero from "../components/BrandHero";
 import ScrollReveal from "../components/ScrollReveal";
 import { pageMetadata, ldJsonGraph, breadcrumbLd } from "@/lib/seo";
 import { SITE, siteUrl } from "@/lib/site";
@@ -78,13 +77,12 @@ export default function MerchandisePage() {
     <>
       <SiteHeader />
       <main>
-        <BrandHero
-          eyebrow="Merchandise"
-          title="The Alpoe London Cap"
-          copy="Our first piece of merchandise: a black trucker cap carrying the AP lockup in raised white embroidery. In store now."
-        />
+        {/* No drawn headline — the photography leads. Announced rather than
+            shown, so the page still has its <h1>. */}
+        <h1 className="sr-only">The Alpoe London Cap</h1>
 
-        <section className="px-[52px] py-8 max-md:px-6">
+        {/* Top padding clears the fixed header, which the hero used to do. */}
+        <section className="px-[52px] pt-52 pb-8 max-md:px-6 max-md:pt-48">
           <Breadcrumbs
             items={[
               { name: "Home", href: "/" },
